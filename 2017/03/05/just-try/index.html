@@ -92,6 +92,10 @@
 
 1. org-mode 基础
 
+1.1. org-mode的文档结构
+
+
+
 
 
 
@@ -106,7 +110,10 @@ org-mode我用了两年，却未曾深入。
 
 
 
-Last Updated 2017-03-06 Mon 00:48.Render by">
+1.1 org-mode的文档结构
+
+
+下面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello org-mode">
 <meta property="og:url" content="https://brantou.github.io/2017/03/05/just-try/index.html">
@@ -116,6 +123,10 @@ Last Updated 2017-03-06 Mon 00:48.Render by">
 
 1. org-mode 基础
 
+1.1. org-mode的文档结构
+
+
+
 
 
 
@@ -130,8 +141,11 @@ org-mode我用了两年，却未曾深入。
 
 
 
-Last Updated 2017-03-06 Mon 00:48.Render by">
-<meta property="og:updated_time" content="2017-03-05T16:48:19.408Z">
+1.1 org-mode的文档结构
+
+
+下面">
+<meta property="og:updated_time" content="2017-03-06T16:13:01.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello org-mode">
 <meta name="twitter:description" content="Table of Contents
@@ -139,6 +153,10 @@ Last Updated 2017-03-06 Mon 00:48.Render by">
 
 1. org-mode 基础
 
+1.1. org-mode的文档结构
+
+
+
 
 
 
@@ -153,7 +171,10 @@ org-mode我用了两年，却未曾深入。
 
 
 
-Last Updated 2017-03-06 Mon 00:48.Render by">
+1.1 org-mode的文档结构
+
+
+下面">
 
 
 
@@ -426,13 +447,17 @@ Last Updated 2017-03-06 Mon 00:48.Render by">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga791004">1. org-mode 基础</a></li>
+<li><a href="#org7c0adc8">1. org-mode 基础</a>
+<ul>
+<li><a href="#org8377dad">1.1. org-mode的文档结构</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga791004" class="outline-2">
-<h2 id="orga791004"><span class="section-number-2">1</span> org-mode 基础</h2>
+<div id="outline-container-org7c0adc8" class="outline-2">
+<h2 id="org7c0adc8"><span class="section-number-2">1</span> org-mode 基础</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 org-mode我用了两年，却未曾深入。
@@ -440,9 +465,139 @@ org-mode我用了两年，却未曾深入。
 归纳整理于此，以作留存，馈与日后。
 </p>
 </div>
+
+<div id="outline-container-org8377dad" class="outline-3">
+<h3 id="org8377dad"><span class="section-number-3">1.1</span> org-mode的文档结构</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+下面这段摘录自org-mode手册, <code>TAB</code> 用于大纲的展开和折叠，让你轻松的定位于工作，撇除其他无关干扰。
+</p>
+<blockquote>
+<p>
+Outlines allow a document to be organized in a hierarchical structure, which (at least for me) is the best representation of notes and thoughts.
+An overview of this structure is achieved by folding (hiding) large parts of the document to show only the general document structure and the parts currently being worked on.
+Org greatly simplifies the use of outlines by compressing the entire show/hide functionality into a single command, org-cycle, which is bound to the TAB key.
+</p>
+</blockquote>
+
+<p>
+标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
+</p>
+<pre class="example">
+* Top level headline
+** Second level
+*** 3rd level
+     some text
+*** 3rd level
+     more text
+* Another top level headline
+</pre>
+
+<p>
+#+NAME table:visibility-cycling
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">TAB</td>
+<td class="org-left">Subtree cycling: Rotate current subtree among the states</td>
+<td class="org-left">org-cycle</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,-> FOLDED -> CHILDREN -> SUBTREE &#x2013;.</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">'------------------------------&#x2013;&#x2014;'</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">S-TAB</td>
+<td class="org-left">Global cycling: Rotate the entire bu↵er among the states</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,-> OVERVIEW -> CONTENTS -> SHOW ALL &#x2013;.</td>
+<td class="org-left">org-global-cycle</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">'---------------------------------&#x2013;&#x2014;'</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-r</td>
+<td class="org-left">Reveal context around point, showing the current entry, the following heading and the hierarchy above.</td>
+<td class="org-left">org-reveal</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Useful for working near a location that has been exposed by a sparse tree command or an agenda command</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-k</td>
+<td class="org-left">Expose all the headings of the subtree, CONTENT view for just one subtree.</td>
+<td class="org-left">outline-show-branches</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c TAB</td>
+<td class="org-left">Expose all direct children of the subtree.</td>
+<td class="org-left">outline-show-children</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x b</td>
+<td class="org-left">Show the current subtree in an indirect buffer</td>
+<td class="org-left">org-tree-to-indirect-buffer</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x v</td>
+<td class="org-left">Copy the visible text in the region into the kill ring.</td>
+<td class="org-left">org-copy-visible</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
-Last Updated 2017-03-06 Mon 00:48.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-03-07 Tue 00:13.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -636,7 +791,7 @@ Last Updated 2017-03-06 Mon 00:48.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga791004"><span class="nav-number">2.</span> <span class="nav-text">1 org-mode 基础</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7c0adc8"><span class="nav-number">2.</span> <span class="nav-text">1 org-mode 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org8377dad"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 org-mode的文档结构</span></a></li></ol></li></ol></div>
             
 
           </div>
