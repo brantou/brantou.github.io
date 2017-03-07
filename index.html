@@ -270,6 +270,501 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/07/just-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/07/just-try/" itemprop="url">
+                  Hello org-mode
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T00:00:00+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc11a9e9">1. org-mode 基础</a>
+<ul>
+<li><a href="#orge5691bf">1.1. org-mode的文档结构</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc11a9e9" class="outline-2">
+<h2 id="orgc11a9e9"><span class="section-number-2">1</span> org-mode 基础</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。
+</p>
+</div>
+
+<div id="outline-container-orge5691bf" class="outline-3">
+<h3 id="orge5691bf"><span class="section-number-3">1.1</span> org-mode的文档结构</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+下面这段摘录自org-mode手册, <code>TAB</code> 用于大纲的展开和折叠，让你轻松的定位于工作，撇除其他无关干扰。
+</p>
+<blockquote>
+<p>
+Outlines allow a document to be organized in a hierarchical structure, which (at least for me) is the best representation of notes and thoughts.
+An overview of this structure is achieved by folding (hiding) large parts of the document to show only the general document structure and the parts currently being worked on.
+Org greatly simplifies the use of outlines by compressing the entire show/hide functionality into a single command, org-cycle, which is bound to the TAB key.
+</p>
+</blockquote>
+
+<p>
+标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
+</p>
+<pre class="example">
+* Top level headline
+** Second level
+*** 3rd level
+     some text
+*** 3rd level
+     more text
+* Another top level headline
+</pre>
+
+<table id="org5952d4d" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">TAB</td>
+<td class="org-left">Subtree cycling: Rotate current subtree among the states  (<span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span>)</td>
+<td class="org-left">org-cycle</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">S-TAB</td>
+<td class="org-left">Global cycling: Rotate the entire buffer among the states (<span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span>)</td>
+<td class="org-left">org-global-cycle</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-r</td>
+<td class="org-left">Reveal context around point, showing the current entry, the following heading and the hierarchy above. Useful for working near a location that has been exposed by a sparse tree command or an agenda command.</td>
+<td class="org-left">org-reveal</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-k</td>
+<td class="org-left">Expose all the headings of the subtree, CONTENT view for just one subtree.</td>
+<td class="org-left">outline-show-branches</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c TAB</td>
+<td class="org-left">Expose all direct children of the subtree.</td>
+<td class="org-left">outline-show-children</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x b</td>
+<td class="org-left">Show the current subtree in an indirect buffer</td>
+<td class="org-left">org-tree-to-indirect-buffer</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x v</td>
+<td class="org-left">Copy the visible text in the region into the kill ring.</td>
+<td class="org-left">org-copy-visible</td>
+</tr>
+</tbody>
+</table>
+<p>
+org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标题可见。
+你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+当然你也可以为每个文件指定视图模式，只要在文件buffer中任意位置包含以下语句（推荐配置在文件头）：
+</p>
+<pre class="example">
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+</pre>
+
+<p>
+更进一步,任何条目都包含 <code>VISIBILITY</code> 属性，此属性定义了条目的视图模式，覆盖一般性设置。可接受的值为： <b>folded</b> <b>children</b> <b>content</b> <b>all</b>, 示例如下
+</p>
+<pre class="example">
+#+STARTUP: overview
+* A
+:PROPERTIES:
+:VISIBILITY: all
+:END:
+</pre>
+
+<table id="org1787678" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-n</td>
+<td class="org-left">跳转到下一个标题</td>
+<td class="org-left">org-next-visible-heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-p</td>
+<td class="org-left">跳转到上一个标题</td>
+<td class="org-left">org-previous-visible-heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-f</td>
+<td class="org-left">跳转到下一个同级标题</td>
+<td class="org-left">org-forward-same-level</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-p</td>
+<td class="org-left">跳转到上一个同级标题</td>
+<td class="org-left">org-backward-same-level</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-u</td>
+<td class="org-left">跳回更高一级的标题</td>
+<td class="org-left">outline-up-heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-j</td>
+<td class="org-left">跳转到别处，不改变当前的视图模式，创建一个临时buffer来展示当前文档</td>
+<td class="org-left">org-goto</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+在C-c C-j触发的临时buffer中，可用的命令如下：
+</p>
+<pre class="example">
+TAB      Cycle visibility.
+down/up  Next/previous visible headline.
+RET      Select this location.
+/        Do a Sparse-tree search
+</pre>
+<p>
+若是关闭了 <code>org-goto-auto-isearch</code> ，以下命令可用：
+</p>
+<pre class="example">
+n/p      Next/previous visible headline.
+f/b      Next/previous headline same level.
+u        One level up.
+0-9      数字参数
+q        退出
+</pre>
+
+<table id="orga461dbe" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">M-RET</td>
+<td class="org-left">插入一个同级标题在当前位置(行首，把当前行转成标题；行中，截断余下文本，在下一行生成标题)</td>
+<td class="org-left">org-insert-heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-RET</td>
+<td class="org-left">在当前子树的结束位置插入同级标题</td>
+<td class="org-left">org-insert-heading-respect-content</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-RET</td>
+<td class="org-left">在M-RET的基础上，添加了 <code>TODO</code> 标示</td>
+<td class="org-left">org-insert-todo-heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-S-RET</td>
+<td class="org-left">在C<sub>RET的基础上</sub>，添加了 <code>TODO</code> 标示</td>
+<td class="org-left">org-insert-todo-heading-respect-content</td>
+</tr>
+
+<tr>
+<td class="org-left">TAB</td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
+<td class="org-left">org-cycle</td>
+</tr>
+
+<tr>
+<td class="org-left">M-left</td>
+<td class="org-left">当前标题提升一个等级</td>
+<td class="org-left">org-do-promote</td>
+</tr>
+
+<tr>
+<td class="org-left">M-right</td>
+<td class="org-left">当前标题降低一个等级</td>
+<td class="org-left">org-do-demote</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-left</td>
+<td class="org-left">当前整个子树提升一个等级</td>
+<td class="org-left">org-promote-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-right</td>
+<td class="org-left">当前整个子树降低一个等级</td>
+<td class="org-left">org-demote-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-up</td>
+<td class="org-left">当前整个子树和前面同级子树交换位置</td>
+<td class="org-left">org-move-subtree-up</td>
+</tr>
+
+<tr>
+<td class="org-left">M-S-down</td>
+<td class="org-left">当前整个子树和后面同级子树交换位置</td>
+<td class="org-left">org-move-subtree-down</td>
+</tr>
+
+<tr>
+<td class="org-left">M-h</td>
+<td class="org-left">Mark the element at point.</td>
+<td class="org-left">org-mark-element</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c @</td>
+<td class="org-left">Mark the subtree at point.</td>
+<td class="org-left">org-mark-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-w</td>
+<td class="org-left">Kill subtree, i.e., remove it from buffer but save in kill ring.</td>
+<td class="org-left">org-cut-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x M-w</td>
+<td class="org-left">Copy subtree to kill ring.</td>
+<td class="org-left">org-copy-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-y</td>
+<td class="org-left">Yank subtree from kill ring.</td>
+<td class="org-left">org-paste-subtree</td>
+</tr>
+
+<tr>
+<td class="org-left">C-y</td>
+<td class="org-left">Depending on the options org-yank-adjusted-subtrees and org-yank- folded-subtrees, Org’s internal yank command will paste subtrees folded and in a clever way, using the same command as C-c C-x C-y.</td>
+<td class="org-left">org-yank</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+Last Updated 2017-03-08 Wed 00:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/05/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -356,269 +851,6 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/05/just-try/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/just-try/" itemprop="url">
-                  Hello org-mode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T00:00:00+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org4860b1d">1. org-mode 基础</a>
-<ul>
-<li><a href="#org552fe8a">1.1. org-mode的文档结构</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org4860b1d" class="outline-2">
-<h2 id="org4860b1d"><span class="section-number-2">1</span> org-mode 基础</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-org-mode我用了两年，却未曾深入。
-最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
-归纳整理于此，以作留存，馈与日后。
-</p>
-</div>
-
-<div id="outline-container-org552fe8a" class="outline-3">
-<h3 id="org552fe8a"><span class="section-number-3">1.1</span> org-mode的文档结构</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-下面这段摘录自org-mode手册, <code>TAB</code> 用于大纲的展开和折叠，让你轻松的定位于工作，撇除其他无关干扰。
-</p>
-<blockquote>
-<p>
-Outlines allow a document to be organized in a hierarchical structure, which (at least for me) is the best representation of notes and thoughts.
-An overview of this structure is achieved by folding (hiding) large parts of the document to show only the general document structure and the parts currently being worked on.
-Org greatly simplifies the use of outlines by compressing the entire show/hide functionality into a single command, org-cycle, which is bound to the TAB key.
-</p>
-</blockquote>
-
-<p>
-标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
-</p>
-<pre class="example">
-* Top level headline
-** Second level
-*** 3rd level
-     some text
-*** 3rd level
-     more text
-* Another top level headline
-</pre>
-
-<table id="orgae3db81" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">TAB</td>
-<td class="org-left">Subtree cycling: Rotate current subtree among the states  (<span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span>)</td>
-<td class="org-left">org-cycle</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">S-TAB</td>
-<td class="org-left">Global cycling: Rotate the entire buffer among the states (<span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span>)</td>
-<td class="org-left">org-global-cycle</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-r</td>
-<td class="org-left">Reveal context around point, showing the current entry, the following heading and the hierarchy above. Useful for working near a location that has been exposed by a sparse tree command or an agenda command.</td>
-<td class="org-left">org-reveal</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-k</td>
-<td class="org-left">Expose all the headings of the subtree, CONTENT view for just one subtree.</td>
-<td class="org-left">outline-show-branches</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c TAB</td>
-<td class="org-left">Expose all direct children of the subtree.</td>
-<td class="org-left">outline-show-children</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-x b</td>
-<td class="org-left">Show the current subtree in an indirect buffer</td>
-<td class="org-left">org-tree-to-indirect-buffer</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-x v</td>
-<td class="org-left">Copy the visible text in the region into the kill ring.</td>
-<td class="org-left">org-copy-visible</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-Last Updated 2017-03-07 Tue 11:12.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
           
         
