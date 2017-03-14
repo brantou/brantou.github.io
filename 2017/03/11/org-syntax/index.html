@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="org-mode," />
 
 
 
@@ -87,15 +87,46 @@
 
 
 
-<meta name="description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
-<meta property="og:type" content="website">
+<meta name="description" content="原文Org Syntax (draft)1由 Nicolas Goaziou 编辑，维护。本文只做学习之用。
+
+
+
+
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+
+
+
+在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
+其他语法结构只能存在于特">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Brantou的日常">
-<meta property="og:url" content="https://brantou.github.io/index.html">
+<meta property="og:url" content="https://brantou.github.io/2017/03/11/org-syntax/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
+<meta property="og:description" content="原文Org Syntax (draft)1由 Nicolas Goaziou 编辑，维护。本文只做学习之用。
+
+
+
+
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+
+
+
+在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
+其他语法结构只能存在于特">
+<meta property="og:updated_time" content="2017-03-11T09:02:19.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Brantou的日常">
-<meta name="twitter:description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
+<meta name="twitter:description" content="原文Org Syntax (draft)1由 Nicolas Goaziou 编辑，维护。本文只做学习之用。
+
+
+
+
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+
+
+
+在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
+其他语法结构只能存在于特">
 
 
 
@@ -123,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/"/>
+  <link rel="canonical" href="https://brantou.github.io/2017/03/11/org-syntax/"/>
 
 
 
 
 
-  <title> Brantou的日常 </title>
+  <title>  | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +185,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,9 +288,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -292,9 +321,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/11/org-syntax/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -368,8 +394,6 @@
 
       
         
-          
-            
 <blockquote>
 <p>
 原文<a href="http://orgmode.org/worg/dev/org-syntax.html" target="_blank" rel="external">Org Syntax (draft)</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>由 <b>Nicolas Goaziou</b> 编辑，维护。本文只做学习之用。
@@ -1759,1133 +1783,66 @@ As a consequence, using <code>org-element-at-point</code> or <code>org-element-c
 </div>
 Last Updated 2017-03-11 Sat 17:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/07/just-try/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/just-try/" itemprop="url">
-                  Hello org-mode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T00:00:00+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/org-mode/" rel="tag"># org-mode</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-
-
-<div id="outline-container-org35db70d" class="outline-2">
-<h2 id="org35db70d"><span class="section-number-2">1</span> org-mode 基础</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-org-mode我用了两年，却未曾深入。
-最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
-归纳整理于此，以作留存，馈与日后。
-</p>
-</div>
-
-<div id="outline-container-org9663ed4" class="outline-3">
-<h3 id="org9663ed4"><span class="section-number-3">1.1</span> org-mode的文档结构</h3>
-<div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-org2acc7b2" class="outline-4">
-<h4 id="org2acc7b2"><span class="section-number-4">1.1.1</span> 标题（headline）</h4>
-<div class="outline-text-4" id="text-1-1-1">
-<p>
-下面这段摘录自org-mode手册, <code>TAB</code> 用于大纲的展开和折叠，让你轻松的定位于工作，撇除其他无关干扰。
-</p>
-<blockquote>
-<p>
-Outlines allow a document to be organized in a hierarchical structure, which (at least for me) is the best representation of notes and thoughts.
-An overview of this structure is achieved by folding (hiding) large parts of the document to show only the general document structure and the parts currently being worked on.
-Org greatly simplifies the use of outlines by compressing the entire show/hide functionality into a single command, <code>org-cycle</code>, which is bound to the <code>TAB</code> key.
-</p>
-</blockquote>
-
-<p>
-标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
-</p>
-<pre class="example">
-* Top level headline
-** Second level
-*** 3rd level
-     some text
-*** 3rd level
-     more text
-* Another top level headline
-</pre>
-
-<table id="org36c973e" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">TAB</td>
-<td class="org-left">Subtree cycling: Rotate current subtree among the states  (<span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span>)</td>
-<td class="org-left">org-cycle</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">S-TAB</td>
-<td class="org-left">Global cycling: Rotate the entire buffer among the states (<span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span>)</td>
-<td class="org-left">org-global-cycle</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-r</td>
-<td class="org-left">Reveal context around point, showing the current entry, the following heading and the hierarchy above. Useful for working near a location that has been exposed by a sparse tree command or an agenda command.</td>
-<td class="org-left">org-reveal</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-k</td>
-<td class="org-left">Expose all the headings of the subtree, CONTENT view for just one subtree.</td>
-<td class="org-left">outline-show-branches</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c TAB</td>
-<td class="org-left">Expose all direct children of the subtree.</td>
-<td class="org-left">outline-show-children</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-x b</td>
-<td class="org-left">Show the current subtree in an indirect buffer</td>
-<td class="org-left">org-tree-to-indirect-buffer</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">C-c C-x v</td>
-<td class="org-left">Copy the visible text in the region into the <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a>.</td>
-<td class="org-left">org-copy-visible</td>
-</tr>
-</tbody>
-</table>
-<p>
-org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标题可见。
-你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-当然你也可以为每个文件指定视图模式，只要在文件buffer中任意位置包含以下语句（推荐配置在文件头）：
-</p>
-<pre class="example">
-#+STARTUP: overview
-#+STARTUP: content
-#+STARTUP: showall
-#+STARTUP: showeverything
-</pre>
-
-<p>
-更进一步,任何条目都包含 <code>VISIBILITY</code> 属性，此属性定义了条目的视图模式，覆盖一般性设置。可接受的值为： <b>folded</b> <b>children</b> <b>content</b> <b>all</b>, 示例如下
-</p>
-<pre class="example">
-#+STARTUP: overview
-* A
-:PROPERTIES:
-:VISIBILITY: all
-:END:
-</pre>
-
-<table id="orgf0b6cd9" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">C-c C-n</td>
-<td class="org-left">跳转到下一个标题</td>
-<td class="org-left">org-next-visible-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-p</td>
-<td class="org-left">跳转到上一个标题</td>
-<td class="org-left">org-previous-visible-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-f</td>
-<td class="org-left">跳转到下一个同级标题</td>
-<td class="org-left">org-forward-same-level</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-p</td>
-<td class="org-left">跳转到上一个同级标题</td>
-<td class="org-left">org-backward-same-level</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-u</td>
-<td class="org-left">跳回更高一级的标题</td>
-<td class="org-left">outline-up-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-j</td>
-<td class="org-left">跳转到别处，不改变当前的视图模式，创建一个临时buffer来展示当前文档</td>
-<td class="org-left">org-goto</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-在 <code>C-c C-j</code> 触发的临时buffer中，可用的命令如下：
-</p>
-<pre class="example">
-TAB      Cycle visibility.
-down/up  Next/previous visible headline.
-RET      Select this location.
-/        Do a Sparse-tree search
-</pre>
-<p>
-若是关闭了 <code>org-goto-auto-isearch</code> ，以下命令可用：
-</p>
-<pre class="example">
-n/p      Next/previous visible headline.
-f/b      Next/previous headline same level.
-u        One level up.
-0-9      数字参数
-q        退出
-</pre>
-
-<table id="org5810e59" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">M-RET</td>
-<td class="org-left">插入一个同级标题在当前位置(行首，把当前行转成标题；行中，截断余下文本，在下一行生成标题)</td>
-<td class="org-left">org-insert-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-RET</td>
-<td class="org-left">在当前子树的结束位置插入同级标题</td>
-<td class="org-left">org-insert-heading-respect-content</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-RET</td>
-<td class="org-left">在M-RET的基础上，添加了 <code>TODO</code> 标示</td>
-<td class="org-left">org-insert-todo-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-S-RET</td>
-<td class="org-left">在C<sub>RET的基础上</sub>，添加了 <code>TODO</code> 标示</td>
-<td class="org-left">org-insert-todo-heading-respect-content</td>
-</tr>
-
-<tr>
-<td class="org-left">TAB</td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
-<td class="org-left">org-cycle</td>
-</tr>
-
-<tr>
-<td class="org-left">M-left</td>
-<td class="org-left">当前标题提升一个等级</td>
-<td class="org-left">org-do-promote</td>
-</tr>
-
-<tr>
-<td class="org-left">M-right</td>
-<td class="org-left">当前标题降低一个等级</td>
-<td class="org-left">org-do-demote</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-left</td>
-<td class="org-left">当前整个子树提升一个等级</td>
-<td class="org-left">org-promote-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-right</td>
-<td class="org-left">当前整个子树降低一个等级</td>
-<td class="org-left">org-demote-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-up</td>
-<td class="org-left">当前整个子树和前面同级子树交换位置</td>
-<td class="org-left">org-move-subtree-up</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-down</td>
-<td class="org-left">当前整个子树和后面同级子树交换位置</td>
-<td class="org-left">org-move-subtree-down</td>
-</tr>
-
-<tr>
-<td class="org-left">M-h</td>
-<td class="org-left">Mark the element at point.</td>
-<td class="org-left">org-mark-element</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c @</td>
-<td class="org-left">Mark the subtree at point. 目前看起来是可视化选中当前子树</td>
-<td class="org-left">org-mark-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-x C-w</td>
-<td class="org-left">剪切子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
-<td class="org-left">org-cut-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-x M-w</td>
-<td class="org-left">拷贝子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
-<td class="org-left">org-copy-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-x C-y</td>
-<td class="org-left">从  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a> 中粘贴子树</td>
-<td class="org-left">org-paste-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-y</td>
-<td class="org-left">Depending on the options org-yank-adjusted-subtrees and org-yank- folded-subtrees, Org’s internal yank command will paste subtrees folded and in a clever way, using the same command as C-c C-x C-y.</td>
-<td class="org-left">org-yank</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-x c</td>
-<td class="org-left">Clone a subtree by making a number of sibling copies of it. You will be prompted for the number of copies to make, and you can also specify if any timestamps in the entry should be shifted.</td>
-<td class="org-left">org-clone-subtree-with-time-shift</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-w</td>
-<td class="org-left">Refile entry or region to a di↵erent location.</td>
-<td class="org-left">org-refile</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c ^</td>
-<td class="org-left">Sort same-level entries.</td>
-<td class="org-left">org-sort</td>
-</tr>
-
-<tr>
-<td class="org-left">C-x n s</td>
-<td class="org-left">Narrow buffer to current subtree.</td>
-<td class="org-left">org-narrow-to-subtree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-x n b</td>
-<td class="org-left">Narrow buffer to current block.</td>
-<td class="org-left">org-narrow-to-block</td>
-</tr>
-
-<tr>
-<td class="org-left">C-x n w</td>
-<td class="org-left">Widen buffer to remove narrowing.</td>
-<td class="org-left">widen</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c *</td>
-<td class="org-left">使正常的文本行变为标题,重复操作可恢复成原样</td>
-<td class="org-left">org-toggle-heading</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-一个很重要的特性就是org有能力为被选中的信息构造出稀疏树，使得被选中信息突出显示，无关信息折叠显示。实践才是检测真理的唯一标准，试一试就知道具体是怎样优化你的工作了。
-</p>
-
-<table id="org805a9e3" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 4:</span> 稀疏树</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">C-c /</td>
-<td class="org-left">本命令会触发sparse-tress命令界面，提示输入字符，来选择创建稀疏树的命令</td>
-<td class="org-left">org-sparse-tree</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c / r</td>
-<td class="org-left">创建出和正则表达式匹配的稀疏树;标题匹配，标题可见; body匹配, 标题和body都可见；所以匹配高亮，当当前buffer通过编辑命令发送改变时，高亮消失，当然你可以通过 <code>C-c C-c</code> 主动取消高亮。</td>
-<td class="org-left">org-occur</td>
-</tr>
-
-<tr>
-<td class="org-left">M-g n</td>
-<td class="org-left">跳转到下一个匹配</td>
-<td class="org-left">next-error</td>
-</tr>
-
-<tr>
-<td class="org-left">M-g p</td>
-<td class="org-left">跳转到上一个匹配</td>
-<td class="org-left">previous-error</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-很有可能需要频繁创建特定搜索条件的稀疏树，可通过 <code>org-agenda-custom-commands</code> 来定义快速访问的快捷键（这个命令可用在<a href="http://orgmode.org/manual/Agenda-dispatcher.html" target="_blank" rel="external">agenda dispatcher</a>中）。
-如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
-</div>
-<blockquote>
-<p>
-The other sparse tree commands select headings based on <code>TODO</code> keywords, tags, or properties and will be discussed later in this manual.
-To print a sparse tree, you can use the Emacs command <code>ps-print-buffer-with-faces</code> which does not print invisible parts of the document.
-Or you can use <code>C-c C-e C-v</code> to export only the visible part of the document and print the resulting file.
-</p>
-</blockquote>
-</div>
-</div>
-<div id="outline-container-org33a3d3a" class="outline-4">
-<h4 id="org33a3d3a"><span class="section-number-4">1.1.2</span> 文本列表(Plain lists)</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<blockquote>
-<p>
-Within an entry of the outline tree, hand-formatted lists can provide additional structure.
-They also provide a way to create lists of checkboxes.
-Org supports editing such lists, and every exporter can parse and format them.
-</p>
-</blockquote>
-<p>
-在大纲树的组织结构中，手工格式化的列表可以提供更多的组织结构。使我们得到一个复先框列表。 <code>Org</code> 可以处理这种列表，同时各个 <code>exporter</code> 可以解析和格式化。
-<code>Org</code> 可识别 <code>ordered</code> 列表, <code>unordered</code> 列表, 和 <code>description</code> 列表。
-</p>
-<ul class="org-ul">
-<li><i>Unordered</i> 的列表项以 <b>‘-’</b>, <b>‘+’</b> 或 <b>‘*’</b> 开始。</li>
-<li><i>Ordered</i> 的列表项以数字加在 <b>‘.’</b> 或 <b>‘)’</b> 开始。格式如下：‘1.’ 或 ‘1)’。 可自定义起始值，在文本开始出插入[@20]，代表以20开始。</li>
-<li><i>Description</i> 列表项其实就是 <i>unordered</i> 列表项, 只在文本中间插入了分隔符 <b>‘::’</b> 。</li>
-</ul>
-
-<p>
-同一个列表中项首行必须缩进一致。特别是 <code>ordered</code> 列表到了 <b>‘10.’</b> ，两位数字必须和其他数字左对齐。
-若是下一行的缩进小于等于当前列表的缩进，则当前项终结。当所有项都终结，或者后面隔了两个空行时，列表终结。示例如下：
-</p>
-<pre class="example">
-** Lord of the Rings
-   My favorite scenes are (in this order)
-   1. The attack of the Rohirrim
-   2. Eowyn's fight with the witch king
-       + this was already my favorite scene in the book
-       + I really like Miranda Otto.
-   Important actors in this film are:
-   - Elijah Wood :: He plays Frodo
-   - Sean Austin :: He plays Sam, Frodo's friend.
-</pre>
-<blockquote>
-<p>
-Org supports these lists by tuning filling and wrapping commands to deal with them correctly, and by exporting them properly.
-Since indentation is what governs the structure of these lists,
-many structural constructs like <code>#+BEGIN_...</code> blocks can be indented to signal that they belong to a particular item.
-</p>
-
-<p>
-If you find that using a different bullet for a sub-list (than that used for the current list-level) improves readability,
-customize the variable <code>org-list-demote-modify-bullet</code>.
-To get a greater difference of indentation between items and their sub-items, <code>customize org-list-indent-offset</code>.
-</p>
-
-<p>
-The following commands act on items when the cursor is in the first line of an item (the line with the bullet or number).
-Some of them imply the application of automatic rules to keep list structure intact.
-If some of these actions get in your way, configure <code>org-list-automatic-rules</code> to disable them individually.
-</p>
-</blockquote>
-<p>
-当光标位于一项的首行时（带有项标志符的行），下面命令将作用于该项：
-</p>
-<table id="org8ff3ef3" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 5:</span> 稀疏树</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">TAB</td>
-<td class="org-left">列表项像标题一样的被折叠，展开</td>
-<td class="org-left">org-cycle</td>
-</tr>
-
-<tr>
-<td class="org-left">TAB</td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
-<td class="org-left">org-cycle</td>
-</tr>
-
-<tr>
-<td class="org-left">M-RET</td>
-<td class="org-left">插入一个同级项(行首，把当前行转成列表项；行中，截断余下文本，在下一行生成列表项)</td>
-<td class="org-left">org-insert-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-RET</td>
-<td class="org-left">插入一个带 <code>checkbox</code> 的同级项(行为类似于M-RET)</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">S-up/S-down</td>
-<td class="org-left">跳转到当前列表的上一项或者下一项</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">M-up/M-down</td>
-<td class="org-left">和上一项或者下一项交换位置（同级之间)</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">M-left/M-right</td>
-<td class="org-left">提升或者降低一项的等级,子项不变</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">M-S-left/M-S-right</td>
-<td class="org-left">提升或者降低一项的等级,子项同等变化</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-c</td>
-<td class="org-left">当前项有 <code>checkbox</code> , 触发状态转换</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c -</td>
-<td class="org-left">循环改变将当前列表的项标志符</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c *</td>
-<td class="org-left">使列表项变为标题 (在当前位置生成子标题).</td>
-<td class="org-left">org-toggle-heading</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-*</td>
-<td class="org-left">使整个列表变成当前标题的子树 <code>checkboxes</code> 将变为 <code>TODO</code> 当未 <i>unchecked</i> 时</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">S-left/right</td>
-<td class="org-left">循环改变将当前列表的项标志符</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c ^</td>
-<td class="org-left">Sort the plain list</td>
-<td class="org-left">org-sort</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-orgc9a57ff" class="outline-4">
-<h4 id="orgc9a57ff"><span class="section-number-4">1.1.3</span> Drawers</h4>
-<div class="outline-text-4" id="text-1-1-3">
-<blockquote>
-<p>
-Sometimes you want to keep information associated with an entry, but you normally don’t want to see it.
-For this, Org mode has drawers. They can contain anything but a headline and another drawer.
-</p>
-
-<p>
-You can interactively insert drawers at point by calling <code>org-insert-drawer</code>, which is bound to <code>C-c C-x d</code>.
-With an active region, this command will put the region inside the drawer.
-With a prefix argument, this command calls <code>org-insert-property-drawer</code> and add a property drawer right below the current headline.
-Completion over drawer keywords is also possible using <code>M-TAB</code>.
-</p>
-
-<p>
-Visibility cycling on the headline will hide and show the entry, but keep the drawer collapsed to a single line.
-In order to look inside the drawer, you need to move the cursor to the drawer line and press <code>TAB</code> there.
-Org mode uses the <b>PROPERTIES</b> drawer for storing properties , and you can also arrange for state change notes and clock times to be stored in a drawer <b>LOGBOOK</b>.
-If you want to store a quick note in the <b>LOGBOOK</b> drawer, in a similar way to state changes, use <code>C-c C-z</code> Add a time-stamped note to the <b>LOGBOOK</b> drawer.
-</p>
-
-<p>
-You can select the name of the drawers which should be exported with <code>org-export-with-drawers</code>.
-In that case, drawer contents will appear in export output.
-<b>Property</b> drawers are not affected by this variable: configure <code>org-export-with-properties</code> instead.
-</p>
-</blockquote>
-<p>
-<i>Drawers</i> 如下所示：
-</p>
-<pre class="example">
-** This is a headline
-   Still outside the drawer
-   :DRAWERNAME:
-   This is inside the drawer.
-   :END:
-   After the drawer.
-</pre>
-</div>
-</div>
-<div id="outline-container-orgf2eb1f4" class="outline-4">
-<h4 id="orgf2eb1f4"><span class="section-number-4">1.1.4</span> Blocks</h4>
-<div class="outline-text-4" id="text-1-1-4">
-<blockquote>
-<p>
-Org mode uses begin&#x2026;end blocks for various purposes from including source code examples to capturing time logging information.
-These blocks can be folded and unfolded by pressing TAB in the begin line.
-You can also get all blocks folded at startup by configuring the option org-hide-block-startup or on a per-file basis by using
-</p>
-<pre class="example">
-#+STARTUP: hideblocks
-#+STARTUP: nohideblocks
-</pre>
-</blockquote>
-</div>
-</div>
-<div id="outline-container-org5331faf" class="outline-4">
-<h4 id="org5331faf"><span class="section-number-4">1.1.5</span> Footnotes（脚注)</h4>
-<div class="outline-text-4" id="text-1-1-5">
-<blockquote>
-<p>
-A footnote is started by a footnote marker in square brackets in column 0, no indentation allowed.
-It ends at the next footnote definition, headline, or after two consecutive empty lines.
-The footnote reference is simply the marker in square brackets, inside text. Markers always start with fn:.
-For example:
-</p>
-<pre class="example">
-The Org homepage[fn:1] now looks a lot better than it used to.
-...
-[fn:1] The link is: http://orgmode.org
-</pre>
-
-<p>
-Org mode extends the number-based syntax to named footnotes and optional inline definition. Here are the valid references:
-</p>
-<dl class="org-dl">
-<dt><code>[fn:name]</code></dt><dd>A named footnote reference, where name is a unique label word, or, for simplicity of automatic creation, a number.</dd>
-<dt><code>[fn::This is the inline definition of this footnote]</code></dt><dd>A LATEX-like anonymous footnote where the definition is given directly at the reference point.</dd>
-<dt><code>[fn:name:a definition]</code></dt><dd>An inline definition of a footnote, which also specifies a name for the note.
-Since Org allows multiple references to the same note, you can then use \[fn:name\] to create additional references.</dd>
-</dl>
-
-<p>
-Footnote labels can be created automatically, or you can create names yourself. T
-his is handled by the variable <code>org-footnote-auto-label</code> and its corresponding <code>#+STARTUP</code> keywords.
-See the docstring of that variable for details.
-</p>
-</blockquote>
-<p>
-示例如下：
-The Org homepage<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> now looks a lot better than it used to.
-</p>
-
-<table id="org0bbc47c" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 6:</span> 脚注命令列表</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">C-c C-x f</td>
-<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。其他情况下，新建一个脚注。当有前缀参数时，会提供一个菜单供选择操作，其中包括重新给脚注编号。</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-c</td>
-<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。当有前缀参数时，行为和 <code>C-c C-x f</code> 一样,提供同样操作菜单。</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c C-o</td>
-<td class="org-left">Footnote labels are also links to the corresponding definition/reference, and you can use the usual commands to follow these links.</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c '</td>
-<td class="org-left">在独立的窗口中，编辑引用关联的脚注定义。窗口可通过 <code>C-c '</code> 关闭</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-当 <code>C-c C-x f</code> 命令加上附加前缀参数时(<code>C-u C-c C-x f</code>) ,一个操作菜单被提供：
-</p>
-<pre class="example">
-s    Sort the footnote definitions by reference sequence.  During editing,
-     Org makes no effort to sort footnote definitions into a particular
-     sequence.  If you want them sorted, use this command, which will
-     also move entries according to org-footnote-section.  Automatic
-     sorting after each insertion/deletion can be configured using the
-     option org-footnote-auto-adjust.
-r    Renumber the simple fn:N footnotes.  Automatic renumbering
-     after each insertion/deletion can be configured using the option
-     org-footnote-auto-adjust.
-S    Short for first r, then s action.
-n    Normalize the footnotes by collecting all definitions (including
-     inline definitions) into a special section, and then numbering them
-     in sequence.  The references will then also be numbers.
-d    Delete the footnote at point, and all definitions of and references
-     to it.
-</pre>
-</div>
-</div>
-<div id="outline-container-orgec6ee64" class="outline-4">
-<h4 id="orgec6ee64"><span class="section-number-4">1.1.6</span> The Orgstruct minor mode</h4>
-<div class="outline-text-4" id="text-1-1-6">
-<blockquote>
-<p>
-If you like the intuitive way the Org mode structure editing and list formatting works,
-you might want to use these commands in other modes like Text mode or Mail mode as well.
-The minor mode orgstruct-mode makes this possible. Toggle the mode with M-x orgstruct-mode RET,
-or turn it on by default, for example in Message mode, with one of:
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct++</span>)</span></span><br></pre></td></tr></table></figure>
-</div>
-</blockquote>
-</div>
-</div>
-
-<div id="outline-container-org0acbd61" class="outline-4">
-<h4 id="org0acbd61"><span class="section-number-4">1.1.7</span> Org syntax</h4>
-<div class="outline-text-4" id="text-1-1-7">
-<blockquote>
-<p>
-A reference document providing a formal description of Org’s syntax is available as <a href="http://orgmode.org/worg/dev/org-syntax.html" target="_blank" rel="external">a draft on Worg</a>, written and maintained by Nicolas Goaziou.
-It defines Org’s core internal concepts such as headlines, sections, affiliated keywords, (greater) elements and objects.
-Each part of an Org file falls into one of the categories above.
-</p>
-
-<p>
-To explore the abstract structure of an Org buffer, run this in a buffer:
-</p>
-<pre class="example">
-M-: (org-element-parse-buffer) RET
-</pre>
-<p>
-It will output a list containing the bu↵er’s content represented as an abstract structure.
-The export engine relies on the information stored in this list.
-Most interactive commands (e.g., for structure editing) also rely on the syntactic meaning of the surrounding context.
-</p>
-
-<p>
-You can check syntax in your documents using org-lint command.
-</p>
-</blockquote>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orga0ecf69" class="outline-3">
-<h3 id="orga0ecf69"><span class="section-number-3">1.2</span> org-mode 表格</h3>
-</div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-The link is: <a href="http://orgmode.org/" target="_blank" rel="external">http://orgmode.org/</a>
-</p></div></div>
-
-
-</div>
-</div>
-Last Updated 2017-03-11 Sat 12:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/05/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+              <a href="/2017/03/07/just-try/" rel="next" title="Hello org-mode">
+                <i class="fa fa-chevron-left"></i> Hello org-mode
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              
-                
-                <a class="post-title-link" href="/2017/03/05/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T22:04:39+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -2893,6 +1850,10 @@ Last Updated 2017-03-11 Sat 12:54.<br>Render by <a href="https://github.com/Code
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -2912,8 +1873,17 @@ Last Updated 2017-03-11 Sat 12:54.<br>Render by <a href="https://github.com/Code
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
@@ -2995,6 +1965,22 @@ Last Updated 2017-03-11 Sat 12:54.<br>Render by <a href="https://github.com/Code
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Headlines_and_Sections"><span class="nav-number">1.</span> <span class="nav-text">1 标题和段落</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Affiliated_keywords"><span class="nav-number">2.</span> <span class="nav-text">2 Affiliated Keywords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greater_Elements"><span class="nav-number">3.</span> <span class="nav-text">3 Greater Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Greater_Blocks"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Greater Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drawers_and_Property_Drawers"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Drawers and Property Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic_Blocks"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Dynamic Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_Definitions"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Footnote Definitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inlinetasks"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 Inlinetasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plain_Lists_and_Items"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 Plain Lists and Items</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 Tables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements"><span class="nav-number">4.</span> <span class="nav-text">4 Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel_Call"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Babel Call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blocks"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock,_Diary_Sexp_and_Planning"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Clock, Diary Sexp and Planning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed_Width_Areas"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Fixed Width Areas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horizontal_Rules"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 Horizontal Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keywords"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Keywords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LaTeX_Environments"><span class="nav-number">4.8.</span> <span class="nav-text">4.8 LaTeX Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node_Properties"><span class="nav-number">4.9.</span> <span class="nav-text">4.9 Node Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paragraphs"><span class="nav-number">4.10.</span> <span class="nav-text">4.10 Paragraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Rows"><span class="nav-number">4.11.</span> <span class="nav-text">4.11 Table Rows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects"><span class="nav-number">5.</span> <span class="nav-text">5 Objects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Entities_and_LaTeX_Fragments"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Entities and LaTeX Fragments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Export_Snippets"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Export Snippets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_References"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Footnote References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline_Babel_Calls_and_Source_Blocks"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Inline Babel Calls and Source Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Line_Breaks"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 Line Breaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Links"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 Links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Macros"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 Macros</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Targets_and_Radio_Targets"><span class="nav-number">5.8.</span> <span class="nav-text">5.8 Targets and Radio Targets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistics_Cookies"><span class="nav-number">5.9.</span> <span class="nav-text">5.9 Statistics Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscript_and_Superscript"><span class="nav-number">5.10.</span> <span class="nav-text">5.10 Subscript and Superscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Cells"><span class="nav-number">5.11.</span> <span class="nav-text">5.11 Table Cells</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timestamp"><span class="nav-number">5.12.</span> <span class="nav-text">5.12 Timestamps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emphasis_Markers"><span class="nav-number">5.13.</span> <span class="nav-text">5.13 Text Markup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">Footnotes: </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -3107,6 +2093,10 @@ Last Updated 2017-03-11 Sat 12:54.<br>Render by <a href="https://github.com/Code
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
