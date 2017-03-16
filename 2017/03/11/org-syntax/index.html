@@ -92,14 +92,13 @@
 
 
 
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
 
 
 
-在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
-其他语法结构只能存在于">
+在 Org 语法中核心概念是： 只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Org Syntax (draft)">
+<meta property="og:title" content="Org 语法概览">
 <meta property="og:url" content="https://brantou.github.io/2017/03/11/org-syntax/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="原文Org Syntax (draft)1由 Nicolas Goaziou 编辑，维护。本文只做学习之用。
@@ -107,26 +106,24 @@
 
 
 
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
 
 
 
-在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
-其他语法结构只能存在于">
-<meta property="og:updated_time" content="2017-03-14T16:46:02.558Z">
+在 Org 语法中核心概念是： 只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关">
+<meta property="og:updated_time" content="2017-03-16T16:47:33.425Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Org Syntax (draft)">
+<meta name="twitter:title" content="Org 语法概览">
 <meta name="twitter:description" content="原文Org Syntax (draft)1由 Nicolas Goaziou 编辑，维护。本文只做学习之用。
 
 
 
 
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
 
 
 
-在 Org 语法中只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关的；
-其他语法结构只能存在于">
+在 Org 语法中核心概念是： 只有 headlines, sections, planning lines 和 property drawers 四种语法结构是上下文无关">
 
 
 
@@ -160,7 +157,7 @@
 
 
 
-  <title> Org Syntax (draft) | Brantou的日常 </title>
+  <title> Org 语法概览 | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -320,7 +317,7 @@
             
             
               
-                Org Syntax (draft)
+                Org 语法概览
               
             
           </h1>
@@ -402,37 +399,37 @@
 </blockquote>
 
 <p>
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有部分语法的点评。
+本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
 </p>
 
 <p>
-在 <b>Org</b> 语法中只有 <b>headlines</b>, <b>sections</b>, <b>planning lines</b> 和 <b>property drawers</b> 四种语法结构是上下文无关的；
-其他语法结构只能存在于特定 <i>environments</i> 之中。
+在 <b>Org</b> 语法中核心概念是： 只有 <b>headlines</b>, <b>sections</b>, <b>planning lines</b> 和 <b>property drawers</b> 四种语法结构是上下文无关的<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup><sup>, </sup><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>；
+其他语法结构只能存在于特定 <i>Environments</i> 之中。
 </p>
 
 <p>
-<i>environments</i> 从大到小(作用范围的尺度来做分类标准)，大致可分为三类: "Greater elements", "elements" 和 "objects"。
-<b>elements</b> 被用到了两个类的命名中，Greater 和 non-Greater, 这代表了什么呢？代表了这两类有共通之处，即它们的上下文都会被清除，重新初始化。
+<i>Environments</i> 从大到小(作用范围的尺度来做分类标准,从最宽到最窄)，大致可分为三类: "Greater element", "Element" 和 "Object"。
+<b>Element</b> 被用到了两个类的命名中，Greater 和 non-Greater, 这代表了什么呢？代表了这两类有共通之处，即它们的上下文都会被清除，重新初始化。
 </p>
 
 <p>
-<b>paragraph</b> 是最小的语法单元。 定义 <b>element</b> 的子语法结构和 <b>paragraph</b> 同级,即不能包含 <b>paragraph</b> 或者被包含在 <b>paragraph</b> 中。
-一个 <b>object</b> 可以作为一部分被一个 <b>element</b> 所包含。 <b>Greater elements</b> 的任意部分都可以是一个 <b>element</b> 。
+<b>Paragraph</b> 是最小的语法单元。 定义 <b>Element</b> 的子语法结构和 <b>Paragraph</b> 同级,即不能包含 <b>Paragraph</b> 或者被包含在 <b>Paragraph</b> 中。
+一个 <b>Object</b> 可以作为一部分被一个 <b>Element</b> 所包含。 <b>Greater element</b> 的任意部分都可以是一个 <b>Element</b> 。
 </p>
 
 <p>
-空行属于在它们之前结束的最大 <b>element</b> 。例如，在列表中，项目之间的空行属于它们之前的那一项，但列表末尾的空行属于当前列表 <b>element</b> 。
+空行属于在它们之前结束的最大 <b>Element</b> 。例如，在列表中，之间的空行属于它们之前的那一项，但列表末尾的空行属于当前列表 <b>Element</b> 。
 </p>
 
 <p>
 除非特别说明，大小写默认不敏感。
 </p>
 
-<div id="outline-container-orgdb8c8dc" class="outline-2">
-<h2 id="Headlines_and_Sections"><a id="orgdb8c8dc"></a><span class="section-number-2">1</span> 标题和段落（Headlines and Sections）</h2>
+<div id="outline-container-orge4ae4b6" class="outline-2">
+<h2 id="Headlines_and_Sections"><a id="orge4ae4b6"></a><span class="section-number-2">1</span> Headlines and Sections</h2>
 <div class="outline-text-2" id="text-Headlines_and_Sections">
 <p>
-标题定义如下:
+<b>Headline</b> 定义如下:
 </p>
 
 <pre class="example">
@@ -488,12 +485,8 @@ STARS KEYWORD PRIORITY TITLE TAGS
 </p>
 
 <p>
-标题可直接包含一个段落（可选），再跟任意数量的更深级别的标题(递归定义)。 一个段落可直接包含任意 <code>greater elelment</code> 或 <code>element</code> 。
+标题可直接包含一个段落（可选），再跟任意数量的更深级别的标题(递归定义)。 一个段落可直接包含任意 <code>Greater elelment</code> 或 <code>Element</code> 。
 只有标题可以包含段落。 文档中的第一个标题之前的文本除外，因为它属于一个段落。
-</p>
-
-<p>
-若 <i>"quoted"</i> 的标题中包含段落的被认为是 /"quote section"/。
 </p>
 
 <p>
@@ -522,19 +515,19 @@ STARS KEYWORD PRIORITY TITLE TAGS
 </div>
 </div>
 
-<div id="outline-container-org24430d8" class="outline-2">
-<h2 id="Affiliated_keywords"><a id="org24430d8"></a><span class="section-number-2">2</span> Affiliated Keywords</h2>
+<div id="outline-container-orgce3ddce" class="outline-2">
+<h2 id="Affiliated_keywords"><a id="orgce3ddce"></a><span class="section-number-2">2</span> Affiliated Keywords</h2>
 <div class="outline-text-2" id="text-Affiliated_keywords">
 <p>
-除了<a href="#Inlinetasks">inlinetasks</a>, <a href="#Plain_Lists_and_Items">items</a>, <a href="#Clock,_Diary_Sexp_and_Planning">planning</a>, <a href="#Clock,_Diary_Sexp_and_Planning">clocks</a>, <a href="#Node_Properties">node properties</a> 和 <a href="#Table_Rows">table rows</a> 之外，其他的任意的 <code>element</code> 类型都可为其指定属性。
+除了<a href="#Inlinetasks">inlinetasks</a>, <a href="#Plain_Lists_and_Items">items</a>, <a href="#Clock,_Diary_Sexp_and_Planning">planning</a>, <a href="#Clock,_Diary_Sexp_and_Planning">clocks</a>, <a href="#Node_Properties">node properties</a> 和 <a href="#Table_Rows">table rows</a> 之外，其他的任意的 <code>Element</code> 类型都可为其指定属性。
 </p>
 
 <p>
-在选定的 <code>element</code> 之前添加命名为“affiliated keywords”的特定关键字,可指定属性的(在 <code>element</code> 之前插入"affiliated keywords"，不允许两者之前存在空行)。
+在选定的 <code>Element</code> 之前添加命名为 <b>Affiliated keywords</b> 的特定关键字,可指定属性的(在 <code>Element</code> 之前插入"affiliated keywords"，不允许两者之前存在空行)。
 </p>
 
 <p>
-<b>Affiliated keywords</b> 是建立在以下模式之上的： "#+KEY: VALUE", "#+KEY[OPTIONAL]: VALUE" or "#+ATTR_BACKEND: VALUE".
+<b>Affiliated keywords</b> 是建立在以下模式之上的： "#+KEY: VALUE", "#+KEY[OPTIONAL]: VALUE" 或者 "#+ATTR_BACKEND: VALUE" 。
 </p>
 
 <p>
@@ -550,34 +543,34 @@ STARS KEYWORD PRIORITY TITLE TAGS
 </p>
 
 <p>
-如果KEY为“CAPTION”或“HEADER”，或者其模式为“＃+ATTR_BACKEND：VALUE”，则“affiliated keywords”可以多次出现。
+如果 <b>KEY</b> 为"CAPTION"或"HEADER"，或者其模式为"＃+ATTR_BACKEND：VALUE"，则 <b>Affiliated keywords</b> 可以多次出现。
 </p>
 
 <p>
-“CAPTION”，“AUTHOR”，“DATE”和“TITLE”可以包含 <code>objects</code> 及其可选值（如果适用）。
+"CAPTION"，"AUTHOR"，"DATE"和"TITLE"可以包含 <code>Object</code> 及其可选值（如果适用）。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgde1e2e6" class="outline-2">
-<h2 id="Greater_Elements"><a id="orgde1e2e6"></a><span class="section-number-2">3</span> Greater Elements</h2>
+<div id="outline-container-org2115012" class="outline-2">
+<h2 id="Greater_Elements"><a id="org2115012"></a><span class="section-number-2">3</span> Greater Elements</h2>
 <div class="outline-text-2" id="text-Greater_Elements">
 <p>
-除非特别说明， <code>greater elements</code> 可以直接包含任何其他 <code>element</code> 或 除了下面之外的 <code>greater element</code> ：
+除非特别说明， <code>Greater elements</code> 可以直接包含任何其他 <code>Element</code> 或 除了下面之外的 <code>Greater element</code> ：
 </p>
 
 <ul class="org-ul">
-<li>同样类型的 <code>element</code></li>
+<li>同样类型的 <code>Element</code></li>
 <li><a href="#Node_Properties">node properties</a>, 只存在于<a href="#Drawers_and_Property_Drawers">property drawers</a> 中,</li>
 <li><a href="#Plain_Lists_and_Items">items</a>, 只存在于<a href="#Plain_Lists_and_Items">plain lists</a> 中。</li>
 </ul>
 </div>
 
-<div id="outline-container-orgaae6339" class="outline-3">
-<h3 id="Greater_Blocks"><a id="orgaae6339"></a><span class="section-number-3">3.1</span> Greater Blocks</h3>
+<div id="outline-container-orgf430bbf" class="outline-3">
+<h3 id="Greater_Blocks"><a id="orgf430bbf"></a><span class="section-number-3">3.1</span> Greater Blocks</h3>
 <div class="outline-text-3" id="text-Greater_Blocks">
 <p>
-<code>Greater blocks</code> 由以下模式组成:
+<b>Greater blocks</b> 由以下模式组成:
 </p>
 
 <pre class="example">
@@ -595,24 +588,24 @@ CONTENTS
 </p>
 
 <p>
-如果NAME是“CENTER”，表示当前 <code>Greater block</code> 是一个“center block”。 如果是“QUOTE”，表示是一个“quote block”。
+如果 <b>NAME</b> 是 <i>CENTER</i> ，表示当前 <b>Greater block</b> 是一个"center block"。 如果是 <i>QUOTE</i> ，表示是一个"quote block"。
 </p>
 
 <p>
-如果 <code>block</code> 既不是 <code>center block</code> ， <code>quote block</code> 或  <code>[[#Blocks][block element</code> ]]，则是“special block”。
+如果 <b>Block</b> 既不是 <i>center block</i> ， <i>quote block</i> 或  <a href="#Blocks">block element</a>，则是 <i>special block</i> 。
 </p>
 
 <p>
-CONTENTS可以包含任何 <code>element</code> ，除了： <code>block</code> 自己的结束行 <code>＃+END_NAME</code> 。 此外，以星号开头的行必须用逗号引号。
+<b>CONTENTS</b> 可以包含任何 <code>Element</code> ，除了： <b>Block</b> 自己的结束行 <i>＃+END_NAME</i> 。 此外，以星号开头的行必须用逗号引号。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge56eed6" class="outline-3">
-<h3 id="Drawers_and_Property_Drawers"><a id="orge56eed6"></a><span class="section-number-3">3.2</span> Drawers and Property Drawers</h3>
+<div id="outline-container-orgb64e0d0" class="outline-3">
+<h3 id="Drawers_and_Property_Drawers"><a id="orgb64e0d0"></a><span class="section-number-3">3.2</span> Drawers and Property Drawers</h3>
 <div class="outline-text-3" id="text-Drawers_and_Property_Drawers">
 <p>
-<code>drawer</code> 的模式如下:
+<b>Drawer</b> 的模式如下:
 </p>
 
 <pre class="example">
@@ -630,15 +623,15 @@ CONTENTS
 </p>
 
 <p>
-如果NAME是 <code>PROPERTIES</code> ，则 <code>drawer</code> 即为 <code>property drawer</code> 。
+如果 <b>NAME</b> 是 <i>PROPERTIES</i> ，则 <b>Drawer</b> 即为 <i>property drawer</i> 。
 </p>
 
 <p>
-CONTENTS可以包含任何 <code>element</code> ，除了 <code>drawer</code> 。
+CONTENTS可以包含任何 <code>Element</code> ，除了 <b>Drawer</b> 。
 </p>
 
 <p>
-在 <code>property drawer</code> 中，CONTENTS只能包含节点 <a href="#Node_Properties">node property</a> <code>element</code> 。其他类型 <code>drawer</code> ，它可以包含任何 <code>element</code> ，除了另一个 <code>drawer</code> 或 <code>property drawer</code> 。
+在 <b>Property drawer</b> 中，*CONTENTS* 只能包含节点 <a href="#Node_Properties">node property</a> <code>Element</code> 。其他类型 <b>Drawer</b> ，它可以包含任何 <code>Element</code> ，除了另一个 <b>Drawer</b> 或 <b>Property drawer</b> 。
 </p>
 
 <hr>
@@ -654,11 +647,11 @@ Anything starting with <code>^[ \t]*:\w+:[ \t]$</code> and ending with
 </div>
 </div>
 
-<div id="outline-container-org9e1a35c" class="outline-3">
-<h3 id="Dynamic_Blocks"><a id="org9e1a35c"></a><span class="section-number-3">3.3</span> Dynamic Blocks</h3>
+<div id="outline-container-org6e98a64" class="outline-3">
+<h3 id="Dynamic_Blocks"><a id="org6e98a64"></a><span class="section-number-3">3.3</span> Dynamic Blocks</h3>
 <div class="outline-text-3" id="text-Dynamic_Blocks">
 <p>
-<code>dynamic blocks</code> 的模式是：
+<b>Dynamic blocks</b> 的模式是：
 </p>
 
 <pre class="example">
@@ -677,11 +670,11 @@ CONTENTS
 </div>
 </div>
 
-<div id="outline-container-org65b6065" class="outline-3">
-<h3 id="Footnote_Definitions"><a id="org65b6065"></a><span class="section-number-3">3.4</span> Footnote Definitions</h3>
+<div id="outline-container-org352b0ce" class="outline-3">
+<h3 id="Footnote_Definitions"><a id="org352b0ce"></a><span class="section-number-3">3.4</span> Footnote Definitions</h3>
 <div class="outline-text-3" id="text-Footnote_Definitions">
 <p>
-<code>footnote definition</code> 的模式是：
+<b>Footnote definition</b> 的模式是：
 </p>
 
 <pre class="example">
@@ -697,32 +690,33 @@ CONTENTS
 </p>
 
 <p>
-<b>CONTENTS</b> 可以包含除另一个 <code>footnote definition</code> 定义之外的任何元素。 它在下一个脚注定义结束，下一个标题，两个连续的空行或缓冲区的结尾。
+<b>CONTENTS</b> 可以包含除另一个 <b>Footnote definition</b> 定义之外的任何元素。 它在下一个脚注定义结束，下一个标题，两个连续的空行或缓冲区的结尾。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org809e582" class="outline-3">
-<h3 id="Inlinetasks"><a id="org809e582"></a><span class="section-number-3">3.5</span> Inlinetasks</h3>
+<div id="outline-container-org642c591" class="outline-3">
+<h3 id="Inlinetasks"><a id="org642c591"></a><span class="section-number-3">3.5</span> Inlinetasks</h3>
 <div class="outline-text-3" id="text-Inlinetasks">
 <p>
-<code>Inlinetasks</code> 定义为从第0列开始的 <code>org-inlinetask-min-level</code> 个连续星号字符,后跟空格字符。
+<b>Inlinetasks</b> 定义为从第0列开始的 <code>org-inlinetask-min-level</code> 个连续星号字符,后跟空格字符。
 </p>
 
 <p>
-可选地，可以使用由从第0列开始的 <code>org-inlinetask-min-level</code> 个连续星号字符构成的字符串来结束 <code>Inlinetasks</code> ，后面跟着空格和“END”字符串。
+可选地，可以使用由从第0列开始的 <code>org-inlinetask-min-level</code> 个连续星号字符构成的字符串来结束 <b>Inlinetasks</b> ，后面跟着空格和“END”字符串。
 </p>
 
 <p>
-只有在加载了 <code>org-inlinetask</code> 库之后才能识别 <code>Inlinetasks</code> 。
+只有在加载了 <code>org-inlinetask</code> 库之后才能识别 <b>Inlinetasks</b> 。
 </p>
 </div>
 </div>
-<div id="outline-container-orge146a4e" class="outline-3">
-<h3 id="Plain_Lists_and_Items"><a id="orge146a4e"></a><span class="section-number-3">3.6</span> Plain Lists and Items</h3>
+
+<div id="outline-container-orgd9bece5" class="outline-3">
+<h3 id="Plain_Lists_and_Items"><a id="orgd9bece5"></a><span class="section-number-3">3.6</span> Plain Lists and Items</h3>
 <div class="outline-text-3" id="text-Plain_Lists_and_Items">
 <p>
-<code>Item</code> 通过从以下模式开始的行来定义：
+<b>Item</b> 通过从以下模式开始的行来定义：
 </p>
 <pre class="example">
 BULLET COUNTER-SET CHECK-BOX TAG
@@ -732,7 +726,7 @@ BULLET COUNTER-SET CHECK-BOX TAG
 </p>
 
 <p>
-<b>BULLET</b> 是星号，连字符，加号(用于 <code>unstored list</code>)或者遵循模式 <code>COUNTER.</code> 或者 <code>COUNTER)</code> (用于 <code>stored list</code>)。 在任何情况下，BULLET后跟空格字符或换行符。
+<b>BULLET</b> 是星号，连字符，加号(用于 <i>unstored list</i>)或者遵循模式 <i>COUNTER.</i> 或者 <i>COUNTER)</i> (用于 <i>stored list</i>)。 在任何情况下，BULLET后跟空格字符或换行符。
 </p>
 
 <p>
@@ -752,16 +746,16 @@ BULLET COUNTER-SET CHECK-BOX TAG
 </p>
 
 <p>
-<code>Item</code> 在下一个 <code>Item</code> 之前结束条件: 小于或等于其起始行缩进的首行，或两个连续的空行。 其他 <code>greater elements</code> 内的线的缩进不算，内联边界也不计。
+<b>Item</b> 在下一个 <b>Item</b> 之前结束条件: 小于或等于其起始行缩进的首行，或两个连续的空行。 其他 <code>Greater elements</code> 内的线的缩进不算，内联边界也不计。
 </p>
 
 <p>
-<code>plain list</code> 是一组具有相同缩进的连续 <code>item</code> 。 它只能直接包含 <code>item</code> 。
+<b>Plain list</b> 是一组具有相同缩进的连续 <b>Item</b> 。 它只能直接包含 <b>Item</b> 。
 </p>
 
 <p>
-如果 <code>plain list</code> 中的第一个 <code>item</code> 在其 <code>bullet</code> 中有一个 <i>counter</i> ，那么 <code>plain list</code> 将是一个 <i>ordered plain-list</i> 。
-如果它包含一个 <code>tag</code> ，它将是一个 <i>descriptive list</i> 。 否则，它将是一个 <i>unordered list</i> 。 <code>list</code> 类型是互斥的。
+如果 <b>Plain list</b> 中的第一个 <b>Item</b> 在其 <b>bullet</b> 中有一个 <i>counter</i> ，那么 <b>Plain list</b> 将是一个 <i>ordered plain-list</i> 。
+如果它包含一个 <b>tag</b> ，它将是一个 <i>descriptive list</i> 。 否则，它将是一个 <i>unordered list</i> 。 <b>List</b> 类型是互斥的。
 </p>
 
 <p>
@@ -788,11 +782,11 @@ BULLET COUNTER-SET CHECK-BOX TAG
 </div>
 </div>
 
-<div id="outline-container-orge6d2925" class="outline-3">
-<h3 id="orge6d2925"><span class="section-number-3">3.7</span> Property Drawers</h3>
+<div id="outline-container-org4ebf3d6" class="outline-3">
+<h3 id="org4ebf3d6"><span class="section-number-3">3.7</span> Property Drawers</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
-<code>property Drawers</code> 是一种特殊类型的 <code>drawer</code> ，包含附加到标题的属性。 它们位于<a href="#Headlines_and_Sections">headline</a> 和其<a href="#Clock,_Diary_Sexp_and_Planning">planning</a>信息之后。
+<b>Property Drawer</b> 是一种特殊类型的 <b>Drawer</b> ，包含附加到标题的属性。 它们位于<a href="#Headlines_and_Sections">headline</a> 和其<a href="#Clock,_Diary_Sexp_and_Planning">planning</a>信息之后。
 </p>
 
 <pre class="example">
@@ -819,11 +813,12 @@ CONTENTS
 </p>
 </div>
 </div>
-<div id="outline-container-org05def0a" class="outline-3">
-<h3 id="Tables"><a id="org05def0a"></a><span class="section-number-3">3.8</span> Tables</h3>
+
+<div id="outline-container-org6d7704a" class="outline-3">
+<h3 id="Tables"><a id="org6d7704a"></a><span class="section-number-3">3.8</span> Tables</h3>
 <div class="outline-text-3" id="text-Tables">
 <p>
-<code>Tables</code> 从以竖线或“+-”字符串开始的行开始，后面跟着加号或减号，假定它们前面没有相同类型的行。 这些线可以缩进。
+<b>Tables</b> 从以竖线或“+-”字符串开始的行开始，后面跟着加号或减号，假定它们前面没有相同类型的行。 这些线可以缩进。
 </p>
 
 <p>
@@ -831,37 +826,37 @@ CONTENTS
 </p>
 
 <p>
-Org <code>tables</code> 结束于以竖线开始的行。 Table.el <code>tables</code> 结束于不以垂直线或加号开始的行。 这样的线可以是锯齿状的。
+Org <b>Tables</b> 结束于以竖线开始的行。 Table.el <b>Tables</b> 结束于不以垂直线或加号开始的行。 这样的线可以是锯齿状的。
 </p>
 
 <p>
-Org <code>tables</code> 只能包含 <code>table rows</code> 。 table.el <code>tables</code> 不包含任何内容。
+Org <b>Tables</b> 只能包含 <i>table rows</i> 。 table.el <b>Tables</b> 不包含任何内容。
 </p>
 
 <p>
-一个或多个“＃+TBLFM：FORMULAS”行，其中 <i>FORMULAS</i> 可以包含任何字符，可以在 Org <code>tables</code> 之后。
+一个或多个"＃+TBLFM：FORMULAS"行，其中 <i>FORMULAS</i> 可以包含任何字符，可以在 Org <b>Tables</b> 之后。
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org66e298d" class="outline-2">
-<h2 id="Elements"><a id="org66e298d"></a><span class="section-number-2">4</span> Elements</h2>
+<div id="outline-container-orga123f67" class="outline-2">
+<h2 id="Elements"><a id="orga123f67"></a><span class="section-number-2">4</span> Elements</h2>
 <div class="outline-text-2" id="text-Elements">
 <p>
-<code>Elements</code> 不能包含任何其他元素。
+<code>Element</code> 不能包含任何其他元素。
 </p>
 
 <p>
-只有<a href="#Keywords">keywords</a>名称属于 <code>org-element-document-properties</code>, <a href="#Blocks">verse blocks</a> , <a href="#Paragraphs">paragraphs</a> 和 <a href="#Table_Rows">table rows</a> 可以包含 <code>objects</code> 。
+只有<a href="#Keywords">keywords</a>名称属于 <code>org-element-document-properties</code>, <a href="#Blocks">verse blocks</a> , <a href="#Paragraphs">paragraphs</a> 和 <a href="#Table_Rows">table rows</a> 可以包含 <code>Object</code> 。
 </p>
 </div>
 
-<div id="outline-container-orgd73597e" class="outline-3">
-<h3 id="Babel_Call"><a id="orgd73597e"></a><span class="section-number-3">4.1</span> Babel Call</h3>
+<div id="outline-container-orge67fa04" class="outline-3">
+<h3 id="Babel_Call"><a id="orge67fa04"></a><span class="section-number-3">4.1</span> Babel Call</h3>
 <div class="outline-text-3" id="text-Babel_Call">
 <p>
-<code>babel calls</code> 的模式如下:
+<b>Babel calls</b> 的模式如下:
 </p>
 
 <pre class="example">
@@ -869,16 +864,16 @@ Org <code>tables</code> 只能包含 <code>table rows</code> 。 table.el <code>
 </pre>
 
 <p>
-VALUE是可选的。 它可以包含除换行符以外的任意字符。
+<b>VALUE</b> 是可选的。 它可以包含除换行符以外的任意字符。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd125c66" class="outline-3">
-<h3 id="Blocks"><a id="orgd125c66"></a><span class="section-number-3">4.2</span> Blocks</h3>
+<div id="outline-container-org0927c4f" class="outline-3">
+<h3 id="Blocks"><a id="org0927c4f"></a><span class="section-number-3">4.2</span> Blocks</h3>
 <div class="outline-text-3" id="text-Blocks">
 <p>
-像 <a href="#Greater_Blocks">greater blocks</a> 一样，=block= 模式如下：
+像 <a href="#Greater_Blocks">Greater blocks</a> 一样， <b>Block</b> 模式如下：
 </p>
 
 <pre class="example">
@@ -892,18 +887,18 @@ CONTENTS
 </p>
 
 <p>
-如果NAME是“COMMENT”，它将是一个“comment block”。如果它是“EXAMPLE”，它将是一个“example block”。
-如果它是“EXPORT”，它将是一个“export block”。如果它是“SRC”，它将是一个“source block”。如果是“VERSE”，它将是一个“verse block”。
+如果 <b>NAME</b> 是 <i>COMMENT</i> ，它将是一个"comment block"。如果它是 <i>EXAMPLE</i> ，它将是一个"example block"。
+如果它是 <i>EXPORT</i> ，它将是一个"export block"。如果它是 <i>SRC</i> ，它将是一个"source block"。如果是 <i>VERSE</i> ，它将是一个"verse block"。
 </p>
 
 <p>
-如果 <b>NAME</b> 是与加载的任何 <code>export back-end</code> 的名称相匹配，则块将是“export block”。
+如果 <b>NAME</b> 是与加载的任何 <i>export back-end</i> 的名称相匹配，则块将是"export block"。
 </p>
 
 <p>
-<b>DATA</b> 可以包含除换行符以外的任意字符。它可以省略，除非 <code>block</code> 是“source block”或“export block”。
+<b>DATA</b> 可以包含除换行符以外的任意字符。它可以省略，除非 <b>Block</b> 是"source block"或"export block"。
 在后一种情况(export block)下，它应该由一个单词组成。
-在前一种情况(source block)下，它必须遵循“LANGUAGE SWITCHES ARGUMENTS”的模式，其中 <code>SWITCHES</code> 和 <code>ARGUMENTS</code> 是可选的。
+在前一种情况(source block)下，它必须遵循"LANGUAGE SWITCHES ARGUMENTS"的模式，其中 <b>SWITCHES</b> 和 <b>ARGUMENTS</b> 是可选的。
 </p>
 
 <p>
@@ -915,7 +910,7 @@ CONTENTS
 </p>
 
 <p>
-<b>SWITCH</b> 模式是 “-l” FORMAT “”，其中 <i>FORMAT</i> 可以包含除双引号和换行符之外的任意字符, “-S”或“+ S”，其中S表示单个字母。
+<b>SWITCH</b> 模式是 "-l" FORMAT ""，其中 <i>FORMAT</i> 可以包含除双引号和换行符之外的任意字符, "-S"或"+ S"，其中S表示单个字母。
 </p>
 
 <p>
@@ -923,16 +918,16 @@ CONTENTS
 </p>
 
 <p>
-<b>CONTENTS</b> 可以包含任意字符, 包括换行符。 <code>verse block</code> 只能包含 Org <code>block</code> ，不然的话 <b>CONTENTS</b> 将不能被解析。
+<b>CONTENTS</b> 可以包含任意字符, 包括换行符。 <b>Verse block</b> 只能包含 Org <b>Block</b> ，不然的话 <b>CONTENTS</b> 将不能被解析。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org63619e9" class="outline-3">
-<h3 id="Clock,_Diary_Sexp_and_Planning"><a id="org63619e9"></a><span class="section-number-3">4.3</span> Clock, Diary Sexp and Planning</h3>
+<div id="outline-container-org5054edd" class="outline-3">
+<h3 id="Clock,_Diary_Sexp_and_Planning"><a id="org5054edd"></a><span class="section-number-3">4.3</span> Clock, Diary Sexp and Planning</h3>
 <div class="outline-text-3" id="text-Clock,_Diary_Sexp_and_Planning">
 <p>
-<code>clock</code> 遵循模式如下:
+<b>Clock</b> 模式如下:
 </p>
 
 <pre class="example">
@@ -960,11 +955,11 @@ HH是一个包含任意位数的数字。 MM是两位数字。
 </p>
 
 <p>
-<code>diary sexp</code> 是以第“%%（”从0列起始一行，它可以包含除了换行符之外的任意字符。
+<b>Diary sexp</b> 是以第“%%（”从0列起始一行，它可以包含除了换行符之外的任意字符。
 </p>
 
 <p>
-<code>planning</code> 遵循下面模式的 <code>element</code> ：
+<b>planning</b> 遵循下面模式的 <code>Element</code> ：
 </p>
 
 <pre class="example">
@@ -973,7 +968,7 @@ PLANNING
 </pre>
 
 <p>
-其中 <b>HEADLINE</b> 是标题 <code>element</code> ，PLANNING是填充有INFO部分的行，其中每个都遵循以下模式：
+其中 <b>HEADLINE</b> 是标题 <code>Element</code> ，PLANNING是填充有INFO部分的行，其中每个都遵循以下模式：
 </p>
 
 <pre class="example">
@@ -981,18 +976,18 @@ KEYWORD: TIMESTAMP
 </pre>
 
 <p>
-KEYWORD是 <code>org-deadline-string</code> ， <code>org-scheduled-string</code> 和 <code>org-closed-string</code> 中的一个字符串。 TIMESTAMP是一个<a href="#Timestamp">timestamp</a> <code>object</code> 。
+KEYWORD是 <code>org-deadline-string</code> ， <code>org-scheduled-string</code> 和 <code>org-closed-string</code> 中的一个字符串。 TIMESTAMP是一个<a href="#Timestamp">timestamp</a> <code>Object</code> 。
 特别要强调的一点，就是在PLANNING和HEADLINE之间不允许有空行。
 </p>
 
 <p>
-即使 <code>planning element</code> 可以存在于一个 <code>section</code> 中的任何地方或者一个 <code>greater element</code> 中，但是它只影响标题包含的 <code>section</code> ，前提是它位在该标题之后。
+即使 <code>Planning element</code> 可以存在于一个 <code>Section</code> 中的任何地方或者一个 <code>Greater element</code> 中，但是它只影响标题包含的 <code>Section</code> ，前提是它位在该标题之后。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8331648" class="outline-3">
-<h3 id="Comments"><a id="org8331648"></a><span class="section-number-3">4.4</span> Comments</h3>
+<div id="outline-container-orgb890de0" class="outline-3">
+<h3 id="Comments"><a id="orgb890de0"></a><span class="section-number-3">4.4</span> Comments</h3>
 <div class="outline-text-3" id="text-Comments">
 <blockquote>
 <p>
@@ -1007,8 +1002,8 @@ Comments can contain any number of consecutive comment lines.
 </div>
 </div>
 
-<div id="outline-container-org4896a8f" class="outline-3">
-<h3 id="Fixed_Width_Areas"><a id="org4896a8f"></a><span class="section-number-3">4.5</span> Fixed Width Areas</h3>
+<div id="outline-container-orgdbd7751" class="outline-3">
+<h3 id="Fixed_Width_Areas"><a id="orgdbd7751"></a><span class="section-number-3">4.5</span> Fixed Width Areas</h3>
 <div class="outline-text-3" id="text-Fixed_Width_Areas">
 <blockquote>
 <p>
@@ -1022,8 +1017,8 @@ Fixed width areas can contain any number of consecutive fixed-width lines.
 </div>
 </div>
 
-<div id="outline-container-org688c62d" class="outline-3">
-<h3 id="Horizontal_Rules"><a id="org688c62d"></a><span class="section-number-3">4.6</span> Horizontal Rules</h3>
+<div id="outline-container-org7e529ed" class="outline-3">
+<h3 id="Horizontal_Rules"><a id="org7e529ed"></a><span class="section-number-3">4.6</span> Horizontal Rules</h3>
 <div class="outline-text-3" id="text-Horizontal_Rules">
 <blockquote>
 <p>
@@ -1034,8 +1029,8 @@ It can be indented.
 </div>
 </div>
 
-<div id="outline-container-orgf62384d" class="outline-3">
-<h3 id="Keywords"><a id="orgf62384d"></a><span class="section-number-3">4.7</span> Keywords</h3>
+<div id="outline-container-orga460d2c" class="outline-3">
+<h3 id="Keywords"><a id="orga460d2c"></a><span class="section-number-3">4.7</span> Keywords</h3>
 <div class="outline-text-3" id="text-Keywords">
 <p>
 <b>Keywords</b> 语法如下:
@@ -1046,24 +1041,24 @@ It can be indented.
 </pre>
 
 <p>
-KEY可以包含任何非空字符，但不能等于“CALL”或任何 <code>affiliated keyword</code> 。
+<b>KEY</b> 可以包含任何非空字符，但不能等于"CALL"或任何 <a href="#Affiliated_keywords">Affiliated keyword</a> 。
 </p>
 
 <p>
-VALUE可以包含除了换行符之外的任何字符。
+<b>VALUE</b> 可以包含除了换行符之外的任何字符。
 </p>
 
 <p>
-如果 <b>KEY</b> 属于 <code>org-element-document-properties</code> ，则 <b>VALUE</b> 可以包含 <code>object</code> 。
+如果 <b>KEY</b> 属于 <code>org-element-document-properties</code> ，则 <b>VALUE</b> 可以包含 <code>Object</code> 。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org76ea371" class="outline-3">
-<h3 id="LaTeX_Environments"><a id="org76ea371"></a><span class="section-number-3">4.8</span> LaTeX Environments</h3>
+<div id="outline-container-org94de65f" class="outline-3">
+<h3 id="LaTeX_Environments"><a id="org94de65f"></a><span class="section-number-3">4.8</span> LaTeX Environments</h3>
 <div class="outline-text-3" id="text-LaTeX_Environments">
 <p>
-<code>LaTeX environments</code> 的模式如下:
+<b>LaTeX environment</b> 的模式如下:
 </p>
 
 <pre class="example">
@@ -1075,11 +1070,11 @@ CONTENTS
 </pre>
 
 <p>
-NAME由字母数字或星号字符组成。
+<b>NAME</b> 由字母数字或星号字符组成。
 </p>
 
 <p>
-CONTENTS可以包含除“\ end {NAME}”字符串之外的任何内容。
+<b>CONTENTS</b> 可以包含除“\ end {NAME}”字符串之外的任何内容。
 </p>
 
 <blockquote>
@@ -1100,11 +1095,11 @@ CONTENTS can contain anything but the  "\end{NAME}"  string.
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org1472069" class="outline-3">
-<h3 id="Node_Properties"><a id="org1472069"></a><span class="section-number-3">4.9</span> Node Properties</h3>
+<div id="outline-container-orgf4bdf7b" class="outline-3">
+<h3 id="Node_Properties"><a id="orgf4bdf7b"></a><span class="section-number-3">4.9</span> Node Properties</h3>
 <div class="outline-text-3" id="text-Node_Properties">
 <p>
-<code>Node properties</code> 只能存在于<a href="#Drawers_and_Property_Drawers">property drawers</a>中。 它可以是下面模式的任意一个:
+<b>Node propertie</b> 只能存在于<a href="#Drawers_and_Property_Drawers">property drawers</a>中。 它可以是下面模式的任意一个:
 </p>
 
 <pre class="example">
@@ -1127,36 +1122,36 @@ NAME* 可以包含任何非空字符，但不能以加号结尾。 不能是空�
 </div>
 </div>
 
-<div id="outline-container-org58c1e95" class="outline-3">
-<h3 id="Paragraphs"><a id="org58c1e95"></a><span class="section-number-3">4.10</span> Paragraphs</h3>
+<div id="outline-container-orgcd5b10c" class="outline-3">
+<h3 id="Paragraphs"><a id="orgcd5b10c"></a><span class="section-number-3">4.10</span> Paragraphs</h3>
 <div class="outline-text-3" id="text-Paragraphs">
 <p>
-<code>Paragraphs</code> 是默认 <code>element</code> ，这意味着任何无法识别的上下文(unrecognized context)都是段落。
+<b>Paragraphs</b> 是默认 <code>Element</code> ，这意味着任何无法识别的上下文(unrecognized context)都是段落。
 </p>
 
 <p>
-空行和其他 <code>element</code> 结束 <code>paragraphs</code> 。
+空行和其他 <code>Element</code> 结束 <b>Paragraphs</b> 。
 </p>
 
 <p>
-<code>Paragraphs</code> 可以包含任意类型的 <code>object</code> 。
+<b>Paragraphs</b> 可以包含任意类型的 <code>Object</code> 。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf6568e1" class="outline-3">
-<h3 id="Table_Rows"><a id="orgf6568e1"></a><span class="section-number-3">4.11</span> Table Rows</h3>
+<div id="outline-container-org63c9fe7" class="outline-3">
+<h3 id="Table_Rows"><a id="org63c9fe7"></a><span class="section-number-3">4.11</span> Table Rows</h3>
 <div class="outline-text-3" id="text-Table_Rows">
 <p>
-<code>Table Rows</code> 由 <i>vertical bar</i> 和任意数量的<a href="#Table_Cells">table cells</a>组成，或者由连字符后面跟 <code>vertical bar</code> 组成。
+<b>Table Row</b> 由 <i>vertical bar</i> 和任意数量的<a href="#Table_Cells">table cells</a>组成，或者由连字符后面跟 <i>vertical ba</i> 组成。
 </p>
 
 <p>
-在第一种情况下， <code>Tables Rows</code> 具有“standard”类型。 在第二种情况下，它具有“rule”类型。
+在第一种情况下， <b>Tables Row</b> 具有 <i>standard</i> 类型。 在第二种情况下，它具有 <i>rule</i> 类型。
 </p>
 
 <p>
-<code>Tables Rows</code> 只能存在于<a href="#Tables">tables</a>中。
+<b>Tables Row</b> 只能存在于<a href="#Tables">tables</a>中。
 </p>
 
 <blockquote>
@@ -1178,11 +1173,11 @@ Table rows can only exist in <a href="#Tables">tables</a>.
 </div>
 </div>
 
-<div id="outline-container-org8db4386" class="outline-2">
-<h2 id="Objects"><a id="org8db4386"></a><span class="section-number-2">5</span> Objects</h2>
+<div id="outline-container-orge6ef059" class="outline-2">
+<h2 id="Objects"><a id="orge6ef059"></a><span class="section-number-2">5</span> Objects</h2>
 <div class="outline-text-2" id="text-Objects">
 <p>
-只能在以下位置找到 <code>Objects</code>:
+只能在以下位置找到 <code>Object</code>:
 </p>
 
 <ul class="org-ul">
@@ -1198,15 +1193,15 @@ Table rows can only exist in <a href="#Tables">tables</a>.
 </ul>
 
 <p>
-大多数 <code>objects=</code> 不能包含 <code>objects</code> 。 那些可以包含的会做特别说明的。
+大多数 <code>Object</code> 不能包含 <code>Object</code> 。 那些可以包含的会做特别说明的。
 </p>
 </div>
 
-<div id="outline-container-org0d14bd3" class="outline-3">
-<h3 id="Entities_and_LaTeX_Fragments"><a id="org0d14bd3"></a><span class="section-number-3">5.1</span> Entities and LaTeX Fragments</h3>
+<div id="outline-container-org80b6a26" class="outline-3">
+<h3 id="Entities_and_LaTeX_Fragments"><a id="org80b6a26"></a><span class="section-number-3">5.1</span> Entities and LaTeX Fragments</h3>
 <div class="outline-text-3" id="text-Entities_and_LaTeX_Fragments">
 <p>
-<code>Entities</code> 遵循的模式如下：
+<b>Entities</b> 遵循的模式如下：
 </p>
 
 <pre class="example">
@@ -1223,7 +1218,7 @@ where NAME has a valid association in either <code>org-entities</code> or <code>
 </p>
 
 <p>
-<code>LaTeX Fragments</code> 可以遵循多种模式:
+<b>LaTeX Fragments</b> 可以遵循多种模式:
 </p>
 
 <pre class="example">
@@ -1259,33 +1254,27 @@ CONTENTS can contain any character but cannot contain "\)" in the second templat
 </p>
 
 <p>
-PRE is either the beginning of line or a character different from
-<code>$</code>.
+PRE is either the beginning of line or a character different from <code>$</code>.
 </p>
 
 <p>
-CHAR is a non-whitespace character different from <code>.</code>, <code>,</code>, <code>?</code>,
-<code>;</code>, <code>'</code> or a double quote.
+CHAR is a non-whitespace character different from <code>.</code>, <code>,</code>, <code>?</code>, <code>;</code>, <code>'</code> or a double quote.
 </p>
 
 <p>
-POST is any of <code>-</code>, <code>.</code>, <code>,</code>, <code>?</code>, <code>;</code>, <code>:</code>, <code>'</code>, a double quote,
-a whitespace character and the end of line.
+POST is any of <code>-</code>, <code>.</code>, <code>,</code>, <code>?</code>, <code>;</code>, <code>:</code>, <code>'</code>, a double quote, a whitespace character and the end of line.
 </p>
 
 <p>
-BORDER1 is a non-whitespace character different from <code>.</code>, <code>;</code>, <code>.</code>
-and <code>$</code>.
+BORDER1 is a non-whitespace character different from <code>.</code>, <code>;</code>, <code>.</code> and <code>$</code>.
 </p>
 
 <p>
-BODY can contain any character excepted <code>$</code>, and may not span over
-more than 3 lines.
+BODY can contain any character excepted <code>$</code>, and may not span over more than 3 lines.
 </p>
 
 <p>
-BORDER2 is any non-whitespace character different from <code>,</code>, <code>.</code> and
-<code>$</code>.
+BORDER2 is any non-whitespace character different from <code>,</code>, <code>.</code> and <code>$</code>.
 </p>
 </blockquote>
 
@@ -1306,11 +1295,11 @@ positives.  &#x2014; ngz
 </div>
 </div>
 
-<div id="outline-container-org0313e1e" class="outline-3">
-<h3 id="Export_Snippets"><a id="org0313e1e"></a><span class="section-number-3">5.2</span> Export Snippets</h3>
+<div id="outline-container-orged1edfc" class="outline-3">
+<h3 id="Export_Snippets"><a id="orged1edfc"></a><span class="section-number-3">5.2</span> Export Snippets</h3>
 <div class="outline-text-3" id="text-Export_Snippets">
 <p>
-<code>Export snippets</code> 模式如下:
+<b>Export snippets</b> 模式如下:
 </p>
 
 <pre class="example">
@@ -1318,17 +1307,17 @@ positives.  &#x2014; ngz
 </pre>
 
 <p>
-NAME可以包含任何字母数字字符和连字符。
+<b>NAME</b> 可以包含任何字母数字字符和连字符。
 </p>
 
 <p>
-VALUE可以包含除“@@”字符串之外的任何内容。
+<b>VALUE</b> 可以包含除“@@”字符串之外的任何内容。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org59ec19f" class="outline-3">
-<h3 id="Footnote_References"><a id="org59ec19f"></a><span class="section-number-3">5.3</span> Footnote References</h3>
+<div id="outline-container-org0bd008a" class="outline-3">
+<h3 id="Footnote_References"><a id="org0bd008a"></a><span class="section-number-3">5.3</span> Footnote References</h3>
 <div class="outline-text-3" id="text-Footnote_References">
 <p>
 <code>Footnote References</code> 有四种模式:
@@ -1350,7 +1339,7 @@ VALUE可以包含除“@@”字符串之外的任何内容。
 </p>
 
 <p>
-<b>DEFINITION</b> 可以包含任何字符。 开关方括号必须成对出现。 它可以包含任何出现在 <code>paragraph</code> 中的 <code>object</code> ，甚至其他 <code>Footnote References</code> 。
+<b>DEFINITION</b> 可以包含任何字符。 开关方括号必须成对出现。 它可以包含任何出现在 <b>Paragraph</b> 中的 <code>Object</code> ，甚至其他 <b>Footnote Reference</b> 。
 </p>
 
 <p>
@@ -1359,11 +1348,11 @@ VALUE可以包含除“@@”字符串之外的任何内容。
 </div>
 </div>
 
-<div id="outline-container-orgc0505c6" class="outline-3">
-<h3 id="Inline_Babel_Calls_and_Source_Blocks"><a id="orgc0505c6"></a><span class="section-number-3">5.4</span> Inline Babel Calls and Source Blocks</h3>
+<div id="outline-container-org084727f" class="outline-3">
+<h3 id="Inline_Babel_Calls_and_Source_Blocks"><a id="org084727f"></a><span class="section-number-3">5.4</span> Inline Babel Calls and Source Blocks</h3>
 <div class="outline-text-3" id="text-Inline_Babel_Calls_and_Source_Blocks">
 <p>
-<code>Inline Babel calls</code> 遵循以下任何模式:
+<b>Inline Babel call</b> 遵循以下任何模式:
 </p>
 
 <pre class="example">
@@ -1408,8 +1397,8 @@ OPTIONS and BODY can contain any character but "\n".
 </div>
 </div>
 
-<div id="outline-container-org25021ad" class="outline-3">
-<h3 id="Line_Breaks"><a id="org25021ad"></a><span class="section-number-3">5.5</span> Line Breaks</h3>
+<div id="outline-container-org2c0e076" class="outline-3">
+<h3 id="Line_Breaks"><a id="org2c0e076"></a><span class="section-number-3">5.5</span> Line Breaks</h3>
 <div class="outline-text-3" id="text-Line_Breaks">
 <blockquote>
 <p>
@@ -1423,63 +1412,62 @@ SPACE can contain any number of tabs and spaces, including 0.
 </div>
 </div>
 
-<div id="outline-container-org404656d" class="outline-3">
-<h3 id="Links"><a id="org404656d"></a><span class="section-number-3">5.6</span> Links</h3>
+<div id="outline-container-orgf09135c" class="outline-3">
+<h3 id="Links"><a id="orgf09135c"></a><span class="section-number-3">5.6</span> Links</h3>
 <div class="outline-text-3" id="text-Links">
 <p>
-有4种主要类型的 <code>Lists</code>:
+有4种主要类型的 <b>Link</b>:
 </p>
 
 <pre class="example">
-RADIO                     ("radio" link)
+PRE1 RADIO POST1          ("radio" link)
 <protocol:path>           ("angle" link)
-PRE PROTOCOL:PATH2 POST   ("plain" link)
+PRE2 PROTOCOL:PATH2 POST2 ("plain" link)
 [[PATH3]DESCRIPTION]      ("regular" link)
 </protocol:path></pre>
 
 <p>
-RADIO is a string matched by some <a href="#Targets_and_Radio_Targets">radio target</a>.  It can contain
-<a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> and <a href="#Subscript_and_Superscript">superscript</a> only.
+<b>PRE1</b> 和 <b>POST1</b> （如果存在）是非字母数字字符。
 </p>
 
 <p>
-PROTOCOL is a string among <code>org-link-types</code>.
+<b>RADIO</b> 是被某些<a href="#Targets_and_Radio_Targets">radio target</a> 匹配的字符串。 它可以只包含 <a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> 和 <a href="#Subscript_and_Superscript">superscript</a>。
 </p>
 
 <p>
-PATH can contain any character but <code>]</code>, <code><</code>, <code>></code> and <code>\n</code>.
+<b>PROTOCOL</b> 属于 <code>org-link-types</code> 中定义的链接协议类型。
 </p>
 
 <p>
-PRE and POST are non word constituent.  They can be, respectively,
-the beginning or the end of a line.
+<b>PATH</b> 可以包含除了 <code>]</code>, <code><</code>, <code>></code> 和 <code>\n</code> 以外的任何字符。
 </p>
 
 <p>
-PATH2 can contain any non-whitespace character excepted <code>(</code>, <code>)</code>,
-<code><</code> and <code>></code>.  It must end with a word-constituent character, or any
-non-whitespace non-punctuation character followed by <code>/</code>.
+<b>PRE2</b> 和 <b>POST2</b> ，当它们存在时，是非字构成字符(word constituent characters)。
 </p>
 
 <p>
-DESCRIPTION must be enclosed within square brackets.  It can
-contain any character but square brackets.  Object-wise, it can
-contain any object found in a paragraph excepted a <a href="#Footnote_References">footnote
-reference</a>, a <a href="#Targets_and_Radio_Targets">radio target</a> and a <a href="#Line_Breaks">line break</a>.  It cannot contain
-another link either, unless it is a plain link.
+<b>PATH2</b> 可以包含除了 <code>(</code>, <code>)</code>, <code><</code> 和 <code>></code> 之外的任何非空字符。 它必须以字组成字符结尾，或任何非空格 非标点符号后面跟着 <code>/</code> 。
 </p>
 
 <p>
-DESCRIPTION is optional.
+<b>DESCRIPTION</b> 必须括在方括号中。 它可以包含除了方括号以外的任何字符。
+它可以包含除了 <a href="#Footnote_References">footnote reference</a>, <a href="#Targets_and_Radio_Targets">radio target</a> 和 <a href="#Line_Breaks">line break</a>之外的任何可在 <code>paragraph</code> 中找到的 <code>object</code> 。
+它不能包含另一个 <b>link</b> ，除非它是 <i>plain</i> 或者 <i>angular</i> <b>link</b> 。
 </p>
 
 <p>
-PATH3 is built according to the following patterns:
+<b>DESCRIPTION</b> 是可选的。
+</p>
+
+<p>
+<b>PATH3</b> 根据以下模式构建:
 </p>
 
 <pre class="example">
 FILENAME           ("file" type)
 PROTOCOL:PATH4     ("PROTOCOL" type)
+PROTOCOL://PATH4   ("PROTOCOL" type)
 id:ID              ("id" type)
 #CUSTOM-ID         ("custom-id" type)
 (CODEREF)          ("coderef" type)
@@ -1487,69 +1475,63 @@ FUZZY              ("fuzzy" type)
 </pre>
 
 <p>
-FILENAME is a file name, either absolute or relative.
+<b>FILENAME</b> 是一个文件名，绝对路径或相对路径。
 </p>
 
 <p>
-PATH4 can contain any character besides square brackets.
+<b>PATH4</b> 可以包含除方括号外的任何字符。
 </p>
 
 <p>
-ID is constituted of hexadecimal numbers separated with hyphens.
+<b>ID</b> 由用连字符分隔的十六进制数字构成。
 </p>
 
 <p>
-PATH4, CUSTOM-ID, CODEREF and FUZZY can contain any character
-besides square brackets.
+<b>PATH4</b> ，*CUSTOM-ID* ，*CODEREF* 和 <b>FUZZY</b> 可以包含除方括号外的任何字符。
 </p>
 
 <hr>
 
 <blockquote>
 <p>
-I suggest to remove angle links.  If one needs spaces in PATH, she
-can use standard link syntax instead.
+I suggest to remove angle links.  If one needs spaces in PATH, she can use standard link syntax instead.
 </p>
 
 <p>
-I also suggest to remove <code>org-link-types</code> dependency in PROTOCOL
-and match <code>[a-zA-Z]</code> instead, for portability.  &#x2014; ngz
+I also suggest to remove <code>org-link-types</code> dependency in PROTOCOL and match <code>[a-zA-Z]</code> instead, for portability.  &#x2014; ngz
 </p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-orgadd5108" class="outline-3">
-<h3 id="Macros"><a id="orgadd5108"></a><span class="section-number-3">5.7</span> Macros</h3>
+<div id="outline-container-org4e002cd" class="outline-3">
+<h3 id="Macros"><a id="org4e002cd"></a><span class="section-number-3">5.7</span> Macros</h3>
 <div class="outline-text-3" id="text-Macros">
 <p>
-Macros follow the pattern:
+<b>Macros</b> 遵循如下模式:
 </p>
 
 <pre class="example">
 
-   {{{NAME(ARGUMENTS)}}}
+{{{NAME(ARGUMENTS)}}}
 
 </pre>
 
 <p>
-NAME must start with a letter and can be followed by any number of
-alpha-numeric characters, hyphens and underscores.
+<b>NAME</b> 必须以字母开头，后面可以跟随任意数量的字母数字字符，连字符和下划线。
 </p>
 
 <p>
-ARGUMENTS can contain anything but "}}}" string.  Values within
-ARGUMENTS are separated by commas.  Non-separating commas have to
-be escaped with a backslash character.
+<b>ARGUMENTS</b> 可以包含除“}}}” 字符串之外的任何内容。 <b>ARGUMENTS</b> 中的值用逗号分隔。 非分隔逗号必须用反斜杠字符转义。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org95dbc29" class="outline-3">
-<h3 id="Targets_and_Radio_Targets"><a id="org95dbc29"></a><span class="section-number-3">5.8</span> Targets and Radio Targets</h3>
+<div id="outline-container-org436b3a2" class="outline-3">
+<h3 id="Targets_and_Radio_Targets"><a id="org436b3a2"></a><span class="section-number-3">5.8</span> Targets and Radio Targets</h3>
 <div class="outline-text-3" id="text-Targets_and_Radio_Targets">
 <p>
-Radio targets follow the pattern:
+<b>Radio targets</b> 的模式如下:
 </p>
 
 <pre class="example">
@@ -1557,13 +1539,11 @@ Radio targets follow the pattern:
 </contents></pre>
 
 <p>
-CONTENTS can be any character besides <code><</code>, <code>></code> and "\n".  As far as
-objects go, it can contain <a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> and
-<a href="#Subscript_and_Superscript">superscript</a> only.
+<b>CONTENTS</b> 可以是除了 <code><</code>, <code>></code> 和 <code>\n</code> 之外的任何字符。 它不能以空格字符开始或结束。 作为 <code>objects</code> 而言，它只可以包含 <a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> 和 <a href="#Subscript_and_Superscript">superscript</a>。
 </p>
 
 <p>
-Targets follow the pattern:
+<b>Targets</b> 的模式如下:
 </p>
 
 <pre class="example">
@@ -1571,17 +1551,16 @@ Targets follow the pattern:
 </target></pre>
 
 <p>
-TARGET can contain any character besides <code><</code>, <code>></code> and "\n".  It
-cannot contain any object.
+<b>TARGET</b> 可以是除了 <code><</code>, <code>></code> 和 <code>\n</code> 之外的任何字符。 不能包含任何 <code>Objects</code> .
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0dbcb39" class="outline-3">
-<h3 id="Statistics_Cookies"><a id="org0dbcb39"></a><span class="section-number-3">5.9</span> Statistics Cookies</h3>
+<div id="outline-container-org7d7f83e" class="outline-3">
+<h3 id="Statistics_Cookies"><a id="org7d7f83e"></a><span class="section-number-3">5.9</span> Statistics Cookies</h3>
 <div class="outline-text-3" id="text-Statistics_Cookies">
 <p>
-Statistics cookies follow either pattern:
+<b>Statistics cookies</b> 遵循任一模式:
 </p>
 
 <pre class="example">
@@ -1590,16 +1569,16 @@ Statistics cookies follow either pattern:
 </pre>
 
 <p>
-PERCENT, NUM1 and NUM2 are numbers or the empty string.
+<b>PERCENT</b> ，*NUM1* 和 <b>NUM2</b> 是数字或空字符串。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1a3d7cf" class="outline-3">
-<h3 id="Subscript_and_Superscript"><a id="org1a3d7cf"></a><span class="section-number-3">5.10</span> Subscript and Superscript</h3>
+<div id="outline-container-orgd0881f1" class="outline-3">
+<h3 id="Subscript_and_Superscript"><a id="orgd0881f1"></a><span class="section-number-3">5.10</span> Subscript and Superscript</h3>
 <div class="outline-text-3" id="text-Subscript_and_Superscript">
 <p>
-Pattern for subscript is:
+<b>Subscript</b> 的模式是:
 </p>
 
 <pre class="example">
@@ -1607,7 +1586,7 @@ CHAR_SCRIPT
 </pre>
 
 <p>
-Pattern for superscript is:
+<b>Superscript</b> 的模式是:
 </p>
 
 <pre class="example">
@@ -1615,58 +1594,86 @@ CHAR^SCRIPT
 </pre>
 
 <p>
-CHAR is any non-whitespace character.
+<b>CHAR</b> 是任何非空格字符。
 </p>
 
 <p>
-SCRIPT can be <code>*</code>, a string made of word-constituent characters
-maybe preceded by a plus or a minus sign, an expression enclosed in
-parenthesis (resp. curly brackets) containing balanced parenthesis
-(resp. curly brackets).
+<b>SCRIPT</b> 可以是 <code>*</code> 或括在括号（respectively curly brackets）中的表达式，可能包含平衡括号（respectively curly brackets）。
 </p>
-</div>
-</div>
 
-<div id="outline-container-org9a5efe8" class="outline-3">
-<h3 id="Table_Cells"><a id="org9a5efe8"></a><span class="section-number-3">5.11</span> Table Cells</h3>
-<div class="outline-text-3" id="text-Table_Cells">
 <p>
-Table cells follow the pattern:
+SCRIPT循该如下模式:
 </p>
-
 <pre class="example">
-CONTENTS|
+SIGN CHARS FINAL
 </pre>
 
 <p>
-CONTENTS can contain any character excepted a vertical bar.
+<b>SIGN</b> 是加号，减号或空字符串。
+</p>
+
+<p>
+<b>CHARS</b> 是任意数量的字母数字字符，逗号，反斜杠和点，或空字符串。
+</p>
+
+<p>
+<b>FINAL</b> 是一个字母数字字符。
+</p>
+
+<p>
+<b>SIGN</b> ，*CHARS* 和 <b>FINAL</b> 之间没有空格。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc575f70" class="outline-3">
-<h3 id="Timestamp"><a id="orgc575f70"></a><span class="section-number-3">5.12</span> Timestamps</h3>
-<div class="outline-text-3" id="text-Timestamp">
+<div id="outline-container-orgae5eb67" class="outline-3">
+<h3 id="Table_Cells"><a id="orgae5eb67"></a><span class="section-number-3">5.11</span> Table Cells</h3>
+<div class="outline-text-3" id="text-Table_Cells">
 <p>
-There are seven possible patterns for timestamps:
+<b>Table cells</b> 遵循如下模式:
 </p>
 
 <pre class="example">
-<%%(sexp)>                                     (diary)
-<date time="" repeater="">                         (active)
-[DATE TIME REPEATER]                         (inactive)
-<date time="" repeater="">--<date time="" repeater="">   (active range)
-<date time-time="" repeater="">                    (active range)
-[DATE TIME REPEATER]--[DATE TIME REPEATER]   (inactive range)
-[DATE TIME-TIME REPEATER]                    (inactive range)
-</date></date></date></date></%%(sexp)></pre>
+CONTENTS SPACES|
+</pre>
 
 <p>
-SEXP can contain any character excepted <code>></code> and <code>\n</code>.
+CONTENTS可以包含除垂直条之外的任何字符。
 </p>
 
 <p>
-DATE follows the pattern:
+SPACES包含任意数量的空格字符，包括零。 它可用于正确对齐表格。
+</p>
+
+<p>
+最后一个条可以用行中最后一个单元格的换行符替换。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97a528b" class="outline-3">
+<h3 id="Timestamp"><a id="org97a528b"></a><span class="section-number-3">5.12</span> Timestamps</h3>
+<div class="outline-text-3" id="text-Timestamp">
+<p>
+<b>Timestamp</b> 有七种可能的模式:
+</p>
+
+<pre class="example">
+<%%(sexp)>                                   (diary)
+<date time="" repeater-or-delay="">                                  (active)
+[DATE TIME REPEATER-OR-DELAY]                                  (inactive)
+<date time="" repeater-or-delay="">--<date time="" repeater-or-delay="">   (active range)
+<date time-time="" repeater-or-delay="">                             (active range)
+[DATE TIME REPEATER-OR-DELAY]--[DATE TIME REPEATER-OR-DELAY]   (inactive range)
+[DATE TIME-TIME REPEATER-OR-DELAY]                             (inactive range)
+</date></date></date></date></%%(sexp)></pre>
+
+<p>
+<b>SEXP</b> 可以包含除了 <code>></code> 和 <code>\n</code> 之外任何字符。
+</p>
+
+<p>
+<b>DATE</b> 模式如下:
 </p>
 
 <pre class="example">
@@ -1674,17 +1681,15 @@ YYYY-MM-DD DAYNAME
 </pre>
 
 <p>
-Y, M and D are digits.  DAYNAME can contain any non
-whitespace-character besides <code>+</code>, <code>-</code>, <code>]</code>, <code>></code>, a digit or <code>\n</code>.
+<b>Y</b> ，*M* 和 <b>D</b> 是数字。 DAYNAME可以包含除 <code>+</code>, <code>-</code>, <code>]</code>, <code>></code>, 数字 和 <code>\n</code> 之外的任何非空白字符。
 </p>
 
 <p>
-TIME follows the pattern =H:MM~.  H can be one or two digit long
-and can start with 0.
+<b>TIME</b> 遵循模式= H：MM〜。 H可以是一个或两个数字长，可以从0开始。
 </p>
 
 <p>
-REPEATER follows the patter:
+REPEATER 模式如下:
 </p>
 
 <pre class="example">
@@ -1692,30 +1697,33 @@ MARK VALUE UNIT
 </pre>
 
 <p>
-MARK is <code>+</code> (cumulate type), <code>++</code> (catch-up type) or <code>.+</code> (restart
-type).
+<b>MARK</b> 对于 <code>repeater</code> 而言，是 <code>+</code> (<i>cumulate type</i>), <code>++</code> (<i>catch-up type</i>) 或者 <code>.+</code> (<i>restart type</i>) 。
+在 <code>warning delays</code> 的请求， <b>MARK</b> 可以是 <code>-</code> (<i>all type</i>) 或者 <code>--</code> (<i>first type</i>)。
 </p>
 
 <p>
-VALUE is a number.
+<b>VALUE</b> 是一个数字。
 </p>
 
 <p>
-UNIT is a character among <code>h</code> (hour), <code>d</code> (day), <code>w</code> (week), <code>m</code>
-(month), <code>y</code> (year).
+<b>UNIT</b> 是h（小时），d（日），w（周），m（月），y（年）中的字符。
 </p>
 
 <p>
-MARK, VALUE and UNIT are not separated by whitespace characters.
+<b>MARK</b> ，*VALUE* 和 <b>UNIT</b> 不以空格字符分隔。
+</p>
+
+<p>
+时间戳中可以有两个REPEATER-OR-DELAY：一个作为 <code>repeater</code> ，一个作为 <code>warning delays</code> 。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2c7b268" class="outline-3">
-<h3 id="Emphasis_Markers"><a id="org2c7b268"></a><span class="section-number-3">5.13</span> Text Markup</h3>
+<div id="outline-container-org228778d" class="outline-3">
+<h3 id="Emphasis_Markers"><a id="org228778d"></a><span class="section-number-3">5.13</span> Text Markup</h3>
 <div class="outline-text-3" id="text-Emphasis_Markers">
 <p>
-Text markup follows the pattern:
+<b>Text markup</b> 模式如下:
 </p>
 
 <pre class="example">
@@ -1723,17 +1731,15 @@ PRE MARKER CONTENTS MARKER POST
 </pre>
 
 <p>
-PRE is a whitespace character, <code>(</code>, <code>{</code> <code>'</code> or a double quote.  It
-can also be a beginning of line.
+<b>PRE</b> 是一个空格字符, <code>(</code>, <code>{</code> <code>'</code> 或一个双引号，它也可以是一行的开头。
 </p>
 
 <p>
-MARKER is a character among <code>*</code> (bold), <code>=</code> (verbatim), <code>/</code>
-(italic), <code>+</code> (strike-through), <code>_</code> (underline), <code>~</code> (code).
+<b>MARKER</b> 是 <code>*</code> (bold), <code>=</code> (verbatim), <code>/</code> (italic), <code>+</code> (strike-through), <code>_</code> (underline), <code>~</code> (code) 中的符号。
 </p>
 
 <p>
-CONTENTS is a string following the pattern:
+<b>CONTENTS</b> 是模式如下的字符串:
 </p>
 
 <pre class="example">
@@ -1741,32 +1747,27 @@ BORDER BODY BORDER
 </pre>
 
 <p>
-BORDER can be any non-whitespace character excepted <code>,</code>, <code>'</code> or
-a double quote.
+<b>BORDER</b> 可以是除了 <code>,</code>, <code>'</code> 和双引号之外的任何非空格字符。
 </p>
 
 <p>
-BODY can contain contain any character but may not span over more
-than 3 lines.
+<b>BODY</b> 可以包含任何字符，但不能跨越超过3行。
 </p>
 
 <p>
-BORDER and BODY are not separated by whitespaces.
+<b>BORDER</b> 和 <b>BODY</b> 不被空格分隔。
 </p>
 
 <p>
-CONTENTS can contain any object encountered in a paragraph when
-markup is "bold", "italic", "strike-through" or "underline".
+当标记为 "bold", "italic", "strike-through" 或者 "underline"时， <b>CONTENTS</b> 可以包含段落中遇到的任何对象。
 </p>
 
 <p>
-POST is a whitespace character, <code>-</code>, <code>.</code>, <code>,</code>, <code>:</code>, <code>!</code>, <code>?</code>, <code>'</code>,
-<code>)</code>, <code>}</code> or a double quote.  It can also be an end of line.
+POST是一个空格字符， <code>-</code>, <code>.</code>, <code>,</code>, <code>:</code>, <code>!</code>, <code>?</code>, <code>'</code>, <code>)</code>, <code>}</code> 或双引号。 它也可以是行尾。
 </p>
 
 <p>
-PRE, MARKER, CONTENTS, MARKER and POST are not separated by
-whitespace characters.
+<b>PRE</b> ， <b>MARKER</b> ， <b>CONTENTS</b> ，*MARKER* 和 <b>POST</b> 不以空格字符分隔。
 </p>
 
 <hr>
@@ -1800,13 +1801,21 @@ emphasis, by definition.  &#x2014; ngz
 </p>
 
 <p class="footpara">
-As a consequence, using <code>org-element-at-point</code> or <code>org-element-context</code> will move up to the parent headline, and parse top-down from there until context around is found.
+因此，使用 <code>org-element-at-point</code> 或 <code>org-element-context</code> 将向上移动到父标题，并从那里自顶向下解析，直到找到原始位置周围的上下文。
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+特别说明，解析器要求在列0处的星号在不被定义为标题时用逗号来引用。
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+这也意味着只有 <code>Headline</code> 和 <code>Section</code> 能通过查看行的开头来识别。 <code>Planning lines</code> 和 <code>Property drawers</code> 可以通过查看一行或两行以上来识别。
 </p></div></div>
 
 
 </div>
 </div>
-Last Updated 2017-03-15 Wed 00:46.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-03-17 Fri 00:47.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1843,8 +1852,8 @@ Last Updated 2017-03-15 Wed 00:46.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/just-try/" rel="next" title="Hello org-mode">
-                <i class="fa fa-chevron-left"></i> Hello org-mode
+              <a href="/2017/03/07/just-try/" rel="next" title="Org-mode 手册版">
+                <i class="fa fa-chevron-left"></i> Org-mode 手册版
               </a>
             
           </div>
@@ -1852,10 +1861,6 @@ Last Updated 2017-03-15 Wed 00:46.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/13/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -2004,7 +2009,7 @@ Last Updated 2017-03-15 Wed 00:46.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Headlines_and_Sections"><span class="nav-number">1.</span> <span class="nav-text">1 标题和段落（Headlines and Sections）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Affiliated_keywords"><span class="nav-number">2.</span> <span class="nav-text">2 Affiliated Keywords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greater_Elements"><span class="nav-number">3.</span> <span class="nav-text">3 Greater Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Greater_Blocks"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Greater Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drawers_and_Property_Drawers"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Drawers and Property Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic_Blocks"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Dynamic Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_Definitions"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Footnote Definitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inlinetasks"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 Inlinetasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plain_Lists_and_Items"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 Plain Lists and Items</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge6d2925"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 Property Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 Tables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements"><span class="nav-number">4.</span> <span class="nav-text">4 Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel_Call"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Babel Call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blocks"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock,_Diary_Sexp_and_Planning"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Clock, Diary Sexp and Planning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed_Width_Areas"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Fixed Width Areas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horizontal_Rules"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 Horizontal Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keywords"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Keywords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LaTeX_Environments"><span class="nav-number">4.8.</span> <span class="nav-text">4.8 LaTeX Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node_Properties"><span class="nav-number">4.9.</span> <span class="nav-text">4.9 Node Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paragraphs"><span class="nav-number">4.10.</span> <span class="nav-text">4.10 Paragraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Rows"><span class="nav-number">4.11.</span> <span class="nav-text">4.11 Table Rows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects"><span class="nav-number">5.</span> <span class="nav-text">5 Objects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Entities_and_LaTeX_Fragments"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Entities and LaTeX Fragments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Export_Snippets"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Export Snippets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_References"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Footnote References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline_Babel_Calls_and_Source_Blocks"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Inline Babel Calls and Source Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Line_Breaks"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 Line Breaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Links"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 Links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Macros"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 Macros</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Targets_and_Radio_Targets"><span class="nav-number">5.8.</span> <span class="nav-text">5.8 Targets and Radio Targets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistics_Cookies"><span class="nav-number">5.9.</span> <span class="nav-text">5.9 Statistics Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscript_and_Superscript"><span class="nav-number">5.10.</span> <span class="nav-text">5.10 Subscript and Superscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Cells"><span class="nav-number">5.11.</span> <span class="nav-text">5.11 Table Cells</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timestamp"><span class="nav-number">5.12.</span> <span class="nav-text">5.12 Timestamps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emphasis_Markers"><span class="nav-number">5.13.</span> <span class="nav-text">5.13 Text Markup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">脚注: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Headlines_and_Sections"><span class="nav-number">1.</span> <span class="nav-text">1 Headlines and Sections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Affiliated_keywords"><span class="nav-number">2.</span> <span class="nav-text">2 Affiliated Keywords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greater_Elements"><span class="nav-number">3.</span> <span class="nav-text">3 Greater Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Greater_Blocks"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Greater Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drawers_and_Property_Drawers"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Drawers and Property Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic_Blocks"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Dynamic Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_Definitions"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Footnote Definitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inlinetasks"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 Inlinetasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plain_Lists_and_Items"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 Plain Lists and Items</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4ebf3d6"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 Property Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tables"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 Tables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elements"><span class="nav-number">4.</span> <span class="nav-text">4 Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel_Call"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Babel Call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Blocks"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clock,_Diary_Sexp_and_Planning"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Clock, Diary Sexp and Planning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comments"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed_Width_Areas"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Fixed Width Areas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Horizontal_Rules"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 Horizontal Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keywords"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Keywords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LaTeX_Environments"><span class="nav-number">4.8.</span> <span class="nav-text">4.8 LaTeX Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node_Properties"><span class="nav-number">4.9.</span> <span class="nav-text">4.9 Node Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paragraphs"><span class="nav-number">4.10.</span> <span class="nav-text">4.10 Paragraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Rows"><span class="nav-number">4.11.</span> <span class="nav-text">4.11 Table Rows</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects"><span class="nav-number">5.</span> <span class="nav-text">5 Objects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Entities_and_LaTeX_Fragments"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Entities and LaTeX Fragments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Export_Snippets"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Export Snippets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnote_References"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Footnote References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline_Babel_Calls_and_Source_Blocks"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Inline Babel Calls and Source Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Line_Breaks"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 Line Breaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Links"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 Links</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Macros"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 Macros</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Targets_and_Radio_Targets"><span class="nav-number">5.8.</span> <span class="nav-text">5.8 Targets and Radio Targets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistics_Cookies"><span class="nav-number">5.9.</span> <span class="nav-text">5.9 Statistics Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subscript_and_Superscript"><span class="nav-number">5.10.</span> <span class="nav-text">5.10 Subscript and Superscript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table_Cells"><span class="nav-number">5.11.</span> <span class="nav-text">5.11 Table Cells</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timestamp"><span class="nav-number">5.12.</span> <span class="nav-text">5.12 Timestamps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emphasis_Markers"><span class="nav-number">5.13.</span> <span class="nav-text">5.13 Text Markup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">脚注: </span></a></li></ol></div>
             
 
           </div>
