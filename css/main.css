@@ -810,20 +810,6 @@ pre .javascript .function {
 .info h6 {
   color: #5bc0de;
 }
-.exturl {
-  background-color: transparent;
-  cursor: pointer;
-  border-bottom: 1px solid #999;
-}
-.exturl .fa {
-  font-size: 14px;
-}
-.exturl:active,
-.exturl:hover {
-  outline: 0;
-  color: #222;
-  border-bottom-color: #222;
-}
 .btn {
   display: inline-block;
   padding: 0 20px;
@@ -1699,7 +1685,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1430c4;
+  background: #b1c722;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1712,6 +1698,7 @@ pre .javascript .function {
 .links-of-blogroll-list {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 .links-of-blogroll-item {
   padding: 2px 10px;
@@ -2626,8 +2613,9 @@ pre .javascript .function {
 .sidebar-position-right .sidebar {
   float: right;
 }
-.sidebar-position-right .footer-inner:before {
-  float: right;
+.sidebar-position-right .footer-inner {
+  padding-left: 0;
+  padding-right: 260px;
 }
 .site-brand-wrapper {
   position: relative;

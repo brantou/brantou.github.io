@@ -154,7 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -1808,6 +1808,9 @@ Last Updated 2017-03-19 Sun 15:24.<br>Render by <a href="https://github.com/Code
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -1991,14 +1994,14 @@ Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐
 <tbody>
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,->folded->children->subtree&#x2013;.</span></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 <td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,->overview->contents->show all&#x2013;.</span></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
 <td class="org-left"><code>org-global-cycle</code></td>
 </tr>
 </tbody>
@@ -2043,7 +2046,7 @@ org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标�
 你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&#8629;er</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -2198,7 +2201,7 @@ q        退出
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -2376,7 +2379,7 @@ q        退出
 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &#8216;FIXME&#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -2471,7 +2474,7 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -2866,7 +2869,7 @@ You can check syntax in your documents using org-lint command.
 </tr>
 
 <tr>
-<td class="org-left"><code><tab></tab></code></td>
+<td class="org-left"><code>&lt;TAB&gt;</code></td>
 <td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
 <td class="org-left"><code>org-table-next-field</code></td>
 </tr>
@@ -3117,7 +3120,7 @@ You can check syntax in your documents using org-lint command.
 你可能因为‘|’开始的行，妨碍到你，而不喜欢自动表编辑器，你可以用下面的语句来关闭
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">        &#65288<span class="comment">;setq org-enable-table-editor nil&#65289;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">        &amp;#65288<span class="comment">;setq org-enable-table-editor nil&amp;#65289;</span></span><br></pre></td></tr></table></figure>
 </div>
 <p>
 然后唯一的表命令 <code>C-c</code> <code>C-c</code> 仍然工作, 做一个手动重新对齐。
@@ -3152,6 +3155,9 @@ Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/Code
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -3278,6 +3284,9 @@ Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/Code
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
       
@@ -3299,7 +3308,7 @@ Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/Code
 
   
 
-          
+
           </div>
           
 
@@ -3456,7 +3465,7 @@ Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/Code
         
       </div>
     
-    
+
   </div>
 
   
@@ -3558,17 +3567,20 @@ Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/Code
 
 
 
+
+
+
   
-  
+
+
+
+
 
   
 
   
 
   
-
-  
-
 
   
 
