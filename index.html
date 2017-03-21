@@ -270,6 +270,1353 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/just-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/21/just-try/" itemprop="url">
+                  Org-mode 手册版
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T00:00:00+08:00">
+                2017-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。
+</p>
+
+<div id="outline-container-org8cd55da" class="outline-2">
+<h2 id="org8cd55da"><span class="section-number-2">1</span> org-mode的文档结构</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgd323582" class="outline-3">
+<h3 id="orgd323582"><span class="section-number-3">1.1</span> Headlines</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Org 是在大纲模式之上实现的。
+大纲模式可以让我们用层次结构来组织文档，这（至少对我来说）是笔记和想法的最好实现方式。
+这种结构可以折叠（隐藏）文档的一部分而只显示文档的大概结构或者只显示我们正在处理的部分。
+Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐藏功能整合到了一个命令中：org-cycle，这个命令绑定到了TAB键上。
+</p>
+
+<p>
+标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
+</p>
+<pre class="example">
+* Top level headline
+** Second level
+*** 3rd level
+     some text
+** 3rd level
+     more text
+, Another top level headline
+</pre>
+</div>
+
+<div id="outline-container-orgd860e8f" class="outline-4">
+<h4 id="orgd860e8f"><span class="section-number-4">1.1.1</span> 视图命令</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<table id="org3d0cdb7" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,->folded->children->subtree&#x2013;.</span></td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>S-TAB</code></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,->overview->contents->show all&#x2013;.</span></td>
+<td class="org-left"><code>org-global-cycle</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-r</code></td>
+<td class="org-left">显示当前位置的上下文，展示当前条目，紧跟的标题和标题的层次结构。 适用于通过稀疏树命令或议程命令展露出来的位置附近工作。</td>
+<td class="org-left"><code>org-reveal</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-k</code></td>
+<td class="org-left">展开子树的所有标题，CONTENT视图只有一个子树。</td>
+<td class="org-left"><code>outline-show-branches</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>TAB</code></td>
+<td class="org-left">展开子树的所有直接子节点。</td>
+<td class="org-left"><code>outline-show-children</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>b</code></td>
+<td class="org-left">在间接缓冲区中显示当前子树</td>
+<td class="org-left"><code>org-tree-to-indirect-buffer</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>v</code></td>
+<td class="org-left">将区域中的可见文字复制到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a>.</td>
+<td class="org-left"><code>org-copy-visible</code></td>
+</tr>
+</tbody>
+</table>
+<p>
+org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标题可见。
+你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&#8629;er</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+当然你也可以为每个文件指定视图模式，只要在文件buffer中任意位置包含以下语句（推荐配置在文件头）：
+</p>
+<pre class="example">
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+</pre>
+
+<p>
+更进一步,任何条目都包含 <code>VISIBILITY</code> 属性，此属性定义了条目的视图模式，覆盖一般性设置。可接受的值为： <b>folded</b> <b>children</b> <b>content</b> <b>all</b>, 示例如下
+</p>
+<pre class="example">
+#+STARTUP: overview
+* A
+:PROPERTIES:
+:VISIBILITY: all
+:END:
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb2fed80" class="outline-4">
+<h4 id="orgb2fed80"><span class="section-number-4">1.1.2</span> 跳转命令</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<table id="org91426ab" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-n</code></td>
+<td class="org-left">跳转到下一个标题</td>
+<td class="org-left"><code>org-next-visible-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-p</code></td>
+<td class="org-left">跳转到上一个标题</td>
+<td class="org-left"><code>org-previous-visible-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-f</code></td>
+<td class="org-left">跳转到下一个同级标题</td>
+<td class="org-left"><code>org-forward-same-level</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-b</code></td>
+<td class="org-left">跳转到上一个同级标题</td>
+<td class="org-left"><code>org-backward-same-level</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-u</code></td>
+<td class="org-left">跳回更高一级的标题</td>
+<td class="org-left"><code>outline-up-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-j</code></td>
+<td class="org-left">跳转到别处，不改变当前的视图模式，创建一个临时buffer来展示当前文档</td>
+<td class="org-left"><code>org-goto</code></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+在 <code>C-c C-j</code> 触发的临时buffer中，可用的命令如下：
+</p>
+<pre class="example">
+TAB      Cycle visibility.
+down/up  Next/previous visible headline.
+RET      Select this location.
+/        Do a Sparse-tree search
+</pre>
+<p>
+若是关闭了 <code>org-goto-auto-isearch</code> ，以下命令可用：
+</p>
+<pre class="example">
+n/p      Next/previous visible headline.
+f/b      Next/previous headline same level.
+u        One level up.
+0-9      数字参数
+q        退出
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5c7216d" class="outline-4">
+<h4 id="org5c7216d"><span class="section-number-4">1.1.3</span> 编辑命令</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<table id="orge9f4088" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">插入一个同级标题在当前位置(行首，把当前行转成标题；行中，截断余下文本，在下一行生成标题)</td>
+<td class="org-left"><code>org-insert-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-RET</code></td>
+<td class="org-left">在M-RET的基础上，添加了 <code>TODO</code> 标示</td>
+<td class="org-left"><code>org-insert-todo-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-RET</code></td>
+<td class="org-left">在当前子树的结束位置插入同级标题</td>
+<td class="org-left"><code>org-insert-heading-respect-content</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-S-RET</code></td>
+<td class="org-left">在C<sub>RET的基础上</sub>，添加了 <code>TODO</code> 标示</td>
+<td class="org-left">org-insert-todo-heading-respect-content</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-left</code></td>
+<td class="org-left">当前标题提升一个等级</td>
+<td class="org-left"><code>org-do-promote</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-right</code></td>
+<td class="org-left">当前标题降低一个等级</td>
+<td class="org-left"><code>org-do-demote</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left</code></td>
+<td class="org-left">当前整个子树提升一个等级</td>
+<td class="org-left"><code>org-promote-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-right</code></td>
+<td class="org-left">当前整个子树降低一个等级</td>
+<td class="org-left"><code>org-demote-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up</code></td>
+<td class="org-left">当前整个子树和前面同级子树交换位置</td>
+<td class="org-left"><code>org-move-subtree-up</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-down</code></td>
+<td class="org-left">当前整个子树和后面同级子树交换位置</td>
+<td class="org-left"><code>org-move-subtree-down</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-h</code></td>
+<td class="org-left">Mark the element at point.</td>
+<td class="org-left"><code>org-mark-element</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>@</code></td>
+<td class="org-left">Mark the subtree at point. 目前看起来是可视化选中当前子树</td>
+<td class="org-left"><code>org-mark-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
+<td class="org-left">剪切子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
+<td class="org-left"><code>org-cut-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
+<td class="org-left">拷贝子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
+<td class="org-left"><code>org-copy-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
+<td class="org-left">从  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a> 中粘贴子树</td>
+<td class="org-left"><code>org-paste-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-y</code></td>
+<td class="org-left">Depending on the options org-yank-adjusted-subtrees and org-yank- folded-subtrees, Org’s internal yank command will paste subtrees folded and in a clever way, using the same command as C-c C-x C-y.</td>
+<td class="org-left"><code>org-yank</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>c</code></td>
+<td class="org-left">Clone a subtree by making a number of sibling copies of it. You will be prompted for the number of copies to make, and you can also specify if any timestamps in the entry should be shifted.</td>
+<td class="org-left"><code>org-clone-subtree-with-time-shift</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-w</code></td>
+<td class="org-left">将条目或区域 <i>refile</i> 到不同的位置。</td>
+<td class="org-left"><code>org-refile</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">排序相同级别的条目。</td>
+<td class="org-left"><code>org-sort</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>s</code></td>
+<td class="org-left">将缓冲区缩小到当前子树。</td>
+<td class="org-left"><code>org-narrow-to-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>b</code></td>
+<td class="org-left">将缓冲区缩小到当前 <b>block</b> 。</td>
+<td class="org-left"><code>org-narrow-to-block</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>w</code></td>
+<td class="org-left">加宽缓冲区以消除变窄。</td>
+<td class="org-left"><code>widen</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>*</code></td>
+<td class="org-left">使正常的文本行变为标题,重复操作可恢复成原样</td>
+<td class="org-left"><code>org-toggle-heading</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org9554274" class="outline-4">
+<h4 id="org9554274"><span class="section-number-4">1.1.4</span> 稀疏树</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+一个很重要的特性就是org有能力为被选中的信息构造出稀疏树，使得被选中信息突出显示，无关信息折叠显示。实践才是检测真理的唯一标准，试一试就知道具体是怎样优化你的工作了。
+</p>
+
+<table id="orgce2a947" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 4:</span> 稀疏树</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>/</code></td>
+<td class="org-left">本命令会触发sparse-tress命令界面，提示输入字符，来选择创建稀疏树的命令</td>
+<td class="org-left"><code>org-sparse-tree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>/</code> <code>r</code></td>
+<td class="org-left">创建出和正则表达式匹配的稀疏树;标题匹配，标题可见; body匹配, 标题和body都可见；所以匹配高亮，当当前buffer通过编辑命令发送改变时，高亮消失，当然你可以通过 <code>C-c C-c</code> 主动取消高亮。</td>
+<td class="org-left"><code>org-occur</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-g</code> <code>n</code></td>
+<td class="org-left">跳转到下一个匹配</td>
+<td class="org-left"><code>next-error</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-g</code> <code>p</code></td>
+<td class="org-left">跳转到上一个匹配</td>
+<td class="org-left"><code>previous-error</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+很有可能需要频繁创建特定搜索条件的稀疏树，可通过 <code>org-agenda-custom-commands</code> 来定义快速访问的快捷键（这个命令可用在<a href="http://orgmode.org/manual/Agenda-dispatcher.html" target="_blank" rel="external">agenda dispatcher</a>中）。
+如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &#8216;FIXME&#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+<blockquote>
+<p>
+The other sparse tree commands select headings based on <b>TODO</b> keywords, tags, or properties and will be discussed later in this manual.
+To print a sparse tree, you can use the Emacs command <code>ps-print-buffer-with-faces</code> which does not print invisible parts of the document.
+Or you can use <code>C-c</code> <code>C-e</code> <code>C-v</code> to export only the visible part of the document and print the resulting file.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f49c20" class="outline-3">
+<h3 id="org3f49c20"><span class="section-number-3">1.2</span> Plain lists</h3>
+<div class="outline-text-3" id="text-1-2">
+<blockquote>
+<p>
+Within an entry of the outline tree, hand-formatted lists can provide additional structure.
+They also provide a way to create lists of checkboxes.
+Org supports editing such lists, and every exporter can parse and format them.
+</p>
+</blockquote>
+<p>
+在大纲树的组织结构中，自定义格式的列表可以提供更多的组织结构。使我们得到一个复先框列表。 <code>Org</code> 可以处理这种列表，同时各个 <code>exporter</code> 可以解析和格式化。
+<b>Org</b> 可识别 <i>ordered</i> 列表, <i>unordered</i> 列表, 和 <i>description</i> 列表。
+</p>
+<ul class="org-ul">
+<li><i>Unordered</i> 的列表项以 <b>‘-’</b>, <b>‘+’</b> 或 <b>‘*’</b> 开始。</li>
+<li><i>Ordered</i> 的列表项以数字加在 <b>‘.’</b> 或 <b>‘)’</b> 开始。格式如下：‘1.’ 或 ‘1)’。 可自定义起始值，在文本开始出插入[@20]，代表以20开始。</li>
+<li><i>Description</i> 列表项其实就是 <i>unordered</i> 列表项, 只在文本中间插入了分隔符 <b>‘::’</b> 。</li>
+</ul>
+
+<p>
+同一个列表中项首行必须缩进一致。特别是 <i>ordered</i> 列表到了 <b>‘10.’</b> ，两位数字必须和其他数字左对齐。
+若是下一行的缩进小于等于当前列表的缩进，则当前项终结。当所有项都终结，或者后面隔了两个空行时，列表终结。示例如下：
+</p>
+<pre class="example">
+** Lord of the Rings
+   My favorite scenes are (in this order)
+   1. The attack of the Rohirrim
+   2. Eowyn's fight with the witch king
+       + this was already my favorite scene in the book
+       + I really like Miranda Otto.
+   Important actors in this film are:
+   - Elijah Wood :: He plays Frodo
+   - Sean Austin :: He plays Sam, Frodo's friend.
+</pre>
+<blockquote>
+<p>
+Org supports these lists by tuning filling and wrapping commands to deal with them correctly, and by exporting them properly.
+Since indentation is what governs the structure of these lists,
+many structural constructs like <code>#+BEGIN_...</code> blocks can be indented to signal that they belong to a particular item.
+</p>
+
+<p>
+If you find that using a different bullet for a sub-list (than that used for the current list-level) improves readability,
+customize the variable <code>org-list-demote-modify-bullet</code>.
+To get a greater difference of indentation between items and their sub-items, <code>customize org-list-indent-offset</code>.
+</p>
+
+<p>
+The following commands act on items when the cursor is in the first line of an item (the line with the bullet or number).
+Some of them imply the application of automatic rules to keep list structure intact.
+If some of these actions get in your way, configure <code>org-list-automatic-rules</code> to disable them individually.
+</p>
+</blockquote>
+<p>
+当光标位于一项的首行时（带有项标志符的行），下面命令将作用于该项：
+</p>
+<table id="orgfc9a44f" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 5:</span> 稀疏树</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">列表项像标题一样的被折叠，展开</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">插入一个同级项(行首，把当前行转成列表项；行中，截断余下文本，在下一行生成列表项)</td>
+<td class="org-left"><code>org-insert-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-RET</code></td>
+<td class="org-left">插入一个带 <code>checkbox</code> 的同级项(行为类似于M-RET)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-up/S-down</code></td>
+<td class="org-left">跳转到当前列表的上一项或者下一项</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up/M-down</code></td>
+<td class="org-left">和上一项或者下一项交换位置（同级之间)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-left/M-right</code></td>
+<td class="org-left">提升或者降低一项的等级,子项不变</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left/M-S-right</code></td>
+<td class="org-left">提升或者降低一项的等级,子项同等变化</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">当前项有 <code>checkbox</code> , 触发状态转换</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>-</code></td>
+<td class="org-left">循环改变将当前列表的项标志符</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>*</code></td>
+<td class="org-left">使列表项变为标题 (在当前位置生成子标题).</td>
+<td class="org-left"><code>org-toggle-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-*</code></td>
+<td class="org-left">使整个列表变成当前标题的子树 <code>checkboxes</code> 将变为 <code>TODO</code> 当未 <i>unchecked</i> 时</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-left/right</code></td>
+<td class="org-left">循环改变将当前列表的项标志符</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">Sort the plain list</td>
+<td class="org-left"><code>org-sort</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgc173e0c" class="outline-3">
+<h3 id="orgc173e0c"><span class="section-number-3">1.3</span> Drawers</h3>
+<div class="outline-text-3" id="text-1-3">
+<blockquote>
+<p>
+Sometimes you want to keep information associated with an entry, but you normally don’t want to see it.
+For this, Org mode has drawers. They can contain anything but a headline and another drawer.
+</p>
+
+<p>
+You can interactively insert drawers at point by calling <code>org-insert-drawer</code>, which is bound to <code>C-c</code> <code>C-x</code> <code>d</code>.
+With an active region, this command will put the region inside the drawer.
+With a prefix argument, this command calls <code>org-insert-property-drawer</code> and add a property drawer right below the current headline.
+Completion over drawer keywords is also possible using <code>M-TAB</code>.
+</p>
+
+<p>
+Visibility cycling on the headline will hide and show the entry, but keep the drawer collapsed to a single line.
+In order to look inside the drawer, you need to move the cursor to the drawer line and press <code>TAB</code> there.
+Org mode uses the <b>PROPERTIES</b> drawer for storing properties , and you can also arrange for state change notes and clock times to be stored in a drawer <b>LOGBOOK</b>.
+If you want to store a quick note in the <b>LOGBOOK</b> drawer, in a similar way to state changes, use <code>C-c</code> <code>C-z</code> Add a time-stamped note to the <b>LOGBOOK</b> drawer.
+</p>
+
+<p>
+You can select the name of the drawers which should be exported with <code>org-export-with-drawers</code>.
+In that case, drawer contents will appear in export output.
+<b>Property</b> drawers are not affected by this variable: configure <code>org-export-with-properties</code> instead.
+</p>
+</blockquote>
+<p>
+<i>Drawers</i> 如下所示：
+</p>
+<pre class="example">
+** This is a headline
+   Still outside the drawer
+   :DRAWERNAME:
+   This is inside the drawer.
+   :END:
+   After the drawer.
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcd002e0" class="outline-3">
+<h3 id="orgcd002e0"><span class="section-number-3">1.4</span> Blocks</h3>
+<div class="outline-text-3" id="text-1-4">
+<blockquote>
+<p>
+Org mode uses begin&#x2026;end blocks for various purposes from including source code examples to capturing time logging information.
+These blocks can be folded and unfolded by pressing <code>TAB</code> in the begin line.
+You can also get all blocks folded at startup by configuring the option <code>org-hide-block-startup</code> or on a per-file basis by using
+</p>
+<pre class="example">
+#+STARTUP: hideblocks
+#+STARTUP: nohideblocks
+</pre>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org2348ed9" class="outline-3">
+<h3 id="org2348ed9"><span class="section-number-3">1.5</span> Footnotes（脚注)</h3>
+<div class="outline-text-3" id="text-1-5">
+<blockquote>
+<p>
+A footnote is started by a footnote marker in square brackets in column 0, no indentation allowed.
+It ends at the next footnote definition, headline, or after two consecutive empty lines.
+The footnote reference is simply the marker in square brackets, inside text. Markers always start with fn:.
+For example:
+</p>
+<pre class="example">
+The Org homepage[fn:1] now looks a lot better than it used to.
+...
+[fn:1] The link is: http://orgmode.org
+</pre>
+
+<p>
+Org mode extends the number-based syntax to named footnotes and optional inline definition. Here are the valid references:
+</p>
+<dl class="org-dl">
+<dt><code>[fn:name]</code></dt><dd>A named footnote reference, where name is a unique label word, or, for simplicity of automatic creation, a number.</dd>
+<dt><code>[fn::This is the inline definition of this footnote]</code></dt><dd>A LATEX-like anonymous footnote where the definition is given directly at the reference point.</dd>
+<dt><code>[fn:name:a definition]</code></dt><dd>An inline definition of a footnote, which also specifies a name for the note.
+Since Org allows multiple references to the same note, you can then use \[fn:name\] to create additional references.</dd>
+</dl>
+
+<p>
+Footnote labels can be created automatically, or you can create names yourself.
+This is handled by the variable <code>org-footnote-auto-label</code> and its corresponding <b>#+STARTUP</b> keywords.
+See the docstring of that variable for details.
+</p>
+</blockquote>
+<p>
+示例如下：
+The Org homepage<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> now looks a lot better than it used to.
+</p>
+
+<table id="org8c10c30" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 6:</span> 脚注命令列表</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>f</code></td>
+<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。其他情况下，新建一个脚注。当有前缀参数时，会提供一个菜单供选择操作，其中包括重新给脚注编号。</td>
+<td class="org-left"><code>org-footnote-action</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。当有前缀参数时，行为和 <code>C-c C-x f</code> 一样,提供同样操作菜单。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-o</code></td>
+<td class="org-left">脚注标签也是指向相应定义/引用的链接，您可以使用常用(链接)命令来跟踪这些链接。</td>
+<td class="org-left"><code>org-open-at-point</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>'</code></td>
+<td class="org-left">在独立的窗口中，编辑引用关联的脚注定义。窗口可通过 <code>C-c</code> <code>'</code> 关闭</td>
+<td class="org-left"><code>org-edit-special</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+当 <code>C-c C-x f</code> 命令加上附加前缀参数时(<code>C-u C-c C-x f</code>) ,一个操作菜单被提供：
+</p>
+<pre class="example">
+s    Sort the footnote definitions by reference sequence.  During editing,
+     Org makes no effort to sort footnote definitions into a particular
+     sequence.  If you want them sorted, use this command, which will
+     also move entries according to org-footnote-section.  Automatic
+     sorting after each insertion/deletion can be configured using the
+     option org-footnote-auto-adjust.
+r    Renumber the simple fn:N footnotes.  Automatic renumbering
+     after each insertion/deletion can be configured using the option
+     org-footnote-auto-adjust.
+S    Short for first r, then s action.
+n    Normalize the footnotes by collecting all definitions (including
+     inline definitions) into a special section, and then numbering them
+     in sequence.  The references will then also be numbers.
+d    Delete the footnote at point, and all definitions of and references
+     to it.
+</pre>
+</div>
+</div>
+<div id="outline-container-org062112c" class="outline-3">
+<h3 id="org062112c"><span class="section-number-3">1.6</span> The Orgstruct minor mode</h3>
+<div class="outline-text-3" id="text-1-6">
+<blockquote>
+<p>
+If you like the intuitive way the Org mode structure editing and list formatting works,
+you might want to use these commands in other modes like Text mode or Mail mode as well.
+The minor mode orgstruct-mode makes this possible. Toggle the mode with <code>M-x</code> <code>orgstruct-mode</code> <code>RET</code>,
+or turn it on by default, for example in Message mode, with one of:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct++</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgd27d860" class="outline-3">
+<h3 id="orgd27d860"><span class="section-number-3">1.7</span> Org syntax</h3>
+<div class="outline-text-3" id="text-1-7">
+<blockquote>
+<p>
+A reference document providing a formal description of Org’s syntax is available as <a href="http://orgmode.org/worg/dev/org-syntax.html" target="_blank" rel="external">a draft on Worg</a>, written and maintained by Nicolas Goaziou.
+It defines Org’s core internal concepts such as headlines, sections, affiliated keywords, (greater) elements and objects.
+Each part of an Org file falls into one of the categories above.
+</p>
+
+<p>
+To explore the abstract structure of an Org buffer, run this in a buffer:
+</p>
+<pre class="example">
+M-: (org-element-parse-buffer) RET
+</pre>
+<p>
+It will output a list containing the bu↵er’s content represented as an abstract structure.
+The export engine relies on the information stored in this list.
+Most interactive commands (e.g., for structure editing) also rely on the syntactic meaning of the surrounding context.
+</p>
+
+<p>
+You can check syntax in your documents using org-lint command.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org701195e" class="outline-2">
+<h2 id="org701195e"><span class="section-number-2">2</span> org-mode 表格</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Org</b> 提供了一个快速直观的表编辑器。 使用 <b>Emacs</b> 内嵌的 <i>calc</i> 的包可支持类似于制表软件的操作。
+</p>
+</div>
+
+<div id="outline-container-orgcf72412" class="outline-3">
+<h3 id="orgcf72412"><span class="section-number-3">2.1</span> 内置表编辑器</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<b>Org</b> 能够很容易地格式化 <b>ASCII</b> 文本表格。 任何把'|'作为首个非空白字符的行都被视为表的一部分。 '|'也是列分隔符。 表如下所示：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">名字</th>
+<th scope="col" class="org-right">手机号</th>
+<th scope="col" class="org-right">年龄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">brantou</td>
+<td class="org-right">170xxxxxxxx</td>
+<td class="org-right">18</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+在表格内键入 <code>TAB</code> , <code>RET</code> 或 <code>C-c</code> <code>C-c</code> 时，表格都会自动重新对齐。
+<code>TAB</code> 也可以移动到下一个表格区域（ <code>RET</code> 进入下一行），并在表的末尾或水平线之前创建新的表行。
+表的缩进由第一行设置。 以"|-"开头的任何行都被视为水平分隔符行，并在下一个重新对齐时展开。所以，要创建上面的表，你只需要键入
+</p>
+<pre class="example">
+| 名字 | 手机号 | 年龄 |
+|-
+</pre>
+<p>
+然后按 <code>TAB</code> 扩展表格。 更快的是键入 <b>|名称|手机号|年龄</b> 后, 再键入 <code>C-c</code> <code>RET</code> 。
+</p>
+
+<p>
+在表格区域中输入文本时，Org以特殊方式处理DEL，Backspace和所有字符键，以便插入和删除避免移动其他字段。
+此外，当使用TAB，S-TAB或RET将光标移动到新的表格区域后会自动填充空格。
+如果这种行为对您太不可预测，请配置选项 <code>org-enable-table-editor</code> 和 <code>org-table-auto-blank-field</code> 。
+</p>
+</div>
+
+<div id="outline-container-orgc101e5a" class="outline-4">
+<h4 id="orgc101e5a"><span class="section-number-4">2.1.1</span> 创建和转换</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<pre class="example">
+=C-c= =|=                 ~org-table-create-or-convert-from-region~
+</pre>
+<p>
+将活动区域转换为表。 如果每行包含至少一个TAB字符，则认为 <b>TAB</b> 是分隔符。 如果每一行都包含逗号，则逗号作为分隔（CSV）。 如果不是，则将行以空格为分隔符。
+您可以使用前缀参数强制指定分隔符： <code>C-u</code> 强制CSV， <code>C-u</code> <code>C-u</code> 强制TAB， <code>C-u</code> <code>C-u</code> <code>C=u</code> 将提示正则表达式匹配分隔符，数值参数N表示至少N个连续空格，或者 一个TAB将是分隔符。
+如果没有活动区域，此命令将创建一个空的组织表。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2b992ca" class="outline-4">
+<h4 id="org2b992ca"><span class="section-number-4">2.1.2</span> 调整和区域移动</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<table id="org0331cb5" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 7:</span> 调整和移动</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">重新对齐表格，不移动到其他字段。</td>
+<td class="org-left"><code>org-table-align</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>SPC</code></td>
+<td class="org-left">使用空格填充当前区域</td>
+<td class="org-left"><code>org-table-blank-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code><tab></tab></code></td>
+<td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
+<td class="org-left"><code>org-table-next-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-TAB</code></td>
+<td class="org-left">重新对齐，移动到上一区域。</td>
+<td class="org-left"><code>org-table-previous-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>RET</code></td>
+<td class="org-left">重新对齐表格并向下移动到下一行。 如有必要，创建一个新行。</td>
+<td class="org-left"><code>org-table-next-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-a</code></td>
+<td class="org-left">移动到当前表区域的开头，或移动到上一个区域。</td>
+<td class="org-left"><code>org-table-beginning-of-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-e</code></td>
+<td class="org-left">移动到当前表区域的结尾，或移动到上一个区域。</td>
+<td class="org-left"><code>org-table-end-of-field</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgce191a3" class="outline-4">
+<h4 id="orgce191a3"><span class="section-number-4">2.1.3</span> 列和行编辑</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<table id="orgbeb3054" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 8:</span> 列和行编辑</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>M-left</code> \ <code>M-right</code></td>
+<td class="org-left">向左/向右移动当前列</td>
+<td class="org-left"><code>org-table-move-column-left\right</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left</code></td>
+<td class="org-left">删除当前列</td>
+<td class="org-left"><code>org-table-delete-column</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-right</code></td>
+<td class="org-left">在光标位置的左侧插入一个新列</td>
+<td class="org-left"><code>org-table-insert-column</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up</code> \ <code>M-down</code></td>
+<td class="org-left">向上/向下移动当前行</td>
+<td class="org-left"><code>org-table-move-row-up\down</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-up</code></td>
+<td class="org-left">删除当前行或水平分隔线</td>
+<td class="org-left"><code>org-table-kill-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-down</code></td>
+<td class="org-left">在当前行上方插入新行。 使用前缀参数，该行在当前行下创建</td>
+<td class="org-left"><code>org-table-insert-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>-</code></td>
+<td class="org-left">在当前行下插入水平线。 使用前缀参数，在当前行之上创建</td>
+<td class="org-left"><code>org-table-insert-hline</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>RET</code></td>
+<td class="org-left">在当前行下插入水平线，将光标移动到该线下面的行</td>
+<td class="org-left"><code>org-table-hline-and-move</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">对区域中的表行进行排序</td>
+<td class="org-left"><code>org-table-sort-lines</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgcd93b9d" class="outline-4">
+<h4 id="orgcd93b9d"><span class="section-number-4">2.1.4</span> 区域</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<table id="orgd85e43e" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 9:</span> 区域复制粘贴</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
+<td class="org-left">将矩形区域从表复制到特殊剪贴板。 点和标记确定矩形的边缘字段。 如果没有活动区域，只复制当前字段。 该过程忽略水平分隔线。</td>
+<td class="org-left"><code>org-table-copy-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
+<td class="org-left">将矩形区域从表格复制到特殊剪贴板，并将矩形中的所有字段都留空。 所以这是“剪切”操作。</td>
+<td class="org-left"><code>org-table-cut-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
+<td class="org-left">将矩形区域粘贴到表中。 左上角在当前字段中结束。 所有涉及的字段将被覆盖。 如果矩形不适合当前表格，则根据需要放大表格。 该过程忽略水平分隔线。</td>
+<td class="org-left"><code>org-table-paste-rectangle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">在光标位置分割当前字段，并将其余部分移动到下面的行。 如果存在活动区域，并且点和标记都在同一列中，则列中的文本将包装为给定行数的最小宽度。 数字前缀参数可用于更改所需行的数量。 如果没有区域，但您指定了前缀参数，则将当前字段设置为空，并将内容追加到上面的字段。</td>
+<td class="org-left"><code>org-table-wrap-region</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1508fd1" class="outline-4">
+<h4 id="org1508fd1"><span class="section-number-4">2.1.5</span> 计算</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<table id="orga9cc782" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 10:</span> 区域复制粘贴</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>+</code></td>
+<td class="org-left">将当前列中的数字或由活动区域定义的矩形中的数字相加。 结果显示在echo区域中，可以用C-y插入。</td>
+<td class="org-left"><code>org-table-sum</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-RET</code></td>
+<td class="org-left">当前字段为空时，从上面的第一个非空区域复制。 当不为空时，将当前区域复制到下一行，并将光标与其一起移动。</td>
+<td class="org-left"><code>org-table-copy-down</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org8f37a55" class="outline-4">
+<h4 id="org8f37a55"><span class="section-number-4">2.1.6</span> 杂项</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<table id="org8ca5e51" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 11:</span> 区域复制粘贴</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>`</code></td>
+<td class="org-left">在单独的窗口中编辑当前区域。 这对于不完全可见的区域很有用。当使用C-u前缀调用时，仅仅使整个字段可见，以便可以在当前位置编辑 。 当使用两个C-u前缀调用时，使编辑器窗口跟随光标在表移动，并始终显示光标所在区域。 当光标离开表时，或者当您用C-u C-u C-c`重复此命令时，跟随模式将自动退出。</td>
+<td class="org-left"><code>org-table-edit-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-x</code> <code>org-table-import</code> <code>RET</code></td>
+<td class="org-left">将文件作为表导入。 表格应该是TAB或空格分隔。</td>
+<td class="org-left"><code>org-table-import</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>\vert</code></td>
+<td class="org-left">也可以通过将表格文本粘贴到 <b>Org</b> buffer，使用 <code>C-x</code> <code>C-x</code> 选择粘贴的文本，然后使用C-c &vert; 命令（请参阅上面的创建和转换）。</td>
+<td class="org-left"><code>org-table-create-or-convert-from-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-x</code> <code>org-table-export</code> <code>RET</code></td>
+<td class="org-left">导出表，默认情况下作为 <b>TAB</b> 分隔的文件。 用于与例如电子表格或数据库程序进行数据交换。 用于导出文件的格式可以在选项 <code>org-table-export-default-format</code> 中配置。 您还可以使用属性 <b>TABLE<sub>EXPORT</sub><sub>FILE</sub></b> 和 <b>TABLE<sub>EXPORT</sub>_ FORMAT</b> 来指定子树中的表导出的文件名和格式。 Org支持导出表格的相当一般格式。</td>
+<td class="org-left"><code>org-table-export</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>
+你可能因为‘|’开始的行，妨碍到你，而不喜欢自动表编辑器，你可以用下面的语句来关闭
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">        &#65288<span class="comment">;setq org-enable-table-editor nil&#65289;</span></span><br></pre></td></tr></table></figure>
+</div>
+<p>
+然后唯一的表命令 <code>C-c</code> <code>C-c</code> 仍然工作, 做一个手动重新对齐。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+org-mode 官方链接地址: <a href="http://orgmode.org/" target="_blank" rel="external">http://orgmode.org/</a>
+</p></div></div>
+
+
+</div>
+</div>
+Last Updated 2017-03-21 Tue 09:39.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/11/org-syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1923,1353 +3270,6 @@ Last Updated 2017-03-19 Sun 15:24.<br>Render by <a href="https://github.com/Code
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/07/just-try/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/just-try/" itemprop="url">
-                  Org-mode 手册版
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T00:00:00+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-org-mode我用了两年，却未曾深入。
-最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
-归纳整理于此，以作留存，馈与日后。
-</p>
-
-<div id="outline-container-org1455c66" class="outline-2">
-<h2 id="org1455c66"><span class="section-number-2">1</span> org-mode的文档结构</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org5b6a214" class="outline-3">
-<h3 id="org5b6a214"><span class="section-number-3">1.1</span> Headlines</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-Org 是在大纲模式之上实现的。
-大纲模式可以让我们用层次结构来组织文档，这（至少对我来说）是笔记和想法的最好实现方式。
-这种结构可以折叠（隐藏）文档的一部分而只显示文档的大概结构或者只显示我们正在处理的部分。
-Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐藏功能整合到了一个命令中：org-cycle，这个命令绑定到了TAB键上。
-</p>
-
-<p>
-标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
-</p>
-<pre class="example">
-* Top level headline
-** Second level
-*** 3rd level
-     some text
-** 3rd level
-     more text
-, Another top level headline
-</pre>
-</div>
-
-<div id="outline-container-org10f01ea" class="outline-4">
-<h4 id="org10f01ea"><span class="section-number-4">1.1.1</span> 视图命令</h4>
-<div class="outline-text-4" id="text-1-1-1">
-<table id="orge1f061a" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>TAB</code></td>
-<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
-<td class="org-left"><code>org-cycle</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
-<td class="org-left"><code>org-global-cycle</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-r</code></td>
-<td class="org-left">显示当前位置的上下文，展示当前条目，紧跟的标题和标题的层次结构。 适用于通过稀疏树命令或议程命令展露出来的位置附近工作。</td>
-<td class="org-left"><code>org-reveal</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-k</code></td>
-<td class="org-left">展开子树的所有标题，CONTENT视图只有一个子树。</td>
-<td class="org-left"><code>outline-show-branches</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>TAB</code></td>
-<td class="org-left">展开子树的所有直接子节点。</td>
-<td class="org-left"><code>outline-show-children</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>b</code></td>
-<td class="org-left">在间接缓冲区中显示当前子树</td>
-<td class="org-left"><code>org-tree-to-indirect-buffer</code></td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>v</code></td>
-<td class="org-left">将区域中的可见文字复制到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a>.</td>
-<td class="org-left"><code>org-copy-visible</code></td>
-</tr>
-</tbody>
-</table>
-<p>
-org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标题可见。
-你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-当然你也可以为每个文件指定视图模式，只要在文件buffer中任意位置包含以下语句（推荐配置在文件头）：
-</p>
-<pre class="example">
-#+STARTUP: overview
-#+STARTUP: content
-#+STARTUP: showall
-#+STARTUP: showeverything
-</pre>
-
-<p>
-更进一步,任何条目都包含 <code>VISIBILITY</code> 属性，此属性定义了条目的视图模式，覆盖一般性设置。可接受的值为： <b>folded</b> <b>children</b> <b>content</b> <b>all</b>, 示例如下
-</p>
-<pre class="example">
-#+STARTUP: overview
-* A
-:PROPERTIES:
-:VISIBILITY: all
-:END:
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org6bc7a2d" class="outline-4">
-<h4 id="org6bc7a2d"><span class="section-number-4">1.1.2</span> 跳转命令</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<table id="org97cbb1d" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-n</code></td>
-<td class="org-left">跳转到下一个标题</td>
-<td class="org-left"><code>org-next-visible-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-p</code></td>
-<td class="org-left">跳转到上一个标题</td>
-<td class="org-left"><code>org-previous-visible-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-f</code></td>
-<td class="org-left">跳转到下一个同级标题</td>
-<td class="org-left"><code>org-forward-same-level</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-b</code></td>
-<td class="org-left">跳转到上一个同级标题</td>
-<td class="org-left"><code>org-backward-same-level</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-u</code></td>
-<td class="org-left">跳回更高一级的标题</td>
-<td class="org-left"><code>outline-up-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-j</code></td>
-<td class="org-left">跳转到别处，不改变当前的视图模式，创建一个临时buffer来展示当前文档</td>
-<td class="org-left"><code>org-goto</code></td>
-</tr>
-</tbody>
-</table>
-
-
-<p>
-在 <code>C-c C-j</code> 触发的临时buffer中，可用的命令如下：
-</p>
-<pre class="example">
-TAB      Cycle visibility.
-down/up  Next/previous visible headline.
-RET      Select this location.
-/        Do a Sparse-tree search
-</pre>
-<p>
-若是关闭了 <code>org-goto-auto-isearch</code> ，以下命令可用：
-</p>
-<pre class="example">
-n/p      Next/previous visible headline.
-f/b      Next/previous headline same level.
-u        One level up.
-0-9      数字参数
-q        退出
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org4656dfa" class="outline-4">
-<h4 id="org4656dfa"><span class="section-number-4">1.1.3</span> 编辑命令</h4>
-<div class="outline-text-4" id="text-1-1-3">
-<table id="org490be7c" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>M-RET</code></td>
-<td class="org-left">插入一个同级标题在当前位置(行首，把当前行转成标题；行中，截断余下文本，在下一行生成标题)</td>
-<td class="org-left"><code>org-insert-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-RET</code></td>
-<td class="org-left">在M-RET的基础上，添加了 <code>TODO</code> 标示</td>
-<td class="org-left"><code>org-insert-todo-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-RET</code></td>
-<td class="org-left">在当前子树的结束位置插入同级标题</td>
-<td class="org-left"><code>org-insert-heading-respect-content</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-S-RET</code></td>
-<td class="org-left">在C<sub>RET的基础上</sub>，添加了 <code>TODO</code> 标示</td>
-<td class="org-left">org-insert-todo-heading-respect-content</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
-<td class="org-left"><code>org-cycle</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-left</code></td>
-<td class="org-left">当前标题提升一个等级</td>
-<td class="org-left"><code>org-do-promote</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-right</code></td>
-<td class="org-left">当前标题降低一个等级</td>
-<td class="org-left"><code>org-do-demote</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-left</code></td>
-<td class="org-left">当前整个子树提升一个等级</td>
-<td class="org-left"><code>org-promote-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-right</code></td>
-<td class="org-left">当前整个子树降低一个等级</td>
-<td class="org-left"><code>org-demote-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-up</code></td>
-<td class="org-left">当前整个子树和前面同级子树交换位置</td>
-<td class="org-left"><code>org-move-subtree-up</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-down</code></td>
-<td class="org-left">当前整个子树和后面同级子树交换位置</td>
-<td class="org-left"><code>org-move-subtree-down</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-h</code></td>
-<td class="org-left">Mark the element at point.</td>
-<td class="org-left"><code>org-mark-element</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>@</code></td>
-<td class="org-left">Mark the subtree at point. 目前看起来是可视化选中当前子树</td>
-<td class="org-left"><code>org-mark-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
-<td class="org-left">剪切子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
-<td class="org-left"><code>org-cut-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
-<td class="org-left">拷贝子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
-<td class="org-left"><code>org-copy-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
-<td class="org-left">从  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a> 中粘贴子树</td>
-<td class="org-left"><code>org-paste-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-y</code></td>
-<td class="org-left">Depending on the options org-yank-adjusted-subtrees and org-yank- folded-subtrees, Org’s internal yank command will paste subtrees folded and in a clever way, using the same command as C-c C-x C-y.</td>
-<td class="org-left"><code>org-yank</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>c</code></td>
-<td class="org-left">Clone a subtree by making a number of sibling copies of it. You will be prompted for the number of copies to make, and you can also specify if any timestamps in the entry should be shifted.</td>
-<td class="org-left"><code>org-clone-subtree-with-time-shift</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-w</code></td>
-<td class="org-left">将条目或区域 <i>refile</i> 到不同的位置。</td>
-<td class="org-left"><code>org-refile</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>^</code></td>
-<td class="org-left">排序相同级别的条目。</td>
-<td class="org-left"><code>org-sort</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-x</code> <code>n</code> <code>s</code></td>
-<td class="org-left">将缓冲区缩小到当前子树。</td>
-<td class="org-left"><code>org-narrow-to-subtree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-x</code> <code>n</code> <code>b</code></td>
-<td class="org-left">将缓冲区缩小到当前 <b>block</b> 。</td>
-<td class="org-left"><code>org-narrow-to-block</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-x</code> <code>n</code> <code>w</code></td>
-<td class="org-left">加宽缓冲区以消除变窄。</td>
-<td class="org-left"><code>widen</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>*</code></td>
-<td class="org-left">使正常的文本行变为标题,重复操作可恢复成原样</td>
-<td class="org-left"><code>org-toggle-heading</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org3e08936" class="outline-4">
-<h4 id="org3e08936"><span class="section-number-4">1.1.4</span> 稀疏树</h4>
-<div class="outline-text-4" id="text-1-1-4">
-<p>
-一个很重要的特性就是org有能力为被选中的信息构造出稀疏树，使得被选中信息突出显示，无关信息折叠显示。实践才是检测真理的唯一标准，试一试就知道具体是怎样优化你的工作了。
-</p>
-
-<table id="orgf0253a3" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 4:</span> 稀疏树</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>/</code></td>
-<td class="org-left">本命令会触发sparse-tress命令界面，提示输入字符，来选择创建稀疏树的命令</td>
-<td class="org-left"><code>org-sparse-tree</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>/</code> <code>r</code></td>
-<td class="org-left">创建出和正则表达式匹配的稀疏树;标题匹配，标题可见; body匹配, 标题和body都可见；所以匹配高亮，当当前buffer通过编辑命令发送改变时，高亮消失，当然你可以通过 <code>C-c C-c</code> 主动取消高亮。</td>
-<td class="org-left"><code>org-occur</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-g</code> <code>n</code></td>
-<td class="org-left">跳转到下一个匹配</td>
-<td class="org-left"><code>next-error</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-g</code> <code>p</code></td>
-<td class="org-left">跳转到上一个匹配</td>
-<td class="org-left"><code>previous-error</code></td>
-</tr>
-</tbody>
-</table>
-
-<p>
-很有可能需要频繁创建特定搜索条件的稀疏树，可通过 <code>org-agenda-custom-commands</code> 来定义快速访问的快捷键（这个命令可用在<a href="http://orgmode.org/manual/Agenda-dispatcher.html" target="_blank" rel="external">agenda dispatcher</a>中）。
-如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
-</div>
-<blockquote>
-<p>
-The other sparse tree commands select headings based on <b>TODO</b> keywords, tags, or properties and will be discussed later in this manual.
-To print a sparse tree, you can use the Emacs command <code>ps-print-buffer-with-faces</code> which does not print invisible parts of the document.
-Or you can use <code>C-c</code> <code>C-e</code> <code>C-v</code> to export only the visible part of the document and print the resulting file.
-</p>
-</blockquote>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd8df9fa" class="outline-3">
-<h3 id="orgd8df9fa"><span class="section-number-3">1.2</span> Plain lists</h3>
-<div class="outline-text-3" id="text-1-2">
-<blockquote>
-<p>
-Within an entry of the outline tree, hand-formatted lists can provide additional structure.
-They also provide a way to create lists of checkboxes.
-Org supports editing such lists, and every exporter can parse and format them.
-</p>
-</blockquote>
-<p>
-在大纲树的组织结构中，自定义格式的列表可以提供更多的组织结构。使我们得到一个复先框列表。 <code>Org</code> 可以处理这种列表，同时各个 <code>exporter</code> 可以解析和格式化。
-<b>Org</b> 可识别 <i>ordered</i> 列表, <i>unordered</i> 列表, 和 <i>description</i> 列表。
-</p>
-<ul class="org-ul">
-<li><i>Unordered</i> 的列表项以 <b>‘-’</b>, <b>‘+’</b> 或 <b>‘*’</b> 开始。</li>
-<li><i>Ordered</i> 的列表项以数字加在 <b>‘.’</b> 或 <b>‘)’</b> 开始。格式如下：‘1.’ 或 ‘1)’。 可自定义起始值，在文本开始出插入[@20]，代表以20开始。</li>
-<li><i>Description</i> 列表项其实就是 <i>unordered</i> 列表项, 只在文本中间插入了分隔符 <b>‘::’</b> 。</li>
-</ul>
-
-<p>
-同一个列表中项首行必须缩进一致。特别是 <i>ordered</i> 列表到了 <b>‘10.’</b> ，两位数字必须和其他数字左对齐。
-若是下一行的缩进小于等于当前列表的缩进，则当前项终结。当所有项都终结，或者后面隔了两个空行时，列表终结。示例如下：
-</p>
-<pre class="example">
-** Lord of the Rings
-   My favorite scenes are (in this order)
-   1. The attack of the Rohirrim
-   2. Eowyn's fight with the witch king
-       + this was already my favorite scene in the book
-       + I really like Miranda Otto.
-   Important actors in this film are:
-   - Elijah Wood :: He plays Frodo
-   - Sean Austin :: He plays Sam, Frodo's friend.
-</pre>
-<blockquote>
-<p>
-Org supports these lists by tuning filling and wrapping commands to deal with them correctly, and by exporting them properly.
-Since indentation is what governs the structure of these lists,
-many structural constructs like <code>#+BEGIN_...</code> blocks can be indented to signal that they belong to a particular item.
-</p>
-
-<p>
-If you find that using a different bullet for a sub-list (than that used for the current list-level) improves readability,
-customize the variable <code>org-list-demote-modify-bullet</code>.
-To get a greater difference of indentation between items and their sub-items, <code>customize org-list-indent-offset</code>.
-</p>
-
-<p>
-The following commands act on items when the cursor is in the first line of an item (the line with the bullet or number).
-Some of them imply the application of automatic rules to keep list structure intact.
-If some of these actions get in your way, configure <code>org-list-automatic-rules</code> to disable them individually.
-</p>
-</blockquote>
-<p>
-当光标位于一项的首行时（带有项标志符的行），下面命令将作用于该项：
-</p>
-<table id="org564ab01" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 5:</span> 稀疏树</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>TAB</code></td>
-<td class="org-left">列表项像标题一样的被折叠，展开</td>
-<td class="org-left"><code>org-cycle</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
-<td class="org-left"><code>org-cycle</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-RET</code></td>
-<td class="org-left">插入一个同级项(行首，把当前行转成列表项；行中，截断余下文本，在下一行生成列表项)</td>
-<td class="org-left"><code>org-insert-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-RET</code></td>
-<td class="org-left">插入一个带 <code>checkbox</code> 的同级项(行为类似于M-RET)</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>S-up/S-down</code></td>
-<td class="org-left">跳转到当前列表的上一项或者下一项</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-up/M-down</code></td>
-<td class="org-left">和上一项或者下一项交换位置（同级之间)</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-left/M-right</code></td>
-<td class="org-left">提升或者降低一项的等级,子项不变</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-left/M-S-right</code></td>
-<td class="org-left">提升或者降低一项的等级,子项同等变化</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-c</code></td>
-<td class="org-left">当前项有 <code>checkbox</code> , 触发状态转换</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>-</code></td>
-<td class="org-left">循环改变将当前列表的项标志符</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>*</code></td>
-<td class="org-left">使列表项变为标题 (在当前位置生成子标题).</td>
-<td class="org-left"><code>org-toggle-heading</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-*</code></td>
-<td class="org-left">使整个列表变成当前标题的子树 <code>checkboxes</code> 将变为 <code>TODO</code> 当未 <i>unchecked</i> 时</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>S-left/right</code></td>
-<td class="org-left">循环改变将当前列表的项标志符</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>^</code></td>
-<td class="org-left">Sort the plain list</td>
-<td class="org-left"><code>org-sort</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="outline-container-org8307333" class="outline-3">
-<h3 id="org8307333"><span class="section-number-3">1.3</span> Drawers</h3>
-<div class="outline-text-3" id="text-1-3">
-<blockquote>
-<p>
-Sometimes you want to keep information associated with an entry, but you normally don’t want to see it.
-For this, Org mode has drawers. They can contain anything but a headline and another drawer.
-</p>
-
-<p>
-You can interactively insert drawers at point by calling <code>org-insert-drawer</code>, which is bound to <code>C-c</code> <code>C-x</code> <code>d</code>.
-With an active region, this command will put the region inside the drawer.
-With a prefix argument, this command calls <code>org-insert-property-drawer</code> and add a property drawer right below the current headline.
-Completion over drawer keywords is also possible using <code>M-TAB</code>.
-</p>
-
-<p>
-Visibility cycling on the headline will hide and show the entry, but keep the drawer collapsed to a single line.
-In order to look inside the drawer, you need to move the cursor to the drawer line and press <code>TAB</code> there.
-Org mode uses the <b>PROPERTIES</b> drawer for storing properties , and you can also arrange for state change notes and clock times to be stored in a drawer <b>LOGBOOK</b>.
-If you want to store a quick note in the <b>LOGBOOK</b> drawer, in a similar way to state changes, use <code>C-c</code> <code>C-z</code> Add a time-stamped note to the <b>LOGBOOK</b> drawer.
-</p>
-
-<p>
-You can select the name of the drawers which should be exported with <code>org-export-with-drawers</code>.
-In that case, drawer contents will appear in export output.
-<b>Property</b> drawers are not affected by this variable: configure <code>org-export-with-properties</code> instead.
-</p>
-</blockquote>
-<p>
-<i>Drawers</i> 如下所示：
-</p>
-<pre class="example">
-** This is a headline
-   Still outside the drawer
-   :DRAWERNAME:
-   This is inside the drawer.
-   :END:
-   After the drawer.
-</pre>
-</div>
-</div>
-<div id="outline-container-org0583e79" class="outline-3">
-<h3 id="org0583e79"><span class="section-number-3">1.4</span> Blocks</h3>
-<div class="outline-text-3" id="text-1-4">
-<blockquote>
-<p>
-Org mode uses begin&#x2026;end blocks for various purposes from including source code examples to capturing time logging information.
-These blocks can be folded and unfolded by pressing <code>TAB</code> in the begin line.
-You can also get all blocks folded at startup by configuring the option <code>org-hide-block-startup</code> or on a per-file basis by using
-</p>
-<pre class="example">
-#+STARTUP: hideblocks
-#+STARTUP: nohideblocks
-</pre>
-</blockquote>
-</div>
-</div>
-<div id="outline-container-orga2b25fd" class="outline-3">
-<h3 id="orga2b25fd"><span class="section-number-3">1.5</span> Footnotes（脚注)</h3>
-<div class="outline-text-3" id="text-1-5">
-<blockquote>
-<p>
-A footnote is started by a footnote marker in square brackets in column 0, no indentation allowed.
-It ends at the next footnote definition, headline, or after two consecutive empty lines.
-The footnote reference is simply the marker in square brackets, inside text. Markers always start with fn:.
-For example:
-</p>
-<pre class="example">
-The Org homepage[fn:1] now looks a lot better than it used to.
-...
-[fn:1] The link is: http://orgmode.org
-</pre>
-
-<p>
-Org mode extends the number-based syntax to named footnotes and optional inline definition. Here are the valid references:
-</p>
-<dl class="org-dl">
-<dt><code>[fn:name]</code></dt><dd>A named footnote reference, where name is a unique label word, or, for simplicity of automatic creation, a number.</dd>
-<dt><code>[fn::This is the inline definition of this footnote]</code></dt><dd>A LATEX-like anonymous footnote where the definition is given directly at the reference point.</dd>
-<dt><code>[fn:name:a definition]</code></dt><dd>An inline definition of a footnote, which also specifies a name for the note.
-Since Org allows multiple references to the same note, you can then use \[fn:name\] to create additional references.</dd>
-</dl>
-
-<p>
-Footnote labels can be created automatically, or you can create names yourself.
-This is handled by the variable <code>org-footnote-auto-label</code> and its corresponding <b>#+STARTUP</b> keywords.
-See the docstring of that variable for details.
-</p>
-</blockquote>
-<p>
-示例如下：
-The Org homepage<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> now looks a lot better than it used to.
-</p>
-
-<table id="orgacd7c03" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 6:</span> 脚注命令列表</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Desc</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>f</code></td>
-<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。其他情况下，新建一个脚注。当有前缀参数时，会提供一个菜单供选择操作，其中包括重新给脚注编号。</td>
-<td class="org-left"><code>org-footnote-action</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-c</code></td>
-<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。当有前缀参数时，行为和 <code>C-c C-x f</code> 一样,提供同样操作菜单。</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-o</code></td>
-<td class="org-left">脚注标签也是指向相应定义/引用的链接，您可以使用常用(链接)命令来跟踪这些链接。</td>
-<td class="org-left"><code>org-open-at-point</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>'</code></td>
-<td class="org-left">在独立的窗口中，编辑引用关联的脚注定义。窗口可通过 <code>C-c</code> <code>'</code> 关闭</td>
-<td class="org-left"><code>org-edit-special</code></td>
-</tr>
-</tbody>
-</table>
-
-<p>
-当 <code>C-c C-x f</code> 命令加上附加前缀参数时(<code>C-u C-c C-x f</code>) ,一个操作菜单被提供：
-</p>
-<pre class="example">
-s    Sort the footnote definitions by reference sequence.  During editing,
-     Org makes no effort to sort footnote definitions into a particular
-     sequence.  If you want them sorted, use this command, which will
-     also move entries according to org-footnote-section.  Automatic
-     sorting after each insertion/deletion can be configured using the
-     option org-footnote-auto-adjust.
-r    Renumber the simple fn:N footnotes.  Automatic renumbering
-     after each insertion/deletion can be configured using the option
-     org-footnote-auto-adjust.
-S    Short for first r, then s action.
-n    Normalize the footnotes by collecting all definitions (including
-     inline definitions) into a special section, and then numbering them
-     in sequence.  The references will then also be numbers.
-d    Delete the footnote at point, and all definitions of and references
-     to it.
-</pre>
-</div>
-</div>
-<div id="outline-container-orgd721445" class="outline-3">
-<h3 id="orgd721445"><span class="section-number-3">1.6</span> The Orgstruct minor mode</h3>
-<div class="outline-text-3" id="text-1-6">
-<blockquote>
-<p>
-If you like the intuitive way the Org mode structure editing and list formatting works,
-you might want to use these commands in other modes like Text mode or Mail mode as well.
-The minor mode orgstruct-mode makes this possible. Toggle the mode with <code>M-x</code> <code>orgstruct-mode</code> <code>RET</code>,
-or turn it on by default, for example in Message mode, with one of:
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct++</span>)</span></span><br></pre></td></tr></table></figure>
-</div>
-</blockquote>
-</div>
-</div>
-
-<div id="outline-container-orga3cc75c" class="outline-3">
-<h3 id="orga3cc75c"><span class="section-number-3">1.7</span> Org syntax</h3>
-<div class="outline-text-3" id="text-1-7">
-<blockquote>
-<p>
-A reference document providing a formal description of Org’s syntax is available as <a href="http://orgmode.org/worg/dev/org-syntax.html" target="_blank" rel="external">a draft on Worg</a>, written and maintained by Nicolas Goaziou.
-It defines Org’s core internal concepts such as headlines, sections, affiliated keywords, (greater) elements and objects.
-Each part of an Org file falls into one of the categories above.
-</p>
-
-<p>
-To explore the abstract structure of an Org buffer, run this in a buffer:
-</p>
-<pre class="example">
-M-: (org-element-parse-buffer) RET
-</pre>
-<p>
-It will output a list containing the bu↵er’s content represented as an abstract structure.
-The export engine relies on the information stored in this list.
-Most interactive commands (e.g., for structure editing) also rely on the syntactic meaning of the surrounding context.
-</p>
-
-<p>
-You can check syntax in your documents using org-lint command.
-</p>
-</blockquote>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3f0bda8" class="outline-2">
-<h2 id="org3f0bda8"><span class="section-number-2">2</span> org-mode 表格</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-<b>Org</b> 提供了一个快速直观的表编辑器。 使用 <b>Emacs</b> 内嵌的 <i>calc</i> 的包可支持类似于制表软件的操作。
-</p>
-</div>
-
-<div id="outline-container-orgdbdd9d4" class="outline-3">
-<h3 id="orgdbdd9d4"><span class="section-number-3">2.1</span> 内置表编辑器</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-<b>Org</b> 能够很容易地格式化 <b>ASCII</b> 文本表格。 任何把'|'作为首个非空白字符的行都被视为表的一部分。 '|'也是列分隔符。 表如下所示：
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-right">
-
-<col class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">名字</th>
-<th scope="col" class="org-right">手机号</th>
-<th scope="col" class="org-right">年龄</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">brantou</td>
-<td class="org-right">170xxxxxxxx</td>
-<td class="org-right">18</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-在表格内键入 <code>TAB</code> , <code>RET</code> 或 <code>C-c</code> <code>C-c</code> 时，表格都会自动重新对齐。
-<code>TAB</code> 也可以移动到下一个表格区域（ <code>RET</code> 进入下一行），并在表的末尾或水平线之前创建新的表行。
-表的缩进由第一行设置。 以"|-"开头的任何行都被视为水平分隔符行，并在下一个重新对齐时展开。所以，要创建上面的表，你只需要键入
-</p>
-<pre class="example">
-| 名字 | 手机号 | 年龄 |
-|-
-</pre>
-<p>
-然后按 <code>TAB</code> 扩展表格。 更快的是键入 <b>|名称|手机号|年龄</b> 后, 再键入 <code>C-c</code> <code>RET</code> 。
-</p>
-
-<p>
-在表格区域中输入文本时，Org以特殊方式处理DEL，Backspace和所有字符键，以便插入和删除避免移动其他字段。
-此外，当使用TAB，S-TAB或RET将光标移动到新的表格区域后会自动填充空格。
-如果这种行为对您太不可预测，请配置选项 <code>org-enable-table-editor</code> 和 <code>org-table-auto-blank-field</code> 。
-</p>
-</div>
-
-<div id="outline-container-orgf90458f" class="outline-4">
-<h4 id="orgf90458f"><span class="section-number-4">2.1.1</span> 创建和转换</h4>
-<div class="outline-text-4" id="text-2-1-1">
-<pre class="example">
-=C-c= =|=                 ~org-table-create-or-convert-from-region~
-</pre>
-<p>
-将活动区域转换为表。 如果每行包含至少一个TAB字符，则认为 <b>TAB</b> 是分隔符。 如果每一行都包含逗号，则逗号作为分隔（CSV）。 如果不是，则将行以空格为分隔符。
-您可以使用前缀参数强制指定分隔符： <code>C-u</code> 强制CSV， <code>C-u</code> <code>C-u</code> 强制TAB， <code>C-u</code> <code>C-u</code> <code>C=u</code> 将提示正则表达式匹配分隔符，数值参数N表示至少N个连续空格，或者 一个TAB将是分隔符。
-如果没有活动区域，此命令将创建一个空的组织表。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org4c6d029" class="outline-4">
-<h4 id="org4c6d029"><span class="section-number-4">2.1.2</span> 调整和区域移动</h4>
-<div class="outline-text-4" id="text-2-1-2">
-<table id="orgaa73f4c" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 7:</span> 调整和移动</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Description</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-c</code></td>
-<td class="org-left">重新对齐表格，不移动到其他字段。</td>
-<td class="org-left"><code>org-table-align</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>SPC</code></td>
-<td class="org-left">使用空格填充当前区域</td>
-<td class="org-left"><code>org-table-blank-field</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>&lt;TAB&gt;</code></td>
-<td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
-<td class="org-left"><code>org-table-next-field</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">重新对齐，移动到上一区域。</td>
-<td class="org-left"><code>org-table-previous-field</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>RET</code></td>
-<td class="org-left">重新对齐表格并向下移动到下一行。 如有必要，创建一个新行。</td>
-<td class="org-left"><code>org-table-next-row</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-a</code></td>
-<td class="org-left">移动到当前表区域的开头，或移动到上一个区域。</td>
-<td class="org-left"><code>org-table-beginning-of-field</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-e</code></td>
-<td class="org-left">移动到当前表区域的结尾，或移动到上一个区域。</td>
-<td class="org-left"><code>org-table-end-of-field</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-orgd017e8e" class="outline-4">
-<h4 id="orgd017e8e"><span class="section-number-4">2.1.3</span> 列和行编辑</h4>
-<div class="outline-text-4" id="text-2-1-3">
-<table id="org62c1a2b" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 8:</span> 列和行编辑</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Description</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>M-left</code> \ <code>M-right</code></td>
-<td class="org-left">向左/向右移动当前列</td>
-<td class="org-left"><code>org-table-move-column-left\right</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-left</code></td>
-<td class="org-left">删除当前列</td>
-<td class="org-left"><code>org-table-delete-column</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-right</code></td>
-<td class="org-left">在光标位置的左侧插入一个新列</td>
-<td class="org-left"><code>org-table-insert-column</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-up</code> \ <code>M-down</code></td>
-<td class="org-left">向上/向下移动当前行</td>
-<td class="org-left"><code>org-table-move-row-up\down</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-up</code></td>
-<td class="org-left">删除当前行或水平分隔线</td>
-<td class="org-left"><code>org-table-kill-row</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-S-down</code></td>
-<td class="org-left">在当前行上方插入新行。 使用前缀参数，该行在当前行下创建</td>
-<td class="org-left"><code>org-table-insert-row</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>-</code></td>
-<td class="org-left">在当前行下插入水平线。 使用前缀参数，在当前行之上创建</td>
-<td class="org-left"><code>org-table-insert-hline</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>RET</code></td>
-<td class="org-left">在当前行下插入水平线，将光标移动到该线下面的行</td>
-<td class="org-left"><code>org-table-hline-and-move</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>^</code></td>
-<td class="org-left">对区域中的表行进行排序</td>
-<td class="org-left"><code>org-table-sort-lines</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org08b322b" class="outline-4">
-<h4 id="org08b322b"><span class="section-number-4">2.1.4</span> 区域</h4>
-<div class="outline-text-4" id="text-2-1-4">
-<table id="org3bc35aa" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 9:</span> 区域复制粘贴</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Description</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
-<td class="org-left">将矩形区域从表复制到特殊剪贴板。 点和标记确定矩形的边缘字段。 如果没有活动区域，只复制当前字段。 该过程忽略水平分隔线。</td>
-<td class="org-left"><code>org-table-copy-region</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
-<td class="org-left">将矩形区域从表格复制到特殊剪贴板，并将矩形中的所有字段都留空。 所以这是“剪切”操作。</td>
-<td class="org-left"><code>org-table-cut-region</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
-<td class="org-left">将矩形区域粘贴到表中。 左上角在当前字段中结束。 所有涉及的字段将被覆盖。 如果矩形不适合当前表格，则根据需要放大表格。 该过程忽略水平分隔线。</td>
-<td class="org-left"><code>org-table-paste-rectangle</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-RET</code></td>
-<td class="org-left">在光标位置分割当前字段，并将其余部分移动到下面的行。 如果存在活动区域，并且点和标记都在同一列中，则列中的文本将包装为给定行数的最小宽度。 数字前缀参数可用于更改所需行的数量。 如果没有区域，但您指定了前缀参数，则将当前字段设置为空，并将内容追加到上面的字段。</td>
-<td class="org-left"><code>org-table-wrap-region</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-orgcb7950c" class="outline-4">
-<h4 id="orgcb7950c"><span class="section-number-4">2.1.5</span> 计算</h4>
-<div class="outline-text-4" id="text-2-1-5">
-<table id="org18f8617" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 10:</span> 区域复制粘贴</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Description</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>+</code></td>
-<td class="org-left">将当前列中的数字或由活动区域定义的矩形中的数字相加。 结果显示在echo区域中，可以用C-y插入。</td>
-<td class="org-left"><code>org-table-sum</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>S-RET</code></td>
-<td class="org-left">当前字段为空时，从上面的第一个非空区域复制。 当不为空时，将当前区域复制到下一行，并将光标与其一起移动。</td>
-<td class="org-left"><code>org-table-copy-down</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org32123da" class="outline-4">
-<h4 id="org32123da"><span class="section-number-4">2.1.6</span> 杂项</h4>
-<div class="outline-text-4" id="text-2-1-6">
-<table id="org2930162" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
-<caption class="t-above"><span class="table-number">Table 11:</span> 区域复制粘贴</caption>
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-left">
-
-<col class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Key</th>
-<th scope="col" class="org-left">Description</th>
-<th scope="col" class="org-left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left"><code>C-c</code> <code>`</code></td>
-<td class="org-left">在单独的窗口中编辑当前区域。 这对于不完全可见的区域很有用。当使用C-u前缀调用时，仅仅使整个字段可见，以便可以在当前位置编辑 。 当使用两个C-u前缀调用时，使编辑器窗口跟随光标在表移动，并始终显示光标所在区域。 当光标离开表时，或者当您用C-u C-u C-c`重复此命令时，跟随模式将自动退出。</td>
-<td class="org-left"><code>org-table-edit-field</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-x</code> <code>org-table-import</code> <code>RET</code></td>
-<td class="org-left">将文件作为表导入。 表格应该是TAB或空格分隔。</td>
-<td class="org-left"><code>org-table-import</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>C-c</code> <code>\vert</code></td>
-<td class="org-left">也可以通过将表格文本粘贴到 <b>Org</b> buffer，使用 <code>C-x</code> <code>C-x</code> 选择粘贴的文本，然后使用C-c &vert; 命令（请参阅上面的创建和转换）。</td>
-<td class="org-left"><code>org-table-create-or-convert-from-region</code></td>
-</tr>
-
-<tr>
-<td class="org-left"><code>M-x</code> <code>org-table-export</code> <code>RET</code></td>
-<td class="org-left">导出表，默认情况下作为 <b>TAB</b> 分隔的文件。 用于与例如电子表格或数据库程序进行数据交换。 用于导出文件的格式可以在选项 <code>org-table-export-default-format</code> 中配置。 您还可以使用属性 <b>TABLE<sub>EXPORT</sub><sub>FILE</sub></b> 和 <b>TABLE<sub>EXPORT</sub>_ FORMAT</b> 来指定子树中的表导出的文件名和格式。 Org支持导出表格的相当一般格式。</td>
-<td class="org-left"><code>org-table-export</code></td>
-</tr>
-</tbody>
-</table>
-
-
-
-<p>
-你可能因为‘|’开始的行，妨碍到你，而不喜欢自动表编辑器，你可以用下面的语句来关闭
-</p>
-<div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">        &amp;#65288<span class="comment">;setq org-enable-table-editor nil&amp;#65289;</span></span><br></pre></td></tr></table></figure>
-</div>
-<p>
-然后唯一的表命令 <code>C-c</code> <code>C-c</code> 仍然工作, 做一个手动重新对齐。
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
-
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-org-mode 官方链接地址: <a href="http://orgmode.org/" target="_blank" rel="external">http://orgmode.org/</a>
-</p></div></div>
-
-
-</div>
-</div>
-Last Updated 2017-03-21 Tue 01:07.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
           
         
