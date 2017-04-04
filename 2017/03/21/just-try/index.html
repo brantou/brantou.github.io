@@ -54,11 +54,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -100,7 +106,7 @@
 <meta property="og:image" content="https://brantou.github.io/images/table-column-width.jpg">
 <meta property="og:image" content="https://brantou.github.io/images/table-column-groups.jpg">
 <meta property="og:image" content="https://brantou.github.io/images/table-column-group-start.jpg">
-<meta property="og:updated_time" content="2017-03-23T02:09:37.099Z">
+<meta property="og:updated_time" content="2017-03-31T02:50:49.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Org-mode 手册版">
 <meta name="twitter:description" content="org-mode我用了两年，却未曾深入。
@@ -383,11 +389,11 @@ org-mode我用了两年，却未曾深入。
 
 <a id="more"></a>
 
-<div id="outline-container-orga352cf2" class="outline-2">
-<h2 id="orga352cf2"><span class="section-number-2">1</span> org-mode的文档结构</h2>
+<div id="outline-container-orgc4c4eff" class="outline-2">
+<h2 id="orgc4c4eff"><span class="section-number-2">1</span> org-mode的文档结构</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org0b030a2" class="outline-3">
-<h3 id="org0b030a2"><span class="section-number-3">1.1</span> Headlines</h3>
+</div><div id="outline-container-org09db6fe" class="outline-3">
+<h3 id="org09db6fe"><span class="section-number-3">1.1</span> Headlines</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Org 是在大纲模式之上实现的。
@@ -410,10 +416,10 @@ Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐
 </pre>
 </div>
 
-<div id="outline-container-orgc9e96b6" class="outline-4">
-<h4 id="orgc9e96b6"><span class="section-number-4">1.1.1</span> 视图命令</h4>
+<div id="outline-container-orgdaf369b" class="outline-4">
+<h4 id="orgdaf369b"><span class="section-number-4">1.1.1</span> 视图命令</h4>
 <div class="outline-text-4" id="text-1-1-1">
-<table id="org6eb9512" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org1d2d3ee" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
 
 <colgroup>
@@ -433,14 +439,14 @@ Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐
 <tbody>
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,->folded->children->subtree&#x2013;.</span></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 <td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,->overview->contents->show all&#x2013;.</span></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
 <td class="org-left"><code>org-global-cycle</code></td>
 </tr>
 </tbody>
@@ -485,7 +491,7 @@ org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标�
 你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&#8629;er</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -511,10 +517,10 @@ org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标�
 </div>
 </div>
 
-<div id="outline-container-org3e58a85" class="outline-4">
-<h4 id="org3e58a85"><span class="section-number-4">1.1.2</span> 跳转命令</h4>
+<div id="outline-container-orgd63bd4f" class="outline-4">
+<h4 id="orgd63bd4f"><span class="section-number-4">1.1.2</span> 跳转命令</h4>
 <div class="outline-text-4" id="text-1-1-2">
-<table id="org2bcf1a7" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org2f4a592" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
 
 <colgroup>
@@ -593,10 +599,10 @@ q        退出
 </div>
 </div>
 
-<div id="outline-container-orge92a035" class="outline-4">
-<h4 id="orge92a035"><span class="section-number-4">1.1.3</span> 编辑命令</h4>
+<div id="outline-container-org028a6ed" class="outline-4">
+<h4 id="org028a6ed"><span class="section-number-4">1.1.3</span> 编辑命令</h4>
 <div class="outline-text-4" id="text-1-1-3">
-<table id="orgedcc642" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org3525322" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
 
 <colgroup>
@@ -640,7 +646,7 @@ q        退出
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -762,14 +768,14 @@ q        退出
 </div>
 </div>
 
-<div id="outline-container-orgc9edb65" class="outline-4">
-<h4 id="orgc9edb65"><span class="section-number-4">1.1.4</span> 稀疏树</h4>
+<div id="outline-container-org22e13fb" class="outline-4">
+<h4 id="org22e13fb"><span class="section-number-4">1.1.4</span> 稀疏树</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 一个很重要的特性就是org有能力为被选中的信息构造出稀疏树，使得被选中信息突出显示，无关信息折叠显示。实践才是检测真理的唯一标准，试一试就知道具体是怎样优化你的工作了。
 </p>
 
-<table id="org099381c" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org4fad6c1" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 4:</span> 稀疏树</caption>
 
 <colgroup>
@@ -818,7 +824,7 @@ q        退出
 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &#8216;FIXME&#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands</span><br><span class="line">           <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -830,8 +836,8 @@ Or you can use <code>C-c</code> <code>C-e</code> <code>C-v</code> to export only
 </div>
 </div>
 </div>
-<div id="outline-container-orgdafd4ef" class="outline-3">
-<h3 id="orgdafd4ef"><span class="section-number-3">1.2</span> Plain lists</h3>
+<div id="outline-container-org779d20a" class="outline-3">
+<h3 id="org779d20a"><span class="section-number-3">1.2</span> Plain lists</h3>
 <div class="outline-text-3" id="text-1-2">
 <blockquote>
 <p>
@@ -887,7 +893,7 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 <p>
 当光标位于一项的首行时（带有项标志符的行），下面命令将作用于该项：
 </p>
-<table id="org6e5d399" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="orgd85797d" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 5:</span> 稀疏树</caption>
 
 <colgroup>
@@ -913,7 +919,7 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -992,8 +998,8 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 </table>
 </div>
 </div>
-<div id="outline-container-orgc8c8194" class="outline-3">
-<h3 id="orgc8c8194"><span class="section-number-3">1.3</span> Drawers</h3>
+<div id="outline-container-orgf9cb8c5" class="outline-3">
+<h3 id="orgf9cb8c5"><span class="section-number-3">1.3</span> Drawers</h3>
 <div class="outline-text-3" id="text-1-3">
 <blockquote>
 <p>
@@ -1034,8 +1040,8 @@ In that case, drawer contents will appear in export output.
 </pre>
 </div>
 </div>
-<div id="outline-container-org993310a" class="outline-3">
-<h3 id="org993310a"><span class="section-number-3">1.4</span> Blocks</h3>
+<div id="outline-container-orgc8c7552" class="outline-3">
+<h3 id="orgc8c7552"><span class="section-number-3">1.4</span> Blocks</h3>
 <div class="outline-text-3" id="text-1-4">
 <blockquote>
 <p>
@@ -1050,8 +1056,8 @@ You can also get all blocks folded at startup by configuring the option <code>or
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org48dd959" class="outline-3">
-<h3 id="org48dd959"><span class="section-number-3">1.5</span> Footnotes（脚注)</h3>
+<div id="outline-container-org26e164c" class="outline-3">
+<h3 id="org26e164c"><span class="section-number-3">1.5</span> Footnotes（脚注)</h3>
 <div class="outline-text-3" id="text-1-5">
 <blockquote>
 <p>
@@ -1087,7 +1093,7 @@ See the docstring of that variable for details.
 The Org homepage<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> now looks a lot better than it used to.
 </p>
 
-<table id="orga1bd2b6" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org7fb3002" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 <caption class="t-above"><span class="table-number">Table 6:</span> 脚注命令列表</caption>
 
 <colgroup>
@@ -1153,8 +1159,8 @@ d    Delete the footnote at point, and all definitions of and references
 </pre>
 </div>
 </div>
-<div id="outline-container-org49cc7f6" class="outline-3">
-<h3 id="org49cc7f6"><span class="section-number-3">1.6</span> The Orgstruct minor mode</h3>
+<div id="outline-container-org3278903" class="outline-3">
+<h3 id="org3278903"><span class="section-number-3">1.6</span> The Orgstruct minor mode</h3>
 <div class="outline-text-3" id="text-1-6">
 <blockquote>
 <p>
@@ -1170,8 +1176,8 @@ or turn it on by default, for example in Message mode, with one of:
 </div>
 </div>
 
-<div id="outline-container-org780f460" class="outline-3">
-<h3 id="org780f460"><span class="section-number-3">1.7</span> Org syntax</h3>
+<div id="outline-container-org8f4dfc6" class="outline-3">
+<h3 id="org8f4dfc6"><span class="section-number-3">1.7</span> Org syntax</h3>
 <div class="outline-text-3" id="text-1-7">
 <blockquote>
 <p>
@@ -1200,16 +1206,15 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-org1606ef8" class="outline-2">
-<h2 id="org1606ef8"><span class="section-number-2">2</span> org-mode 表格</h2>
+<div id="outline-container-org298613a" class="outline-2">
+<h2 id="org298613a"><span class="section-number-2">2</span> org-mode 表格</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Org</b> 提供了一个快速直观的表编辑器。 使用 <b>Emacs</b> 内嵌的 <i>calc</i> 的包可支持类似于制表软件的操作。
 </p>
 </div>
-
-<div id="outline-container-org83288e8" class="outline-3">
-<h3 id="org83288e8"><span class="section-number-3">2.1</span> 内置表编辑器</h3>
+<div id="outline-container-org48a5d70" class="outline-3">
+<h3 id="org48a5d70"><span class="section-number-3">2.1</span> 内置表编辑器</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <b>Org</b> 能够很容易地格式化 <b>ASCII</b> 文本表格。 任何把'|'作为首个非空白字符的行都被视为表的一部分。 '|'也是列分隔符。 表如下所示：
@@ -1260,8 +1265,8 @@ You can check syntax in your documents using org-lint command.
 </p>
 </div>
 
-<div id="outline-container-org6e56378" class="outline-4">
-<h4 id="org6e56378"><span class="section-number-4">2.1.1</span> 创建和转换</h4>
+<div id="outline-container-org67f659b" class="outline-4">
+<h4 id="org67f659b"><span class="section-number-4">2.1.1</span> 创建和转换</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <pre class="example">
 =C-c= =|=                 ~org-table-create-or-convert-from-region~
@@ -1274,10 +1279,10 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-org342304f" class="outline-4">
-<h4 id="org342304f"><span class="section-number-4">2.1.2</span> 调整和区域移动</h4>
+<div id="outline-container-org7d2b766" class="outline-4">
+<h4 id="org7d2b766"><span class="section-number-4">2.1.2</span> 调整和区域移动</h4>
 <div class="outline-text-4" id="text-2-1-2">
-<table id="org94854a1" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org98ae48d" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 
 
 <colgroup>
@@ -1308,7 +1313,7 @@ You can check syntax in your documents using org-lint command.
 </tr>
 
 <tr>
-<td class="org-left"><code><tab></tab></code></td>
+<td class="org-left"><code>&lt;TAB&gt;</code></td>
 <td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
 <td class="org-left"><code>org-table-next-field</code></td>
 </tr>
@@ -1341,10 +1346,10 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-orga69c555" class="outline-4">
-<h4 id="orga69c555"><span class="section-number-4">2.1.3</span> 列和行编辑</h4>
+<div id="outline-container-org55b4262" class="outline-4">
+<h4 id="org55b4262"><span class="section-number-4">2.1.3</span> 列和行编辑</h4>
 <div class="outline-text-4" id="text-2-1-3">
-<table id="org93fa0d7" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org3716c11" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 
 
 <colgroup>
@@ -1420,10 +1425,10 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-orge5a904c" class="outline-4">
-<h4 id="orge5a904c"><span class="section-number-4">2.1.4</span> 区域</h4>
+<div id="outline-container-org90673cb" class="outline-4">
+<h4 id="org90673cb"><span class="section-number-4">2.1.4</span> 区域</h4>
 <div class="outline-text-4" id="text-2-1-4">
-<table id="orgc971743" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="orgdfc8fbe" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 
 
 <colgroup>
@@ -1469,10 +1474,10 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-org6cdfadc" class="outline-4">
-<h4 id="org6cdfadc"><span class="section-number-4">2.1.5</span> 计算</h4>
+<div id="outline-container-org3a2209d" class="outline-4">
+<h4 id="org3a2209d"><span class="section-number-4">2.1.5</span> 计算</h4>
 <div class="outline-text-4" id="text-2-1-5">
-<table id="org706eb29" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org324ed44" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 
 
 <colgroup>
@@ -1506,10 +1511,10 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-org59ce615" class="outline-4">
-<h4 id="org59ce615"><span class="section-number-4">2.1.6</span> 杂项</h4>
+<div id="outline-container-orgb163ab8" class="outline-4">
+<h4 id="orgb163ab8"><span class="section-number-4">2.1.6</span> 杂项</h4>
 <div class="outline-text-4" id="text-2-1-6">
-<table id="orgaccbe2f" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<table id="org66aedf9" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
 
 
 <colgroup>
@@ -1566,8 +1571,8 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-orga77a6af" class="outline-3">
-<h3 id="orga77a6af"><span class="section-number-3">2.2</span> 列宽和对齐</h3>
+<div id="outline-container-org441a2eb" class="outline-3">
+<h3 id="org441a2eb"><span class="section-number-3">2.2</span> 列宽和对齐</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 列的宽度由表编辑器自动确定。 并且还可以从列中包含的数据类型（数字或者非数字）自动确定列的对齐方式。
@@ -1578,7 +1583,7 @@ You can check syntax in your documents using org-lint command.
 <img src="/images/table-column-width.jpg">
 
 <p>
-设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=></b> 来替代展示。
+设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=&gt;</b> 来替代展示。
 要查看全文，请将鼠标悬停在该字段上&#x2014;工具提示窗口(tool-tip window)将显示完整的内容。
 要编辑这样一个区域，可使用 <code>C-c</code> <code>`</code> 。 这将打开一个的新窗口。 编辑后用 <code>C-c</code> <code>C-c</code> 来提交编辑内容，并关闭窗口。
 </p>
@@ -1594,21 +1599,21 @@ You can check syntax in your documents using org-lint command.
 </pre>
 
 <p>
-如果不喜欢默认自动对齐的方式，您可以使用 <b><r></r></b> ，*<c>* 或者 <b><l></l></b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i><r10></r10></i> 。
+如果不喜欢默认自动对齐的方式，您可以使用 <b>&lt;r&gt;</b> ，*&lt;c&gt;* 或者 <b>&lt;l&gt;</b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i>&lt;r10&gt;</i> 。
 在导出文档时，将自动删除仅包含这些格式化信息的行。
-</c></p>
+</p>
 </div>
 </div>
 
-<div id="outline-container-org66c8fb5" class="outline-3">
-<h3 id="org66c8fb5"><span class="section-number-3">2.3</span> 列组</h3>
+<div id="outline-container-org518b982" class="outline-3">
+<h3 id="org518b982"><span class="section-number-3">2.3</span> 列组</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 当Org导出表时，默认情况下不会有垂直线，因为在视觉上一般来说更令人满意。
 然而，偶尔，垂直线对于将表结构化成一组列可能是有用的，就像水平线可以对于一组行所做的那样。
-为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'<'表示此列应该启动一个组，'>'表示组的结束，或'<>'（'<'和'>'之间没有空格） 当前列自己一组。
+为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'&lt;'表示此列应该启动一个组，'&gt;'表示组的结束，或'&lt;&gt;'（'&lt;'和'&gt;'之间没有空格） 当前列自己一组。
 导出后，列组之间的边界将用垂直线标记。 示例如下：
-</'和'></'表示此列应该启动一个组，'></p>
+</p>
 
 <img src="/images/table-column-groups.jpg">
 
@@ -1725,8 +1730,8 @@ You can check syntax in your documents using org-lint command.
 </div>
 </div>
 
-<div id="outline-container-orgf9ea1bf" class="outline-3">
-<h3 id="orgf9ea1bf"><span class="section-number-3">2.4</span> The Orgtbl minor mode</h3>
+<div id="outline-container-org920ed20" class="outline-3">
+<h3 id="org920ed20"><span class="section-number-3">2.4</span> The Orgtbl minor mode</h3>
 <div class="outline-text-3" id="text-2-4">
 <blockquote>
 <p>
@@ -1747,8 +1752,8 @@ including spreadsheet capabilities.
 </div>
 </div>
 
-<div id="outline-container-org1b719c4" class="outline-3">
-<h3 id="org1b719c4"><span class="section-number-3">2.5</span> 电子表格</h3>
+<div id="outline-container-org68aa599" class="outline-3">
+<h3 id="org68aa599"><span class="section-number-3">2.5</span> 电子表格</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 请参阅如下内容：
@@ -1760,9 +1765,8 @@ including spreadsheet capabilities.
 </div>
 </div>
 
-
-<div id="outline-container-orgbbb6a1e" class="outline-3">
-<h3 id="orgbbb6a1e"><span class="section-number-3">2.6</span> Org-Plot</h3>
+<div id="outline-container-orgf12593b" class="outline-3">
+<h3 id="orgf12593b"><span class="section-number-3">2.6</span> Org-Plot</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 请参阅如下内容：
@@ -1775,27 +1779,26 @@ including spreadsheet capabilities.
 </div>
 </div>
 
-
-<div id="outline-container-org7d3d6f6" class="outline-2">
-<h2 id="org7d3d6f6"><span class="section-number-2">3</span> 超链接</h2>
+<div id="outline-container-orgca2b16c" class="outline-2">
+<h2 id="orgca2b16c"><span class="section-number-2">3</span> 超链接</h2>
 </div>
-<div id="outline-container-org6662690" class="outline-2">
-<h2 id="org6662690"><span class="section-number-2">4</span> 待办事项</h2>
+<div id="outline-container-orga1d57ac" class="outline-2">
+<h2 id="orga1d57ac"><span class="section-number-2">4</span> 待办事项</h2>
 </div>
-<div id="outline-container-orgb2bab24" class="outline-2">
-<h2 id="orgb2bab24"><span class="section-number-2">5</span> 标签</h2>
+<div id="outline-container-org65baac7" class="outline-2">
+<h2 id="org65baac7"><span class="section-number-2">5</span> 标签</h2>
 </div>
-<div id="outline-container-org9df0ce8" class="outline-2">
-<h2 id="org9df0ce8"><span class="section-number-2">6</span> 属性</h2>
+<div id="outline-container-orgd4582cb" class="outline-2">
+<h2 id="orgd4582cb"><span class="section-number-2">6</span> 属性</h2>
 </div>
-<div id="outline-container-orgcadcc67" class="outline-2">
-<h2 id="orgcadcc67"><span class="section-number-2">7</span> 日期和时间</h2>
+<div id="outline-container-org70946b5" class="outline-2">
+<h2 id="org70946b5"><span class="section-number-2">7</span> 日期和时间</h2>
 </div>
-<div id="outline-container-org0ec4829" class="outline-2">
-<h2 id="org0ec4829"><span class="section-number-2">8</span> 捕获——转发——存档</h2>
+<div id="outline-container-orgd2ecffa" class="outline-2">
+<h2 id="orgd2ecffa"><span class="section-number-2">8</span> 捕获——转发——存档</h2>
 </div>
-<div id="outline-container-orgb5cf1b4" class="outline-2">
-<h2 id="orgb5cf1b4"><span class="section-number-2">9</span> 议程视图</h2>
+<div id="outline-container-orga08f575" class="outline-2">
+<h2 id="orga08f575"><span class="section-number-2">9</span> 议程视图</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -1808,7 +1811,7 @@ org-mode 官方链接地址: <a href="http://orgmode.org/" target="_blank" rel="
 
 </div>
 </div>
-Last Updated 2017-03-23 Thu 10:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-03-31 Fri 10:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1860,6 +1863,10 @@ Last Updated 2017-03-23 Thu 10:09.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/babel-intro/" rel="prev" title="Babel Introduction">
+                Babel Introduction <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1931,7 +1938,7 @@ Last Updated 2017-03-23 Thu 10:09.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1953,7 +1960,7 @@ Last Updated 2017-03-23 Thu 10:09.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2008,7 +2015,7 @@ Last Updated 2017-03-23 Thu 10:09.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orga352cf2"><span class="nav-text">1 org-mode的文档结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org0b030a2"><span class="nav-text">1.1 Headlines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc9e96b6"><span class="nav-text">1.1.1 视图命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org3e58a85"><span class="nav-text">1.1.2 跳转命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orge92a035"><span class="nav-text">1.1.3 编辑命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc9edb65"><span class="nav-text">1.1.4 稀疏树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgdafd4ef"><span class="nav-text">1.2 Plain lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc8c8194"><span class="nav-text">1.3 Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org993310a"><span class="nav-text">1.4 Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org48dd959"><span class="nav-text">1.5 Footnotes（脚注)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org49cc7f6"><span class="nav-text">1.6 The Orgstruct minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org780f460"><span class="nav-text">1.7 Org syntax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1606ef8"><span class="nav-text">2 org-mode 表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org83288e8"><span class="nav-text">2.1 内置表编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org6e56378"><span class="nav-text">2.1.1 创建和转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org342304f"><span class="nav-text">2.1.2 调整和区域移动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orga69c555"><span class="nav-text">2.1.3 列和行编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orge5a904c"><span class="nav-text">2.1.4 区域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org6cdfadc"><span class="nav-text">2.1.5 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org59ce615"><span class="nav-text">2.1.6 杂项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga77a6af"><span class="nav-text">2.2 列宽和对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org66c8fb5"><span class="nav-text">2.3 列组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf9ea1bf"><span class="nav-text">2.4 The Orgtbl minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1b719c4"><span class="nav-text">2.5 电子表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbbb6a1e"><span class="nav-text">2.6 Org-Plot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7d3d6f6"><span class="nav-text">3 超链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6662690"><span class="nav-text">4 待办事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb2bab24"><span class="nav-text">5 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9df0ce8"><span class="nav-text">6 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcadcc67"><span class="nav-text">7 日期和时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0ec4829"><span class="nav-text">8 捕获——转发——存档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb5cf1b4"><span class="nav-text">9 议程视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc4c4eff"><span class="nav-text">1 org-mode的文档结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org09db6fe"><span class="nav-text">1.1 Headlines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgdaf369b"><span class="nav-text">1.1.1 视图命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgd63bd4f"><span class="nav-text">1.1.2 跳转命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org028a6ed"><span class="nav-text">1.1.3 编辑命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org22e13fb"><span class="nav-text">1.1.4 稀疏树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org779d20a"><span class="nav-text">1.2 Plain lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf9cb8c5"><span class="nav-text">1.3 Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc8c7552"><span class="nav-text">1.4 Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org26e164c"><span class="nav-text">1.5 Footnotes（脚注)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org3278903"><span class="nav-text">1.6 The Orgstruct minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org8f4dfc6"><span class="nav-text">1.7 Org syntax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org298613a"><span class="nav-text">2 org-mode 表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org48a5d70"><span class="nav-text">2.1 内置表编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org67f659b"><span class="nav-text">2.1.1 创建和转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org7d2b766"><span class="nav-text">2.1.2 调整和区域移动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org55b4262"><span class="nav-text">2.1.3 列和行编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org90673cb"><span class="nav-text">2.1.4 区域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org3a2209d"><span class="nav-text">2.1.5 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb163ab8"><span class="nav-text">2.1.6 杂项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org441a2eb"><span class="nav-text">2.2 列宽和对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org518b982"><span class="nav-text">2.3 列组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org920ed20"><span class="nav-text">2.4 The Orgtbl minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org68aa599"><span class="nav-text">2.5 电子表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf12593b"><span class="nav-text">2.6 Org-Plot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgca2b16c"><span class="nav-text">3 超链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga1d57ac"><span class="nav-text">4 待办事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org65baac7"><span class="nav-text">5 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd4582cb"><span class="nav-text">6 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org70946b5"><span class="nav-text">7 日期和时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd2ecffa"><span class="nav-text">8 捕获——转发——存档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga08f575"><span class="nav-text">9 议程视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
