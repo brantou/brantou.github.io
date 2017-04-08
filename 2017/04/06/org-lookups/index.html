@@ -1,0 +1,1069 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="org-mode table spreadsheet tutorial," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Introduction
+
+
+Org provides three different functions for performing searches and
+data dependent calculations in tables. These functions can, among
+other things, be used to implement associative ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Org tutorial on table lookup functions">
+<meta property="og:url" content="https://brantou.github.io/2017/04/06/org-lookups/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="Introduction
+
+
+Org provides three different functions for performing searches and
+data dependent calculations in tables. These functions can, among
+other things, be used to implement associative ar">
+<meta property="og:updated_time" content="2017-04-06T10:13:46.726Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Org tutorial on table lookup functions">
+<meta name="twitter:description" content="Introduction
+
+
+Org provides three different functions for performing searches and
+data dependent calculations in tables. These functions can, among
+other things, be used to implement associative ar">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2017/04/06/org-lookups/"/>
+
+
+
+
+
+  <title> Org tutorial on table lookup functions | Brantou的日常 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">二三事</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/06/org-lookups/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Org tutorial on table lookup functions
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T00:00:00+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+<div id="outline-container-org83dd10c" class="outline-2">
+<h2 id="org83dd10c">Introduction</h2>
+<div class="outline-text-2" id="text-org83dd10c">
+<p>
+Org provides three different functions for performing searches and
+data dependent calculations in tables. These functions can, among
+other things, be used to implement associative arrays, count
+matching cells, rank results, or group data. The following examples
+will hopefully help you in getting started with these functions.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7c27af" class="outline-2">
+<h2 id="orgc7c27af">Associative array with unique keys</h2>
+<div class="outline-text-2" id="text-orgc7c27af">
+<p>
+The most straightforward use of lookups is to treat part of an org
+table as an associative array: a key can be used to look up a
+corresponding value.
+</p>
+
+<p>
+Say you are taking a trip to Scandinavia, and you want to keep track
+of how much money you have spent on the trip. You decide to convert
+all sums to euros. Before your trip you write down the following
+table of approximate currency rates.
+</p>
+<pre class="example">
+ #+TBLNAME: rates
+| currency        | abbreviation | euros |
+|-----------------+--------------+-------|
+| euro            | eur          |     1 |
+| Norwegian krone | nok          |  0.14 |
+| Swedish krona   | sek          |  0.12 |
+| US dollar       | usd          |  0.77 |
+</pre>
+
+<p>
+In what follows we will use the function <code>org-lookup-first</code> and the
+previous table <code>rates</code> to automatically convert the sums in
+different currencies to euros. The signature of function
+<code>org-lookup-first</code> looks as follows:
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-lookup-first VAL S-LIST R-LIST &#38;amp;optional PREDICATE)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+Assuming that <code>PREDICATE</code> is <code>nil</code>, in which case the default
+predicate <code>equal</code> is used, this function does a search for the first
+instance of <code>VAL</code> in <code>S-LIST</code> and returns the a value from the
+corresponding position in <code>R-LIST</code>. In the table below, each sum is
+assigned a currency abbreviation; a lookup is done in table <code>rates</code>
+above in the second column for the corresponding abbreviation, and
+then the corresponding rate is returned from the third column. For
+each row only the first four columns need to filled; columns 5 and 6
+are calculated automatically. Notice that an error results if the
+key is not found: in the last row, an empty key is being searched
+for.
+</p>
+
+<pre class="example">
+|  date | expense          |  sum | currency |   rate |  euros |
+|-------+------------------+------+----------+--------+--------|
+|  1.3. | flights          |  324 | eur      |      1 |    324 |
+|  4.6. | books and maps   |  243 | usd      |   0.77 | 187.11 |
+| 30.7. | rental car       | 8300 | sek      |   0.12 |   996. |
+|  2.7. | hotel            | 1150 | sek      |   0.12 |   138. |
+|  2.7. | lunch            |  190 | sek      |   0.12 |   22.8 |
+|  3.7. | fishing licenses | 1400 | nok      |   0.14 |   196. |
+|  3.7. | gasoline         |  340 |          | #ERROR | #ERROR |
+ #+TBLFM: $5='(org-lookup-first $4 '(remote(rates,@2$2..@>$2)) '(remote(rates,@2$3..@>$3)))::$6=$5*$3
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfae2697" class="outline-2">
+<h2 id="orgfae2697">Multiple matches with preferred ordering</h2>
+<div class="outline-text-2" id="text-orgfae2697">
+<p>
+A common task for teachers is the assignment of exam grades from
+total marks. The starting point for such grading is a table with
+grade boundaries. Below is one such table, with the rows in
+increasing order of the lower bound required for a particular grade.
+</p>
+
+<pre class="example">
+ #+TBLNAME: grade-boundaries
+| lower bound | grade |
+|-------------+-------|
+|           0 | F     |
+|          10 | D     |
+|          20 | C     |
+|          30 | B     |
+|          40 | A     |
+</pre>
+
+<p>
+We will use the function <code>org-lookup-last</code> and the previous table
+<code>grade-boundaries</code> to assign grades to students based on their
+marks. The signature of function <code>org-lookup-last</code> is exactly like
+the signature of <code>org-lookup-first</code>:
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-lookup-last VAL S-LIST R-LIST &#38;amp;optional PREDICATE)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+However, this function does a search for the <i>last</i> match in
+<code>S-LIST</code> and returns the a value from the corresponding position in
+<code>R-LIST</code>. Here the idea of the lookup used in assigning the grade is
+as follows. Say a student's exam result is 33 marks.  We look for
+the <i>last</i> row in the table for which the student's marks are greater
+than or equal to the lower bound; in this case it is the row with
+lower bound 30. The student's grade is the corresponding element from
+the second column, in this case a B.
+</p>
+
+<p>
+Thus, given the number of marks <code>VAL</code> of a student, we find the last
+row of the first column of table <code>grade-boundaries</code> for which the
+lower bound <code>S</code> fulfils <code>(>= VAL S)</code>. Thus we will use <code>>=</code> as
+<code>PREDICATE</code> to perform the matching. Note that <code>VAL</code> and <code>S</code> are
+assigned as arguments to the predicate in the order they are in the
+signature of <code>org-lookup-last</code>, where <code>VAL</code> precedes <code>S-LIST</code>. The
+following table does the conversion from total marks to the final
+grade.  Notice the literal interpolation <code>L</code> of table values into
+the Elisp formula, which is needed because some values are numbers
+and some are symbols.
+</p>
+
+<pre class="example">
+| student | marks | grade |
+|---------+-------+-------|
+| X       |    30 | B     |
+| Y       |    29 | C     |
+| Z       |     5 | F     |
+| W       |    55 | A     |
+ #+TBLFM: $3='(org-lookup-last $2 '(remote(grade-boundaries,@2$1..@>$1)) '(remote(grade-boundaries,@2$2..@>$2)) '>=);L
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd5734dc" class="outline-2">
+<h2 id="orgd5734dc">Counting matching cells</h2>
+<div class="outline-text-2" id="text-orgd5734dc">
+<p>
+The function <code>org-lookup-all</code> can not be used by itself in a table
+equation, because it returns a list of values. However, powerful
+lookup tasks can be performed by combining the function with other
+Elisp functions.
+</p>
+
+<p>
+As a simple example consider counting the number of missing values
+in a table. The signature of function <code>org-lookup-all</code> is exactly
+like the signatures of the other two lookup functions:
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-lookup-all VAL S-LIST R-LIST &#38;amp;optional PREDICATE)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+However, this function does a search for the <i>all</i> matches in
+<code>S-LIST</code> and returns the all corresponding values from the
+corresponding positions in <code>R-LIST</code>. As is the case with
+<code>org-lookup-first</code> and <code>org-lookup-last</code>, if <code>R-LIST</code> is <code>nil</code>, then
+the corresponding matching values of <code>S-LIST</code> are returned
+directly. Notice the use of the <code>E</code> flag to retain empty fields in
+the range. Also notice that in this case we are doing the lookup in
+a true two-dimensional range, which is thus also possible
+</p>
+
+<pre class="example">
+| group | round 1 | round 2 |
+|-------+---------+---------|
+| A     |         |     2.4 |
+| B     |     4.7 |      11 |
+| C     |         |         |
+| D     |       5 |         |
+| E     |         |     7.2 |
+| F     |     3.2 |     4.3 |
+| G     |         |     4.4 |
+| H     |         |       8 |
+|-------+---------+---------|
+| total | missing |       7 |
+ #+TBLFM: @>$3='(length(org-lookup-all "" '(@2$2..@-1$3) nil));E
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf346868" class="outline-2">
+<h2 id="orgf346868">Ranking results</h2>
+<div class="outline-text-2" id="text-orgf346868">
+<p>
+Another example application of <code>org-lookup-all</code> is an automatic
+ranking of results. In the table below, a larger total number of
+marks is better. Notice that the Elisp expression also
+automatically takes care of ties.
+</p>
+
+<pre class="example">
+| group | marks | rank |
+|-------+-------+------|
+| A     |    22 |    2 |
+| B     |    22 |    2 |
+| C     |    14 |    4 |
+| D     |    28 |    1 |
+| E     |     9 |    5 |
+ #+TBLFM: $3='(+ 1 (length (org-lookup-all $2 '(@2$2..@>$2) nil '<)));n <="" pre="">
+</)));n></pre></div>
+</div>
+
+<div id="outline-container-orgdcb76a7" class="outline-2">
+<h2 id="orgdcb76a7">Frequency counts from raw data</h2>
+<div class="outline-text-2" id="text-orgdcb76a7">
+<p>
+A common situation in the analysis of data is the classification
+(grouping) of raw data values for, e.g., visualisation. Often this
+is done by counting the frequencies of observations within certain
+bounds. The function <code>org-lookup-all</code>, combined with other Elisp
+functions, can be used to perform this task. This example also shows
+how to construct more complicated lookup rules using multiple values
+from a table.
+</p>
+
+<p>
+Consider the following table with different results from different
+groups A-I.
+</p>
+<pre class="example">
+ #+TBLNAME: raw-data
+| group | result |
+|-------+--------|
+| A     |    2.3 |
+| B     |    4.2 |
+| C     |    1.1 |
+| D     |    3.6 |
+| E     |    4.5 |
+| F     |    2.4 |
+| G     |    1.0 |
+| H     |    2.3 |
+| I     |    2.8 |
+</pre>
+
+<p>
+We will classify the results into different, mutually exclusive
+classes. For example, the observations that will belong to the first
+class are in the interval <code>[1, 1.9]</code> (endpoints included). In order
+to perform this classification, we define the following two-place
+predicate function <code>in-interval</code>. Notice that the first parameter of
+this function is a pair whose first element is the lower bound and
+second member the upper bound of the interval.
+</p>
+
+<pre class="example">
+#+BEGIN_SRC emacs-lisp
+  (defun in-interval (bounds el)
+    (and (>= el (car bounds)) (<= el="" (cadr="" bounds))))="" #+end_src="" <="" pre="">
+
+<pre class="example">
+#+RESULTS:
+: in-interval
+</pre>
+
+<p>
+Using this predicate function, we can construct a table with class
+boundaries and corresponding frequencies. Note that the first
+argument to the function <code>org-lookup-all</code>, which is then passed over
+as the first argument to the predicate <code>in-interval</code>, is the pair of
+bounds.
+</p>
+
+<pre class="example">
+| lower bound | upper bound | frequency |
+|-------------+-------------+-----------|
+|           1 |         1.9 |         2 |
+|           2 |         2.9 |         4 |
+|           3 |         3.9 |         1 |
+|           4 |         4.9 |         2 |
+ #+TBLFM: $3='(length (org-lookup-all '($1 $2) '(remote(raw-data,@2$2..@>$2)) nil 'in-interval));N
+</pre>
+</=></pre></div>
+</div>
+<div id="outline-container-org7653fae" class="outline-2">
+<h2 id="org7653fae">Conclusion</h2>
+<div class="outline-text-2" id="text-org7653fae">
+<p>
+The org lookup functions can be used for a large number of different
+data-dependent calculations. For example, the following spreadsheet
+operations familiar to libreoffice or Excel users can be implemented
+using them: <code>HLOOKUP</code>, <code>VLOOKUP</code>, <code>COUNTIF</code>, <code>SUMIF</code> and
+<code>FREQUENCY</code>. If you have other interesting examples of the use of
+these functions, feel free to send them to the org mailing list and
+we will be happy to add them on this page.
+</p>
+</div>
+</div>
+
+Last Updated 2017-04-06 Thu 18:13.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/org-mode-table-spreadsheet-tutorial/" rel="tag"># org-mode table spreadsheet tutorial</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/org-spreadsheet-lisp-formulas/" rel="next" title="Org as a spreadsheet system: using Emacs lisp as formulas">
+                <i class="fa fa-chevron-left"></i> Org as a spreadsheet system: using Emacs lisp as formulas
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/07/org-spreadsheet-intro/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
+               alt="Brantou" />
+          <p class="site-author-name" itemprop="name">Brantou</p>
+           
+              <p class="site-description motion-element" itemprop="description">The best time to plant a tree was 20 years ago. The second best time is now.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org83dd10c"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc7c27af"><span class="nav-text">Associative array with unique keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfae2697"><span class="nav-text">Multiple matches with preferred ordering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd5734dc"><span class="nav-text">Counting matching cells</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf346868"><span class="nav-text">Ranking results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdcb76a7"><span class="nav-text">Frequency counts from raw data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7653fae"><span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -124,7 +124,7 @@ Bable 可让许多不同的语言工作一起。
 <meta property="og:image" content="http://orgmode.org/worg/images/babel/blue.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/brantou/hexo-blog/master/source/images/babel/dirs.png">
 <meta property="og:image" content="http://orgmode.org/worg/images/babel/dot-emacs.png">
-<meta property="og:updated_time" content="2017-04-05T15:58:25.506Z">
+<meta property="og:updated_time" content="2017-04-08T16:02:58.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Babel: org-mode的多语言编程环境">
 <meta name="twitter:description" content="原文Babel: Introduction, 由 Eric Schulte ,  Dan Davison, Tom Dye 编辑，维护。本文只做学习之用。
@@ -414,8 +414,8 @@ Bable 可让许多不同的语言工作一起。
 </p>
 </blockquote>
 
-<div id="outline-container-orgb092a2b" class="outline-2">
-<h2 id="introduction"><a id="orgb092a2b"></a><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-org4a722e6" class="outline-2">
+<h2 id="introduction"><a id="org4a722e6"></a><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-introduction">
 <p>
 <b>Bable</b> 可让许多不同的语言工作一起。
@@ -436,15 +436,15 @@ Babel augments Org-mode support for code blocks by providing:
 <ul class="org-ul">
 <li>代码块的交互和执行结果导出</li>
 <li>代码块可像函数一样可参数化，引用其他代码块，可被远程调用</li>
-<li>通过拼接，导出源代码到文件以支持文学编程。</li>
+<li>拼接，导出源代码到文件支持文学编程。</li>
 </ul>
 
 <a id="more"></a>
 </div>
 </div>
 
-<div id="outline-container-org9239e1b" class="outline-2">
-<h2 id="org9239e1b"><span class="section-number-2">2</span> 概述</h2>
+<div id="outline-container-org81aba47" class="outline-2">
+<h2 id="org81aba47"><span class="section-number-2">2</span> 概述</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Babel</b> 在几个不同的方面提供了新的功能，不同的人可能想在不同的地方开始。
@@ -467,8 +467,8 @@ Babel augments Org-mode support for code blocks by providing:
 </div>
 </div>
 
-<div id="outline-container-orgdd87ac5" class="outline-2">
-<h2 id="getting-started"><a id="orgdd87ac5"></a><span class="section-number-2">3</span> 初始配置</h2>
+<div id="outline-container-org2dcefca" class="outline-2">
+<h2 id="getting-started"><a id="org2dcefca"></a><span class="section-number-2">3</span> 初始配置</h2>
 <div class="outline-text-2" id="text-getting-started">
 <blockquote>
 <p>
@@ -496,12 +496,12 @@ modified .emacs.</li>
 </div>
 </div>
 
-<div id="outline-container-org26dcc7c" class="outline-2">
-<h2 id="source-code-blocks"><a id="org26dcc7c"></a><span class="section-number-2">4</span> 代码块</h2>
+<div id="outline-container-orgd02c13e" class="outline-2">
+<h2 id="source-code-blocks"><a id="orgd02c13e"></a><span class="section-number-2">4</span> 代码块</h2>
 <div class="outline-text-2" id="text-source-code-blocks">
 </div>
-<div id="outline-container-orgd9d64af" class="outline-3">
-<h3 id="source-code-blocks-org"><a id="orgd9d64af"></a><span class="section-number-3">4.1</span> 代码块在 <code>Org-mode</code> 中</h3>
+<div id="outline-container-org6255414" class="outline-3">
+<h3 id="source-code-blocks-org"><a id="org6255414"></a><span class="section-number-3">4.1</span> 代码块在 <code>Org-mode</code> 中</h3>
 <div class="outline-text-3" id="text-source-code-blocks-org">
 <p>
 <b>Babel</b> 是关于 <code>Org-mode</code> 中代码块的。 如果还不熟悉 <code>Org-mode</code> 中的代码块的概念，请在继续之前查看 <a href="http://orgmode.org/manual/Literal-examples.html" target="_blank" rel="external">Org-mode手册的相关章节</a>。
@@ -527,8 +527,8 @@ modified .emacs.</li>
 </div>
 </div>
 
-<div id="outline-container-orgc680f02" class="outline-3">
-<h3 id="source-code-blocks-babel"><a id="orgc680f02"></a><span class="section-number-3">4.2</span> 代码块在 <code>Babel</code> 中</h3>
+<div id="outline-container-org1a15409" class="outline-3">
+<h3 id="source-code-blocks-babel"><a id="org1a15409"></a><span class="section-number-3">4.2</span> 代码块在 <code>Babel</code> 中</h3>
 <div class="outline-text-3" id="text-source-code-blocks-babel">
 <p>
 <b>Babel</b> 向代码块添加了一些新的元素。 基本结构变成了:
@@ -555,24 +555,24 @@ modified .emacs.</li>
 </div>
 </div>
 
-<div id="outline-container-org3b9b7a4" class="outline-2">
-<h2 id="source-code-execution"><a id="org3b9b7a4"></a><span class="section-number-2">5</span> 源代码执行</h2>
+<div id="outline-container-org056e9ce" class="outline-2">
+<h2 id="source-code-execution"><a id="org056e9ce"></a><span class="section-number-2">5</span> 源代码执行</h2>
 <div class="outline-text-2" id="text-source-code-execution">
 <p>
 <b>Babel</b> 通过将代码传递给解释器来执行解释语言（如shell，python，R等）的代码块。 在执行结果上可以做进一步的操作，如果你想的话。
 </p>
 </div>
 
-<div id="outline-container-org051e4f0" class="outline-3">
-<h3 id="org051e4f0"><span class="section-number-3">5.1</span> 示例</h3>
+<div id="outline-container-orgd0a70b6" class="outline-3">
+<h3 id="orgd0a70b6"><span class="section-number-3">5.1</span> 示例</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 以下是三种不同语言的代码块，其后是其输出。
 如果正在Emacs中查看本文档的 <code>Org-mode</code> 版本，则把光标放置在块的任何位置，然后按 <code>C-c C-c</code> 执行代码<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>（并随意更改它）。
 </p>
 </div>
-<div id="outline-container-orgde88c0b" class="outline-4">
-<h4 id="orgde88c0b"><span class="section-number-4">5.1.1</span> Ruby</h4>
+<div id="outline-container-orgc8e8c47" class="outline-4">
+<h4 id="orgc8e8c47"><span class="section-number-4">5.1.1</span> Ruby</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 在 <code>Org-mode</code> 的文件中:
@@ -600,8 +600,8 @@ This file was last evaluated on 2017-04-05
 </div>
 </div>
 
-<div id="outline-container-org44cbb26" class="outline-4">
-<h4 id="org44cbb26"><span class="section-number-4">5.1.2</span> Shell</h4>
+<div id="outline-container-orgf978908" class="outline-4">
+<h4 id="orgf978908"><span class="section-number-4">5.1.2</span> Shell</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 在 <code>Org-mode</code> 的文件中:
@@ -628,8 +628,8 @@ This file takes up 36K
 </div>
 </div>
 
-<div id="outline-container-orgbed47a5" class="outline-4">
-<h4 id="orgbed47a5"><span class="section-number-4">5.1.3</span> <a href="http://www.r-project.org/" target="_blank" rel="external">R</a></h4>
+<div id="outline-container-orgf2b254d" class="outline-4">
+<h4 id="orgf2b254d"><span class="section-number-4">5.1.3</span> <a href="http://www.r-project.org/" target="_blank" rel="external">R</a></h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 当前这个文件中最常用的词是？
@@ -650,8 +650,8 @@ HTML 导出的代码:
 </div>
 </div>
 
-<div id="outline-container-org8e18485" class="outline-4">
-<h4 id="org8e18485"><span class="section-number-4">5.1.4</span> <a href="http://ditaa.sourceforge.net/" target="_blank" rel="external">ditaa</a></h4>
+<div id="outline-container-orgba8040e" class="outline-4">
+<h4 id="orgba8040e"><span class="section-number-4">5.1.4</span> <a href="http://ditaa.sourceforge.net/" target="_blank" rel="external">ditaa</a></h4>
 <div class="outline-text-4" id="text-5-1-4">
 <p>
 在 <code>Org-mode</code> 文件中:
@@ -687,15 +687,15 @@ HTML导出的结果图:
 </div>
 </div>
 
-<div id="outline-container-org5e74a2c" class="outline-3">
-<h3 id="results"><a id="org5e74a2c"></a><span class="section-number-3">5.2</span> 捕获代码执行结果</h3>
+<div id="outline-container-org3820900" class="outline-3">
+<h3 id="results"><a id="org3820900"></a><span class="section-number-3">5.2</span> 捕获代码执行结果</h3>
 <div class="outline-text-3" id="text-results">
 <p>
 <b>Babel</b> 提供了两种根本不同的模式来捕获代码执行的结果： <i>functional mode</i> 和 <i>scripting mode</i> 。 模式的选择可以通过配置 <code>:results</code> 头参数来指定。
 </p>
 </div>
-<div id="outline-container-org2c2033b" class="outline-4">
-<h4 id="results-value"><a id="org2c2033b"></a><span class="section-number-4">5.2.1</span> <code>:results value</code> (functional mode)</h4>
+<div id="outline-container-org8f53e9c" class="outline-4">
+<h4 id="results-value"><a id="org8f53e9c"></a><span class="section-number-4">5.2.1</span> <code>:results value</code> (functional mode)</h4>
 <div class="outline-text-4" id="text-results-value">
 <p>
 代码执行的结果是代码块中最后一个语句的值。
@@ -721,8 +721,8 @@ HTML导出的结果图:
 </div>
 </div>
 
-<div id="outline-container-org7d8edda" class="outline-4">
-<h4 id="results-output"><a id="org7d8edda"></a><span class="section-number-4">5.2.2</span> <code>:results output</code> (scripting mode)</h4>
+<div id="outline-container-org7642aff" class="outline-4">
+<h4 id="results-output"><a id="org7642aff"></a><span class="section-number-4">5.2.2</span> <code>:results output</code> (scripting mode)</h4>
 <div class="outline-text-4" id="text-results-output">
 <p>
 在 <i>scripting mode</i> 中，Babel捕获代码块的文本输出并将其放置在 <code>Org-mode</code> 的缓冲区中。
@@ -745,8 +745,8 @@ HTML导出的结果图:
 </div>
 </div>
 
-<div id="outline-container-org69efff4" class="outline-3">
-<h3 id="org69efff4"><span class="section-number-3">5.3</span> 基于会话的代码块</h3>
+<div id="outline-container-org4ff7fdb" class="outline-3">
+<h3 id="org4ff7fdb"><span class="section-number-3">5.3</span> 基于会话的代码块</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 对于某些语言，例如Python，R，ruby和shell，可以在Emacs中运行一个不完备的交互式会话进程。
@@ -774,8 +774,8 @@ both in the R session, and when switching to the R code edit buffer with <code>�
 </div>
 </div>
 
-<div id="outline-container-orge4c6d42" class="outline-3">
-<h3 id="arguments-to-source-code-blocks"><a id="orge4c6d42"></a><span class="section-number-3">5.4</span> 代码块的入参</h3>
+<div id="outline-container-org7e83c2f" class="outline-3">
+<h3 id="arguments-to-source-code-blocks"><a id="org7e83c2f"></a><span class="section-number-3">5.4</span> 代码块的入参</h3>
 <div class="outline-text-3" id="text-arguments-to-source-code-blocks">
 <p>
 <b>Babel</b> 支持代码块的参数化，即可以将参数传递给代码块，从而使它们函数化。
@@ -783,8 +783,8 @@ both in the R session, and when switching to the R code edit buffer with <code>�
 </p>
 </div>
 
-<div id="outline-container-org64eec4b" class="outline-4">
-<h4 id="using-a-code-block-as-a-function"><a id="org64eec4b"></a><span class="section-number-4">5.4.1</span> 代码块作为函数的简单示例</h4>
+<div id="outline-container-org6564bf4" class="outline-4">
+<h4 id="using-a-code-block-as-a-function"><a id="org6564bf4"></a><span class="section-number-4">5.4.1</span> 代码块作为函数的简单示例</h4>
 <div class="outline-text-4" id="text-using-a-code-block-as-a-function">
 <p>
 首先我们来看一个非常简单的例子。 以下源代码块使用Python定义了一个函数，求入参的平方。
@@ -823,8 +823,8 @@ return x*x
 </div>
 </div>
 
-<div id="outline-container-org8999c0a" class="outline-4">
-<h4 id="org8999c0a"><span class="section-number-4">5.4.2</span> <code>Org-mode</code> 表格作为入参的更复杂的示例</h4>
+<div id="outline-container-org2551ffc" class="outline-4">
+<h4 id="org2551ffc"><span class="section-number-4">5.4.2</span> <code>Org-mode</code> 表格作为入参的更复杂的示例</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 在本例中，使用Emacs Lisp定义的一个名为 <code>fibonacci-seq</code> 的函数。
@@ -834,7 +834,7 @@ return x*x
 <p>
 下面即为传递给 <code>fibonacci-seq</code> 的 <code>Org-mode</code> 表格:
 </p>
-<table id="org5a68fb8" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org7ac2588" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -925,8 +925,8 @@ Emacs Lisp的源代码:
 </div>
 </div>
 </div>
-<div id="outline-container-org4fc4dfd" class="outline-3">
-<h3 id="org4fc4dfd"><span class="section-number-3">5.5</span> 内联(In-line)的代码块</h3>
+<div id="outline-container-org47bcf49" class="outline-3">
+<h3 id="org47bcf49"><span class="section-number-3">5.5</span> 内联(In-line)的代码块</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 可使用以下语法内联(In-line)的执行代码：
@@ -951,8 +951,8 @@ src_python{return "Hello World!"}
 </div>
 </div>
 
-<div id="outline-container-orga2b2a1a" class="outline-3">
-<h3 id="orga2b2a1a"><span class="section-number-3">5.6</span> 代码块扩展</h3>
+<div id="outline-container-org74f02d8" class="outline-3">
+<h3 id="org74f02d8"><span class="section-number-3">5.6</span> 代码块扩展</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 <b>Babel</b> 在执行之前“扩展”代码块，即，执行代码包括把引用的数据(或代码)填充到代码块内容里。
@@ -983,7 +983,7 @@ src_python{return "Hello World!"}
 <p>
 数据被存储在表格中:
 </p>
-<table id="org4ab021e" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org3ce2684" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -1020,8 +1020,8 @@ src_python{return "Hello World!"}
 </div>
 </div>
 
-<div id="outline-container-org6ab88a9" class="outline-3">
-<h3 id="meta-programming-language"><a id="org6ab88a9"></a><span class="section-number-3">5.7</span> <code>Org-mode</code> 的元编程语言</h3>
+<div id="outline-container-org4d824db" class="outline-3">
+<h3 id="meta-programming-language"><a id="org4d824db"></a><span class="section-number-3">5.7</span> <code>Org-mode</code> 的元编程语言</h3>
 <div class="outline-text-3" id="text-meta-programming-language">
 <p>
 因为用一种语言编写的函数的返回值可以被传递给另一种语言编写的函数，
@@ -1098,8 +1098,8 @@ HTML 导出的代码:
 </div>
 </div>
 
-<div id="outline-container-org43944b3" class="outline-2">
-<h2 id="spreadsheet"><a id="org43944b3"></a><span class="section-number-2">6</span> 在Org表格中使用代码块</h2>
+<div id="outline-container-org2e89ed1" class="outline-2">
+<h2 id="spreadsheet"><a id="org2e89ed1"></a><span class="section-number-2">6</span> 在Org表格中使用代码块</h2>
 <div class="outline-text-2" id="text-spreadsheet">
 <p>
 除了可将表格中的数据作为参数传递给代码块和结果存储为表格外， <b>Babel</b> 还有第三种方式使用 <code>Org-mode</code> 表格。
@@ -1112,11 +1112,11 @@ HTML 导出的代码:
 </p>
 </div>
 
-<div id="outline-container-org535ef8c" class="outline-3">
-<h3 id="org535ef8c"><span class="section-number-3">6.1</span> 示例</h3>
+<div id="outline-container-orgb445d1e" class="outline-3">
+<h3 id="orgb445d1e"><span class="section-number-3">6.1</span> 示例</h3>
 <div class="outline-text-3" id="text-6-1">
-</div><div id="outline-container-org25322de" class="outline-4">
-<h4 id="org25322de"><span class="section-number-4">6.1.1</span> 示例 1: 使用R生成数据概要</h4>
+</div><div id="outline-container-org518bd29" class="outline-4">
+<h4 id="org518bd29"><span class="section-number-4">6.1.1</span> 示例 1: 使用R生成数据概要</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 将使用几个数字的平均值来填充 <code>Org-mode</code> 表中的一个单元格，来做简单示例。
@@ -1179,7 +1179,7 @@ HTML 导出的代码如下:
 <p>
 HTML export of code:
 </p>
-<table id="orgfb32a23" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org8bafd12" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -1203,8 +1203,8 @@ HTML export of code:
 </div>
 </div>
 
-<div id="outline-container-org5c782a1" class="outline-4">
-<h4 id="org5c782a1"><span class="section-number-4">6.1.2</span> 示例 2: Babel 的测试套件</h4>
+<div id="outline-container-org131873e" class="outline-4">
+<h4 id="org131873e"><span class="section-number-4">6.1.2</span> 示例 2: Babel 的测试套件</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <blockquote>
 <p>
@@ -1240,7 +1240,7 @@ While developing Babel, we used a suite of tests implemented as a large Org-mode
 <p>
 HTML 导出的代码:
 </p>
-<table id="org155619a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgae9282e" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -1325,7 +1325,7 @@ HTML 导出的代码:
 </table>
 </div>
 
-<ol class="org-ol"><li><a id="org3d85154"></a>用于测试的代码块<br><div class="outline-text-5" id="text-6-1-2-1">
+<ol class="org-ol"><li><a id="org25372ac"></a>用于测试的代码块<br><div class="outline-text-5" id="text-6-1-2-1">
 <p>
 <code>Org-mode</code> 文件中，如下所示：:
 </p>
@@ -1430,8 +1430,8 @@ HTML 导出代码，如下所示：:
 </div>
 </div>
 
-<div id="outline-container-org0d87f60" class="outline-2">
-<h2 id="library-of-babel"><a id="org0d87f60"></a><span class="section-number-2">7</span> Babel库文件</h2>
+<div id="outline-container-org8c2e6dd" class="outline-2">
+<h2 id="library-of-babel"><a id="org8c2e6dd"></a><span class="section-number-2">7</span> Babel库文件</h2>
 <div class="outline-text-2" id="text-library-of-babel">
 <p>
 (可参阅 <a href="http://orgmode.org/manual/Library-of-Babel.html#Library-of-Babel" target="_blank" rel="external">Org manual:Library-of-Babel</a>)
@@ -1472,8 +1472,8 @@ Babel预先填充(即把库中的代码块加载到缓冲区中)位于<a href="h
 </div>
 </div>
 
-<div id="outline-container-org44eb8e2" class="outline-2">
-<h2 id="literate-programming"><a id="org44eb8e2"></a><span class="section-number-2">8</span> 文学化编程</h2>
+<div id="outline-container-orgfd14a70" class="outline-2">
+<h2 id="literate-programming"><a id="orgfd14a70"></a><span class="section-number-2">8</span> 文学化编程</h2>
 <div class="outline-text-2" id="text-literate-programming">
 <blockquote>
 <p>
@@ -1522,11 +1522,11 @@ Babel支持 <a href="https://zh.wikipedia.org/wiki/%E6%96%87%E5%AD%A6%E7%BC%96%E
 </p>
 </div>
 
-<div id="outline-container-orgc9c5720" class="outline-3">
-<h3 id="orgc9c5720"><span class="section-number-3">8.1</span> <i>tangling</i> 的示例</h3>
+<div id="outline-container-org75e65f2" class="outline-3">
+<h3 id="org75e65f2"><span class="section-number-3">8.1</span> <i>tangling</i> 的示例</h3>
 <div class="outline-text-3" id="text-8-1">
-</div><div id="outline-container-org400cad7" class="outline-4">
-<h4 id="literate-programming-example"><a id="org400cad7"></a><span class="section-number-4">8.1.1</span> Simple Literate Programming Example (Noweb syntax)</h4>
+</div><div id="outline-container-orgd0df768" class="outline-4">
+<h4 id="literate-programming-example"><a id="orgd0df768"></a><span class="section-number-4">8.1.1</span> Simple Literate Programming Example (Noweb syntax)</h4>
 <div class="outline-text-4" id="text-literate-programming-example">
 <pre class="example">
 Tangling functionality is controlled by the =tangle= family of tangle
@@ -1609,8 +1609,8 @@ off (the default), either for the code block or the Org-mode heading level.
 </div>
 </div>
 
-<div id="outline-container-orga03976d" class="outline-4">
-<h4 id="emacs-initialization"><a id="orga03976d"></a><span class="section-number-4">8.1.2</span> 用Bable初始化Emacs</h4>
+<div id="outline-container-org98c7de0" class="outline-4">
+<h4 id="emacs-initialization"><a id="org98c7de0"></a><span class="section-number-4">8.1.2</span> 用Bable初始化Emacs</h4>
 <div class="outline-text-4" id="text-emacs-initialization">
 
 <div class="figure">
@@ -1636,7 +1636,7 @@ Org-babel-emacs-starter-kit.
 </p>
 </div>
 
-<ol class="org-ol"><li><a id="literate-emacs-init"></a><a id="org8528743"></a>优雅的Emacs初始化<br><div class="outline-text-5" id="text-literate-emacs-init">
+<ol class="org-ol"><li><a id="literate-emacs-init"></a><a id="org1f926ee"></a>优雅的Emacs初始化<br><div class="outline-text-5" id="text-literate-emacs-init">
 <p>
 请按照以下5个步骤进行操作：
 </p>
@@ -1668,8 +1668,8 @@ of this new directory;
 </div>
 </div>
 
-<div id="outline-container-orgfd8e6e2" class="outline-2">
-<h2 id="reproducable-research"><a id="orgfd8e6e2"></a><span class="section-number-2">9</span> 可重复性研究</h2>
+<div id="outline-container-org5c9a1ad" class="outline-2">
+<h2 id="reproducable-research"><a id="org5c9a1ad"></a><span class="section-number-2">9</span> 可重复性研究</h2>
 <div class="outline-text-2" id="text-reproducable-research">
 <blockquote>
 <p>
@@ -1727,7 +1727,7 @@ This mode will be familiar to Sweave users.
 
 </div>
 </div>
-Last Updated 2017-04-05 Wed 23:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-04-09 Sun 00:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1779,6 +1779,10 @@ Last Updated 2017-04-05 Wed 23:58.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/org-spreadsheet-lisp-formulas/" rel="prev" title="Org as a spreadsheet system: using Emacs lisp as formulas">
+                Org as a spreadsheet system: using Emacs lisp as formulas <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1850,7 +1854,7 @@ Last Updated 2017-04-05 Wed 23:58.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1872,7 +1876,7 @@ Last Updated 2017-04-05 Wed 23:58.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1927,7 +1931,7 @@ Last Updated 2017-04-05 Wed 23:58.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9239e1b"><span class="nav-text">2 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getting-started"><span class="nav-text">3 初始配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-blocks"><span class="nav-text">4 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-org"><span class="nav-text">4.1 代码块在 Org-mode 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-babel"><span class="nav-text">4.2 代码块在 Babel 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-execution"><span class="nav-text">5 源代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org051e4f0"><span class="nav-text">5.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgde88c0b"><span class="nav-text">5.1.1 Ruby</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org44cbb26"><span class="nav-text">5.1.2 Shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgbed47a5"><span class="nav-text">5.1.3 R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8e18485"><span class="nav-text">5.1.4 ditaa</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#results"><span class="nav-text">5.2 捕获代码执行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#results-value"><span class="nav-text">5.2.1 :results value (functional mode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#results-output"><span class="nav-text">5.2.2 :results output (scripting mode)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org69efff4"><span class="nav-text">5.3 基于会话的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments-to-source-code-blocks"><span class="nav-text">5.4 代码块的入参</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#using-a-code-block-as-a-function"><span class="nav-text">5.4.1 代码块作为函数的简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8999c0a"><span class="nav-text">5.4.2 Org-mode 表格作为入参的更复杂的示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4fc4dfd"><span class="nav-text">5.5 内联(In-line)的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga2b2a1a"><span class="nav-text">5.6 代码块扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta-programming-language"><span class="nav-text">5.7 Org-mode 的元编程语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spreadsheet"><span class="nav-text">6 在Org表格中使用代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org535ef8c"><span class="nav-text">6.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org25322de"><span class="nav-text">6.1.1 示例 1: 使用R生成数据概要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org5c782a1"><span class="nav-text">6.1.2 示例 2: Babel 的测试套件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library-of-babel"><span class="nav-text">7 Babel库文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#literate-programming"><span class="nav-text">8 文学化编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc9c5720"><span class="nav-text">8.1 tangling 的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#literate-programming-example"><span class="nav-text">8.1.1 Simple Literate Programming Example (Noweb syntax)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#emacs-initialization"><span class="nav-text">8.1.2 用Bable初始化Emacs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reproducable-research"><span class="nav-text">9 可重复性研究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org81aba47"><span class="nav-text">2 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getting-started"><span class="nav-text">3 初始配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-blocks"><span class="nav-text">4 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-org"><span class="nav-text">4.1 代码块在 Org-mode 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-babel"><span class="nav-text">4.2 代码块在 Babel 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-execution"><span class="nav-text">5 源代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd0a70b6"><span class="nav-text">5.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc8e8c47"><span class="nav-text">5.1.1 Ruby</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgf978908"><span class="nav-text">5.1.2 Shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgf2b254d"><span class="nav-text">5.1.3 R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgba8040e"><span class="nav-text">5.1.4 ditaa</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#results"><span class="nav-text">5.2 捕获代码执行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#results-value"><span class="nav-text">5.2.1 :results value (functional mode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#results-output"><span class="nav-text">5.2.2 :results output (scripting mode)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4ff7fdb"><span class="nav-text">5.3 基于会话的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments-to-source-code-blocks"><span class="nav-text">5.4 代码块的入参</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#using-a-code-block-as-a-function"><span class="nav-text">5.4.1 代码块作为函数的简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org2551ffc"><span class="nav-text">5.4.2 Org-mode 表格作为入参的更复杂的示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org47bcf49"><span class="nav-text">5.5 内联(In-line)的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org74f02d8"><span class="nav-text">5.6 代码块扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta-programming-language"><span class="nav-text">5.7 Org-mode 的元编程语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spreadsheet"><span class="nav-text">6 在Org表格中使用代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb445d1e"><span class="nav-text">6.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org518bd29"><span class="nav-text">6.1.1 示例 1: 使用R生成数据概要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org131873e"><span class="nav-text">6.1.2 示例 2: Babel 的测试套件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library-of-babel"><span class="nav-text">7 Babel库文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#literate-programming"><span class="nav-text">8 文学化编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org75e65f2"><span class="nav-text">8.1 tangling 的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#literate-programming-example"><span class="nav-text">8.1.1 Simple Literate Programming Example (Noweb syntax)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#emacs-initialization"><span class="nav-text">8.1.2 用Bable初始化Emacs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reproducable-research"><span class="nav-text">9 可重复性研究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,1390 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="org-table spreadsheet emacs-lisp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Introduction
+
+
+This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
+you want a general tutorial on how to use Org as a spreadsheet system, read
+this tutorial.  You can also">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Org as a spreadsheet system: using Emacs lisp as formulas">
+<meta property="og:url" content="https://brantou.github.io/2017/04/06/org-spreadsheet-lisp-formulas/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="Introduction
+
+
+This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
+you want a general tutorial on how to use Org as a spreadsheet system, read
+this tutorial.  You can also">
+<meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg">
+<meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table2.jpg">
+<meta property="og:updated_time" content="2017-04-07T08:44:23.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Org as a spreadsheet system: using Emacs lisp as formulas">
+<meta name="twitter:description" content="Introduction
+
+
+This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
+you want a general tutorial on how to use Org as a spreadsheet system, read
+this tutorial.  You can also">
+<meta name="twitter:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2017/04/06/org-spreadsheet-lisp-formulas/"/>
+
+
+
+
+
+  <title> Org as a spreadsheet system: using Emacs lisp as formulas | Brantou的日常 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">二三事</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/06/org-spreadsheet-lisp-formulas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Org as a spreadsheet system: using Emacs lisp as formulas
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T00:00:00+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+
+<div id="outline-container-orgdd78c2d" class="outline-2">
+<h2 id="orgdd78c2d">Introduction</h2>
+<div class="outline-text-2" id="text-orgdd78c2d">
+<p>
+This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
+you want a general tutorial on how to use Org as a spreadsheet system, read
+this tutorial.  You can also check the complete Org documentation on this
+topic<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3fc491e" class="outline-2">
+<h2 id="org3fc491e">Example 1: manipulate cells</h2>
+<div class="outline-text-2" id="text-org3fc491e">
+<p>
+Here is a simple table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">First name</th>
+<th scope="col" class="org-left">Last Name</th>
+<th scope="col" class="org-left">Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">John</td>
+<td class="org-left">Doe</td>
+<td class="org-left">john.doe@emacs.edu</td>
+</tr>
+
+<tr>
+<td class="org-left">Jennie</td>
+<td class="org-left">Duh</td>
+<td class="org-left">jennie.duh@emacs.edu</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+You easily notice the pattern <code>[firstname].[lastname]@emacs.edu</code> for the
+third column.  Given a first name and a last name, it should be easy to
+compute the result for the "Email" column.
+</p>
+
+<p>
+Okay, let's do it then.  First put your cursor in the third column:
+</p>
+
+
+<div class="figure">
+<p><img src="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg" alt="org-spreadsheet-table1.jpg">
+</p>
+</div>
+
+<p>
+Now type <code>C-c }</code> to display the table's coordinates.
+</p>
+
+<p>
+For each row, you want to concatenate the content of the first column
+(accessed with <code>$1</code>) to a string with a dot (".") to the cell of the second
+column (accessed with <code>$2</code>) and to the string "@emacs.edu".  In Emacs Lisp,
+you would write this:
+</p>
+
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="quoted">'(concat $<span class="number">1</span> <span class="string">"."</span> $<span class="number">2</span> <span class="string">"@emacs.edu"</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+Now copy this formula, type <code>C-c =</code> in the bottom right field to insert a
+<i>column formula</i><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and copy the formula here.  Hitting <code>RET</code> will
+immediately insert the result in this field (<code>Jack.Goody@emacs.edu</code>) and
+add the <code>#+TBLFM</code> line at the bottom of the table.
+</p>
+
+<p>
+<b>Caveat</b>: beware of the initial quote: the formula is the <i>expression
+itself</i>, not its value.  This expression will only have a meaning when the
+<code>$1</code> and <code>$2</code> references will be replaced by the right strings, an the
+expression will then by applied as a formula by pressing <code>C-c C-c</code> on
+<code>#+TBLFM</code>.
+</p>
+
+<p>
+So you now have this table:
+</p>
+
+
+<div class="figure">
+<p><img src="http://orgmode.org/worg/images/bzg/org-spreadsheet-table2.jpg" alt="org-spreadsheet-table2.jpg">
+</p>
+</div>
+
+<p>
+At the time the formula is evaluated, the references <code>$1</code> and <code>$2</code> are
+interpreted and replaced by the values of these cells <i>as strings</i>: you
+don't need to enclose <code>$1</code> with quotes ("$1").
+</p>
+
+<p>
+If you want to force the references (<code>$1</code> and <code>$2</code>) to be interpreted as
+numbers, add the flag <code>;N</code> at the end of the Emacs lisp expression.  See
+for example this table
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">First name</th>
+<th scope="col" class="org-left">Last Name</th>
+<th scope="col" class="org-right">Maths</th>
+<th scope="col" class="org-right">French</th>
+<th scope="col" class="org-right">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">John</td>
+<td class="org-left">Doe</td>
+<td class="org-right">12</td>
+<td class="org-right">16</td>
+<td class="org-right">14</td>
+</tr>
+
+<tr>
+<td class="org-left">Jennie</td>
+<td class="org-left">Duh</td>
+<td class="org-right">15</td>
+<td class="org-right">9</td>
+<td class="org-right">12</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+where we used this formula for the fifth column:
+</p>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+As an exercise, try to find Emacs lisp formula for the fifth column in this
+table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">First name</th>
+<th scope="col" class="org-left">Last Name</th>
+<th scope="col" class="org-right">Maths</th>
+<th scope="col" class="org-right">French</th>
+<th scope="col" class="org-left">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">John</td>
+<td class="org-left">Doe</td>
+<td class="org-right">12</td>
+<td class="org-right">16</td>
+<td class="org-left">John: 14</td>
+</tr>
+
+<tr>
+<td class="org-left">Jennie</td>
+<td class="org-left">Duh</td>
+<td class="org-right">15</td>
+<td class="org-right">9</td>
+<td class="org-left">Jennie: 12</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+All you have is the values of the first four columns.  (Hint: check the
+Emacs lisp functions <code>string-to-number</code> and <code>number-to-string</code>.)
+</p>
+
+<p>
+<b>Solution</b>: we cannot use the <code>;N</code> flag because it will force
+interpretation of the cells as numbers, and if we do so, we will not be
+able to access the value of cells in the first row.  So one idea is to
+use <code>string-to-number</code> and <code>number-to-string</code> this way:
+</p>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+Another idea is to use the <code>;L</code> flag: instead of using interpreting cells
+as strings or numbers, it inserts their content literally in the Emacs lisp
+expression.  So the formula above can safely be replaced by this more
+condensed one:
+</p>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+Note the double-quotes around "$1": that's because inserting a first name
+literally would mean "it is an Emacs lisp symbol".  So, when using the <code>;L</code>
+flag, adding double-quotes makes sure the reference is interpreted as a
+string.
+</p>
+
+<p>
+We're done!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org11d457b" class="outline-2">
+<h2 id="org11d457b">Example 2: manipulating ranges</h2>
+<div class="outline-text-2" id="text-org11d457b">
+<p>
+Suppose now we have this table
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Col1</th>
+<th scope="col" class="org-left">Col2</th>
+<th scope="col" class="org-left">Col3</th>
+<th scope="col" class="org-left">Col4</th>
+<th scope="col" class="org-left">Col5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">?</td>
+<td class="org-left">?</td>
+<td class="org-left">in Col1 and Col2 (no duplicates)</td>
+<td class="org-left">only in Col1</td>
+<td class="org-left">only in Col2</td>
+</tr>
+
+<tr>
+<td class="org-left">?</td>
+<td class="org-left">?</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">?</td>
+<td class="org-left">?</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+<td class="org-left">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>Col1</code> and <code>Col2</code> contain strings.
+</p>
+
+<p>
+We want the first cell of the third column to contain a string with all the
+strings that are in both <code>Col1</code> and <code>Col2</code>, with no duplicates.  <code>Col4</code>
+contains strings that are only in <code>Col1</code> (and not in <code>Col2</code>) whereas <code>Col5</code>
+contains strings that are only in <code>Col2</code> (and not in <code>Col1</code>).
+</p>
+
+<p>
+How to automate this with an Emacs lisp formula?
+</p>
+
+<p>
+Let's first figure out the result we want for a simple table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Col1</th>
+<th scope="col" class="org-left">Col2</th>
+<th scope="col" class="org-left">Col3</th>
+<th scope="col" class="org-left">Col4</th>
+<th scope="col" class="org-left">Col5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">a</td>
+<td class="org-left">a b c d</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Now let's get the values of the first column starting from the second row.
+</p>
+
+<p>
+The "a" on the top left cell can be accessed through the reference
+<code>@2$1</code>.  The "c" on the bottom left cell can be accessed through the
+reference <code>@5$1</code>.  The range of cells can then be accessed with
+<code>@2$1..@5$1</code>.
+</p>
+
+<p>
+Let's add this range in the first cell of <code>Col3</code>:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Col1</th>
+<th scope="col" class="org-left">Col2</th>
+<th scope="col" class="org-left">Col3</th>
+<th scope="col" class="org-left">Col4</th>
+<th scope="col" class="org-left">Col5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">a</td>
+<td class="org-left">a a b c</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Here is the formula:
+</p>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+How to read it?
+</p>
+
+<p>
+When interpreted, the range <code>@2$1..@5$1</code> is replaced by the values of the
+cells, separated with a space.  So <code>(list @2$1..@5$1)</code> becomes <code>(list "a"
+"a" "b" "c")</code> and the whole formula becomes
+</p>
+
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="quoted">'(mapconcat 'identity (list <span class="string">"a"</span> <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span>) <span class="string">" "</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+which basically means "Concatenate elements of ("a" "a" "b" "c") and add a
+single space between each of them".
+</p>
+
+<p>
+Let's generalize and say that we don't know how many rows our table
+contains.  The range <code>@2$1..@5$1</code> becomes <code>@2$1..@>$1</code> where <code>@></code> means
+"the last row" and <code>@>$1</code> "the last row in the first column".
+</p>
+
+<p>
+Remember: we want the third column to contain a string with all the strings
+that are in both <code>Col1</code> and <code>Col2</code>, with no duplicates.  Let's first list
+all values from <code>Col1</code> and <code>Col2</code> with <code>(list @2$1..@>$1 @2$2..@>$2)</code>, then
+delete duplicates like this <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>
+then put this expression in the one we already have above.
+</p>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Col1</th>
+<th scope="col" class="org-left">Col2</th>
+<th scope="col" class="org-left">Col3</th>
+<th scope="col" class="org-left">Col4</th>
+<th scope="col" class="org-left">Col5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">a</td>
+<td class="org-left">a b c d</td>
+<td class="org-left">?</td>
+<td class="org-left">?</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Okay.  Now that you know how to manipulate ranges, you can replace the "?"
+with the right formulas&#x2026;  remember: <code>Col4</code> contains strings that are only
+in <code>Col1</code> and not in <code>Col2</code>, whereas <code>Col5</code> contains strings that are only
+in <code>Col2</code> and not in <code>Col1</code>.  (Hint: you can write your own functions and
+use them in an Emacs lisp formula.)
+</p>
+
+<p>
+Don't forget that you can edit a table's formulas with by hitting C-c '
+anywhere on the table: it will open the formulas editor, which highlights
+references that the cursor is on (both in the formulas editor and in the
+table).  The formulas editor is really handy when you need to check that
+your references are correct.  Also, hitting <code>TAB</code> on a formulas in this
+editor will pretty-print the formula, which helps editing a lot !
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25a1060" class="outline-2">
+<h2 id="org25a1060">Conclusion</h2>
+<div class="outline-text-2" id="text-org25a1060">
+<p>
+Please check the Org manual for (condensed but accurate and up to date)
+information on using Lisp as formulas: see the manual online or as an Info
+page.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+If you are reading this tutorial from within Emacs, go to the
+spreadsheet section of the manual by clicking on this link:
+the spreadsheet.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Column formulas apply to the whole column, whereas Field formulas
+only apply to the current field.  Field formulas can be inserted by
+pressing <code>C-u C-c =</code> in a field.
+</p></div></div>
+
+
+</div>
+</div>
+Last Updated 2017-04-07 Fri 16:44.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/org-table-spreadsheet-emacs-lisp/" rel="tag"># org-table spreadsheet emacs-lisp</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/babel-intro/" rel="next" title="Babel: org-mode的多语言编程环境">
+                <i class="fa fa-chevron-left"></i> Babel: org-mode的多语言编程环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/org-lookups/" rel="prev" title="Org tutorial on table lookup functions">
+                Org tutorial on table lookup functions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
+               alt="Brantou" />
+          <p class="site-author-name" itemprop="name">Brantou</p>
+           
+              <p class="site-description motion-element" itemprop="description">The best time to plant a tree was 20 years ago. The second best time is now.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdd78c2d"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3fc491e"><span class="nav-text">Example 1: manipulate cells</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org11d457b"><span class="nav-text">Example 2: manipulating ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org25a1060"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
