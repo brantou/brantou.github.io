@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="org-mode table spreadsheet tutorial," />
 
 
 
@@ -134,8 +134,8 @@ bertrand
 
 he">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Brantou的日常">
-<meta property="og:url" content="https://brantou.github.io/2017/04/07/org-spreadsheet-intro/index.html">
+<meta property="og:title" content="使用org作为电子表格系统的简明教程">
+<meta property="og:url" content="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
 
@@ -179,9 +179,9 @@ bertrand
 he">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/reference_visualization.jpg">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/formulas_editor.jpg">
-<meta property="og:updated_time" content="2017-04-07T08:20:49.163Z">
+<meta property="og:updated_time" content="2017-04-08T16:11:50.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brantou的日常">
+<meta name="twitter:title" content="使用org作为电子表格系统的简明教程">
 <meta name="twitter:description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
 
 
@@ -250,13 +250,13 @@ he">
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/04/07/org-spreadsheet-intro/"/>
+  <link rel="canonical" href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/"/>
 
 
 
 
 
-  <title>  | Brantou的日常 </title>
+  <title> 使用org作为电子表格系统的简明教程 | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -395,7 +395,7 @@ he">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/07/org-spreadsheet-intro/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -416,7 +416,7 @@ he">
             
             
               
-                
+                使用org作为电子表格系统的简明教程
               
             
           </h1>
@@ -431,8 +431,8 @@ he">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T16:20:49+08:00">
-                2017-04-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T00:00:00+08:00">
+                2017-04-06
               </time>
             
 
@@ -441,6 +441,28 @@ he">
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -475,9 +497,9 @@ he">
 </p>
 </blockquote>
 
-<div id="outline-container-org44221dc" class="outline-2">
-<h2 id="org44221dc">序言</h2>
-<div class="outline-text-2" id="text-org44221dc">
+<div id="outline-container-org2ce82aa" class="outline-2">
+<h2 id="org2ce82aa">序言</h2>
+<div class="outline-text-2" id="text-org2ce82aa">
 <p>
 这篇简短的教程将介绍使用 <code>Org</code> 作为电子表格系统需要的基础知识。
 </p>
@@ -593,9 +615,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-org5581c79" class="outline-2">
-<h2 id="org5581c79">熟悉引用</h2>
-<div class="outline-text-2" id="text-org5581c79">
+<div id="outline-container-orgf6cd2f3" class="outline-2">
+<h2 id="orgf6cd2f3">熟悉引用</h2>
+<div class="outline-text-2" id="text-orgf6cd2f3">
 <p>
 先从每个学生的平均值开始。
 </p>
@@ -627,9 +649,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-org8dfe13a" class="outline-2">
-<h2 id="org8dfe13a">第一个公式</h2>
-<div class="outline-text-2" id="text-org8dfe13a">
+<div id="outline-container-org6984525" class="outline-2">
+<h2 id="org6984525">第一个公式</h2>
+<div class="outline-text-2" id="text-org6984525">
 <p>
 将光标放在（空） <code>[formula]</code> 单元格中, 然后在此字段中输入 <code>:=vmean（$2..$3）</code> 。
 该公式意味着：计算此行中第二（ <code>$2</code> ）到 第三（ <code>$3</code> ）单元格的字段平均值。
@@ -646,9 +668,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-orgb911502" class="outline-2">
-<h2 id="orgb911502">列公式和单元格公式</h2>
-<div class="outline-text-2" id="text-orgb911502">
+<div id="outline-container-org0bdd10b" class="outline-2">
+<h2 id="org0bdd10b">列公式和单元格公式</h2>
+<div class="outline-text-2" id="text-org0bdd10b">
 <p>
 经过上面的操作，表格变成了:
 </p>
@@ -761,9 +783,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-org0ae3bf7" class="outline-2">
-<h2 id="org0ae3bf7">交互的编辑公式</h2>
-<div class="outline-text-2" id="text-org0ae3bf7">
+<div id="outline-container-orgb5b7465" class="outline-2">
+<h2 id="orgb5b7465">交互的编辑公式</h2>
+<div class="outline-text-2" id="text-orgb5b7465">
 <p>
 我们可通过将公式直接插入到表格单元格的方式来定义它们：在一个字段中键入 <code>=</code> 开始列公式的定义，和键入 <code>:=</code> 开始一个单元格公式的定义。
 </p>
@@ -792,9 +814,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-orgadebedf" class="outline-2">
-<h2 id="orgadebedf">Calc和Elisp公式</h2>
-<div class="outline-text-2" id="text-orgadebedf">
+<div id="outline-container-org7ded4cd" class="outline-2">
+<h2 id="org7ded4cd">Calc和Elisp公式</h2>
+<div class="outline-text-2" id="text-org7ded4cd">
 <p>
 公式的默认语法是 <i>Calc</i> ，用于进行计算的 <i>GNU Emacs</i> 包。
 </p>
@@ -861,9 +883,9 @@ Ahem.  Let's parse this:
 </div>
 </div>
 
-<div id="outline-container-orga6e10e4" class="outline-2">
-<h2 id="orga6e10e4">调试公式</h2>
-<div class="outline-text-2" id="text-orga6e10e4">
+<div id="outline-container-orgd322fb1" class="outline-2">
+<h2 id="orgd322fb1">调试公式</h2>
+<div class="outline-text-2" id="text-orgd322fb1">
 <p>
 现在表格如下所示:
 </p>
@@ -943,9 +965,9 @@ Final:  5
 </div>
 </div>
 
-<div id="outline-container-org550029a" class="outline-2">
-<h2 id="org550029a">很多, 还有更多</h2>
-<div class="outline-text-2" id="text-org550029a">
+<div id="outline-container-orgac4268b" class="outline-2">
+<h2 id="orgac4268b">很多, 还有更多</h2>
+<div class="outline-text-2" id="text-orgac4268b">
 <p>
 使用 <code>Org</code> 作为电子表格系统非常容易上手。
 </p>
@@ -960,7 +982,7 @@ Final:  5
 </div>
 </div>
 
-Last Updated 2017-04-07 Fri 16:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-04-09 Sun 00:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -988,6 +1010,12 @@ Last Updated 2017-04-07 Fri 16:20.<br>Render by <a href="https://github.com/Code
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/org-mode-table-spreadsheet-tutorial/" rel="tag"># org-mode table spreadsheet tutorial</a>
+          
+        </div>
+      
 
       
         
@@ -997,8 +1025,8 @@ Last Updated 2017-04-07 Fri 16:20.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/06/org-lookups/" rel="next" title="Org tutorial on table lookup functions">
-                <i class="fa fa-chevron-left"></i> Org tutorial on table lookup functions
+              <a href="/2017/04/06/org-spreadsheet-lisp-formulas/" rel="next" title="Org as a spreadsheet system: using Emacs lisp as formulas">
+                <i class="fa fa-chevron-left"></i> Org as a spreadsheet system: using Emacs lisp as formulas
               </a>
             
           </div>
@@ -1006,6 +1034,10 @@ Last Updated 2017-04-07 Fri 16:20.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/org-lookups/" rel="prev" title="Org tutorial on table lookup functions">
+                Org tutorial on table lookup functions <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1154,7 +1186,7 @@ Last Updated 2017-04-07 Fri 16:20.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org44221dc"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5581c79"><span class="nav-text">熟悉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8dfe13a"><span class="nav-text">第一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb911502"><span class="nav-text">列公式和单元格公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0ae3bf7"><span class="nav-text">交互的编辑公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgadebedf"><span class="nav-text">Calc和Elisp公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga6e10e4"><span class="nav-text">调试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org550029a"><span class="nav-text">很多, 还有更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org2ce82aa"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf6cd2f3"><span class="nav-text">熟悉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6984525"><span class="nav-text">第一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0bdd10b"><span class="nav-text">列公式和单元格公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb5b7465"><span class="nav-text">交互的编辑公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7ded4cd"><span class="nav-text">Calc和Elisp公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd322fb1"><span class="nav-text">调试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgac4268b"><span class="nav-text">很多, 还有更多</span></a></li></ol></div>
             
 
           </div>
