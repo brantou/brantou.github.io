@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="org-table spreadsheet emacs-lisp," />
+  <meta name="keywords" content="org-table spreadsheet emacs-lisp tutorial," />
 
 
 
@@ -93,33 +93,48 @@
 
 
 
-<meta name="description" content="Introduction
+<meta name="description" content="原文Org as a spreadsheet system: using Emacs lisp as formulas, 由 Bastien  编辑，维护。本文只做学习之用。
 
 
-This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
-you want a general tutorial on how to use Org as a spreadsheet system, read
-this tutorial.  You can also che">
+
+
+序言
+
+
+本教程介绍如何在Org表中使用Emacs Lisp作为公式。
+如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读这个教程。
+还可以查看有关此主题的完整Org文档1。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Org as a spreadsheet system: using Emacs lisp as formulas">
+<meta property="og:title" content="Org电子表格系统--用Emacs lisp为公式">
 <meta property="og:url" content="https://brantou.github.io/2017/04/06/org-spreadsheet-lisp-formulas/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="Introduction
+<meta property="og:description" content="原文Org as a spreadsheet system: using Emacs lisp as formulas, 由 Bastien  编辑，维护。本文只做学习之用。
 
 
-This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
-you want a general tutorial on how to use Org as a spreadsheet system, read
-this tutorial.  You can also che">
+
+
+序言
+
+
+本教程介绍如何在Org表中使用Emacs Lisp作为公式。
+如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读这个教程。
+还可以查看有关此主题的完整Org文档1。">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table2.jpg">
-<meta property="og:updated_time" content="2017-04-08T16:16:04.050Z">
+<meta property="og:updated_time" content="2017-04-09T07:18:58.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Org as a spreadsheet system: using Emacs lisp as formulas">
-<meta name="twitter:description" content="Introduction
+<meta name="twitter:title" content="Org电子表格系统--用Emacs lisp为公式">
+<meta name="twitter:description" content="原文Org as a spreadsheet system: using Emacs lisp as formulas, 由 Bastien  编辑，维护。本文只做学习之用。
 
 
-This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
-you want a general tutorial on how to use Org as a spreadsheet system, read
-this tutorial.  You can also che">
+
+
+序言
+
+
+本教程介绍如何在Org表中使用Emacs Lisp作为公式。
+如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读这个教程。
+还可以查看有关此主题的完整Org文档1。">
 <meta name="twitter:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg">
 
 
@@ -154,7 +169,7 @@ this tutorial.  You can also che">
 
 
 
-  <title> Org as a spreadsheet system: using Emacs lisp as formulas | Brantou的日常 </title>
+  <title> Org电子表格系统--用Emacs lisp为公式 | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,7 +329,7 @@ this tutorial.  You can also che">
             
             
               
-                Org as a spreadsheet system: using Emacs lisp as formulas
+                Org电子表格系统--用Emacs lisp为公式
               
             
           </h1>
@@ -389,28 +404,31 @@ this tutorial.  You can also che">
       
         
 
-
-<div id="outline-container-org75fd6cf" class="outline-2">
-<h2 id="org75fd6cf">Introduction</h2>
-<div class="outline-text-2" id="text-org75fd6cf">
+<blockquote>
 <p>
-This tutorial explains how to use Emacs Lisp as formulas in Org tables.  If
-you want a general tutorial on how to use Org as a spreadsheet system, read
-this tutorial.  You can also check the complete Org documentation on this
-topic<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+原文<a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-lisp-formulas.html" target="_blank" rel="external">Org as a spreadsheet system: using Emacs lisp as formulas</a>, 由 <b>Bastien</b>  编辑，维护。本文只做学习之用。
+</p>
+</blockquote>
+
+<div id="outline-container-orgc1fb575" class="outline-2">
+<h2 id="orgc1fb575">序言</h2>
+<div class="outline-text-2" id="text-orgc1fb575">
+<p>
+本教程介绍如何在Org表中使用Emacs Lisp作为公式。
+如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读<a href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">这个教程</a>。
+还可以查看有关此主题的<a href="http://orgmode.org/manual/The-spreadsheet.html#The-spreadsheet" target="_blank" rel="external">完整Org文档</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。
 </p>
 
 <a id="more"></a>
 </div>
 </div>
 
-<div id="outline-container-org52ec358" class="outline-2">
-<h2 id="org52ec358">Example 1: manipulate cells</h2>
-<div class="outline-text-2" id="text-org52ec358">
+<div id="outline-container-org5efc708" class="outline-2">
+<h2 id="org5efc708">示例 1: 操纵单元格</h2>
+<div class="outline-text-2" id="text-org5efc708">
 <p>
-Here is a simple table:
+下面是一个简单的表格:
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -444,13 +462,12 @@ Here is a simple table:
 </table>
 
 <p>
-You easily notice the pattern <code>[firstname].[lastname]@emacs.edu</code> for the
-third column.  Given a first name and a last name, it should be easy to
-compute the result for the "Email" column.
+你会很容易就注意到第三列模式： <code>[firstname].[lastname]@emacs.edu</code> 。
+给出 <i>First name</i> 和 <i>Last name</i> ，很容易计算 <i>Email</i> 列的结果。
 </p>
 
 <p>
-Okay, let's do it then.  First put your cursor in the third column:
+首先将光标放在第三列中:
 </p>
 
 
@@ -460,37 +477,30 @@ Okay, let's do it then.  First put your cursor in the third column:
 </div>
 
 <p>
-Now type <code>C-c }</code> to display the table's coordinates.
+现在键入 <code>C-c }</code> 显示表的坐标(引用)。
 </p>
 
 <p>
-For each row, you want to concatenate the content of the first column
-(accessed with <code>$1</code>) to a string with a dot (".") to the cell of the second
-column (accessed with <code>$2</code>) and to the string "@emacs.edu".  In Emacs Lisp,
-you would write this:
+对于每一行，需要将第一列（使用 <code>$1</code> 访问）的内容连接到点（"."），然后连接到第二列（使用 <code>$2</code> 访问）的单元格, 最后连接到字符串 "@emacs.edu"。
+使用 <i>Emacs Lisp</i> 编写的公式如下所示:
 </p>
 
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="quoted">'(concat $<span class="number">1</span> <span class="string">"."</span> $<span class="number">2</span> <span class="string">"@emacs.edu"</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="quoted">'(concat (downcase $<span class="number">1</span>) <span class="string">"."</span> (downcase $<span class="number">2</span>) <span class="string">"@emacs.edu"</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-Now copy this formula, type <code>C-c =</code> in the bottom right field to insert a
-<i>column formula</i><sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> and copy the formula here.  Hitting <code>RET</code> will
-immediately insert the result in this field (<code>Jack.Goody@emacs.edu</code>) and
-add the <code>#+TBLFM</code> line at the bottom of the table.
+现在复制这个公式，在右下角的字段中键入 <code>C-c =</code> 来插入列公式<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>，然后粘贴公式。
+点击 <code>RET</code> 将立即将结果插入此单元格（ <code>jack.goody@emacs.edu</code> ），并在表格的底部添加 <code>＃+TBLFM</code> 行。
 </p>
 
 <p>
-<b>Caveat</b>: beware of the initial quote: the formula is the <i>expression
-itself</i>, not its value.  This expression will only have a meaning when the
-<code>$1</code> and <code>$2</code> references will be replaced by the right strings, an the
-expression will then by applied as a formula by pressing <code>C-c C-c</code> on
-<code>#+TBLFM</code>.
+警告：请注意初始引用 ( <i>initial quote</i> ) ：公式是表达式本身 (<i>expression itself</i>) ，而不是其值。
+当 <code>$1</code> 和 <code>$2</code> 引用将被正确的字符串替换时，该表达式将只有一个含义，然后通过在 <code>＃+TBLFM</code> 上键入 <code>C-c C-c</code> 来应用该表达式。
 </p>
 
 <p>
-So you now have this table:
+经过公式计算表格如下:
 </p>
 
 
@@ -500,17 +510,12 @@ So you now have this table:
 </div>
 
 <p>
-At the time the formula is evaluated, the references <code>$1</code> and <code>$2</code> are
-interpreted and replaced by the values of these cells <i>as strings</i>: you
-don't need to enclose <code>$1</code> with quotes ("$1").
+在执行公式时， <code>$1</code> 和 <code>$2</code> 将被解释并由这些单元格的值替换为字符串：不需要用 <code>"</code> 括起 <code>$1</code> 。
 </p>
 
 <p>
-If you want to force the references (<code>$1</code> and <code>$2</code>) to be interpreted as
-numbers, add the flag <code>;N</code> at the end of the Emacs lisp expression.  See
-for example this table
+如果需要强制 <code>$1</code> 和 <code>$2</code> 被解释为数字，请在 <i>Emacs lisp</i> 表达式的末尾添加标志 <code>;N</code> 。 参见下面表格:
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -554,7 +559,7 @@ for example this table
 </table>
 
 <p>
-where we used this formula for the fifth column:
+使用如下公式计算第五列:
 </p>
 
 <div class="org-src-container">
@@ -562,10 +567,8 @@ where we used this formula for the fifth column:
 </div>
 
 <p>
-As an exercise, try to find Emacs lisp formula for the fifth column in this
-table:
+作为一个练习，尝试写出下面表第五列的Emacs lisp公式:
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -609,52 +612,38 @@ table:
 </table>
 
 <p>
-All you have is the values of the first four columns.  (Hint: check the
-Emacs lisp functions <code>string-to-number</code> and <code>number-to-string</code>.)
+前四列的值是目前已知的，在此基础上构造出第五列。 （提示：参阅 <i>Emacs lisp</i> 函数 <code>string-to-number</code> 和 <code>number-to-string</code> 。）
 </p>
 
 <p>
-<b>Solution</b>: we cannot use the <code>;N</code> flag because it will force
-interpretation of the cells as numbers, and if we do so, we will not be
-able to access the value of cells in the first row.  So one idea is to
-use <code>string-to-number</code> and <code>number-to-string</code> this way:
+<b>解决方案</b> ：不能使用 <code>;N</code> 标志，因为它会强制将单元格解释为数字，如果这样做，将无法访问第一行单元格的值。
+所以一个方案就是使用 <code>string-to-number</code> 和 <code>number-to-string</code>, 如下所示：
 </p>
-
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-Another idea is to use the <code>;L</code> flag: instead of using interpreting cells
-as strings or numbers, it inserts their content literally in the Emacs lisp
-expression.  So the formula above can safely be replaced by this more
-condensed one:
+另一个解决方案是使用 <code>;L</code> 标志：单元格内容不是被直接解释成字符串或数字，而是直接插入到 <i>Emacs lisp</i> 表达式中。
+所以上面的公式可以安全地被下面这个更精简的代替：
 </p>
-
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-Note the double-quotes around "$1": that's because inserting a first name
-literally would mean "it is an Emacs lisp symbol".  So, when using the <code>;L</code>
-flag, adding double-quotes makes sure the reference is interpreted as a
-string.
-</p>
-
-<p>
-We're done!
+注意 <code>"$1"</code> 的双引号：因为在字面上插入 <i>First name</i> 将意味着 "it is an Emacs lisp symbol" 。
+所以，当使用 <code>;L</code> 标志时，添加双引号确保引用被解释为一个字符串。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge160f11" class="outline-2">
-<h2 id="orge160f11">Example 2: manipulating ranges</h2>
-<div class="outline-text-2" id="text-orge160f11">
+<div id="outline-container-orgd09819b" class="outline-2">
+<h2 id="orgd09819b">示例 2: 操纵行列区间</h2>
+<div class="outline-text-2" id="text-orgd09819b">
 <p>
-Suppose now we have this table
+假设有以下表格
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -706,24 +695,21 @@ Suppose now we have this table
 </table>
 
 <p>
-<code>Col1</code> and <code>Col2</code> contain strings.
+<code>Col1</code> 和 <code>Col2</code> 包含字符串。
 </p>
 
 <p>
-We want the first cell of the third column to contain a string with all the
-strings that are in both <code>Col1</code> and <code>Col2</code>, with no duplicates.  <code>Col4</code>
-contains strings that are only in <code>Col1</code> (and not in <code>Col2</code>) whereas <code>Col5</code>
-contains strings that are only in <code>Col2</code> (and not in <code>Col1</code>).
+第三列的第一个单元格包含一个字符串，这个字符串由 <code>Col1</code> 和 <code>Col2</code> 中的所有字符串去重后组成。
+<code>Col4</code> 包含仅在 <code>Col1</code> （不在 <code>Col2</code> ）中的字符串，而 <code>Col5</code> 包含仅在 <code>Col2</code> （不在 <code>Col1</code> ）中的字符串。
 </p>
 
 <p>
-How to automate this with an Emacs lisp formula?
+如何使用Emacs lisp公式来自动计算出结果？
 </p>
 
 <p>
-Let's first figure out the result we want for a simple table:
+首先弄清楚想要的结果:
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -783,20 +769,16 @@ Let's first figure out the result we want for a simple table:
 </table>
 
 <p>
-Now let's get the values of the first column starting from the second row.
+现在从第二行开始获取第一列的值。
 </p>
 
 <p>
-The "a" on the top left cell can be accessed through the reference
-<code>@2$1</code>.  The "c" on the bottom left cell can be accessed through the
-reference <code>@5$1</code>.  The range of cells can then be accessed with
-<code>@2$1..@5$1</code>.
+可通过引用 <code>@2$1</code> 访问左上角单元格中的“a”。 可通过引用 <code>@5$1</code> 访问左下方单元格上的“c”。 然后可使用 <code>@2$1..@5$1</code> 访问单元格区间内值。
 </p>
 
 <p>
-Let's add this range in the first cell of <code>Col3</code>:
+将上面获取的区间添加到 <code>Col3</code> 的第一个单元格中:
 </p>
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -856,44 +838,37 @@ Let's add this range in the first cell of <code>Col3</code>:
 </table>
 
 <p>
-Here is the formula:
+公式如下:
 </p>
-
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-How to read it?
+公式要怎么解读呢?
 </p>
 
 <p>
-When interpreted, the range <code>@2$1..@5$1</code> is replaced by the values of the
-cells, separated with a space.  So <code>(list @2$1..@5$1)</code> becomes <code>(list "a"
-"a" "b" "c")</code> and the whole formula becomes
+解释时，区间 <code>@2$1..@5$1</code> 由单元格的值替换，并用空格分隔。
+所以 <code>(list @2$1..@5$1)</code> 变成 <code>(list "a" "a" "b" "c")</code> ，整个公式变成
 </p>
-
 <div class="org-src-container">
 <figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="quoted">'(mapconcat 'identity (list <span class="string">"a"</span> <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span>) <span class="string">" "</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-which basically means "Concatenate elements of ("a" "a" "b" "c") and add a
-single space between each of them".
+上面的公式大体意味着的连接 <code>("a" "a" "b" "c")</code> 中元素，并在每个元素之间添加一个空格。
 </p>
 
 <p>
-Let's generalize and say that we don't know how many rows our table
-contains.  The range <code>@2$1..@5$1</code> becomes <code>@2$1..@>$1</code> where <code>@></code> means
-"the last row" and <code>@>$1</code> "the last row in the first column".
+把问题更一般话，我很可能不知道表包含多少行。
+区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@>$1</code> 其中 <code>@></code> 表示“最后一行”， <code>@>$1</code> 表示“第一列的最后一行”。
 </p>
 
 <p>
-Remember: we want the third column to contain a string with all the strings
-that are in both <code>Col1</code> and <code>Col2</code>, with no duplicates.  Let's first list
-all values from <code>Col1</code> and <code>Col2</code> with <code>(list @2$1..@>$1 @2$2..@>$2)</code>, then
-delete duplicates like this <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>
-then put this expression in the one we already have above.
+记住：我们希望第三列包含一个字符串，这个字符串由 <code>Col1</code> 和 <code>Col2</code> 中的所有字符串去重后组成。
+首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@>$1 @2$2..@>$2)</code> ，
+然后删除重复项 <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>, 最后把这个表达式放在上面已有的表达式中。
 </p>
 
 <div class="org-src-container">
@@ -928,8 +903,8 @@ then put this expression in the one we already have above.
 <td class="org-left">a</td>
 <td class="org-left">a</td>
 <td class="org-left">a b c d</td>
-<td class="org-left">?</td>
-<td class="org-left">?</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
 </tr>
 
 <tr>
@@ -959,31 +934,32 @@ then put this expression in the one we already have above.
 </table>
 
 <p>
-Okay.  Now that you know how to manipulate ranges, you can replace the "?"
-with the right formulas&#x2026;  remember: <code>Col4</code> contains strings that are only
-in <code>Col1</code> and not in <code>Col2</code>, whereas <code>Col5</code> contains strings that are only
-in <code>Col2</code> and not in <code>Col1</code>.  (Hint: you can write your own functions and
-use them in an Emacs lisp formula.)
+好的。 现在你已经知道如何操纵区间，你可以用正确的公式替换 "?"了&#x2026;
+记住： <code>Col4</code> 包含仅在 <code>Col1</code> 中而不在 <code>Col2</code> 中的字符串，而 <code>Col5</code> 包含仅在 <code>Col2</code> 中而不在 <code>Col1</code> 中的字符串。
+(注：可以编写自己的函数并在 <i>Emacs lisp</i> 公式中使用它们)
 </p>
 
 <p>
-Don't forget that you can edit a table's formulas with by hitting C-c '
-anywhere on the table: it will open the formulas editor, which highlights
-references that the cursor is on (both in the formulas editor and in the
-table).  The formulas editor is really handy when you need to check that
-your references are correct.  Also, hitting <code>TAB</code> on a formulas in this
-editor will pretty-print the formula, which helps editing a lot !
+<code>Col4</code> 和 <code>Col5</code> 的公式如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4='(apply 'concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5='(apply 'concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+不要忘记，可以通过在表上的任何位置点击 <code>C-c '</code> 来编辑表的公式：
+它将打开公式编辑器，并突出显示光标所在的引用（在公式编辑器和表中）。
+当需要检查引用是否正确时，公式编辑器非常方便。
+此外，在该编辑器中的公式上点击 <code>TAB</code> 将格式化公式，这样更有助于公式编辑！
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfa6aed4" class="outline-2">
-<h2 id="orgfa6aed4">Conclusion</h2>
-<div class="outline-text-2" id="text-orgfa6aed4">
+<div id="outline-container-org634fd05" class="outline-2">
+<h2 id="org634fd05">结论</h2>
+<div class="outline-text-2" id="text-org634fd05">
 <p>
-Please check the Org manual for (condensed but accurate and up to date)
-information on using Lisp as formulas: see the manual online or as an Info
-page.
+请浏览Org手册（精简但准确和最新）使用Lisp作为公式的信息：请参阅<a href="http://orgmode.org/manual/Formula-syntax-for-Lisp.html" target="_blank" rel="external">在线手册</a> 和 <a href="http://orgmode.org/org.html#Formula-syntax-for-Lisp" target="_blank" rel="external">相关信息页</a>。
 </p>
 </div>
 </div>
@@ -992,21 +968,17 @@ page.
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
-If you are reading this tutorial from within Emacs, go to the
-spreadsheet section of the manual by clicking on this link:
-the spreadsheet.
+如果在Emacs中阅读本教程，请浏览手册的电子表格部分，点击链接：<a href="http://orgmode.org/org.html#The-spreadsheet" target="_blank" rel="external">电子表格</a>。
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
-Column formulas apply to the whole column, whereas Field formulas
-only apply to the current field.  Field formulas can be inserted by
-pressing <code>C-u C-c =</code> in a field.
+列公式适用于整个列，而单元格公式仅适用于当前单元格。 可以通过在字段中按 <code>C-u C-c =</code> 来插入单元格公式。
 </p></div></div>
 
 
 </div>
 </div>
-Last Updated 2017-04-09 Sun 00:16.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-04-09 Sun 15:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1036,7 +1008,7 @@ Last Updated 2017-04-09 Sun 00:16.<br>Render by <a href="https://github.com/Code
       
         <div class="post-tags">
           
-            <a href="/tags/org-table-spreadsheet-emacs-lisp/" rel="tag"># org-table spreadsheet emacs-lisp</a>
+            <a href="/tags/org-table-spreadsheet-emacs-lisp-tutorial/" rel="tag"># org-table spreadsheet emacs-lisp tutorial</a>
           
         </div>
       
@@ -1059,8 +1031,8 @@ Last Updated 2017-04-09 Sun 00:16.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/06/org-spreadsheet-intro/" rel="prev" title="使用org作为电子表格系统的简明教程">
-                使用org作为电子表格系统的简明教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/06/org-spreadsheet-intro/" rel="prev" title="Org电子表格系统的简明教程">
+                Org电子表格系统的简明教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1155,7 +1127,7 @@ Last Updated 2017-04-09 Sun 00:16.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1210,7 +1182,7 @@ Last Updated 2017-04-09 Sun 00:16.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org75fd6cf"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org52ec358"><span class="nav-text">Example 1: manipulate cells</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge160f11"><span class="nav-text">Example 2: manipulating ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfa6aed4"><span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc1fb575"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5efc708"><span class="nav-text">示例 1: 操纵单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd09819b"><span class="nav-text">示例 2: 操纵行列区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org634fd05"><span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
