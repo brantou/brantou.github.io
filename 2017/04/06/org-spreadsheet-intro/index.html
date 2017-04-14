@@ -179,7 +179,7 @@ bertrand
 he">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/reference_visualization.jpg">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/formulas_editor.jpg">
-<meta property="og:updated_time" content="2017-04-09T15:26:12.394Z">
+<meta property="og:updated_time" content="2017-04-14T03:49:53.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Org电子表格系统的简明教程">
 <meta name="twitter:description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
@@ -497,9 +497,9 @@ he">
 </p>
 </blockquote>
 
-<div id="outline-container-org484f8dc" class="outline-2">
-<h2 id="org484f8dc">序言</h2>
-<div class="outline-text-2" id="text-org484f8dc">
+<div id="outline-container-org08d9984" class="outline-2">
+<h2 id="org08d9984">序言</h2>
+<div class="outline-text-2" id="text-org08d9984">
 <p>
 这篇简短的教程将介绍使用 <code>Org</code> 作为电子表格系统需要的基础知识。
 </p>
@@ -615,9 +615,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-orge4ec52a" class="outline-2">
-<h2 id="orge4ec52a">熟悉引用</h2>
-<div class="outline-text-2" id="text-orge4ec52a">
+<div id="outline-container-org33bd4e5" class="outline-2">
+<h2 id="org33bd4e5">熟悉引用</h2>
+<div class="outline-text-2" id="text-org33bd4e5">
 <p>
 先从每个学生的平均值开始。
 </p>
@@ -649,13 +649,13 @@ he">
 </div>
 </div>
 
-<div id="outline-container-orgc409bcb" class="outline-2">
-<h2 id="orgc409bcb">第一个公式</h2>
-<div class="outline-text-2" id="text-orgc409bcb">
+<div id="outline-container-org8ede56f" class="outline-2">
+<h2 id="org8ede56f">第一个公式</h2>
+<div class="outline-text-2" id="text-org8ede56f">
 <p>
 将光标放在（空） <code>[formula]</code> 单元格中, 然后在此字段中输入 <code>:=vmean（$2..$3）</code> 。
 该公式意味着：计算此行中第二（ <code>$2</code> ）到 第三（ <code>$3</code> ）单元格的字段平均值。
-如果喜欢其他符号，请输入 <code>:=vmean(B&..C&)</code> &#x2013; 其中 <code>&</code> 字符代表在这一行。
+如果喜欢其他符号，请输入 <code>:=vmean(B&amp;..C&amp;)</code> &#x2013; 其中 <code>&amp;</code> 字符代表在这一行。
 </p>
 
 <p>
@@ -668,9 +668,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-orgd8e3596" class="outline-2">
-<h2 id="orgd8e3596">列公式和单元格公式</h2>
-<div class="outline-text-2" id="text-orgd8e3596">
+<div id="outline-container-orgbc1db01" class="outline-2">
+<h2 id="orgbc1db01">列公式和单元格公式</h2>
+<div class="outline-text-2" id="text-orgbc1db01">
 <p>
 经过上面的操作，表格变成了:
 </p>
@@ -783,9 +783,9 @@ he">
 </div>
 </div>
 
-<div id="outline-container-org5ad4a95" class="outline-2">
-<h2 id="org5ad4a95">交互的编辑公式</h2>
-<div class="outline-text-2" id="text-org5ad4a95">
+<div id="outline-container-orgd372901" class="outline-2">
+<h2 id="orgd372901">交互的编辑公式</h2>
+<div class="outline-text-2" id="text-orgd372901">
 <p>
 我们可通过将公式直接插入到表格单元格的方式来定义它们：在一个字段中键入 <code>=</code> 开始列公式的定义，和键入 <code>:=</code> 开始一个单元格公式的定义。
 </p>
@@ -799,7 +799,7 @@ he">
 </p>
 
 <p>
-当光标在引用上方时，表中的相应字段将突出显示。 很好！ 但可以做的更多：可以使用 <code>S-<left right="" up="" down=""></left></code> 键实际选择引用。
+当光标在引用上方时，表中的相应字段将突出显示。 很好！ 但可以做的更多：可以使用 <code>S-&lt;left/right/up/down&gt;</code> 键实际选择引用。
 </p>
 
 
@@ -809,14 +809,14 @@ he">
 </div>
 
 <p>
-注：不用担心使用 <code>M-<left right=""></left></code> 左右移动列或 <code>M-<up down=""></up></code> 上下移动行会混淆 <code>＃+TBLFM</code> 行中的引用，因为每次移动都会自动更新引用。
+注：不用担心使用 <code>M-&lt;left/right&gt;</code> 左右移动列或 <code>M-&lt;up/down&gt;</code> 上下移动行会混淆 <code>＃+TBLFM</code> 行中的引用，因为每次移动都会自动更新引用。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbb3fce3" class="outline-2">
-<h2 id="orgbb3fce3">Calc和Elisp公式</h2>
-<div class="outline-text-2" id="text-orgbb3fce3">
+<div id="outline-container-org15a6064" class="outline-2">
+<h2 id="org15a6064">Calc和Elisp公式</h2>
+<div class="outline-text-2" id="text-org15a6064">
 <p>
 公式的默认语法是 <i>Calc</i> ，用于进行计算的 <i>GNU Emacs</i> 包。
 </p>
@@ -883,9 +883,9 @@ Ahem.  Let's parse this:
 </div>
 </div>
 
-<div id="outline-container-org7152309" class="outline-2">
-<h2 id="org7152309">调试公式</h2>
-<div class="outline-text-2" id="text-org7152309">
+<div id="outline-container-org3594c05" class="outline-2">
+<h2 id="org3594c05">调试公式</h2>
+<div class="outline-text-2" id="text-org3594c05">
 <p>
 现在表格如下所示:
 </p>
@@ -951,9 +951,9 @@ Ahem.  Let's parse this:
 <pre class="example">
 Substitution history of formula
 Orig:   '(substring (number-to-string $pi) (round $4) (1+ (round $4)));N
-$xyz->  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
-@r$c->  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
-$1->    '(substring (number-to-string 3.14159265358979323846) (round 11) (1+ (round 11)))
+$xyz-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+@r$c-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+$1-&gt;    '(substring (number-to-string 3.14159265358979323846) (round 11) (1+ (round 11)))
 Result: 5
 Format: NONE
 Final:  5
@@ -965,9 +965,9 @@ Final:  5
 </div>
 </div>
 
-<div id="outline-container-orgcff7063" class="outline-2">
-<h2 id="orgcff7063">很多, 还有更多</h2>
-<div class="outline-text-2" id="text-orgcff7063">
+<div id="outline-container-org6c3ae08" class="outline-2">
+<h2 id="org6c3ae08">很多, 还有更多</h2>
+<div class="outline-text-2" id="text-org6c3ae08">
 <p>
 使用 <code>Org</code> 作为电子表格系统非常容易上手。
 </p>
@@ -982,7 +982,7 @@ Final:  5
 </div>
 </div>
 
-Last Updated 2017-04-09 Sun 23:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-04-14 Fri 11:49.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1137,7 +1137,7 @@ Last Updated 2017-04-09 Sun 23:26.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1192,7 +1192,7 @@ Last Updated 2017-04-09 Sun 23:26.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org484f8dc"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge4ec52a"><span class="nav-text">熟悉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc409bcb"><span class="nav-text">第一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd8e3596"><span class="nav-text">列公式和单元格公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5ad4a95"><span class="nav-text">交互的编辑公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbb3fce3"><span class="nav-text">Calc和Elisp公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7152309"><span class="nav-text">调试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcff7063"><span class="nav-text">很多, 还有更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org08d9984"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org33bd4e5"><span class="nav-text">熟悉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8ede56f"><span class="nav-text">第一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbc1db01"><span class="nav-text">列公式和单元格公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd372901"><span class="nav-text">交互的编辑公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org15a6064"><span class="nav-text">Calc和Elisp公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3594c05"><span class="nav-text">调试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6c3ae08"><span class="nav-text">很多, 还有更多</span></a></li></ol></div>
             
 
           </div>
