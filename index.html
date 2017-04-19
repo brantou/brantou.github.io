@@ -299,7 +299,7 @@
               
                 
                 <a class="post-title-link" href="/2017/04/14/org-column-view-tutorial/" itemprop="url">
-                  Emacs Org's Column View
+                  Org的列视图(Column View)
                 </a>
               
             
@@ -376,25 +376,86 @@
         
           <blockquote>
 <p>
-A short introduction to Org's column view by Bastien Guerry.
-</p>
-
-<p>
-<i>Oct, 15th 2007</i>
+原文<a href="http://orgmode.org/worg/org-tutorials/org-column-view-tutorial.html">Emacs Org's Column View</a>, 由 <b>Bastien Guerry</b>  编辑，维护。本文只做学习之用。
 </p>
 </blockquote>
 
+<div id="outline-container-org329003e" class="outline-2">
+<h2 id="org329003e">简介：默认列视图</h2>
+<div class="outline-text-2" id="text-org329003e">
 <p>
-Please check the screencast demonstrating some of the possibilities I'm
-discussing here.
+首先按 <code>C-c C-x C-c</code> 打开默认列视图, 将每个 <i>outline item</i> 转换成一个显示其某些属性的表格行。
+</p>
+
+
+<div class="figure">
+<p><img src="http://orgmode.org/worg/images/thumbs/org-col-default-view.png" alt="org-col-default-view.png">
+</p>
+</div>
+
+<p>
+只可以在列视图起作用的条目上，按 <i>q</i> 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视图。
 </p>
 
 <p>
-Also note that the column view feature is not available for Org &lt; 5.01,
-Hence this feature is not in Emacs 22.1 (which comes with Org 4.67c.)
-Since Org is actively developed, it's always a good idea to upgrade to
-the latest version.
+第一个标题现在是一列显示属性的可浏览列。
+缓冲区的第一个突出显示的行简要地告诉你在每个列中显示什么属性。 在这个截图中，它显示：
 </p>
+<pre class="example">
+ITEM for the headline title
+  T for the TODO keyword
+  P for the priority cookie
+  T for the tags
+</pre>
+
+<p>
+默认列仅显示 当前条目的内容（标题内容） ，/TODO/ 状态，
+当前条目的优先级及其标签，稍后将看到如何添加自己的其他属性。
+</p>
+
+<p>
+此默认设置由变量 <code>org-columns-default-format</code> 所定义的，该全局值为：
+</p>
+<pre class="example">
+#+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Element</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">%25ITEM</td>
+<td class="org-left">display the item in a 25-characters-width field</td>
+</tr>
+
+<tr>
+<td class="org-left">%TODO</td>
+<td class="org-left">display the TODO state of the item</td>
+</tr>
+
+<tr>
+<td class="org-left">%3PRIORITY</td>
+<td class="org-left">display the priority in a 3-chars-width field</td>
+</tr>
+
+<tr>
+<td class="org-left">%TAGS</td>
+<td class="org-left">display the tags of the entry</td>
+</tr>
+</tbody>
+</table>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/14/org-column-view-tutorial/#more" rel="contents">
