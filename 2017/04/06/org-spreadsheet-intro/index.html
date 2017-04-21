@@ -698,7 +698,7 @@ he">
 <p>
 将光标放在（空） <code>[formula]</code> 单元格中, 然后在此字段中输入 <code>:=vmean（$2..$3）</code> 。
 该公式意味着：计算此行中第二（ <code>$2</code> ）到 第三（ <code>$3</code> ）单元格的字段平均值。
-如果喜欢其他符号，请输入 <code>:=vmean(B&..C&)</code> &#x2013; 其中 <code>&</code> 字符代表在这一行。
+如果喜欢其他符号，请输入 <code>:=vmean(B&amp;..C&amp;)</code> &#x2013; 其中 <code>&amp;</code> 字符代表在这一行。
 </p>
 
 <p>
@@ -842,7 +842,7 @@ he">
 </p>
 
 <p>
-当光标在引用上方时，表中的相应字段将突出显示。 很好！ 但可以做的更多：可以使用 <code>S-<left right="" up="" down=""></left></code> 键实际选择引用。
+当光标在引用上方时，表中的相应字段将突出显示。 很好！ 但可以做的更多：可以使用 <code>S-&lt;left/right/up/down&gt;</code> 键实际选择引用。
 </p>
 
 
@@ -852,7 +852,7 @@ he">
 </div>
 
 <p>
-注：不用担心使用 <code>M-<left right=""></left></code> 左右移动列或 <code>M-<up down=""></up></code> 上下移动行会混淆 <code>＃+TBLFM</code> 行中的引用，因为每次移动都会自动更新引用。
+注：不用担心使用 <code>M-&lt;left/right&gt;</code> 左右移动列或 <code>M-&lt;up/down&gt;</code> 上下移动行会混淆 <code>＃+TBLFM</code> 行中的引用，因为每次移动都会自动更新引用。
 </p>
 </div>
 </div>
@@ -994,9 +994,9 @@ Ahem.  Let's parse this:
 <pre class="example">
 Substitution history of formula
 Orig:   '(substring (number-to-string $pi) (round $4) (1+ (round $4)));N
-$xyz->  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
-@r$c->  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
-$1->    '(substring (number-to-string 3.14159265358979323846) (round 11) (1+ (round 11)))
+$xyz-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+@r$c-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+$1-&gt;    '(substring (number-to-string 3.14159265358979323846) (round 11) (1+ (round 11)))
 Result: 5
 Format: NONE
 Final:  5

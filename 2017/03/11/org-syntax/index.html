@@ -998,7 +998,7 @@ CLOCK: TIMESTAMP DURATION
 </p>
 
 <pre class="example">
-=> HH:MM
+=&gt; HH:MM
 </pre>
 
 <p>
@@ -1471,10 +1471,10 @@ SPACE can contain any number of tabs and spaces, including 0.
 
 <pre class="example">
 PRE1 RADIO POST1          ("radio" link)
-<protocol:path>           ("angle" link)
+&lt;PROTOCOL:PATH&gt;           ("angle" link)
 PRE2 PROTOCOL:PATH2 POST2 ("plain" link)
 [[PATH3]DESCRIPTION]      ("regular" link)
-</protocol:path></pre>
+</pre>
 
 <p>
 <b>PRE1</b> 和 <b>POST1</b> （如果存在）是非字母数字字符。
@@ -1489,7 +1489,7 @@ PRE2 PROTOCOL:PATH2 POST2 ("plain" link)
 </p>
 
 <p>
-<b>PATH</b> 可以包含除了 <code>]</code>, <code><</code>, <code>></code> 和 <code>\n</code> 以外的任何字符。
+<b>PATH</b> 可以包含除了 <code>]</code>, <code>&lt;</code>, <code>&gt;</code> 和 <code>\n</code> 以外的任何字符。
 </p>
 
 <p>
@@ -1497,7 +1497,7 @@ PRE2 PROTOCOL:PATH2 POST2 ("plain" link)
 </p>
 
 <p>
-<b>PATH2</b> 可以包含除了 <code>(</code>, <code>)</code>, <code><</code> 和 <code>></code> 之外的任何非空字符。 它必须以字组成字符结尾，或任何非空格 非标点符号后面跟着 <code>/</code> 。
+<b>PATH2</b> 可以包含除了 <code>(</code>, <code>)</code>, <code>&lt;</code> 和 <code>&gt;</code> 之外的任何非空字符。 它必须以字组成字符结尾，或任何非空格 非标点符号后面跟着 <code>/</code> 。
 </p>
 
 <p>
@@ -1585,11 +1585,11 @@ I also suggest to remove <code>org-link-types</code> dependency in PROTOCOL and 
 </p>
 
 <pre class="example">
-<<<contents>>>
-</contents></pre>
+&lt;&lt;&lt;CONTENTS&gt;&gt;&gt;
+</pre>
 
 <p>
-<b>CONTENTS</b> 可以是除了 <code><</code>, <code>></code> 和 <code>\n</code> 之外的任何字符。 它不能以空格字符开始或结束。 作为 <code>objects</code> 而言，它只可以包含 <a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> 和 <a href="#Subscript_and_Superscript">superscript</a>。
+<b>CONTENTS</b> 可以是除了 <code>&lt;</code>, <code>&gt;</code> 和 <code>\n</code> 之外的任何字符。 它不能以空格字符开始或结束。 作为 <code>objects</code> 而言，它只可以包含 <a href="#Entities_and_LaTeX_Fragments">entities</a>, <a href="#Entities_and_LaTeX_Fragments">latex fragments</a>, <a href="#Subscript_and_Superscript">subscript</a> 和 <a href="#Subscript_and_Superscript">superscript</a>。
 </p>
 
 <p>
@@ -1597,11 +1597,11 @@ I also suggest to remove <code>org-link-types</code> dependency in PROTOCOL and 
 </p>
 
 <pre class="example">
-<<target>>
-</target></pre>
+&lt;&lt;TARGET&gt;&gt;
+</pre>
 
 <p>
-<b>TARGET</b> 可以是除了 <code><</code>, <code>></code> 和 <code>\n</code> 之外的任何字符。 不能包含任何 <code>Objects</code> .
+<b>TARGET</b> 可以是除了 <code>&lt;</code>, <code>&gt;</code> 和 <code>\n</code> 之外的任何字符。 不能包含任何 <code>Objects</code> .
 </p>
 </div>
 </div>
@@ -1709,17 +1709,17 @@ SPACES包含任意数量的空格字符，包括零。 它可用于正确对齐�
 </p>
 
 <pre class="example">
-<%%(sexp)>                                   (diary)
-<date time="" repeater-or-delay="">                                  (active)
+&lt;%%(SEXP)&gt;                                   (diary)
+&lt;DATE TIME REPEATER-OR-DELAY&gt;                                  (active)
 [DATE TIME REPEATER-OR-DELAY]                                  (inactive)
-<date time="" repeater-or-delay="">--<date time="" repeater-or-delay="">   (active range)
-<date time-time="" repeater-or-delay="">                             (active range)
+&lt;DATE TIME REPEATER-OR-DELAY&gt;--&lt;DATE TIME REPEATER-OR-DELAY&gt;   (active range)
+&lt;DATE TIME-TIME REPEATER-OR-DELAY&gt;                             (active range)
 [DATE TIME REPEATER-OR-DELAY]--[DATE TIME REPEATER-OR-DELAY]   (inactive range)
 [DATE TIME-TIME REPEATER-OR-DELAY]                             (inactive range)
-</date></date></date></date></%%(sexp)></pre>
+</pre>
 
 <p>
-<b>SEXP</b> 可以包含除了 <code>></code> 和 <code>\n</code> 之外任何字符。
+<b>SEXP</b> 可以包含除了 <code>&gt;</code> 和 <code>\n</code> 之外任何字符。
 </p>
 
 <p>
@@ -1731,7 +1731,7 @@ YYYY-MM-DD DAYNAME
 </pre>
 
 <p>
-<b>Y</b> ，*M* 和 <b>D</b> 是数字。 DAYNAME可以包含除 <code>+</code>, <code>-</code>, <code>]</code>, <code>></code>, 数字 和 <code>\n</code> 之外的任何非空白字符。
+<b>Y</b> ，*M* 和 <b>D</b> 是数字。 DAYNAME可以包含除 <code>+</code>, <code>-</code>, <code>]</code>, <code>&gt;</code>, 数字 和 <code>\n</code> 之外的任何非空白字符。
 </p>
 
 <p>

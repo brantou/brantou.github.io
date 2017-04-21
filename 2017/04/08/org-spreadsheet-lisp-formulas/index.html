@@ -606,7 +606,7 @@
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -663,7 +663,7 @@
 所以一个方案就是使用 <code>string-to-number</code> 和 <code>number-to-string</code>, 如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -671,7 +671,7 @@
 所以上面的公式可以安全地被下面这个更精简的代替：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -884,7 +884,7 @@
 公式如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -905,17 +905,17 @@
 
 <p>
 把问题更一般话，我很可能不知道表包含多少行。
-区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@>$1</code> 其中 <code>@></code> 表示“最后一行”， <code>@>$1</code> 表示“第一列的最后一行”。
+区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@&gt;$1</code> 其中 <code>@&gt;</code> 表示“最后一行”， <code>@&gt;$1</code> 表示“第一列的最后一行”。
 </p>
 
 <p>
 记住：我们希望第三列包含一个字符串，这个字符串由 <code>Col1</code> 和 <code>Col2</code> 中的所有字符串去重后组成。
-首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@>$1 @2$2..@>$2)</code> ，
-然后删除重复项 <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>, 最后把这个表达式放在上面已有的表达式中。
+首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@&gt;$1 @2$2..@&gt;$2)</code> ，
+然后删除重复项 <code>(delete-dups (list @2$1..@&gt;$1 @2$2..@&gt;$2))</code>, 最后把这个表达式放在上面已有的表达式中。
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -986,7 +986,7 @@
 <code>Col4</code> 和 <code>Col5</code> 的公式如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4='(apply 'concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5='(apply 'concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
