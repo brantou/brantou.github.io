@@ -453,9 +453,9 @@
 </p>
 </blockquote>
 
-<div id="outline-container-org93df86e" class="outline-2">
-<h2 id="org93df86e">序言</h2>
-<div class="outline-text-2" id="text-org93df86e">
+<div id="outline-container-org44abbb9" class="outline-2">
+<h2 id="org44abbb9">序言</h2>
+<div class="outline-text-2" id="text-org44abbb9">
 <p>
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读<a href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">这个教程</a>。
@@ -466,9 +466,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5891b05" class="outline-2">
-<h2 id="org5891b05">示例 1: 操纵单元格</h2>
-<div class="outline-text-2" id="text-org5891b05">
+<div id="outline-container-org6a81792" class="outline-2">
+<h2 id="org6a81792">示例 1: 操纵单元格</h2>
+<div class="outline-text-2" id="text-org6a81792">
 <p>
 下面是一个简单的表格:
 </p>
@@ -606,7 +606,7 @@
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -663,7 +663,7 @@
 所以一个方案就是使用 <code>string-to-number</code> 和 <code>number-to-string</code>, 如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -671,7 +671,7 @@
 所以上面的公式可以安全地被下面这个更精简的代替：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -681,9 +681,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd73efe3" class="outline-2">
-<h2 id="orgd73efe3">示例 2: 操纵行列区间</h2>
-<div class="outline-text-2" id="text-orgd73efe3">
+<div id="outline-container-orgd6030a6" class="outline-2">
+<h2 id="orgd6030a6">示例 2: 操纵行列区间</h2>
+<div class="outline-text-2" id="text-orgd6030a6">
 <p>
 假设有以下表格
 </p>
@@ -884,7 +884,7 @@
 公式如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -905,17 +905,17 @@
 
 <p>
 把问题更一般话，我很可能不知道表包含多少行。
-区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@&gt;$1</code> 其中 <code>@&gt;</code> 表示“最后一行”， <code>@&gt;$1</code> 表示“第一列的最后一行”。
+区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@>$1</code> 其中 <code>@></code> 表示“最后一行”， <code>@>$1</code> 表示“第一列的最后一行”。
 </p>
 
 <p>
 记住：我们希望第三列包含一个字符串，这个字符串由 <code>Col1</code> 和 <code>Col2</code> 中的所有字符串去重后组成。
-首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@&gt;$1 @2$2..@&gt;$2)</code> ，
-然后删除重复项 <code>(delete-dups (list @2$1..@&gt;$1 @2$2..@&gt;$2))</code>, 最后把这个表达式放在上面已有的表达式中。
+首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@>$1 @2$2..@>$2)</code> ，
+然后删除重复项 <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>, 最后把这个表达式放在上面已有的表达式中。
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -986,7 +986,7 @@
 <code>Col4</code> 和 <code>Col5</code> 的公式如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4='(apply 'concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5='(apply 'concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -998,9 +998,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5f7e4f8" class="outline-2">
-<h2 id="org5f7e4f8">结论</h2>
-<div class="outline-text-2" id="text-org5f7e4f8">
+<div id="outline-container-org87350cf" class="outline-2">
+<h2 id="org87350cf">结论</h2>
+<div class="outline-text-2" id="text-org87350cf">
 <p>
 请浏览Org手册（精简但准确和最新）使用Lisp作为公式的信息：请参阅<a href="http://orgmode.org/manual/Formula-syntax-for-Lisp.html" target="_blank" rel="external">在线手册</a> 和 <a href="http://orgmode.org/org.html#Formula-syntax-for-Lisp" target="_blank" rel="external">相关信息页</a>。
 </p>
@@ -1240,7 +1240,7 @@ Last Updated 2017-04-09 Sun 23:25.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org93df86e"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5891b05"><span class="nav-number">2.</span> <span class="nav-text">示例 1: 操纵单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd73efe3"><span class="nav-number">3.</span> <span class="nav-text">示例 2: 操纵行列区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5f7e4f8"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org44abbb9"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6a81792"><span class="nav-number">2.</span> <span class="nav-text">示例 1: 操纵单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd6030a6"><span class="nav-number">3.</span> <span class="nav-text">示例 2: 操纵行列区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org87350cf"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
