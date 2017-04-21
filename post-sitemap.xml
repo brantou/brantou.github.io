@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
+        <lastmod>2017-04-21T15:36:00.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+        <lastmod>2017-04-21T15:34:37.549Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
         <lastmod>2017-04-21T08:16:16.307Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -49,22 +65,6 @@
     <url>
         <loc>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</loc>
         <lastmod>2017-04-14T03:49:53.538Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
-        <lastmod>2017-04-09T15:25:56.795Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
-        <lastmod>2017-04-09T15:25:39.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

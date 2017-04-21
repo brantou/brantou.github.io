@@ -2,41 +2,6 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://brantou.github.io/tags/lookup/</loc>
-        <lastmod>2017-04-09T15:25:39.801Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-table/</loc>
-        <lastmod>2017-04-09T15:25:56.795Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/emacs-lisp/</loc>
-        <lastmod>2017-04-09T15:25:56.795Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/table/</loc>
-        <lastmod>2017-04-14T03:49:53.538Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/spreadsheet/</loc>
-        <lastmod>2017-04-14T03:49:53.538Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/column-view/</loc>
         <lastmod>2017-04-19T15:23:46.920Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -79,20 +44,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2017-04-21T08:16:16.307Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-04-21T08:16:16.307Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/org-syntax/</loc>
         <lastmod>2017-04-21T08:16:16.307Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -102,6 +53,55 @@
     <url>
         <loc>https://brantou.github.io/tags/org-internal-structure/</loc>
         <lastmod>2017-04-21T08:16:16.307Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-mode/</loc>
+        <lastmod>2017-04-21T15:34:37.549Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/table/</loc>
+        <lastmod>2017-04-21T15:34:37.549Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/lookup/</loc>
+        <lastmod>2017-04-21T15:34:37.549Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tutorial/</loc>
+        <lastmod>2017-04-21T15:36:00.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/spreadsheet/</loc>
+        <lastmod>2017-04-21T15:36:00.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-table/</loc>
+        <lastmod>2017-04-21T15:36:00.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/emacs-lisp/</loc>
+        <lastmod>2017-04-21T15:36:00.122Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

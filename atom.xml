@@ -121,11 +121,11 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>Org表查找功能教程--lookup函数的简单介绍</title>
+    <title>Org表查找--lookup函数的简单介绍</title>
     <link href="https://brantou.github.io/2017/04/09/org-lookups/"/>
     <id>https://brantou.github.io/2017/04/09/org-lookups/</id>
     <published>2017-04-08T16:00:00.000Z</published>
-    <updated>2017-04-09T15:25:39.801Z</updated>
+    <updated>2017-04-21T15:34:37.549Z</updated>
     
     <summary type="html">
     
@@ -135,9 +135,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org15fcc2f&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org15fcc2f&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org15fcc2f&quot;&gt;
+&lt;div id=&quot;outline-container-org4c0a6d4&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org4c0a6d4&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org4c0a6d4&quot;&gt;
 &lt;p&gt;
 &lt;code&gt;Org&lt;/code&gt; 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -162,11 +162,11 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>Org电子表格系统--用Emacs lisp为公式</title>
+    <title>Org电子表格系统--elisp公式</title>
     <link href="https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/"/>
     <id>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</id>
     <published>2017-04-07T16:00:00.000Z</published>
-    <updated>2017-04-09T15:25:56.795Z</updated>
+    <updated>2017-04-21T15:36:00.122Z</updated>
     
     <summary type="html">
     
@@ -176,9 +176,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org44abbb9&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org44abbb9&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org44abbb9&quot;&gt;
+&lt;div id=&quot;outline-container-org18a1994&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org18a1994&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org18a1994&quot;&gt;
 &lt;p&gt;
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读&lt;a href=&quot;https://brantou.github.io/2017/04/06/org-spreadsheet-intro/&quot;&gt;这个教程&lt;/a&gt;。
