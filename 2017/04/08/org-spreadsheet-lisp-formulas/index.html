@@ -110,7 +110,7 @@
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读这个教程。
 还可以查看有关此主题的完整Org文档1。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Org电子表格系统--elisp公式">
+<meta property="og:title" content="在Org的电子表格中使用elisp公式">
 <meta property="og:url" content="https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="原文Org as a spreadsheet system: using Emacs lisp as formulas, 由 Bastien  编辑，维护。本文只做学习之用。
@@ -126,9 +126,9 @@
 还可以查看有关此主题的完整Org文档1。">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table1.jpg">
 <meta property="og:image" content="http://orgmode.org/worg/images/bzg/org-spreadsheet-table2.jpg">
-<meta property="og:updated_time" content="2017-04-21T15:36:00.122Z">
+<meta property="og:updated_time" content="2017-04-22T03:12:34.970Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Org电子表格系统--elisp公式">
+<meta name="twitter:title" content="在Org的电子表格中使用elisp公式">
 <meta name="twitter:description" content="原文Org as a spreadsheet system: using Emacs lisp as formulas, 由 Bastien  编辑，维护。本文只做学习之用。
 
 
@@ -174,7 +174,7 @@
 
 
 
-  <title> Org电子表格系统--elisp公式 | Brantou的日常 </title>
+  <title> 在Org的电子表格中使用elisp公式 | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -368,7 +368,7 @@
             
             
               
-                Org电子表格系统--elisp公式
+                在Org的电子表格中使用elisp公式
               
             
           </h2>
@@ -465,9 +465,9 @@
 </p>
 </blockquote>
 
-<div id="outline-container-org18a1994" class="outline-2">
-<h2 id="org18a1994">序言</h2>
-<div class="outline-text-2" id="text-org18a1994">
+<div id="outline-container-org0e86de7" class="outline-2">
+<h2 id="org0e86de7">序言</h2>
+<div class="outline-text-2" id="text-org0e86de7">
 <p>
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读<a href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">这个教程</a>。
@@ -478,9 +478,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga70b88c" class="outline-2">
-<h2 id="orga70b88c">示例 1: 操纵单元格</h2>
-<div class="outline-text-2" id="text-orga70b88c">
+<div id="outline-container-org1393091" class="outline-2">
+<h2 id="org1393091">示例 1: 操纵单元格</h2>
+<div class="outline-text-2" id="text-org1393091">
 <p>
 下面是一个简单的表格:
 </p>
@@ -618,7 +618,7 @@
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(/ (+ $3 $4) 2);N</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -675,7 +675,7 @@
 所以一个方案就是使用 <code>string-to-number</code> 和 <code>number-to-string</code>, 如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat $1 &#34;: &#34; (number-to-string (/ (+ (string-to-number $3) (string-to-number $4)) 2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -683,7 +683,7 @@
 所以上面的公式可以安全地被下面这个更精简的代替：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5=&#39;(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: $5='(concat &#34;$1&#34; &#34;: &#34; (number-to-string (/ (+ $3 $4) 2)));L</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -693,9 +693,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc4dc5f6" class="outline-2">
-<h2 id="orgc4dc5f6">示例 2: 操纵行列区间</h2>
-<div class="outline-text-2" id="text-orgc4dc5f6">
+<div id="outline-container-org893129d" class="outline-2">
+<h2 id="org893129d">示例 2: 操纵行列区间</h2>
+<div class="outline-text-2" id="text-org893129d">
 <p>
 假设有以下表格
 </p>
@@ -896,7 +896,7 @@
 公式如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (list @2$1..@5$1) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -917,17 +917,17 @@
 
 <p>
 把问题更一般话，我很可能不知道表包含多少行。
-区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@&gt;$1</code> 其中 <code>@&gt;</code> 表示“最后一行”， <code>@&gt;$1</code> 表示“第一列的最后一行”。
+区间 <code>@2$1..@5$1</code> 变成 <code>@2$1..@>$1</code> 其中 <code>@></code> 表示“最后一行”， <code>@>$1</code> 表示“第一列的最后一行”。
 </p>
 
 <p>
 记住：我们希望第三列包含一个字符串，这个字符串由 <code>Col1</code> 和 <code>Col2</code> 中的所有字符串去重后组成。
-首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@&gt;$1 @2$2..@&gt;$2)</code> ，
-然后删除重复项 <code>(delete-dups (list @2$1..@&gt;$1 @2$2..@&gt;$2))</code>, 最后把这个表达式放在上面已有的表达式中。
+首先从 <code>Col1</code> 和 <code>Col2</code> 列出所有值 <code>(list =@2$1..@>$1 @2$2..@>$2)</code> ，
+然后删除重复项 <code>(delete-dups (list @2$1..@>$1 @2$2..@>$2))</code>, 最后把这个表达式放在上面已有的表达式中。
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3=&#39;(mapconcat &#39;identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$3='(mapconcat 'identity (delete-dups (list @2$1..@&#38;gt;$1 @2$2..@&#38;gt;$2)) &#34; &#34;)</span><br></pre></td></tr></table></figure>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -998,7 +998,7 @@
 <code>Col4</code> 和 <code>Col5</code> 的公式如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5=&#39;(apply &#39;concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TBLFM: @2$4='(apply 'concat (delete-if (lambda(e) (member e (list @2$2..@&#38;gt;$2))) (list @2$1..@&#38;gt;$1)))&#10;#+TBLFM: @2$5='(apply 'concat (delete-if (lambda(e) (member e (list @2$1..@&#38;gt;$1))) (list @2$2..@&#38;gt;$2)))</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1010,9 +1010,9 @@
 </div>
 </div>
 
-<div id="outline-container-org581a996" class="outline-2">
-<h2 id="org581a996">结论</h2>
-<div class="outline-text-2" id="text-org581a996">
+<div id="outline-container-orgfdb1512" class="outline-2">
+<h2 id="orgfdb1512">结论</h2>
+<div class="outline-text-2" id="text-orgfdb1512">
 <p>
 请浏览Org手册（精简但准确和最新）使用Lisp作为公式的信息：请参阅<a href="http://orgmode.org/manual/Formula-syntax-for-Lisp.html" target="_blank" rel="external">在线手册</a> 和 <a href="http://orgmode.org/org.html#Formula-syntax-for-Lisp" target="_blank" rel="external">相关信息页</a>。
 </p>
@@ -1033,7 +1033,7 @@
 
 </div>
 </div>
-Last Updated 2017-04-21 Fri 23:36.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-04-22 Sat 11:12.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
 
       
     </div>
@@ -1082,8 +1082,8 @@ Last Updated 2017-04-21 Fri 23:36.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/06/org-spreadsheet-intro/" rel="next" title="Org电子表格系统的简明教程">
-                <i class="fa fa-chevron-left"></i> Org电子表格系统的简明教程
+              <a href="/2017/04/06/org-spreadsheet-intro/" rel="next" title="Org的电子表格的简明教程">
+                <i class="fa fa-chevron-left"></i> Org的电子表格的简明教程
               </a>
             
           </div>
@@ -1092,8 +1092,8 @@ Last Updated 2017-04-21 Fri 23:36.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/09/org-lookups/" rel="prev" title="Org表查找--lookup函数的简单介绍">
-                Org表查找--lookup函数的简单介绍 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/09/org-lookups/" rel="prev" title="Org表查找功能的简明教程">
+                Org表查找功能的简明教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1290,7 +1290,7 @@ Last Updated 2017-04-21 Fri 23:36.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org18a1994"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga70b88c"><span class="nav-number">2.</span> <span class="nav-text">示例 1: 操纵单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc4dc5f6"><span class="nav-number">3.</span> <span class="nav-text">示例 2: 操纵行列区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org581a996"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Footnotes: </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org0e86de7"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1393091"><span class="nav-number">2.</span> <span class="nav-text">示例 1: 操纵单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org893129d"><span class="nav-number">3.</span> <span class="nav-text">示例 2: 操纵行列区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfdb1512"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">Footnotes: </span></a></li></ol></div>
             
 
           </div>
