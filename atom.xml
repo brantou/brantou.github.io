@@ -40,6 +40,35 @@
   </entry>
   
   <entry>
+    <title>面试中的编码</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-05-14T16:33:25.095Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+    
+    </summary>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
+    
+    
+      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
+    
+      <category term="manual" scheme="https://brantou.github.io/tags/manual/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Org的列视图简明教程</title>
     <link href="https://brantou.github.io/2017/04/14/org-column-view-tutorial/"/>
     <id>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</id>
