@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/05/14/consul-and-docker/</loc>
+        <lastmod>2017-05-14T05:20:13.704Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
         <lastmod>2017-04-25T15:41:38.688Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -57,14 +73,6 @@
     <url>
         <loc>https://brantou.github.io/2017/03/07/hello-world/</loc>
         <lastmod>2017-04-21T08:14:06.774Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-        <lastmod>2017-04-21T08:13:04.253Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
