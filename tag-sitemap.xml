@@ -107,15 +107,22 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/consul/</loc>
-        <lastmod>2017-05-14T05:20:13.704Z</lastmod>
+        <loc>https://brantou.github.io/tags/weekly/</loc>
+        <lastmod>2017-05-15T02:18:53.494Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-05-15T01:50:41.022Z</lastmod>
+        <lastmod>2017-05-15T07:43:43.641Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/consul/</loc>
+        <lastmod>2017-05-15T07:44:20.706Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

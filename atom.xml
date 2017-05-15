@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-14T05:20:13.704Z</updated>
+  <updated>2017-05-15T02:18:53.494Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -16,26 +16,28 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>consul的docker环境配置</title>
-    <link href="https://brantou.github.io/2017/05/14/consul-and-docker/"/>
-    <id>https://brantou.github.io/2017/05/14/consul-and-docker/</id>
-    <published>2017-05-14T05:20:13.704Z</published>
-    <updated>2017-05-14T05:20:13.704Z</updated>
+    <title>一周回顾--2017-05-12</title>
+    <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
+    <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-05-15T02:18:53.494Z</updated>
     
     <summary type="html">
     
       
 
 &lt;p&gt;
-构造consul的docker集群
-&lt;/p&gt;
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;s
+参加了gopher china 2017后，感触很多，想了很多，看了很多。
+毕业后的第一个五年，很快就要过去了，回首来时路，发现自己要做的还很多。
+没有完备的知识体系，没有拿得出作品，除了工作中的成果外，没有任何产出。
+想到这些后背一凉，是时候该梳理一下，找寻一下，拼
     
     </summary>
     
+      <category term="review" scheme="https://brantou.github.io/categories/review/"/>
     
-      <category term="consul" scheme="https://brantou.github.io/tags/consul/"/>
+    
+      <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
     
   </entry>
   
@@ -44,7 +46,7 @@
     <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
     <id>https://brantou.github.io/2017/05/14/interview-code/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-15T01:50:41.022Z</updated>
+    <updated>2017-05-15T07:43:43.641Z</updated>
     
     <summary type="html">
     
@@ -61,6 +63,30 @@
     
     
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>consul的docker环境配置</title>
+    <link href="https://brantou.github.io/2017/05/13/consul-and-docker/"/>
+    <id>https://brantou.github.io/2017/05/13/consul-and-docker/</id>
+    <published>2017-05-12T16:00:00.000Z</published>
+    <updated>2017-05-15T07:44:20.706Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+构造consul的docker集群
+&lt;/p&gt;
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;s
+    
+    </summary>
+    
+    
+      <category term="consul" scheme="https://brantou.github.io/tags/consul/"/>
     
   </entry>
   

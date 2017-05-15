@@ -21,8 +21,15 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/categories/review/</loc>
+        <lastmod>2017-05-15T02:18:53.494Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/categories/code/</loc>
-        <lastmod>2017-05-15T01:50:41.022Z</lastmod>
+        <lastmod>2017-05-15T07:43:43.641Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
