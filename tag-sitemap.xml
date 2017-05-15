@@ -65,6 +65,27 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/manual/</loc>
+        <lastmod>2017-04-25T15:41:38.688Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tutorial/</loc>
+        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-mode/</loc>
+        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/babel/</loc>
         <lastmod>2017-05-12T06:26:31.623Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -93,22 +114,8 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2017-05-14T16:33:25.095Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-05-14T16:33:25.095Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/manual/</loc>
-        <lastmod>2017-05-14T16:33:25.095Z</lastmod>
+        <loc>https://brantou.github.io/tags/golang/</loc>
+        <lastmod>2017-05-15T01:50:41.022Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
