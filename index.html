@@ -428,7 +428,7 @@
             
 
 <p>
-参加了gopher china 2017后，感触很多，想了很多，看了很多。
+参加了 Gopher China 2017 后，感触很多，想了很多，看了很多。
 毕业后的第一个五年，很快就要过去了，回首来时路，发现自己要做的还很多。
 没有完备的知识体系，没有拿得出作品，除了工作中的成果外，没有任何产出。
 想到这些后背一凉，是时候该梳理一下，找寻一下，拼搏一下了。
@@ -438,7 +438,100 @@
 说完了，题外话，就来点真是的了，第一篇每周回顾，回顾一周自己读的文章和书籍，写的blog，在专业上的张进，对于一些东西的认识。
 </p>
 
-Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+<div id="outline-container-org00cae52" class="outline-2">
+<h2 id="org00cae52"><span class="section-number-2">1</span> 微服务</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+在Gopher China 2017的活动中，听到的最多就是微服务这个概念，对我来说这个概念是如此之新，又如此的激发我的好奇心。
+回来之后，找各种文章来了解微服务具体是怎么样的东东的，优点是什么，有那些缺点，以及怎样实践。
+把研习的文章列于此，作为技术积累，以馈日后。
+</p>
+<dl class="org-dl">
+<dt><a href="http://www.infoq.com/cn/articles/basis-frameworkto-implement-micro-service" target="_blank" rel="external">实施微服务，我们需要哪些基础框架？</a></dt><dd>从全局介绍了微服务，并给出了业界最近实践&#x2013; <i>Netflix的开源框架组件</i>, 入门扫盲的一篇不二的佳文。</dd>
+<dt><a href="https://www.nginx.com/blog/introduction-to-microservices/" target="_blank" rel="external">Introduction to Microservices</a> </dt><dd>讨论了使用微服务的好处和缺点，尽管微服务的有相当大的复杂性，但通常它都是复杂应用的理想选择</dd>
+<dt><a href="https://www.nginx.com/blog/building-microservices-using-an-api-gateway/" target="_blank" rel="external">Building Microservices: Using an API Gateway</a></dt><dd>应用程序的客户端如何通过 <i>Api Gateway</i> 与微服务进行通信</dd>
+<dt><a href="https://www.nginx.com/blog/building-microservices-inter-process-communication/" target="_blank" rel="external">Building Microservices: Inter-Process Communication in a Microservices Architecture</a></dt><dd>微服务架构中服务之间`的IPC机制</dd>
+<dt><a href="https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/" target="_blank" rel="external">Service Discovery in a Microservices Architecture</a></dt><dd>微服务架构中的服务发现和服务注册</dd>
+<dt><a href="https://www.nginx.com/blog/event-driven-data-management-microservices/" target="_blank" rel="external">Event‑Driven Data Management for Microservices</a></dt><dd>微服务架构中的事件驱动数据管理机制</dd>
+<dt><a href="https://www.nginx.com/blog/deploying-microservices/" target="_blank" rel="external">Choosing a Microservices Deployment Strategy</a></dt><dd>微服务的发布策略</dd>
+<dt><a href="https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/" target="_blank" rel="external">Refactoring a Monolith into Microservices</a></dt><dd>单体程序迁移到微服务的策略</dd>
+<dt>(no term)</dt><dd><a href="http://www.yunweipai.com/archives/9797.html" target="_blank" rel="external">微服务那么热，创业公司怎么选用实践？</a>:: 映兔科技在微服务中的实践</dd>
+<dt><a href="https://36kr.com/p/5073181.html" target="_blank" rel="external">今日头条Go建千亿级微服务的实践</a></dt><dd>今日头条在微服务的实践，较为全面，涵盖了方方面面</dd>
+<dt>(no term)</dt><dd><a href="https://mp.weixin.qq.com/s/Vhe3iJFzxBLw5CjM-rLTPQ" target="_blank" rel="external">饿了么的架构设计及演进之路</a>::  饿了么在架构方面的实践</dd>
+<dt>(no term)</dt><dd><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659599230&idx=1&sn=cbf97ea56f956e23b3529ea81551b23c&chksm=8be9966cbc9e1f7af97f670f4dcc16e3a2bd410ef634251e72c867bc6f7aca813ffed5da75a1#rd" target="_blank" rel="external">企业的应用架构到底该怎么演变才能合了CEO的愿？</a>::  推演一个企业级应用架构的演变之路，由小及大，由浅入深，很有深意</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org6967515" class="outline-2">
+<h2 id="org6967515"><span class="section-number-2">2</span> Golang</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+用了两年golang了，却依旧觉得没有掌握正确的姿势，所以最近也是一通研习。
+</p>
+<dl class="org-dl">
+<dt><a href="http://lanlingzi.cn/post/technical/2016/0802_go_context/" target="_blank" rel="external">理解Go Context机制</a></dt><dd>由于我的目标是搭一套微服务出来，初步选定服务间的通信机制选用grpc，</dd>
+</dl>
+<p>
+而grpc生成的代码中，第一个参数都是 <code>ctx context.Context</code> ，所以我务必要搞清楚 <code>context</code> 背后的原理。
+本文介绍了 <code>context</code> 包的核心接口 <code>Context</code> ,  <code>context</code> 的使用以及使用的原则。
+</p>
+<dl class="org-dl">
+<dt><a href="http://studygolang.com/articles/5131" target="_blank" rel="external">go程序包源码解读——golang.org/x/net/contex</a></dt><dd>通过源代码的阅读和一些示例代码来说明context的用法</dd>
+<dt><a href="https://segmentfault.com/a/1190000008672912" target="_blank" rel="external">grpc服务发现&负载均衡</a></dt><dd>grpc的服务发现和负载均衡的实现</dd>
+<dt><a href="https://github.com/grpc/grpc/blob/master/doc/load-balancing.md" target="_blank" rel="external">Load Balancing in grpc</a></dt><dd>grpc中的负载平衡&#x2013;实现自己的服务发现，需要阅读此文档</dd>
+<dt><a href="https://github.com/grpc/grpc/blob/master/doc/health-checking.md" target="_blank" rel="external">grpc Health Checking Protocol</a></dt><dd>grpc健康检测的机制</dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-org7f36edb" class="outline-2">
+<h2 id="org7f36edb"><span class="section-number-2">3</span> 无关技术</h2>
+<div class="outline-text-2" id="text-3">
+<dl class="org-dl">
+<dt><a href="http://tech.glowing.com/cn/advices-to-junior-developers/?utm_medium=website&utm_source=gank.io%2Fxiandu" target="_blank" rel="external">如何提升你的能力？给年轻程序员的几条建议</a></dt><dd>无关技术，却给出技术人该有的修为，以及怎样更好的成长，准备随后写篇读后感，写写自己接下来要怎么做。</dd>
+<dt><a href="http://blog.jobbole.com/94148/" target="_blank" rel="external">不要自称是程序员，我十多年的 IT 职场总结</a></dt><dd><b>别人雇用你的目的，是让你创造价值，而不是让你编程</b> 一位老司机的肺腑之言，值得每个初入职场的IT从业人员深思，</dd>
+</dl>
+<p>
+你对于企业的价值是什么,无非就是创造价值与节约成本，编程只是实现的一种途径，放大你的劳动成果，为公司创造更好的利润，节约了公司的成本支出，你才是有价值的。
+对于此文，我也准备写篇读后感。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f63e8d" class="outline-2">
+<h2 id="org1f63e8d"><span class="section-number-2">4</span> 认知</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+无意之间翻到了 <b>傅盛的认知三部曲</b> ，和我一直以来的想法不谋而合，我觉得人和人之间的差别，就是看待这个世界的角度或者视角不同，或者说对于这个世界的认知层次不同。
+我一直以来最想要的一种能力就是有明锐的洞察力，能看到技术发展趋势，能看到下一个风口，但是我不能，至少目前的我不能，因为我没有那么高层次的认知。大学时期，
+反复看过一个有关乔布斯采访的报道，当时乔布斯离开苹果，自己创立公司。采访中，有一个关于未来的技术发展趋势的问题，乔布斯指出自己看好 <i>互联网</i> 和 <i>Web</i> 。
+这个采访发生在1995年， 当时中国互联网可能都还没，即便是大洋彼岸的美国互联网也还处于萌芽阶段，但是老乔却已精准的认知到了未来的机遇与趋势。
+</p>
+<dl class="org-dl">
+<dt><a href="http://36kr.com/p/5065824.html" target="_blank" rel="external">傅盛认知三部曲之一：所谓成长就是认知升级</a></dt><dd><b>人和人最大的差别是认知</b> ,</dd>
+</dl>
+<p>
+但认知可以升级，你可以去拟合差别， 认知升级的三剂良药：
+</p>
+<ul class="org-ul">
+<li>坚信大趋势</li>
+<li>对外求教，不做井底之蛙</li>
+<li>活在当下，面向未来</li>
+</ul>
+<p>
+如果一个人，不断想学习，想了解，去反思；空杯心态，放下恐惧，不拒绝改变。认知升级，其实也就是捅破那层窗户纸。成长如是。
+</p>
+
+<dl class="org-dl">
+<dt><a href="https://36kr.com/p/5071158.html" target="_blank" rel="external">傅盛认知三部曲之二：管理本质就是认知管理</a></dt><dd>这个时代，管理不是执行管理，不是组织结构管理，而是你比别人更理解一件事情。管理的本质就是一种认知管理。</dd>
+<dt><a href="https://36kr.com/p/5071119.html" target="_blank" rel="external">傅盛认知三部曲之三：战略就是格局+破局</a></dt><dd>大格局的认知下，升级战略打法，积累势能，寻找新的突破口。</dd>
+</dl>
+</div>
+</div>
+
+Last Updated 2017-05-17 Wed 00:27.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
@@ -505,7 +598,7 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
               
                 
                 <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">
-                  面试中的编码
+                  面试中的Coding
                 </a>
               
             
@@ -601,11 +694,11 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 分三步阐述出来：问题描述，解题思路，实际编程。
 </p>
 
-<div id="outline-container-org364512a" class="outline-2">
-<h2 id="org364512a"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div id="outline-container-orgd8c3d36" class="outline-2">
+<h2 id="orgd8c3d36"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org922626f" class="outline-3">
-<h3 id="org922626f"><span class="section-number-3">1.1</span> 问题描述</h3>
+</div><div id="outline-container-org193f5ba" class="outline-3">
+<h3 id="org193f5ba"><span class="section-number-3">1.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
@@ -613,8 +706,8 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org785c270" class="outline-3">
-<h3 id="org785c270"><span class="section-number-3">1.2</span> 解题思路</h3>
+<div id="outline-container-org774c909" class="outline-3">
+<h3 id="org774c909"><span class="section-number-3">1.2</span> 解题思路</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
@@ -622,8 +715,8 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-orgbebbcb1" class="outline-3">
-<h3 id="orgbebbcb1"><span class="section-number-3">1.3</span> 实际编码</h3>
+<div id="outline-container-orge4ac0e3" class="outline-3">
+<h3 id="orge4ac0e3"><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
@@ -639,11 +732,11 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-org3998ef0" class="outline-2">
-<h2 id="org3998ef0"><span class="section-number-2">2</span> 随机抽奖</h2>
+<div id="outline-container-org5d4ea2d" class="outline-2">
+<h2 id="org5d4ea2d"><span class="section-number-2">2</span> 随机抽奖</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgb8e92f5" class="outline-3">
-<h3 id="orgb8e92f5"><span class="section-number-3">2.1</span> 问题描述</h3>
+</div><div id="outline-container-orgeae0cc0" class="outline-3">
+<h3 id="orgeae0cc0"><span class="section-number-3">2.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用户随机抽奖，数据结构如下所示：
@@ -653,8 +746,8 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-orgf8c3161" class="outline-3">
-<h3 id="orgf8c3161"><span class="section-number-3">2.2</span> 解决思路</h3>
+<div id="outline-container-org34f91a3" class="outline-3">
+<h3 id="org34f91a3"><span class="section-number-3">2.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
@@ -662,8 +755,8 @@ Last Updated 2017-05-15 Mon 10:18.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org8b342ef" class="outline-3">
-<h3 id="org8b342ef"><span class="section-number-3">2.3</span> 实际编码</h3>
+<div id="outline-container-org15f0cd9" class="outline-3">
+<h3 id="org15f0cd9"><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -684,11 +777,11 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-orgf57378f" class="outline-2">
-<h2 id="orgf57378f"><span class="section-number-2">3</span> 权重抽奖</h2>
+<div id="outline-container-orgedbde53" class="outline-2">
+<h2 id="orgedbde53"><span class="section-number-2">3</span> 权重抽奖</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org7217f44" class="outline-3">
-<h3 id="org7217f44"><span class="section-number-3">3.1</span> 问题描述</h3>
+</div><div id="outline-container-org11ce4f0" class="outline-3">
+<h3 id="org11ce4f0"><span class="section-number-3">3.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
@@ -698,8 +791,8 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-orgf58bb17" class="outline-3">
-<h3 id="orgf58bb17"><span class="section-number-3">3.2</span> 解决思路</h3>
+<div id="outline-container-orga782ae1" class="outline-3">
+<h3 id="orga782ae1"><span class="section-number-3">3.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
@@ -708,8 +801,8 @@ user: a, award count: 159
 </p>
 </div>
 </div>
-<div id="outline-container-org1cc5c04" class="outline-3">
-<h3 id="org1cc5c04"><span class="section-number-3">3.3</span> 实际编码</h3>
+<div id="outline-container-orga9872d7" class="outline-3">
+<h3 id="orga9872d7"><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -730,8 +823,8 @@ user: a, award count: 1099
 </div>
 </div>
 </div>
-<div id="outline-container-org17a18ff" class="outline-2">
-<h2 id="org17a18ff"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-orge13a4e0" class="outline-2">
+<h2 id="orge13a4e0"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 问题一来自 <i>方付通</i> , 侧重于语言特性；问题二三来自 <i>ezbuy</i> ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
@@ -740,7 +833,7 @@ user: a, award count: 1099
 </div>
 </div>
 
-Last Updated 2017-05-15 Mon 15:48.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-15 Mon 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
@@ -973,7 +1066,7 @@ Last Updated 2017-05-15 Mon 15:44.<br>Render by <a href="https://github.com/Code
               
                 
                 <a class="post-title-link" href="/2017/04/14/org-column-view-tutorial/" itemprop="url">
-                  Org的列视图简明教程
+                  Org-mode的列视图简明教程
                 </a>
               
             
@@ -1065,9 +1158,9 @@ Last Updated 2017-05-15 Mon 15:44.<br>Render by <a href="https://github.com/Code
 </p>
 </blockquote>
 
-<div id="outline-container-org3bdb55b" class="outline-2">
-<h2 id="org3bdb55b">简介：默认列视图</h2>
-<div class="outline-text-2" id="text-org3bdb55b">
+<div id="outline-container-org6f1e827" class="outline-2">
+<h2 id="org6f1e827">简介：默认列视图</h2>
+<div class="outline-text-2" id="text-org6f1e827">
 <p>
 首先按 <code>C-c C-x C-c</code> 打开默认列视图, 将每个 <i>outline item</i> 转换成一个显示其某些属性的表格行。
 </p>
@@ -1091,6 +1184,7 @@ ITEM for the headline title
   T for the TODO keyword
   P for the priority cookie
   T for the tags
+
 </pre>
 
 <p>
@@ -1103,6 +1197,7 @@ ITEM for the headline title
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+
 </pre>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -1212,7 +1307,7 @@ ITEM for the headline title
               
                 
                 <a class="post-title-link" href="/2017/04/09/org-lookups/" itemprop="url">
-                  Org表查找功能的简明教程
+                  Org-mode表查找功能的简明教程
                 </a>
               
             
@@ -1304,9 +1399,9 @@ ITEM for the headline title
 </p>
 </blockquote>
 
-<div id="outline-container-org850036f" class="outline-2">
-<h2 id="org850036f">序言</h2>
-<div class="outline-text-2" id="text-org850036f">
+<div id="outline-container-org324d6f0" class="outline-2">
+<h2 id="org324d6f0">序言</h2>
+<div class="outline-text-2" id="text-org324d6f0">
 <p>
 <code>Org</code> 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -1383,7 +1478,7 @@ ITEM for the headline title
               
                 
                 <a class="post-title-link" href="/2017/04/08/org-spreadsheet-lisp-formulas/" itemprop="url">
-                  在Org的电子表格中使用elisp公式
+                  在Org-mode的电子表格中使用elisp公式
                 </a>
               
             
@@ -1475,9 +1570,9 @@ ITEM for the headline title
 </p>
 </blockquote>
 
-<div id="outline-container-org0e86de7" class="outline-2">
-<h2 id="org0e86de7">序言</h2>
-<div class="outline-text-2" id="text-org0e86de7">
+<div id="outline-container-orgd248e95" class="outline-2">
+<h2 id="orgd248e95">序言</h2>
+<div class="outline-text-2" id="text-orgd248e95">
 <p>
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读<a href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">这个教程</a>。
@@ -1554,7 +1649,7 @@ ITEM for the headline title
               
                 
                 <a class="post-title-link" href="/2017/04/06/org-spreadsheet-intro/" itemprop="url">
-                  Org的电子表格的简明教程
+                  Org-mode的电子表格的简明教程
                 </a>
               
             
@@ -1646,9 +1741,9 @@ ITEM for the headline title
 </p>
 </blockquote>
 
-<div id="outline-container-org985c71b" class="outline-2">
-<h2 id="org985c71b">序言</h2>
-<div class="outline-text-2" id="text-org985c71b">
+<div id="outline-container-org4383f73" class="outline-2">
+<h2 id="org4383f73">序言</h2>
+<div class="outline-text-2" id="text-org4383f73">
 <p>
 这篇简短的教程将介绍使用 <code>Org</code> 作为电子表格系统需要的基础知识。
 </p>
@@ -1703,6 +1798,7 @@ ITEM for the headline title
 | bertrand |    13 |      09 |
 | henri    |    15 |      14 |
 | arnold   |    17 |      13 |
+
 </pre>
 
 <p>
@@ -2179,7 +2275,7 @@ org-mode我用了两年，却未曾深入。
               
                 
                 <a class="post-title-link" href="/2017/03/11/org-syntax/" itemprop="url">
-                  Org 的语法概览
+                  Org-mode的语法解析
                 </a>
               
             

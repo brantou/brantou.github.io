@@ -118,7 +118,7 @@
 
 只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Org的列视图简明教程">
+<meta property="og:title" content="Org-mode的列视图简明教程">
 <meta property="og:url" content="https://brantou.github.io/2017/04/14/org-column-view-tutorial/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。
@@ -146,9 +146,9 @@
 <meta property="og:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-customized-view3.png">
 <meta property="og:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-customized-view4.png">
 <meta property="og:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-customized-view5.png">
-<meta property="og:updated_time" content="2017-04-22T03:15:06.269Z">
+<meta property="og:updated_time" content="2017-05-15T15:10:55.588Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Org的列视图简明教程">
+<meta name="twitter:title" content="Org-mode的列视图简明教程">
 <meta name="twitter:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。
 
 
@@ -202,7 +202,7 @@
 
 
 
-  <title> Org的列视图简明教程 | Brantou的日常 </title>
+  <title> Org-mode的列视图简明教程 | Brantou的日常 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -396,7 +396,7 @@
             
             
               
-                Org的列视图简明教程
+                Org-mode的列视图简明教程
               
             
           </h2>
@@ -493,9 +493,9 @@
 </p>
 </blockquote>
 
-<div id="outline-container-org3bdb55b" class="outline-2">
-<h2 id="org3bdb55b">简介：默认列视图</h2>
-<div class="outline-text-2" id="text-org3bdb55b">
+<div id="outline-container-org6f1e827" class="outline-2">
+<h2 id="org6f1e827">简介：默认列视图</h2>
+<div class="outline-text-2" id="text-org6f1e827">
 <p>
 首先按 <code>C-c C-x C-c</code> 打开默认列视图, 将每个 <i>outline item</i> 转换成一个显示其某些属性的表格行。
 </p>
@@ -519,6 +519,7 @@ ITEM for the headline title
   T for the TODO keyword
   P for the priority cookie
   T for the tags
+
 </pre>
 
 <p>
@@ -531,6 +532,7 @@ ITEM for the headline title
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+
 </pre>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -574,9 +576,9 @@ ITEM for the headline title
 </div>
 </div>
 
-<div id="outline-container-orgda4ff13" class="outline-2">
-<h2 id="orgda4ff13">自定义默认列视图</h2>
-<div class="outline-text-2" id="text-orgda4ff13">
+<div id="outline-container-org07adf19" class="outline-2">
+<h2 id="org07adf19">自定义默认列视图</h2>
+<div class="outline-text-2" id="text-org07adf19">
 <p>
 好的，现在让我们来自定义列视图。
 </p>
@@ -586,6 +588,7 @@ ITEM for the headline title
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM %5TODO %1PRIORITY %10TAGS
+
 </pre>
 
 
@@ -604,6 +607,7 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM(Task) %5TODO(To-do) %1PRIORITY %10TAGS
+
 </pre>
 
 
@@ -618,15 +622,16 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 </div>
 </div>
 
-<div id="outline-container-org8cefec0" class="outline-2">
-<h2 id="org8cefec0">列视图中添加其他属性</h2>
-<div class="outline-text-2" id="text-org8cefec0">
+<div id="outline-container-orga203a83" class="outline-2">
+<h2 id="orga203a83">列视图中添加其他属性</h2>
+<div class="outline-text-2" id="text-orga203a83">
 <p>
 要怎么在列视图中添加其他属性呢？ 例如，我们想要添加 <code>SCHEDULED</code> 属性。
 那么只需要重新定义全局 <code>＃+COLUMNS</code> 选项，如下所示：
 </p>
 <pre class="example">
 #+COLUMNS: %30ITEM %10SCHEDULED %TODO %3PRIORITY %TAGS
+
 </pre>
 
 <p>
@@ -643,6 +648,7 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 <pre class="example">
 ** Exemple of outline item with a SCHEDULED property
    SCHEDULED: <2007-10-14 dim="">
+
 </2007-10-14></pre>
 
 <p>
@@ -656,6 +662,7 @@ ALLTAGS      All tags, including inherited ones.
 PRIORITY     The priority of the entry, a string with a single letter.
 DEADLINE     The deadline time string, without the angular brackets.
 SCHEDULED    The scheduling time stamp, without the angular brackets.
+
 </pre>
 
 <p>
@@ -668,9 +675,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-orgd174762" class="outline-2">
-<h2 id="orgd174762">定义子树的列视图</h2>
-<div class="outline-text-2" id="text-orgd174762">
+<div id="outline-container-org9df658d" class="outline-2">
+<h2 id="org9df658d">定义子树的列视图</h2>
+<div class="outline-text-2" id="text-org9df658d">
 <p>
 要定义特定条目的列视图，只需添加特殊属性 <code>:COLUMNS:</code> 即可：
 </p>
@@ -679,6 +686,7 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :PROPERTIES:
    :COLUMNS:  %25ITEM %TAGS %PRIORITY %TODO
    :END:
+
 </pre>
 
 <p>
@@ -697,6 +705,7 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 *** TODO Example 1
 *** TODO Example 2
 *** DONE Example 3
+
 </pre>
 
 
@@ -725,9 +734,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </'缩小它）。></p></div>
 </div>
 
-<div id="outline-container-org57a17cf" class="outline-2">
-<h2 id="org57a17cf">为某些属性添加 <b>summary-types</b></h2>
-<div class="outline-text-2" id="text-org57a17cf">
+<div id="outline-container-orga29550d" class="outline-2">
+<h2 id="orga29550d">为某些属性添加 <b>summary-types</b></h2>
+<div class="outline-text-2" id="text-orga29550d">
 <p>
 来定义一个包含自己的列视图和一些属性的新条目：
 </p>
@@ -736,6 +745,7 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :PROPERTIES:
    :COLUMNS:  %20ITEM %9Approved(Approved?){X} %Owner %11Status %10Time_Spent{:}
    :END:
+
 </pre>
 
 
@@ -810,9 +820,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-org48a7063" class="outline-2">
-<h2 id="org48a7063">定义属性的所有可能值</h2>
-<div class="outline-text-2" id="text-org48a7063">
+<div id="outline-container-orge98ac3f" class="outline-2">
+<h2 id="orge98ac3f">定义属性的所有可能值</h2>
+<div class="outline-text-2" id="text-orge98ac3f">
 <p>
 定义 <b>summary-types</b> 类型意味着需要为某些属性设置一组有限的可能值。
 </p>
@@ -837,12 +847,14 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :Status_ALL:   "In progress" "Not started yet" "Finished" ""
    :Approved_ALL: "[ ]" "[X]"
    :END:
+
 </pre>
 
 <pre class="example">
 | Owner_ALL    | only accept Tammy Mark Karl Lisa Don                   |
 | Status_ALL   | only accept "In progress" "Not started yet" "Finished" |
 | Approved_ALL | only accept "[ ]" "[X]"                                |
+
 </pre>
 
 <p>
@@ -856,9 +868,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-orgdb80a80" class="outline-2">
-<h2 id="orgdb80a80">在子树中有三个条目的完整的例子</h2>
-<div class="outline-text-2" id="text-orgdb80a80">
+<div id="outline-container-orgdf3a7de" class="outline-2">
+<h2 id="orgdf3a7de">在子树中有三个条目的完整的例子</h2>
+<div class="outline-text-2" id="text-orgdf3a7de">
 <p>
 下面是一个关于列视图如何影响条目及其子树的显示的示例。 好好观察并测试它。
 </p>
@@ -892,13 +904,14 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
     :Status:   Not started yet
     :Approved: [X]
     :END:
+
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org54eda75" class="outline-2">
-<h2 id="org54eda75">从列视图编辑属性</h2>
-<div class="outline-text-2" id="text-org54eda75">
+<div id="outline-container-org61d6b3e" class="outline-2">
+<h2 id="org61d6b3e">从列视图编辑属性</h2>
+<div class="outline-text-2" id="text-org61d6b3e">
 <p>
 到现在为止还挺好。 但是，列视图的一个好处是它可以让您快速访问和编辑任何属性。
 </p>
@@ -921,9 +934,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-orgcac67cc" class="outline-2">
-<h2 id="orgcac67cc">结论：  能做的还有更多更多</h2>
-<div class="outline-text-2" id="text-orgcac67cc">
+<div id="outline-container-org65bb3f9" class="outline-2">
+<h2 id="org65bb3f9">结论：  能做的还有更多更多</h2>
+<div class="outline-text-2" id="text-org65bb3f9">
 <p>
 好的，以上就是今天的全部了。 但是让我告诉你最后两个提示，让你进一步探索的列视图：
 </p>
@@ -941,7 +954,7 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-Last Updated 2017-04-22 Sat 11:15.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+Last Updated 2017-05-15 Mon 23:10.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
       
     </div>
@@ -988,8 +1001,8 @@ Last Updated 2017-04-22 Sat 11:15.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/09/org-lookups/" rel="next" title="Org表查找功能的简明教程">
-                <i class="fa fa-chevron-left"></i> Org表查找功能的简明教程
+              <a href="/2017/04/09/org-lookups/" rel="next" title="Org-mode表查找功能的简明教程">
+                <i class="fa fa-chevron-left"></i> Org-mode表查找功能的简明教程
               </a>
             
           </div>
@@ -1196,7 +1209,7 @@ Last Updated 2017-04-22 Sat 11:15.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org3bdb55b"><span class="nav-number">1.</span> <span class="nav-text">简介：默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgda4ff13"><span class="nav-number">2.</span> <span class="nav-text">自定义默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8cefec0"><span class="nav-number">3.</span> <span class="nav-text">列视图中添加其他属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd174762"><span class="nav-number">4.</span> <span class="nav-text">定义子树的列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org57a17cf"><span class="nav-number">5.</span> <span class="nav-text">为某些属性添加 summary-types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org48a7063"><span class="nav-number">6.</span> <span class="nav-text">定义属性的所有可能值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdb80a80"><span class="nav-number">7.</span> <span class="nav-text">在子树中有三个条目的完整的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org54eda75"><span class="nav-number">8.</span> <span class="nav-text">从列视图编辑属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcac67cc"><span class="nav-number">9.</span> <span class="nav-text">结论：  能做的还有更多更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org6f1e827"><span class="nav-number">1.</span> <span class="nav-text">简介：默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org07adf19"><span class="nav-number">2.</span> <span class="nav-text">自定义默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga203a83"><span class="nav-number">3.</span> <span class="nav-text">列视图中添加其他属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9df658d"><span class="nav-number">4.</span> <span class="nav-text">定义子树的列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga29550d"><span class="nav-number">5.</span> <span class="nav-text">为某些属性添加 summary-types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge98ac3f"><span class="nav-number">6.</span> <span class="nav-text">定义属性的所有可能值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdf3a7de"><span class="nav-number">7.</span> <span class="nav-text">在子树中有三个条目的完整的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org61d6b3e"><span class="nav-number">8.</span> <span class="nav-text">从列视图编辑属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org65bb3f9"><span class="nav-number">9.</span> <span class="nav-text">结论：  能做的还有更多更多</span></a></li></ol></div>
             
 
           </div>

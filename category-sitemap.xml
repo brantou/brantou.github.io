@@ -14,22 +14,22 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/categories/code/</loc>
+        <lastmod>2017-05-15T15:09:26.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/categories/org-mode/</loc>
-        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
+        <lastmod>2017-05-15T15:12:05.860Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/categories/review/</loc>
-        <lastmod>2017-05-15T02:18:53.494Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/categories/code/</loc>
-        <lastmod>2017-05-15T07:48:45.438Z</lastmod>
+        <lastmod>2017-05-16T16:27:42.048Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

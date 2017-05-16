@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-15T02:18:53.494Z</updated>
+  <updated>2017-05-16T16:27:42.048Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -20,17 +20,17 @@
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-15T02:18:53.494Z</updated>
+    <updated>2017-05-16T16:27:42.048Z</updated>
     
     <summary type="html">
     
       
 
 &lt;p&gt;
-参加了gopher china 2017后，感触很多，想了很多，看了很多。
+参加了 Gopher China 2017 后，感触很多，想了很多，看了很多。
 毕业后的第一个五年，很快就要过去了，回首来时路，发现自己要做的还很多。
 没有完备的知识体系，没有拿得出作品，除了工作中的成果外，没有任何产出。
-想到这些后背一凉，是时候该梳理一下，找寻一下，拼
+想到这些后背一凉，是时候该梳理一下，找寻一下
     
     </summary>
     
@@ -42,11 +42,11 @@
   </entry>
   
   <entry>
-    <title>面试中的编码</title>
+    <title>面试中的Coding</title>
     <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
     <id>https://brantou.github.io/2017/05/14/interview-code/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-15T07:48:45.438Z</updated>
+    <updated>2017-05-15T15:09:26.242Z</updated>
     
     <summary type="html">
     
@@ -91,11 +91,11 @@
   </entry>
   
   <entry>
-    <title>Org的列视图简明教程</title>
+    <title>Org-mode的列视图简明教程</title>
     <link href="https://brantou.github.io/2017/04/14/org-column-view-tutorial/"/>
     <id>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</id>
     <published>2017-04-14T13:00:00.000Z</published>
-    <updated>2017-04-22T03:15:06.269Z</updated>
+    <updated>2017-05-15T15:10:55.588Z</updated>
     
     <summary type="html">
     
@@ -105,9 +105,9 @@
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org3bdb55b&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org3bdb55b&quot;&gt;简介：默认列视图&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org3bdb55b&quot;&gt;
+&lt;div id=&quot;outline-container-org6f1e827&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org6f1e827&quot;&gt;简介：默认列视图&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org6f1e827&quot;&gt;
 &lt;p&gt;
 首先按 &lt;code&gt;C-c C-x C-c&lt;/code&gt; 打开默认列视图, 将每个 &lt;i&gt;outline item&lt;/i&gt; 转换成一个显示其某些属性的表格行。
 &lt;/p&gt;
@@ -131,6 +131,7 @@ ITEM for the headline title
   T for the TODO keyword
   P for the priority cookie
   T for the tags
+
 &lt;/pre&gt;
 
 &lt;p&gt;
@@ -143,6 +144,7 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;pre class=&quot;example&quot;&gt;
 #+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+
 &lt;/pre&gt;
 
 &lt;table border=&quot;2&quot; cellspacing=&quot;0&quot; cellpadding=&quot;6&quot; rules=&quot;groups&quot; frame=&quot;hsides&quot;&gt;
@@ -196,11 +198,11 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>Org表查找功能的简明教程</title>
+    <title>Org-mode表查找功能的简明教程</title>
     <link href="https://brantou.github.io/2017/04/09/org-lookups/"/>
     <id>https://brantou.github.io/2017/04/09/org-lookups/</id>
     <published>2017-04-08T16:00:00.000Z</published>
-    <updated>2017-04-22T03:23:39.256Z</updated>
+    <updated>2017-05-15T15:11:24.542Z</updated>
     
     <summary type="html">
     
@@ -210,9 +212,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org850036f&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org850036f&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org850036f&quot;&gt;
+&lt;div id=&quot;outline-container-org324d6f0&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org324d6f0&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org324d6f0&quot;&gt;
 &lt;p&gt;
 &lt;code&gt;Org&lt;/code&gt; 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -237,11 +239,11 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>在Org的电子表格中使用elisp公式</title>
+    <title>在Org-mode的电子表格中使用elisp公式</title>
     <link href="https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/"/>
     <id>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</id>
     <published>2017-04-07T16:00:00.000Z</published>
-    <updated>2017-04-22T03:12:34.970Z</updated>
+    <updated>2017-05-15T15:12:05.860Z</updated>
     
     <summary type="html">
     
@@ -251,9 +253,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org0e86de7&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org0e86de7&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org0e86de7&quot;&gt;
+&lt;div id=&quot;outline-container-orgd248e95&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgd248e95&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgd248e95&quot;&gt;
 &lt;p&gt;
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读&lt;a href=&quot;https://brantou.github.io/2017/04/06/org-spreadsheet-intro/&quot;&gt;这个教程&lt;/a&gt;。
@@ -276,11 +278,11 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>Org的电子表格的简明教程</title>
+    <title>Org-mode的电子表格的简明教程</title>
     <link href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/"/>
     <id>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</id>
     <published>2017-04-05T16:00:00.000Z</published>
-    <updated>2017-04-22T03:12:56.673Z</updated>
+    <updated>2017-05-15T15:11:44.918Z</updated>
     
     <summary type="html">
     
@@ -290,9 +292,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org985c71b&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org985c71b&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org985c71b&quot;&gt;
+&lt;div id=&quot;outline-container-org4383f73&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org4383f73&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org4383f73&quot;&gt;
 &lt;p&gt;
 这篇简短的教程将介绍使用 &lt;code&gt;Org&lt;/code&gt; 作为电子表格系统需要的基础知识。
 &lt;/p&gt;
@@ -347,6 +349,7 @@ ITEM for the headline title
 | bertrand |    13 |      09 |
 | henri    |    15 |      14 |
 | arnold   |    17 |      13 |
+
 &lt;/pre&gt;
 
 &lt;p&gt;
@@ -505,11 +508,11 @@ org-mode我用了两年，却未曾深入。
   </entry>
   
   <entry>
-    <title>Org 的语法概览</title>
+    <title>Org-mode的语法解析</title>
     <link href="https://brantou.github.io/2017/03/11/org-syntax/"/>
     <id>https://brantou.github.io/2017/03/11/org-syntax/</id>
     <published>2017-03-10T16:00:00.000Z</published>
-    <updated>2017-04-22T03:14:19.193Z</updated>
+    <updated>2017-05-15T15:10:24.388Z</updated>
     
     <summary type="html">
     
