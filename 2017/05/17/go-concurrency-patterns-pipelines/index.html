@@ -132,7 +132,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 Go没有对于管道的正式定义，它只是并发模式中的一种。
 非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。
 在每个片段， goroutine 完">
-<meta property="og:updated_time" content="2017-05-17T15:32:21.721Z">
+<meta property="og:updated_time" content="2017-05-17T15:43:27.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang的并发模式：管道和撤销">
 <meta name="twitter:description" content="1 序言
@@ -469,8 +469,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
         
 
 
-<div id="outline-container-org61ab9f4" class="outline-2">
-<h2 id="org61ab9f4"><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-orgff6cc48" class="outline-2">
+<h2 id="orgff6cc48"><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
@@ -478,8 +478,8 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 </div>
 </div>
 
-<div id="outline-container-org703b91f" class="outline-2">
-<h2 id="org703b91f"><span class="section-number-2">2</span> 管道什么？</h2>
+<div id="outline-container-org01338ee" class="outline-2">
+<h2 id="org01338ee"><span class="section-number-2">2</span> 管道什么？</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Go没有对于管道的正式定义，它只是并发模式中的一种。
@@ -504,8 +504,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org54678ae" class="outline-2">
-<h2 id="org54678ae"><span class="section-number-2">3</span> 平方数</h2>
+<div id="outline-container-orgea5f73f" class="outline-2">
+<h2 id="orgea5f73f"><span class="section-number-2">3</span> 平方数</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 当前示例，管道包含三个片段。
@@ -539,13 +539,13 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 重写 <i>main</i> ，使其像其他片段,循环从 <i>inbound channel</i> 取出数据：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">   <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">             out &lt;- n * n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline and consume the output.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> sq(sq(gen(<span class="number">2</span>, <span class="number">3</span>))) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 16 then 81</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline and consume the output.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> sq(sq(gen(<span class="number">2</span>, <span class="number">3</span>))) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 16 then 81</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org43a2b73" class="outline-2">
-<h2 id="org43a2b73"><span class="section-number-2">4</span> 扇出，扇入</h2>
+<div id="outline-container-org904f35a" class="outline-2">
+<h2 id="org904f35a"><span class="section-number-2">4</span> 扇出，扇入</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
@@ -559,7 +559,7 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 改变的管道流程, 运行两个 <i>sq</i> 的实例，每个实例从相同的输入 <i>channel</i> 读取(扇出)。 引入新的函数 <i>merge</i> 以演示扇入：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">   <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">             out &lt;- n * n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line"> <span class="keyword">func</span> merge(cs ...&lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">     <span class="comment">// copies values from c to out until c is closed, then calls wg.Done.</span></span><br><span class="line">     output := <span class="keyword">func</span>(c &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         wg.Done()</span><br><span class="line">     }</span><br><span class="line">     wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">     <span class="keyword">for</span> _, c := <span class="keyword">range</span> cs {</span><br><span class="line">         <span class="keyword">go</span> output(c)</span><br><span class="line">     }</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">     <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         wg.Wait()</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the merged output from c1 and c2.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> merge(c1, c2) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 4 then 9, or 9 then 4</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the merged output from c1 and c2.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> merge(c1, c2) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 4 then 9, or 9 then 4</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -579,7 +579,7 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-Last Updated 2017-05-17 Wed 23:32.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-17 Wed 23:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
       
     </div>
@@ -826,7 +826,7 @@ Last Updated 2017-05-17 Wed 23:32.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org61ab9f4"><span class="nav-number">1.</span> <span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org703b91f"><span class="nav-number">2.</span> <span class="nav-text">2 管道什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org54678ae"><span class="nav-number">3.</span> <span class="nav-text">3 平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org43a2b73"><span class="nav-number">4.</span> <span class="nav-text">4 扇出，扇入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgff6cc48"><span class="nav-number">1.</span> <span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org01338ee"><span class="nav-number">2.</span> <span class="nav-text">2 管道什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgea5f73f"><span class="nav-number">3.</span> <span class="nav-text">3 平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org904f35a"><span class="nav-number">4.</span> <span class="nav-text">4 扇出，扇入</span></a></li></ol></div>
             
 
           </div>
