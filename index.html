@@ -315,6 +315,273 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/go-concurrency-patterns-pipelines/" itemprop="url">
+                  Golang的并发模式：管道和撤销
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">
+                2017-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/17/go-concurrency-patterns-pipelines/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/17/go-concurrency-patterns-pipelines/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-org61ab9f4" class="outline-2">
+<h2 id="org61ab9f4"><span class="section-number-2">1</span> 序言</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org703b91f" class="outline-2">
+<h2 id="org703b91f"><span class="section-number-2">2</span> 管道什么？</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Go没有对于管道的正式定义，它只是并发模式中的一种。
+非正式的，管道就是通过 <code>channel</code> 连接的一系列片段，其中每个片段是一组功能相同的 <code>goroutine</code> 。
+在每个片段， <code>goroutine</code> 完成如下功能：
+</p>
+<ul class="org-ul">
+<li>通过 <i>inbound channel</i> 从上流片段接受数据</li>
+<li>在数据上执行计算，通常产生新数据</li>
+<li>把新数据通过 <i>outbound channel</i> 传到下流片段</li>
+</ul>
+
+<p>
+每个片段都有任意数量的 <i>inbound</i> 和 <i>outbound channel</i> ，
+当然第一个和最后一个排除在外，因为前者只有 <i>outbound channel</i>, 后者只有 <i>inbound channel</i> 。
+第一片段有时称为 <i>source</i> 或 <i>producer</i> ; 最后阶段，/sink/ 或 <i>consumer</i> 。
+</p>
+
+<p>
+从一个简单的示例管道开始，解释思路和技巧。 之后，呈现一个更加现实的例子。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54678ae" class="outline-2">
+<h2 id="org54678ae"><span class="section-number-2">3</span> 平方数</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+当前示例，管道包含三个片段。
+</p>
+
+<p>
+第一个片段 <i>gen</i> , 把整数数组转换成一个可取出整数的 <code>channel</code> 。
+<i>gen</i> 函数启动 <code>goroutine</code> 发生数据到 <code>channel</code> ,发送完成后关闭 <code>channel</code>:
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">            out &lt;- n</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+第二个片段 <i>sq</i> ，从一个 <code>channel</code> 中接收整数，并返回一个可取出每个接收的整数的平方的 <code>channel</code> 。
+在 <i>inbound channel</i> 关闭后，此片段已将所有值发送到下游，然后关闭 <i>outbound channel</i> :
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">            out &lt;- n * n</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>main</i> 函数 设置流水线并运行最后一个片段：从第二片段接收值并打印，直到 <code>channel</code> 关闭：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">   <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">             out &lt;- n * n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line"> <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline.</span></span><br><span class="line">    c := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    out := sq(c)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the output.</span></span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 4</span></span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 9</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+由于 <i>sq</i> 的 <i>inbound channel</i> 和 <i>outbound channel</i> 具有相同的类型，因此可以迭代使用任意次数。
+重写 <i>main</i> ，使其像其他片段,循环从 <i>inbound channel</i> 取出数据：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">   <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">             out &lt;- n * n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline and consume the output.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> sq(sq(gen(<span class="number">2</span>, <span class="number">3</span>))) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 16 then 81</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43a2b73" class="outline-2">
+<h2 id="org43a2b73"><span class="section-number-2">4</span> 扇出，扇入</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
+</p>
+
+<p>
+一个函数可以从多个输入接收数据，并进行数据处理，直到所有的输入 <code>channel</code> 多路复合到单个 <code>channel</code> 上，当所有输入都关闭时，复合的 <code>channel</code> 关闭。 这被称为扇入。
+</p>
+
+<p>
+改变的管道流程, 运行两个 <i>sq</i> 的实例，每个实例从相同的输入 <i>channel</i> 读取(扇出)。 引入新的函数 <i>merge</i> 以演示扇入：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line">   <span class="keyword">func</span> sq(in &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">             out &lt;- n * n</span><br><span class="line">         }</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line"> <span class="keyword">func</span> merge(cs ...&lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">     <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">     out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">     <span class="comment">// copies values from c to out until c is closed, then calls wg.Done.</span></span><br><span class="line">     output := <span class="keyword">func</span>(c &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">         <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">             out &lt;- n</span><br><span class="line">         }</span><br><span class="line">         wg.Done()</span><br><span class="line">     }</span><br><span class="line">     wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">     <span class="keyword">for</span> _, c := <span class="keyword">range</span> cs {</span><br><span class="line">         <span class="keyword">go</span> output(c)</span><br><span class="line">     }</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">     <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">     <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">         wg.Wait()</span><br><span class="line">         <span class="built_in">close</span>(out)</span><br><span class="line">     }()</span><br><span class="line">     <span class="keyword">return</span> out</span><br><span class="line"> }</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the merged output from c1 and c2.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> merge(c1, c2) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 4 then 9, or 9 then 4</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>merge</i> 函数将 <code>channel</code> 列表转换为单个通道，为每个 <i>inbound channel</i> 启动一个 <code>goroutine</code> ,
+来将 <i>inbound channel</i> 值复制到唯一 <i>outbound channel</i> 。
+一旦所有的输出 <code>goroutines</code> 都已经启动后,
+再启动一个 <code>goroutine</code> , 待所有的 <i>channel</i> 发送完成后来关闭 <i>outbound channel</i> 。
+</p>
+
+<p>
+往一个 <i>closed channel</i> 发送数据将会 <i>panic</i> ，所以要确保所有的发送都是在 <i>channel</i> 关闭之前完成的。
+<code>sync.WaitGroup</code> 提供了一种简单的同步方法:
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> merge(cs ...&lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">    <span class="comment">// copies values from c to out until c is closed, then calls wg.Done.</span></span><br><span class="line">    output := <span class="keyword">func</span>(c &lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">            out &lt;- n</span><br><span class="line">        }</span><br><span class="line">        wg.Done()</span><br><span class="line">    }</span><br><span class="line">    wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">    <span class="keyword">for</span> _, c := <span class="keyword">range</span> cs {</span><br><span class="line">        <span class="keyword">go</span> output(c)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">    <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        wg.Wait()</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-05-17 Wed 23:32.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2410,187 +2677,6 @@ org-mode我用了两年，却未曾深入。
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/11/org-syntax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/org-syntax/" itemprop="url">
-                  Org-mode的语法解析
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T00:00:00+08:00">
-                2017-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/11/org-syntax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/11/org-syntax/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/dev/org-syntax.html">Org Syntax (draft)</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>由 <b>Nicolas Goaziou</b> 编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<p>
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
-</p>
-
-<p>
-在 <b>Org</b> 语法中核心概念是： 只有 <b>headlines</b>, <b>sections</b>, <b>planning lines</b> 和 <b>property drawers</b> 四种语法结构是上下文无关的<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup><sup>, </sup><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>；
-其他语法结构只能存在于特定 <i>Environments</i> 之中。
-</p>
-
-<p>
-<i>Environments</i> 从大到小(作用范围的尺度来做分类标准,从最宽到最窄)，大致可分为三类: "Greater element", "Element" 和 "Object"。
-<b>Element</b> 被用到了两个类的命名中，Greater 和 non-Greater, 这代表了什么呢？代表了这两类有共通之处，即它们的上下文都会被清除，重新初始化。
-</p>
-
-<p>
-<b>Paragraph</b> 是最小的语法单元。 定义 <b>Element</b> 的子语法结构和 <b>Paragraph</b> 同级,即不能包含 <b>Paragraph</b> 或者被包含在 <b>Paragraph</b> 中。
-一个 <b>Object</b> 可以作为一部分被一个 <b>Element</b> 所包含。 <b>Greater element</b> 的任意部分都可以是一个 <b>Element</b> 。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/11/org-syntax/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2640,7 +2726,7 @@ org-mode我用了两年，却未曾深入。
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2651,7 +2737,7 @@ org-mode我用了两年，却未曾深入。
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

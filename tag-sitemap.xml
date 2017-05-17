@@ -44,13 +44,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-05-15T15:09:26.242Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/org-syntax/</loc>
         <lastmod>2017-05-15T15:10:24.388Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -123,6 +116,13 @@
     <url>
         <loc>https://brantou.github.io/tags/weekly/</loc>
         <lastmod>2017-05-17T09:08:37.237Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/golang/</loc>
+        <lastmod>2017-05-17T15:32:21.721Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

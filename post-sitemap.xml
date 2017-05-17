@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
+        <lastmod>2017-05-17T15:32:21.721Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</loc>
         <lastmod>2017-05-17T09:08:37.237Z</lastmod>
         <changefreq>weekly</changefreq>
