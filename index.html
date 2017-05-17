@@ -428,8 +428,8 @@
             
 
 
-<div id="outline-container-org0af2493" class="outline-2">
-<h2 id="org0af2493"><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-org41b5a1c" class="outline-2">
+<h2 id="org41b5a1c"><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
@@ -437,8 +437,8 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 </div>
 </div>
 
-<div id="outline-container-orga700938" class="outline-2">
-<h2 id="orga700938"><span class="section-number-2">2</span> 管道什么？</h2>
+<div id="outline-container-orgd6c6b8d" class="outline-2">
+<h2 id="orgd6c6b8d"><span class="section-number-2">2</span> 管道什么？</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Go没有对于管道的正式定义，它只是并发模式中的一种。
@@ -463,8 +463,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orga79946e" class="outline-2">
-<h2 id="orga79946e"><span class="section-number-2">3</span> 平方数</h2>
+<div id="outline-container-orgc50fb28" class="outline-2">
+<h2 id="orgc50fb28"><span class="section-number-2">3</span> 平方数</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 当前示例，管道包含三个片段。
@@ -503,8 +503,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgc5e0144" class="outline-2">
-<h2 id="orgc5e0144"><span class="section-number-2">4</span> 扇出，扇入</h2>
+<div id="outline-container-orgfb6e38a" class="outline-2">
+<h2 id="orgfb6e38a"><span class="section-number-2">4</span> 扇出，扇入</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
@@ -538,8 +538,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org5ae74f8" class="outline-2">
-<h2 id="org5ae74f8"><span class="section-number-2">5</span> 稍作停顿</h2>
+<div id="outline-container-org414b9cd" class="outline-2">
+<h2 id="org414b9cd"><span class="section-number-2">5</span> 稍作停顿</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 管道函数有如下模式：
@@ -550,7 +550,7 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </ul>
 
 <p>
-该模式允许每个接收片段使用 <i>range loop</i> ，以确保所有值都已成功发送到下游后退出所有 <code>goroutine</code> 。
+该模式允许每个接收片段使用 <i>range loop</i> ，以确保所有值都已成功发送到下游后退出所有~goroutine~。
 </p>
 
 <p>
@@ -574,7 +574,7 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-Last Updated 2017-05-18 Thu 00:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-18 Thu 00:19.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
