@@ -1957,8 +1957,17 @@ Last Updated 2017-05-12 Fri 14:26.<br>Render by <a href="https://github.com/Code
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
@@ -2047,6 +2056,22 @@ Last Updated 2017-05-12 Fri 14:26.<br>Render by <a href="https://github.com/Code
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5d82dd6"><span class="nav-text">2 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getting-started"><span class="nav-text">3 初始配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-blocks"><span class="nav-text">4 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-org"><span class="nav-text">4.1 代码块在 Org-mode 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source-code-blocks-babel"><span class="nav-text">4.2 代码块在 Babel 中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#source-code-execution"><span class="nav-text">5 源代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcc6c3dc"><span class="nav-text">5.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org8e61234"><span class="nav-text">5.1.1 Ruby</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8466e88"><span class="nav-text">5.1.2 Shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org22e6aec"><span class="nav-text">5.1.3 R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org0e36e0b"><span class="nav-text">5.1.4 ditaa</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#results"><span class="nav-text">5.2 捕获代码执行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#results-value"><span class="nav-text">5.2.1 :results value (functional mode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#results-output"><span class="nav-text">5.2.2 :results output (scripting mode)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org44155e2"><span class="nav-text">5.3 基于会话的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments-to-source-code-blocks"><span class="nav-text">5.4 代码块的入参</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#using-a-code-block-as-a-function"><span class="nav-text">5.4.1 代码块作为函数的简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc7fde66"><span class="nav-text">5.4.2 Org-mode 表格作为入参的更复杂的示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org75b2026"><span class="nav-text">5.5 内联(In-line)的代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org04bcdd2"><span class="nav-text">5.6 代码块扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta-programming-language"><span class="nav-text">5.7 Org-mode 的元编程语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spreadsheet"><span class="nav-text">6 在Org表格中使用代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbe55cc2"><span class="nav-text">6.1 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org93d0be0"><span class="nav-text">6.1.1 示例 1: 使用R生成数据概要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org83905cf"><span class="nav-text">6.1.2 示例 2: Babel 的测试套件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library-of-babel"><span class="nav-text">7 Babel库文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#literate-programming"><span class="nav-text">8 文学化编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbcdc22f"><span class="nav-text">8.1 tangling 的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#literate-programming-example"><span class="nav-text">8.1.1 简单文学编程示例 (Noweb syntax)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#emacs-initialization"><span class="nav-text">8.1.2 用Bable初始化Emacs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reproducable-research"><span class="nav-text">9 可重复性研究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
