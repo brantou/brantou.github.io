@@ -132,7 +132,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 Go没有对于管道的正式定义，它只是并发模式中的一种。
 非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。
 在每个片段， goroutine 完">
-<meta property="og:updated_time" content="2017-05-19T03:55:51.928Z">
+<meta property="og:updated_time" content="2017-05-19T14:59:16.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang的并发模式：管道和撤销">
 <meta name="twitter:description" content="1 序言
@@ -463,8 +463,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
         
 
 
-<div id="outline-container-org7d10c94" class="outline-2">
-<h2 id="org7d10c94"><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-org3acf3a4" class="outline-2">
+<h2 id="org3acf3a4"><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
@@ -472,8 +472,8 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 </div>
 </div>
 
-<div id="outline-container-org91fdfb2" class="outline-2">
-<h2 id="org91fdfb2"><span class="section-number-2">2</span> 管道什么？</h2>
+<div id="outline-container-orgc27d9ff" class="outline-2">
+<h2 id="orgc27d9ff"><span class="section-number-2">2</span> 管道什么？</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Go没有对于管道的正式定义，它只是并发模式中的一种。
@@ -498,8 +498,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orga11a37b" class="outline-2">
-<h2 id="orga11a37b"><span class="section-number-2">3</span> 平方数</h2>
+<div id="outline-container-org8acfcd2" class="outline-2">
+<h2 id="org8acfcd2"><span class="section-number-2">3</span> 平方数</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 当前示例，管道包含三个片段。
@@ -538,8 +538,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org5e75956" class="outline-2">
-<h2 id="org5e75956"><span class="section-number-2">4</span> 扇出，扇入</h2>
+<div id="outline-container-orgd72df4b" class="outline-2">
+<h2 id="orgd72df4b"><span class="section-number-2">4</span> 扇出，扇入</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
@@ -573,8 +573,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org2592ec9" class="outline-2">
-<h2 id="org2592ec9"><span class="section-number-2">5</span> 稍作停顿</h2>
+<div id="outline-container-orgdf7257c" class="outline-2">
+<h2 id="orgdf7257c"><span class="section-number-2">5</span> 稍作停顿</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 管道函数有如下模式：
@@ -640,8 +640,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgae57768" class="outline-2">
-<h2 id="orgae57768"><span class="section-number-2">6</span> 明确取消</h2>
+<div id="outline-container-orgb56c267" class="outline-2">
+<h2 id="orgb56c267"><span class="section-number-2">6</span> 明确取消</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 当 <i>main</i> 函数决定不再从上游片段/outbound channel/ 接收数据时，
@@ -724,7 +724,136 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-Last Updated 2017-05-19 Fri 11:55.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+<div id="outline-container-org4942fa3" class="outline-2">
+<h2 id="org4942fa3"><span class="section-number-2">7</span> MD5摘要示例</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+现在来看看更真实的管道应用。
+</p>
+
+<p>
+<code>MD5</code> 是一种消息摘要算法，可用作文件校验和。 命令行实用程序 <i>md5sum</i> 打印文件列表的摘要值。
+</p>
+<pre class="example">
+% md5sum *.go
+d47c2bbc28298ca9befdfbc5d3aa4e65  bounded.go
+ee869afd31f83cbb2d10ee81b2b831dc  parallel.go
+b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
+</pre>
+
+<p>
+示例程序像 <i>md5sum</i> ，但是以单个目录作为参数，并打印该目录下每个常规文件的摘要值，并按路径名排序。
+</p>
+<pre class="example">
+% go run serial.go .
+d47c2bbc28298ca9befdfbc5d3aa4e65  bounded.go
+ee869afd31f83cbb2d10ee81b2b831dc  parallel.go
+b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
+</pre>
+
+<p>
+示例程序的 <i>main</i> 函数 调用一个辅助函数 <i>MD5All</i> ，它返回一个从路径名到摘要值的 <i>map</i> ，然后排序并打印结果：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Calculate the MD5 sum of all files under the specified directory,</span></span><br><span class="line">    <span class="comment">// then print the results sorted by path name.</span></span><br><span class="line">    m, err := MD5All(os.Args[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">var</span> paths []<span class="typename">string</span></span><br><span class="line">    <span class="keyword">for</span> path := <span class="keyword">range</span> m {</span><br><span class="line">        paths = <span class="built_in">append</span>(paths, path)</span><br><span class="line">    }</span><br><span class="line">    sort.Strings(paths)</span><br><span class="line">    <span class="keyword">for</span> _, path := <span class="keyword">range</span> paths {</span><br><span class="line">        fmt.Printf(<span class="string">"%x  %s\n"</span>, m[path], path)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+
+<div id="outline-container-org7800812" class="outline-3">
+<h3 id="org7800812"><span class="section-number-3">7.1</span> 串行版</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" target="_blank" rel="external">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">        }</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        m[path] = md5.Sum(data)</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6824db6" class="outline-3">
+<h3 id="org6824db6"><span class="section-number-3">7.2</span> 并行版</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
+为每个文件做校验和创建 <code>goroutine</code> , 并将结果发送到 <i>result</i> 类型的 <i>channel</i> 上：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> result <span class="keyword">struct</span> {</span><br><span class="line">    path <span class="typename">string</span></span><br><span class="line">    sum  [md5.Size]<span class="typename">byte</span></span><br><span class="line">    err  error</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>sumFiles</i> 返回两个 <code>channel</code> ：一个用于传递结果，另一个用于返回 <i>filepath.Walk</i> 返回的错误。
+<i>walk</i> 函数启动一个新的 <code>goroutine</code> 来处理每个常规文件，然后检查 <i>done</i> 。 如果完成关闭， <i>walk</i> 将立即停止：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> sumFiles(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, root <span class="typename">string</span>) (&lt;-<span class="keyword">chan</span> result, &lt;-<span class="keyword">chan</span> error) {</span><br><span class="line">    <span class="comment">// For each regular file, start a goroutine that sums the file and sends</span></span><br><span class="line">    <span class="comment">// the result on c.  Send the result of the walk on errc.</span></span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> result)</span><br><span class="line">    errc := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">        err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">            <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">                <span class="keyword">return</span> err</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">                <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            wg.Add(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">                data, err := ioutil.ReadFile(path)</span><br><span class="line">                <span class="keyword">select</span> {</span><br><span class="line">                <span class="keyword">case</span> c &lt;- result{path, md5.Sum(data), err}:</span><br><span class="line">                <span class="keyword">case</span> &lt;-done:</span><br><span class="line">                }</span><br><span class="line">                wg.Done()</span><br><span class="line">            }()</span><br><span class="line">            <span class="comment">// Abort the walk if done is closed.</span></span><br><span class="line">            <span class="keyword">select</span> {</span><br><span class="line">            <span class="keyword">case</span> &lt;-done:</span><br><span class="line">                <span class="keyword">return</span> errors.New(<span class="string">"walk canceled"</span>)</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">        <span class="comment">// Walk has returned, so all calls to wg.Add are done.  Start a</span></span><br><span class="line">        <span class="comment">// goroutine to close c once all the sends are done.</span></span><br><span class="line">        <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">            wg.Wait()</span><br><span class="line">            <span class="built_in">close</span>(c)</span><br><span class="line">        }()</span><br><span class="line">        <span class="comment">// No select needed here, since errc is buffered.</span></span><br><span class="line">        errc &lt;- err</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> c, errc</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>MD5All</i> 从 <code>channel</code> 中接受摘要值，返回最早出现的错误，并通过 <i>defer</i> 来关闭 <i>done</i> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    <span class="comment">// MD5All closes the done channel when it returns; it may do so before</span></span><br><span class="line">    <span class="comment">// receiving all the values from c and errc.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line"></span><br><span class="line">    c, errc := sumFiles(done, root)</span><br><span class="line"></span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    <span class="keyword">for</span> r := <span class="keyword">range</span> c {</span><br><span class="line">        <span class="keyword">if</span> r.err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span>, r.err</span><br><span class="line">        }</span><br><span class="line">        m[r.path] = r.sum</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> err := &lt;-errc; err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf0c7026" class="outline-3">
+<h3 id="orgf0c7026"><span class="section-number-3">7.3</span> 受限的并行</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
+试想一下，若是一个目录中有许多大文件，上面的实现，很可能导致资源枯竭。
+可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" target="_blank" rel="external">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
+重新设计流程，包含三个片段： 遍历目录树， 读取文件生成摘要，收集摘要。
+</p>
+
+<p>
+第一个片段 <i>walkFiles</i> , 过滤出常规文件路径，同时往下游发送：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> walkFiles(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, root <span class="typename">string</span>) (&lt;-<span class="keyword">chan</span> <span class="typename">string</span>, &lt;-<span class="keyword">chan</span> error) {</span><br><span class="line">  paths := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">string</span>)</span><br><span class="line">  errc := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    <span class="comment">// Close the paths channel after Walk returns.</span></span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(paths)</span><br><span class="line">    <span class="comment">// No select needed for this send, since errc is buffered.</span></span><br><span class="line">    errc &lt;- filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">      <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> paths &lt;- path:</span><br><span class="line">      <span class="keyword">case</span> &lt;-done:</span><br><span class="line">        <span class="keyword">return</span> errors.New(<span class="string">"walk canceled"</span>)</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> paths, errc</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+中间片段启动固定数量的 <i>digester</i> <code>goroutine</code> 从 <i>paths</i> <code>channel</code> 中接受文件名， 通过 <i>c</i> <code>channel</code>  来回写摘要值：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> digester(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, paths &lt;-<span class="keyword">chan</span> <span class="typename">string</span>, c <span class="keyword">chan</span>&lt;- result) {</span><br><span class="line">    <span class="keyword">for</span> path := <span class="keyword">range</span> paths {</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> c &lt;- result{path, md5.Sum(data), err}:</span><br><span class="line">        <span class="keyword">case</span> &lt;-done:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+与以前的示例不同，/digester/ 不会关闭其输出 <code>channel</code> ，因为多个 <code>goroutine</code> 正在共享 <code>channel</code> 上发送。
+相反，当所有的 <i>digester</i> 完成时，MD5All中的代码会关闭 <code>channel</code> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.  In that case,</span></span><br><span class="line"><span class="comment">// MD5All does not wait for inflight read operations to complete.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">  <span class="comment">// MD5All closes the done channel when it returns; it may do so before</span></span><br><span class="line">  <span class="comment">// receiving all the values from c and errc.</span></span><br><span class="line">  done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line">  <span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line"></span><br><span class="line">  paths, errc := walkFiles(done, root)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start a fixed number of goroutines to read and digest files.</span></span><br><span class="line">  c := <span class="built_in">make</span>(<span class="keyword">chan</span> result) <span class="comment">// HLc</span></span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  <span class="keyword">const</span> numDigesters = <span class="number">20</span></span><br><span class="line">  wg.Add(numDigesters)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; numDigesters; i++ {</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      digester(done, paths, c) <span class="comment">// HLc</span></span><br><span class="line">      wg.Done()</span><br><span class="line">    }()</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    wg.Wait()</span><br><span class="line">    <span class="built_in">close</span>(c) <span class="comment">// HLc</span></span><br><span class="line">  }()</span><br><span class="line">  <span class="comment">// End of pipeline. OMIT</span></span><br><span class="line"></span><br><span class="line">  m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">  <span class="keyword">for</span> r := <span class="keyword">range</span> c {</span><br><span class="line">    <span class="keyword">if</span> r.err != <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">nil</span>, r.err</span><br><span class="line">    }</span><br><span class="line">    m[r.path] = r.sum</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// Check whether the Walk failed.</span></span><br><span class="line">  <span class="keyword">if</span> err := &lt;-errc; err != <span class="constant">nil</span> { <span class="comment">// HLerrc</span></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+可以让每个 <i>digester</i> 创建并返回自己的输出 <code>channel</code> ，但是后面需要额外的 <code>goroutine</code> 来扇入结果。
+</p>
+
+<p>
+最后片段接收 <i>c</i> 的所有结果，然后从 <i>errc</i> 检查错误。 此检查不能早于从 <i>c</i> 中接受数据，因为在此之前， <i>walkFiles</i> 可能会被下游阻塞。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b8fd08" class="outline-2">
+<h2 id="org3b8fd08"><span class="section-number-2">8</span> 总结</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+本文介绍了Go中构建管道流的技术。
+处理这种管道中的故障是很棘手的，因为管道中的任一片段都可能被尝试发送下游值而阻塞，并且下游片段可能也不再关心或者需要输入数据。
+本文展示了如何关闭 <code>channel</code> 方式来向管道启动的所有 <code>goroutines</code> 广播“完成”信号，并且正确地定义了管道构建的准则。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-19 Fri 22:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
       
     </div>
@@ -971,7 +1100,7 @@ Last Updated 2017-05-19 Fri 11:55.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org7d10c94"><span class="nav-number">1.</span> <span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org91fdfb2"><span class="nav-number">2.</span> <span class="nav-text">2 管道什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga11a37b"><span class="nav-number">3.</span> <span class="nav-text">3 平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5e75956"><span class="nav-number">4.</span> <span class="nav-text">4 扇出，扇入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2592ec9"><span class="nav-number">5.</span> <span class="nav-text">5 稍作停顿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgae57768"><span class="nav-number">6.</span> <span class="nav-text">6 明确取消</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org3acf3a4"><span class="nav-number">1.</span> <span class="nav-text">1 序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc27d9ff"><span class="nav-number">2.</span> <span class="nav-text">2 管道什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8acfcd2"><span class="nav-number">3.</span> <span class="nav-text">3 平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd72df4b"><span class="nav-number">4.</span> <span class="nav-text">4 扇出，扇入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdf7257c"><span class="nav-number">5.</span> <span class="nav-text">5 稍作停顿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb56c267"><span class="nav-number">6.</span> <span class="nav-text">6 明确取消</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4942fa3"><span class="nav-number">7.</span> <span class="nav-text">7 MD5摘要示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org7800812"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 串行版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6824db6"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 并行版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf0c7026"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 受限的并行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3b8fd08"><span class="nav-number">8.</span> <span class="nav-text">8 总结</span></a></li></ol></div>
             
 
           </div>
