@@ -420,19 +420,13 @@
           
             
 
-
-<div id="outline-container-org3acf3a4" class="outline-2">
-<h2 id="org3acf3a4"><span class="section-number-2">1</span> 序言</h2>
-<div class="outline-text-2" id="text-1">
 <p>
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
 </p>
-</div>
-</div>
 
-<div id="outline-container-orgc27d9ff" class="outline-2">
-<h2 id="orgc27d9ff"><span class="section-number-2">2</span> 管道什么？</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org054d193" class="outline-2">
+<h2 id="org054d193"><span class="section-number-2">1</span> 管道什么？</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 Go没有对于管道的正式定义，它只是并发模式中的一种。
 非正式的，管道就是通过 <code>channel</code> 连接的一系列片段，其中每个片段是一组功能相同的 <code>goroutine</code> 。
@@ -456,9 +450,9 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org8acfcd2" class="outline-2">
-<h2 id="org8acfcd2"><span class="section-number-2">3</span> 平方数</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgcced3ec" class="outline-2">
+<h2 id="orgcced3ec"><span class="section-number-2">2</span> 平方数</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 当前示例，管道包含三个片段。
 </p>
@@ -496,9 +490,9 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgd72df4b" class="outline-2">
-<h2 id="orgd72df4b"><span class="section-number-2">4</span> 扇出，扇入</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgc4966c6" class="outline-2">
+<h2 id="orgc4966c6"><span class="section-number-2">3</span> 扇出，扇入</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
 </p>
@@ -531,9 +525,9 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgdf7257c" class="outline-2">
-<h2 id="orgdf7257c"><span class="section-number-2">5</span> 稍作停顿</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org6e84420" class="outline-2">
+<h2 id="org6e84420"><span class="section-number-2">4</span> 稍作停顿</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 管道函数有如下模式：
 </p>
@@ -598,9 +592,9 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgb56c267" class="outline-2">
-<h2 id="orgb56c267"><span class="section-number-2">6</span> 明确取消</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org6140c45" class="outline-2">
+<h2 id="org6140c45"><span class="section-number-2">5</span> 明确取消</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 当 <i>main</i> 函数决定不再从上游片段/outbound channel/ 接收数据时，
 它需要告诉上流片段的 <code>goroutine</code> 终止发送操作。
@@ -682,9 +676,9 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org4942fa3" class="outline-2">
-<h2 id="org4942fa3"><span class="section-number-2">7</span> MD5摘要示例</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org6493106" class="outline-2">
+<h2 id="org6493106"><span class="section-number-2">6</span> MD5摘要示例</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 现在来看看更真实的管道应用。
 </p>
@@ -717,9 +711,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org7800812" class="outline-3">
-<h3 id="org7800812"><span class="section-number-3">7.1</span> 串行版</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-org41c6a6c" class="outline-3">
+<h3 id="org41c6a6c"><span class="section-number-3">6.1</span> 串行版</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 <i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" target="_blank" rel="external">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
 </p>
@@ -729,9 +723,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org6824db6" class="outline-3">
-<h3 id="org6824db6"><span class="section-number-3">7.2</span> 并行版</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-orgcc072cb" class="outline-3">
+<h3 id="orgcc072cb"><span class="section-number-3">6.2</span> 并行版</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
 为每个文件做校验和创建 <code>goroutine</code> , 并将结果发送到 <i>result</i> 类型的 <i>channel</i> 上：
@@ -757,9 +751,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-orgf0c7026" class="outline-3">
-<h3 id="orgf0c7026"><span class="section-number-3">7.3</span> 受限的并行</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-org5ee5ff9" class="outline-3">
+<h3 id="org5ee5ff9"><span class="section-number-3">6.3</span> 受限的并行</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
 试想一下，若是一个目录中有许多大文件，上面的实现，很可能导致资源枯竭。
@@ -800,9 +794,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org3b8fd08" class="outline-2">
-<h2 id="org3b8fd08"><span class="section-number-2">8</span> 总结</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgc78cb20" class="outline-2">
+<h2 id="orgc78cb20"><span class="section-number-2">7</span> 总结</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 本文介绍了Go中构建管道流的技术。
 处理这种管道中的故障是很棘手的，因为管道中的任一片段都可能被尝试发送下游值而阻塞，并且下游片段可能也不再关心或者需要输入数据。
@@ -811,7 +805,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-Last Updated 2017-05-19 Fri 22:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-19 Fri 23:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
