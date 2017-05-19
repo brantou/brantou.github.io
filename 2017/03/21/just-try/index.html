@@ -77,7 +77,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="tutorial,org-mode,manual," />
@@ -91,7 +91,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -151,12 +151,13 @@
 
 
 
-  <title> Org-mode手册 | Brantou的日常 </title>
+  <title>Org-mode手册 | Brantou的日常</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
 
 
 
@@ -289,7 +290,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+      <input autocomplete="off"
              placeholder="搜索..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
@@ -341,14 +342,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                Org-mode手册
-              
-            
-          </h2>
+          <h2 class="post-title" itemprop="name headline">Org-mode手册</h2>
         
 
         <div class="post-meta">
@@ -494,14 +488,14 @@ Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐
 <tbody>
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,->folded->children->subtree&#x2013;.</span></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 <td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,->overview->contents->show all&#x2013;.</span></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
 <td class="org-left"><code>org-global-cycle</code></td>
 </tr>
 </tbody>
@@ -546,7 +540,7 @@ org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标�
 你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&#8629;er</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -701,7 +695,7 @@ q        退出
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -879,7 +873,7 @@ q        退出
 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &#8216;FIXME&#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -974,7 +968,7 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -1368,7 +1362,7 @@ You can check syntax in your documents using org-lint command.
 </tr>
 
 <tr>
-<td class="org-left"><code><tab></tab></code></td>
+<td class="org-left"><code>&lt;TAB&gt;</code></td>
 <td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
 <td class="org-left"><code>org-table-next-field</code></td>
 </tr>
@@ -1638,7 +1632,7 @@ You can check syntax in your documents using org-lint command.
 <img src="/images/table-column-width.jpg">
 
 <p>
-设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=></b> 来替代展示。
+设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=&gt;</b> 来替代展示。
 要查看全文，请将鼠标悬停在该字段上&#x2014;工具提示窗口(tool-tip window)将显示完整的内容。
 要编辑这样一个区域，可使用 <code>C-c</code> <code>`</code> 。 这将打开一个的新窗口。 编辑后用 <code>C-c</code> <code>C-c</code> 来提交编辑内容，并关闭窗口。
 </p>
@@ -1654,9 +1648,9 @@ You can check syntax in your documents using org-lint command.
 </pre>
 
 <p>
-如果不喜欢默认自动对齐的方式，您可以使用 <b><r></r></b> ，*<c>* 或者 <b><l></l></b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i><r10></r10></i> 。
+如果不喜欢默认自动对齐的方式，您可以使用 <b>&lt;r&gt;</b> ，*&lt;c&gt;* 或者 <b>&lt;l&gt;</b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i>&lt;r10&gt;</i> 。
 在导出文档时，将自动删除仅包含这些格式化信息的行。
-</c></p>
+</p>
 </div>
 </div>
 
@@ -1666,9 +1660,9 @@ You can check syntax in your documents using org-lint command.
 <p>
 当Org导出表时，默认情况下不会有垂直线，因为在视觉上一般来说更令人满意。
 然而，偶尔，垂直线对于将表结构化成一组列可能是有用的，就像水平线可以对于一组行所做的那样。
-为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'<'表示此列应该启动一个组，'>'表示组的结束，或'<>'（'<'和'>'之间没有空格） 当前列自己一组。
+为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'&lt;'表示此列应该启动一个组，'&gt;'表示组的结束，或'&lt;&gt;'（'&lt;'和'&gt;'之间没有空格） 当前列自己一组。
 导出后，列组之间的边界将用垂直线标记。 示例如下：
-</'和'></'表示此列应该启动一个组，'></p>
+</p>
 
 <img src="/images/table-column-groups.jpg">
 
@@ -1854,7 +1848,7 @@ including spreadsheet capabilities.
 一旦链接完成，链接样式将发生变化，显示 <i>description</i> 而不是 <code>[[link] [description]]</code> 或 <i>link</i> 而不是 <code>[ [link]]]</code> 。
 可以直接编辑链接的可见部分。 请注意，这可以是 <i>link</i> 部分（如果没有 <i>description</i> ）或 <i>description</i> 部分。 要编辑不可见的“链接”部分，只需在链接上键入 <code>C-c C-l</code> 。
 在链接的头和尾可删除链接不可见的边际括号，使得链接不完整，内部再次显示为纯文本。 插入缺失的括号将再次隐藏链接内部。
-要显示所有链接的内部结构，可用菜单条目 <code>Org->Hyperlinks->Literal links</code> 。
+要显示所有链接的内部结构，可用菜单条目 <code>Org-&gt;Hyperlinks-&gt;Literal links</code> 。
 </p>
 </div>
 </div>
@@ -1889,9 +1883,9 @@ including spreadsheet capabilities.
 </p>
 <pre class="example">
 - one item
-- <<target>> another item
+- &lt;&lt;target&gt;&gt; another item
 Here we refer to item [[target]].
-</target></pre>
+</pre>
 <p>
 导出时，最后一句将显示为 <i>Here we refer to item 2</i> 。
 </p>
@@ -2047,7 +2041,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 </tr>
 
 <tr>
-<td class="org-left"><code>C-c &</code></td>
+<td class="org-left"><code>C-c &amp;</code></td>
 <td class="org-left">跳回到记录位置。 A position is recorded by the commands following internal links, and by C-c %. Using this command several times in direct succession moves through a ring of previously recorded positions.</td>
 <td class="org-left"><code>org-mark-ring-goto</code></td>
 </tr>
@@ -2089,7 +2083,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 根据将链接缩写词与替换文本相关联的变量 <code>org-link-abbrev-alist</code> 中的信息来解析缩写。 定义如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-link-abbrev-alist</span><br><span class="line">      <span class="quoted">'((<span class="string">"bugzilla"</span>  . <span class="string">"http://10.1.2.9/bugzilla/show_bug.cgi?id="</span>)</span><br><span class="line">        (<span class="string">"url-to-ja"</span> . <span class="string">"http://translate.google.fr/translate?sl=en&amp;tl=ja&amp;u=%h"</span>)</span><br><span class="line">        (<span class="string">"google"</span>    . <span class="string">"http://www.google.com/search?q="</span>)</span><br><span class="line">        (<span class="string">"gmap"</span>      . <span class="string">"http://maps.google.com/maps?q=%s"</span>)</span><br><span class="line">        (<span class="string">"omap"</span>      . <span class="string">"http://nominatim.openstreetmap.org/search?q=%s&amp;polygon=1"</span>)</span><br><span class="line">        (<span class="string">"ads"</span>       . <span class="string">"http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&amp;db_key=AST"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-link-abbrev-alist</span><br><span class="line">      <span class="quoted">'((<span class="string">"bugzilla"</span>  . <span class="string">"http://10.1.2.9/bugzilla/show_bug.cgi?id="</span>)</span><br><span class="line">        (<span class="string">"url-to-ja"</span> . <span class="string">"http://translate.google.fr/translate?sl=en&amp;amp;tl=ja&amp;amp;u=%h"</span>)</span><br><span class="line">        (<span class="string">"google"</span>    . <span class="string">"http://www.google.com/search?q="</span>)</span><br><span class="line">        (<span class="string">"gmap"</span>      . <span class="string">"http://maps.google.com/maps?q=%s"</span>)</span><br><span class="line">        (<span class="string">"omap"</span>      . <span class="string">"http://nominatim.openstreetmap.org/search?q=%s&amp;amp;polygon=1"</span>)</span><br><span class="line">        (<span class="string">"ads"</span>       . <span class="string">"http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&amp;amp;db_key=AST"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <p>
 如果替换文本包含字符串 <code>％s</code> ，它将被标签所替换。
@@ -2162,7 +2156,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 <tbody>
 <tr>
 <td class="org-left"><code>C-c C-t</code></td>
-<td class="org-left">转换当前项的TODO状态 <span class="underline">,-> (unmarked) -> TODO -> DONE &#x2013;.</span></td>
+<td class="org-left">转换当前项的TODO状态 <span class="underline">,-&gt; (unmarked) -&gt; TODO -&gt; DONE &#x2013;.</span></td>
 <td class="org-left"><code>org-todo</code></td>
 </tr>
 
@@ -2218,7 +2212,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 可以使用 <code>TODO</code> 关键字来表示项目进行过程中工作流状态，例如：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;   '((sequence &#34;TODO&#34; &#34;FEEDBACK&#34; &#34;VERIFY&#34; &#34;|&#34; &#34;DONE&#34; &#34;DELEGATED&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;   &#39;((sequence &#34;TODO&#34; &#34;FEEDBACK&#34; &#34;VERIFY&#34; &#34;|&#34; &#34;DONE&#34; &#34;DELEGATED&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 垂直条将 <code>TODO</code> 关键字（需要处理的状态）从DONE状态分离（无需进一步操作）。
@@ -2238,7 +2232,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 如下配置：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords '((type &#34;Fred&#34; &#34;Sara&#34; &#34;Lucy&#34; &#34;|&#34; &#34;DONE&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords &#39;((type &#34;Fred&#34; &#34;Sara&#34; &#34;Lucy&#34; &#34;|&#34; &#34;DONE&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 在这种情况下，不同的关键字不表示序列，而是不同的类型。
@@ -2261,7 +2255,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 设置如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;      '((sequence &#34;TODO&#34; &#34;|&#34; &#34;DONE&#34;)&#10;        (sequence &#34;REPORT&#34; &#34;BUG&#34; &#34;KNOWNCAUSE&#34; &#34;|&#34; &#34;FIXED&#34;)&#10;        (sequence &#34;|&#34; &#34;CANCELED&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;      &#39;((sequence &#34;TODO&#34; &#34;|&#34; &#34;DONE&#34;)&#10;        (sequence &#34;REPORT&#34; &#34;BUG&#34; &#34;KNOWNCAUSE&#34; &#34;|&#34; &#34;FIXED&#34;)&#10;        (sequence &#34;|&#34; &#34;CANCELED&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 这些关键字应该是不同的，这有助于 <code>Org-mode</code> 跟踪给定条目应该使用哪个子序列。
@@ -2296,7 +2290,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 这是通过在每个关键字后面的括号中添加选择字符来完成的。
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;     '((sequence &#34;TODO(t)&#34; &#34;|&#34; &#34;DONE(d)&#34;)&#10;       (sequence &#34;REPORT(r)&#34; &#34;BUG(b)&#34; &#34;KNOWNCAUSE(k)&#34; &#34;|&#34; &#34;FIXED(f)&#34;)&#10;       (sequence &#34;|&#34; &#34;CANCELED(c)&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;     &#39;((sequence &#34;TODO(t)&#34; &#34;|&#34; &#34;DONE(d)&#34;)&#10;       (sequence &#34;REPORT(r)&#34; &#34;BUG(b)&#34; &#34;KNOWNCAUSE(k)&#34; &#34;|&#34; &#34;FIXED(f)&#34;)&#10;       (sequence &#34;|&#34; &#34;CANCELED(c)&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 如果按C-c C-t，后按选择键，则条目将切换到此状态。 SPC可用于从条目中删除任何TODO关键字。
@@ -2341,7 +2335,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 例如：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keyword-faces&#10;      '((&#34;TODO&#34; . org-warning) (&#34;STARTED&#34; . &#34;yellow&#34;)&#10;        (&#34;CANCELED&#34; . (:foreground &#34;blue&#34; :weight bold))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keyword-faces&#10;      &#39;((&#34;TODO&#34; . org-warning) (&#34;STARTED&#34; . &#34;yellow&#34;)&#10;        (&#34;CANCELED&#34; . (:foreground &#34;blue&#34; :weight bold))))</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2827,32 +2821,32 @@ Last Updated 2017-04-25 Tue 23:41.<br>Render by <a href="https://github.com/Code
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -2904,126 +2898,317 @@ Last Updated 2017-04-25 Tue 23:41.<br>Render by <a href="https://github.com/Code
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
 
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
       $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
+        success: function(res) {
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
+          var datas = isXml ? $("entry", res).map(function() {
             return {
-              title: $( "title", this ).text(),
+              title: $("title", this).text(),
               content: $("content",this).text(),
-              url: $( "url" , this).text()
+              url: $("url" , this).text()
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
           proceedsearch();
         }
-      });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
