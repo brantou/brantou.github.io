@@ -110,7 +110,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
 当 request 被取消或触发超时时，在该 request 上工作">
-<meta property="og:updated_time" content="2017-05-20T09:52:57.280Z">
+<meta property="og:updated_time" content="2017-05-20T15:09:38.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang的并发模式：Context">
 <meta name="twitter:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
@@ -441,8 +441,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
-<div id="outline-container-orge31b220" class="outline-2">
-<h2 id="orge31b220"><span class="section-number-2">1</span> context</h2>
+<div id="outline-container-org8040060" class="outline-2">
+<h2 id="org8040060"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external">godoc</a>)：
@@ -478,8 +478,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 </div>
 </div>
 
-<div id="outline-container-org458c73d" class="outline-2">
-<h2 id="org458c73d"><span class="section-number-2">2</span> Context的衍生</h2>
+<div id="outline-container-org76a2cda" class="outline-2">
+<h2 id="org76a2cda"><span class="section-number-2">2</span> Context的衍生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
@@ -503,11 +503,14 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 </div>
 
 <p>
-WithValue提供了一种将请求范围内的值与 <i>Context</i> 相关联的方法：
+<i>WithValue</i> 提供了一种将请求范围内的值与 <i>Context</i> 相关联的方法：
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// WithValue returns a copy of parent whose Value method returns val for key.</span></span><br><span class="line"><span class="keyword">func</span> WithValue(parent Context, key <span class="keyword">interface</span>{}, val <span class="keyword">interface</span>{}) Context</span><br></pre></td></tr></table></figure>
 </div>
+<p>
+注： 使用context的Value相关方法只应该用于在程序和接口中传递的和请求相关的元数据，不要用它来传递一些可选的参数；
+</p>
 
 <p>
 掌握如何使用 <i>context</i> 包的最佳方法是通过一个真实完整的示例。
@@ -515,9 +518,67 @@ WithValue提供了一种将请求范围内的值与 <i>Context</i> 相关联的�
 </div>
 </div>
 
-<div id="outline-container-org39a0302" class="outline-2">
-<h2 id="org39a0302"><span class="section-number-2">3</span> 示例： Google Web 搜索</h2>
+<div id="outline-container-org6df2db4" class="outline-2">
+<h2 id="org6df2db4"><span class="section-number-2">3</span> Context使用的简单示例</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
+这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external">godoc</a>。
+</p>
+</div>
+<div id="outline-container-org3676a9c" class="outline-3">
+<h3 id="org3676a9c"><span class="section-number-3">3.1</span> WithCancel</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<i>WithCancel</i> 的示例, 演示如何使用可取消 <i>context</i> 来防止 <code>goroutine</code> 泄漏。
+示例函数的结尾，由gen启动的goroutine将返回而不会发送泄漏。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// gen generates integers in a separate goroutine and</span></span><br><span class="line">  <span class="comment">// sends them to the returned channel.</span></span><br><span class="line">  <span class="comment">// The callers of gen need to cancel the context once</span></span><br><span class="line">  <span class="comment">// they are done consuming generated integers not to leak</span></span><br><span class="line">  <span class="comment">// the internal goroutine started by gen.</span></span><br><span class="line">  gen := <span class="keyword">func</span>(ctx context.Context) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    n := <span class="number">1</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      <span class="keyword">for</span> {</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">          <span class="keyword">return</span> <span class="comment">// returning not to leak the goroutine</span></span><br><span class="line">        <span class="keyword">case</span> dst &lt;- n:</span><br><span class="line">          n++</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> dst</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// cancel when we are finished consuming integers</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) {</span><br><span class="line">    fmt.Println(n)</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">5</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6e822f" class="outline-3">
+<h3 id="orgb6e822f"><span class="section-number-3">3.2</span> WithDeadline</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<i>WithDeadline</i> 的示例,通过一个截止日期的 <i>Context</i> 来告知一个阻塞的函数，一旦它到了最终期限，就放弃它的工作。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  d := time.Now().Add(<span class="number">50</span> * time.Millisecond)</span><br><span class="line">  ctx, cancel := context.WithDeadline(context.Background(), d)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Even though ctx will be expired, it is good practice to call its</span></span><br><span class="line">  <span class="comment">// cancelation function in any case. Failure to do so may keep the</span></span><br><span class="line">  <span class="comment">// context and its parent alive longer than necessary.</span></span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err())</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org34120ee" class="outline-3">
+<h3 id="org34120ee"><span class="section-number-3">3.3</span> Withtimeount</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<i>WithTimeount</i> 的示例, 传递具有超时的 <i>Context</i> 以告知阻塞函数，它将在超时过后丢弃其工作。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// Pass a context with a timeout to tell a blocking function that it</span></span><br><span class="line">  <span class="comment">// should abandon its work after the timeout elapses.</span></span><br><span class="line">  ctx, cancel := context.WithTimeout(context.Background(), <span class="number">50</span>*time.Millisecond)</span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err()) <span class="comment">// prints "context deadline exceeded"</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71c140b" class="outline-3">
+<h3 id="org71c140b"><span class="section-number-3">3.4</span> WithValue</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<i>WithValue</i> 的简单示例代码：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">type</span> favContextKey <span class="typename">string</span></span><br><span class="line"></span><br><span class="line">  f := <span class="keyword">func</span>(ctx context.Context, k favContextKey) {</span><br><span class="line">    <span class="keyword">if</span> v := ctx.Value(k); v != <span class="constant">nil</span> {</span><br><span class="line">      fmt.Println(<span class="string">"found value:"</span>, v)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    fmt.Println(<span class="string">"key not found:"</span>, k)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  k := favContextKey(<span class="string">"language"</span>)</span><br><span class="line">  ctx := context.WithValue(context.Background(), k, <span class="string">"Go"</span>)</span><br><span class="line"></span><br><span class="line">  f(ctx, k)</span><br><span class="line">  f(ctx, favContextKey(<span class="string">"color"</span>))</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org929f4e3" class="outline-2">
+<h2 id="org929f4e3"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
 timeout参数告诉服务器在该时间过去之后取消请求。
@@ -533,10 +594,9 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </ul>
 </div>
 
-
-<div id="outline-container-orgda30f15" class="outline-3">
-<h3 id="orgda30f15"><span class="section-number-3">3.1</span> server</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org65ab484" class="outline-3">
+<h3 id="org65ab484"><span class="section-number-3">4.1</span> server</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
 它注册 /handleSearch</i> 来处理 "<i>search"。 处理函数创建一个名为ctx的 /Context</i> ，并在处理程序返回时,一并被取消。
@@ -570,10 +630,9 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </div>
 </div>
 
-
-<div id="outline-container-orge528851" class="outline-3">
-<h3 id="orge528851"><span class="section-number-3">3.2</span> userip</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org0f86128" class="outline-3">
+<h3 id="org0f86128"><span class="section-number-3">4.2</span> userip</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
 <i>Context</i> 提供了 key-value 映射的 <i>map</i> ，其中 <i>key</i> 和 <i>value</i> 均为 <code>interface{}</code> 类型。
@@ -611,9 +670,9 @@ NewContext返回一个带有userIP的新Context：
 </div>
 </div>
 
-<div id="outline-container-org194da13" class="outline-3">
-<h3 id="org194da13"><span class="section-number-3">3.3</span> google</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org8adcbff" class="outline-3">
+<h3 id="org8adcbff"><span class="section-number-3">4.3</span> google</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 <i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
 它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
@@ -645,9 +704,9 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </div>
 </div>
 
-<div id="outline-container-orga95ed16" class="outline-2">
-<h2 id="orga95ed16"><span class="section-number-2">4</span> 适配Context到已有代码</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org1e866b7" class="outline-2">
+<h2 id="org1e866b7"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 许多服务器框架提供用于承载请求范围值的包和类型。
 可以定义 <i>Context</i> 接口的新实现，以便使得现有的框架和期望Context参数的代码进行适配。
@@ -667,9 +726,9 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-<div id="outline-container-org8e61499" class="outline-2">
-<h2 id="org8e61499"><span class="section-number-2">5</span> 总结</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgeca8455" class="outline-2">
+<h2 id="orgeca8455"><span class="section-number-2">6</span> 总结</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
 这允许由许多不同团队开发的Go代码进行良好的互操作。 它提供对超时和取消的简单控制，并确保安全证书等关键值正确转移Go程序。
@@ -683,7 +742,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-20 Sat 17:52.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-20 Sat 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
       
     </div>
@@ -932,7 +991,7 @@ Last Updated 2017-05-20 Sat 17:52.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orge31b220"><span class="nav-text">1 context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org458c73d"><span class="nav-text">2 Context的衍生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org39a0302"><span class="nav-text">3 示例： Google Web 搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgda30f15"><span class="nav-text">3.1 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge528851"><span class="nav-text">3.2 userip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org194da13"><span class="nav-text">3.3 google</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga95ed16"><span class="nav-text">4 适配Context到已有代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8e61499"><span class="nav-text">5 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org8040060"><span class="nav-text">1 context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org76a2cda"><span class="nav-text">2 Context的衍生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6df2db4"><span class="nav-text">3 Context使用的简单示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org3676a9c"><span class="nav-text">3.1 WithCancel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb6e822f"><span class="nav-text">3.2 WithDeadline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org34120ee"><span class="nav-text">3.3 Withtimeount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org71c140b"><span class="nav-text">3.4 WithValue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org929f4e3"><span class="nav-text">4 示例：Google Web Search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org65ab484"><span class="nav-text">4.1 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0f86128"><span class="nav-text">4.2 userip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org8adcbff"><span class="nav-text">4.3 google</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1e866b7"><span class="nav-text">5 适配Context到已有代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeca8455"><span class="nav-text">6 总结</span></a></li></ol></div>
             
 
           </div>
