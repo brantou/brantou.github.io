@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-20T09:49:04.001Z</updated>
+  <updated>2017-05-20T09:52:57.280Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>golang的并发模式：*Context*</title>
+    <title>golang的并发模式：Context</title>
     <link href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
     <id>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</id>
     <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-20T09:49:04.001Z</updated>
+    <updated>2017-05-20T09:52:57.280Z</updated>
     
     <summary type="html">
     
