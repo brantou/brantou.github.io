@@ -316,6 +316,386 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/20/go-concurrency-patterns-context/" itemprop="url">未命名</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T17:43:53+08:00">
+                2017-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/20/go-concurrency-patterns-context/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/20/go-concurrency-patterns-context/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+在go服务端，每个传入的 <i>request</i> 都在自己的 <code>goroutine</code> 中做后续处理。
+<i>request handlers</i> 经常启动其他 <code>goroutines</code> 以访问后端，如数据库和rpc服务。
+服务于 <i>request</i> 的一组常用典型的 <code>goroutines</code> 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
+当 <i>request</i> 被取消或触发超时时，在该 <i>request</i> 上工作的所有 <code>goroutine</code> 应该快速退出，以便系统可以回收所使用的任何资源。
+</p>
+
+<p>
+在google内部，开发了一个 <i>context</i> 包，可以轻松地跨越api边界,传递请求范围值，取消信号和截止日期到 <i>request</i> 所涉及的所有 <code>goroutine</code> 。
+该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
+</p>
+
+<div id="outline-container-org4f29633" class="outline-2">
+<h2 id="org4f29633"><span class="section-number-2">1</span> context</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external">godoc</a>)：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>Done</i> 方法返回一个 <i>channel</i> ，用于发送取消信号(代表 <i>Context</i> 已关闭)到运行时函数：当 <code>channel</code> 关闭时，函数应该放弃后续流程并返回。
+<i>Err</i> 方法返回一个错误，指出为什么 <i>context</i> 被取消。 管道和取消文章更详细地讨论了 <i>done channel</i> 的惯用法。
+</p>
+
+<p>
+由于 <i>Done channel</i> 只接收的原因，/Context/ 没有取消方法：接收取消信号的函数通常不应当具备发送信号的功能。
+特别是，当父操作启动子操作的 <code>goroutines</code> 时，这些子操作不应该能够取消父操作。
+相反， <i>WithCancel</i> 函数（如下所述）提供了一种取消新的 <i>Context</i> 值的方法。
+</p>
+
+<p>
+<i>Context</i> 可以安全地同时用于多个 <code>goroutines</code> 。
+代码可以将单个 <i>Context</i> 传递给任意数量的 <code>goroutine</code> ，并能发送取消该Context的信号到所有的关联的 <code>goroutine</code> 。
+</p>
+
+<p>
+<i>Deadline</i> 方法允许功能确定是否应该开始工作; 如果剩下的时间太少，可能不值得。
+代码中也可能会使用截止时间来为I/O操作设置超时。
+</p>
+
+<p>
+<i>Value</i> 允许 <i>Context</i> 传送请求数据。 该数据必须能安全的同时用于多个 <code>goroutine</code> 。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org63bfb77" class="outline-2">
+<h2 id="org63bfb77"><span class="section-number-2">2</span> Context的衍生</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
+这些 <i>Context</i> 形成一个树状的层级结构：当一个 <i>Context</i> 被取消时，从它衍生出的所有 <i>Context</i> 也被取消。
+</p>
+
+<p>
+<i>Background</i> 是任何Context树的根; 它永远不会被取消：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Background returns an empty Context. It is never canceled, has no deadline,</span></span><br><span class="line"><span class="comment">// and has no values. Background is typically used in main, init, and tests,</span></span><br><span class="line"><span class="comment">// and as the top-level Context for incoming requests.</span></span><br><span class="line"><span class="keyword">func</span> Background() Context</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>WithCancel</i> 和 <i>WithTimeout</i> 返回衍生出的 <i>Context</i> ，衍生出的子 <i>Context</i> 可早于父 <i>Context</i> 被取消。
+与传入的 <i>request</i> 相关联的上下文通常在请求处理程序返回时被取消。 <i>WithCancel</i> 也可用于在使用多个副本时取消冗余请求。
+<i>WithTimeout</i> 对设置后台服务器请求的最后期限很有用：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// WithCancel returns a copy of parent whose Done channel is closed as soon as</span></span><br><span class="line"> <span class="comment">// parent.Done is closed or cancel is called.</span></span><br><span class="line"> <span class="keyword">func</span> WithCancel(parent Context) (ctx Context, cancel CancelFunc)</span><br><span class="line"></span><br><span class="line"> <span class="comment">// A CancelFunc cancels a Context.</span></span><br><span class="line"> <span class="keyword">type</span> CancelFunc <span class="keyword">func</span>()</span><br><span class="line"></span><br><span class="line"> <span class="comment">// WithTimeout returns a copy of parent whose Done channel is closed as soon as</span></span><br><span class="line"> <span class="comment">// parent.Done is closed, cancel is called, or timeout elapses. The new</span></span><br><span class="line"> <span class="comment">// Context's Deadline is the sooner of now+timeout and the parent's deadline, if</span></span><br><span class="line"> <span class="comment">// any. If the timer is still running, the cancel function releases its</span></span><br><span class="line"> <span class="comment">// resources.</span></span><br><span class="line"> <span class="keyword">func</span> WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// WithDeadline returns a copy of the parent context with the deadline adjusted</span></span><br><span class="line"><span class="comment">// to be no later than d. If the parent's deadline is already earlier than d,</span></span><br><span class="line"><span class="comment">// WithDeadline(parent, d) is semantically equivalent to parent. The returned</span></span><br><span class="line"><span class="comment">// context's Done channel is closed when the deadline expires, when the returned</span></span><br><span class="line"><span class="comment">// cancel function is called, or when the parent context's Done channel is</span></span><br><span class="line"><span class="comment">// closed, whichever happens first.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Canceling this context releases resources associated with it, so code should</span></span><br><span class="line"><span class="comment">// call cancel as soon as the operations running in this Context complete.</span></span><br><span class="line"><span class="keyword">func</span> WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+WithValue提供了一种将请求范围内的值与 <i>Context</i> 相关联的方法：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// WithValue returns a copy of parent whose Value method returns val for key.</span></span><br><span class="line"><span class="keyword">func</span> WithValue(parent Context, key <span class="keyword">interface</span>{}, val <span class="keyword">interface</span>{}) Context</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+掌握如何使用 <i>context</i> 包的最佳方法是通过一个真实完整的示例。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org22fb1b8" class="outline-2">
+<h2 id="org22fb1b8"><span class="section-number-2">3</span> 示例： Google Web 搜索</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
+timeout参数告诉服务器在该时间过去之后取消请求。
+</p>
+
+<p>
+示例代码被拆分为三个包：
+</p>
+<ul class="org-ul">
+<li><a href="https://blog.golang.org/context/server/server.go" target="_blank" rel="external">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
+<li><a href="https://blog.golang.org/context/userip/userip.go" target="_blank" rel="external">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
+<li><a href="https://blog.golang.org/context/google/google.go" target="_blank" rel="external">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
+</ul>
+</div>
+
+
+<div id="outline-container-orgc95ec13" class="outline-3">
+<h3 id="orgc95ec13"><span class="section-number-3">3.1</span> server</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
+它注册 /handleSearch</i> 来处理 "<i>search"。 处理函数创建一个名为ctx的 /Context</i> ，并在处理程序返回时,一并被取消。
+如果 <i>request</i> 包含超时URL参数，则超时时会自动取消上下文：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> handleSearch(w http.ResponseWriter, req *http.Request) {</span><br><span class="line">  <span class="comment">// ctx is the Context for this handler. Calling cancel closes the</span></span><br><span class="line">  <span class="comment">// ctx.Done channel, which is the cancellation signal for requests</span></span><br><span class="line">  <span class="comment">// started by this handler.</span></span><br><span class="line">  <span class="keyword">var</span> (</span><br><span class="line">    ctx    context.Context</span><br><span class="line">    cancel context.CancelFunc</span><br><span class="line">  )</span><br><span class="line">  timeout, err := time.ParseDuration(req.FormValue(<span class="string">"timeout"</span>))</span><br><span class="line">  <span class="keyword">if</span> err == <span class="constant">nil</span> {</span><br><span class="line">    <span class="comment">// The request has a timeout, so create a context that is</span></span><br><span class="line">    <span class="comment">// canceled automatically when the timeout expires.</span></span><br><span class="line">    ctx, cancel = context.WithTimeout(context.Background(), timeout)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    ctx, cancel = context.WithCancel(context.Background())</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// Cancel ctx as soon as handleSearch returns.</span></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+处理程序从 <i>request</i> 中提取查询关键字，并通过调用 <i>userip</i> 包来提取客户端的IP地址。
+后端请求需要客户端的IP地址，因此handleSearch将其附加到ctx：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Check the search query.</span></span><br><span class="line">query := req.FormValue(<span class="string">"q"</span>)</span><br><span class="line"><span class="keyword">if</span> query == <span class="string">""</span> {</span><br><span class="line">  http.Error(w, <span class="string">"no query"</span>, http.StatusBadRequest)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Store the user IP in ctx for use by code in other packages.</span></span><br><span class="line">userIP, err := userip.FromRequest(req)</span><br><span class="line"><span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">  http.Error(w, err.Error(), http.StatusBadRequest)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line">ctx = userip.NewContext(ctx, userIP)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+处理程序使用ctx和查询关键字调用 <i>google.Search</i> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Run the Google search and print the results.</span></span><br><span class="line">start := time.Now()</span><br><span class="line">results, err := google.Search(ctx, query)</span><br><span class="line">elapsed := time.Since(start)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+如果搜索成功，处理程序将渲染返回结果：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> err := resultsTemplate.Execute(w, <span class="keyword">struct</span> {</span><br><span class="line">  Results          google.Results</span><br><span class="line">  Timeout, Elapsed time.Duration</span><br><span class="line">}{</span><br><span class="line">  Results: results,</span><br><span class="line">  Timeout: timeout,</span><br><span class="line">  Elapsed: elapsed,</span><br><span class="line">}); err != <span class="constant">nil</span> {</span><br><span class="line">  log.Print(err)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4a93585" class="outline-3">
+<h3 id="org4a93585"><span class="section-number-3">3.2</span> userip</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
+<i>Context</i> 提供了 key-value 映射的 <i>map</i> ，其中 <i>key</i> 和 <i>value</i> 均为 <code>interface{}</code> 类型。
+<i>key</i> 类型必须支持相等性， <i>value</i> 必须是多个 <code>goroutine</code> 安全的。
+<i>userip</i> 这样的包会隐藏 <i>map</i> 的细节，并提供强类型访问特定的 <i>Context</i> 值。
+</p>
+
+<p>
+为了避免关键字冲突， <i>userip</i> 定义了一个不导出的类型 <i>key</i> ，并使用此类型的值作为 <i>Context</i>  的关键字：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// The key type is unexported to prevent collisions with context keys defined in</span></span><br><span class="line"><span class="comment">// other packages.</span></span><br><span class="line"><span class="keyword">type</span> key <span class="typename">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// userIPkey is the context key for the user IP address.  Its value of zero is</span></span><br><span class="line"><span class="comment">// arbitrary.  If this package defined other context keys, they would have</span></span><br><span class="line"><span class="comment">// different integer values.</span></span><br><span class="line"><span class="keyword">const</span> userIPKey key = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>FromRequest</i> 从 <i>http.Request</i> 中提取一个 <i>userIP</i> 值：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromRequest(req *http.Request) (net.IP, error) {</span><br><span class="line">    ip, _, err := net.SplitHostPort(req.RemoteAddr)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+NewContext返回一个带有userIP的新Context：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> NewContext(ctx context.Context, userIP net.IP) context.Context {</span><br><span class="line">    <span class="keyword">return</span> context.WithValue(ctx, userIPKey, userIP)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>FromContext</i> 从 <i>Context</i> 中提取 <i>userIP</i> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromContext(ctx context.Context) (net.IP, <span class="typename">bool</span>) {</span><br><span class="line">    <span class="comment">// ctx.Value returns nil if ctx has no value for the key;</span></span><br><span class="line">    <span class="comment">// the net.IP type assertion returns ok=false for nil.</span></span><br><span class="line">    userIP, ok := ctx.Value(userIPKey).(net.IP)</span><br><span class="line">    <span class="keyword">return</span> userIP, ok</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org88d65a3" class="outline-3">
+<h3 id="org88d65a3"><span class="section-number-3">3.3</span> google</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
+它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
+</p>
+
+<p>
+Google Web Search API请求包括搜索查询和用户IP作为查询参数：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Search(ctx context.Context, query <span class="typename">string</span>) (Results, error) {</span><br><span class="line">    <span class="comment">// Prepare the Google Search API request.</span></span><br><span class="line">    req, err := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://ajax.googleapis.com/ajax/services/search/web?v=1.0"</span>, <span class="constant">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    q := req.URL.Query()</span><br><span class="line">    q.Set(<span class="string">"q"</span>, query)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If ctx is carrying the user IP address, forward it to the server.</span></span><br><span class="line">    <span class="comment">// Google APIs use the user IP to distinguish server-initiated requests</span></span><br><span class="line">    <span class="comment">// from end-user requests.</span></span><br><span class="line">    <span class="keyword">if</span> userIP, ok := userip.FromContext(ctx); ok {</span><br><span class="line">        q.Set(<span class="string">"userip"</span>, userIP.String())</span><br><span class="line">    }</span><br><span class="line">    req.URL.RawQuery = q.Encode()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ......</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>Search</i> 使用一个辅助函数 <i>httpDo</i> 来发出HTTP请求, 如果在处理请求或响应时关闭 <i>ctx.Done</i> ，取消 <i>httpDo</i> 。
+<i>Search</i> 将传递闭包给 <i>httpDo</i> 来处理HTTP响应：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> results Results</span><br><span class="line">err = httpDo(ctx, req, <span class="keyword">func</span>(resp *http.Response, err error) error {</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parse the JSON search result.</span></span><br><span class="line">  <span class="comment">// https://developers.google.com/web-search/docs/#fonje</span></span><br><span class="line">  <span class="keyword">var</span> data <span class="keyword">struct</span> {</span><br><span class="line">    ResponseData <span class="keyword">struct</span> {</span><br><span class="line">      Results []<span class="keyword">struct</span> {</span><br><span class="line">        TitleNoFormatting <span class="typename">string</span></span><br><span class="line">        URL               <span class="typename">string</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> err := json.NewDecoder(resp.Body).Decode(&amp;data); err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> _, res := <span class="keyword">range</span> data.ResponseData.Results {</span><br><span class="line">    results = <span class="built_in">append</span>(results, Result{Title: res.TitleNoFormatting, URL: res.URL})</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">})</span><br><span class="line"><span class="comment">// httpDo waits for the closure we provided to return, so it's safe to</span></span><br><span class="line"><span class="comment">// read results here.</span></span><br><span class="line"><span class="keyword">return</span> results, err</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>httpDo</i> 函数发起HTTP请求，并在新的 <code>goroutine</code> 中处理其响应。
+如果在 <code>goroutine</code> 退出之前关闭了ctx.Done，它将取消该请求：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> httpDo(ctx context.Context, req *http.Request, f <span class="keyword">func</span>(*http.Response, error) error) error {</span><br><span class="line">    <span class="comment">// Run the HTTP request in a goroutine and pass the response to f.</span></span><br><span class="line">    tr := &amp;http.Transport{}</span><br><span class="line">    client := &amp;http.Client{Transport: tr}</span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() { c &lt;- f(client.Do(req)) }()</span><br><span class="line">    <span class="keyword">select</span> {</span><br><span class="line">    <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">        tr.CancelRequest(req)</span><br><span class="line">        &lt;-c <span class="comment">// Wait for f to return.</span></span><br><span class="line">        <span class="keyword">return</span> ctx.Err()</span><br><span class="line">    <span class="keyword">case</span> err := &lt;-c:</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org133e8fe" class="outline-2">
+<h2 id="org133e8fe"><span class="section-number-2">4</span> 适配Context到已有代码</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+许多服务器框架提供用于承载请求范围值的包和类型。
+可以定义 <i>Context</i> 接口的新实现，以便使得现有的框架和期望Context参数的代码进行适配。
+</p>
+
+<p>
+例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" target="_blank" rel="external">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
+在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" target="_blank" rel="external">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
+</p>
+
+<p>
+其他软件包提供了类似于 <i>Context</i> 的取消支持。
+例如，<a href="http://godoc.org/gopkg.in/tomb.v2" target="_blank" rel="external">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
+Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.WaitGroup。
+在 <a href="https://blog.golang.org/context/tomb/tomb.go" target="_blank" rel="external">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6699b2b" class="outline-2">
+<h2 id="org6699b2b"><span class="section-number-2">5</span> 总结</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
+这允许由许多不同团队开发的Go代码进行良好的互操作。 它提供对超时和取消的简单控制，并确保安全证书等关键值正确转移Go程序。
+</p>
+
+<p>
+希望在 <i>Context</i> 上构建的服务器框架应该提供 <i>Context</i> 的实现，以便在它们的包之间和期望 <i>Context</i> 参数的包之间进行适配。
+客户端库将接受来自调用代码的 <i>Context</i> 。
+通过为请求范围的数据和取消建立通用接口， <i>Context</i> 使得开发人员更容易地共享用于创建可扩展服务的代码。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2718,160 +3098,6 @@ Babel augments Org-mode support for code blocks by providing:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/just-try/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/21/just-try/" itemprop="url">Org-mode手册</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T00:00:00+08:00">
-                2017-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/21/just-try/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/21/just-try/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-org-mode我用了两年，却未曾深入。
-最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
-归纳整理于此，以作留存，馈与日后。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/just-try/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2921,7 +3147,7 @@ org-mode我用了两年，却未曾深入。
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

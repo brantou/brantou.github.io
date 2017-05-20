@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-19T15:35:48.861Z</updated>
+  <updated>2017-05-20T09:43:53.251Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/"/>
+    <id>https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/</id>
+    <published>2017-05-20T09:43:53.251Z</published>
+    <updated>2017-05-20T09:43:53.251Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+在go服务端，每个传入的 &lt;i&gt;request&lt;/i&gt; 都在自己的 &lt;code&gt;goroutine&lt;/code&gt; 中做后续处理。
+&lt;i&gt;request handlers&lt;/i&gt; 经常启动其他 &lt;code&gt;goroutines&lt;/code&gt; 以访问后端，如数据库和rpc
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Golang的并发模式：管道和撤销</title>
