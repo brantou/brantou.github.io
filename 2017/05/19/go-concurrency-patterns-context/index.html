@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="golang,context," />
 
 
 
@@ -103,16 +103,16 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
 当 request 被取消或触发超时时，在该 request 上工作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Brantou的日常">
-<meta property="og:url" content="https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/index.html">
+<meta property="og:title" content="golang的并发模式：*Context*">
+<meta property="og:url" content="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
 当 request 被取消或触发超时时，在该 request 上工作">
-<meta property="og:updated_time" content="2017-05-20T09:43:53.251Z">
+<meta property="og:updated_time" content="2017-05-20T09:49:04.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brantou的日常">
+<meta name="twitter:title" content="golang的并发模式：*Context*">
 <meta name="twitter:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
@@ -144,13 +144,13 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/"/>
+  <link rel="canonical" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
 
 
 
 
 
-  <title> | Brantou的日常</title>
+  <title>golang的并发模式：*Context* | Brantou的日常</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -324,7 +324,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/20/go-concurrency-patterns-context/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -341,7 +341,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 
         
         
-          <h2 class="post-title" itemprop="name headline"></h2>
+          <h2 class="post-title" itemprop="name headline">golang的并发模式：*Context*</h2>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T17:43:53+08:00">
-                2017-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T00:00:00+08:00">
+                2017-05-19
               </time>
             
 
@@ -363,6 +363,28 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -373,8 +395,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/20/go-concurrency-patterns-context/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/20/go-concurrency-patterns-context/" itemprop="commentsCount"></span>
+                <a href="/2017/05/19/go-concurrency-patterns-context/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/19/go-concurrency-patterns-context/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -419,8 +441,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
-<div id="outline-container-org4f29633" class="outline-2">
-<h2 id="org4f29633"><span class="section-number-2">1</span> context</h2>
+<div id="outline-container-orgf93f90d" class="outline-2">
+<h2 id="orgf93f90d"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external">godoc</a>)：
@@ -456,8 +478,8 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 </div>
 </div>
 
-<div id="outline-container-org63bfb77" class="outline-2">
-<h2 id="org63bfb77"><span class="section-number-2">2</span> Context的衍生</h2>
+<div id="outline-container-org4fced91" class="outline-2">
+<h2 id="org4fced91"><span class="section-number-2">2</span> Context的衍生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
@@ -493,8 +515,8 @@ WithValue提供了一种将请求范围内的值与 <i>Context</i> 相关联的�
 </div>
 </div>
 
-<div id="outline-container-org22fb1b8" class="outline-2">
-<h2 id="org22fb1b8"><span class="section-number-2">3</span> 示例： Google Web 搜索</h2>
+<div id="outline-container-orge319f8a" class="outline-2">
+<h2 id="orge319f8a"><span class="section-number-2">3</span> 示例： Google Web 搜索</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
@@ -512,8 +534,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </div>
 
 
-<div id="outline-container-orgc95ec13" class="outline-3">
-<h3 id="orgc95ec13"><span class="section-number-3">3.1</span> server</h3>
+<div id="outline-container-org6f4e384" class="outline-3">
+<h3 id="org6f4e384"><span class="section-number-3">3.1</span> server</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
@@ -549,8 +571,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </div>
 
 
-<div id="outline-container-org4a93585" class="outline-3">
-<h3 id="org4a93585"><span class="section-number-3">3.2</span> userip</h3>
+<div id="outline-container-orge18a797" class="outline-3">
+<h3 id="orge18a797"><span class="section-number-3">3.2</span> userip</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
@@ -589,8 +611,8 @@ NewContext返回一个带有userIP的新Context：
 </div>
 </div>
 
-<div id="outline-container-org88d65a3" class="outline-3">
-<h3 id="org88d65a3"><span class="section-number-3">3.3</span> google</h3>
+<div id="outline-container-org66a14fd" class="outline-3">
+<h3 id="org66a14fd"><span class="section-number-3">3.3</span> google</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
@@ -623,8 +645,8 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </div>
 </div>
 
-<div id="outline-container-org133e8fe" class="outline-2">
-<h2 id="org133e8fe"><span class="section-number-2">4</span> 适配Context到已有代码</h2>
+<div id="outline-container-org1b4a6fe" class="outline-2">
+<h2 id="org1b4a6fe"><span class="section-number-2">4</span> 适配Context到已有代码</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 许多服务器框架提供用于承载请求范围值的包和类型。
@@ -645,8 +667,8 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-<div id="outline-container-org6699b2b" class="outline-2">
-<h2 id="org6699b2b"><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-org3ab5290" class="outline-2">
+<h2 id="org3ab5290"><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
@@ -661,7 +683,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-20 Sat 17:49.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
       
     </div>
@@ -688,6 +710,14 @@ Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/Code
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+            <a href="/tags/context/" rel="tag"># context</a>
+          
+        </div>
       
 
       
@@ -840,7 +870,7 @@ Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -902,7 +932,7 @@ Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org4f29633"><span class="nav-text">1 context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org63bfb77"><span class="nav-text">2 Context的衍生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org22fb1b8"><span class="nav-text">3 示例： Google Web 搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc95ec13"><span class="nav-text">3.1 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4a93585"><span class="nav-text">3.2 userip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org88d65a3"><span class="nav-text">3.3 google</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org133e8fe"><span class="nav-text">4 适配Context到已有代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6699b2b"><span class="nav-text">5 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf93f90d"><span class="nav-text">1 context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4fced91"><span class="nav-text">2 Context的衍生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge319f8a"><span class="nav-text">3 示例： Google Web 搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org6f4e384"><span class="nav-text">3.1 server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge18a797"><span class="nav-text">3.2 userip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org66a14fd"><span class="nav-text">3.3 google</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1b4a6fe"><span class="nav-text">4 适配Context到已有代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3ab5290"><span class="nav-text">5 总结</span></a></li></ol></div>
             
 
           </div>
@@ -1076,7 +1106,7 @@ Last Updated 2017-05-20 Sat 17:43.<br>Render by <a href="https://github.com/Code
 		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/20/go-concurrency-patterns-context/"});
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/19/go-concurrency-patterns-context/"});
 		
 
 		(function() {
