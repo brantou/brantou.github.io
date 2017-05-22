@@ -1,0 +1,1869 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="tutorial,org-mode,table,spreadsheet," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
+
+
+
+
+序言
+
+
+这篇简短的教程将介绍使用 Org 作为电子表格系统需要的基础知识。
+
+
+
+从一个非常简单的表开始:
+
+
+
+
+
+
+
+
+
+
+
+
+
+student
+maths
+physics
+
+
+
+
+bertrand
+13
+09
+
+
+
+he">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Org-mode的电子表格的简明教程">
+<meta property="og:url" content="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
+
+
+
+
+序言
+
+
+这篇简短的教程将介绍使用 Org 作为电子表格系统需要的基础知识。
+
+
+
+从一个非常简单的表开始:
+
+
+
+
+
+
+
+
+
+
+
+
+
+student
+maths
+physics
+
+
+
+
+bertrand
+13
+09
+
+
+
+he">
+<meta property="og:image" content="http://orgmode.org/worg/images/bzg/reference_visualization.jpg">
+<meta property="og:image" content="http://orgmode.org/worg/images/bzg/formulas_editor.jpg">
+<meta property="og:updated_time" content="2017-05-15T15:11:44.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Org-mode的电子表格的简明教程">
+<meta name="twitter:description" content="原文Org as a spreadsheet system: a short introduction, 由 Bastien  编辑，维护。本文只做学习之用。
+
+
+
+
+序言
+
+
+这篇简短的教程将介绍使用 Org 作为电子表格系统需要的基础知识。
+
+
+
+从一个非常简单的表开始:
+
+
+
+
+
+
+
+
+
+
+
+
+
+student
+maths
+physics
+
+
+
+
+bertrand
+13
+09
+
+
+
+he">
+<meta name="twitter:image" content="http://orgmode.org/worg/images/bzg/reference_visualization.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/"/>
+
+
+
+
+
+  <title>Org-mode的电子表格的简明教程 | Brantou的日常</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99654689-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a82c2fbb2a57e8b3c01e31a60807a7f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">二三事</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Org-mode的电子表格的简明教程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T00:00:00+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/06/org-spreadsheet-intro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/06/org-spreadsheet-intro/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+<blockquote>
+<p>
+原文<a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html" target="_blank" rel="external">Org as a spreadsheet system: a short introduction</a>, 由 <b>Bastien</b>  编辑，维护。本文只做学习之用。
+</p>
+</blockquote>
+
+<div id="outline-container-org4383f73" class="outline-2">
+<h2 id="org4383f73">序言</h2>
+<div class="outline-text-2" id="text-org4383f73">
+<p>
+这篇简短的教程将介绍使用 <code>Org</code> 作为电子表格系统需要的基础知识。
+</p>
+
+<p>
+从一个非常简单的表开始:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">student</th>
+<th scope="col" class="org-right">maths</th>
+<th scope="col" class="org-right">physics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">bertrand</td>
+<td class="org-right">13</td>
+<td class="org-right">09</td>
+</tr>
+
+<tr>
+<td class="org-left">henri</td>
+<td class="org-right">15</td>
+<td class="org-right">14</td>
+</tr>
+
+<tr>
+<td class="org-left">arnold</td>
+<td class="org-right">17</td>
+<td class="org-right">13</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+上面的表格在 <code>Org</code> 文件中的样式:
+</p>
+<pre class="example">
+| student  | maths | physics |
+|----------+-------+---------|
+| bertrand |    13 |      09 |
+| henri    |    15 |      14 |
+| arnold   |    17 |      13 |
+
+</pre>
+
+<p>
+本教程的目的是阐述如何从上面简单的表生成出如下所示的包含平均每个学生和每个学科的平均分的表：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">student</th>
+<th scope="col" class="org-right">maths</th>
+<th scope="col" class="org-right">physics</th>
+<th scope="col" class="org-right">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">bertrand</td>
+<td class="org-right">13</td>
+<td class="org-right">09</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-left">henri</td>
+<td class="org-right">15</td>
+<td class="org-right">14</td>
+<td class="org-right">14.5</td>
+</tr>
+
+<tr>
+<td class="org-left">arnold</td>
+<td class="org-right">17</td>
+<td class="org-right">13</td>
+<td class="org-right">15</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">means</td>
+<td class="org-right">15</td>
+<td class="org-right">12</td>
+<td class="org-right">13.5</td>
+</tr>
+</tbody>
+</table>
+
+<a id="more"></a>
+</div>
+</div>
+
+<div id="outline-container-org9a9a4c5" class="outline-2">
+<h2 id="org9a9a4c5">熟悉引用</h2>
+<div class="outline-text-2" id="text-org9a9a4c5">
+<p>
+先从每个学生的平均值开始。
+</p>
+<pre class="example">
+| student  | maths | physics | mean      |
+|----------+-------+---------+-----------|
+| bertrand |    13 |      09 | [formula] |
+| henri    |    15 |      14 |           |
+| arnold   |    17 |      13 |           |
+
+</pre>
+
+<p>
+在往 <code>[formula]</code> 中插入公式之前，需要知道如何引用 ( <b>refer</b> )一行，一列或一个单元格。
+</p>
+
+<p>
+了解引用的最简单的方法是当你在一个单元格时，键入 <code>C-c ?</code> 。
+</p>
+
+<p>
+例如，如果在 <code>[formula]</code> 单元格中， <code>C-c ?</code> 展示给你的信息是： <code>line @2, col $4, ref @2$4 or D2</code> ，
+这表示在第四列的第二行上，而这个字段的引用是 <code>@2$4</code> 或 <code>D2</code> 。
+</p>
+
+<p>
+在任何时刻，如果不清楚行和列，可以随时使用 <code>C-c }</code> 打开引用的可视化网格：
+<img src="http://orgmode.org/worg/images/bzg/reference_visualization.jpg" alt="reference_visualization.jpg">
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgebbc44e" class="outline-2">
+<h2 id="orgebbc44e">第一个公式</h2>
+<div class="outline-text-2" id="text-orgebbc44e">
+<p>
+将光标放在（空） <code>[formula]</code> 单元格中, 然后在此字段中输入 <code>:=vmean（$2..$3）</code> 。
+该公式意味着：计算此行中第二（ <code>$2</code> ）到 第三（ <code>$3</code> ）单元格的字段平均值。
+如果喜欢其他符号，请输入 <code>:=vmean(B&amp;..C&amp;)</code> &#x2013; 其中 <code>&amp;</code> 字符代表在这一行。
+</p>
+
+<p>
+在上面键入公式的行中，键入 <code>C-c C-c</code> , 你将观察到两点变化： 1） <code>:=vmean（$2..$3）</code> 已被计算结果代替，2）以 <code>＃+TBLFM</code> 开头的新行已被插入到表的底部。
+</p>
+
+<p>
+<code>＃+TBLFM</code> 行包含表的所有公式，在手动编辑时应小心。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a0c3c5" class="outline-2">
+<h2 id="org2a0c3c5">列公式和单元格公式</h2>
+<div class="outline-text-2" id="text-org2a0c3c5">
+<p>
+经过上面的操作，表格变成了:
+</p>
+<pre class="example">
+| student  | maths | physics | mean |
+|----------+-------+---------+------|
+| bertrand |    13 |      09 |   11 |
+| henri    |    15 |      14 |      |
+| arnold   |    17 |      13 |      |
+#+tblfm: @2$4=vmean($2..$3)
+
+</pre>
+
+<p>
+但是我们真正想要的是计算“Mean”列中所有单元格的公式。 换句话说，我们真的想要一个列公式，而不是单元格公式。
+</p>
+
+<p>
+要使用列公式替换当前公式，请返回到已定义的单元格，然后键入 <code>=vmean($2..$3)</code> 。 请注意，与之前插入的唯一区别在于公式以 <code>=</code> 替代前缀 <code>:=</code> 。
+完成后，在单元格中执行 <code>C-c C-c</code> ：列公式替换先前公式，这正是我们想要的。
+</p>
+
+<p>
+一旦执行了上面步骤，该单元格中的值应该与以前相同（即11），现在可以通过键入 <code>C-u C-c *</code> (或者在 <code>#+TBLFM</code> 行键入 <code>C-c C-c</code> ) 重新应用公式来更新此列中的所有单元格。
+</p>
+
+<p>
+经过上面的步骤，表格如下所示:
+</p>
+<pre class="example">
+| student  | maths | physics | mean |
+|----------+-------+---------+------|
+| bertrand |    13 |      09 |   11 |
+| henri    |    15 |      14 | 14.5 |
+| arnold   |    17 |      13 |   15 |
+#+tblfm: $4=vmean($2..$3)
+
+</pre>
+
+<p>
+由于在 <code>＃+TBLFM</code> 中的单个公式现在适用于整个列，所以它不包含任何对行的引用。 公式以前被应用于 <code>@2$4</code> 单元格，现在它被应用于 <code>$4</code> 列。
+</p>
+
+<p>
+最后，为每个学科平均值添加一行。 此行包含两个字段公式，每个公式计算同一列中上面单元格的平均值:
+</p>
+<pre class="example">
+| student  | maths | physics | mean |
+|----------+-------+---------+------|
+| bertrand |    13 |      09 |   11 |
+| henri    |    15 |      14 | 14.5 |
+| arnold   |    17 |      13 |   15 |
+|----------+-------+---------+------|
+| means    |    15 |      12 |      |
+#+tblfm: $4=vmean($2..$3)::@5$2=vmean(@2$2..@4$2)::@5$3=vmean(@2$3..@4$3)
+
+</pre>
+
+<p>
+表格如下所示:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">student</th>
+<th scope="col" class="org-right">maths</th>
+<th scope="col" class="org-right">physics</th>
+<th scope="col" class="org-right">mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">bertrand</td>
+<td class="org-right">13</td>
+<td class="org-right">09</td>
+<td class="org-right">11</td>
+</tr>
+
+<tr>
+<td class="org-left">henri</td>
+<td class="org-right">15</td>
+<td class="org-right">14</td>
+<td class="org-right">14.5</td>
+</tr>
+
+<tr>
+<td class="org-left">arnold</td>
+<td class="org-right">17</td>
+<td class="org-right">13</td>
+<td class="org-right">15</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">means</td>
+<td class="org-right">15</td>
+<td class="org-right">12</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org98f57fb" class="outline-2">
+<h2 id="org98f57fb">交互的编辑公式</h2>
+<div class="outline-text-2" id="text-org98f57fb">
+<p>
+我们可通过将公式直接插入到表格单元格的方式来定义它们：在一个字段中键入 <code>=</code> 开始列公式的定义，和键入 <code>:=</code> 开始一个单元格公式的定义。
+</p>
+
+<p>
+如果你喜欢，可以在 <i>minibuffer</i> 中编辑公式：使用 <code>C-c =</code> 编辑列公式或 <code>C-u C-c =</code> 用于字段公式。
+</p>
+
+<p>
+但是也可以通过键入 <code>C-c '</code> 在专用缓冲区中交互式地编辑公式。 此新缓冲区列出了表的所有公式，并提供编辑引用的功能。
+</p>
+
+<p>
+当光标在引用上方时，表中的相应字段将突出显示。 很好！ 但可以做的更多：可以使用 <code>S-&lt;left/right/up/down&gt;</code> 键实际选择引用。
+</p>
+
+
+<div class="figure">
+<p><img src="http://orgmode.org/worg/images/bzg/formulas_editor.jpg" alt="formulas_editor.jpg">
+</p>
+</div>
+
+<p>
+注：不用担心使用 <code>M-&lt;left/right&gt;</code> 左右移动列或 <code>M-&lt;up/down&gt;</code> 上下移动行会混淆 <code>＃+TBLFM</code> 行中的引用，因为每次移动都会自动更新引用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a5abae" class="outline-2">
+<h2 id="org2a5abae">Calc和Elisp公式</h2>
+<div class="outline-text-2" id="text-org2a5abae">
+<p>
+公式的默认语法是 <i>Calc</i> ，用于进行计算的 <i>GNU Emacs</i> 包。
+</p>
+
+<p>
+以下是<a href="http://www.delorie.com/gnu/docs/calc/calc_21.html" target="_blank" rel="external">Calc手册 </a>中关于代数式公式的摘录:
+</p>
+<pre class="example">
+Algebraic formulas use the operators `+', `-', `*', `/', and `^'. You
+can use parentheses to make the order of evaluation clear. In the
+absence of parentheses, `^' is evaluated first, then `*', then `/',
+then finally `+' and `-'. For example, the expression
+
+2 + 3*4*5 / 6*7^8 - 9
+
+is equivalent to
+
+2 + ((3*4*5) / (6*(7^8)) - 9
+
+</pre>
+
+<p>
+在 <code>Org</code> 表中，可使用引用而不是值来执行计算。
+</p>
+
+<p>
+但是，如果需要使用 <i>Emacs lisp</i> 代码而不是 <i>Calc</i> ？
+</p>
+
+<p>
+例如，将每个学生与Pi数字的十进制相关联，具体取决于他们在数学和物理学上的平均数。
+</p>
+
+<p>
+为此，需要告诉 <code>Org</code> Pi数值的值。 可以通过添加以下行来实现：
+</p>
+<pre class="example">
+#+CONSTANTS: pi=3.14159265358979323846
+
+</pre>
+<p>
+(不要忘了在 <code>#+CONSTANTS</code> 行上 键入 <code>C-c C-c</code> 以刷新 <i>Local</i> 设置)
+</p>
+
+<p>
+你定义的 <i>Emacs lisp</i> 公式可能如下所示:
+</p>
+<pre class="example">
+$5='(substring (number-to-string $pi) (round $4) (1+ (round $4)));N
+
+</pre>
+
+<p>
+Ahem.  Let's parse this:
+</p>
+
+<ul class="org-ul">
+<li><code>(substring S A B)</code>: 获取 <code>S</code> 字符串  <code>A</code> 和 <code>B</code> 之间的子串</li>
+<li><code>(number-to-string $pi)</code>:  把常量"Pi"转换成字符串</li>
+<li><code>(round $4)</code>: 获取 <code>$4</code> 四舍五入后整数值</li>
+<li><code>;N</code>: 把当前单元格的值当成整数，而不是字符串</li>
+</ul>
+
+<p>
+如果学生的平均数是10，该公式返回的Pi中第十位数字。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f5e677" class="outline-2">
+<h2 id="org5f5e677">调试公式</h2>
+<div class="outline-text-2" id="text-org5f5e677">
+<p>
+现在表格如下所示:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Student</th>
+<th scope="col" class="org-right">Maths</th>
+<th scope="col" class="org-right">Physics</th>
+<th scope="col" class="org-right">Mean</th>
+<th scope="col" class="org-right">Pi number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Bertrand</td>
+<td class="org-right">13</td>
+<td class="org-right">09</td>
+<td class="org-right">11</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">Henri</td>
+<td class="org-right">15</td>
+<td class="org-right">14</td>
+<td class="org-right">14.5</td>
+<td class="org-right">7</td>
+</tr>
+
+<tr>
+<td class="org-left">Arnold</td>
+<td class="org-right">17</td>
+<td class="org-right">13</td>
+<td class="org-right">15</td>
+<td class="org-right">9</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+如果你回顾这个表，并试图了解 <i>Emacs Lisp</i> 函数具体完成了那些计算;
+这个时候，你会产生疑惑，你可能会想要调试公式，并按步骤一步一步进行计算。
+</p>
+
+<p>
+在表格的任意地方键入 <code>C-c {</code> 或 在一个单元格中键入 <code>C-c C-c</code> （或 <code>C-u C-c *</code> 在这个表的任何地方）都会打开表格公式调试器。
+然后将一个一个地执行公式的计算，并在一个单独的缓冲区显示关于每个公式的计算步骤的细节。
+</p>
+<pre class="example">
+Substitution history of formula
+Orig:   '(substring (number-to-string $pi) (round $4) (1+ (round $4)));N
+$xyz-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+@r$c-&gt;  '(substring (number-to-string 3.14159265358979323846) (round $4) (1+ (round $4)))
+$1-&gt;    '(substring (number-to-string 3.14159265358979323846) (round 11) (1+ (round 11)))
+Result: 5
+Format: NONE
+Final:  5
+
+</pre>
+
+<p>
+一旦调试完成，再次键入 <code>C-c {</code> 关闭调试器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org45a50b8" class="outline-2">
+<h2 id="org45a50b8">很多, 还有更多</h2>
+<div class="outline-text-2" id="text-org45a50b8">
+<p>
+使用 <code>Org</code> 作为电子表格系统非常容易上手。
+</p>
+
+<p>
+本教程只是冰山一叫，你可以做的远不止于此！ 可以使用相对引用，为公式的列和参数定义名称，定义自动重新计算的单元格等。还可以在公式中使用 <i>Emacs lisp</i> （<a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-lisp-formulas.html" target="_blank" rel="external">请阅读本教程</a>）。
+</p>
+
+<p>
+浏览下 <a href="http://orgmode.org/org.html#Advanced-features" target="_blank" rel="external">Org-mode手册</a> 中的高级功能，它会给你一个更广阔的视角&#x2026;
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-15 Mon 23:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tutorial/" rel="tag"># tutorial</a>
+          
+            <a href="/tags/org-mode/" rel="tag"># org-mode</a>
+          
+            <a href="/tags/table/" rel="tag"># table</a>
+          
+            <a href="/tags/spreadsheet/" rel="tag"># spreadsheet</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/babel-intro/" rel="next" title="Babel: org-mode的多语言编程环境">
+                <i class="fa fa-chevron-left"></i> Babel: org-mode的多语言编程环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/08/org-spreadsheet-lisp-formulas/" rel="prev" title="在Org-mode的电子表格中使用elisp公式">
+                在Org-mode的电子表格中使用elisp公式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
+               alt="Brantou" />
+          <p class="site-author-name" itemprop="name">Brantou</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org4383f73"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9a9a4c5"><span class="nav-text">熟悉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgebbc44e"><span class="nav-text">第一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2a0c3c5"><span class="nav-text">列公式和单元格公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org98f57fb"><span class="nav-text">交互的编辑公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2a5abae"><span class="nav-text">Calc和Elisp公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5f5e677"><span class="nav-text">调试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org45a50b8"><span class="nav-text">很多, 还有更多</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/04/06/org-spreadsheet-intro/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/89947/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

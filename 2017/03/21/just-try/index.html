@@ -1,0 +1,3264 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="tutorial,org-mode,manual," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Org-mode手册">
+<meta property="og:url" content="https://brantou.github.io/2017/03/21/just-try/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。">
+<meta property="og:image" content="https://brantou.github.io/images/table-column-width.jpg">
+<meta property="og:image" content="https://brantou.github.io/images/table-column-groups.jpg">
+<meta property="og:image" content="https://brantou.github.io/images/table-column-group-start.jpg">
+<meta property="og:updated_time" content="2017-04-25T15:41:38.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Org-mode手册">
+<meta name="twitter:description" content="org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。">
+<meta name="twitter:image" content="https://brantou.github.io/images/table-column-width.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2017/03/21/just-try/"/>
+
+
+
+
+
+  <title>Org-mode手册 | Brantou的日常</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99654689-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a82c2fbb2a57e8b3c01e31a60807a7f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">二三事</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/just-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Org-mode手册</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T00:00:00+08:00">
+                2017-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/21/just-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/21/just-try/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+<p>
+org-mode我用了两年，却未曾深入。
+最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
+归纳整理于此，以作留存，馈与日后。
+</p>
+
+<a id="more"></a>
+
+<div id="outline-container-org908a587" class="outline-2">
+<h2 id="org908a587"><span class="section-number-2">1</span> 文档结构</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org8a627c2" class="outline-3">
+<h3 id="org8a627c2"><span class="section-number-3">1.1</span> 标题</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Org 是在大纲模式之上实现的。
+大纲模式可以让我们用层次结构来组织文档，这（至少对我来说）是笔记和想法的最好实现方式。
+这种结构可以折叠（隐藏）文档的一部分而只显示文档的大概结构或者只显示我们正在处理的部分。
+Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐藏功能整合到了一个命令中：org-cycle，这个命令绑定到了TAB键上。
+</p>
+
+<p>
+标题定义了大纲树的结构,以处于一行左边缘的一个或多个星号开头,如下:
+</p>
+<pre class="example">
+* Top level headline
+** Second level
+*** 3rd level
+     some text
+** 3rd level
+     more text
+, Another top level headline
+</pre>
+</div>
+
+<div id="outline-container-org0b82635" class="outline-4">
+<h4 id="org0b82635"><span class="section-number-4">1.1.1</span> 视图命令</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<table id="org4cbf0dd" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 1:</span> 视图命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>S-TAB</code></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
+<td class="org-left"><code>org-global-cycle</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-r</code></td>
+<td class="org-left">显示当前位置的上下文，展示当前条目，紧跟的标题和标题的层次结构。 适用于通过稀疏树命令或议程命令展露出来的位置附近工作。</td>
+<td class="org-left"><code>org-reveal</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-k</code></td>
+<td class="org-left">展开子树的所有标题，CONTENT视图只有一个子树。</td>
+<td class="org-left"><code>outline-show-branches</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>TAB</code></td>
+<td class="org-left">展开子树的所有直接子节点。</td>
+<td class="org-left"><code>outline-show-children</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>b</code></td>
+<td class="org-left">在间接缓冲区中显示当前子树</td>
+<td class="org-left"><code>org-tree-to-indirect-buffer</code></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>v</code></td>
+<td class="org-left">将区域中的可见文字复制到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a>.</td>
+<td class="org-left"><code>org-copy-visible</code></td>
+</tr>
+</tbody>
+</table>
+<p>
+org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标题可见。
+你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+当然你也可以为每个文件指定视图模式，只要在文件buffer中任意位置包含以下语句（推荐配置在文件头）：
+</p>
+<pre class="example">
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+</pre>
+
+<p>
+更进一步,任何条目都包含 <code>VISIBILITY</code> 属性，此属性定义了条目的视图模式，覆盖一般性设置。可接受的值为： <b>folded</b> <b>children</b> <b>content</b> <b>all</b>, 示例如下
+</p>
+<pre class="example">
+#+STARTUP: overview
+* A
+:PROPERTIES:
+:VISIBILITY: all
+:END:
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb2b12cf" class="outline-4">
+<h4 id="orgb2b12cf"><span class="section-number-4">1.1.2</span> 跳转命令</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<table id="orgcd01c14" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 2:</span> 标题跳转命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-n</code></td>
+<td class="org-left">跳转到下一个标题</td>
+<td class="org-left"><code>org-next-visible-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-p</code></td>
+<td class="org-left">跳转到上一个标题</td>
+<td class="org-left"><code>org-previous-visible-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-f</code></td>
+<td class="org-left">跳转到下一个同级标题</td>
+<td class="org-left"><code>org-forward-same-level</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-b</code></td>
+<td class="org-left">跳转到上一个同级标题</td>
+<td class="org-left"><code>org-backward-same-level</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-u</code></td>
+<td class="org-left">跳回更高一级的标题</td>
+<td class="org-left"><code>outline-up-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-j</code></td>
+<td class="org-left">跳转到别处，不改变当前的视图模式，创建一个临时buffer来展示当前文档</td>
+<td class="org-left"><code>org-goto</code></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+在 <code>C-c C-j</code> 触发的临时buffer中，可用的命令如下：
+</p>
+<pre class="example">
+TAB      Cycle visibility.
+down/up  Next/previous visible headline.
+RET      Select this location.
+/        Do a Sparse-tree search
+</pre>
+<p>
+若是关闭了 <code>org-goto-auto-isearch</code> ，以下命令可用：
+</p>
+<pre class="example">
+n/p      Next/previous visible headline.
+f/b      Next/previous headline same level.
+u        One level up.
+0-9      数字参数
+q        退出
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdd93ad0" class="outline-4">
+<h4 id="orgdd93ad0"><span class="section-number-4">1.1.3</span> 编辑命令</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<table id="org5be13de" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 3:</span> 编辑命令</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">插入一个同级标题在当前位置(行首，把当前行转成标题；行中，截断余下文本，在下一行生成标题)</td>
+<td class="org-left"><code>org-insert-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-RET</code></td>
+<td class="org-left">在M-RET的基础上，添加了 <code>TODO</code> 标示</td>
+<td class="org-left"><code>org-insert-todo-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-RET</code></td>
+<td class="org-left">在当前子树的结束位置插入同级标题</td>
+<td class="org-left"><code>org-insert-heading-respect-content</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-S-RET</code></td>
+<td class="org-left">在C<sub>RET的基础上</sub>，添加了 <code>TODO</code> 标示</td>
+<td class="org-left">org-insert-todo-heading-respect-content</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-left</code></td>
+<td class="org-left">当前标题提升一个等级</td>
+<td class="org-left"><code>org-do-promote</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-right</code></td>
+<td class="org-left">当前标题降低一个等级</td>
+<td class="org-left"><code>org-do-demote</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left</code></td>
+<td class="org-left">当前整个子树提升一个等级</td>
+<td class="org-left"><code>org-promote-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-right</code></td>
+<td class="org-left">当前整个子树降低一个等级</td>
+<td class="org-left"><code>org-demote-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up</code></td>
+<td class="org-left">当前整个子树和前面同级子树交换位置</td>
+<td class="org-left"><code>org-move-subtree-up</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-down</code></td>
+<td class="org-left">当前整个子树和后面同级子树交换位置</td>
+<td class="org-left"><code>org-move-subtree-down</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-h</code></td>
+<td class="org-left">Mark the element at point.</td>
+<td class="org-left"><code>org-mark-element</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>@</code></td>
+<td class="org-left">Mark the subtree at point. 目前看起来是可视化选中当前子树</td>
+<td class="org-left"><code>org-mark-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
+<td class="org-left">剪切子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
+<td class="org-left"><code>org-cut-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
+<td class="org-left">拷贝子树到 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a></td>
+<td class="org-left"><code>org-copy-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
+<td class="org-left">从  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html" target="_blank" rel="external">kill ring</a> 中粘贴子树</td>
+<td class="org-left"><code>org-paste-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-y</code></td>
+<td class="org-left">Depending on the options org-yank-adjusted-subtrees and org-yank- folded-subtrees, Org’s internal yank command will paste subtrees folded and in a clever way, using the same command as C-c C-x C-y.</td>
+<td class="org-left"><code>org-yank</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>c</code></td>
+<td class="org-left">Clone a subtree by making a number of sibling copies of it. You will be prompted for the number of copies to make, and you can also specify if any timestamps in the entry should be shifted.</td>
+<td class="org-left"><code>org-clone-subtree-with-time-shift</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-w</code></td>
+<td class="org-left">将条目或区域 <i>refile</i> 到不同的位置。</td>
+<td class="org-left"><code>org-refile</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">排序相同级别的条目。</td>
+<td class="org-left"><code>org-sort</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>s</code></td>
+<td class="org-left">将缓冲区缩小到当前子树。</td>
+<td class="org-left"><code>org-narrow-to-subtree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>b</code></td>
+<td class="org-left">将缓冲区缩小到当前 <b>block</b> 。</td>
+<td class="org-left"><code>org-narrow-to-block</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-x</code> <code>n</code> <code>w</code></td>
+<td class="org-left">加宽缓冲区以消除变窄。</td>
+<td class="org-left"><code>widen</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>*</code></td>
+<td class="org-left">使正常的文本行变为标题,重复操作可恢复成原样</td>
+<td class="org-left"><code>org-toggle-heading</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org79de459" class="outline-4">
+<h4 id="org79de459"><span class="section-number-4">1.1.4</span> 稀疏树</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+一个很重要的特性就是org有能力为被选中的信息构造出稀疏树，使得被选中信息突出显示，无关信息折叠显示。实践才是检测真理的唯一标准，试一试就知道具体是怎样优化你的工作了。
+</p>
+
+<table id="org2ed3560" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 4:</span> 稀疏树</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>/</code></td>
+<td class="org-left">本命令会触发sparse-tress命令界面，提示输入字符，来选择创建稀疏树的命令</td>
+<td class="org-left"><code>org-sparse-tree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>/</code> <code>r</code></td>
+<td class="org-left">创建出和正则表达式匹配的稀疏树;标题匹配，标题可见; body匹配, 标题和body都可见；所以匹配高亮，当当前buffer通过编辑命令发送改变时，高亮消失，当然你可以通过 <code>C-c C-c</code> 主动取消高亮。</td>
+<td class="org-left"><code>org-occur</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-g</code> <code>n</code></td>
+<td class="org-left">跳转到下一个匹配</td>
+<td class="org-left"><code>next-error</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-g</code> <code>p</code></td>
+<td class="org-left">跳转到上一个匹配</td>
+<td class="org-left"><code>previous-error</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+很有可能需要频繁创建特定搜索条件的稀疏树，可通过 <code>org-agenda-custom-commands</code> 来定义快速访问的快捷键（这个命令可用在<a href="http://orgmode.org/manual/Agenda-dispatcher.html" target="_blank" rel="external">agenda dispatcher</a>中）。
+如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+<blockquote>
+<p>
+The other sparse tree commands select headings based on <b>TODO</b> keywords, tags, or properties and will be discussed later in this manual.
+To print a sparse tree, you can use the Emacs command <code>ps-print-buffer-with-faces</code> which does not print invisible parts of the document.
+Or you can use <code>C-c</code> <code>C-e</code> <code>C-v</code> to export only the visible part of the document and print the resulting file.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8cc0a7" class="outline-3">
+<h3 id="orga8cc0a7"><span class="section-number-3">1.2</span> 列表</h3>
+<div class="outline-text-3" id="text-1-2">
+<blockquote>
+<p>
+Within an entry of the outline tree, hand-formatted lists can provide additional structure.
+They also provide a way to create lists of checkboxes.
+Org supports editing such lists, and every exporter can parse and format them.
+</p>
+</blockquote>
+<p>
+在大纲树的组织结构中，自定义格式的列表可以提供更多的组织结构。使我们得到一个复先框列表。 <code>Org</code> 可以处理这种列表，同时各个 <code>exporter</code> 可以解析和格式化。
+<b>Org</b> 可识别 <i>ordered</i> 列表, <i>unordered</i> 列表, 和 <i>description</i> 列表。
+</p>
+<ul class="org-ul">
+<li><i>Unordered</i> 的列表项以 <b>‘-’</b>, <b>‘+’</b> 或 <b>‘*’</b> 开始。</li>
+<li><i>Ordered</i> 的列表项以数字加在 <b>‘.’</b> 或 <b>‘)’</b> 开始。格式如下：‘1.’ 或 ‘1)’。 可自定义起始值，在文本开始出插入[@20]，代表以20开始。</li>
+<li><i>Description</i> 列表项其实就是 <i>unordered</i> 列表项, 只在文本中间插入了分隔符 <b>‘::’</b> 。</li>
+</ul>
+
+<p>
+同一个列表中项首行必须缩进一致。特别是 <i>ordered</i> 列表到了 <b>‘10.’</b> ，两位数字必须和其他数字左对齐。
+若是下一行的缩进小于等于当前列表的缩进，则当前项终结。当所有项都终结，或者后面隔了两个空行时，列表终结。示例如下：
+</p>
+<pre class="example">
+** Lord of the Rings
+   My favorite scenes are (in this order)
+   1. The attack of the Rohirrim
+   2. Eowyn's fight with the witch king
+       + this was already my favorite scene in the book
+       + I really like Miranda Otto.
+   Important actors in this film are:
+   - Elijah Wood :: He plays Frodo
+   - Sean Austin :: He plays Sam, Frodo's friend.
+</pre>
+<blockquote>
+<p>
+Org supports these lists by tuning filling and wrapping commands to deal with them correctly, and by exporting them properly.
+Since indentation is what governs the structure of these lists,
+many structural constructs like <code>#+BEGIN_...</code> blocks can be indented to signal that they belong to a particular item.
+</p>
+
+<p>
+If you find that using a different bullet for a sub-list (than that used for the current list-level) improves readability,
+customize the variable <code>org-list-demote-modify-bullet</code>.
+To get a greater difference of indentation between items and their sub-items, <code>customize org-list-indent-offset</code>.
+</p>
+
+<p>
+The following commands act on items when the cursor is in the first line of an item (the line with the bullet or number).
+Some of them imply the application of automatic rules to keep list structure intact.
+If some of these actions get in your way, configure <code>org-list-automatic-rules</code> to disable them individually.
+</p>
+</blockquote>
+<p>
+当光标位于一项的首行时（带有项标志符的行），下面命令将作用于该项：
+</p>
+<table id="org1c75976" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 5:</span> 稀疏树</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">列表项像标题一样的被折叠，展开</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>TAB</code></td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
+<td class="org-left"><code>org-cycle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">插入一个同级项(行首，把当前行转成列表项；行中，截断余下文本，在下一行生成列表项)</td>
+<td class="org-left"><code>org-insert-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-RET</code></td>
+<td class="org-left">插入一个带 <code>checkbox</code> 的同级项(行为类似于M-RET)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-up/S-down</code></td>
+<td class="org-left">跳转到当前列表的上一项或者下一项</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up/M-down</code></td>
+<td class="org-left">和上一项或者下一项交换位置（同级之间)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-left/M-right</code></td>
+<td class="org-left">提升或者降低一项的等级,子项不变</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left/M-S-right</code></td>
+<td class="org-left">提升或者降低一项的等级,子项同等变化</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">当前项有 <code>checkbox</code> , 触发状态转换</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>-</code></td>
+<td class="org-left">循环改变将当前列表的项标志符</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>*</code></td>
+<td class="org-left">使列表项变为标题 (在当前位置生成子标题).</td>
+<td class="org-left"><code>org-toggle-heading</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-*</code></td>
+<td class="org-left">使整个列表变成当前标题的子树 <code>checkboxes</code> 将变为 <code>TODO</code> 当未 <i>unchecked</i> 时</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-left/right</code></td>
+<td class="org-left">循环改变将当前列表的项标志符</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">Sort the plain list</td>
+<td class="org-left"><code>org-sort</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgfed0bf7" class="outline-3">
+<h3 id="orgfed0bf7"><span class="section-number-3">1.3</span> Drawers</h3>
+<div class="outline-text-3" id="text-1-3">
+<blockquote>
+<p>
+Sometimes you want to keep information associated with an entry, but you normally don’t want to see it.
+For this, Org mode has drawers. They can contain anything but a headline and another drawer.
+</p>
+
+<p>
+You can interactively insert drawers at point by calling <code>org-insert-drawer</code>, which is bound to <code>C-c</code> <code>C-x</code> <code>d</code>.
+With an active region, this command will put the region inside the drawer.
+With a prefix argument, this command calls <code>org-insert-property-drawer</code> and add a property drawer right below the current headline.
+Completion over drawer keywords is also possible using <code>M-TAB</code>.
+</p>
+
+<p>
+Visibility cycling on the headline will hide and show the entry, but keep the drawer collapsed to a single line.
+In order to look inside the drawer, you need to move the cursor to the drawer line and press <code>TAB</code> there.
+Org mode uses the <b>PROPERTIES</b> drawer for storing properties , and you can also arrange for state change notes and clock times to be stored in a drawer <b>LOGBOOK</b>.
+If you want to store a quick note in the <b>LOGBOOK</b> drawer, in a similar way to state changes, use <code>C-c</code> <code>C-z</code> Add a time-stamped note to the <b>LOGBOOK</b> drawer.
+</p>
+
+<p>
+You can select the name of the drawers which should be exported with <code>org-export-with-drawers</code>.
+In that case, drawer contents will appear in export output.
+<b>Property</b> drawers are not affected by this variable: configure <code>org-export-with-properties</code> instead.
+</p>
+</blockquote>
+<p>
+<i>Drawers</i> 如下所示：
+</p>
+<pre class="example">
+** This is a headline
+   Still outside the drawer
+   :DRAWERNAME:
+   This is inside the drawer.
+   :END:
+   After the drawer.
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcedb2d8" class="outline-3">
+<h3 id="orgcedb2d8"><span class="section-number-3">1.4</span> 块</h3>
+<div class="outline-text-3" id="text-1-4">
+<blockquote>
+<p>
+Org mode uses begin&#x2026;end blocks for various purposes from including source code examples to capturing time logging information.
+These blocks can be folded and unfolded by pressing <code>TAB</code> in the begin line.
+You can also get all blocks folded at startup by configuring the option <code>org-hide-block-startup</code> or on a per-file basis by using
+</p>
+<pre class="example">
+#+STARTUP: hideblocks
+#+STARTUP: nohideblocks
+</pre>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgafb3b46" class="outline-3">
+<h3 id="orgafb3b46"><span class="section-number-3">1.5</span> 脚注</h3>
+<div class="outline-text-3" id="text-1-5">
+<blockquote>
+<p>
+A footnote is started by a footnote marker in square brackets in column 0, no indentation allowed.
+It ends at the next footnote definition, headline, or after two consecutive empty lines.
+The footnote reference is simply the marker in square brackets, inside text. Markers always start with fn:.
+For example:
+</p>
+<pre class="example">
+The Org homepage[fn:1] now looks a lot better than it used to.
+...
+[fn:1] The link is: http://orgmode.org
+</pre>
+
+<p>
+Org mode extends the number-based syntax to named footnotes and optional inline definition. Here are the valid references:
+</p>
+<dl class="org-dl">
+<dt><code>[fn:name]</code></dt><dd>A named footnote reference, where name is a unique label word, or, for simplicity of automatic creation, a number.</dd>
+<dt><code>[fn::This is the inline definition of this footnote]</code></dt><dd>A LATEX-like anonymous footnote where the definition is given directly at the reference point.</dd>
+<dt><code>[fn:name:a definition]</code></dt><dd>An inline definition of a footnote, which also specifies a name for the note.
+Since Org allows multiple references to the same note, you can then use \[fn:name\] to create additional references.</dd>
+</dl>
+
+<p>
+Footnote labels can be created automatically, or you can create names yourself.
+This is handled by the variable <code>org-footnote-auto-label</code> and its corresponding <b>#+STARTUP</b> keywords.
+See the docstring of that variable for details.
+</p>
+</blockquote>
+<p>
+示例如下：
+The Org homepage<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> now looks a lot better than it used to.
+</p>
+
+<table id="org089b64f" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+<caption class="t-above"><span class="table-number">Table 6:</span> 脚注命令列表</caption>
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>f</code></td>
+<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。其他情况下，新建一个脚注。当有前缀参数时，会提供一个菜单供选择操作，其中包括重新给脚注编号。</td>
+<td class="org-left"><code>org-footnote-action</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">当光标处于引用处时，跳转到它的定义；当光标处理定义处时，跳转到第一个引用处。当有前缀参数时，行为和 <code>C-c C-x f</code> 一样,提供同样操作菜单。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-o</code></td>
+<td class="org-left">脚注标签也是指向相应定义/引用的链接，您可以使用常用(链接)命令来跟踪这些链接。</td>
+<td class="org-left"><code>org-open-at-point</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>'</code></td>
+<td class="org-left">在独立的窗口中，编辑引用关联的脚注定义。窗口可通过 <code>C-c</code> <code>'</code> 关闭</td>
+<td class="org-left"><code>org-edit-special</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+当 <code>C-c C-x f</code> 命令加上附加前缀参数时(<code>C-u C-c C-x f</code>) ,一个操作菜单被提供：
+</p>
+<pre class="example">
+s    Sort the footnote definitions by reference sequence.  During editing,
+     Org makes no effort to sort footnote definitions into a particular
+     sequence.  If you want them sorted, use this command, which will
+     also move entries according to org-footnote-section.  Automatic
+     sorting after each insertion/deletion can be configured using the
+     option org-footnote-auto-adjust.
+r    Renumber the simple fn:N footnotes.  Automatic renumbering
+     after each insertion/deletion can be configured using the option
+     org-footnote-auto-adjust.
+S    Short for first r, then s action.
+n    Normalize the footnotes by collecting all definitions (including
+     inline definitions) into a special section, and then numbering them
+     in sequence.  The references will then also be numbers.
+d    Delete the footnote at point, and all definitions of and references
+     to it.
+</pre>
+</div>
+</div>
+<div id="outline-container-org2e479e8" class="outline-3">
+<h3 id="org2e479e8"><span class="section-number-3">1.6</span> The Orgstruct minor mode</h3>
+<div class="outline-text-3" id="text-1-6">
+<blockquote>
+<p>
+If you like the intuitive way the Org mode structure editing and list formatting works,
+you might want to use these commands in other modes like Text mode or Mail mode as well.
+The minor mode orgstruct-mode makes this possible. Toggle the mode with <code>M-x</code> <code>orgstruct-mode</code> <code>RET</code>,
+or turn it on by default, for example in Message mode, with one of:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgstruct++</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org9e7a11a" class="outline-3">
+<h3 id="org9e7a11a"><span class="section-number-3">1.7</span> Org 的语法</h3>
+<div class="outline-text-3" id="text-1-7">
+<blockquote>
+<p>
+A reference document providing a formal description of Org’s syntax is available as <a href="http://orgmode.org/worg/dev/org-syntax.html" target="_blank" rel="external">a draft on Worg</a>, written and maintained by Nicolas Goaziou.
+It defines Org’s core internal concepts such as headlines, sections, affiliated keywords, (greater) elements and objects.
+Each part of an Org file falls into one of the categories above.
+</p>
+
+<p>
+To explore the abstract structure of an Org buffer, run this in a buffer:
+</p>
+<pre class="example">
+M-: (org-element-parse-buffer) RET
+</pre>
+<p>
+It will output a list containing the bu↵er’s content represented as an abstract structure.
+The export engine relies on the information stored in this list.
+Most interactive commands (e.g., for structure editing) also rely on the syntactic meaning of the surrounding context.
+</p>
+
+<p>
+You can check syntax in your documents using org-lint command.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf52e305" class="outline-2">
+<h2 id="orgf52e305"><span class="section-number-2">2</span> 表格</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Org</b> 提供了一个快速直观的表编辑器。 使用 <b>Emacs</b> 内嵌的 <i>calc</i> 的包可支持类似于制表软件的操作。
+</p>
+</div>
+<div id="outline-container-orgfc643ed" class="outline-3">
+<h3 id="orgfc643ed"><span class="section-number-3">2.1</span> 内置表编辑器</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<b>Org</b> 能够很容易地格式化 <b>ASCII</b> 文本表格。 任何把'|'作为首个非空白字符的行都被视为表的一部分。 '|'也是列分隔符。 表如下所示：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">名字</th>
+<th scope="col" class="org-right">手机号</th>
+<th scope="col" class="org-right">年龄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">brantou</td>
+<td class="org-right">170xxxxxxxx</td>
+<td class="org-right">18</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+在表格内键入 <code>TAB</code> , <code>RET</code> 或 <code>C-c</code> <code>C-c</code> 时，表格都会自动重新对齐。
+<code>TAB</code> 也可以移动到下一个表格区域（ <code>RET</code> 进入下一行），并在表的末尾或水平线之前创建新的表行。
+表的缩进由第一行设置。 以"|-"开头的任何行都被视为水平分隔符行，并在下一个重新对齐时展开。所以，要创建上面的表，你只需要键入
+</p>
+<pre class="example">
+| 名字 | 手机号 | 年龄 |
+|-
+</pre>
+<p>
+然后按 <code>TAB</code> 扩展表格。 更快的是键入 <b>|名称|手机号|年龄</b> 后, 再键入 <code>C-c</code> <code>RET</code> 。
+</p>
+
+<p>
+在表格区域中输入文本时，Org以特殊方式处理DEL，Backspace和所有字符键，以便插入和删除避免移动其他字段。
+此外，当使用TAB，S-TAB或RET将光标移动到新的表格区域后会自动填充空格。
+如果这种行为对您太不可预测，请配置选项 <code>org-enable-table-editor</code> 和 <code>org-table-auto-blank-field</code> 。
+</p>
+</div>
+
+<div id="outline-container-org1edac1e" class="outline-4">
+<h4 id="org1edac1e"><span class="section-number-4">2.1.1</span> 创建和转换</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<pre class="example">
+=C-c= =|=                 ~org-table-create-or-convert-from-region~
+</pre>
+<p>
+将活动区域转换为表。 如果每行包含至少一个TAB字符，则认为 <b>TAB</b> 是分隔符。 如果每一行都包含逗号，则逗号作为分隔（CSV）。 如果不是，则将行以空格为分隔符。
+您可以使用前缀参数强制指定分隔符： <code>C-u</code> 强制CSV， <code>C-u</code> <code>C-u</code> 强制TAB， <code>C-u</code> <code>C-u</code> <code>C=u</code> 将提示正则表达式匹配分隔符，数值参数N表示至少N个连续空格，或者 一个TAB将是分隔符。
+如果没有活动区域，此命令将创建一个空的组织表。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org88128dd" class="outline-4">
+<h4 id="org88128dd"><span class="section-number-4">2.1.2</span> 调整和区域移动</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<table id="org5b94c05" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-c</code></td>
+<td class="org-left">重新对齐表格，不移动到其他字段。</td>
+<td class="org-left"><code>org-table-align</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>SPC</code></td>
+<td class="org-left">使用空格填充当前区域</td>
+<td class="org-left"><code>org-table-blank-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;TAB&gt;</code></td>
+<td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
+<td class="org-left"><code>org-table-next-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-TAB</code></td>
+<td class="org-left">重新对齐，移动到上一区域。</td>
+<td class="org-left"><code>org-table-previous-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>RET</code></td>
+<td class="org-left">重新对齐表格并向下移动到下一行。 如有必要，创建一个新行。</td>
+<td class="org-left"><code>org-table-next-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-a</code></td>
+<td class="org-left">移动到当前表区域的开头，或移动到上一个区域。</td>
+<td class="org-left"><code>org-table-beginning-of-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-e</code></td>
+<td class="org-left">移动到当前表区域的结尾，或移动到上一个区域。</td>
+<td class="org-left"><code>org-table-end-of-field</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org72e448a" class="outline-4">
+<h4 id="org72e448a"><span class="section-number-4">2.1.3</span> 列和行编辑</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<table id="orgc0287a6" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>M-left</code> \ <code>M-right</code></td>
+<td class="org-left">向左/向右移动当前列</td>
+<td class="org-left"><code>org-table-move-column-left\right</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-left</code></td>
+<td class="org-left">删除当前列</td>
+<td class="org-left"><code>org-table-delete-column</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-right</code></td>
+<td class="org-left">在光标位置的左侧插入一个新列</td>
+<td class="org-left"><code>org-table-insert-column</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-up</code> \ <code>M-down</code></td>
+<td class="org-left">向上/向下移动当前行</td>
+<td class="org-left"><code>org-table-move-row-up\down</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-up</code></td>
+<td class="org-left">删除当前行或水平分隔线</td>
+<td class="org-left"><code>org-table-kill-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-S-down</code></td>
+<td class="org-left">在当前行上方插入新行。 使用前缀参数，该行在当前行下创建</td>
+<td class="org-left"><code>org-table-insert-row</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>-</code></td>
+<td class="org-left">在当前行下插入水平线。 使用前缀参数，在当前行之上创建</td>
+<td class="org-left"><code>org-table-insert-hline</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>RET</code></td>
+<td class="org-left">在当前行下插入水平线，将光标移动到该线下面的行</td>
+<td class="org-left"><code>org-table-hline-and-move</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>^</code></td>
+<td class="org-left">对区域中的表行进行排序</td>
+<td class="org-left"><code>org-table-sort-lines</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org165a716" class="outline-4">
+<h4 id="org165a716"><span class="section-number-4">2.1.4</span> 区域</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<table id="orgd25eea6" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>M-w</code></td>
+<td class="org-left">将矩形区域从表复制到特殊剪贴板。 点和标记确定矩形的边缘字段。 如果没有活动区域，只复制当前字段。 该过程忽略水平分隔线。</td>
+<td class="org-left"><code>org-table-copy-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-w</code></td>
+<td class="org-left">将矩形区域从表格复制到特殊剪贴板，并将矩形中的所有字段都留空。 所以这是“剪切”操作。</td>
+<td class="org-left"><code>org-table-cut-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>C-x</code> <code>C-y</code></td>
+<td class="org-left">将矩形区域粘贴到表中。 左上角在当前字段中结束。 所有涉及的字段将被覆盖。 如果矩形不适合当前表格，则根据需要放大表格。 该过程忽略水平分隔线。</td>
+<td class="org-left"><code>org-table-paste-rectangle</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-RET</code></td>
+<td class="org-left">在光标位置分割当前字段，并将其余部分移动到下面的行。 如果存在活动区域，并且点和标记都在同一列中，则列中的文本将包装为给定行数的最小宽度。 数字前缀参数可用于更改所需行的数量。 如果没有区域，但您指定了前缀参数，则将当前字段设置为空，并将内容追加到上面的字段。</td>
+<td class="org-left"><code>org-table-wrap-region</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge8df56a" class="outline-4">
+<h4 id="orge8df56a"><span class="section-number-4">2.1.5</span> 计算</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<table id="org1a5fc56" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>+</code></td>
+<td class="org-left">将当前列中的数字或由活动区域定义的矩形中的数字相加。 结果显示在echo区域中，可以用C-y插入。</td>
+<td class="org-left"><code>org-table-sum</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-RET</code></td>
+<td class="org-left">当前字段为空时，从上面的第一个非空区域复制。 当不为空时，将当前区域复制到下一行，并将光标与其一起移动。</td>
+<td class="org-left"><code>org-table-copy-down</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org67185d3" class="outline-4">
+<h4 id="org67185d3"><span class="section-number-4">2.1.6</span> 杂项</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<table id="org1ecb980" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c</code> <code>`</code></td>
+<td class="org-left">在单独的窗口中编辑当前区域。 这对于不完全可见的区域很有用。当使用C-u前缀调用时，仅仅使整个字段可见，以便可以在当前位置编辑 。 当使用两个C-u前缀调用时，使编辑器窗口跟随光标在表移动，并始终显示光标所在区域。 当光标离开表时，或者当您用C-u C-u C-c`重复此命令时，跟随模式将自动退出。</td>
+<td class="org-left"><code>org-table-edit-field</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-x</code> <code>org-table-import</code> <code>RET</code></td>
+<td class="org-left">将文件作为表导入。 表格应该是TAB或空格分隔。</td>
+<td class="org-left"><code>org-table-import</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c</code> <code>\vert</code></td>
+<td class="org-left">也可以通过将表格文本粘贴到 <b>Org</b> buffer，使用 <code>C-x</code> <code>C-x</code> 选择粘贴的文本，然后使用C-c &vert; 命令（请参阅上面的创建和转换）。</td>
+<td class="org-left"><code>org-table-create-or-convert-from-region</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>M-x</code> <code>org-table-export</code> <code>RET</code></td>
+<td class="org-left">导出表，默认情况下作为 <b>TAB</b> 分隔的文件。 用于与例如电子表格或数据库程序进行数据交换。 用于导出文件的格式可以在选项 <code>org-table-export-default-format</code> 中配置。 您还可以使用属性 <b>TABLE<sub>EXPORT</sub><sub>FILE</sub></b> 和 <b>TABLE<sub>EXPORT</sub>_ FORMAT</b> 来指定子树中的表导出的文件名和格式。 Org支持导出表格的相当一般格式。</td>
+<td class="org-left"><code>org-table-export</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+你可能因为‘|’开始的行，妨碍到你，而不喜欢自动表编辑器，你可以用下面的语句来关闭
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-enable-table-editor <span class="literal">nil</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+<p>
+然后唯一的表命令 <code>C-c</code> <code>C-c</code> 仍然工作, 做一个手动重新对齐。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98dd825" class="outline-3">
+<h3 id="org98dd825"><span class="section-number-3">2.2</span> 列宽和对齐</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+列的宽度由表编辑器自动确定。 并且还可以从列中包含的数据类型（数字或者非数字）自动确定列的对齐方式。
+有时一个区域或几个区域需要包含很多文本信息，会导致信息展示和编辑的诸多不便。 或者你想设定固定宽度的几列，而不管内容如何。
+要设置列的宽度，列中任何位置的一个字段可能只包含字符串“N”，其中“N”是指定列的宽度（以字符为单位）的整数。 接下来重新对齐，然后将此列的宽度设置为此值。
+</p>
+
+<img src="/images/table-column-width.jpg">
+
+<p>
+设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=&gt;</b> 来替代展示。
+要查看全文，请将鼠标悬停在该字段上&#x2014;工具提示窗口(tool-tip window)将显示完整的内容。
+要编辑这样一个区域，可使用 <code>C-c</code> <code>`</code> 。 这将打开一个的新窗口。 编辑后用 <code>C-c</code> <code>C-c</code> 来提交编辑内容，并关闭窗口。
+</p>
+
+<p>
+当浏览包含有固定宽度表的文件时，必需的隐藏内容尚未发生，需要对齐表来隐藏内容，来变美观。
+可设置 <code>org-startup-align-all-tables</code> 是浏览时对文件中的所有表进行重新调整，但这样会减慢文件打开的速度。
+也可以在每个文件中设置此选项:
+</p>
+<pre class="example">
+#+STARTUP: noalign
+#+STARTUP: align
+</pre>
+
+<p>
+如果不喜欢默认自动对齐的方式，您可以使用 <b>&lt;r&gt;</b> ，*&lt;c&gt;* 或者 <b>&lt;l&gt;</b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i>&lt;r10&gt;</i> 。
+在导出文档时，将自动删除仅包含这些格式化信息的行。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91de382" class="outline-3">
+<h3 id="org91de382"><span class="section-number-3">2.3</span> 列组</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+当Org导出表时，默认情况下不会有垂直线，因为在视觉上一般来说更令人满意。
+然而，偶尔，垂直线对于将表结构化成一组列可能是有用的，就像水平线可以对于一组行所做的那样。
+为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'&lt;'表示此列应该启动一个组，'&gt;'表示组的结束，或'&lt;&gt;'（'&lt;'和'&gt;'之间没有空格） 当前列自己一组。
+导出后，列组之间的边界将用垂直线标记。 示例如下：
+</p>
+
+<img src="/images/table-column-groups.jpg">
+
+<p>
+效果如下（好像没有效果）：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-right">
+</colgroup>
+
+<colgroup>
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+
+<colgroup>
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">N</th>
+<th scope="col" class="org-right">N<sup>2</sup></th>
+<th scope="col" class="org-right">N<sup>3</sup></th>
+<th scope="col" class="org-right">N<sup>4</sup></th>
+<th scope="col" class="org-right"><code>sqrt(n)</code></th>
+<th scope="col" class="org-right"><code>sqrt[4](N)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">8</td>
+<td class="org-right">16</td>
+<td class="org-right">1.4142136</td>
+<td class="org-right">1.1892071</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">9</td>
+<td class="org-right">27</td>
+<td class="org-right">81</td>
+<td class="org-right">1.7320508</td>
+<td class="org-right">1.3160740</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+只插入列组启动器也是足够的：
+</p>
+
+<img src="/images/table-column-group-start.jpg">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-right">
+</colgroup>
+
+<colgroup>
+<col class="org-right">
+
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+
+<colgroup>
+<col class="org-right">
+
+<col class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">N</th>
+<th scope="col" class="org-right">N<sup>2</sup></th>
+<th scope="col" class="org-right">N<sup>3</sup></th>
+<th scope="col" class="org-right">N<sup>4</sup></th>
+<th scope="col" class="org-right"><code>sqrt(n)</code></th>
+<th scope="col" class="org-right"><code>sqrt[4](N)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-right">8</td>
+<td class="org-right">16</td>
+<td class="org-right">1.4142136</td>
+<td class="org-right">1.1892071</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">9</td>
+<td class="org-right">27</td>
+<td class="org-right">81</td>
+<td class="org-right">1.7320508</td>
+<td class="org-right">1.3160740</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orged1d65b" class="outline-3">
+<h3 id="orged1d65b"><span class="section-number-3">2.4</span> The Orgtbl minor mode</h3>
+<div class="outline-text-3" id="text-2-4">
+<blockquote>
+<p>
+If you like the intuitive way the Org table editor works, you might also want to use it in other modes like Text mode or Mail mode.
+The minor mode Orgtbl mode makes this possible.
+You can always toggle the mode with M-x orgtbl-mode RET.
+To turn it on by default, for example in Message mode, use
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">add-hook</span> <span class="quoted">'message-mode-hook</span> <span class="quoted">'turn-on-orgtbl</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+<p>
+Furthermore, with some special setup, it is possible to maintain tables in arbitrary syntax with Orgtbl mode.
+For example, it is possible to construct LATEX tables with the underlying ease and power of Orgtbl mode,
+including spreadsheet capabilities.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org0f1ae05" class="outline-3">
+<h3 id="org0f1ae05"><span class="section-number-3">2.5</span> 电子表格</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+请参阅如下内容：
+</p>
+<ul class="org-ul">
+<li><a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html" target="_blank" rel="external">Org as a spreadsheet system: a short introduction</a></li>
+<li><a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-lisp-formulas.html" target="_blank" rel="external">Org as a spreadsheet system: using Emacs lisp as formulas</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org03d0b51" class="outline-3">
+<h3 id="org03d0b51"><span class="section-number-3">2.6</span> Org-Plot</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+请参阅如下内容：
+</p>
+<ul class="org-ul">
+<li><a href="http://orgmode.org/worg/org-tutorials/org-plot.html" target="_blank" rel="external">Plotting tables in Org-Mode using org-plot</a></li>
+<li><a href="http://www.gnuplot.info/" target="_blank" rel="external">http://www.gnuplot.info/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org881e689" class="outline-2">
+<h2 id="org881e689"><span class="section-number-2">3</span> 超链接</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+就如 <i>HTML</i> 一样， <code>Org</code> 提供文件内部链接，到其他文件，Usenet文章，电子邮件等外部链接。
+</p>
+</div>
+<div id="outline-container-org0aa307c" class="outline-3">
+<h3 id="link-format"><a id="org0aa307c"></a><span class="section-number-3">3.1</span> 链接格式</h3>
+<div class="outline-text-3" id="text-link-format">
+<p>
+<code>Org</code> 能够识别类似URL链接的文本，并处理成可点击的链接。 通用链接格式如下所示：
+</p>
+<pre class="example">
+[[link][description]]  或者 [[link]]
+</pre>
+<p>
+一旦链接完成，链接样式将发生变化，显示 <i>description</i> 而不是 <code>[[link] [description]]</code> 或 <i>link</i> 而不是 <code>[ [link]]]</code> 。
+可以直接编辑链接的可见部分。 请注意，这可以是 <i>link</i> 部分（如果没有 <i>description</i> ）或 <i>description</i> 部分。 要编辑不可见的“链接”部分，只需在链接上键入 <code>C-c C-l</code> 。
+在链接的头和尾可删除链接不可见的边际括号，使得链接不完整，内部再次显示为纯文本。 插入缺失的括号将再次隐藏链接内部。
+要显示所有链接的内部结构，可用菜单条目 <code>Org-&gt;Hyperlinks-&gt;Literal links</code> 。
+</p>
+</div>
+</div>
+<div id="outline-container-org1dadc09" class="outline-3">
+<h3 id="org1dadc09"><span class="section-number-3">3.2</span> 内部链接</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+如果一个链接不是URL形式的，它被当做当前文件中的内部链接。
+最重要的情况是像 <code>[ [＃my-custom-id]]</code> 这样的链接，它将链接到 <b>CUSTOM<sub>ID</sub></b> 属性是 <i>my-custom-id</i> 的条目。 自己要负责确保这些自定义ID在文件中是唯一的。
+诸如 <code>[ [MyTarget]]</code> 或 <code>[[MyTarget] [Findmytarget]]</code> 的链接会在当前文件的文本中搜索。
+在链接上输入 <code>C-c C-o</code> 或 鼠标点击时，会跳转到链接匹配处。 自定义ID的链接将指向相应的标题。
+</p>
+
+<p>
+文本链接的首选匹配是 <i>dedicated target</i> ：双角括号中的相同字符串，如 <i>&larr;&larr; My Target&rarr;&rarr;</i> 。
+如果没有 <i>dedicated target</i> ，链接将尝试匹配缓冲区内元素的精确名称。
+使用 <code>＃+NAME</code> 关键字进行命名，必须将其放在引用的元素之前的行中，如以下示例所示:
+</p>
+<pre class="example">
+#+NAME: My Target
+| a  | table      |
+|----+------------|
+| of | four cells |
+</pre>
+<p>
+如果以上都没有成功，Org将搜索与链接文本完全相同的标题(也会搜索 <code>TODO</code> 关键字和标签)。
+</p>
+
+<p>
+在导出过程中，内部链接被用于标记对象(并分配一个数字)。 标记的对象将被指向它们的链接引用。 特别地，没有 <i>description</i> 的链接将显示为分配给标记对象的编号。
+以下摘录自 <code>Org</code>  缓冲区
+</p>
+<pre class="example">
+- one item
+- &lt;&lt;target&gt;&gt; another item
+Here we refer to item [[target]].
+</pre>
+<p>
+导出时，最后一句将显示为 <i>Here we refer to item 2</i> 。
+</p>
+
+<p>
+在非 <code>Org</code> 文件中，搜索将查找链接文本中的单词。 在上面的例子中搜索将是 <i>my Target</i> 。
+链接后，将 <i>mark</i> 推到 <code>Org</code> 自己的 <i>mark ring</i> 上。 可使用 <code>C-c ＆</code> 返回到前一个位置。 直接连续使用这个命令多次可以回到前面记录的位置。
+</p>
+</div>
+<div id="outline-container-org30cdbe7" class="outline-4">
+<h4 id="org30cdbe7"><span class="section-number-4">3.2.1</span> Radio targets</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+<code>Org</code> 可自动将正常文本中某些目标名称的任何出现转换为链接。 所以没有明确创建一个链接，文本就连接到 <i>Radio targents</i> 的位置。
+<i>Radio targets</i> 由三角形括号括起来,
+如 &larr;&larr;&larr; My Target&rarr;&rarr;&rarr; 导致正常文本中的每个出现的 <i>my target</i> 被激活为链接。
+仅当文件首次加载到Emacs中时，才会自动扫描 <i>Radio targets</i> 。
+要在编辑过程中更新 <i>Radio targets</i> 列表，请在光标处于 <i>Radio targets</i> 位置时按 <code>C-c C-c</code> 。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org65c3987" class="outline-3">
+<h3 id="org65c3987"><span class="section-number-3">3.3</span> 外部链接</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<code>Org</code> 支持链接到文件，网站，Usenet和电子邮件，BBDB数据库条目和链接到IRC对话及其日志。
+外部链接是类似URL的 <i>locators</i> 。 它们以一个简短的识别字符串后面跟一个冒号开始。 冒号后没有空格。
+下面列表显示每个链接类型的示例。
+</p>
+<pre class="example">
+http://www.astro.uva.nl/~dominik           on the web
+doi:10.1000/182                            DOI for an electronic resource
+file:/home/dominik/images/jupiter.jpg      file, absolute path
+/home/dominik/images/jupiter.jpg           same as above
+file:papers/last.pdf                       file, relative path
+./papers/last.pdf                          same as above
+file:/myself@some.where:papers/last.pdf    file, path on remote machine
+/myself@some.where:papers/last.pdf         same as above
+file:sometextfile::NNN                     file, jump to line number
+file:projects.org                          another Org file
+file:projects.org::some words              text search in Org file
+file:projects.org::*task                   heading search in Org file
+docview:papers/last.pdf::NNN               open in doc-view mode at page
+id:B7423F4D-2E8A-471B-8810-C40F074717E9    Link to heading by ID
+news:comp.emacs                            Usenet link
+mailto:adent@galaxy.net                    Mail link
+mhe:folder                                 MH-E folder link
+mhe:folder#id                              MH-E message link
+rmail:folder                               RMAIL folder link
+rmail:folder#id                            RMAIL message link
+gnus:group                                 Gnus group link
+gnus:group#id                              Gnus article link
+bbdb:R.*Stallman                           BBDB link (with regexp)
+irc:/irc.com/#emacs/bob                    IRC link
+info:org#External links                    Info node or index link
+shell:ls *.org                             A shell command
+elisp:org-agenda                           Interactive Elisp command
+elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
+</pre>
+
+<p>
+链接应包含在双括号中，当然可能想要显示的描述性文本而不是URL（参见<a href="#link-format">链接格式</a>），例如：
+</p>
+<pre class="example">
+[[http://www.gnu.org/software/emacs/][GNU Emacs]]
+</pre>
+
+<p>
+如果描述是文件名或指向图像的URL，则HTML导出将内嵌图像作为可点击按钮。
+如果没有任何描述和链接指向图像，该图像将被内联到导出的HTML文件中。
+</p>
+
+<p>
+<code>Org</code> 能识别出正常文本中的外部链接，并将其作为链接激活。
+如果空格必须是链接的一部分（例如在 <code>bbdb:[Richard Stallman]</code> 中），
+或者如果需要消除关于链接结尾的歧义，请将其括在方括号中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb985ecb" class="outline-3">
+<h3 id="orgb985ecb"><span class="section-number-3">3.4</span> 处理链接</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<code>Org</code> 为了正确的创建链接，插入链接和跟随链接，提供了很多快捷键。
+</p>
+<table id="org91bdaf0" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c l</code></td>
+<td class="org-left">存储当前位置的链接。 这是一个全局命令，可以在任何缓冲区中使用它来创建链接。 链接将被存储以备将来插入 <code>Org</code> 的缓冲区。 创建什么样的链接取决于当前的缓冲区。</td>
+<td class="org-left"><code>org-store-link</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-l</code></td>
+<td class="org-left">插入链接。 将提示将链接插入缓冲区。 可以键入链接，使用内部链接的文本或上述示例中提到的链接类型前缀之一。 该链接将被插入到缓冲区，以及一个描述性的文本。 如果在调用此命令时选择了某些文本，则所选文本将成为默认描述。</td>
+<td class="org-left"><code>org-insert-link</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u C-c C-l</code></td>
+<td class="org-left">当使用 <code>C-u</code> 前缀参数调用 <code>C-c C-l</code> 时，将插入文件链接，可以使用文件名来完成文件选择。当前用到是相对路径，若是想要绝对路径可用两个 <code>C-u</code> 前缀。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-l</code></td>
+<td class="org-left">当光标在已有链接上时， <code>C-c C-l</code> 允许编辑链接的链接和描述部分。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-o</code></td>
+<td class="org-left">打开当前位置的链接。如果要覆盖默认应用程序并使用Emacs访问文件，请使用 <code>C-u</code> 前缀。 如果要避免在Emacs中打开，请使用 <code>C-u C-u</code> 前缀。如果光标位于标题上，但不在链接上，则打开标题中所有链接。</td>
+<td class="org-left"><code>org-open-at-point</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>RET</code></td>
+<td class="org-left">当 <code>org-return-follow-link</code> 设置时，RET也将跟随当前位置的链接。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-x C-v</code></td>
+<td class="org-left">触发图片链接内联显示。当用前缀参数调用时，还会显示具有描述信息的图片链接。 可以通过配置变量 <code>org-startup-with-inline-images</code> 使内联图片在启动时显示。</td>
+<td class="org-left"><code>org-toggle-inline-images</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c %</code></td>
+<td class="org-left">Push the current position onto the mark ring, to be able to return easily. Commands following an internal link do this automatically.</td>
+<td class="org-left"><code>org-mark-ring-push</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c &amp;</code></td>
+<td class="org-left">跳回到记录位置。 A position is recorded by the commands following internal links, and by C-c %. Using this command several times in direct succession moves through a ring of previously recorded positions.</td>
+<td class="org-left"><code>org-mark-ring-goto</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c C-x C-n/p</code></td>
+<td class="org-left">向前/向后移动到缓冲区中的下一个链接。</td>
+<td class="org-left"><code>org-next/previous-link</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org4d2c872" class="outline-3">
+<h3 id="org4d2c872"><span class="section-number-3">3.5</span> 在Org之外使用链接</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+可以插入和跟踪具有Org语法的链接，不仅在组织中，而且可以在任何Emacs缓冲区中。
+为此，应该创建两个全局命令，如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">global-set-key</span> <span class="string">"\C-c L"</span> <span class="quoted">'org-insert-link-global</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">global-set-key</span> <span class="string">"\C-c o"</span> <span class="quoted">'org-open-at-point-global</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org1a9e71d" class="outline-3">
+<h3 id="org1a9e71d"><span class="section-number-3">3.6</span> 链接缩写</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+长的URL输入起来会很麻烦，同时在文档中类似的链接可能会很频繁的出现。
+为此，你可能需要使用链接缩写。 链接缩写看起来如下所示:
+</p>
+<pre class="example">
+[[linkword:tag][description]]
+</pre>
+<p>
+<i>tag</i> 是可选的， <i>linkword</i> 必须是一个单词，以字母开头，后跟字母，数字，' - '和'_'。
+根据将链接缩写词与替换文本相关联的变量 <code>org-link-abbrev-alist</code> 中的信息来解析缩写。 定义如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-link-abbrev-alist</span><br><span class="line">      <span class="quoted">'((<span class="string">"bugzilla"</span>  . <span class="string">"http://10.1.2.9/bugzilla/show_bug.cgi?id="</span>)</span><br><span class="line">        (<span class="string">"url-to-ja"</span> . <span class="string">"http://translate.google.fr/translate?sl=en&amp;amp;tl=ja&amp;amp;u=%h"</span>)</span><br><span class="line">        (<span class="string">"google"</span>    . <span class="string">"http://www.google.com/search?q="</span>)</span><br><span class="line">        (<span class="string">"gmap"</span>      . <span class="string">"http://maps.google.com/maps?q=%s"</span>)</span><br><span class="line">        (<span class="string">"omap"</span>      . <span class="string">"http://nominatim.openstreetmap.org/search?q=%s&amp;amp;polygon=1"</span>)</span><br><span class="line">        (<span class="string">"ads"</span>       . <span class="string">"http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&amp;amp;db_key=AST"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+<p>
+如果替换文本包含字符串 <code>％s</code> ，它将被标签所替换。
+使用 <code>％h</code> 而不是 <code>％s</code> ,是因为需要对标签进行url编码（参见上面示例，需要对URL参数进行编码）。
+使用 <code>％(my-function)</code> 将标签传递给自定义函数 ，并将其替换为生成的字符串。
+如果替换文本不包含任何说明符，则只需把标签添加到替换文本后即可创建链接。
+</p>
+
+<p>
+如果只需要单个Org缓冲区的特殊缩写，可以在文件中定义它们
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+LINK: bugzilla  http://10.1.2.9/bugzilla/show_bug.cgi?id=&#10;#+LINK: google    http://www.google.com/search?q=%s</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7983180" class="outline-3">
+<h3 id="org7983180"><span class="section-number-3">3.7</span> 文件链接的搜索选项</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+参见<a href="http://orgmode.org/manual/Search-options.html#Search-options" target="_blank" rel="external">Org-mode手册中相关章节</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orga3d7db9" class="outline-3">
+<h3 id="orga3d7db9"><span class="section-number-3">3.8</span> 自定义搜索</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+参见<a href="http://orgmode.org/manual/Custom-searches.html#Custom-searches" target="_blank" rel="external">Org-mode手册中相关章节</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe348cb" class="outline-2">
+<h2 id="orgfe348cb"><span class="section-number-2">4</span> 待办事项</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<code>Org-mode</code> 不把 <code>TODO</code> 列表作为单独的文档来维护。 相反， <code>TODO</code> 列表是笔记的组成部分，因为它通常产生于记录笔记时！
+使用 <code>Org-mode</code> ，只需将树中的任何条目标记为 <code>TODO</code>  就可构造出 <code>TODO</code> 列表。 这种方式，信息不会冗余重复，并且始终显示 <code>TODO</code> 项出现的整个上下文。
+当然，这种用于管理 <code>TODO</code> 项的方式会将它们分散在各个笔记文件中。 <code>Org-mode</code> 通过提供一些方法使我们可以把它们看作一个整体来处理。
+</p>
+</div>
+<div id="outline-container-org73e1405" class="outline-3">
+<h3 id="org73e1405"><span class="section-number-3">4.1</span> 基础的待办事项功能</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+以 <code>TODO</code> 关键字开始的任意标题都会变为代办事项，例如：
+</p>
+<pre class="example">
+*** TODO Write letter to Sam Fortune
+</pre>
+<table id="org16b0eec" border="2" cellspacing="0" cellpadding="6" rules="all" frame="border">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Desc</th>
+<th scope="col" class="org-left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>C-c C-t</code></td>
+<td class="org-left">转换当前项的TODO状态 <span class="underline">,-&gt; (unmarked) -&gt; TODO -&gt; DONE &#x2013;.</span></td>
+<td class="org-left"><code>org-todo</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-u C-c C-t</code></td>
+<td class="org-left">当TODO关键字没有选择时，使用补全选择特定的关键字; 否则强制循环遍历TODO状态，没有提示。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-left/right</code></td>
+<td class="org-left">选择之后/之前的TODO状态，像是循环。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c / t</code></td>
+<td class="org-left">构造出TODO列的稀疏树;折叠整个缓冲区，但显示所有TODO项（ <code>not-DONE</code> 状态）和其上的标题层次结构。 使用前缀参数（或使用 <code>C-c / T</code> ），搜索特定的TODO。 系统提示输入关键字，还可以输入KWD1 &vert; KWD2 &vert; &#x2026;等关键字，列出与这些关键字中的任何一个匹配的项。 使用数字前缀参数N，在选项 <code>org-todo-keywords</code> 中显示第N个关键字的树。 使用两个前缀参数，找到所有TODO状态，无论是完成还是未完成。</td>
+<td class="org-left"><code>org-show-todo-tree</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>C-c a t</code></td>
+<td class="org-left">展示全局 <code>TODO</code> 列表;将所有agenda文件中的TODO项（ <code>not-DONE</code> 状态）收集到一个缓冲区中。 新的缓冲区将处于 <code>agenda-mode</code> ，它提供了从新的缓冲区检查和操作TODO项的命令。</td>
+<td class="org-left"><code>org-todo-list</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>S-M-RET</code></td>
+<td class="org-left">在当前项之后插入新的 <code>TODO</code> 项</td>
+<td class="org-left"><code>org-insert-todo-heading</code></td>
+</tr>
+</tbody>
+</table>
+<p>
+注： 改变 <code>TODO</code> 状态也可触发标签发生变更。 请参阅 <code>org-todo-state-tags-triggers</code> 文档以了解详细信息, 也可可查看<a href="http://stackoverflow.com/questions/17559662/how-to-automatically-trigger-a-change-in-todo-state-in-emacs-org-mode" target="_blank" rel="external">How to automatically trigger a change in TODO state in Emacs org-mode</a>。
+</p>
+</div>
+</div>
+<div id="outline-container-orga1bbb4e" class="outline-3">
+<h3 id="orga1bbb4e"><span class="section-number-3">4.2</span> 待办事项扩展</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+默认情况下， 待办事项只能为以下两种状态之一： <code>TODO</code> 和 <code>DONE</code> 。
+<code>Org-mode</code> 允许使用 <code>TODO</code> 关键字（存储在 <code>org-todo-keywords</code> ）以更复杂的方式对 <code>TODO</code> 项目进行分类管理。
+通过特殊设置， <code>TODO</code> 关键字系统可在不同的文件对不同的工作流程进行定制。
+</p>
+</div>
+<div id="outline-container-orgecf331f" class="outline-4">
+<h4 id="orgecf331f"><span class="section-number-4">4.2.1</span> 工作流状态应用</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+可以使用 <code>TODO</code> 关键字来表示项目进行过程中工作流状态，例如：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;   &#39;((sequence &#34;TODO&#34; &#34;FEEDBACK&#34; &#34;VERIFY&#34; &#34;|&#34; &#34;DONE&#34; &#34;DELEGATED&#34;)))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+垂直条将 <code>TODO</code> 关键字（需要处理的状态）从DONE状态分离（无需进一步操作）。
+如果不提供垂直条，则最后一个状态用作 <code>DONE</code> 状态。
+使用以上设置，命令 <code>C-c C-t</code> 将待办事项从 <code>TODO</code> 循环到 <code>FEEDBACK</code> ，然后到 <code>VERIFY</code> ，最后到 <code>DONE</code> 和 <code>DELEGATED</code> 。
+也可以使用数字前缀参数快速选择特定状态。 例如， <code>C-3 C-c C-t</code> 将立即将状态更改为VERIFY。 或者可以使用 <code>S-left/right</code> 向后/向前遍历序列。
+</p>
+</div>
+</div>
+<div id="outline-container-orge348360" class="outline-4">
+<h4 id="orge348360"><span class="section-number-4">4.2.2</span> 类型标示应用</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+第二种可能性是使用TODO关键字来指示待办事项的隶属于不同类型。
+例如，可能希望指出项目是 <i>work</i> 或 <i>home</i> 。
+或者，当在一个项目中与多个人合作时，可能需要通过使用他们的名字作为 <code>TODO</code> 关键字来将项目任务直接分配给个人。
+如下配置：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords &#39;((type &#34;Fred&#34; &#34;Sara&#34; &#34;Lucy&#34; &#34;|&#34; &#34;DONE&#34;)))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+在这种情况下，不同的关键字不表示序列，而是不同的类型。
+所以正常的工作流程是将任务分配给一个人，然后将其标记为DONE。
+<code>Org-mode</code> 通过调整命令 <code>C-c C-t</code> 的工作机制来支持这种风格。
+当连续使用多次时，它仍将循环遍历所有名称，以便首先为任务选择正确的类型。
+但是，当经过一段时间后返回该项目并再次执行 <code>C-c C-t</code> ，它将从任何名称直接切换到 <code>DONE</code> 。
+使用前缀参数或完成快速选择一个特定的名称。 还可以使用 <code>C-c / t</code> 的数字前缀来查看稀疏树中特定 <code>TODO</code> 类型的项目。
+例如，要查看Lucy所做的一切事情，使用 <code>C-3 C-c / t</code> 。
+要将Lucy的所有项目从所有议程文件收集到一个单独的库中，还可以在创建全局TODO列表时使用数字前缀参数： <code>C-3 C-c a t</code> 。
+</p>
+</div>
+</div>
+<div id="outline-container-org4c331b7" class="outline-4">
+<h4 id="org4c331b7"><span class="section-number-4">4.2.3</span> 单个文件中多个关键字集合</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+有时可能需要并行使用不同的TODO关键字集。
+例如，可能需要具有基本的 <code>TODO</code> / <code>DONE</code> ，还有一个修复错误的工作流程，以及指示某个项目已被取消的单独状态（因此它不是 <code>DONE</code> ，也不需要执行操作）。
+设置如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;      &#39;((sequence &#34;TODO&#34; &#34;|&#34; &#34;DONE&#34;)&#10;        (sequence &#34;REPORT&#34; &#34;BUG&#34; &#34;KNOWNCAUSE&#34; &#34;|&#34; &#34;FIXED&#34;)&#10;        (sequence &#34;|&#34; &#34;CANCELED&#34;)))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这些关键字应该是不同的，这有助于 <code>Org-mode</code> 跟踪给定条目应该使用哪个子序列。
+在这个设置中， <code>C-c C-t</code> 只能在一个子序列中运行，
+所以它从 <code>DONE</code> 切换到（无）到 <code>TODO</code> ，
+从 <code>FIXED</code> 切换到（无）到 <code>REPORT</code> 。
+因此，需要一种机制来正确初始选择序列。
+除了显式的键入关键字或使用补全外，还可应用以下命令：
+</p>
+<dl class="org-dl">
+<dt><code>C-u C-u C-c C-t</code> <code>C-S-right/left</code></dt><dd></dd>
+</dl>
+<p>
+这些键从一个 <code>TODO</code> 子集跳到下一个。
+在上面的例子中， <code>C-u C-u C-c C-t</code> 或 <code>C-S-right</code> 将从 <i>TODO</i> 或 <i>DONE</i> 跳到 <i>REPORT</i> ，
+而第二行中的任何一个字都可跳转到 <code>CANCELED</code> 。
+</p>
+<dl class="org-dl">
+<dt><code>S-right/left</code></dt><dd></dd>
+</dl>
+<p>
+<code>S-right/left</code> 并从所有集合中遍历所有关键字，例如在上面的例子中，S-right将从DONE切换到REPORT。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb79883" class="outline-4">
+<h4 id="orgcb79883"><span class="section-number-4">4.2.4</span> 快速访问代办状态</h4>
+<div class="outline-text-4" id="text-4-2-4">
+<p>
+如果要快速将条目更改为任意TODO状态，而不是循环遍历状态，则可以设置单个字符来快速访问状态的键。
+这是通过在每个关键字后面的括号中添加选择字符来完成的。
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;     &#39;((sequence &#34;TODO(t)&#34; &#34;|&#34; &#34;DONE(d)&#34;)&#10;       (sequence &#34;REPORT(r)&#34; &#34;BUG(b)&#34; &#34;KNOWNCAUSE(k)&#34; &#34;|&#34; &#34;FIXED(f)&#34;)&#10;       (sequence &#34;|&#34; &#34;CANCELED(c)&#34;)))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+如果按C-c C-t，后按选择键，则条目将切换到此状态。 SPC可用于从条目中删除任何TODO关键字。
+</p>
+</div>
+</div>
+<div id="outline-container-org42ebe96" class="outline-4">
+<h4 id="org42ebe96"><span class="section-number-4">4.2.5</span> 为文件设置独立的关键字集合</h4>
+<div class="outline-text-4" id="text-4-2-5">
+<p>
+在不同文件中使用 <code>TODO</code> 机制的不同方面是非常有用的。
+对于文件本地设置，需要在文件中添加专用行，仅为该文件设置关键字和仅对当前文件起效。
+例如，要设置上述两个示例之一，需要在文件中包含以下任何一行：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TODO: TODO FEEDBACK VERIFY | DONE CANCELED</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+或者
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TYP_TODO: Fred Sara Lucy Mike | DONE</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+并行使用几组的设置如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+TODO: TODO | DONE&#10;#+TODO: REPORT BUG KNOWNCAUSE | FIXED&#10;#+TODO: | CANCELED</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+在更改其中一行后，在行中使用 <code>C-c C-c</code> ，以使变更生效。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfffa35f" class="outline-4">
+<h4 id="orgfffa35f"><span class="section-number-4">4.2.6</span> 代办事项关键字的样式</h4>
+<div class="outline-text-4" id="text-4-2-6">
+<p>
+<code>Org-mode</code> 突出显示具有特殊样式的TODO关键字：关键字的 <code>org-todo</code> 表示某个项目仍然需要执行，对于表示项目完成的关键字 <code>org-done</code> 。
+如果使用两种以上的不同状态，可能需要为其中某些状态使用特殊样式。 可使用选项 <code>org-todo-keyword-faces</code> 来完成。
+例如：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keyword-faces&#10;      &#39;((&#34;TODO&#34; . org-warning) (&#34;STARTED&#34; . &#34;yellow&#34;)&#10;        (&#34;CANCELED&#34; . (:foreground &#34;blue&#34; :weight bold))))</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org26441a1" class="outline-4">
+<h4 id="org26441a1"><span class="section-number-4">4.2.7</span> 待办事项的依赖关系</h4>
+<div class="outline-text-4" id="text-4-2-7">
+<p>
+<code>Org</code> 结构（层次结构和列表）可以轻松定义TODO依赖关系。
+通常，在将所有子任务标记为 <code>DONE</code> 之前，不应将父 <code>TODO</code> 任务标记为 <code>DONE</code> 。
+有时，对于一些（子）任务有一个逻辑顺序，所以在完成上面的所有兄弟任务之前，一个任务不能被执行。
+如果设置自定义选项 <code>org-enforce-todo-dependencies</code> ，Org将会阻塞任务从 <code>TODO</code> 更改为 <code>DONE</code> ，而它的子项不是DONE。
+此外，如果条目具有 <code>ORDERED</code> 属性，则每个子项将被阻塞，直到所有较早的兄弟节点被标记为 <code>DONE</code> 。
+设置 <code>org-enforce-todo-dependencies</code>,如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-enforce-todo-dependencies t)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+依赖关系示例如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">* TODO Blocked until (two) is done&#10;** DONE one&#10;** TODO two&#10;&#10;* Parent&#10;  :PROPERTIES:&#10;  :ORDERED:  t&#10;  :END:&#10;** TODO a&#10;** TODO b, needs to wait for (a)&#10;** TODO c, needs to wait for (a) and (b)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+可以使用 <code>NOBLOCKING</code> 属性确保从不阻塞输入：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">* This entry is never blocked&#10;  :PROPERTIES:&#10;  :NOBLOCKING: t&#10;  :END:</span><br></pre></td></tr></table></figure>
+</div>
+
+<dl class="org-dl">
+<dt><code>C-c C-x o</code></dt><dd></dd>
+</dl>
+<p>
+切换当前条目的 <code>ORDERED</code> 属性。 <code>ORDERED</code> 属性只适用于当前项，而不是像标签一样可继承。
+但是，如果要使用标签跟踪该属性的值，以便更好地查看，请自定义选项 <code>org-track-ordered-property-with-tag</code> 。
+</p>
+<dl class="org-dl">
+<dt><code>C-u C-u C-u C-c C-t</code></dt><dd>改变 <code>TODO</code> 状态，规避任何状态阻塞。</dd>
+</dl>
+
+
+<p>
+如果设置选项 <code>org-agenda-dim-blocked-tasks</code> ，则由于这些依赖关系而无法关闭的TODO条目将以渐变字体显示，甚至在议程视图中不可见。
+还可以通过查看复选框来阻止 <code>TODO</code> 状态的更改。 如果设置了选项 <code>org-enforce-todo-checkbox-dependencies</code> ，则将禁止具有未选中复选框的条目切换到 <code>DONE</code> 。
+如果需要更复杂的依赖关系结构，例如不同树或文件中的条目之间的依赖关系，请查看模块 <i>org-depend.el</i> 。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf10511" class="outline-3">
+<h3 id="orgaf10511"><span class="section-number-3">4.3</span> 进度记录</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-orge200fc0" class="outline-4">
+<h4 id="orge200fc0"><span class="section-number-4">4.3.1</span> 关闭项目</h4>
+</div>
+<div id="outline-container-org041eeb8" class="outline-4">
+<h4 id="org041eeb8"><span class="section-number-4">4.3.2</span> 追踪TODO状态变化</h4>
+</div>
+<div id="outline-container-org2e7a953" class="outline-4">
+<h4 id="org2e7a953"><span class="section-number-4">4.3.3</span> 追踪你的习惯</h4>
+</div>
+</div>
+<div id="outline-container-org3fe7697" class="outline-3">
+<h3 id="org3fe7697"><span class="section-number-3">4.4</span> 优先级</h3>
+</div>
+<div id="outline-container-org2deb0ee" class="outline-3">
+<h3 id="org2deb0ee"><span class="section-number-3">4.5</span> 任务分解</h3>
+</div>
+<div id="outline-container-orgf40047f" class="outline-3">
+<h3 id="orgf40047f"><span class="section-number-3">4.6</span> 复选框</h3>
+</div>
+</div>
+<div id="outline-container-org9d755ae" class="outline-2">
+<h2 id="org9d755ae"><span class="section-number-2">5</span> 标签</h2>
+</div>
+<div id="outline-container-orgf8c4730" class="outline-2">
+<h2 id="orgf8c4730"><span class="section-number-2">6</span> 属性</h2>
+</div>
+<div id="outline-container-org8e01e76" class="outline-2">
+<h2 id="org8e01e76"><span class="section-number-2">7</span> 日期和时间</h2>
+</div>
+<div id="outline-container-org35d95ca" class="outline-2">
+<h2 id="org35d95ca"><span class="section-number-2">8</span> 捕获——转发——存档</h2>
+</div>
+<div id="outline-container-org39d481f" class="outline-2">
+<h2 id="org39d481f"><span class="section-number-2">9</span> 议程视图</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+org-mode 官方链接地址: <a href="http://orgmode.org/" target="_blank" rel="external">http://orgmode.org/</a>
+</p></div></div>
+
+
+</div>
+</div>
+Last Updated 2017-04-25 Tue 23:41.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.5)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tutorial/" rel="tag"># tutorial</a>
+          
+            <a href="/tags/org-mode/" rel="tag"># org-mode</a>
+          
+            <a href="/tags/manual/" rel="tag"># manual</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/org-syntax/" rel="next" title="Org-mode的语法解析">
+                <i class="fa fa-chevron-left"></i> Org-mode的语法解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/babel-intro/" rel="prev" title="Babel: org-mode的多语言编程环境">
+                Babel: org-mode的多语言编程环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
+               alt="Brantou" />
+          <p class="site-author-name" itemprop="name">Brantou</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org908a587"><span class="nav-text">1 文档结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org8a627c2"><span class="nav-text">1.1 标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org0b82635"><span class="nav-text">1.1.1 视图命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb2b12cf"><span class="nav-text">1.1.2 跳转命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgdd93ad0"><span class="nav-text">1.1.3 编辑命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org79de459"><span class="nav-text">1.1.4 稀疏树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga8cc0a7"><span class="nav-text">1.2 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfed0bf7"><span class="nav-text">1.3 Drawers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcedb2d8"><span class="nav-text">1.4 块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgafb3b46"><span class="nav-text">1.5 脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2e479e8"><span class="nav-text">1.6 The Orgstruct minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9e7a11a"><span class="nav-text">1.7 Org 的语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf52e305"><span class="nav-text">2 表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfc643ed"><span class="nav-text">2.1 内置表编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org1edac1e"><span class="nav-text">2.1.1 创建和转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org88128dd"><span class="nav-text">2.1.2 调整和区域移动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org72e448a"><span class="nav-text">2.1.3 列和行编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org165a716"><span class="nav-text">2.1.4 区域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orge8df56a"><span class="nav-text">2.1.5 计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org67185d3"><span class="nav-text">2.1.6 杂项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org98dd825"><span class="nav-text">2.2 列宽和对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org91de382"><span class="nav-text">2.3 列组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orged1d65b"><span class="nav-text">2.4 The Orgtbl minor mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0f1ae05"><span class="nav-text">2.5 电子表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org03d0b51"><span class="nav-text">2.6 Org-Plot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org881e689"><span class="nav-text">3 超链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#link-format"><span class="nav-text">3.1 链接格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1dadc09"><span class="nav-text">3.2 内部链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org30cdbe7"><span class="nav-text">3.2.1 Radio targets</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org65c3987"><span class="nav-text">3.3 外部链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb985ecb"><span class="nav-text">3.4 处理链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4d2c872"><span class="nav-text">3.5 在Org之外使用链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1a9e71d"><span class="nav-text">3.6 链接缩写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org7983180"><span class="nav-text">3.7 文件链接的搜索选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga3d7db9"><span class="nav-text">3.8 自定义搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfe348cb"><span class="nav-text">4 待办事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org73e1405"><span class="nav-text">4.1 基础的待办事项功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga1bbb4e"><span class="nav-text">4.2 待办事项扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgecf331f"><span class="nav-text">4.2.1 工作流状态应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orge348360"><span class="nav-text">4.2.2 类型标示应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org4c331b7"><span class="nav-text">4.2.3 单个文件中多个关键字集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgcb79883"><span class="nav-text">4.2.4 快速访问代办状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org42ebe96"><span class="nav-text">4.2.5 为文件设置独立的关键字集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgfffa35f"><span class="nav-text">4.2.6 代办事项关键字的样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org26441a1"><span class="nav-text">4.2.7 待办事项的依赖关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgaf10511"><span class="nav-text">4.3 进度记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orge200fc0"><span class="nav-text">4.3.1 关闭项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org041eeb8"><span class="nav-text">4.3.2 追踪TODO状态变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org2e7a953"><span class="nav-text">4.3.3 追踪你的习惯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org3fe7697"><span class="nav-text">4.4 优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2deb0ee"><span class="nav-text">4.5 任务分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf40047f"><span class="nav-text">4.6 复选框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9d755ae"><span class="nav-text">5 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf8c4730"><span class="nav-text">6 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8e01e76"><span class="nav-text">7 日期和时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org35d95ca"><span class="nav-text">8 捕获——转发——存档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org39d481f"><span class="nav-text">9 议程视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Footnotes: </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/03/21/just-try/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/89947/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
