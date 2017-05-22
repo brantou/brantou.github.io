@@ -8,7 +8,15 @@
 
     <url>
         <loc>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</loc>
-        <lastmod>2017-05-20T15:09:38.842Z</lastmod>
+        <lastmod>2017-05-22T10:20:25.793Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +24,7 @@
 
     <url>
         <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
-        <lastmod>2017-05-19T15:35:48.861Z</lastmod>
+        <lastmod>2017-05-21T08:11:43.897Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -81,14 +89,6 @@
     <url>
         <loc>https://brantou.github.io/2017/05/13/consul-and-docker/</loc>
         <lastmod>2017-05-15T07:44:20.706Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

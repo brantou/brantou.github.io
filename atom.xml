@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-20T15:09:38.842Z</updated>
+  <updated>2017-05-22T10:20:25.793Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
     <id>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</id>
     <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-20T15:09:38.842Z</updated>
+    <updated>2017-05-22T10:20:25.793Z</updated>
     
     <summary type="html">
     
@@ -46,7 +46,7 @@
     <link href="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/"/>
     <id>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</id>
     <published>2017-05-16T16:00:00.000Z</published>
-    <updated>2017-05-19T15:35:48.861Z</updated>
+    <updated>2017-05-21T08:11:43.897Z</updated>
     
     <summary type="html">
     
@@ -56,11 +56,38 @@
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
 &lt;/p&gt;
 
-&lt;div id=&quot;outline-container-orgba10564&quot; class=&quot;outline-2
+&lt;div id=&quot;outline-container-org4b0a3be&quot; class=&quot;outline-2
     
     </summary>
     
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="channel" scheme="https://brantou.github.io/tags/channel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-05-15T15:09:26.242Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+    
+    </summary>
+    
+      <category term="code" scheme="https://brantou.github.io/categories/code/"/>
     
     
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
@@ -90,31 +117,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-15T15:09:26.242Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-    
-    </summary>
-    
-      <category term="code" scheme="https://brantou.github.io/categories/code/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   
@@ -479,7 +481,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
     <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
     <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-05-12T06:26:31.623Z</updated>
+    <updated>2017-05-21T14:31:49.096Z</updated>
     
     <summary type="html">
     
@@ -489,8 +491,8 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-orga9e5a78&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;orga9e5a78&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
+&lt;div id=&quot;outline-container-orgb79990f&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;orgb79990f&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
 &lt;p&gt;
 &lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。

@@ -432,8 +432,8 @@
 该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
-<div id="outline-container-org8040060" class="outline-2">
-<h2 id="org8040060"><span class="section-number-2">1</span> context</h2>
+<div id="outline-container-org30428dd" class="outline-2">
+<h2 id="org30428dd"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external">godoc</a>)：
@@ -469,8 +469,8 @@
 </div>
 </div>
 
-<div id="outline-container-org76a2cda" class="outline-2">
-<h2 id="org76a2cda"><span class="section-number-2">2</span> Context的衍生</h2>
+<div id="outline-container-orgd285205" class="outline-2">
+<h2 id="orgd285205"><span class="section-number-2">2</span> Context的衍生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
@@ -509,16 +509,16 @@
 </div>
 </div>
 
-<div id="outline-container-org6df2db4" class="outline-2">
-<h2 id="org6df2db4"><span class="section-number-2">3</span> Context使用的简单示例</h2>
+<div id="outline-container-org7237ff4" class="outline-2">
+<h2 id="org7237ff4"><span class="section-number-2">3</span> Context使用的简单示例</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
 这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external">godoc</a>。
 </p>
 </div>
-<div id="outline-container-org3676a9c" class="outline-3">
-<h3 id="org3676a9c"><span class="section-number-3">3.1</span> WithCancel</h3>
+<div id="outline-container-orgb6b6959" class="outline-3">
+<h3 id="orgb6b6959"><span class="section-number-3">3.1</span> WithCancel</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <i>WithCancel</i> 的示例, 演示如何使用可取消 <i>context</i> 来防止 <code>goroutine</code> 泄漏。
@@ -530,8 +530,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb6e822f" class="outline-3">
-<h3 id="orgb6e822f"><span class="section-number-3">3.2</span> WithDeadline</h3>
+<div id="outline-container-org0016ba2" class="outline-3">
+<h3 id="org0016ba2"><span class="section-number-3">3.2</span> WithDeadline</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 <i>WithDeadline</i> 的示例,通过一个截止日期的 <i>Context</i> 来告知一个阻塞的函数，一旦它到了最终期限，就放弃它的工作。
@@ -542,8 +542,8 @@
 </div>
 </div>
 
-<div id="outline-container-org34120ee" class="outline-3">
-<h3 id="org34120ee"><span class="section-number-3">3.3</span> Withtimeount</h3>
+<div id="outline-container-org01dbadf" class="outline-3">
+<h3 id="org01dbadf"><span class="section-number-3">3.3</span> Withtimeount</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <i>WithTimeount</i> 的示例, 传递具有超时的 <i>Context</i> 以告知阻塞函数，它将在超时过后丢弃其工作。
@@ -554,8 +554,8 @@
 </div>
 </div>
 
-<div id="outline-container-org71c140b" class="outline-3">
-<h3 id="org71c140b"><span class="section-number-3">3.4</span> WithValue</h3>
+<div id="outline-container-org5bbe790" class="outline-3">
+<h3 id="org5bbe790"><span class="section-number-3">3.4</span> WithValue</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <i>WithValue</i> 的简单示例代码：
@@ -567,8 +567,8 @@
 </div>
 </div>
 
-<div id="outline-container-org929f4e3" class="outline-2">
-<h2 id="org929f4e3"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
+<div id="outline-container-org04da861" class="outline-2">
+<h2 id="org04da861"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
@@ -585,8 +585,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </ul>
 </div>
 
-<div id="outline-container-org65ab484" class="outline-3">
-<h3 id="org65ab484"><span class="section-number-3">4.1</span> server</h3>
+<div id="outline-container-orga1faa48" class="outline-3">
+<h3 id="orga1faa48"><span class="section-number-3">4.1</span> server</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
@@ -594,7 +594,7 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 如果 <i>request</i> 包含超时URL参数，则超时时会自动取消上下文：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> handleSearch(w http.ResponseWriter, req *http.Request) {</span><br><span class="line">  <span class="comment">// ctx is the Context for this handler. Calling cancel closes the</span></span><br><span class="line">  <span class="comment">// ctx.Done channel, which is the cancellation signal for requests</span></span><br><span class="line">  <span class="comment">// started by this handler.</span></span><br><span class="line">  <span class="keyword">var</span> (</span><br><span class="line">    ctx    context.Context</span><br><span class="line">    cancel context.CancelFunc</span><br><span class="line">  )</span><br><span class="line">  timeout, err := time.ParseDuration(req.FormValue(<span class="string">"timeout"</span>))</span><br><span class="line">  <span class="keyword">if</span> err == <span class="constant">nil</span> {</span><br><span class="line">    <span class="comment">// The request has a timeout, so create a context that is</span></span><br><span class="line">    <span class="comment">// canceled automatically when the timeout expires.</span></span><br><span class="line">    ctx, cancel = context.WithTimeout(context.Background(), timeout)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    ctx, cancel = context.WithCancel(context.Background())</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// Cancel ctx as soon as handleSearch returns.</span></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> handleSearch(w http.ResponseWriter, req *http.Request) {</span><br><span class="line">  <span class="comment">// ctx is the Context for this handler. Calling cancel closes the</span></span><br><span class="line">  <span class="comment">// ctx.Done channel, which is the cancellation signal for requests</span></span><br><span class="line">  <span class="comment">// started by this handler.</span></span><br><span class="line">  <span class="keyword">var</span> (</span><br><span class="line">    ctx    context.Context</span><br><span class="line">    cancel context.CancelFunc</span><br><span class="line">  )</span><br><span class="line">  timeout, err := time.ParseDuration(req.FormValue(<span class="string">"timeout"</span>))</span><br><span class="line">  <span class="keyword">if</span> err == <span class="constant">nil</span> {</span><br><span class="line">    <span class="comment">// The request has a timeout, so create a context that is</span></span><br><span class="line">    <span class="comment">// canceled automatically when the timeout expires.</span></span><br><span class="line">    ctx, cancel = context.WithTimeout(context.Background(), timeout)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    ctx, cancel = context.WithCancel(context.Background())</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// Cancel ctx as soon as handleSearch returns.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -609,7 +609,7 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 处理程序使用ctx和查询关键字调用 <i>google.Search</i> ：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Run the Google search and print the results.</span></span><br><span class="line">start := time.Now()</span><br><span class="line">results, err := google.Search(ctx, query)</span><br><span class="line">elapsed := time.Since(start)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Run the Google search and print the results.</span></span><br><span class="line">start := time.Now()</span><br><span class="line">results, err := google.Search(ctx, query)</span><br><span class="line">elapsed := time.Since(start)</span><br><span class="line"><span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">  http.Error(w, err.Error(), http.StatusInternalServerError)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -621,8 +621,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </div>
 </div>
 
-<div id="outline-container-org0f86128" class="outline-3">
-<h3 id="org0f86128"><span class="section-number-3">4.2</span> userip</h3>
+<div id="outline-container-orgc048e05" class="outline-3">
+<h3 id="orgc048e05"><span class="section-number-3">4.2</span> userip</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
@@ -642,7 +642,7 @@ userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相�
 <i>FromRequest</i> 从 <i>http.Request</i> 中提取一个 <i>userIP</i> 值：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromRequest(req *http.Request) (net.IP, error) {</span><br><span class="line">    ip, _, err := net.SplitHostPort(req.RemoteAddr)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromRequest(req *http.Request) (net.IP, error) {</span><br><span class="line">  ip, _, err := net.SplitHostPort(req.RemoteAddr)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  userIP := net.ParseIP(ip)</span><br><span class="line">  <span class="keyword">if</span> userIP == <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> userIP, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -661,8 +661,8 @@ NewContext返回一个带有userIP的新Context：
 </div>
 </div>
 
-<div id="outline-container-org8adcbff" class="outline-3">
-<h3 id="org8adcbff"><span class="section-number-3">4.3</span> google</h3>
+<div id="outline-container-org973ab78" class="outline-3">
+<h3 id="org973ab78"><span class="section-number-3">4.3</span> google</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
@@ -673,7 +673,7 @@ NewContext返回一个带有userIP的新Context：
 Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Search(ctx context.Context, query <span class="typename">string</span>) (Results, error) {</span><br><span class="line">    <span class="comment">// Prepare the Google Search API request.</span></span><br><span class="line">    req, err := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://ajax.googleapis.com/ajax/services/search/web?v=1.0"</span>, <span class="constant">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    q := req.URL.Query()</span><br><span class="line">    q.Set(<span class="string">"q"</span>, query)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If ctx is carrying the user IP address, forward it to the server.</span></span><br><span class="line">    <span class="comment">// Google APIs use the user IP to distinguish server-initiated requests</span></span><br><span class="line">    <span class="comment">// from end-user requests.</span></span><br><span class="line">    <span class="keyword">if</span> userIP, ok := userip.FromContext(ctx); ok {</span><br><span class="line">        q.Set(<span class="string">"userip"</span>, userIP.String())</span><br><span class="line">    }</span><br><span class="line">    req.URL.RawQuery = q.Encode()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ......</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Search(ctx context.Context, query <span class="typename">string</span>) (Results, error) {</span><br><span class="line">    <span class="comment">// Prepare the Google Search API request.</span></span><br><span class="line">    req, err := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://ajax.googleapis.com/ajax/services/search/web?v=1.0"</span>, <span class="constant">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    q := req.URL.Query()</span><br><span class="line">    q.Set(<span class="string">"q"</span>, query)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If ctx is carrying the user IP address, forward it to the server.</span></span><br><span class="line">    <span class="comment">// Google APIs use the user IP to distinguish server-initiated requests</span></span><br><span class="line">    <span class="comment">// from end-user requests.</span></span><br><span class="line">    <span class="keyword">if</span> userIP, ok := userip.FromContext(ctx); ok {</span><br><span class="line">        q.Set(<span class="string">"userip"</span>, userIP.String())</span><br><span class="line">    }</span><br><span class="line">    req.URL.RawQuery = q.Encode()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Issue the HTTP request and handle the response.</span></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -695,8 +695,8 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </div>
 </div>
 
-<div id="outline-container-org1e866b7" class="outline-2">
-<h2 id="org1e866b7"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
+<div id="outline-container-orgde42606" class="outline-2">
+<h2 id="orgde42606"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 许多服务器框架提供用于承载请求范围值的包和类型。
@@ -717,8 +717,8 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-<div id="outline-container-orgeca8455" class="outline-2">
-<h2 id="orgeca8455"><span class="section-number-2">6</span> 总结</h2>
+<div id="outline-container-orgd95b5c5" class="outline-2">
+<h2 id="orgd95b5c5"><span class="section-number-2">6</span> 总结</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
@@ -733,7 +733,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-20 Sat 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
@@ -885,8 +885,8 @@ Last Updated 2017-05-20 Sat 23:09.<br>Render by <a href="https://github.com/Code
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
 </p>
 
-<div id="outline-container-orgba10564" class="outline-2">
-<h2 id="orgba10564"><span class="section-number-2">1</span> 什么是管道？</h2>
+<div id="outline-container-org4b0a3be" class="outline-2">
+<h2 id="org4b0a3be"><span class="section-number-2">1</span> 什么是管道？</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Go没有对于管道的正式定义，它只是并发模式中的一种。
@@ -911,8 +911,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orgbce1ec9" class="outline-2">
-<h2 id="orgbce1ec9"><span class="section-number-2">2</span> 平方数示例</h2>
+<div id="outline-container-orgdf8ef0b" class="outline-2">
+<h2 id="orgdf8ef0b"><span class="section-number-2">2</span> 平方数示例</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 当前示例，管道包含三个片段。
@@ -951,8 +951,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orge317cc0" class="outline-2">
-<h2 id="orge317cc0"><span class="section-number-2">3</span> 扇出，扇入</h2>
+<div id="outline-container-orgea9fe13" class="outline-2">
+<h2 id="orgea9fe13"><span class="section-number-2">3</span> 扇出，扇入</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
@@ -986,8 +986,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org82b00a4" class="outline-2">
-<h2 id="org82b00a4"><span class="section-number-2">4</span> 稍作停顿</h2>
+<div id="outline-container-org0b55286" class="outline-2">
+<h2 id="org0b55286"><span class="section-number-2">4</span> 稍作停顿</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 管道函数有如下模式：
@@ -1053,8 +1053,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-orge96208c" class="outline-2">
-<h2 id="orge96208c"><span class="section-number-2">5</span> 明确取消</h2>
+<div id="outline-container-orga4f35e5" class="outline-2">
+<h2 id="orga4f35e5"><span class="section-number-2">5</span> 明确取消</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 当 <i>main</i> 函数决定不再从上游片段/outbound channel/ 接收数据时，
@@ -1137,8 +1137,8 @@ Go没有对于管道的正式定义，它只是并发模式中的一种。
 </div>
 </div>
 
-<div id="outline-container-org0443727" class="outline-2">
-<h2 id="org0443727"><span class="section-number-2">6</span> MD5摘要示例</h2>
+<div id="outline-container-orgab555b6" class="outline-2">
+<h2 id="orgab555b6"><span class="section-number-2">6</span> MD5摘要示例</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 现在来看看更真实的管道应用。
@@ -1172,8 +1172,8 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org60d68ee" class="outline-3">
-<h3 id="org60d68ee"><span class="section-number-3">6.1</span> 串行版</h3>
+<div id="outline-container-org0789b69" class="outline-3">
+<h3 id="org0789b69"><span class="section-number-3">6.1</span> 串行版</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 <i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" target="_blank" rel="external">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
@@ -1184,8 +1184,8 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org0f6970f" class="outline-3">
-<h3 id="org0f6970f"><span class="section-number-3">6.2</span> 并行版</h3>
+<div id="outline-container-org93d3205" class="outline-3">
+<h3 id="org93d3205"><span class="section-number-3">6.2</span> 并行版</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
@@ -1212,8 +1212,8 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-orge5106fd" class="outline-3">
-<h3 id="orge5106fd"><span class="section-number-3">6.3</span> 受限的并行</h3>
+<div id="outline-container-org0436d0c" class="outline-3">
+<h3 id="org0436d0c"><span class="section-number-3">6.3</span> 受限的并行</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
@@ -1255,8 +1255,8 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-<div id="outline-container-org329393a" class="outline-2">
-<h2 id="org329393a"><span class="section-number-2">7</span> 总结</h2>
+<div id="outline-container-org6f6d941" class="outline-2">
+<h2 id="org6f6d941"><span class="section-number-2">7</span> 总结</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 本文介绍了Go中构建管道流的技术。
@@ -1266,7 +1266,301 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-Last Updated 2017-05-19 Fri 23:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">面试中的Coding</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
+分三步阐述出来：问题描述，解题思路，实际编程。
+</p>
+
+<div id="outline-container-orgd8c3d36" class="outline-2">
+<h2 id="orgd8c3d36"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org193f5ba" class="outline-3">
+<h3 id="org193f5ba"><span class="section-number-3">1.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
+另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
+</p>
+</div>
+</div>
+<div id="outline-container-org774c909" class="outline-3">
+<h3 id="org774c909"><span class="section-number-3">1.2</span> 解题思路</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
+数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
+</p>
+</div>
+</div>
+<div id="outline-container-orge4ac0e3" class="outline-3">
+<h3 id="orge4ac0e3"><span class="section-number-3">1.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果:
+</p>
+<pre class="example">
+12AB34CD56EF78GH910IJ
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d4ea2d" class="outline-2">
+<h2 id="org5d4ea2d"><span class="section-number-2">2</span> 随机抽奖</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgeae0cc0" class="outline-3">
+<h3 id="orgeae0cc0"><span class="section-number-3">2.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+用户随机抽奖，数据结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org34f91a3" class="outline-3">
+<h3 id="org34f91a3"><span class="section-number-3">2.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
+把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-org15f0cd9" class="outline-3">
+<h3 id="org15f0cd9"><span class="section-number-3">2.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: f, award count: 178
+user: d, award count: 152
+user: b, award count: 159
+user: e, award count: 182
+user: c, award count: 170
+user: a, award count: 159
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgedbde53" class="outline-2">
+<h2 id="orgedbde53"><span class="section-number-2">3</span> 权重抽奖</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org11ce4f0" class="outline-3">
+<h3 id="org11ce4f0"><span class="section-number-3">3.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orga782ae1" class="outline-3">
+<h3 id="orga782ae1"><span class="section-number-3">3.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
+理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
+把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-orga9872d7" class="outline-3">
+<h3 id="orga9872d7"><span class="section-number-3">3.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &amp;gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: c, award count: 1667
+user: f, award count: 3310
+user: e, award count: 1099
+user: d, award count: 2276
+user: b, award count: 549
+user: a, award count: 1099
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge13a4e0" class="outline-2">
+<h2 id="orge13a4e0"><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+问题一来自 <i>方付通</i> , 侧重于语言特性；问题二三来自 <i>ezbuy</i> ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
+我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-15 Mon 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
@@ -1686,300 +1980,6 @@ Last Updated 2017-05-19 Fri 23:35.<br>Render by <a href="https://github.com/Code
 </div>
 
 Last Updated 2017-05-17 Wed 17:08.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">面试中的Coding</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述，解题思路，实际编程。
-</p>
-
-<div id="outline-container-orgd8c3d36" class="outline-2">
-<h2 id="orgd8c3d36"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org193f5ba" class="outline-3">
-<h3 id="org193f5ba"><span class="section-number-3">1.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
-另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
-</p>
-</div>
-</div>
-<div id="outline-container-org774c909" class="outline-3">
-<h3 id="org774c909"><span class="section-number-3">1.2</span> 解题思路</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
-数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
-</p>
-</div>
-</div>
-<div id="outline-container-orge4ac0e3" class="outline-3">
-<h3 id="orge4ac0e3"><span class="section-number-3">1.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果:
-</p>
-<pre class="example">
-12AB34CD56EF78GH910IJ
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org5d4ea2d" class="outline-2">
-<h2 id="org5d4ea2d"><span class="section-number-2">2</span> 随机抽奖</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgeae0cc0" class="outline-3">
-<h3 id="orgeae0cc0"><span class="section-number-3">2.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-用户随机抽奖，数据结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org34f91a3" class="outline-3">
-<h3 id="org34f91a3"><span class="section-number-3">2.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
-把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org15f0cd9" class="outline-3">
-<h3 id="org15f0cd9"><span class="section-number-3">2.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: f, award count: 178
-user: d, award count: 152
-user: b, award count: 159
-user: e, award count: 182
-user: c, award count: 170
-user: a, award count: 159
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgedbde53" class="outline-2">
-<h2 id="orgedbde53"><span class="section-number-2">3</span> 权重抽奖</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org11ce4f0" class="outline-3">
-<h3 id="org11ce4f0"><span class="section-number-3">3.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-orga782ae1" class="outline-3">
-<h3 id="orga782ae1"><span class="section-number-3">3.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
-理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
-把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-orga9872d7" class="outline-3">
-<h3 id="orga9872d7"><span class="section-number-3">3.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &amp;gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: c, award count: 1667
-user: f, award count: 3310
-user: e, award count: 1099
-user: d, award count: 2276
-user: b, award count: 549
-user: a, award count: 1099
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge13a4e0" class="outline-2">
-<h2 id="orge13a4e0"><span class="section-number-2">4</span> 总结</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-问题一来自 <i>方付通</i> , 侧重于语言特性；问题二三来自 <i>ezbuy</i> ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
-我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
-</p>
-</div>
-</div>
-
-Last Updated 2017-05-15 Mon 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
 
           
         
@@ -3116,8 +3116,8 @@ ITEM for the headline title
 </p>
 </blockquote>
 
-<div id="outline-container-orga9e5a78" class="outline-2">
-<h2 id="introduction"><a id="orga9e5a78"></a><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-orgb79990f" class="outline-2">
+<h2 id="introduction"><a id="orgb79990f"></a><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-introduction">
 <p>
 <b>Bable</b> 可让许多不同的语言工作一起。
@@ -3250,7 +3250,7 @@ Babel augments Org-mode support for code blocks by providing:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

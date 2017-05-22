@@ -16,27 +16,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/babel/</loc>
-        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/source-code-tool/</loc>
-        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/literate-programming/</loc>
-        <lastmod>2017-05-12T06:26:31.623Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/consul/</loc>
         <lastmod>2017-05-15T07:44:20.706Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,22 +51,8 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-05-15T15:11:44.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/table/</loc>
         <lastmod>2017-05-15T15:11:44.918Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2017-05-15T15:12:05.860Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -121,15 +86,57 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/channel/</loc>
+        <lastmod>2017-05-21T08:11:43.897Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tutorial/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-mode/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/babel/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/source-code-tool/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/literate-programming/</loc>
+        <lastmod>2017-05-21T14:31:49.096Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-05-20T15:09:38.842Z</lastmod>
+        <lastmod>2017-05-22T10:20:25.793Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/context/</loc>
-        <lastmod>2017-05-20T15:09:38.842Z</lastmod>
+        <lastmod>2017-05-22T10:20:25.793Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
