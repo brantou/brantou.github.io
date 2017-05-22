@@ -7,17 +7,17 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -75,23 +75,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="golang,context," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml" />
+  <meta name="keywords" content="golang,context,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -144,7 +144,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
+  <link rel="canonical" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
 
 
 
@@ -153,7 +153,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
   <title>golang的并发模式：Context | Brantou的日常</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -198,13 +198,13 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Brantou的日常</span>
         <span class="logo-line-after"><i></i></span>
@@ -234,7 +234,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -244,7 +244,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -254,7 +254,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -264,7 +264,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -274,7 +274,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -287,7 +287,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -308,9 +308,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -342,16 +340,16 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Brantou的日常">
     </span>
 
@@ -383,7 +381,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -394,7 +392,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/技术积累/" itemprop="url" rel="index">
                     <span itemprop="name">技术积累</span>
                   </a>
@@ -428,7 +426,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -457,14 +455,14 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 
 <p>
 在google内部，开发了一个 <i>context</i> 包，可以轻松地跨越api边界,传递请求范围值，取消信号和截止日期到 <i>request</i> 所涉及的所有 <code>goroutine</code> 。
-该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
+该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external nofollow noopener noreferrer">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
 <div id="outline-container-org30428dd" class="outline-2">
 <h2 id="org30428dd"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external">godoc</a>)：
+<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>)：
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -542,7 +540,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 <div class="outline-text-2" id="text-3">
 <p>
 简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
-这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external">godoc</a>。
+这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>。
 </p>
 </div>
 <div id="outline-container-orgb6b6959" class="outline-3">
@@ -599,7 +597,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 <h2 id="org04da861"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
+示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
 timeout参数告诉服务器在该时间过去之后取消请求。
 </p>
 
@@ -607,9 +605,9 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 示例代码被拆分为三个包：
 </p>
 <ul class="org-ul">
-<li><a href="https://blog.golang.org/context/server/server.go" target="_blank" rel="external">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
-<li><a href="https://blog.golang.org/context/userip/userip.go" target="_blank" rel="external">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
-<li><a href="https://blog.golang.org/context/google/google.go" target="_blank" rel="external">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
+<li><a href="https://blog.golang.org/context/server/server.go" target="_blank" rel="external nofollow noopener noreferrer">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
+<li><a href="https://blog.golang.org/context/userip/userip.go" target="_blank" rel="external nofollow noopener noreferrer">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
+<li><a href="https://blog.golang.org/context/google/google.go" target="_blank" rel="external nofollow noopener noreferrer">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
 </ul>
 </div>
 
@@ -693,7 +691,7 @@ NewContext返回一个带有userIP的新Context：
 <h3 id="org973ab78"><span class="section-number-3">4.3</span> google</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
-<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
+<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
 它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
 </p>
 
@@ -732,15 +730,15 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </p>
 
 <p>
-例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" target="_blank" rel="external">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
-在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" target="_blank" rel="external">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
+例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
+在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" target="_blank" rel="external nofollow noopener noreferrer">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
 </p>
 
 <p>
 其他软件包提供了类似于 <i>Context</i> 的取消支持。
-例如，<a href="http://godoc.org/gopkg.in/tomb.v2" target="_blank" rel="external">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
+例如，<a href="http://godoc.org/gopkg.in/tomb.v2" target="_blank" rel="external nofollow noopener noreferrer">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
 Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.WaitGroup。
-在 <a href="https://blog.golang.org/context/tomb/tomb.go" target="_blank" rel="external">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
+在 <a href="https://blog.golang.org/context/tomb/tomb.go" target="_blank" rel="external nofollow noopener noreferrer">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
 </p>
 </div>
 </div>
@@ -761,7 +759,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 9.0.6)
+Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
 
       
     </div>
@@ -902,7 +900,7 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -912,10 +910,8 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400"
-               alt="Brantou" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400" alt="Brantou">
           <p class="site-author-name" itemprop="name">Brantou</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -969,7 +965,7 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/brantou" target="_blank" title="GitHub">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-github"></i>
                   
@@ -978,7 +974,7 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter" rel="external nofollow noopener noreferrer">
                   
                     <i class="fa fa-fw fa-twitter"></i>
                   
@@ -1030,7 +1026,7 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2017</span>
@@ -1042,12 +1038,12 @@ Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/Code
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
     NexT.Pisces
   </a>
 </div>
