@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
+        <lastmod>2017-05-23T02:30:07.544Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</loc>
         <lastmod>2017-05-22T10:20:25.793Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,14 +73,6 @@
     <url>
         <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
         <lastmod>2017-05-15T15:10:55.588Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
-        <lastmod>2017-05-15T15:10:24.388Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
