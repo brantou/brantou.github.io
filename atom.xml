@@ -477,22 +477,22 @@ ITEM for the headline title
   </entry>
   
   <entry>
-    <title>Babel: org-mode的多语言编程环境</title>
+    <title>Babel: org-mode的元编程</title>
     <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
     <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
     <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-05-21T14:31:49.096Z</updated>
+    <updated>2017-05-23T02:44:11.829Z</updated>
     
     <summary type="html">
     
       &lt;blockquote&gt;
 &lt;p&gt;
-原文&lt;a href=&quot;http://orgmode.org/worg/org-contrib/babel/intro.html&quot;&gt;Babel: Introduction&lt;/a&gt;, 由 &lt;b&gt;Eric Schulte&lt;/b&gt; ,  &lt;b&gt;Dan Davison&lt;/b&gt;, &lt;b&gt;Tom Dye&lt;/b&gt; 编辑，维护。本文只做学习之用。
+原文&lt;a href=&quot;http://orgmode.org/worg/org-contrib/babel/intro.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Babel: Introduction&lt;/a&gt;, 由 &lt;b&gt;Eric Schulte&lt;/b&gt; ,  &lt;b&gt;Dan Davison&lt;/b&gt;, &lt;b&gt;Tom Dye&lt;/b&gt; 编辑，维护。本文只做学习之用。
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-orgb79990f&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;orgb79990f&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
+&lt;div id=&quot;outline-container-org887bf0f&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org887bf0f&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
 &lt;p&gt;
 &lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。
@@ -502,11 +502,11 @@ ITEM for the headline title
 &lt;/p&gt;
 
 &lt;p&gt;
-通过扩展 &lt;a href=&quot;http://orgmode.org/&quot;&gt;Org-mode&lt;/a&gt;, 使其具有编辑,导出和执行源代码的功能, &lt;b&gt;Babel&lt;/b&gt; 将 &lt;code&gt;Org-mode&lt;/code&gt; 变成了文学编程和可重复性研究的工具。
+通过扩展 &lt;a href=&quot;http://orgmode.org/&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org-mode&lt;/a&gt;, 使其具有编辑,导出和执行源代码的功能, &lt;b&gt;Babel&lt;/b&gt; 将 &lt;code&gt;Org-mode&lt;/code&gt; 变成了文学编程和可重复性研究的工具。
 &lt;/p&gt;
 
 &lt;p&gt;
-&lt;b&gt;Babel&lt;/b&gt; 通过提供以下特性来增强 &lt;a href=&quot;http://orgmode.org/manual/Literal-examples.html&quot;&gt;Org-mode对代码代码块的支持&lt;/a&gt;:
+&lt;b&gt;Babel&lt;/b&gt; 通过提供以下特性来增强 &lt;a href=&quot;http://orgmode.org/manual/Literal-examples.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org-mode对代码代码块的支持&lt;/a&gt;:
 Babel augments Org-mode support for code blocks by providing:
 &lt;/p&gt;
 

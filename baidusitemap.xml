@@ -4,6 +4,34 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+    <lastmod>2017-05-23T02:44:11.829Z</lastmod>
+    <data>
+        <display>
+        <title>Babel: org-mode的元编程</title>
+        <pubTime>2017-03-31T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>source-code-tool</tag>
+         
+        <tag>literate-programming</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
     <lastmod>2017-05-23T02:30:07.544Z</lastmod>
     <data>
@@ -45,34 +73,6 @@
            
              
               <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-    <lastmod>2017-05-21T14:31:49.096Z</lastmod>
-    <data>
-        <display>
-        <title>Babel: org-mode的多语言编程环境</title>
-        <pubTime>2017-03-31T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>babel</tag>
-         
-        <tag>source-code-tool</tag>
-         
-        <tag>literate-programming</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>
