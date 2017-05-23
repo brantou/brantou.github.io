@@ -475,9 +475,9 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 </p>
 </blockquote>
 
-<div id="outline-container-org324d6f0" class="outline-2">
-<h2 id="org324d6f0">序言</h2>
-<div class="outline-text-2" id="text-org324d6f0">
+<div id="outline-container-org8a47483" class="outline-2">
+<h2 id="org8a47483">序言</h2>
+<div class="outline-text-2" id="text-org8a47483">
 <p>
 <code>Org</code> 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -488,9 +488,9 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 </div>
 </div>
 
-<div id="outline-container-org7e5ceb9" class="outline-2">
-<h2 id="org7e5ceb9">具有唯一键的关联数组</h2>
-<div class="outline-text-2" id="text-org7e5ceb9">
+<div id="outline-container-org1b252d9" class="outline-2">
+<h2 id="org1b252d9">具有唯一键的关联数组</h2>
+<div class="outline-text-2" id="text-org1b252d9">
 <p>
 查找最直接的用法是将 <code>Org</code> 表的一部分视为关联数组：一个键可用于查找相应的值。
 </p>
@@ -516,7 +516,7 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 函数 <code>org-lookup-first</code> 的签名如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-lookup-first</span> VAL S-LIST R-LIST <span class="keyword">&amp;amp</span><span class="comment">;optional PREDICATE)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-lookup-first</span> VAL S-LIST R-LIST <span class="keyword">&amp</span><span class="comment">;optional PREDICATE)</span></span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -536,15 +536,15 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 |  2.7. | lunch            |  190 | sek      |   0.12 |   22.8 |
 |  3.7. | fishing licenses | 1400 | nok      |   0.14 |   196. |
 |  3.7. | gasoline         |  340 |          | #ERROR | #ERROR |
- #+TBLFM: $5='(org-lookup-first $4 '(remote(rates,@2$2..@&gt;$2)) '(remote(rates,@2$3..@&gt;$3)))::$6=$5*$3
+ #+TBLFM: $5='(org-lookup-first $4 '(remote(rates,@2$2..@>$2)) '(remote(rates,@2$3..@>$3)))::$6=$5*$3
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgdc5d20a" class="outline-2">
-<h2 id="orgdc5d20a">多个匹配优先排序</h2>
-<div class="outline-text-2" id="text-orgdc5d20a">
+<div id="outline-container-org8cdc4b9" class="outline-2">
+<h2 id="org8cdc4b9">多个匹配优先排序</h2>
+<div class="outline-text-2" id="text-org8cdc4b9">
 <p>
 教师的常见任务是从总分中分配考试成绩。
 这种分级的起点是具有等级边界的表。
@@ -577,8 +577,8 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 </p>
 
 <p>
-因此，给定学生的标记数VAL，找到下限S满足 <code>(&gt;= VAL S)</code> 的表等级边界的第一列的最后一行。
-因此，我们将使用 <code>&gt;=</code> 作为 <code>PREDICATE</code> 来执行匹配。
+因此，给定学生的标记数VAL，找到下限S满足 <code>(>= VAL S)</code> 的表等级边界的第一列的最后一行。
+因此，我们将使用 <code>>=</code> 作为 <code>PREDICATE</code> 来执行匹配。
 注意， <code>VAL</code> 和 <code>S</code> 按照它们在 <code>org-lookup-last</code> 的签名中的顺序被分配给谓词，其中 <code>VAL</code> 在 <code>S-LIST</code> 之前。
 下表列出了从总 <i>marks</i> 到最终成绩的转换。
 注: 文字插值 <code>L</code> 表示表值的字面值插入到Elisp公式中，这是必须的，因为一些值是数字，一些是符号。
@@ -591,15 +591,15 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 | Y       |    29 | C     |
 | Z       |     5 | F     |
 | W       |    55 | A     |
- #+TBLFM: $3='(org-lookup-last $2 '(remote(grade-boundaries,@2$1..@&gt;$1)) '(remote(grade-boundaries,@2$2..@&gt;$2)) '&gt;=);L
+ #+TBLFM: $3='(org-lookup-last $2 '(remote(grade-boundaries,@2$1..@>$1)) '(remote(grade-boundaries,@2$2..@>$2)) '>=);L
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org1fa910d" class="outline-2">
-<h2 id="org1fa910d">统计匹配单元格</h2>
-<div class="outline-text-2" id="text-org1fa910d">
+<div id="outline-container-org25d72a9" class="outline-2">
+<h2 id="org25d72a9">统计匹配单元格</h2>
+<div class="outline-text-2" id="text-org25d72a9">
 <p>
 函数 <code>org-lookup-all</code> 不能在表等式中使用自己，因为它返回值列表。
 但是，通过将函数与其他 <i>elisp</i> 函数相结合，可执行强大的查找任务。
@@ -631,15 +631,15 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 | H     |         |       8 |
 |-------+---------+---------|
 | total | missing |       7 |
- #+TBLFM: @&gt;$3='(length(org-lookup-all "" '(@2$2..@-1$3) nil));E
+ #+TBLFM: @>$3='(length(org-lookup-all "" '(@2$2..@-1$3) nil));E
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgcd94355" class="outline-2">
-<h2 id="orgcd94355">排序结果</h2>
-<div class="outline-text-2" id="text-orgcd94355">
+<div id="outline-container-orgeed48e6" class="outline-2">
+<h2 id="orgeed48e6">排序结果</h2>
+<div class="outline-text-2" id="text-orgeed48e6">
 <p>
 <code>org-lookup-all</code> 的另一个示例应用是结果的自动排序。
 在下表中，总数越大越好。 请注意，Elisp表达式还自动处理关联关系。
@@ -652,15 +652,13 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 | C     |    14 |    4 |
 | D     |    28 |    1 |
 | E     |     9 |    5 |
- #+TBLFM: $3='(+ 1 (length (org-lookup-all $2 '(@2$2..@&gt;$2) nil '&lt;)));N
-
-</pre>
-</div>
+ #+TBLFM: $3='(+ 1 (length (org-lookup-all $2 '(@2$2..@>$2) nil '<)));n <="" pre="">
+</)));n></pre></div>
 </div>
 
-<div id="outline-container-org7294c1f" class="outline-2">
-<h2 id="org7294c1f">统计原始数据的频率</h2>
-<div class="outline-text-2" id="text-org7294c1f">
+<div id="outline-container-org4ebbf81" class="outline-2">
+<h2 id="org4ebbf81">统计原始数据的频率</h2>
+<div class="outline-text-2" id="text-org4ebbf81">
 <p>
 数据分析中的常见情况是对可视化的原始数据值进行分类（分组）。
 通常是通过统计在特定范围内的出现频率来完成的。 可使用函数 <code>org-lookup-all</code> ，结合其他 <i>elisp</i> 函数来执行此任务。
@@ -695,10 +693,7 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 <pre class="example">
 #+BEGIN_SRC emacs-lisp
   (defun in-interval (bounds el)
-    (and (&gt;= el (car bounds)) (&lt;= el (cadr bounds))))
-#+END_SRC
-
-</pre>
+    (and (>= el (car bounds)) (<= el="" (cadr="" bounds))))="" #+end_src="" <="" pre="">
 
 <pre class="example">
 #+RESULTS:
@@ -717,14 +712,14 @@ Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的�
 |           2 |         2.9 |         4 |
 |           3 |         3.9 |         1 |
 |           4 |         4.9 |         2 |
- #+TBLFM: $3='(length (org-lookup-all '($1 $2) '(remote(raw-data,@2$2..@&gt;$2)) nil 'in-interval));N
+ #+TBLFM: $3='(length (org-lookup-all '($1 $2) '(remote(raw-data,@2$2..@>$2)) nil 'in-interval));N
 
 </pre>
+</=></pre></div>
 </div>
-</div>
-<div id="outline-container-org935ffe6" class="outline-2">
-<h2 id="org935ffe6">结论</h2>
-<div class="outline-text-2" id="text-org935ffe6">
+<div id="outline-container-org5a1505b" class="outline-2">
+<h2 id="org5a1505b">结论</h2>
+<div class="outline-text-2" id="text-org5a1505b">
 <p>
 Org 的 <code>lookup</code> 函数可用于大量不同的数据相关计算。
 例如，libreoffice或Excel用户熟悉的以下电子表格操作都可以使用它们来实现： <code>HLOOKUP</code> ， <code>VLOOKUP</code> ， <code>COUNTIF</code> ， <code>SUMIF</code> 和 <code>FREQUENCY</code> 。
@@ -732,7 +727,7 @@ Org 的 <code>lookup</code> 函数可用于大量不同的数据相关计算。
 </div>
 </div>
 
-Last Updated 2017-05-15 Mon 23:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -1011,7 +1006,7 @@ Last Updated 2017-05-15 Mon 23:11.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org324d6f0"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7e5ceb9"><span class="nav-text">具有唯一键的关联数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdc5d20a"><span class="nav-text">多个匹配优先排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1fa910d"><span class="nav-text">统计匹配单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcd94355"><span class="nav-text">排序结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7294c1f"><span class="nav-text">统计原始数据的频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org935ffe6"><span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org8a47483"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1b252d9"><span class="nav-text">具有唯一键的关联数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8cdc4b9"><span class="nav-text">多个匹配优先排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org25d72a9"><span class="nav-text">统计匹配单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeed48e6"><span class="nav-text">排序结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4ebbf81"><span class="nav-text">统计原始数据的频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5a1505b"><span class="nav-text">结论</span></a></li></ol></div>
             
 
           </div>

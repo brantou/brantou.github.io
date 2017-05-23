@@ -56,7 +56,7 @@
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
 &lt;/p&gt;
 
-&lt;div id=&quot;outline-container-org4b0a3be&quot; class=&quot;outline-2
+&lt;div id=&quot;outline-container-org0b35331&quot; class=&quot;outline-2
     
     </summary>
     
@@ -159,9 +159,9 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org6f1e827&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org6f1e827&quot;&gt;简介：默认列视图&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org6f1e827&quot;&gt;
+&lt;div id=&quot;outline-container-orgfa56eb7&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgfa56eb7&quot;&gt;简介：默认列视图&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgfa56eb7&quot;&gt;
 &lt;p&gt;
 首先按 &lt;code&gt;C-c C-x C-c&lt;/code&gt; 打开默认列视图, 将每个 &lt;i&gt;outline item&lt;/i&gt; 转换成一个显示其某些属性的表格行。
 &lt;/p&gt;
@@ -266,9 +266,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org324d6f0&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org324d6f0&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org324d6f0&quot;&gt;
+&lt;div id=&quot;outline-container-org8a47483&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org8a47483&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org8a47483&quot;&gt;
 &lt;p&gt;
 &lt;code&gt;Org&lt;/code&gt; 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -307,9 +307,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-orgd248e95&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgd248e95&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgd248e95&quot;&gt;
+&lt;div id=&quot;outline-container-org9a4b3c3&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org9a4b3c3&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org9a4b3c3&quot;&gt;
 &lt;p&gt;
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读&lt;a href=&quot;https://brantou.github.io/2017/04/06/org-spreadsheet-intro/&quot;&gt;这个教程&lt;/a&gt;。
@@ -346,9 +346,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org4383f73&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org4383f73&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org4383f73&quot;&gt;
+&lt;div id=&quot;outline-container-org250dea6&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org250dea6&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org250dea6&quot;&gt;
 &lt;p&gt;
 这篇简短的教程将介绍使用 &lt;code&gt;Org&lt;/code&gt; 作为电子表格系统需要的基础知识。
 &lt;/p&gt;
@@ -491,8 +491,8 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org887bf0f&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org887bf0f&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
+&lt;div id=&quot;outline-container-orgf0a3f91&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;orgf0a3f91&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
 &lt;p&gt;
 &lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。
