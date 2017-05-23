@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/05/24/go-http-trace/</loc>
+        <lastmod>2017-05-23T16:02:43.141Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/23/go-race-detector/</loc>
         <lastmod>2017-05-23T14:17:24.738Z</lastmod>
         <changefreq>weekly</changefreq>

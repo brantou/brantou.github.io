@@ -335,6 +335,265 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-http-trace/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-http-trace/" itemprop="url">Go的HTTP tracing</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T00:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-http-trace/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-http-trace/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+在Go 1.7中，引入了 <i>HTTP tracing</i> ，这是在HTTP客户端请求的整个生命周期中收集细粒度信息的工具。
+由 <a href="https://golang.org/pkg/net/http/httptrace/" rel="external nofollow noopener noreferrer" target="_blank">net/http/httptrace</a> 包提供 <i>HTTP tracing</i> 的支持。
+收集的信息可用于调试延迟问题，服务监控，编写自适应系统等。
+</p>
+
+<div id="outline-container-orgee2e95c" class="outline-2">
+<h2 id="orgee2e95c"><span class="section-number-2">1</span> HTTP事件</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件的信息。 这些事件包括：
+</p>
+<ul class="org-ul">
+<li>连接创建</li>
+<li>连接复用</li>
+<li>DNS 查询</li>
+<li>将请求写入网路</li>
+<li>读取响应</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org52492b8" class="outline-2">
+<h2 id="org52492b8"><span class="section-number-2">2</span> 跟踪事件</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+可以通过将包含钩子函数的 <a href="https://golang.org/pkg/net/http/httptrace/#ClientTrace" rel="external nofollow noopener noreferrer" target="_blank">*httptrace.ClientTrace</a> 放在请求的 <a href="https://golang.org/pkg/context/#Context" rel="external nofollow noopener noreferrer" target="_blank">context.Context</a> 中来启用 <i>HTTP tracing</i> 。
+<a href="https://golang.org/pkg/net/http/#RoundTripper" rel="external nofollow noopener noreferrer" target="_blank">http.RoundTripper</a> 通过查找 <i>context</i> 的 <i>*httptrace.ClientTrace</i> ,
+并调用相关的钩子函数报告内部事件。
+</p>
+
+<p>
+追踪范围限于请求的 <i>context</i> ，用户应在 <i>context</i> 上下文之前放置一个 <i>*httptrace.ClientTrace</i> ，
+然后才能启动请求。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+DNS Info: {Addrs:[{IP:192.168.83.230 Zone:}] Err:<nil> Coalesced:false}
+Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
+
+</nil></pre>
+
+<p>
+在 <i>round trip</i> 中，/http.DefaultTransport/ 会在事件发生时调用每个钩子。
+一旦DNS查找完成，将打印DNS信息。 当与请求的主机建立连接时，它将类似地打印连接信息。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org958d7fc" class="outline-2">
+<h2 id="org958d7fc"><span class="section-number-2">3</span> 跟踪http.Client</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+跟踪机制旨在跟踪单个http.Transport.RoundTrip的生命周期中的事件。
+但是，客户端可以进行多次往返，以完成HTTP请求。
+例如，在URL重定向的情况下，注册的钩子将被调用多次，客户端遵循HTTP重定向，进行多个请求。
+用户有职责在 <i>http.Client</i> 级别识别这些事件。
+下面的示例使用 <i>http.RoundTripper wrapper</i> 来标识当前的请求。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+上面示例从 google.com 重定向到 www.google.com， 输出如下：
+</p>
+<pre class="example">
+Connection reused for https://google.com? false
+Connection reused for https://www.google.com.hk/?gfe_rd=cr&ei=olwkWd3BAa-M8Qfjs73IBA? false
+
+</pre>
+
+<p>
+net/http包中的 <i>Transport</i> 支持跟踪 HTTP/1 和 HTTP/2 的 request。
+</p>
+
+<p>
+如果你是自定义 <i>http.RoundTripper</i> 实现的作者，则可以通过检查 <i>*httptest.ClientTrace</i> 的请求 <i>context</i> 来支持跟踪，并在事件发生时调用相关的钩子。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb23a7cc" class="outline-2">
+<h2 id="orgb23a7cc"><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+对于那些有兴趣调试HTTP请求延迟和编写工具来进行出站流量的网络调试的人来说， <i>HTTP tracing</i> 是一个有价值的补充。
+通过启用这个新工具，希望看到来自社区的HTTP调试，基准测试和可视化工具，如<a href="https://github.com/davecheney/httpstat" rel="external nofollow noopener noreferrer" target="_blank">httpstat</a>。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
+        
+        </ul>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/23/go-race-detector/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -649,6 +908,8 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
@@ -1124,6 +1385,8 @@ Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
@@ -1672,6 +1935,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
@@ -1979,6 +2244,8 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
@@ -3189,293 +3456,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/06/org-spreadsheet-intro/" itemprop="url">Org-mode的电子表格的简明教程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T00:00:00+08:00">
-                2017-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/06/org-spreadsheet-intro/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/06/org-spreadsheet-intro/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html" rel="external nofollow noopener noreferrer" target="_blank">Org as a spreadsheet system: a short introduction</a>, 由 <b>Bastien</b>  编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-org250dea6" class="outline-2">
-<h2 id="org250dea6">序言</h2>
-<div class="outline-text-2" id="text-org250dea6">
-<p>
-这篇简短的教程将介绍使用 <code>Org</code> 作为电子表格系统需要的基础知识。
-</p>
-
-<p>
-从一个非常简单的表开始:
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-right">
-
-<col class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">student</th>
-<th scope="col" class="org-right">maths</th>
-<th scope="col" class="org-right">physics</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">bertrand</td>
-<td class="org-right">13</td>
-<td class="org-right">09</td>
-</tr>
-
-<tr>
-<td class="org-left">henri</td>
-<td class="org-right">15</td>
-<td class="org-right">14</td>
-</tr>
-
-<tr>
-<td class="org-left">arnold</td>
-<td class="org-right">17</td>
-<td class="org-right">13</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-上面的表格在 <code>Org</code> 文件中的样式:
-</p>
-<pre class="example">
-| student  | maths | physics |
-|----------+-------+---------|
-| bertrand |    13 |      09 |
-| henri    |    15 |      14 |
-| arnold   |    17 |      13 |
-
-</pre>
-
-<p>
-本教程的目的是阐述如何从上面简单的表生成出如下所示的包含平均每个学生和每个学科的平均分的表：
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col class="org-left">
-
-<col class="org-right">
-
-<col class="org-right">
-
-<col class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">student</th>
-<th scope="col" class="org-right">maths</th>
-<th scope="col" class="org-right">physics</th>
-<th scope="col" class="org-right">mean</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">bertrand</td>
-<td class="org-right">13</td>
-<td class="org-right">09</td>
-<td class="org-right">11</td>
-</tr>
-
-<tr>
-<td class="org-left">henri</td>
-<td class="org-right">15</td>
-<td class="org-right">14</td>
-<td class="org-right">14.5</td>
-</tr>
-
-<tr>
-<td class="org-left">arnold</td>
-<td class="org-right">17</td>
-<td class="org-right">13</td>
-<td class="org-right">15</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">means</td>
-<td class="org-right">15</td>
-<td class="org-right">12</td>
-<td class="org-right">13.5</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/06/org-spreadsheet-intro/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-      
-        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
-        <ul class="related-posts">
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
-        
-        </ul>
-      
-    </footer>
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3523,7 +3503,7 @@ ITEM for the headline title
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3545,7 +3525,7 @@ ITEM for the headline title
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

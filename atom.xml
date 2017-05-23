@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-23T14:17:24.738Z</updated>
+  <updated>2017-05-23T16:02:43.141Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go的HTTP tracing</title>
+    <link href="https://brantou.github.io/2017/05/24/go-http-trace/"/>
+    <id>https://brantou.github.io/2017/05/24/go-http-trace/</id>
+    <published>2017-05-23T16:00:00.000Z</published>
+    <updated>2017-05-23T16:02:43.141Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+在Go 1.7中，引入了 &lt;i&gt;HTTP tracing&lt;/i&gt; ，这是在HTTP客户端请求的整个生命周期中收集细粒度信息的工具。
+由 &lt;a href=&quot;https://golang.org/pkg/net/http/httptrace/&quot; rel=&quot;external
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="http-tracing" scheme="https://brantou.github.io/tags/http-tracing/"/>
+    
+  </entry>
   
   <entry>
     <title>Go的竞态探测器</title>
