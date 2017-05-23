@@ -590,7 +590,7 @@ modified .emacs.</li>
 </p>
 
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+begin_src ruby&#10;,require 'date'&#10;,&#34;This file was last evaluated on #{Date.today}&#34;&#10;#+end_src</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+begin_src ruby&#10;,require &#39;date&#39;&#10;,&#34;This file was last evaluated on #{Date.today}&#34;&#10;#+end_src</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -709,16 +709,17 @@ This file takes up 36K
 </p>
 <pre class="example">
 #+begin_src R :colnames yes
-  words <- tolower(scan("babel-intro.org",="" what="" ,="" na.strings="c(" |",":")))"="" t(sort(table(words[nchar(words)=""> 3]), decreasing=TRUE)[1:10])
+  words &lt;- tolower(scan("babel-intro.org", what="", na.strings=c("|",":")))
+  t(sort(table(words[nchar(words) &gt; 3]), decreasing=TRUE)[1:10])
 #+end_src
 
-</-></pre>
+</pre>
 
 <p>
 HTML 导出的代码:
 </p>
 <div class="org-src-container">
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">words &lt;- tolower(scan(<span class="string">"babel-intro.org"</span>, what=<span class="string">""</span>, na.strings=c(<span class="string">"|"</span>,<span class="string">":"</span>)))</span><br><span class="line">t(sort(table(words[nchar(words) &gt; <span class="number">3</span>]), decreasing=<span class="literal">TRUE</span>)[<span class="number">1</span>:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">words &amp;lt;- tolower(scan(<span class="string">"babel-intro.org"</span>, what=<span class="string">""</span>, na.strings=c(<span class="string">"|"</span>,<span class="string">":"</span>)))</span><br><span class="line">t(sort(table(words[nchar(words) &amp;gt; <span class="number">3</span>]), decreasing=<span class="literal">TRUE</span>)[<span class="number">1</span>:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -1117,7 +1118,7 @@ src_python{return "Hello World!"}
 <pre class="example">
 #+name: directories
 #+begin_src sh :results replace
-  cd ~/program/ && du -sc * | grep -v total
+  cd ~/program/ &amp;&amp; du -sc * | grep -v total
 #+end_src
 
 </pre>
@@ -1126,7 +1127,7 @@ src_python{return "Hello World!"}
 代码如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/program/ &amp;&amp; du -sc * | grep -v total</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/program/ &amp;amp;&amp;amp; du -sc * | grep -v total</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1506,15 +1507,19 @@ HTML 导出代码，如下所示：:
 <pre class="example">
 #+name: basic-R
 #+begin_src R :results silent
-b <- 4="" 9="" b="" +="" #+end_src="" <="" pre="">
+b &lt;- 9
+b + 4
+#+end_src
+
+</pre>
 
 <p>
 HTML 导出代码，如下所示：:
 </p>
 <div class="org-src-container">
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">b &lt;- <span class="number">9</span></span><br><span class="line">b + <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">b &amp;lt;- <span class="number">9</span></span><br><span class="line">b + <span class="number">4</span></span><br></pre></td></tr></table></figure>
 </div>
-</-></pre></div></li></ol>
+</div></li></ol>
 </div>
 </div>
 </div>
@@ -1667,12 +1672,12 @@ off (the default), either for the code block or the Org-mode heading level.
 <pre class="example">
 #+name: hello-world
 #+begin_src sh :tangle hello.sh :exports none :noweb yes
-  <<hello-world-prefix>>
+  &lt;&lt;hello-world-prefix&gt;&gt;
   echo "|                       hello world                         |"
-  <<hello-world-postfix>>
+  &lt;&lt;hello-world-postfix&gt;&gt;
 #+end_src
 
-</hello-world-postfix></hello-world-prefix></pre>
+</pre>
 
 <p>
 调用函数 <code>org-babel-tangle</code> （ <code>C-c C-v t</code> ）将shell源码写到 <code>hello.sh</code> 文件中：
@@ -1687,7 +1692,7 @@ off (the default), either for the code block or the Org-mode heading level.
 </p>
 
 <p>
-#<< example-block() >>
+#&lt;&lt; example-block() &gt;&gt;
 </p>
 
 <p>
@@ -1695,7 +1700,7 @@ off (the default), either for the code block or the Org-mode heading level.
 </p>
 
 <p>
-#<< example-block(a=9) >>
+#&lt;&lt; example-block(a=9) &gt;&gt;
 </p>
 
 <p>

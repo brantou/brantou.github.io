@@ -761,7 +761,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org0789b69"><span class="section-number-3">6.1</span> 串行版</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" target="_blank" rel="external nofollow noopener noreferrer">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
+<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" rel="external nofollow noopener noreferrer" target="_blank">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">        }</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        m[path] = md5.Sum(data)</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -773,7 +773,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org93d3205"><span class="section-number-3">6.2</span> 并行版</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external nofollow noopener noreferrer">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
+在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
 为每个文件做校验和创建 <code>goroutine</code> , 并将结果发送到 <i>result</i> 类型的 <i>channel</i> 上：
 </p>
 <div class="org-src-container">
@@ -801,9 +801,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org0436d0c"><span class="section-number-3">6.3</span> 受限的并行</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external nofollow noopener noreferrer">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
+在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
 试想一下，若是一个目录中有许多大文件，上面的实现，很可能导致资源枯竭。
-可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" target="_blank" rel="external nofollow noopener noreferrer">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
+可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" rel="external nofollow noopener noreferrer" target="_blank">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
 重新设计流程，包含三个片段： 遍历目录树， 读取文件生成摘要，收集摘要。
 </p>
 
@@ -851,7 +851,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>

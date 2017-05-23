@@ -457,14 +457,14 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 
 <p>
 在google内部，开发了一个 <i>context</i> 包，可以轻松地跨越api边界,传递请求范围值，取消信号和截止日期到 <i>request</i> 所涉及的所有 <code>goroutine</code> 。
-该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external nofollow noopener noreferrer">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
+该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" rel="external nofollow noopener noreferrer" target="_blank">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
 <div id="outline-container-org30428dd" class="outline-2">
 <h2 id="org30428dd"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>)：
+<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>)：
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -542,7 +542,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 <div class="outline-text-2" id="text-3">
 <p>
 简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
-这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>。
+这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>。
 </p>
 </div>
 <div id="outline-container-orgb6b6959" class="outline-3">
@@ -599,7 +599,7 @@ request handlers 经常启动其他 goroutines 以访问后端，如数据库和
 <h2 id="org04da861"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
+示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
 timeout参数告诉服务器在该时间过去之后取消请求。
 </p>
 
@@ -607,9 +607,9 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 示例代码被拆分为三个包：
 </p>
 <ul class="org-ul">
-<li><a href="https://blog.golang.org/context/server/server.go" target="_blank" rel="external nofollow noopener noreferrer">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
-<li><a href="https://blog.golang.org/context/userip/userip.go" target="_blank" rel="external nofollow noopener noreferrer">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
-<li><a href="https://blog.golang.org/context/google/google.go" target="_blank" rel="external nofollow noopener noreferrer">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
+<li><a href="https://blog.golang.org/context/server/server.go" rel="external nofollow noopener noreferrer" target="_blank">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
+<li><a href="https://blog.golang.org/context/userip/userip.go" rel="external nofollow noopener noreferrer" target="_blank">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
+<li><a href="https://blog.golang.org/context/google/google.go" rel="external nofollow noopener noreferrer" target="_blank">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
 </ul>
 </div>
 
@@ -693,7 +693,7 @@ NewContext返回一个带有userIP的新Context：
 <h3 id="org973ab78"><span class="section-number-3">4.3</span> google</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
-<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
+<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
 它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
 </p>
 
@@ -732,15 +732,15 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </p>
 
 <p>
-例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
-在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" target="_blank" rel="external nofollow noopener noreferrer">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
+例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
+在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" rel="external nofollow noopener noreferrer" target="_blank">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
 </p>
 
 <p>
 其他软件包提供了类似于 <i>Context</i> 的取消支持。
-例如，<a href="http://godoc.org/gopkg.in/tomb.v2" target="_blank" rel="external nofollow noopener noreferrer">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
+例如，<a href="http://godoc.org/gopkg.in/tomb.v2" rel="external nofollow noopener noreferrer" target="_blank">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
 Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.WaitGroup。
-在 <a href="https://blog.golang.org/context/tomb/tomb.go" target="_blank" rel="external nofollow noopener noreferrer">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
+在 <a href="https://blog.golang.org/context/tomb/tomb.go" rel="external nofollow noopener noreferrer" target="_blank">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
 </p>
 </div>
 </div>
@@ -761,7 +761,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>

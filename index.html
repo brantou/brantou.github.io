@@ -448,14 +448,14 @@
 
 <p>
 在google内部，开发了一个 <i>context</i> 包，可以轻松地跨越api边界,传递请求范围值，取消信号和截止日期到 <i>request</i> 所涉及的所有 <code>goroutine</code> 。
-该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" target="_blank" rel="external nofollow noopener noreferrer">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
+该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" rel="external nofollow noopener noreferrer" target="_blank">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
 <div id="outline-container-org30428dd" class="outline-2">
 <h2 id="org30428dd"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>)：
+<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>)：
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -533,7 +533,7 @@
 <div class="outline-text-2" id="text-3">
 <p>
 简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
-这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" target="_blank" rel="external nofollow noopener noreferrer">godoc</a>。
+这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>。
 </p>
 </div>
 <div id="outline-container-orgb6b6959" class="outline-3">
@@ -590,7 +590,7 @@
 <h2 id="org04da861"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
+示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
 timeout参数告诉服务器在该时间过去之后取消请求。
 </p>
 
@@ -598,9 +598,9 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 示例代码被拆分为三个包：
 </p>
 <ul class="org-ul">
-<li><a href="https://blog.golang.org/context/server/server.go" target="_blank" rel="external nofollow noopener noreferrer">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
-<li><a href="https://blog.golang.org/context/userip/userip.go" target="_blank" rel="external nofollow noopener noreferrer">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
-<li><a href="https://blog.golang.org/context/google/google.go" target="_blank" rel="external nofollow noopener noreferrer">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
+<li><a href="https://blog.golang.org/context/server/server.go" rel="external nofollow noopener noreferrer" target="_blank">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
+<li><a href="https://blog.golang.org/context/userip/userip.go" rel="external nofollow noopener noreferrer" target="_blank">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
+<li><a href="https://blog.golang.org/context/google/google.go" rel="external nofollow noopener noreferrer" target="_blank">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
 </ul>
 </div>
 
@@ -684,7 +684,7 @@ NewContext返回一个带有userIP的新Context：
 <h3 id="org973ab78"><span class="section-number-3">4.3</span> google</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
-<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" target="_blank" rel="external nofollow noopener noreferrer">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
+<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
 它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
 </p>
 
@@ -723,15 +723,15 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </p>
 
 <p>
-例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" target="_blank" rel="external nofollow noopener noreferrer">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
-在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" target="_blank" rel="external nofollow noopener noreferrer">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
+例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
+在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" rel="external nofollow noopener noreferrer" target="_blank">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
 </p>
 
 <p>
 其他软件包提供了类似于 <i>Context</i> 的取消支持。
-例如，<a href="http://godoc.org/gopkg.in/tomb.v2" target="_blank" rel="external nofollow noopener noreferrer">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
+例如，<a href="http://godoc.org/gopkg.in/tomb.v2" rel="external nofollow noopener noreferrer" target="_blank">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
 Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.WaitGroup。
-在 <a href="https://blog.golang.org/context/tomb/tomb.go" target="_blank" rel="external nofollow noopener noreferrer">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
+在 <a href="https://blog.golang.org/context/tomb/tomb.go" rel="external nofollow noopener noreferrer" target="_blank">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
 </p>
 </div>
 </div>
@@ -752,7 +752,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-22 Mon 18:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -1195,7 +1195,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org0789b69"><span class="section-number-3">6.1</span> 串行版</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" target="_blank" rel="external nofollow noopener noreferrer">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
+<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" rel="external nofollow noopener noreferrer" target="_blank">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
 </p>
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">        }</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        m[path] = md5.Sum(data)</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1207,7 +1207,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org93d3205"><span class="section-number-3">6.2</span> 并行版</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external nofollow noopener noreferrer">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
+在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
 为每个文件做校验和创建 <code>goroutine</code> , 并将结果发送到 <i>result</i> 类型的 <i>channel</i> 上：
 </p>
 <div class="org-src-container">
@@ -1235,9 +1235,9 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 <h3 id="org0436d0c"><span class="section-number-3">6.3</span> 受限的并行</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" target="_blank" rel="external nofollow noopener noreferrer">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
+在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
 试想一下，若是一个目录中有许多大文件，上面的实现，很可能导致资源枯竭。
-可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" target="_blank" rel="external nofollow noopener noreferrer">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
+可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" rel="external nofollow noopener noreferrer" target="_blank">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
 重新设计流程，包含三个片段： 遍历目录树， 读取文件生成摘要，收集摘要。
 </p>
 
@@ -1285,7 +1285,7 @@ b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
 </div>
 </div>
 
-Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -1453,18 +1453,18 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 把研习的文章列于此，作为技术积累，以馈日后。
 </p>
 <dl class="org-dl">
-<dt><a href="http://www.infoq.com/cn/articles/basis-frameworkto-implement-micro-service" target="_blank" rel="external nofollow noopener noreferrer">实施微服务，我们需要哪些基础框架？</a></dt><dd>从全局介绍了微服务，并给出了业界最近实践&#x2013; <i>Netflix的开源框架组件</i>, 入门扫盲的一篇不二的佳文。</dd>
-<dt><a href="https://www.nginx.com/blog/introduction-to-microservices/" target="_blank" rel="external nofollow noopener noreferrer">Introduction to Microservices</a> </dt><dd>讨论了使用微服务的好处和缺点，尽管微服务的有相当大的复杂性，但通常它都是复杂应用的理想选择</dd>
-<dt><a href="https://www.nginx.com/blog/building-microservices-using-an-api-gateway/" target="_blank" rel="external nofollow noopener noreferrer">Building Microservices: Using an API Gateway</a></dt><dd>应用程序的客户端如何通过 <i>Api Gateway</i> 与微服务进行通信</dd>
-<dt><a href="https://www.nginx.com/blog/building-microservices-inter-process-communication/" target="_blank" rel="external nofollow noopener noreferrer">Building Microservices: Inter-Process Communication in a Microservices Architecture</a></dt><dd>微服务架构中服务之间的IPC机制</dd>
-<dt><a href="https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/" target="_blank" rel="external nofollow noopener noreferrer">Service Discovery in a Microservices Architecture</a></dt><dd>微服务架构中的服务发现和服务注册</dd>
-<dt><a href="https://www.nginx.com/blog/event-driven-data-management-microservices/" target="_blank" rel="external nofollow noopener noreferrer">Event‑Driven Data Management for Microservices</a></dt><dd>微服务架构中的事件驱动数据管理机制</dd>
-<dt><a href="https://www.nginx.com/blog/deploying-microservices/" target="_blank" rel="external nofollow noopener noreferrer">Choosing a Microservices Deployment Strategy</a></dt><dd>微服务的发布策略</dd>
-<dt><a href="https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/" target="_blank" rel="external nofollow noopener noreferrer">Refactoring a Monolith into Microservices</a></dt><dd>单体程序迁移到微服务的策略</dd>
-<dt><a href="http://www.yunweipai.com/archives/9797.html" target="_blank" rel="external nofollow noopener noreferrer">微服务那么热，创业公司怎么选用实践？</a></dt><dd>映兔科技在微服务中的实践</dd>
-<dt><a href="https://36kr.com/p/5073181.html" target="_blank" rel="external nofollow noopener noreferrer">今日头条Go建千亿级微服务的实践</a></dt><dd>今日头条在微服务的实践，较为全面，涵盖了方方面面</dd>
-<dt><a href="https://mp.weixin.qq.com/s/Vhe3iJFzxBLw5CjM-rLTPQ" target="_blank" rel="external nofollow noopener noreferrer">饿了么的架构设计及演进之路</a></dt><dd>饿了么在架构方面的实践</dd>
-<dt><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659599230&amp;idx=1&amp;sn=cbf97ea56f956e23b3529ea81551b23c&amp;chksm=8be9966cbc9e1f7af97f670f4dcc16e3a2bd410ef634251e72c867bc6f7aca813ffed5da75a1#rd" target="_blank" rel="external nofollow noopener noreferrer">企业的应用架构到底该怎么演变才能合了CEO的愿？</a></dt><dd>推演一个企业级应用架构的演变之路，由小及大，由浅入深，很有深意</dd>
+<dt><a href="http://www.infoq.com/cn/articles/basis-frameworkto-implement-micro-service" rel="external nofollow noopener noreferrer" target="_blank">实施微服务，我们需要哪些基础框架？</a></dt><dd>从全局介绍了微服务，并给出了业界最近实践&#x2013; <i>Netflix的开源框架组件</i>, 入门扫盲的一篇不二的佳文。</dd>
+<dt><a href="https://www.nginx.com/blog/introduction-to-microservices/" rel="external nofollow noopener noreferrer" target="_blank">Introduction to Microservices</a> </dt><dd>讨论了使用微服务的好处和缺点，尽管微服务的有相当大的复杂性，但通常它都是复杂应用的理想选择</dd>
+<dt><a href="https://www.nginx.com/blog/building-microservices-using-an-api-gateway/" rel="external nofollow noopener noreferrer" target="_blank">Building Microservices: Using an API Gateway</a></dt><dd>应用程序的客户端如何通过 <i>Api Gateway</i> 与微服务进行通信</dd>
+<dt><a href="https://www.nginx.com/blog/building-microservices-inter-process-communication/" rel="external nofollow noopener noreferrer" target="_blank">Building Microservices: Inter-Process Communication in a Microservices Architecture</a></dt><dd>微服务架构中服务之间的IPC机制</dd>
+<dt><a href="https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/" rel="external nofollow noopener noreferrer" target="_blank">Service Discovery in a Microservices Architecture</a></dt><dd>微服务架构中的服务发现和服务注册</dd>
+<dt><a href="https://www.nginx.com/blog/event-driven-data-management-microservices/" rel="external nofollow noopener noreferrer" target="_blank">Event‑Driven Data Management for Microservices</a></dt><dd>微服务架构中的事件驱动数据管理机制</dd>
+<dt><a href="https://www.nginx.com/blog/deploying-microservices/" rel="external nofollow noopener noreferrer" target="_blank">Choosing a Microservices Deployment Strategy</a></dt><dd>微服务的发布策略</dd>
+<dt><a href="https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/" rel="external nofollow noopener noreferrer" target="_blank">Refactoring a Monolith into Microservices</a></dt><dd>单体程序迁移到微服务的策略</dd>
+<dt><a href="http://www.yunweipai.com/archives/9797.html" rel="external nofollow noopener noreferrer" target="_blank">微服务那么热，创业公司怎么选用实践？</a></dt><dd>映兔科技在微服务中的实践</dd>
+<dt><a href="https://36kr.com/p/5073181.html" rel="external nofollow noopener noreferrer" target="_blank">今日头条Go建千亿级微服务的实践</a></dt><dd>今日头条在微服务的实践，较为全面，涵盖了方方面面</dd>
+<dt><a href="https://mp.weixin.qq.com/s/Vhe3iJFzxBLw5CjM-rLTPQ" rel="external nofollow noopener noreferrer" target="_blank">饿了么的架构设计及演进之路</a></dt><dd>饿了么在架构方面的实践</dd>
+<dt><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659599230&amp;idx=1&amp;sn=cbf97ea56f956e23b3529ea81551b23c&amp;chksm=8be9966cbc9e1f7af97f670f4dcc16e3a2bd410ef634251e72c867bc6f7aca813ffed5da75a1#rd" rel="external nofollow noopener noreferrer" target="_blank">企业的应用架构到底该怎么演变才能合了CEO的愿？</a></dt><dd>推演一个企业级应用架构的演变之路，由小及大，由浅入深，很有深意</dd>
 </dl>
 </div>
 </div>
@@ -1476,14 +1476,14 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 用了两年golang了，却依旧觉得没有掌握正确的姿势，所以最近也是一通研习。
 </p>
 <dl class="org-dl">
-<dt><a href="http://lanlingzi.cn/post/technical/2016/0802_go_context/" target="_blank" rel="external nofollow noopener noreferrer">理解Go Context机制</a></dt><dd>由于我的目标是搭一套微服务出来，初步选定服务间的通信机制选用grpc，而grpc生成的代码中，
+<dt><a href="http://lanlingzi.cn/post/technical/2016/0802_go_context/" rel="external nofollow noopener noreferrer" target="_blank">理解Go Context机制</a></dt><dd>由于我的目标是搭一套微服务出来，初步选定服务间的通信机制选用grpc，而grpc生成的代码中，
 第一个参数都是 <code>ctx context.Context</code> ，所以务必要搞清楚 <code>context</code> 背后的原理。</dd>
 
-<dt><a href="https://segmentfault.com/a/1190000008672912" target="_blank" rel="external nofollow noopener noreferrer">grpc服务发现&amp;负载均衡</a></dt><dd>grpc的服务发现和负载均衡的实现</dd>
+<dt><a href="https://segmentfault.com/a/1190000008672912" rel="external nofollow noopener noreferrer" target="_blank">grpc服务发现&amp;负载均衡</a></dt><dd>grpc的服务发现和负载均衡的实现</dd>
 
-<dt><a href="https://github.com/grpc/grpc/blob/master/doc/load-balancing.md" target="_blank" rel="external nofollow noopener noreferrer">Load Balancing in grpc</a></dt><dd>grpc中的负载平衡&#x2013;实现自己的服务发现，需要阅读此文档</dd>
+<dt><a href="https://github.com/grpc/grpc/blob/master/doc/load-balancing.md" rel="external nofollow noopener noreferrer" target="_blank">Load Balancing in grpc</a></dt><dd>grpc中的负载平衡&#x2013;实现自己的服务发现，需要阅读此文档</dd>
 
-<dt><a href="https://github.com/grpc/grpc/blob/master/doc/health-checking.md" target="_blank" rel="external nofollow noopener noreferrer">grpc Health Checking Protocol</a></dt><dd>grpc的健康监测机制</dd>
+<dt><a href="https://github.com/grpc/grpc/blob/master/doc/health-checking.md" rel="external nofollow noopener noreferrer" target="_blank">grpc Health Checking Protocol</a></dt><dd>grpc的健康监测机制</dd>
 </dl>
 </div>
 </div>
@@ -1492,7 +1492,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 <h2 id="org53eb4b0"><span class="section-number-2">3</span> 无关技术</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-org5ca6a02" class="outline-3">
-<h3 id="org5ca6a02"><span class="section-number-3">3.1</span> <a href="http://tech.glowing.com/cn/advices-to-junior-developers/?utm_medium=website&amp;utm_source=gank.io%2Fxiandu" target="_blank" rel="external nofollow noopener noreferrer">如何提升你的能力？给年轻程序员的几条建议</a></h3>
+<h3 id="org5ca6a02"><span class="section-number-3">3.1</span> <a href="http://tech.glowing.com/cn/advices-to-junior-developers/?utm_medium=website&amp;utm_source=gank.io%2Fxiandu" rel="external nofollow noopener noreferrer" target="_blank">如何提升你的能力？给年轻程序员的几条建议</a></h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 无关技术，却给出技术人该有的修为，以及怎样更好的成长，准备随后写篇读后感，写写自己接下来要怎么做。
@@ -1501,7 +1501,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 
 <div id="outline-container-org6d2c614" class="outline-3">
-<h3 id="org6d2c614"><span class="section-number-3">3.2</span> <a href="http://blog.jobbole.com/94148/" target="_blank" rel="external nofollow noopener noreferrer">不要自称是程序员，我十多年的 IT 职场总结</a></h3>
+<h3 id="org6d2c614"><span class="section-number-3">3.2</span> <a href="http://blog.jobbole.com/94148/" rel="external nofollow noopener noreferrer" target="_blank">不要自称是程序员，我十多年的 IT 职场总结</a></h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 <b>别人雇用你的目的，是让你创造价值，而不是让你编程</b> 一位老司机的肺腑之言，值得每个初入职场的IT从业人员深思，
@@ -1524,7 +1524,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 
 <div id="outline-container-org686a82b" class="outline-3">
-<h3 id="org686a82b"><span class="section-number-3">4.1</span> <a href="http://36kr.com/p/5065824.html" target="_blank" rel="external nofollow noopener noreferrer">傅盛认知三部曲之一：所谓成长就是认知升级</a></h3>
+<h3 id="org686a82b"><span class="section-number-3">4.1</span> <a href="http://36kr.com/p/5065824.html" rel="external nofollow noopener noreferrer" target="_blank">傅盛认知三部曲之一：所谓成长就是认知升级</a></h3>
 <div class="outline-text-3" id="text-4-1">
 <img src="/images/ren-zhi-four-status.jpg">
 
@@ -1570,7 +1570,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 
 <div id="outline-container-orgfe3cb69" class="outline-3">
-<h3 id="orgfe3cb69"><span class="section-number-3">4.2</span> <a href="https://36kr.com/p/5071158.html" target="_blank" rel="external nofollow noopener noreferrer">傅盛认知三部曲之二：管理本质就是认知管理</a></h3>
+<h3 id="orgfe3cb69"><span class="section-number-3">4.2</span> <a href="https://36kr.com/p/5071158.html" rel="external nofollow noopener noreferrer" target="_blank">傅盛认知三部曲之二：管理本质就是认知管理</a></h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 这个时代，管理不是执行管理，不是组织结构管理，而是你比别人更理解一件事情。管理的本质就是一种认知管理。
@@ -1623,7 +1623,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 
 <div id="outline-container-org15de4a8" class="outline-3">
-<h3 id="org15de4a8"><span class="section-number-3">4.3</span> <a href="https://36kr.com/p/5071119.html" target="_blank" rel="external nofollow noopener noreferrer">傅盛认知三部曲之三：战略就是格局+破局</a></h3>
+<h3 id="org15de4a8"><span class="section-number-3">4.3</span> <a href="https://36kr.com/p/5071119.html" rel="external nofollow noopener noreferrer" target="_blank">傅盛认知三部曲之三：战略就是格局+破局</a></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 经过二十年的发展，今天，互联网已经是一个传统行业。风停了，放眼望去，到处是血海竞争，乌压压一片创业大军。勤奋依然很重要，但聪明的勤奋才是关键。这个时候，就要求我们想清楚，行业里的大风在哪里，并做出预测。
@@ -1685,7 +1685,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 <div id="outline-container-org5e92dff" class="outline-3">
-<h3 id="org5e92dff"><span class="section-number-3">4.4</span> <a href="https://36kr.com/p/5072217.html" target="_blank" rel="external nofollow noopener noreferrer">傅盛认知三部曲后记：到底什么是认知？</a></h3>
+<h3 id="org5e92dff"><span class="section-number-3">4.4</span> <a href="https://36kr.com/p/5072217.html" rel="external nofollow noopener noreferrer" target="_blank">傅盛认知三部曲后记：到底什么是认知？</a></h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 一幅图来描述认知产生的过程。
@@ -1704,7 +1704,7 @@ Last Updated 2017-05-21 Sun 16:11.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 
-Last Updated 2017-05-17 Wed 17:08.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-17 Wed 17:08.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -1998,7 +1998,7 @@ user: a, award count: 1099
 </div>
 </div>
 
-Last Updated 2017-05-15 Mon 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-15 Mon 23:09.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -2156,7 +2156,7 @@ Network Coordinates in consul
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-05-15 Mon 15:44.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external nofollow noopener noreferrer">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external nofollow noopener noreferrer">Emacs</a> 24.5.1 (<a href="http://orgmode.org" target="_blank" rel="external nofollow noopener noreferrer">Org</a> mode 9.0.6)
+Last Updated 2017-05-15 Mon 15:44.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
