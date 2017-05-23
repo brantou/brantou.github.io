@@ -507,14 +507,14 @@ Org 大大简化了大纲模式的使用，它把大纲模式的整个显示/隐
 <tbody>
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,->folded->children->subtree&#x2013;.</span></td>
+<td class="org-left">子树循环,在下列状态之间转换当前子树: <span class="underline">,-&gt;folded-&gt;children-&gt;subtree&#x2013;.</span></td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 <td class="org-left"><code>S-TAB</code></td>
-<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,->overview->contents->show all&#x2013;.</span></td>
+<td class="org-left">全局循环, 在下列状态之间转换当前的整个buffer： <span class="underline">,-&gt;overview-&gt;contents-&gt;show all&#x2013;.</span></td>
 <td class="org-left"><code>org-global-cycle</code></td>
 </tr>
 </tbody>
@@ -559,7 +559,7 @@ org-mode默认的视图模式是'OVERVIEW',即概览模式，只有顶层的标�
 你可以通过配置变量 <code>org-startup-folded</code> 来改变视图模式，如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&#8629;er</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-startup-folded <span class="quoted">'content</span>)</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-catch-invisible-edits <span class="literal">nil</span>)</span> <span class="comment">;; prevent editing an invisible part of the bu&amp;#8629;er</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -717,7 +717,7 @@ q        退出
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的标题，第一个TAB变为之前标题的子标题，第二个TAB变为父标题,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -895,7 +895,7 @@ q        退出
 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &#8216;FIXME&#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="comment">;; the key C-c a f as a shortcut for creating a sparse tree matching the string &amp;#8216;FIXME&amp;#8217;.</span></span><br><span class="line"><span class="list">(<span class="keyword">setq</span> org-agenda-custom-commands <span class="quoted">'((<span class="string">"f"</span> occur-tree <span class="string">"FIXME"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -991,7 +991,7 @@ If some of these actions get in your way, configure <code>org-list-automatic-rul
 
 <tr>
 <td class="org-left"><code>TAB</code></td>
-<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,->children->parent->initial))</td>
+<td class="org-left">用于还未输入文本信息的子项，第一个TAB变为子项，第二个TAB变为父项,第三个TAB恢复原有等级 (,-&gt;children-&gt;parent-&gt;initial))</td>
 <td class="org-left"><code>org-cycle</code></td>
 </tr>
 
@@ -1392,7 +1392,7 @@ You can check syntax in your documents using org-lint command.
 </tr>
 
 <tr>
-<td class="org-left"><code><tab></tab></code></td>
+<td class="org-left"><code>&lt;TAB&gt;</code></td>
 <td class="org-left">重新对齐表格，移动到下一区域。 如有必要，创建一个新行。</td>
 <td class="org-left"><code>org-table-next-field</code></td>
 </tr>
@@ -1662,7 +1662,7 @@ You can check syntax in your documents using org-lint command.
 <img src="/images/table-column-width.jpg">
 
 <p>
-设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=></b> 来替代展示。
+设定固定宽度后，长文本将会裁剪展示，多余部分用字符串 <b>=&gt;</b> 来替代展示。
 要查看全文，请将鼠标悬停在该字段上&#x2014;工具提示窗口(tool-tip window)将显示完整的内容。
 要编辑这样一个区域，可使用 <code>C-c</code> <code>`</code> 。 这将打开一个的新窗口。 编辑后用 <code>C-c</code> <code>C-c</code> 来提交编辑内容，并关闭窗口。
 </p>
@@ -1679,9 +1679,9 @@ You can check syntax in your documents using org-lint command.
 </pre>
 
 <p>
-如果不喜欢默认自动对齐的方式，您可以使用 <b><r></r></b> ，*<c>* 或者 <b><l></l></b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i><r10></r10></i> 。
+如果不喜欢默认自动对齐的方式，您可以使用 <b>&lt;r&gt;</b> ，*&lt;c&gt;* 或者 <b>&lt;l&gt;</b> 来自定义对齐方式。 还可以将对齐和固定宽度组合使用，如下所示： <i>&lt;r10&gt;</i> 。
 在导出文档时，将自动删除仅包含这些格式化信息的行。
-</c></p>
+</p>
 </div>
 </div>
 
@@ -1691,9 +1691,9 @@ You can check syntax in your documents using org-lint command.
 <p>
 当Org导出表时，默认情况下不会有垂直线，因为在视觉上一般来说更令人满意。
 然而，偶尔，垂直线对于将表结构化成一组列可能是有用的，就像水平线可以对于一组行所做的那样。
-为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'<'表示此列应该启动一个组，'>'表示组的结束，或'<>'（'<'和'>'之间没有空格） 当前列自己一组。
+为了指定列组，您可以使用第一个字段仅包含"/"的特殊行。 其他字段可以包含'&lt;'表示此列应该启动一个组，'&gt;'表示组的结束，或'&lt;&gt;'（'&lt;'和'&gt;'之间没有空格） 当前列自己一组。
 导出后，列组之间的边界将用垂直线标记。 示例如下：
-</'和'></'表示此列应该启动一个组，'></p>
+</p>
 
 <img src="/images/table-column-groups.jpg">
 
@@ -1880,7 +1880,7 @@ including spreadsheet capabilities.
 一旦链接完成，链接样式将发生变化，显示 <i>description</i> 而不是 <code>[[link] [description]]</code> 或 <i>link</i> 而不是 <code>[ [link]]]</code> 。
 可以直接编辑链接的可见部分。 请注意，这可以是 <i>link</i> 部分（如果没有 <i>description</i> ）或 <i>description</i> 部分。 要编辑不可见的“链接”部分，只需在链接上键入 <code>C-c C-l</code> 。
 在链接的头和尾可删除链接不可见的边际括号，使得链接不完整，内部再次显示为纯文本。 插入缺失的括号将再次隐藏链接内部。
-要显示所有链接的内部结构，可用菜单条目 <code>Org->Hyperlinks->Literal links</code> 。
+要显示所有链接的内部结构，可用菜单条目 <code>Org-&gt;Hyperlinks-&gt;Literal links</code> 。
 </p>
 </div>
 </div>
@@ -1916,10 +1916,10 @@ including spreadsheet capabilities.
 </p>
 <pre class="example">
 - one item
-- <<target>> another item
+- &lt;&lt;target&gt;&gt; another item
 Here we refer to item [[target]].
 
-</target></pre>
+</pre>
 <p>
 导出时，最后一句将显示为 <i>Here we refer to item 2</i> 。
 </p>
@@ -2077,7 +2077,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 </tr>
 
 <tr>
-<td class="org-left"><code>C-c &</code></td>
+<td class="org-left"><code>C-c &amp;</code></td>
 <td class="org-left">跳回到记录位置。 A position is recorded by the commands following internal links, and by C-c %. Using this command several times in direct succession moves through a ring of previously recorded positions.</td>
 <td class="org-left"><code>org-mark-ring-goto</code></td>
 </tr>
@@ -2120,7 +2120,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 根据将链接缩写词与替换文本相关联的变量 <code>org-link-abbrev-alist</code> 中的信息来解析缩写。 定义如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-link-abbrev-alist</span><br><span class="line">      <span class="quoted">'((<span class="string">"bugzilla"</span>  . <span class="string">"http://10.1.2.9/bugzilla/show_bug.cgi?id="</span>)</span><br><span class="line">        (<span class="string">"url-to-ja"</span> . <span class="string">"http://translate.google.fr/translate?sl=en&amp;tl=ja&amp;u=%h"</span>)</span><br><span class="line">        (<span class="string">"google"</span>    . <span class="string">"http://www.google.com/search?q="</span>)</span><br><span class="line">        (<span class="string">"gmap"</span>      . <span class="string">"http://maps.google.com/maps?q=%s"</span>)</span><br><span class="line">        (<span class="string">"omap"</span>      . <span class="string">"http://nominatim.openstreetmap.org/search?q=%s&amp;polygon=1"</span>)</span><br><span class="line">        (<span class="string">"ads"</span>       . <span class="string">"http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&amp;db_key=AST"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">setq</span> org-link-abbrev-alist</span><br><span class="line">      <span class="quoted">'((<span class="string">"bugzilla"</span>  . <span class="string">"http://10.1.2.9/bugzilla/show_bug.cgi?id="</span>)</span><br><span class="line">        (<span class="string">"url-to-ja"</span> . <span class="string">"http://translate.google.fr/translate?sl=en&amp;amp;tl=ja&amp;amp;u=%h"</span>)</span><br><span class="line">        (<span class="string">"google"</span>    . <span class="string">"http://www.google.com/search?q="</span>)</span><br><span class="line">        (<span class="string">"gmap"</span>      . <span class="string">"http://maps.google.com/maps?q=%s"</span>)</span><br><span class="line">        (<span class="string">"omap"</span>      . <span class="string">"http://nominatim.openstreetmap.org/search?q=%s&amp;amp;polygon=1"</span>)</span><br><span class="line">        (<span class="string">"ads"</span>       . <span class="string">"http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&amp;amp;db_key=AST"</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 <p>
 如果替换文本包含字符串 <code>％s</code> ，它将被标签所替换。
@@ -2194,7 +2194,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 <tbody>
 <tr>
 <td class="org-left"><code>C-c C-t</code></td>
-<td class="org-left">转换当前项的TODO状态 <span class="underline">,-> (unmarked) -> TODO -> DONE &#x2013;.</span></td>
+<td class="org-left">转换当前项的TODO状态 <span class="underline">,-&gt; (unmarked) -&gt; TODO -&gt; DONE &#x2013;.</span></td>
 <td class="org-left"><code>org-todo</code></td>
 </tr>
 
@@ -2250,7 +2250,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 可以使用 <code>TODO</code> 关键字来表示项目进行过程中工作流状态，例如：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;   '((sequence &#34;TODO&#34; &#34;FEEDBACK&#34; &#34;VERIFY&#34; &#34;|&#34; &#34;DONE&#34; &#34;DELEGATED&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;   &#39;((sequence &#34;TODO&#34; &#34;FEEDBACK&#34; &#34;VERIFY&#34; &#34;|&#34; &#34;DONE&#34; &#34;DELEGATED&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 垂直条将 <code>TODO</code> 关键字（需要处理的状态）从DONE状态分离（无需进一步操作）。
@@ -2270,7 +2270,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 如下配置：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords '((type &#34;Fred&#34; &#34;Sara&#34; &#34;Lucy&#34; &#34;|&#34; &#34;DONE&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords &#39;((type &#34;Fred&#34; &#34;Sara&#34; &#34;Lucy&#34; &#34;|&#34; &#34;DONE&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 在这种情况下，不同的关键字不表示序列，而是不同的类型。
@@ -2293,7 +2293,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 设置如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;      '((sequence &#34;TODO&#34; &#34;|&#34; &#34;DONE&#34;)&#10;        (sequence &#34;REPORT&#34; &#34;BUG&#34; &#34;KNOWNCAUSE&#34; &#34;|&#34; &#34;FIXED&#34;)&#10;        (sequence &#34;|&#34; &#34;CANCELED&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;      &#39;((sequence &#34;TODO&#34; &#34;|&#34; &#34;DONE&#34;)&#10;        (sequence &#34;REPORT&#34; &#34;BUG&#34; &#34;KNOWNCAUSE&#34; &#34;|&#34; &#34;FIXED&#34;)&#10;        (sequence &#34;|&#34; &#34;CANCELED&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 这些关键字应该是不同的，这有助于 <code>Org-mode</code> 跟踪给定条目应该使用哪个子序列。
@@ -2328,7 +2328,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 这是通过在每个关键字后面的括号中添加选择字符来完成的。
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;     '((sequence &#34;TODO(t)&#34; &#34;|&#34; &#34;DONE(d)&#34;)&#10;       (sequence &#34;REPORT(r)&#34; &#34;BUG(b)&#34; &#34;KNOWNCAUSE(k)&#34; &#34;|&#34; &#34;FIXED(f)&#34;)&#10;       (sequence &#34;|&#34; &#34;CANCELED(c)&#34;)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keywords&#10;     &#39;((sequence &#34;TODO(t)&#34; &#34;|&#34; &#34;DONE(d)&#34;)&#10;       (sequence &#34;REPORT(r)&#34; &#34;BUG(b)&#34; &#34;KNOWNCAUSE(k)&#34; &#34;|&#34; &#34;FIXED(f)&#34;)&#10;       (sequence &#34;|&#34; &#34;CANCELED(c)&#34;)))</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 如果按C-c C-t，后按选择键，则条目将切换到此状态。 SPC可用于从条目中删除任何TODO关键字。
@@ -2373,7 +2373,7 @@ elisp:(find-file-other-frame "Elisp.org")  Elisp form to evaluate
 例如：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keyword-faces&#10;      '((&#34;TODO&#34; . org-warning) (&#34;STARTED&#34; . &#34;yellow&#34;)&#10;        (&#34;CANCELED&#34; . (:foreground &#34;blue&#34; :weight bold))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq org-todo-keyword-faces&#10;      &#39;((&#34;TODO&#34; . org-warning) (&#34;STARTED&#34; . &#34;yellow&#34;)&#10;        (&#34;CANCELED&#34; . (:foreground &#34;blue&#34; :weight bold))))</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2558,10 +2558,6 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/11/org-syntax/">Org-mode的语法解读</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/07/hello-world/">Hello World</a></li>
-        
         </ul>
       
     </footer>
@@ -2688,7 +2684,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

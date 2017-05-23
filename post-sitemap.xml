@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+        <lastmod>2017-05-23T10:56:07.965Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/19/go-race-detector/</loc>
-        <lastmod>2017-05-23T10:35:47.629Z</lastmod>
+        <lastmod>2017-05-23T10:54:21.411Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -47,6 +55,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -71,14 +87,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -89,14 +97,6 @@
     <url>
         <loc>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-        <lastmod>2017-05-23T05:28:49.585Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

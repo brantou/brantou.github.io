@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-23T10:35:47.629Z</updated>
+  <updated>2017-05-23T07:30:52.995Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,34 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Golang的竞态探测器</title>
-    <link href="https://brantou.github.io/2017/05/19/go-race-detector/"/>
-    <id>https://brantou.github.io/2017/05/19/go-race-detector/</id>
-    <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-23T10:35:47.629Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
-通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
-Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
-需要谨慎，勤
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
-    
-  </entry>
   
   <entry>
     <title>Golang的并发模式：Context</title>
@@ -66,6 +38,36 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="context" scheme="https://brantou.github.io/tags/context/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go的竞态探测器</title>
+    <link href="https://brantou.github.io/2017/05/19/go-race-detector/"/>
+    <id>https://brantou.github.io/2017/05/19/go-race-detector/</id>
+    <published>2017-05-18T16:00:00.000Z</published>
+    <updated>2017-05-23T10:54:21.411Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
+通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
+Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
+需要谨慎，勤
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
+    
+      <category term="go-tool-chain" scheme="https://brantou.github.io/tags/go-tool-chain/"/>
     
   </entry>
   
@@ -98,6 +100,31 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
+    <title>Gopher面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-05-23T06:05:36.006Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+    
+    </summary>
+    
+      <category term="code" scheme="https://brantou.github.io/categories/code/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一周回顾--2017-05-12</title>
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
@@ -120,31 +147,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-23T06:05:36.006Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-    
-    </summary>
-    
-      <category term="code" scheme="https://brantou.github.io/categories/code/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   
@@ -509,7 +511,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
     <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
     <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-05-23T05:28:49.585Z</updated>
+    <updated>2017-05-23T10:56:07.965Z</updated>
     
     <summary type="html">
     
@@ -519,8 +521,8 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-orgf0a3f91&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;orgf0a3f91&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
+&lt;div id=&quot;outline-container-org4786fbe&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org4786fbe&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
 &lt;p&gt;
 &lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。
@@ -555,9 +557,11 @@ Babel augments Org-mode support for code blocks by providing:
     
       <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
     
-      <category term="source-code-tool" scheme="https://brantou.github.io/tags/source-code-tool/"/>
+      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
     
       <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
+    
+      <category term="元编程" scheme="https://brantou.github.io/tags/%E5%85%83%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   

@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="golang,race-detector,">
+  <meta name="keywords" content="golang,race-detector,go-tool-chain,">
 
 
 
@@ -107,10 +107,10 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
 
 
 
-Go 1.1引入竞态检测器，一个用于在Go代码中查找 Race conditions 的新工具。
+Go 1.1引入竞态探测器，一个用于在Go代码中查找 Race conditions 的新工具。
 它基于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang的竞态探测器">
+<meta property="og:title" content="Go的竞态探测器">
 <meta property="og:url" content="https://brantou.github.io/2017/05/19/go-race-detector/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="Race conditions 是最隐晦和难以捉摸的编程错误之一。
@@ -120,11 +120,11 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
 
 
 
-Go 1.1引入竞态检测器，一个用于在Go代码中查找 Race conditions 的新工具。
+Go 1.1引入竞态探测器，一个用于在Go代码中查找 Race conditions 的新工具。
 它基于">
-<meta property="og:updated_time" content="2017-05-23T10:35:47.629Z">
+<meta property="og:updated_time" content="2017-05-23T10:54:21.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Golang的竞态探测器">
+<meta name="twitter:title" content="Go的竞态探测器">
 <meta name="twitter:description" content="Race conditions 是最隐晦和难以捉摸的编程错误之一。
 通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
 Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
@@ -132,7 +132,7 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
 
 
 
-Go 1.1引入竞态检测器，一个用于在Go代码中查找 Race conditions 的新工具。
+Go 1.1引入竞态探测器，一个用于在Go代码中查找 Race conditions 的新工具。
 它基于">
 
 
@@ -167,7 +167,7 @@ Go 1.1引入竞态检测器，一个用于在Go代码中查找 Race conditions �
 
 
 
-  <title>Golang的竞态探测器 | Brantou的日常</title>
+  <title>Go的竞态探测器 | Brantou的日常</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -375,7 +375,7 @@ Go 1.1引入竞态检测器，一个用于在Go代码中查找 Race conditions �
 
         
         
-          <h2 class="post-title" itemprop="name headline">Golang的竞态探测器</h2>
+          <h2 class="post-title" itemprop="name headline">Go的竞态探测器</h2>
         
 
         <div class="post-meta">
@@ -471,14 +471,14 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
 </p>
 
 <p>
-Go 1.1引入竞态检测器，一个用于在Go代码中查找 <i>Race conditions</i> 的新工具。
+Go 1.1引入竞态探测器，一个用于在Go代码中查找 <i>Race conditions</i> 的新工具。
 它基于 <i>C/C++ ThreadSanitizer运行库</i> ，此库被用于检测Google内部代码库和Chromium中的许多错误。
 该技术于2012年9月与Go集成; 此后，它已经应用到了标准库中。
 它现在已经成为持续建设过程的一部分，在这些过程中，它们会随着时间的推移而捕捉到产生的 <i>Race conditions</i> 。
 </p>
 
-<div id="outline-container-orga1fec1e" class="outline-2">
-<h2 id="orga1fec1e"><span class="section-number-2">1</span> 工作原理</h2>
+<div id="outline-container-org09f2ec0" class="outline-2">
+<h2 id="org09f2ec0"><span class="section-number-2">1</span> 工作原理</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 竞态探测器集成在go工具链中。
@@ -496,8 +496,8 @@ Go 1.1引入竞态检测器，一个用于在Go代码中查找 <i>Race condition
 </div>
 </div>
 
-<div id="outline-container-org319b650" class="outline-2">
-<h2 id="org319b650"><span class="section-number-2">2</span> 使用</h2>
+<div id="outline-container-org38a671a" class="outline-2">
+<h2 id="org38a671a"><span class="section-number-2">2</span> 使用</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 竞态探测器与Go工具链完全集成。 要启用竞态检测器的情况下,构建代码，只需将 <i>-race</i> 标志添加到命令行：
@@ -508,11 +508,11 @@ Go 1.1引入竞态检测器，一个用于在Go代码中查找 <i>Race condition
 </div>
 </div>
 
-<div id="outline-container-orgf08c77e" class="outline-2">
-<h2 id="orgf08c77e"><span class="section-number-2">3</span> 示例</h2>
+<div id="outline-container-org24358fb" class="outline-2">
+<h2 id="org24358fb"><span class="section-number-2">3</span> 示例</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org85502e1" class="outline-3">
-<h3 id="org85502e1"><span class="section-number-3">3.1</span> Timer.Reset</h3>
+</div><div id="outline-container-org50b9eff" class="outline-3">
+<h3 id="org50b9eff"><span class="section-number-3">3.1</span> Timer.Reset</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 当前例子是竞态探测器发现的实际bug的简化版本。
@@ -585,8 +585,8 @@ exit status 66
 </div>
 </div>
 
-<div id="outline-container-org764fbe4" class="outline-3">
-<h3 id="org764fbe4"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
+<div id="outline-container-orgacaba06" class="outline-3">
+<h3 id="orgacaba06"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 ioutil包的 <i>Discard</i> 实现了接口 <i>io.Writer</i> , 但是忽略了所有写给它的数据。 可认为如 <i>dev/null 一般：发送你需要读取而不需要存储的数据的一个地方。
@@ -625,8 +625,8 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 </div>
 </div>
 
-<div id="outline-container-orge115932" class="outline-2">
-<h2 id="orge115932"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-orgab4ce62" class="outline-2">
+<h2 id="orgab4ce62"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 竞态探测器是检查并发程序正确性的强大工具。 它不会呈现虚假问题，所以请认真地对待。
@@ -638,7 +638,7 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-23 Tue 18:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -672,6 +672,8 @@ Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/Code
           
             <a href="/tags/race-detector/" rel="tag"># race-detector</a>
           
+            <a href="/tags/go-tool-chain/" rel="tag"># go-tool-chain</a>
+          
         </div>
       
 
@@ -683,8 +685,8 @@ Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/19/go-concurrency-patterns-context/" rel="next" title="Golang的并发模式：Context">
-                <i class="fa fa-chevron-left"></i> Golang的并发模式：Context
+              <a href="/2017/05/17/go-concurrency-patterns-pipelines/" rel="next" title="Golang的并发模式：管道和撤销">
+                <i class="fa fa-chevron-left"></i> Golang的并发模式：管道和撤销
               </a>
             
           </div>
@@ -692,6 +694,10 @@ Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/19/go-concurrency-patterns-context/" rel="prev" title="Golang的并发模式：Context">
+                Golang的并发模式：Context <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -837,7 +843,7 @@ Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -899,7 +905,7 @@ Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orga1fec1e"><span class="nav-text">1 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org319b650"><span class="nav-text">2 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf08c77e"><span class="nav-text">3 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org85502e1"><span class="nav-text">3.1 Timer.Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org764fbe4"><span class="nav-text">3.2 ioutil.Discard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge115932"><span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org09f2ec0"><span class="nav-text">1 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org38a671a"><span class="nav-text">2 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org24358fb"><span class="nav-text">3 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org50b9eff"><span class="nav-text">3.1 Timer.Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgacaba06"><span class="nav-text">3.2 ioutil.Discard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgab4ce62"><span class="nav-text">4 总结</span></a></li></ol></div>
             
 
           </div>

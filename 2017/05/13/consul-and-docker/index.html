@@ -430,7 +430,7 @@ sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0
 构造consul的docker集群
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -511,8 +511,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/14/interview-code/" rel="prev" title="Gopher面试中的Coding">
-                Gopher面试中的Coding <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/weekly-review-ending-2017-05-12/" rel="prev" title="一周回顾--2017-05-12">
+                一周回顾--2017-05-12 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,7 +639,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
