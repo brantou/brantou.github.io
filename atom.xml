@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-22T10:20:25.793Z</updated>
+  <updated>2017-05-23T05:28:49.593Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
     <id>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</id>
     <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-22T10:20:25.793Z</updated>
+    <updated>2017-05-23T05:28:49.593Z</updated>
     
     <summary type="html">
     
@@ -46,7 +46,7 @@
     <link href="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/"/>
     <id>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</id>
     <published>2017-05-16T16:00:00.000Z</published>
-    <updated>2017-05-21T08:11:43.897Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -74,7 +74,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-17T09:08:37.237Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -100,7 +100,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
     <id>https://brantou.github.io/2017/05/14/interview-code/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-15T15:09:26.242Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -125,7 +125,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/05/13/consul-and-docker/"/>
     <id>https://brantou.github.io/2017/05/13/consul-and-docker/</id>
     <published>2017-05-12T16:00:00.000Z</published>
-    <updated>2017-05-15T07:44:20.706Z</updated>
+    <updated>2017-05-23T05:28:49.585Z</updated>
     
     <summary type="html">
     
@@ -149,7 +149,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/04/14/org-column-view-tutorial/"/>
     <id>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</id>
     <published>2017-04-14T13:00:00.000Z</published>
-    <updated>2017-05-15T15:10:55.588Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -256,7 +256,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/09/org-lookups/"/>
     <id>https://brantou.github.io/2017/04/09/org-lookups/</id>
     <published>2017-04-08T16:00:00.000Z</published>
-    <updated>2017-05-15T15:11:24.542Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -297,7 +297,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/"/>
     <id>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</id>
     <published>2017-04-07T16:00:00.000Z</published>
-    <updated>2017-05-15T15:12:05.860Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -336,7 +336,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/"/>
     <id>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</id>
     <published>2017-04-05T16:00:00.000Z</published>
-    <updated>2017-05-15T15:11:44.918Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -481,7 +481,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
     <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
     <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-05-23T02:44:11.829Z</updated>
+    <updated>2017-05-23T05:28:49.585Z</updated>
     
     <summary type="html">
     
@@ -538,7 +538,7 @@ Babel augments Org-mode support for code blocks by providing:
     <link href="https://brantou.github.io/2017/03/21/just-try/"/>
     <id>https://brantou.github.io/2017/03/21/just-try/</id>
     <published>2017-03-20T16:00:00.000Z</published>
-    <updated>2017-04-25T15:41:38.688Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
@@ -566,7 +566,7 @@ org-mode我用了两年，却未曾深入。
     <link href="https://brantou.github.io/2017/03/11/org-syntax/"/>
     <id>https://brantou.github.io/2017/03/11/org-syntax/</id>
     <published>2017-03-10T16:00:00.000Z</published>
-    <updated>2017-05-23T02:30:07.544Z</updated>
+    <updated>2017-05-23T05:28:49.597Z</updated>
     
     <summary type="html">
     
