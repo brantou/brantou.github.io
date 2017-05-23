@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-23T07:30:52.995Z</updated>
+  <updated>2017-05-23T14:17:24.738Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go的竞态探测器</title>
+    <link href="https://brantou.github.io/2017/05/23/go-race-detector/"/>
+    <id>https://brantou.github.io/2017/05/23/go-race-detector/</id>
+    <published>2017-05-22T16:00:00.000Z</published>
+    <updated>2017-05-23T14:17:24.738Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
+通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
+Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
+需要谨慎，勤
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
+    
+      <category term="go-tool-chain" scheme="https://brantou.github.io/tags/go-tool-chain/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang的并发模式：Context</title>
@@ -38,36 +68,6 @@
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="context" scheme="https://brantou.github.io/tags/context/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的竞态探测器</title>
-    <link href="https://brantou.github.io/2017/05/19/go-race-detector/"/>
-    <id>https://brantou.github.io/2017/05/19/go-race-detector/</id>
-    <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-23T10:54:21.411Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
-通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
-Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
-需要谨慎，勤
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
-    
-      <category term="go-tool-chain" scheme="https://brantou.github.io/tags/go-tool-chain/"/>
     
   </entry>
   
