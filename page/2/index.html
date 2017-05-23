@@ -335,6 +335,207 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/01/babel-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/01/babel-intro/" itemprop="url">Babel: org-mode的元编程</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T00:00:00+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/01/babel-intro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/01/babel-intro/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>
+原文<a href="http://orgmode.org/worg/org-contrib/babel/intro.html" rel="external nofollow noopener noreferrer" target="_blank">Babel: Introduction</a>, 由 <b>Eric Schulte</b> ,  <b>Dan Davison</b>, <b>Tom Dye</b> 编辑，维护。本文只做学习之用。
+</p>
+</blockquote>
+
+<div id="outline-container-orgf0a3f91" class="outline-2">
+<h2 id="introduction"><a id="orgf0a3f91"></a><span class="section-number-2">1</span> 序言</h2>
+<div class="outline-text-2" id="text-introduction">
+<p>
+<b>Bable</b> 可让许多不同的语言工作一起。
+编程语言生活在自然语言的 <code>Org-mode</code> 文档的代码块之中。
+一个数据片段可从一个表格传递给一个 <code>Pythoh</code> 代码块，然后可能再转移到一个 <code>R</code> 代码块，
+最终以数据块被嵌入段落的中间而终结，或者通过 <code>gnuplot</code> 代码块生成图片嵌入在文档中。
+</p>
+
+<p>
+通过扩展 <a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">Org-mode</a>, 使其具有编辑,导出和执行源代码的功能, <b>Babel</b> 将 <code>Org-mode</code> 变成了文学编程和可重复性研究的工具。
+</p>
+
+<p>
+<b>Babel</b> 通过提供以下特性来增强 <a href="http://orgmode.org/manual/Literal-examples.html" rel="external nofollow noopener noreferrer" target="_blank">Org-mode对代码代码块的支持</a>:
+Babel augments Org-mode support for code blocks by providing:
+</p>
+
+<ul class="org-ul">
+<li>代码块的交互和执行结果导出</li>
+<li>代码块可像函数一样可参数化，引用其他代码块，可被远程调用</li>
+<li>拼接，导出源代码到文件支持文学编程。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/01/babel-intro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/11/org-syntax/">Org-mode的语法解读</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/07/hello-world/">Hello World</a></li>
+        
+        </ul>
+      
+    </footer>
+  </div></div></article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/just-try/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -920,7 +1121,7 @@ org-mode我用了两年，却未曾深入。
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -942,7 +1143,7 @@ org-mode我用了两年，却未曾深入。
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-23T05:28:49.593Z</updated>
+  <updated>2017-05-23T10:35:47.629Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -16,11 +16,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>golang的并发模式：Context</title>
+    <title>Golang的竞态探测器</title>
+    <link href="https://brantou.github.io/2017/05/19/go-race-detector/"/>
+    <id>https://brantou.github.io/2017/05/19/go-race-detector/</id>
+    <published>2017-05-18T16:00:00.000Z</published>
+    <updated>2017-05-23T10:35:47.629Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
+通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
+Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
+需要谨慎，勤
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang的并发模式：Context</title>
     <link href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
     <id>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</id>
     <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-23T05:28:49.593Z</updated>
+    <updated>2017-05-23T07:30:52.995Z</updated>
     
     <summary type="html">
     
@@ -96,11 +124,11 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
-    <title>面试中的Coding</title>
+    <title>Gopher面试中的Coding</title>
     <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
     <id>https://brantou.github.io/2017/05/14/interview-code/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-23T05:28:49.597Z</updated>
+    <updated>2017-05-23T06:05:36.006Z</updated>
     
     <summary type="html">
     

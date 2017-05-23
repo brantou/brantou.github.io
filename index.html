@@ -335,6 +335,343 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-race-detector/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/19/go-race-detector/" itemprop="url">Golang的竞态探测器</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T00:00:00+08:00">
+                2017-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/19/go-race-detector/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/19/go-race-detector/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+<i>Race conditions</i> 是最隐晦和难以捉摸的编程错误之一。
+通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
+Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
+需要谨慎，勤勉和测试。 工具很有帮助。
+</p>
+
+<p>
+Go 1.1引入竞态检测器，一个用于在Go代码中查找 <i>Race conditions</i> 的新工具。
+它基于 <i>C/C++ ThreadSanitizer运行库</i> ，此库被用于检测Google内部代码库和Chromium中的许多错误。
+该技术于2012年9月与Go集成; 此后，它已经应用到了标准库中。
+它现在已经成为持续建设过程的一部分，在这些过程中，它们会随着时间的推移而捕捉到产生的 <i>Race conditions</i> 。
+</p>
+
+<div id="outline-container-orga1fec1e" class="outline-2">
+<h2 id="orga1fec1e"><span class="section-number-2">1</span> 工作原理</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+竞态探测器集成在go工具链中。
+当设置了-race命令行标志时，编译器将使用访问内存的时间和方式的代码记录下来,用于设置所有内存访问，
+而运行时库会监视对共享变量的不同步访问。 当检测到这种“racy”行为时，会打印一个警告。
+</p>
+
+<p>
+由于其设计，竞态探测器只能在运行代码实际触发时才能检测到竞争条件，这意味着需要在真实的工作负载下运行启用探测器。
+然而，启用竞态探测的可执行文件可能使用十倍的CPU和内存，因此始终启用探测器是不切实际的。
+出于这个困境的一个办法是在启用竞态探测的情况下运行一些测试。
+负载测试和集成测试是很好的候选者，因为它们往往会执行代码的并发部分。
+另外的可选途径：生产工作负载环境中, 在运行的服务器池中, 部署单个启用竞态探测的实例。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org319b650" class="outline-2">
+<h2 id="org319b650"><span class="section-number-2">2</span> 使用</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+竞态探测器与Go工具链完全集成。 要启用竞态检测器的情况下,构建代码，只需将 <i>-race</i> 标志添加到命令行：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -race mypkg    // <span class="built_in">test</span> the package</span><br><span class="line">go run -race mysrc.go  // compile and run the program</span><br><span class="line">go build -race mycmd   // build the <span class="built_in">command</span></span><br><span class="line">go install -race mypkg // install the package</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf08c77e" class="outline-2">
+<h2 id="orgf08c77e"><span class="section-number-2">3</span> 示例</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org85502e1" class="outline-3">
+<h3 id="org85502e1"><span class="section-number-3">3.1</span> Timer.Reset</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+当前例子是竞态探测器发现的实际bug的简化版本。
+在使用定时器, 0到1秒的随机时间间隔之后打印消息。 打印过程反复进行了五秒钟。
+使用 <code>time.AfterFunc</code> 为第一条消息创建一个 <code>Timer</code> ，然后使用 <code>Reset</code> 方法调度下一条消息，每次都复用原有 <code>Timer</code> 。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  })</span><br><span class="line">  time.Sleep(<span class="number">5</span> * time.Second)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这似乎是合理的代码，但在某些情况下，它以令人惊讶的方式失败：
+</p>
+<pre class="example">
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x8 pc=0x41e38a]
+
+goroutine 4 [running]:
+time.stopTimer(0x8, 0x12fe6b35d9472d96)
+    src/pkg/runtime/ztime_linux_amd64.c:35 +0x25
+time.(*Timer).Reset(0x0, 0x4e5904f, 0x1)
+    src/pkg/time/sleep.go:81 +0x42
+main.func·001()
+    race.go:14 +0xe3
+created by time.goFunc
+    src/pkg/time/sleep.go:122 +0x48
+</pre>
+
+<p>
+发生了什么？ 启用竞态探测器的然后在运行一次：
+</p>
+<pre class="example">
+==================
+WARNING: DATA RACE
+Read at 0x00c420084018 by goroutine 7:
+  main.main.func1()
+      /tmp/babel-27165ee_/go-src-27165GUv.go:17 +0x17c
+
+Previous write at 0x00c420084018 by main goroutine:
+  main.main()
+      /tmp/babel-27165ee_/go-src-27165GUv.go:18 +0x17a
+
+Goroutine 7 (running) created at:
+  time.goFunc()
+      /home/parallels/.gvm/gos/go1.8/src/time/sleep.go:170 +0x51
+==================
+Found 1 data race(s)
+exit status 66
+</pre>
+
+<p>
+竞态探测器展示出问题根源：来自不同 <code>goroutines</code> 对变量 <i>t</i> 有不同步读和写。
+如果初始定时器时间间隔非常小，则定时器函数可能会在主 <code>goroutine</code> 赋值到 <i>t</i> 之前触发，因此对 <i>t.Reset</i> 的调用发生在 <i>nil</i> 上。
+</p>
+
+<p>
+修复这个 <i>race condition</i> 问题，可通过读写发生在一个 <code>goroutine</code> 中：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+主 <code>goroutine</code> 完全负责设置和重置定时器 <i>t</i> ，通过一个新的重置 <code>channel</code> 传达重置定时器的信号，然后以线程安全的方式重置定时器。
+</p>
+
+<p>
+最简单但不相对不那么高效的方式是<a href="http://play.golang.org/p/kuWTrY0pS4" rel="external nofollow noopener noreferrer" target="_blank">避免复用timer</a>。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org764fbe4" class="outline-3">
+<h3 id="org764fbe4"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+ioutil包的 <i>Discard</i> 实现了接口 <i>io.Writer</i> , 但是忽略了所有写给它的数据。 可认为如 <i>dev/null 一般：发送你需要读取而不需要存储的数据的一个地方。
+它通常与 /io.Copy</i> 一起使用，清空reader，如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">io.Copy(ioutil.Discard, reader)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+回到2011年7月，Go团队注意到，以这种方式使用Discard效率不高：Copy功能在每次调用时内部都会分配一个 <i>32kB</i> 的缓冲区，
+但是当与 <i>Discard</i> 一起使用时，缓冲区完全没必要，因为只是丢弃读取到的数据。
+他们认为这种惯用的复制和丢弃不应该那么昂贵。修复此问题的方式，就是给 <i>Writer</i> 实现方法 <i>ReadFrom</i>,如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">writer.ReadFrom(reader)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类型具有内部缓冲区，该缓冲区在其所有用户之间共享。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> blackHole [<span class="number">4096</span>]<span class="typename">byte</span> <span class="comment">// shared buffer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (devNull) ReadFrom(r io.Reader) (n <span class="typename">int64</span>, err error) {</span><br><span class="line">    readSize := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        readSize, err = r.Read(blackHole[:])</span><br><span class="line">        n += <span class="typename">int64</span>(readSize)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">if</span> err == io.EOF {</span><br><span class="line">                <span class="keyword">return</span> n, <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这次修复依旧没能解决问题，因为用户自定义的 /Reader/，可能在读的过程中，执行写操作，这个时候共享的缓冲区就造成数据污染。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &#36825;&#37324;&#30340;p&#23601;&#26159;&#20195;&#34920;&#30340;&#23601;&#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+最终还是通过为每次使用的 <i>ioutil.Discard</i> 添加唯一的缓冲区，来消除共享缓冲区的 <i>Race condition</i> 。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge115932" class="outline-2">
+<h2 id="orge115932"><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+竞态探测器是检查并发程序正确性的强大工具。 它不会呈现虚假问题，所以请认真地对待。
+</p>
+
+<p>
+还在等什么？现在就对你的代码运行“go test -race”吧！
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-23 Tue 18:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
+        
+        </ul>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -354,7 +691,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/19/go-concurrency-patterns-context/" itemprop="url">golang的并发模式：Context</a></h2>
+                <a class="post-title-link" href="/2017/05/19/go-concurrency-patterns-context/" itemprop="url">Golang的并发模式：Context</a></h2>
         
 
         <div class="post-meta">
@@ -451,8 +788,8 @@
 该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" rel="external nofollow noopener noreferrer" target="_blank">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
 </p>
 
-<div id="outline-container-org921e0c9" class="outline-2">
-<h2 id="org921e0c9"><span class="section-number-2">1</span> context</h2>
+<div id="outline-container-orgf6604b5" class="outline-2">
+<h2 id="orgf6604b5"><span class="section-number-2">1</span> context</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>)：
@@ -488,8 +825,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7b61186" class="outline-2">
-<h2 id="org7b61186"><span class="section-number-2">2</span> Context的衍生</h2>
+<div id="outline-container-org840d05b" class="outline-2">
+<h2 id="org840d05b"><span class="section-number-2">2</span> Context的衍生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
@@ -528,16 +865,16 @@
 </div>
 </div>
 
-<div id="outline-container-org8ac570c" class="outline-2">
-<h2 id="org8ac570c"><span class="section-number-2">3</span> Context使用的简单示例</h2>
+<div id="outline-container-org5174b31" class="outline-2">
+<h2 id="org5174b31"><span class="section-number-2">3</span> Context使用的简单示例</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
 这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>。
 </p>
 </div>
-<div id="outline-container-org87a78fe" class="outline-3">
-<h3 id="org87a78fe"><span class="section-number-3">3.1</span> WithCancel</h3>
+<div id="outline-container-org8a0e887" class="outline-3">
+<h3 id="org8a0e887"><span class="section-number-3">3.1</span> WithCancel</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <i>WithCancel</i> 的示例, 演示如何使用可取消 <i>context</i> 来防止 <code>goroutine</code> 泄漏。
@@ -549,8 +886,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6fdc3d6" class="outline-3">
-<h3 id="org6fdc3d6"><span class="section-number-3">3.2</span> WithDeadline</h3>
+<div id="outline-container-org8eae11d" class="outline-3">
+<h3 id="org8eae11d"><span class="section-number-3">3.2</span> WithDeadline</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 <i>WithDeadline</i> 的示例,通过一个截止日期的 <i>Context</i> 来告知一个阻塞的函数，一旦它到了最终期限，就放弃它的工作。
@@ -561,8 +898,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8f4eef7" class="outline-3">
-<h3 id="org8f4eef7"><span class="section-number-3">3.3</span> Withtimeount</h3>
+<div id="outline-container-org1be0191" class="outline-3">
+<h3 id="org1be0191"><span class="section-number-3">3.3</span> Withtimeount</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <i>WithTimeount</i> 的示例, 传递具有超时的 <i>Context</i> 以告知阻塞函数，它将在超时过后丢弃其工作。
@@ -573,8 +910,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge43aabb" class="outline-3">
-<h3 id="orge43aabb"><span class="section-number-3">3.4</span> WithValue</h3>
+<div id="outline-container-orgf572dcf" class="outline-3">
+<h3 id="orgf572dcf"><span class="section-number-3">3.4</span> WithValue</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 <i>WithValue</i> 的简单示例代码：
@@ -586,8 +923,8 @@
 </div>
 </div>
 
-<div id="outline-container-org766f820" class="outline-2">
-<h2 id="org766f820"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
+<div id="outline-container-orgb087121" class="outline-2">
+<h2 id="orgb087121"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
@@ -604,8 +941,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </ul>
 </div>
 
-<div id="outline-container-orgc10457b" class="outline-3">
-<h3 id="orgc10457b"><span class="section-number-3">4.1</span> server</h3>
+<div id="outline-container-org1cbb899" class="outline-3">
+<h3 id="org1cbb899"><span class="section-number-3">4.1</span> server</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
@@ -640,8 +977,8 @@ timeout参数告诉服务器在该时间过去之后取消请求。
 </div>
 </div>
 
-<div id="outline-container-orgeb6f9ac" class="outline-3">
-<h3 id="orgeb6f9ac"><span class="section-number-3">4.2</span> userip</h3>
+<div id="outline-container-org3747fe4" class="outline-3">
+<h3 id="org3747fe4"><span class="section-number-3">4.2</span> userip</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
@@ -680,8 +1017,8 @@ NewContext返回一个带有userIP的新Context：
 </div>
 </div>
 
-<div id="outline-container-org387d1d0" class="outline-3">
-<h3 id="org387d1d0"><span class="section-number-3">4.3</span> google</h3>
+<div id="outline-container-org7e63af1" class="outline-3">
+<h3 id="org7e63af1"><span class="section-number-3">4.3</span> google</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
@@ -714,8 +1051,8 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 </div>
 </div>
 
-<div id="outline-container-orge697c88" class="outline-2">
-<h2 id="orge697c88"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
+<div id="outline-container-orgaae9955" class="outline-2">
+<h2 id="orgaae9955"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 许多服务器框架提供用于承载请求范围值的包和类型。
@@ -736,8 +1073,8 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-<div id="outline-container-org5555363" class="outline-2">
-<h2 id="org5555363"><span class="section-number-2">6</span> 总结</h2>
+<div id="outline-container-orgc0950ef" class="outline-2">
+<h2 id="orgc0950ef"><span class="section-number-2">6</span> 总结</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
@@ -752,7 +1089,7 @@ Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.Wa
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -788,9 +1125,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-race-detector/">Golang的竞态探测器</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">面试中的Coding</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -1333,9 +1672,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">golang的并发模式：Context</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">面试中的Coding</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-race-detector/">Golang的竞态探测器</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -1794,7 +2135,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">面试中的Coding</a></h2>
+                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
         
 
         <div class="post-meta">
@@ -1886,11 +2227,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 分三步阐述出来：问题描述，解题思路，实际编程。
 </p>
 
-<div id="outline-container-org9f6e8a7" class="outline-2">
-<h2 id="org9f6e8a7"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div id="outline-container-orgdb367e0" class="outline-2">
+<h2 id="orgdb367e0"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org9b89643" class="outline-3">
-<h3 id="org9b89643"><span class="section-number-3">1.1</span> 问题描述</h3>
+</div><div id="outline-container-org5451f94" class="outline-3">
+<h3 id="org5451f94"><span class="section-number-3">1.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
@@ -1898,8 +2239,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org8afed9e" class="outline-3">
-<h3 id="org8afed9e"><span class="section-number-3">1.2</span> 解题思路</h3>
+<div id="outline-container-org967c8f1" class="outline-3">
+<h3 id="org967c8f1"><span class="section-number-3">1.2</span> 解题思路</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
@@ -1907,8 +2248,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-orgba901c3" class="outline-3">
-<h3 id="orgba901c3"><span class="section-number-3">1.3</span> 实际编码</h3>
+<div id="outline-container-org0961417" class="outline-3">
+<h3 id="org0961417"><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
@@ -1924,11 +2265,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-orgd95b3bd" class="outline-2">
-<h2 id="orgd95b3bd"><span class="section-number-2">2</span> 随机抽奖</h2>
+<div id="outline-container-org948b700" class="outline-2">
+<h2 id="org948b700"><span class="section-number-2">2</span> 随机抽奖</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org33b9d80" class="outline-3">
-<h3 id="org33b9d80"><span class="section-number-3">2.1</span> 问题描述</h3>
+</div><div id="outline-container-org8482e6b" class="outline-3">
+<h3 id="org8482e6b"><span class="section-number-3">2.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用户随机抽奖，数据结构如下所示：
@@ -1938,8 +2279,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-org4b830f0" class="outline-3">
-<h3 id="org4b830f0"><span class="section-number-3">2.2</span> 解决思路</h3>
+<div id="outline-container-orgc927846" class="outline-3">
+<h3 id="orgc927846"><span class="section-number-3">2.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
@@ -1947,8 +2288,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-orga5acb3f" class="outline-3">
-<h3 id="orga5acb3f"><span class="section-number-3">2.3</span> 实际编码</h3>
+<div id="outline-container-orgd93ee05" class="outline-3">
+<h3 id="orgd93ee05"><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1969,11 +2310,11 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-orgd39b684" class="outline-2">
-<h2 id="orgd39b684"><span class="section-number-2">3</span> 权重抽奖</h2>
+<div id="outline-container-org44916aa" class="outline-2">
+<h2 id="org44916aa"><span class="section-number-2">3</span> 权重抽奖</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org8ee6c37" class="outline-3">
-<h3 id="org8ee6c37"><span class="section-number-3">3.1</span> 问题描述</h3>
+</div><div id="outline-container-org0f66277" class="outline-3">
+<h3 id="org0f66277"><span class="section-number-3">3.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
@@ -1983,8 +2324,8 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-org86862b4" class="outline-3">
-<h3 id="org86862b4"><span class="section-number-3">3.2</span> 解决思路</h3>
+<div id="outline-container-orgcc28ce5" class="outline-3">
+<h3 id="orgcc28ce5"><span class="section-number-3">3.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
@@ -1993,8 +2334,8 @@ user: a, award count: 159
 </p>
 </div>
 </div>
-<div id="outline-container-orgd149b86" class="outline-3">
-<h3 id="orgd149b86"><span class="section-number-3">3.3</span> 实际编码</h3>
+<div id="outline-container-orgb168527" class="outline-3">
+<h3 id="orgb168527"><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -2015,17 +2356,17 @@ user: a, award count: 1099
 </div>
 </div>
 </div>
-<div id="outline-container-orge1600a9" class="outline-2">
-<h2 id="orge1600a9"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-org409625e" class="outline-2">
+<h2 id="org409625e"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-问题一来自 <i>方付通</i> , 侧重于语言特性；问题二三来自 <i>ezbuy</i> ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
+问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
 我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
 </p>
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -2061,7 +2402,9 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">golang的并发模式：Context</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-race-detector/">Golang的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
         
@@ -3149,207 +3492,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/01/babel-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/01/babel-intro/" itemprop="url">Babel: org-mode的元编程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T00:00:00+08:00">
-                2017-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/01/babel-intro/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/01/babel-intro/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-contrib/babel/intro.html" rel="external nofollow noopener noreferrer" target="_blank">Babel: Introduction</a>, 由 <b>Eric Schulte</b> ,  <b>Dan Davison</b>, <b>Tom Dye</b> 编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-orgf0a3f91" class="outline-2">
-<h2 id="introduction"><a id="orgf0a3f91"></a><span class="section-number-2">1</span> 序言</h2>
-<div class="outline-text-2" id="text-introduction">
-<p>
-<b>Bable</b> 可让许多不同的语言工作一起。
-编程语言生活在自然语言的 <code>Org-mode</code> 文档的代码块之中。
-一个数据片段可从一个表格传递给一个 <code>Pythoh</code> 代码块，然后可能再转移到一个 <code>R</code> 代码块，
-最终以数据块被嵌入段落的中间而终结，或者通过 <code>gnuplot</code> 代码块生成图片嵌入在文档中。
-</p>
-
-<p>
-通过扩展 <a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">Org-mode</a>, 使其具有编辑,导出和执行源代码的功能, <b>Babel</b> 将 <code>Org-mode</code> 变成了文学编程和可重复性研究的工具。
-</p>
-
-<p>
-<b>Babel</b> 通过提供以下特性来增强 <a href="http://orgmode.org/manual/Literal-examples.html" rel="external nofollow noopener noreferrer" target="_blank">Org-mode对代码代码块的支持</a>:
-Babel augments Org-mode support for code blocks by providing:
-</p>
-
-<ul class="org-ul">
-<li>代码块的交互和执行结果导出</li>
-<li>代码块可像函数一样可参数化，引用其他代码块，可被远程调用</li>
-<li>拼接，导出源代码到文件支持文学编程。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/01/babel-intro/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-      
-        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
-        <ul class="related-posts">
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/11/org-syntax/">Org-mode的语法解读</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/07/hello-world/">Hello World</a></li>
-        
-        </ul>
-      
-    </footer>
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3397,7 +3539,7 @@ Babel augments Org-mode support for code blocks by providing:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3419,7 +3561,7 @@ Babel augments Org-mode support for code blocks by providing:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
