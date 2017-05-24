@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="golang,">
+  <meta name="keywords" content="golang,test-cover,">
 
 
 
@@ -100,25 +100,52 @@
 
 
 
-<meta name="description" content="从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述">
+<meta name="description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+
+
+
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU gcov 在二进制文件中设置执行分支断点。
+当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
+
+
+
+这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gopher面试中的Coding">
-<meta property="og:url" content="https://brantou.github.io/2017/05/14/interview-code/index.html">
+<meta property="og:title" content="Go的测试覆盖率">
+<meta property="og:url" content="https://brantou.github.io/2017/05/24/go-cover-story/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述">
-<meta property="og:updated_time" content="2017-05-23T06:05:36.006Z">
+<meta property="og:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+
+
+
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU gcov 在二进制文件中设置执行分支断点。
+当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
+
+
+
+这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta property="og:image" content="https://brantou.github.io/images/go-test-cover-set.png">
+<meta property="og:image" content="https://brantou.github.io/images/go-test-cover-count.png">
+<meta property="og:updated_time" content="2017-05-24T14:18:28.021Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gopher面试中的Coding">
-<meta name="twitter:description" content="从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述">
+<meta name="twitter:title" content="Go的测试覆盖率">
+<meta name="twitter:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+
+
+
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU gcov 在二进制文件中设置执行分支断点。
+当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
+
+
+
+这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta name="twitter:image" content="https://brantou.github.io/images/go-test-cover-set.png">
 
 
 
@@ -146,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/05/14/interview-code/">
+  <link rel="canonical" href="https://brantou.github.io/2017/05/24/go-cover-story/">
 
 
 
 
 
-  <title>Gopher面试中的Coding | Brantou的日常</title>
+  <title>Go的测试覆盖率 | Brantou的日常</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -343,7 +370,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -360,7 +387,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Gopher面试中的Coding</h2>
+          <h2 class="post-title" itemprop="name headline">Go的测试覆盖率</h2>
         
 
         <div class="post-meta">
@@ -372,8 +399,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
-                2017-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
               </time>
             
 
@@ -395,8 +422,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
                   </a>
                 </span>
 
@@ -414,8 +441,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
+                <a href="/2017/05/24/go-cover-story/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-cover-story/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -449,152 +476,237 @@
         
 
 <p>
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述，解题思路，实际编程。
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
 </p>
 
-<div id="outline-container-org5d9ff4a" class="outline-2">
-<h2 id="org5d9ff4a"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<p>
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU <a href="http://gcc.gnu.org/onlinedocs/gcc/Gcov.html" rel="external nofollow noopener noreferrer" target="_blank">gcov</a> 在二进制文件中设置执行分支断点。
+当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
+</p>
+
+<p>
+这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方式工作。但它有问题。
+由于分析二进制文件的执行是很困难的，所以很难实现。
+它还需要将执行跟踪绑定回源代码的可靠方法，这也可能是困难的。
+那里的问题包括不正确的调试信息和诸如内联功能的问题, 使分析变得复杂。
+最重要的是，这种方法非常不具有可移植性。
+对于每个机器架构需要重新编写，在某种程度上,可能对于每个操作系统都需要重新编写，因为从系统到系统的调试支持差异很大。
+</p>
+
+<p>
+<i>Go 1.2</i> 的发布引入了一个 <i>test coverage</i> 的新工具，
+它采用了一种不寻常的方式来生成覆盖率统计数据，这种方法建立在Godoc的技术的基础上。
+</p>
+
+<div id="outline-container-org1d10a0f" class="outline-2">
+<h2 id="org1d10a0f"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org0331436" class="outline-3">
-<h3 id="org0331436"><span class="section-number-3">1.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-1-1">
 <p>
-使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
-另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
+对于Go的新测试覆盖工具，采取了一种避免动态调试的不同方法。
+想法很简单：在编译之前重写包的源代码，以埋点，编译和运行修改的源，并转储统计信息。
+重写很容易编排，因为 <i>go的工具链</i> 控制从源到测试到执行的整个流程。
 </p>
-</div>
-</div>
-<div id="outline-container-org64403d4" class="outline-3">
-<h3 id="org64403d4"><span class="section-number-3">1.2</span> 解题思路</h3>
-<div class="outline-text-3" id="text-1-2">
+
 <p>
-问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
-数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
+示例代码如下：
 </p>
-</div>
-</div>
-<div id="outline-container-org2c8f52d" class="outline-3">
-<h3 id="org2c8f52d"><span class="section-number-3">1.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-代码执行结果:
+测试代码如下：
 </p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> {</span><br><span class="line">    in  <span class="typename">int</span></span><br><span class="line">    out <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tests = []Test{</span><br><span class="line">    {-<span class="number">1</span>, <span class="string">"negative"</span>},</span><br><span class="line">    {<span class="number">5</span>, <span class="string">"small"</span>},</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestSize(t *testing.T) {</span><br><span class="line">    <span class="keyword">for</span> i, test := <span class="keyword">range</span> tests {</span><br><span class="line">        size := Size(test.in)</span><br><span class="line">        <span class="keyword">if</span> size != test.out {</span><br><span class="line">            t.Errorf(<span class="string">"#%d: Size(%d)=%s; want %s"</span>, i, test.in, size, test.out)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+执行代码覆盖率测试如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -cover</span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+</div>
+
 <pre class="example">
-12AB34CD56EF78GH910IJ
+PASS
+coverage: 42.9% of statements
+ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
+/home/parallels/program/org/github-pages/source/_posts
 
 </pre>
+
+<p>
+启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+上面示例的每个可执行部分用赋值语句进行注解，赋值语句用于在运行时做统计。
+计数器与 <i>cover</i> 工具生成的第二个只读数据结构记录的语句的原始源位置相关联。
+测试运行完成后，收集计数器，通过查看设置的数量的来计算百分比。
+</p>
+
+<p>
+虽然分配注解看起来可能很昂贵，但是它被编译为单个“移动”指令。 因此，其运行时开销不大，运行典型（或更实际）测试时只增加约3％开销。
+这使得把测试覆盖率作为标准开发流程的一部分是合情合理的。
+</p>
 </div>
 </div>
-</div>
-<div id="outline-container-orga72266a" class="outline-2">
-<h2 id="orga72266a"><span class="section-number-2">2</span> 随机抽奖</h2>
+
+<div id="outline-container-orgbbc8893" class="outline-2">
+<h2 id="orgbbc8893"><span class="section-number-2">2</span> 查看结果</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org216dc7e" class="outline-3">
-<h3 id="org216dc7e"><span class="section-number-3">2.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-2-1">
 <p>
-用户随机抽奖，数据结构如下所示：
+上面的例子的测试覆盖率很差。 为了探索具体为什么，需要 <i>go test</i> 写一个 <i>coverage profile</i> ，
+这是一个保存收集的统计信息的文件，以便能详细地研究覆盖的细节。
+这很容易做：使用 <i>-coverprofile</i> 标志来指定输出的文件：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&#20013;&#65292;key&#20195;&#34920;&#21517;&#31216;&#65292;value&#20195;&#34920;&#25104;&#20132;&#21333;&#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org977dc03" class="outline-3">
-<h3 id="org977dc03"><span class="section-number-3">2.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
-把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org1aa718f" class="outline-3">
-<h3 id="org1aa718f"><span class="section-number-3">2.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -coverprofile=size_coverage.out</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-代码执行结果：
+注： <i>-coverprofile</i> 标志自动设置 <i>-cover</i> 来启用覆盖率分析。
 </p>
-<pre class="example">
-user: f, award count: 178
-user: d, award count: 152
-user: b, award count: 159
-user: e, award count: 182
-user: c, award count: 170
-user: a, award count: 159
 
-</pre>
+<p>
+测试与以前一样运行，但结果保存在文件中。 要研究它们，需要运行 <i>test coverage tool</i> 。
+一开始，可以要求 <i>覆盖率</i> 按函数分解，虽然在当前情况下没有太多意义，因为只有一个函数：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -func=size_coverage.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+查看的更有趣的方式是获取 <i>覆盖率信息注释的源代码</i> 的HTML展示。 该显示由 <i>-html</i> 标志调用：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -html=size_coverage.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+运行此命令时，浏览器将弹出窗口，已覆盖（绿色），未覆盖（红色）和 未埋点（灰色）。 下面是一个屏幕截图：
+</p>
+<img src="/images/go-test-cover-set.png">
+
+
+<p>
+有了这个信息页，问题变得很明显：上面忽略了几个 <i>case</i> 的测试！
+可以准确地看出具体是哪一个，这样可以轻松地提高的测试覆盖率。
+</p>
 </div>
 </div>
-</div>
-<div id="outline-container-orga956a03" class="outline-2">
-<h2 id="orga956a03"><span class="section-number-2">3</span> 权重抽奖</h2>
+
+<div id="outline-container-org2cd23e7" class="outline-2">
+<h2 id="org2cd23e7"><span class="section-number-2">3</span> 热力图</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org77d27d5" class="outline-3">
-<h3 id="org77d27d5"><span class="section-number-3">3.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-3-1">
 <p>
-数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
+源代码级方式来测试覆盖率的一大优点在于，可以很容易用不同的方式对代码进行埋点处理。
+例如，不仅可以检测是否已执行了一个语句，而且还可以查询执行了多少次。
+</p>
+
+<p>
+<i>go test</i> 命令接受 <i>-covermode</i> 标志将覆盖模式设置为三种设置之一：
+</p>
+<ul class="org-ul">
+<li>set: 每个语句是否执行？</li>
+<li>count: 每个语句执行了几次？</li>
+<li>atomic: 类似于 <i>count</i>, 但表示的是并行程序中的精确计数</li>
+</ul>
+
+
+<p>
+<i>set</i> 是默认设置，上面示例已经看到了。
+只有运行并行算法需要精确的计数时，才需要进行 <i>atomic</i> 设置。
+它使用来自 sync/atomic 包的原子操作，这可能会相当昂贵。
+然而，对于大多数情况， <i>count</i> 模式工作正常，并且像默认设置模式一样非常快。
+</p>
+
+<p>
+下面来试试一个标准包， <i>fmt</i> 格式化包语句执行的计数。
+进行测试并写出 <i>coverage profile</i>  ，以便能够很好地进行信息的呈现。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&#20013;&#65292;key&#20195;&#34920;&#21517;&#31216;&#65292;value&#20195;&#34920;&#25104;&#20132;&#21333;&#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org24d7419" class="outline-3">
-<h3 id="org24d7419"><span class="section-number-3">3.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
-理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
-把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org83faa31" class="outline-3">
-<h3 id="org83faa31"><span class="section-number-3">3.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -covermode=count -coverprofile=../src/cover/count.out fmt</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-代码执行结果：
+这比以前的例子好的测试覆盖率。 （覆盖率不受覆盖模式的影响）可以显示函数细节：
 </p>
-<pre class="example">
-user: c, award count: 1667
-user: f, award count: 3310
-user: e, award count: 1099
-user: d, award count: 2276
-user: b, award count: 549
-user: a, award count: 1099
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -func=../src/cover/count.out</span><br></pre></td></tr></table></figure>
+</div>
 
-</pre>
+<p>
+HTML输出产生了巨大的回报：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -html=../src/cover/count.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>pad</i> 函数如下所示：
+</p>
+<img src="/images/go-test-cover-count.png">
+
+<p>
+注意绿色的强度是如何变化。 最明亮的绿色的代表较高的执行数; 较少灰暗的绿色代表较低的执行数。
+甚至可以将鼠标悬停在语句上，以便在弹出的 <i>tool tip</i> 中提示实际计数。
+<i>test coverage</i> 产生了关于函数执行的大量信息，在分析中很有用的信息。
+</p>
 </div>
 </div>
-</div>
-<div id="outline-container-orga10a395" class="outline-2">
-<h2 id="orga10a395"><span class="section-number-2">4</span> 总结</h2>
+
+<div id="outline-container-org291b9cd" class="outline-2">
+<h2 id="org291b9cd"><span class="section-number-2">4</span> 基础块</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
-我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
+你可能已经注意到，上一个示例中/ 有关于闭合大括号中间的行的计数/ 不是你所期望的那样。 这是因为一直以来 <i>test coverage</i> 都不是一个不精确的科学。
+</p>
+
+<p>
+这里发生的很值得解释。 我们希望覆盖注解由程序中的分支划分，当二进制文件在传统方法中被调用时，它们是分开的。
+不过，通过重写源代码很难做到这一点，因为分支没有明确展示在源代码中。
+</p>
+
+<p>
+覆盖注解的作用是是埋点，通常由大括号来限定。
+一般来说，使之工作正常是非常困难的。
+所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
+</p>
+
+<p>
+公平来说，即使gcov在这里也有麻烦。 该工具使机制正确，但呈现是基于行的，因此可能会错过一些细微差别。
 </p>
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+<div id="outline-container-orgc33a829" class="outline-2">
+<h2 id="orgc33a829"><span class="section-number-2">5</span> 总结</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+这是关于 <i>Go 1.2 test coverage</i> 故事。
+具有有趣实现的新工具不仅可以实现测试覆盖率的统计，而且易于解释，甚至可以提取 <i>profile</i> 信息。
+</p>
+
+<p>
+测试是软件开发和的重要组成部分，/test coverage/ 为测试策略添加一个简单的标准。 走向前， <i>test</i> 和 <i>cover</i> 。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-24 Wed 22:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -626,6 +738,8 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
           
             <a href="/tags/golang/" rel="tag"># golang</a>
           
+            <a href="/tags/test-cover/" rel="tag"># test-cover</a>
+          
         </div>
       
 
@@ -637,8 +751,8 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/14/weekly-review-ending-2017-05-12/" rel="next" title="一周回顾--2017-05-12">
-                <i class="fa fa-chevron-left"></i> 一周回顾--2017-05-12
+              <a href="/2017/05/24/go-http-trace/" rel="next" title="Go的HTTP tracing">
+                <i class="fa fa-chevron-left"></i> Go的HTTP tracing
               </a>
             
           </div>
@@ -646,10 +760,6 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/17/go-concurrency-patterns-pipelines/" rel="prev" title="Golang的并发模式：管道和撤销">
-                Golang的并发模式：管道和撤销 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,8 +773,6 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
-        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
@@ -672,6 +780,8 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -861,7 +971,7 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org5d9ff4a"><span class="nav-text">1 交替打印数字和字母</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org0331436"><span class="nav-text">1.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org64403d4"><span class="nav-text">1.2 解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2c8f52d"><span class="nav-text">1.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga72266a"><span class="nav-text">2 随机抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org216dc7e"><span class="nav-text">2.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org977dc03"><span class="nav-text">2.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1aa718f"><span class="nav-text">2.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga956a03"><span class="nav-text">3 权重抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org77d27d5"><span class="nav-text">3.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org24d7419"><span class="nav-text">3.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org83faa31"><span class="nav-text">3.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga10a395"><span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org1d10a0f"><span class="nav-text">1 Go的测试覆盖率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbbc8893"><span class="nav-text">2 查看结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2cd23e7"><span class="nav-text">3 热力图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org291b9cd"><span class="nav-text">4 基础块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc33a829"><span class="nav-text">5 总结</span></a></li></ol></div>
             
 
           </div>
@@ -1035,7 +1145,7 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
 		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/14/interview-code/"});
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/24/go-cover-story/"});
 		
 
 		(function() {

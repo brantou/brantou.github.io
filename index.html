@@ -335,6 +335,403 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-cover-story/" itemprop="url">Go的测试覆盖率</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-cover-story/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-cover-story/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+</p>
+
+<p>
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU <a href="http://gcc.gnu.org/onlinedocs/gcc/Gcov.html" rel="external nofollow noopener noreferrer" target="_blank">gcov</a> 在二进制文件中设置执行分支断点。
+当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
+</p>
+
+<p>
+这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方式工作。但它有问题。
+由于分析二进制文件的执行是很困难的，所以很难实现。
+它还需要将执行跟踪绑定回源代码的可靠方法，这也可能是困难的。
+那里的问题包括不正确的调试信息和诸如内联功能的问题, 使分析变得复杂。
+最重要的是，这种方法非常不具有可移植性。
+对于每个机器架构需要重新编写，在某种程度上,可能对于每个操作系统都需要重新编写，因为从系统到系统的调试支持差异很大。
+</p>
+
+<p>
+<i>Go 1.2</i> 的发布引入了一个 <i>test coverage</i> 的新工具，
+它采用了一种不寻常的方式来生成覆盖率统计数据，这种方法建立在Godoc的技术的基础上。
+</p>
+
+<div id="outline-container-org1d10a0f" class="outline-2">
+<h2 id="org1d10a0f"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+对于Go的新测试覆盖工具，采取了一种避免动态调试的不同方法。
+想法很简单：在编译之前重写包的源代码，以埋点，编译和运行修改的源，并转储统计信息。
+重写很容易编排，因为 <i>go的工具链</i> 控制从源到测试到执行的整个流程。
+</p>
+
+<p>
+示例代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+测试代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> {</span><br><span class="line">    in  <span class="typename">int</span></span><br><span class="line">    out <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tests = []Test{</span><br><span class="line">    {-<span class="number">1</span>, <span class="string">"negative"</span>},</span><br><span class="line">    {<span class="number">5</span>, <span class="string">"small"</span>},</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestSize(t *testing.T) {</span><br><span class="line">    <span class="keyword">for</span> i, test := <span class="keyword">range</span> tests {</span><br><span class="line">        size := Size(test.in)</span><br><span class="line">        <span class="keyword">if</span> size != test.out {</span><br><span class="line">            t.Errorf(<span class="string">"#%d: Size(%d)=%s; want %s"</span>, i, test.in, size, test.out)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+执行代码覆盖率测试如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -cover</span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+PASS
+coverage: 42.9% of statements
+ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
+/home/parallels/program/org/github-pages/source/_posts
+
+</pre>
+
+<p>
+启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+上面示例的每个可执行部分用赋值语句进行注解，赋值语句用于在运行时做统计。
+计数器与 <i>cover</i> 工具生成的第二个只读数据结构记录的语句的原始源位置相关联。
+测试运行完成后，收集计数器，通过查看设置的数量的来计算百分比。
+</p>
+
+<p>
+虽然分配注解看起来可能很昂贵，但是它被编译为单个“移动”指令。 因此，其运行时开销不大，运行典型（或更实际）测试时只增加约3％开销。
+这使得把测试覆盖率作为标准开发流程的一部分是合情合理的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbc8893" class="outline-2">
+<h2 id="orgbbc8893"><span class="section-number-2">2</span> 查看结果</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+上面的例子的测试覆盖率很差。 为了探索具体为什么，需要 <i>go test</i> 写一个 <i>coverage profile</i> ，
+这是一个保存收集的统计信息的文件，以便能详细地研究覆盖的细节。
+这很容易做：使用 <i>-coverprofile</i> 标志来指定输出的文件：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -coverprofile=size_coverage.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+注： <i>-coverprofile</i> 标志自动设置 <i>-cover</i> 来启用覆盖率分析。
+</p>
+
+<p>
+测试与以前一样运行，但结果保存在文件中。 要研究它们，需要运行 <i>test coverage tool</i> 。
+一开始，可以要求 <i>覆盖率</i> 按函数分解，虽然在当前情况下没有太多意义，因为只有一个函数：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -func=size_coverage.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+查看的更有趣的方式是获取 <i>覆盖率信息注释的源代码</i> 的HTML展示。 该显示由 <i>-html</i> 标志调用：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -html=size_coverage.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+运行此命令时，浏览器将弹出窗口，已覆盖（绿色），未覆盖（红色）和 未埋点（灰色）。 下面是一个屏幕截图：
+</p>
+<img src="/images/go-test-cover-set.png">
+
+
+<p>
+有了这个信息页，问题变得很明显：上面忽略了几个 <i>case</i> 的测试！
+可以准确地看出具体是哪一个，这样可以轻松地提高的测试覆盖率。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2cd23e7" class="outline-2">
+<h2 id="org2cd23e7"><span class="section-number-2">3</span> 热力图</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+源代码级方式来测试覆盖率的一大优点在于，可以很容易用不同的方式对代码进行埋点处理。
+例如，不仅可以检测是否已执行了一个语句，而且还可以查询执行了多少次。
+</p>
+
+<p>
+<i>go test</i> 命令接受 <i>-covermode</i> 标志将覆盖模式设置为三种设置之一：
+</p>
+<ul class="org-ul">
+<li>set: 每个语句是否执行？</li>
+<li>count: 每个语句执行了几次？</li>
+<li>atomic: 类似于 <i>count</i>, 但表示的是并行程序中的精确计数</li>
+</ul>
+
+
+<p>
+<i>set</i> 是默认设置，上面示例已经看到了。
+只有运行并行算法需要精确的计数时，才需要进行 <i>atomic</i> 设置。
+它使用来自 sync/atomic 包的原子操作，这可能会相当昂贵。
+然而，对于大多数情况， <i>count</i> 模式工作正常，并且像默认设置模式一样非常快。
+</p>
+
+<p>
+下面来试试一个标准包， <i>fmt</i> 格式化包语句执行的计数。
+进行测试并写出 <i>coverage profile</i>  ，以便能够很好地进行信息的呈现。
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -covermode=count -coverprofile=../src/cover/count.out fmt</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这比以前的例子好的测试覆盖率。 （覆盖率不受覆盖模式的影响）可以显示函数细节：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -func=../src/cover/count.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+HTML输出产生了巨大的回报：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -html=../src/cover/count.out</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+<i>pad</i> 函数如下所示：
+</p>
+<img src="/images/go-test-cover-count.png">
+
+<p>
+注意绿色的强度是如何变化。 最明亮的绿色的代表较高的执行数; 较少灰暗的绿色代表较低的执行数。
+甚至可以将鼠标悬停在语句上，以便在弹出的 <i>tool tip</i> 中提示实际计数。
+<i>test coverage</i> 产生了关于函数执行的大量信息，在分析中很有用的信息。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org291b9cd" class="outline-2">
+<h2 id="org291b9cd"><span class="section-number-2">4</span> 基础块</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+你可能已经注意到，上一个示例中/ 有关于闭合大括号中间的行的计数/ 不是你所期望的那样。 这是因为一直以来 <i>test coverage</i> 都不是一个不精确的科学。
+</p>
+
+<p>
+这里发生的很值得解释。 我们希望覆盖注解由程序中的分支划分，当二进制文件在传统方法中被调用时，它们是分开的。
+不过，通过重写源代码很难做到这一点，因为分支没有明确展示在源代码中。
+</p>
+
+<p>
+覆盖注解的作用是是埋点，通常由大括号来限定。
+一般来说，使之工作正常是非常困难的。
+所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
+</p>
+
+<p>
+公平来说，即使gcov在这里也有麻烦。 该工具使机制正确，但呈现是基于行的，因此可能会错过一些细微差别。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc33a829" class="outline-2">
+<h2 id="orgc33a829"><span class="section-number-2">5</span> 总结</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+这是关于 <i>Go 1.2 test coverage</i> 故事。
+具有有趣实现的新工具不仅可以实现测试覆盖率的统计，而且易于解释，甚至可以提取 <i>profile</i> 信息。
+</p>
+
+<p>
+测试是软件开发和的重要组成部分，/test coverage/ 为测试策略添加一个简单的标准。 走向前， <i>test</i> 和 <i>cover</i> 。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-24 Wed 22:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
+        
+        </ul>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-http-trace/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -569,6 +966,8 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
@@ -908,6 +1307,8 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
@@ -1385,6 +1786,8 @@ Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
@@ -1935,6 +2338,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
@@ -2244,6 +2649,8 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
       
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
@@ -3275,187 +3682,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/08/org-spreadsheet-lisp-formulas/" itemprop="url">在Org-mode的电子表格中使用elisp公式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T00:00:00+08:00">
-                2017-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/08/org-spreadsheet-lisp-formulas/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/08/org-spreadsheet-lisp-formulas/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-tutorials/org-spreadsheet-lisp-formulas.html" rel="external nofollow noopener noreferrer" target="_blank">Org as a spreadsheet system: using Emacs lisp as formulas</a>, 由 <b>Bastien</b>  编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-org9a4b3c3" class="outline-2">
-<h2 id="org9a4b3c3">序言</h2>
-<div class="outline-text-2" id="text-org9a4b3c3">
-<p>
-本教程介绍如何在Org表中使用Emacs Lisp作为公式。
-如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读<a href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/">这个教程</a>。
-还可以查看有关此主题的<a href="http://orgmode.org/manual/The-spreadsheet.html#The-spreadsheet" rel="external nofollow noopener noreferrer" target="_blank">完整Org文档</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/08/org-spreadsheet-lisp-formulas/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-      
-        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
-        <ul class="related-posts">
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
-        
-        </ul>
-      
-    </footer>
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3503,7 +3729,7 @@ ITEM for the headline title
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3525,7 +3751,7 @@ ITEM for the headline title
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
