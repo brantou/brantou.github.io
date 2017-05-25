@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/05/24/go-array-slice-string/</loc>
+        <lastmod>2017-05-25T16:03:47.025Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
+        <lastmod>2017-05-25T14:26:37.667Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/24/go-cover-story/</loc>
-        <lastmod>2017-05-24T14:18:28.021Z</lastmod>
+        <lastmod>2017-05-25T08:59:02.418Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -41,14 +57,6 @@
     <url>
         <loc>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</loc>
         <lastmod>2017-05-23T07:30:52.995Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
-        <lastmod>2017-05-23T06:05:36.006Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

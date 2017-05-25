@@ -4,8 +4,50 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/05/24/go-array-slice-string/</loc>
+    <lastmod>2017-05-25T16:03:47.025Z</lastmod>
+    <data>
+        <display>
+        <title>数组，切片：‘append’的机制</title>
+        <pubTime>2017-05-24T03:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>slice</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
+    <lastmod>2017-05-25T14:26:37.667Z</lastmod>
+    <data>
+        <display>
+        <title>Gopher面试中的Coding</title>
+        <pubTime>2017-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/05/24/go-cover-story/</loc>
-    <lastmod>2017-05-24T14:18:28.021Z</lastmod>
+    <lastmod>2017-05-25T08:59:02.418Z</lastmod>
     <data>
         <display>
         <title>Go的测试覆盖率</title>
@@ -13,7 +55,9 @@
         
         <tag>golang</tag>
          
-        <tag>test-cover</tag>
+        <tag>测试覆盖率</tag>
+         
+        <tag>test</tag>
          
          
            
@@ -117,50 +161,6 @@
            
              
               <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
-    <lastmod>2017-05-23T06:05:36.006Z</lastmod>
-    <data>
-        <display>
-        <title>Gopher面试中的Coding</title>
-        <pubTime>2017-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>golang</tag>
-         
-         
-           
-             
-              <breadCrumb title="code" url="https://brantou.github.io/categories/code/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode手册</title>
-        <pubTime>2017-03-20T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>manual</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>
@@ -333,6 +333,30 @@
            
              
               <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode手册</title>
+        <pubTime>2017-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>manual</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>

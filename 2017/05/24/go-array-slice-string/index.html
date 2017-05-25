@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="golang,slice,">
 
 
 
@@ -100,15 +100,64 @@
 
 
 
-<meta name="description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Brantou的日常">
-<meta property="og:url" content="https://brantou.github.io/tags/org-mode/index.html">
+<meta name="description" content="编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+
+
+固定的size，还是可变的size?
+size是类型的一部分吗?
+多维数组看起来是什么样子的？
+空数组代表了什么含义？
+
+
+
+
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+
+
+
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组，切片：‘append’的机制">
+<meta property="og:url" content="https://brantou.github.io/2017/05/24/go-array-slice-string/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
+<meta property="og:description" content="编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+
+
+固定的size，还是可变的size?
+size是类型的一部分吗?
+多维数组看起来是什么样子的？
+空数组代表了什么含义？
+
+
+
+
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+
+
+
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时">
+<meta property="og:updated_time" content="2017-05-25T16:03:47.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brantou的日常">
-<meta name="twitter:description" content="The best time to plant a tree was 20 years ago. The second best time is now.">
+<meta name="twitter:title" content="数组，切片：‘append’的机制">
+<meta name="twitter:description" content="编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+
+
+固定的size，还是可变的size?
+size是类型的一部分吗?
+多维数组看起来是什么样子的？
+空数组代表了什么含义？
+
+
+
+
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+
+
+
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时">
 
 
 
@@ -136,13 +185,13 @@
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/tags/org-mode/">
+  <link rel="canonical" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
 
 
 
 
 
-  <title>标签: org-mode | Brantou的日常</title>
+  <title>数组，切片：‘append’的机制 | Brantou的日常</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -187,7 +236,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -323,172 +372,427 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>org-mode<small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/14/org-column-view-tutorial/" itemprop="url">
-              
-                <span itemprop="name">Org-mode的列视图简明教程</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-14T21:00:00+08:00" content="2017-04-14">
-          04-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/09/org-lookups/" itemprop="url">
-              
-                <span itemprop="name">Org-mode表查找功能的简明教程</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-09T00:00:00+08:00" content="2017-04-09">
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/06/org-spreadsheet-intro/" itemprop="url">
-              
-                <span itemprop="name">Org-mode的电子表格的简明教程</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-06T00:00:00+08:00" content="2017-04-06">
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/01/babel-intro/" itemprop="url">
-              
-                <span itemprop="name">Babel: org-mode的元编程</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-01T00:00:00+08:00" content="2017-04-01">
-          04-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/21/just-try/" itemprop="url">
-              
-                <span itemprop="name">Org-mode手册</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-03-21T00:00:00+08:00" content="2017-03-21">
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/org-syntax/" itemprop="url">
-              
-                <span itemprop="name">Org-mode的语法解读</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-03-11T00:00:00+08:00" content="2017-03-11">
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数组，切片：‘append’的机制</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+<p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+</p>
+<ul class="org-ul">
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
+</ul>
+
+
+<p>
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+</p>
+
+<p>
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
+</p>
+
+<p>
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
+</p>
+
+<div id="outline-container-org339b8ea" class="outline-2">
+<h2 id="org339b8ea"><span class="section-number-2">1</span> 数组</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+数组是Go中的重要组成部分，但像建筑的基础一样，它们通常隐藏在更可见的组件之下。
+这里先简要介绍一下它们，然后再继续讨论 <i>切片</i> 更有趣，强大和突出的特性。
+</p>
+
+<p>
+数组在Go程序中不常见，因为数组的大小是其类型的一部分，这限制了其表达力。
+</p>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+该声明声明了变量 <i>buffer</i> ，其中包含256个字节。
+缓冲区的类型包括其大小 <i>[256]byte</i> 。 512字节的数组将是 <i>[512]byte</i> , 是不同的类型。
+</p>
+
+<p>
+与数组关联的数据就是这样的：一个元素数组。 显然， <i>buffer</i> 在内存中看起来像这样，
+</p>
+<pre class="example">
+buffer: byte byte byte ... 256 times ... byte byte byte
+</pre>
+
+<p>
+也就是说，变量除了保存256字节的数据之外,没有其他的。 可以使用熟悉的索引语法，
+buffer[0]，buffer[1]等一直到buffer[255]来访问它的元素。 （索引范围0到255涵盖256个元素）
+尝试使用超出该范围的值对buffer进行索引时，会导致程序崩溃。
+</p>
+
+<p>
+内置的函数 <i>len</i> ，它返回数组和 <i>切片</i> 以及其他一些数据类型的元素个数。
+对于数组，len返回是很清楚明确的。 在上面的例子中， <i>len(buffer)</i> 返回固定值256。
+</p>
+
+<p>
+数组有特定的使用场景 &#x2013; 矩阵变换就是很好的例子 - 但是在Go中最常通常的用途就是用作一个 <i>切片</i> 的存储空间。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0224432" class="outline-2">
+<h2 id="org0224432"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+切片是很容易使用，但是要很好地使用它们，必须明确了解它是什么以及它能做什么。
+</p>
+
+<p>
+切片是描述与切片变量本身分开存储的数组连续部分的数据结构。
+切片不是数组。 切片描述一个数组的一个片段。
+</p>
+
+<p>
+给定上一节的 <i>buffer</i> 数组变量，可以通过对数组进行切片来创建描述元素100到150
+（确切地说，包括100到149）的切片：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice []<span class="typename">byte</span> = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+变量 <i>slice</i> 具有类型 <i>[]byte</i> ，读作 <i>slice of bytes</i> ，
+并被初始化为数组从元素100（包括）到150（排他）的切片。
+更惯用的语法，删除类型，由初始化表达式来设置类型：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+在函数中可使用更短的声明形式：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这个 <i>slice</i> 变量究竟是什么？ 这不完全是一个完整的故事，
+但是现在可把切片看作一个有两个元素的小数据结构：一个长度和一个指向数组元素的指针。
+你可想到，其实幕后就是如此构造：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> sliceHeader <span class="keyword">struct</span> {</span><br><span class="line">    Length        <span class="typename">int</span></span><br><span class="line">    ZerothElement *<span class="typename">byte</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">50</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">100</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+当然这只是一个示例。 尽管这段代码片段已表明 <i>sliceHeader</i> 结构对程序员是不可见的，
+元素指针的类型取决于元素的类型，但这给出了机制的共同之处。
+</p>
+
+<p>
+当目前为止只做了数组的切片操作，但是切片上也可作切片操作：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+像以前一样，这个操作创建一个新的切片，在这种情况下，原始切片的元素5到9（包括），意味着原始阵列的元素105到109。
+slice2变量的底层sliceHeader结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := sliceHeader{</span><br><span class="line">    Length:        <span class="number">5</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">105</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+注：此 <i>header</i> 仍然指向相同的底层数组，存储在 <i>buffer</i> 变量中。
+</p>
+
+<p>
+也可以二次切片，也就是说切片并将结果存储回原来的切片结构。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+经过上面的二次切片，slice变量的sliceHeader结构与slice2变量的一样。
+可能会经常看到二次切片，例如截断切片。 此语句删除了我们的切片的第一个和最后一个元素：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">1</span>:<span class="built_in">len</span>(slice)-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+经过上面的而且切片后， <i>sliceHeader</i> 如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">  Length:        <span class="number">3</span>,</span><br><span class="line">  ZerothElement: &amp;buffer[<span class="number">104</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+你会经常听到有经验的Go程序员谈论 <i>slice header</i> ，因为它真的是存储在切片变量中。
+例如，当你调用将切片作为参数的函数（如bytes.IndexRune）时，该 <i>header</i> 就是传递给该函数的参数。
+在下面调用中， <i>slice</i> 是入参，但事实上却是 <i>slice header</i> 。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slashPos := bytes.IndexRune(slice, <span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+在 <i>slice header</i> 中还有一个数据项，会在下面讨论，但首先看看当你使用 <i>slice</i> 编程时， <i>slice header</i> 的存在意味着什么。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71dc172" class="outline-2">
+<h2 id="org71dc172"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
+</div>
+
+Last Updated 2017-05-26 Fri 00:03.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+            <a href="/tags/slice/" rel="tag"># slice</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/24/go-cover-story/" rel="next" title="Go的测试覆盖率">
+                <i class="fa fa-chevron-left"></i> Go的测试覆盖率
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+        </ul>
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -496,6 +800,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -515,8 +825,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400" alt="Brantou">
           <p class="site-author-name" itemprop="name">Brantou</p>
@@ -603,6 +922,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org339b8ea"><span class="nav-text">1 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0224432"><span class="nav-text">2 切片: slice header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org71dc172"><span class="nav-text">3 切片作为函数的入参</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -743,6 +1078,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -766,6 +1105,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/24/go-array-slice-string/"});
 		
 
 		(function() {

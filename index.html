@@ -335,6 +335,352 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+</p>
+<ul class="org-ul">
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
+</ul>
+
+
+<p>
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+</p>
+
+<p>
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
+</p>
+
+<p>
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
+</p>
+
+<div id="outline-container-org339b8ea" class="outline-2">
+<h2 id="org339b8ea"><span class="section-number-2">1</span> 数组</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+数组是Go中的重要组成部分，但像建筑的基础一样，它们通常隐藏在更可见的组件之下。
+这里先简要介绍一下它们，然后再继续讨论 <i>切片</i> 更有趣，强大和突出的特性。
+</p>
+
+<p>
+数组在Go程序中不常见，因为数组的大小是其类型的一部分，这限制了其表达力。
+</p>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+该声明声明了变量 <i>buffer</i> ，其中包含256个字节。
+缓冲区的类型包括其大小 <i>[256]byte</i> 。 512字节的数组将是 <i>[512]byte</i> , 是不同的类型。
+</p>
+
+<p>
+与数组关联的数据就是这样的：一个元素数组。 显然， <i>buffer</i> 在内存中看起来像这样，
+</p>
+<pre class="example">
+buffer: byte byte byte ... 256 times ... byte byte byte
+</pre>
+
+<p>
+也就是说，变量除了保存256字节的数据之外,没有其他的。 可以使用熟悉的索引语法，
+buffer[0]，buffer[1]等一直到buffer[255]来访问它的元素。 （索引范围0到255涵盖256个元素）
+尝试使用超出该范围的值对buffer进行索引时，会导致程序崩溃。
+</p>
+
+<p>
+内置的函数 <i>len</i> ，它返回数组和 <i>切片</i> 以及其他一些数据类型的元素个数。
+对于数组，len返回是很清楚明确的。 在上面的例子中， <i>len(buffer)</i> 返回固定值256。
+</p>
+
+<p>
+数组有特定的使用场景 &#x2013; 矩阵变换就是很好的例子 - 但是在Go中最常通常的用途就是用作一个 <i>切片</i> 的存储空间。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0224432" class="outline-2">
+<h2 id="org0224432"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+切片是很容易使用，但是要很好地使用它们，必须明确了解它是什么以及它能做什么。
+</p>
+
+<p>
+切片是描述与切片变量本身分开存储的数组连续部分的数据结构。
+切片不是数组。 切片描述一个数组的一个片段。
+</p>
+
+<p>
+给定上一节的 <i>buffer</i> 数组变量，可以通过对数组进行切片来创建描述元素100到150
+（确切地说，包括100到149）的切片：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice []<span class="typename">byte</span> = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+变量 <i>slice</i> 具有类型 <i>[]byte</i> ，读作 <i>slice of bytes</i> ，
+并被初始化为数组从元素100（包括）到150（排他）的切片。
+更惯用的语法，删除类型，由初始化表达式来设置类型：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+在函数中可使用更短的声明形式：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这个 <i>slice</i> 变量究竟是什么？ 这不完全是一个完整的故事，
+但是现在可把切片看作一个有两个元素的小数据结构：一个长度和一个指向数组元素的指针。
+你可想到，其实幕后就是如此构造：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> sliceHeader <span class="keyword">struct</span> {</span><br><span class="line">    Length        <span class="typename">int</span></span><br><span class="line">    ZerothElement *<span class="typename">byte</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">50</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">100</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+当然这只是一个示例。 尽管这段代码片段已表明 <i>sliceHeader</i> 结构对程序员是不可见的，
+元素指针的类型取决于元素的类型，但这给出了机制的共同之处。
+</p>
+
+<p>
+当目前为止只做了数组的切片操作，但是切片上也可作切片操作：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+像以前一样，这个操作创建一个新的切片，在这种情况下，原始切片的元素5到9（包括），意味着原始阵列的元素105到109。
+slice2变量的底层sliceHeader结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := sliceHeader{</span><br><span class="line">    Length:        <span class="number">5</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">105</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+注：此 <i>header</i> 仍然指向相同的底层数组，存储在 <i>buffer</i> 变量中。
+</p>
+
+<p>
+也可以二次切片，也就是说切片并将结果存储回原来的切片结构。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+经过上面的二次切片，slice变量的sliceHeader结构与slice2变量的一样。
+可能会经常看到二次切片，例如截断切片。 此语句删除了我们的切片的第一个和最后一个元素：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">1</span>:<span class="built_in">len</span>(slice)-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+经过上面的而且切片后， <i>sliceHeader</i> 如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">  Length:        <span class="number">3</span>,</span><br><span class="line">  ZerothElement: &amp;buffer[<span class="number">104</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+你会经常听到有经验的Go程序员谈论 <i>slice header</i> ，因为它真的是存储在切片变量中。
+例如，当你调用将切片作为参数的函数（如bytes.IndexRune）时，该 <i>header</i> 就是传递给该函数的参数。
+在下面调用中， <i>slice</i> 是入参，但事实上却是 <i>slice header</i> 。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slashPos := bytes.IndexRune(slice, <span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+在 <i>slice header</i> 中还有一个数据项，会在下面讨论，但首先看看当你使用 <i>slice</i> 编程时， <i>slice header</i> 的存在意味着什么。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71dc172" class="outline-2">
+<h2 id="org71dc172"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
+</div>
+
+Last Updated 2017-05-26 Fri 00:03.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
+        
+        </ul>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -464,8 +810,8 @@
 它采用了一种不寻常的方式来生成覆盖率统计数据，这种方法建立在Godoc的技术的基础上。
 </p>
 
-<div id="outline-container-org1d10a0f" class="outline-2">
-<h2 id="org1d10a0f"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
+<div id="outline-container-org2f4cacf" class="outline-2">
+<h2 id="org2f4cacf"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 对于Go的新测试覆盖工具，采取了一种避免动态调试的不同方法。
@@ -522,8 +868,8 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 </div>
 </div>
 
-<div id="outline-container-orgbbc8893" class="outline-2">
-<h2 id="orgbbc8893"><span class="section-number-2">2</span> 查看结果</h2>
+<div id="outline-container-orgcc2c0d2" class="outline-2">
+<h2 id="orgcc2c0d2"><span class="section-number-2">2</span> 查看结果</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 上面的例子的测试覆盖率很差。 为了探索具体为什么，需要 <i>go test</i> 写一个 <i>coverage profile</i> ，
@@ -566,8 +912,8 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 </div>
 </div>
 
-<div id="outline-container-org2cd23e7" class="outline-2">
-<h2 id="org2cd23e7"><span class="section-number-2">3</span> 热力图</h2>
+<div id="outline-container-org70e9f50" class="outline-2">
+<h2 id="org70e9f50"><span class="section-number-2">3</span> 热力图</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 源代码级方式来测试覆盖率的一大优点在于，可以很容易用不同的方式对代码进行埋点处理。
@@ -626,8 +972,8 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-<div id="outline-container-org291b9cd" class="outline-2">
-<h2 id="org291b9cd"><span class="section-number-2">4</span> 基础块</h2>
+<div id="outline-container-org0987391" class="outline-2">
+<h2 id="org0987391"><span class="section-number-2">4</span> 基础块</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 你可能已经注意到，上一个示例中/ 有关于闭合大括号中间的行的计数/ 不是你所期望的那样。 这是因为一直以来 <i>test coverage</i> 都不是一个不精确的科学。
@@ -656,8 +1002,8 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-<div id="outline-container-orgc33a829" class="outline-2">
-<h2 id="orgc33a829"><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-orgd49f431" class="outline-2">
+<h2 id="orgd49f431"><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这是关于 <i>Go 1.2 test coverage</i> 故事。
@@ -670,7 +1016,7 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-Last Updated 2017-05-24 Wed 22:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -706,6 +1052,8 @@ Last Updated 2017-05-24 Wed 22:18.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
@@ -713,8 +1061,6 @@ Last Updated 2017-05-24 Wed 22:18.<br>Render by <a href="https://github.com/Code
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -969,13 +1315,13 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -1310,13 +1656,13 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -1789,13 +2135,13 @@ Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -2340,13 +2686,13 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
         
         </ul>
       
@@ -2418,8 +2764,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
                   </a>
                 </span>
 
@@ -2475,11 +2821,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 分三步阐述出来：问题描述，解题思路，实际编程。
 </p>
 
-<div id="outline-container-org5d9ff4a" class="outline-2">
-<h2 id="org5d9ff4a"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div id="outline-container-orgebfae46" class="outline-2">
+<h2 id="orgebfae46"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-org0331436" class="outline-3">
-<h3 id="org0331436"><span class="section-number-3">1.1</span> 问题描述</h3>
+</div><div id="outline-container-orga24e2f8" class="outline-3">
+<h3 id="orga24e2f8"><span class="section-number-3">1.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
@@ -2487,8 +2833,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org64403d4" class="outline-3">
-<h3 id="org64403d4"><span class="section-number-3">1.2</span> 解题思路</h3>
+<div id="outline-container-orgf7bfc31" class="outline-3">
+<h3 id="orgf7bfc31"><span class="section-number-3">1.2</span> 解题思路</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
@@ -2496,11 +2842,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org2c8f52d" class="outline-3">
-<h3 id="org2c8f52d"><span class="section-number-3">1.3</span> 实际编码</h3>
+<div id="outline-container-org2b17a7b" class="outline-3">
+<h3 id="org2b17a7b"><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -2513,11 +2859,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-orga72266a" class="outline-2">
-<h2 id="orga72266a"><span class="section-number-2">2</span> 随机抽奖</h2>
+<div id="outline-container-orgb0e5ceb" class="outline-2">
+<h2 id="orgb0e5ceb"><span class="section-number-2">2</span> 随机抽奖</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org216dc7e" class="outline-3">
-<h3 id="org216dc7e"><span class="section-number-3">2.1</span> 问题描述</h3>
+</div><div id="outline-container-org0f7c7b2" class="outline-3">
+<h3 id="org0f7c7b2"><span class="section-number-3">2.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用户随机抽奖，数据结构如下所示：
@@ -2527,8 +2873,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-org977dc03" class="outline-3">
-<h3 id="org977dc03"><span class="section-number-3">2.2</span> 解决思路</h3>
+<div id="outline-container-org4e4797a" class="outline-3">
+<h3 id="org4e4797a"><span class="section-number-3">2.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
@@ -2536,8 +2882,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org1aa718f" class="outline-3">
-<h3 id="org1aa718f"><span class="section-number-3">2.3</span> 实际编码</h3>
+<div id="outline-container-orgca6e361" class="outline-3">
+<h3 id="orgca6e361"><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -2558,11 +2904,11 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-orga956a03" class="outline-2">
-<h2 id="orga956a03"><span class="section-number-2">3</span> 权重抽奖</h2>
+<div id="outline-container-org7b1c11c" class="outline-2">
+<h2 id="org7b1c11c"><span class="section-number-2">3</span> 权重抽奖</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org77d27d5" class="outline-3">
-<h3 id="org77d27d5"><span class="section-number-3">3.1</span> 问题描述</h3>
+</div><div id="outline-container-org82c740e" class="outline-3">
+<h3 id="org82c740e"><span class="section-number-3">3.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
@@ -2572,8 +2918,8 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-org24d7419" class="outline-3">
-<h3 id="org24d7419"><span class="section-number-3">3.2</span> 解决思路</h3>
+<div id="outline-container-orgd86680a" class="outline-3">
+<h3 id="orgd86680a"><span class="section-number-3">3.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
@@ -2582,8 +2928,8 @@ user: a, award count: 159
 </p>
 </div>
 </div>
-<div id="outline-container-org83faa31" class="outline-3">
-<h3 id="org83faa31"><span class="section-number-3">3.3</span> 实际编码</h3>
+<div id="outline-container-org50fc75c" class="outline-3">
+<h3 id="org50fc75c"><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -2604,8 +2950,8 @@ user: a, award count: 1099
 </div>
 </div>
 </div>
-<div id="outline-container-orga10a395" class="outline-2">
-<h2 id="orga10a395"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-orgb4367be" class="outline-2">
+<h2 id="orgb4367be"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
@@ -2614,7 +2960,7 @@ user: a, award count: 1099
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-25 Thu 22:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -2652,13 +2998,13 @@ Last Updated 2017-05-23 Tue 14:05.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/19/go-concurrency-patterns-context/">Golang的并发模式：Context</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/17/go-concurrency-patterns-pipelines/">Golang的并发模式：管道和撤销</a></li>
         
         </ul>
       
@@ -3501,187 +3847,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/09/org-lookups/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/09/org-lookups/" itemprop="url">Org-mode表查找功能的简明教程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T00:00:00+08:00">
-                2017-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/09/org-lookups/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/09/org-lookups/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-tutorials/org-lookups.html" rel="external nofollow noopener noreferrer" target="_blank">Org tutorial on table lookup functions</a>, 由 <b>Jarmo Hurri</b>  编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-org8a47483" class="outline-2">
-<h2 id="org8a47483">序言</h2>
-<div class="outline-text-2" id="text-org8a47483">
-<p>
-<code>Org</code> 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
-这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
-以下示例将有助于开始使用这些功能。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/09/org-lookups/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-      
-        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
-        <ul class="related-posts">
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
-        
-        </ul>
-      
-    </footer>
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3729,7 +3894,7 @@ ITEM for the headline title
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3751,7 +3916,7 @@ ITEM for the headline title
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
