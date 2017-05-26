@@ -436,10 +436,7 @@
 
       
         
-          
-            
-
-<p>
+          <p>
 编程语言最常见的特征之一是数组的概念。
 数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
 </p>
@@ -465,187 +462,13 @@
 <p>
 在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
 </p>
-
-<div id="outline-container-org07d5451" class="outline-2">
-<h2 id="org07d5451"><span class="section-number-2">1</span> 数组</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-数组是Go中的重要组成部分，但像建筑的基础一样，它们通常隐藏在更可见的组件之下。
-这里先简要介绍一下它们，然后再继续讨论 <i>切片</i> 更有趣，强大和突出的特性。
-</p>
-
-<p>
-数组在Go程序中不常见，因为数组的大小是其类型的一部分，这限制了其表达力。
-</p>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-该声明声明了变量 <i>buffer</i> ，其中包含256个字节。
-缓冲区的类型包括其大小 <i>[256]byte</i> 。 512字节的数组将是 <i>[512]byte</i> , 是不同的类型。
-</p>
-
-<p>
-与数组关联的数据就是这样的：一个元素数组。 显然， <i>buffer</i> 在内存中看起来像这样，
-</p>
-<pre class="example">
-buffer: byte byte byte ... 256 times ... byte byte byte
-</pre>
-
-<p>
-也就是说，变量除了保存256字节的数据之外,没有其他的。 可以使用熟悉的索引语法，
-buffer[0]，buffer[1]等一直到buffer[255]来访问它的元素。 （索引范围0到255涵盖256个元素）
-尝试使用超出该范围的值对buffer进行索引时，会导致程序崩溃。
-</p>
-
-<p>
-内置的函数 <i>len</i> ，它返回数组和 <i>切片</i> 以及其他一些数据类型的元素个数。
-对于数组，len返回是很清楚明确的。 在上面的例子中， <i>len(buffer)</i> 返回固定值256。
-</p>
-
-<p>
-数组有特定的使用场景 &#x2013; 矩阵变换就是很好的例子 - 但是在Go中最常通常的用途就是用作一个 <i>切片</i> 的存储空间。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org6383370" class="outline-2">
-<h2 id="org6383370"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
-<div class="outline-text-2" id="text-2">
-<p>
-切片是很容易使用，但是要很好地使用它们，必须明确了解它是什么以及它能做什么。
-</p>
-
-<p>
-切片是描述与切片变量本身分开存储的数组连续部分的数据结构。
-切片不是数组。 切片描述一个数组的一个片段。
-</p>
-
-<p>
-给定上一节的 <i>buffer</i> 数组变量，可以通过对数组进行切片来创建描述元素100到150
-（确切地说，包括100到149）的切片：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice []<span class="typename">byte</span> = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-变量 <i>slice</i> 具有类型 <i>[]byte</i> ，读作 <i>slice of bytes</i> ，
-并被初始化为数组从元素100（包括）到150（排他）的切片。
-更惯用的语法，删除类型，由初始化表达式来设置类型：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> slice = buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-在函数中可使用更短的声明形式：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := buffer[<span class="number">100</span>:<span class="number">150</span>]</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-这个 <i>slice</i> 变量究竟是什么？ 这不完全是一个完整的故事，
-但是现在可把切片看作一个有两个元素的小数据结构：一个长度和一个指向数组元素的指针。
-你可想到，其实幕后就是如此构造：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> sliceHeader <span class="keyword">struct</span> {</span><br><span class="line">    Length        <span class="typename">int</span></span><br><span class="line">    ZerothElement *<span class="typename">byte</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">50</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">100</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-当然这只是一个示例。 尽管这段代码片段已表明 <i>sliceHeader</i> 结构对程序员是不可见的，
-元素指针的类型取决于元素的类型，但这给出了机制的共同之处。
-</p>
-
-<p>
-当目前为止只做了数组的切片操作，但是切片上也可作切片操作：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-像以前一样，这个操作创建一个新的切片，在这种情况下，原始切片的元素5到9（包括），意味着原始阵列的元素105到109。
-slice2变量的底层sliceHeader结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := sliceHeader{</span><br><span class="line">    Length:        <span class="number">5</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">105</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-注：此 <i>header</i> 仍然指向相同的底层数组，存储在 <i>buffer</i> 变量中。
-</p>
-
-<p>
-也可以二次切片，也就是说切片并将结果存储回原来的切片结构。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">5</span>:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-经过上面的二次切片，slice变量的sliceHeader结构与slice2变量的一样。
-可能会经常看到二次切片，例如截断切片。 此语句删除了我们的切片的第一个和最后一个元素：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice = slice[<span class="number">1</span>:<span class="built_in">len</span>(slice)-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-经过上面的而且切片后， <i>sliceHeader</i> 如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">  Length:        <span class="number">3</span>,</span><br><span class="line">  ZerothElement: &amp;buffer[<span class="number">104</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-你会经常听到有经验的Go程序员谈论 <i>slice header</i> ，因为它真的是存储在切片变量中。
-例如，当你调用将切片作为参数的函数（如bytes.IndexRune）时，该 <i>header</i> 就是传递给该函数的参数。
-在下面调用中， <i>slice</i> 是入参，但事实上却是 <i>slice header</i> 。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slashPos := bytes.IndexRune(slice, <span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-在 <i>slice header</i> 中还有一个数据项，会在下面讨论，但首先看看当你使用 <i>slice</i> 编程时， <i>slice header</i> 的存在意味着什么。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org3526a53" class="outline-2">
-<h2 id="org3526a53"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-很重要的一点，一个slice包含一个指针，但它本身就是一个值。
-是一个保存指针和长度的结构体的值, 不是指向结构体的指针。
-</p>
-
-<p>
-当在前面的例子中调用 <i>IndexRune</i> 时，传递了一个 <i>slice header</i> 的副本。 这样的方式有重要的副作用。
-</p>
-
-<p>
-思考下面这个简单的函数：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> AddOneToEachElement(slice []<span class="typename">byte</span>) {</span><br><span class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> slice {</span><br><span class="line">        slice[i]++</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-迭代一个切片的索引（使用范围循环），增加其元素。 调用如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(slice); i++ {</span><br><span class="line">    slice[i] = <span class="typename">byte</span>(i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(<span class="string">"before"</span>, slice)</span><br><span class="line">  AddOneToEachElement(slice)</span><br><span class="line">  fmt.Println(<span class="string">"after"</span>, slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-Last Updated 2017-05-26 Fri 10:24.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

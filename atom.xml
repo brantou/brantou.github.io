@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-26T02:24:39.071Z</updated>
+  <updated>2017-05-26T16:18:31.919Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -20,20 +20,36 @@
     <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
     <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
     <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-26T02:24:39.071Z</updated>
+    <updated>2017-05-26T16:18:31.919Z</updated>
     
     <summary type="html">
     
-      
-
-&lt;p&gt;
+      &lt;p&gt;
 编程语言最常见的特征之一是数组的概念。
 数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
 &lt;/p&gt;
 &lt;ul class=&quot;org-ul&quot;&gt;
 &lt;li&gt;固定的size，还是可变的size?&lt;/li&gt;
 &lt;li&gt;size是类型的一部分吗?&lt;/li&gt;
+&lt;li&gt;多维数组看起来是什么样子的？&lt;/li&gt;
+&lt;li&gt;空数组代表了什么含义？&lt;/li&gt;
+&lt;/ul&gt;
 
+
+&lt;p&gt;
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+&lt;/p&gt;
+
+&lt;p&gt;
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 &lt;i&gt;切片&lt;/i&gt; ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 &lt;i&gt;切片&lt;/i&gt; 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 &lt;i&gt;切片&lt;/i&gt; 。
+&lt;/p&gt;
+
+&lt;p&gt;
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 &lt;i&gt;append&lt;/i&gt; 内置函数的工作原理以及为什么它如此的工作。
+&lt;/p&gt;
     
     </summary>
     
