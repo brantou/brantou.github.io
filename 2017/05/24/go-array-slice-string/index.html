@@ -138,7 +138,7 @@ size是类型的一部分吗?
 
 
 在Go的早期发展中，在设计感觉正确之前，花了大约一年时">
-<meta property="og:updated_time" content="2017-05-25T16:03:47.025Z">
+<meta property="og:updated_time" content="2017-05-26T02:24:39.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组，切片：‘append’的机制">
 <meta name="twitter:description" content="编程语言最常见的特征之一是数组的概念。
@@ -514,8 +514,8 @@ size是类型的一部分吗?
 在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
 </p>
 
-<div id="outline-container-org339b8ea" class="outline-2">
-<h2 id="org339b8ea"><span class="section-number-2">1</span> 数组</h2>
+<div id="outline-container-org07d5451" class="outline-2">
+<h2 id="org07d5451"><span class="section-number-2">1</span> 数组</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 数组是Go中的重要组成部分，但像建筑的基础一样，它们通常隐藏在更可见的组件之下。
@@ -559,8 +559,8 @@ buffer[0]，buffer[1]等一直到buffer[255]来访问它的元素。 （索引�
 </div>
 </div>
 
-<div id="outline-container-org0224432" class="outline-2">
-<h2 id="org0224432"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
+<div id="outline-container-org6383370" class="outline-2">
+<h2 id="org6383370"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 切片是很容易使用，但是要很好地使用它们，必须明确了解它是什么以及它能做什么。
@@ -663,11 +663,35 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-org71dc172" class="outline-2">
-<h2 id="org71dc172"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
+<div id="outline-container-org3526a53" class="outline-2">
+<h2 id="org3526a53"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+很重要的一点，一个slice包含一个指针，但它本身就是一个值。
+是一个保存指针和长度的结构体的值, 不是指向结构体的指针。
+</p>
+
+<p>
+当在前面的例子中调用 <i>IndexRune</i> 时，传递了一个 <i>slice header</i> 的副本。 这样的方式有重要的副作用。
+</p>
+
+<p>
+思考下面这个简单的函数：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> AddOneToEachElement(slice []<span class="typename">byte</span>) {</span><br><span class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> slice {</span><br><span class="line">        slice[i]++</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-05-26 Fri 00:03.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+<p>
+迭代一个切片的索引（使用范围循环），增加其元素。 调用如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(slice); i++ {</span><br><span class="line">    slice[i] = <span class="typename">byte</span>(i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(<span class="string">"before"</span>, slice)</span><br><span class="line">  AddOneToEachElement(slice)</span><br><span class="line">  fmt.Println(<span class="string">"after"</span>, slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-05-26 Fri 10:24.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -932,7 +956,7 @@ Last Updated 2017-05-26 Fri 00:03.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org339b8ea"><span class="nav-text">1 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0224432"><span class="nav-text">2 切片: slice header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org71dc172"><span class="nav-text">3 切片作为函数的入参</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org07d5451"><span class="nav-text">1 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6383370"><span class="nav-text">2 切片: slice header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3526a53"><span class="nav-text">3 切片作为函数的入参</span></a></li></ol></div>
             
 
           </div>
