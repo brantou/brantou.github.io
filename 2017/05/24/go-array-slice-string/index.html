@@ -138,7 +138,7 @@ size是类型的一部分吗?
 
 
 在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来">
-<meta property="og:updated_time" content="2017-05-26T16:18:31.919Z">
+<meta property="og:updated_time" content="2017-05-27T02:38:04.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组，切片：‘append’的机制">
 <meta name="twitter:description" content="编程语言最常见的特征之一是数组的概念。
@@ -516,8 +516,8 @@ size是类型的一部分吗?
 
 <a id="more"></a>
 
-<div id="outline-container-org4eaf5fb" class="outline-2">
-<h2 id="org4eaf5fb"><span class="section-number-2">1</span> 数组</h2>
+<div id="outline-container-org87e962a" class="outline-2">
+<h2 id="org87e962a"><span class="section-number-2">1</span> 数组</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 数组是Go中的重要组成部分，但像建筑的基础一样，它们通常隐藏在更可见的组件之下。
@@ -556,13 +556,20 @@ buffer[0]，buffer[1]等一直到buffer[255]来访问它的元素。 （索引�
 </p>
 
 <p>
+Go的数组是值类型。 数组变量表示整个数组; 它不是指向第一个数组元素的指针（如C中的情况）。
+这意味着，当分配或传递数组值时，将产生出其内容的副本。
+（为了避免复制，可以传递一个指向数组的指针，但是这是一个指向数组的指针，而不是一个数组）。
+思考数组的一种方法是将其作为一种结构体，但是使用索引而不是命名字段：fixed-size的复合值。
+</p>
+
+<p>
 数组有特定的使用场景 &#x2013; 矩阵变换就是很好的例子 - 但是在Go中最常通常的用途就是用作一个 <i>切片</i> 的存储空间。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd5502cc" class="outline-2">
-<h2 id="orgd5502cc"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
+<div id="outline-container-org12d772a" class="outline-2">
+<h2 id="org12d772a"><span class="section-number-2">2</span> 切片: <i>slice header</i></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 切片是很容易使用，但是要很好地使用它们，必须明确了解它是什么以及它能做什么。
@@ -665,8 +672,8 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-org5a0f45b" class="outline-2">
-<h2 id="org5a0f45b"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
+<div id="outline-container-org46b2264" class="outline-2">
+<h2 id="org46b2264"><span class="section-number-2">3</span> 切片作为函数的入参</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 很重要的一点，一个slice包含一个指针，但它本身就是一个值。
@@ -712,8 +719,8 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-org9776a70" class="outline-2">
-<h2 id="org9776a70"><span class="section-number-2">4</span> 切片指针：Method receivers</h2>
+<div id="outline-container-org09ec885" class="outline-2">
+<h2 id="org09ec885"><span class="section-number-2">4</span> 切片指针：Method receivers</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 另外一个通过函数调用修改 <i>slice header</i> 的方式时传递 <i>header</i> 的指针。下面上买示例的一个变种：
@@ -752,8 +759,8 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-org986002c" class="outline-2">
-<h2 id="org986002c"><span class="section-number-2">5</span> 容量</h2>
+<div id="outline-container-orgb6d6c2e" class="outline-2">
+<h2 id="orgb6d6c2e"><span class="section-number-2">5</span> 容量</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 下面函数扩展整数切片：
@@ -804,8 +811,8 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-org5c231c0" class="outline-2">
-<h2 id="org5c231c0"><span class="section-number-2">6</span> Make</h2>
+<div id="outline-container-org4a9fab7" class="outline-2">
+<h2 id="org4a9fab7"><span class="section-number-2">6</span> Make</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 如果想要超越其容量，那怎么办？ 不能这么做！ 根据定义，容量是增长的极限。
@@ -845,8 +852,8 @@ slice2变量的底层sliceHeader结构如下所示：
 </div>
 </div>
 
-<div id="outline-container-orgf552f8c" class="outline-2">
-<h2 id="orgf552f8c"><span class="section-number-2">7</span> 复制</h2>
+<div id="outline-container-orgeb230ba" class="outline-2">
+<h2 id="orgeb230ba"><span class="section-number-2">7</span> 复制</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 上面的示例中，当切片的容量加倍时，需要写了一个循环来将旧数据复制到新的切片。
@@ -904,8 +911,8 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 </div>
 </div>
 
-<div id="outline-container-org21d80cc" class="outline-2">
-<h2 id="org21d80cc"><span class="section-number-2">8</span> Append： 示例</h2>
+<div id="outline-container-org84aeae3" class="outline-2">
+<h2 id="org84aeae3"><span class="section-number-2">8</span> Append： 示例</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 往前回顾下，写的一个 <i>Extend</i> 函数，它将一个切片扩展。
@@ -985,8 +992,8 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 </div>
 </div>
 
-<div id="outline-container-orgf297f20" class="outline-2">
-<h2 id="orgf297f20"><span class="section-number-2">9</span> Append：内建函数</h2>
+<div id="outline-container-orgf9a1f95" class="outline-2">
+<h2 id="orgf9a1f95"><span class="section-number-2">9</span> Append：内建函数</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 目前我们 <i>get</i> 到了 <i>append</i> 内置函数设计的动机了。
@@ -1015,8 +1022,8 @@ Go的一个弱点是任何通用类型的操作都必须由运行时提供。 �
 </div>
 </div>
 
-<div id="outline-container-orgeae01b1" class="outline-2">
-<h2 id="orgeae01b1"><span class="section-number-2">10</span> Nil</h2>
+<div id="outline-container-org59a74ba" class="outline-2">
+<h2 id="org59a74ba"><span class="section-number-2">10</span> Nil</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 另外，通过新学习到的知识，可以看到一个零切片的表示形式。 当然，它是 <i>slice header</i> 的零值：
@@ -1052,8 +1059,8 @@ Go的一个弱点是任何通用类型的操作都必须由运行时提供。 �
 </div>
 </div>
 
-<div id="outline-container-org8c6ff58" class="outline-2">
-<h2 id="org8c6ff58"><span class="section-number-2">11</span> 字符串</h2>
+<div id="outline-container-org7dc0827" class="outline-2">
+<h2 id="org7dc0827"><span class="section-number-2">11</span> 字符串</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 在切片的上下文中,这里简要介绍一下Go的字符串部分。
@@ -1120,8 +1127,8 @@ Go的一个弱点是任何通用类型的操作都必须由运行时提供。 �
 </p>
 </div>
 </div>
-<div id="outline-container-org3d09d24" class="outline-2">
-<h2 id="org3d09d24"><span class="section-number-2">12</span> 总结</h2>
+<div id="outline-container-org3929e8f" class="outline-2">
+<h2 id="org3929e8f"><span class="section-number-2">12</span> 总结</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 要了解切片是如何工作的，它有助于了解它们是如何实现的。
@@ -1137,8 +1144,8 @@ Go的一个弱点是任何通用类型的操作都必须由运行时提供。 �
 </div>
 </div>
 
-<div id="outline-container-org7151b37" class="outline-2">
-<h2 id="org7151b37"><span class="section-number-2">13</span> 延伸阅读</h2>
+<div id="outline-container-org704d7a3" class="outline-2">
+<h2 id="org704d7a3"><span class="section-number-2">13</span> 延伸阅读</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 在Go里面有很多关于切片的使用场景。
@@ -1153,7 +1160,7 @@ Russ Cox的<a href="http://research.swtch.com/godata" rel="external nofollow noo
 </div>
 </div>
 
-Last Updated 2017-05-27 Sat 00:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -1418,7 +1425,7 @@ Last Updated 2017-05-27 Sat 00:18.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org4eaf5fb"><span class="nav-text">1 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd5502cc"><span class="nav-text">2 切片: slice header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5a0f45b"><span class="nav-text">3 切片作为函数的入参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9776a70"><span class="nav-text">4 切片指针：Method receivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org986002c"><span class="nav-text">5 容量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5c231c0"><span class="nav-text">6 Make</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf552f8c"><span class="nav-text">7 复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org21d80cc"><span class="nav-text">8 Append： 示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf297f20"><span class="nav-text">9 Append：内建函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeae01b1"><span class="nav-text">10 Nil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8c6ff58"><span class="nav-text">11 字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3d09d24"><span class="nav-text">12 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7151b37"><span class="nav-text">13 延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org87e962a"><span class="nav-text">1 数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org12d772a"><span class="nav-text">2 切片: slice header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org46b2264"><span class="nav-text">3 切片作为函数的入参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org09ec885"><span class="nav-text">4 切片指针：Method receivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb6d6c2e"><span class="nav-text">5 容量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4a9fab7"><span class="nav-text">6 Make</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeb230ba"><span class="nav-text">7 复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org84aeae3"><span class="nav-text">8 Append： 示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf9a1f95"><span class="nav-text">9 Append：内建函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org59a74ba"><span class="nav-text">10 Nil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7dc0827"><span class="nav-text">11 字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3929e8f"><span class="nav-text">12 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org704d7a3"><span class="nav-text">13 延伸阅读</span></a></li></ol></div>
             
 
           </div>
