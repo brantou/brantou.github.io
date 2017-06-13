@@ -103,7 +103,7 @@
 <meta name="description" content="构造consul的docker集群
 
 
-sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&amp;#10;sudo docker run -d --name=node1 c">
+sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
 <meta property="og:type" content="article">
 <meta property="og:title" content="consul的docker环境配置">
 <meta property="og:url" content="https://brantou.github.io/2017/05/13/consul-and-docker/index.html">
@@ -111,14 +111,14 @@ sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0
 <meta property="og:description" content="构造consul的docker集群
 
 
-sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&amp;#10;sudo docker run -d --name=node1 c">
-<meta property="og:updated_time" content="2017-05-23T05:28:49.585Z">
+sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta property="og:updated_time" content="2017-06-01T05:40:08.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="consul的docker环境配置">
 <meta name="twitter:description" content="构造consul的docker集群
 
 
-sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&amp;#10;sudo docker run -d --name=node1 c">
+sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
 
 
 
@@ -430,7 +430,7 @@ sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0
 构造consul的docker集群
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -458,7 +458,7 @@ Network Coordinates in consul
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -620,7 +620,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -642,7 +642,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

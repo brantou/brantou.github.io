@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-05-27T02:38:04.997Z</updated>
+  <updated>2017-06-13T07:16:30.940Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在Org-mode中执行Go代码</title>
+    <link href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/"/>
+    <id>https://brantou.github.io/2017/06/12/go-source-code-block-in-org/</id>
+    <published>2017-06-11T16:00:00.000Z</published>
+    <updated>2017-06-13T07:16:30.940Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+在未使用 &lt;code&gt;org-mode&lt;/code&gt; 前，学习和实验Go的特性（例如 &lt;i&gt;context&lt;/i&gt; ）的步骤如下：
+&lt;/p&gt;
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;打开终端&lt;/li&gt;
+&lt;li&gt;跳转到学习示例目录下&lt;/li&gt;
+&lt;li&gt;创建子目录
+    
+    </summary>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
+    
+    
+      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
+    
+      <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
+    
+      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
+    
+      <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>数组，切片：‘append’的机制</title>
@@ -210,7 +248,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
     <id>https://brantou.github.io/2017/05/14/interview-code/</id>
     <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-05-25T14:26:37.667Z</updated>
+    <updated>2017-06-12T11:01:04.303Z</updated>
     
     <summary type="html">
     
@@ -261,7 +299,7 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     <link href="https://brantou.github.io/2017/05/13/consul-and-docker/"/>
     <id>https://brantou.github.io/2017/05/13/consul-and-docker/</id>
     <published>2017-05-12T16:00:00.000Z</published>
-    <updated>2017-05-23T05:28:49.585Z</updated>
+    <updated>2017-06-01T05:40:08.969Z</updated>
     
     <summary type="html">
     
@@ -617,7 +655,7 @@ ITEM for the headline title
     <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
     <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
     <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-05-23T10:56:07.965Z</updated>
+    <updated>2017-06-01T03:28:44.102Z</updated>
     
     <summary type="html">
     
@@ -627,8 +665,8 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org4786fbe&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org4786fbe&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
+&lt;div id=&quot;outline-container-org87c53e4&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org87c53e4&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
 &lt;p&gt;
 &lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。
@@ -696,6 +734,31 @@ org-mode我用了两年，却未曾深入。
       <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
     
       <category term="manual" scheme="https://brantou.github.io/tags/manual/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode编程练习</title>
+    <link href="https://brantou.github.io/2017/03/21/leetcode/"/>
+    <id>https://brantou.github.io/2017/03/21/leetcode/</id>
+    <published>2017-03-20T16:00:00.000Z</published>
+    <updated>2017-06-13T06:23:42.614Z</updated>
+    
+    <summary type="html">
+    
+      
+
+
+&lt;div id=&quot;outline-container-orgeb5a758&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgeb5a758&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; maxCount&lt;/h2&gt;
+&lt;div 
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
   </entry>
   
