@@ -610,7 +610,7 @@ Go的数组是值类型。 数组变量表示整个数组; 它不是指向第一
 你可想到，其实幕后就是如此构造：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> sliceHeader <span class="keyword">struct</span> {</span><br><span class="line">    Length        <span class="typename">int</span></span><br><span class="line">    ZerothElement *<span class="typename">byte</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">50</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">100</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> sliceHeader <span class="keyword">struct</span> {</span><br><span class="line">    Length        <span class="typename">int</span></span><br><span class="line">    ZerothElement *<span class="typename">byte</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">50</span>,</span><br><span class="line">    ZerothElement: &amp;amp;buffer[<span class="number">100</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -630,7 +630,7 @@ Go的数组是值类型。 数组变量表示整个数组; 它不是指向第一
 slice2变量的底层sliceHeader结构如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := sliceHeader{</span><br><span class="line">    Length:        <span class="number">5</span>,</span><br><span class="line">    ZerothElement: &amp;buffer[<span class="number">105</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice2 := sliceHeader{</span><br><span class="line">    Length:        <span class="number">5</span>,</span><br><span class="line">    ZerothElement: &amp;amp;buffer[<span class="number">105</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 注：此 <i>header</i> 仍然指向相同的底层数组，存储在 <i>buffer</i> 变量中。
@@ -654,7 +654,7 @@ slice2变量的底层sliceHeader结构如下所示：
 经过上面的而且切片后， <i>sliceHeader</i> 如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">  Length:        <span class="number">3</span>,</span><br><span class="line">  ZerothElement: &amp;buffer[<span class="number">104</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">  Length:        <span class="number">3</span>,</span><br><span class="line">  ZerothElement: &amp;amp;buffer[<span class="number">104</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -695,7 +695,7 @@ slice2变量的底层sliceHeader结构如下所示：
 迭代一个切片的索引（使用范围循环），增加其元素。 调用如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(slice); i++ {</span><br><span class="line">    slice[i] = <span class="typename">byte</span>(i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(<span class="string">"before"</span>, slice)</span><br><span class="line">  AddOneToEachElement(slice)</span><br><span class="line">  fmt.Println(<span class="string">"after"</span>, slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="built_in">len</span>(slice); i++ {</span><br><span class="line">    slice[i] = <span class="typename">byte</span>(i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(<span class="string">"before"</span>, slice)</span><br><span class="line">  AddOneToEachElement(slice)</span><br><span class="line">  fmt.Println(<span class="string">"after"</span>, slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -726,7 +726,7 @@ slice2变量的底层sliceHeader结构如下所示：
 另外一个通过函数调用修改 <i>slice header</i> 的方式时传递 <i>header</i> 的指针。下面上买示例的一个变种：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> PtrSubtractOneFromLength(slicePtr *[]<span class="typename">byte</span>) {</span><br><span class="line">  slice := *slicePtr</span><br><span class="line">  *slicePtr = slice[<span class="number">0</span> : <span class="built_in">len</span>(slice)-<span class="number">1</span>]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  fmt.Println(<span class="string">"Before: len(slice) ="</span>, <span class="built_in">len</span>(slice))</span><br><span class="line">  PtrSubtractOneFromLength(&amp;slice)</span><br><span class="line">  fmt.Println(<span class="string">"After:  len(slice) ="</span>, <span class="built_in">len</span>(slice))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> PtrSubtractOneFromLength(slicePtr *[]<span class="typename">byte</span>) {</span><br><span class="line">  slice := *slicePtr</span><br><span class="line">  *slicePtr = slice[<span class="number">0</span> : <span class="built_in">len</span>(slice)-<span class="number">1</span>]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> buffer [<span class="number">256</span>]<span class="typename">byte</span></span><br><span class="line">  slice := buffer[<span class="number">10</span>:<span class="number">20</span>]</span><br><span class="line">  fmt.Println(<span class="string">"Before: len(slice) ="</span>, <span class="built_in">len</span>(slice))</span><br><span class="line">  PtrSubtractOneFromLength(&amp;amp;slice)</span><br><span class="line">  fmt.Println(<span class="string">"After:  len(slice) ="</span>, <span class="built_in">len</span>(slice))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -738,7 +738,7 @@ slice2变量的底层sliceHeader结构如下所示：
 假设现在希望在一个切片上有一个方法，以最后的斜杠截断它。 可以这样写：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> path []<span class="typename">byte</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (p *path) TruncateAtFinalSlash() {</span><br><span class="line">    i := bytes.LastIndex(*p, []<span class="typename">byte</span>(<span class="string">"/"</span>))</span><br><span class="line">    <span class="keyword">if</span> i &gt;= <span class="number">0</span> {</span><br><span class="line">        *p = (*p)[<span class="number">0</span>:i]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    pathName := path(<span class="string">"/usr/bin/tso"</span>) <span class="comment">// Conversion from string to path.</span></span><br><span class="line">    pathName.TruncateAtFinalSlash()</span><br><span class="line">    fmt.Printf(<span class="string">"%s\n"</span>, pathName)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> path []<span class="typename">byte</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (p *path) TruncateAtFinalSlash() {</span><br><span class="line">    i := bytes.LastIndex(*p, []<span class="typename">byte</span>(<span class="string">"/"</span>))</span><br><span class="line">    <span class="keyword">if</span> i &amp;gt;= <span class="number">0</span> {</span><br><span class="line">        *p = (*p)[<span class="number">0</span>:i]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    pathName := path(<span class="string">"/usr/bin/tso"</span>) <span class="comment">// Conversion from string to path.</span></span><br><span class="line">    pathName.TruncateAtFinalSlash()</span><br><span class="line">    fmt.Printf(<span class="string">"%s\n"</span>, pathName)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -750,7 +750,7 @@ slice2变量的底层sliceHeader结构如下所示：
 因为值 <i>receiver</i> 仍将指向相同的底层阵列。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> path []<span class="typename">byte</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (p path) ToUpper() {</span><br><span class="line">    <span class="keyword">for</span> i, b := <span class="keyword">range</span> p {</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'a'</span> &lt;= b &amp;&amp; b &lt;= <span class="string">'z'</span> {</span><br><span class="line">            p[i] = b + <span class="string">'A'</span> - <span class="string">'a'</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    pathName := path(<span class="string">"/usr/bin/tso"</span>)</span><br><span class="line">    pathName.ToUpper()</span><br><span class="line">    fmt.Printf(<span class="string">"%s\n"</span>, pathName)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> path []<span class="typename">byte</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (p path) ToUpper() {</span><br><span class="line">    <span class="keyword">for</span> i, b := <span class="keyword">range</span> p {</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'a'</span> &amp;lt;= b &amp;amp;&amp;amp; b &amp;lt;= <span class="string">'z'</span> {</span><br><span class="line">            p[i] = b + <span class="string">'A'</span> - <span class="string">'a'</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    pathName := path(<span class="string">"/usr/bin/tso"</span>)</span><br><span class="line">    pathName.ToUpper()</span><br><span class="line">    fmt.Printf(<span class="string">"%s\n"</span>, pathName)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -773,7 +773,7 @@ slice2变量的底层sliceHeader结构如下所示：
 调用如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> iBuffer [<span class="number">10</span>]<span class="typename">int</span></span><br><span class="line">  slice := iBuffer[<span class="number">0</span>:<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">20</span>; i++ {</span><br><span class="line">    slice = Extend(slice, i)</span><br><span class="line">    fmt.Println(slice)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> iBuffer [<span class="number">10</span>]<span class="typename">int</span></span><br><span class="line">  slice := iBuffer[<span class="number">0</span>:<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">20</span>; i++ {</span><br><span class="line">    slice = Extend(slice, i)</span><br><span class="line">    fmt.Println(slice)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 观察切片怎么增长直到&#x2026;
@@ -800,7 +800,7 @@ slice2变量的底层sliceHeader结构如下所示：
 它的 <i>header</i> 如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">0</span>,</span><br><span class="line">    Capacity:      <span class="number">10</span>,</span><br><span class="line">    ZerothElement: &amp;iBuffer[<span class="number">0</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := sliceHeader{</span><br><span class="line">    Length:        <span class="number">0</span>,</span><br><span class="line">    Capacity:      <span class="number">10</span>,</span><br><span class="line">    ZerothElement: &amp;amp;iBuffer[<span class="number">0</span>],</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 容量字段等于底层数组的长度减去切片的第一个元素在数组中的索引值。如果需要查询切片的容量，请使用内置函数 <i>cap</i> ：
@@ -873,7 +873,7 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 以下是使用 <i>copy</i> 将值插入片段中间的方法。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Insert inserts the value into the slice at the specified index,</span></span><br><span class="line"><span class="comment">// which must be in range.</span></span><br><span class="line"><span class="comment">// The slice must have room for the new element.</span></span><br><span class="line"><span class="keyword">func</span> Insert(slice []<span class="typename">int</span>, index, value <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="comment">// Grow the slice by one element.</span></span><br><span class="line">  slice = slice[<span class="number">0</span> : <span class="built_in">len</span>(slice)+<span class="number">1</span>]</span><br><span class="line">  <span class="comment">// Use copy to move the upper part of the slice out of the way and open a hole.</span></span><br><span class="line">  <span class="built_in">copy</span>(slice[index+<span class="number">1</span>:], slice[index:]) <span class="comment">// slice[index:] &#31561;&#20215;&#20110; slice[index:len(slice)]</span></span><br><span class="line">  <span class="comment">// Store the new value.</span></span><br><span class="line">  slice[index] = value</span><br><span class="line">  <span class="comment">// Return the result.</span></span><br><span class="line">  <span class="keyword">return</span> slice</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Insert inserts the value into the slice at the specified index,</span></span><br><span class="line"><span class="comment">// which must be in range.</span></span><br><span class="line"><span class="comment">// The slice must have room for the new element.</span></span><br><span class="line"><span class="keyword">func</span> Insert(slice []<span class="typename">int</span>, index, value <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="comment">// Grow the slice by one element.</span></span><br><span class="line">  slice = slice[<span class="number">0</span> : <span class="built_in">len</span>(slice)+<span class="number">1</span>]</span><br><span class="line">  <span class="comment">// Use copy to move the upper part of the slice out of the way and open a hole.</span></span><br><span class="line">  <span class="built_in">copy</span>(slice[index+<span class="number">1</span>:], slice[index:]) <span class="comment">// slice[index:] &amp;#31561;&amp;#20215;&amp;#20110; slice[index:len(slice)]</span></span><br><span class="line">  <span class="comment">// Store the new value.</span></span><br><span class="line">  slice[index] = value</span><br><span class="line">  <span class="comment">// Return the result.</span></span><br><span class="line">  <span class="keyword">return</span> slice</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -906,7 +906,7 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 调用 <i>Insert</i>  函数如下:
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  slice := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">10</span>, <span class="number">20</span>) <span class="comment">// Note capacity &gt; length: room to add element.</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="keyword">range</span> slice {</span><br><span class="line">    slice[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(slice)</span><br><span class="line">  slice = Insert(slice, <span class="number">5</span>, <span class="number">99</span>)</span><br><span class="line">  fmt.Println(slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  slice := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">10</span>, <span class="number">20</span>) <span class="comment">// Note capacity &amp;gt; length: room to add element.</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="keyword">range</span> slice {</span><br><span class="line">    slice[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(slice)</span><br><span class="line">  slice = Insert(slice, <span class="number">5</span>, <span class="number">99</span>)</span><br><span class="line">  fmt.Println(slice)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -927,7 +927,7 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 下面这段代码，用于说明切片填满时会发生什么：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  slice := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ {</span><br><span class="line">    slice = Extend(slice, i)</span><br><span class="line">    fmt.Printf(<span class="string">"len=%d cap=%d slice=%v\n"</span>, <span class="built_in">len</span>(slice), <span class="built_in">cap</span>(slice), slice)</span><br><span class="line">    fmt.Println(<span class="string">"address of 0th element:"</span>, &amp;slice[<span class="number">0</span>])</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  slice := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i++ {</span><br><span class="line">    slice = Extend(slice, i)</span><br><span class="line">    fmt.Printf(<span class="string">"len=%d cap=%d slice=%v\n"</span>, <span class="built_in">len</span>(slice), <span class="built_in">cap</span>(slice), slice)</span><br><span class="line">    fmt.Println(<span class="string">"address of 0th element:"</span>, &amp;amp;slice[<span class="number">0</span>])</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -976,7 +976,7 @@ Go有一个内置的函数 <i>copy</i> ，使这更容易。 它的参数是两�
 当然， <i>Append</i> 函数优化实现如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Append appends the elements to the slice.</span></span><br><span class="line"><span class="comment">// Efficient version.</span></span><br><span class="line"><span class="keyword">func</span> Append(slice []<span class="typename">int</span>, elements ...<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">    n := <span class="built_in">len</span>(slice)</span><br><span class="line">    total := <span class="built_in">len</span>(slice) + <span class="built_in">len</span>(elements)</span><br><span class="line">    <span class="keyword">if</span> total &gt; <span class="built_in">cap</span>(slice) {</span><br><span class="line">        <span class="comment">// Reallocate. Grow to 1.5 times the new size, so we can still grow.</span></span><br><span class="line">        newSize := total*<span class="number">3</span>/<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        newSlice := <span class="built_in">make</span>([]<span class="typename">int</span>, total, newSize)</span><br><span class="line">        <span class="built_in">copy</span>(newSlice, slice)</span><br><span class="line">        slice = newSlice</span><br><span class="line">    }</span><br><span class="line">    slice = slice[:total]</span><br><span class="line">    <span class="built_in">copy</span>(slice[n:], elements)</span><br><span class="line">    <span class="keyword">return</span> slice</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Append appends the elements to the slice.</span></span><br><span class="line"><span class="comment">// Efficient version.</span></span><br><span class="line"><span class="keyword">func</span> Append(slice []<span class="typename">int</span>, elements ...<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">    n := <span class="built_in">len</span>(slice)</span><br><span class="line">    total := <span class="built_in">len</span>(slice) + <span class="built_in">len</span>(elements)</span><br><span class="line">    <span class="keyword">if</span> total &amp;gt; <span class="built_in">cap</span>(slice) {</span><br><span class="line">        <span class="comment">// Reallocate. Grow to 1.5 times the new size, so we can still grow.</span></span><br><span class="line">        newSize := total*<span class="number">3</span>/<span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        newSlice := <span class="built_in">make</span>([]<span class="typename">int</span>, total, newSize)</span><br><span class="line">        <span class="built_in">copy</span>(newSlice, slice)</span><br><span class="line">        slice = newSlice</span><br><span class="line">    }</span><br><span class="line">    slice = slice[:total]</span><br><span class="line">    <span class="built_in">copy</span>(slice[n:], elements)</span><br><span class="line">    <span class="keyword">return</span> slice</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1205,8 +1205,8 @@ Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/go-cover-story/" rel="next" title="Go的测试覆盖率">
-                <i class="fa fa-chevron-left"></i> Go的测试覆盖率
+              <a href="/2017/05/24/go-http-trace/" rel="next" title="Go的HTTP tracing">
+                <i class="fa fa-chevron-left"></i> Go的HTTP tracing
               </a>
             
           </div>
@@ -1215,8 +1215,8 @@ Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/12/go-source-code-block-in-org/" rel="prev" title="在Org-mode中执行Go代码">
-                在Org-mode中执行Go代码 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/24/go-cover-story/" rel="prev" title="Go的测试覆盖率">
+                Go的测试覆盖率 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1348,7 +1348,7 @@ Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1359,7 +1359,7 @@ Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1370,7 +1370,7 @@ Last Updated 2017-05-27 Sat 10:38.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

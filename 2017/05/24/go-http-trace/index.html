@@ -511,14 +511,14 @@ httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件�
 然后才能启动请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
-DNS Info: {Addrs:[{IP:192.168.83.230 Zone:}] Err:<nil> Coalesced:false}
+DNS Info: {Addrs:[{IP:192.168.83.230 Zone:}] Err:&lt;nil&gt; Coalesced:false}
 Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 
-</nil></pre>
+</pre>
 
 <p>
 在 <i>round trip</i> 中，/http.DefaultTransport/ 会在事件发生时调用每个钩子。
@@ -538,7 +538,7 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 下面的示例使用 <i>http.RoundTripper wrapper</i> 来标识当前的请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -546,7 +546,7 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 </p>
 <pre class="example">
 Connection reused for https://google.com? false
-Connection reused for https://www.google.com.hk/?gfe_rd=cr&ei=olwkWd3BAa-M8Qfjs73IBA? false
+Connection reused for https://www.google.com.hk/?gfe_rd=cr&amp;ei=olwkWd3BAa-M8Qfjs73IBA? false
 
 </pre>
 
@@ -625,8 +625,8 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/24/go-cover-story/" rel="prev" title="Go的测试覆盖率">
-                Go的测试覆盖率 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/24/go-array-slice-string/" rel="prev" title="数组，切片：‘append’的机制">
+                数组，切片：‘append’的机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -644,9 +644,9 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
-        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/23/go-race-detector/">Go的竞态探测器</a></li>
         
@@ -758,7 +758,7 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -769,7 +769,7 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -780,7 +780,7 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

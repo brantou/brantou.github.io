@@ -7,8 +7,40 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
+        <lastmod>2017-07-17T08:15:28.373Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/03/21/leetcode/</loc>
-        <lastmod>2017-06-13T07:33:48.230Z</lastmod>
+        <lastmod>2017-07-17T08:15:14.491Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/07/16/leetcode-tree/</loc>
+        <lastmod>2017-07-16T07:30:55.768Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+        <lastmod>2017-07-10T03:46:44.763Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/03/21/go-logrus/</loc>
+        <lastmod>2017-06-19T15:25:31.801Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -39,8 +71,8 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-        <lastmod>2017-06-01T03:28:44.102Z</lastmod>
+        <loc>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</loc>
+        <lastmod>2017-06-01T05:40:06.363Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -57,6 +89,14 @@
     <url>
         <loc>https://brantou.github.io/2017/05/24/go-cover-story/</loc>
         <lastmod>2017-05-25T08:59:02.418Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
+        <lastmod>2017-05-24T06:57:27.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -95,7 +135,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
+        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -111,15 +151,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</loc>
+        <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -128,14 +160,6 @@
 
     <url>
         <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

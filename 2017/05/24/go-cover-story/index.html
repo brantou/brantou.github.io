@@ -513,7 +513,7 @@
 示例代码如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -542,7 +542,7 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -680,7 +680,7 @@ HTML输出产生了巨大的回报：
 所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;amp;&amp;amp; g()</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
@@ -753,8 +753,8 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/go-http-trace/" rel="next" title="Go的HTTP tracing">
-                <i class="fa fa-chevron-left"></i> Go的HTTP tracing
+              <a href="/2017/05/24/go-array-slice-string/" rel="next" title="数组，切片：‘append’的机制">
+                <i class="fa fa-chevron-left"></i> 数组，切片：‘append’的机制
               </a>
             
           </div>
@@ -763,8 +763,8 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/24/go-array-slice-string/" rel="prev" title="数组，切片：‘append’的机制">
-                数组，切片：‘append’的机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/12/go-source-code-block-in-org/" rel="prev" title="在Org-mode中执行Go代码">
+                在Org-mode中执行Go代码 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -896,7 +896,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -907,7 +907,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -918,7 +918,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,0 +1,1392 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="2NCO1zLkcL">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="leetcode,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="1 best time to buy and sell stock
+
+
+func maxProfit(prices []int) int {  if len(prices) &amp;lt; 1 {    return 0  }  var mp int  min_p := prices[0]  for _, price := range prices {    if price-min_p &amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-array">
+<meta property="og:url" content="https://brantou.github.io/2017/07/16/leetcode-array/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="1 best time to buy and sell stock
+
+
+func maxProfit(prices []int) int {  if len(prices) &amp;lt; 1 {    return 0  }  var mp int  min_p := prices[0]  for _, price := range prices {    if price-min_p &amp;gt">
+<meta property="og:updated_time" content="2017-07-17T08:15:28.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode-array">
+<meta name="twitter:description" content="1 best time to buy and sell stock
+
+
+func maxProfit(prices []int) int {  if len(prices) &amp;lt; 1 {    return 0  }  var mp int  min_p := prices[0]  for _, price := range prices {    if price-min_p &amp;gt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2017/07/16/leetcode-array/">
+
+
+
+
+
+  <title>Leetcode-array | Brantou的日常</title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99654689-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a82c2fbb2a57e8b3c01e31a60807a7f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">二三事</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Leetcode-array</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/16/leetcode-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+
+<div id="outline-container-org3ac7056" class="outline-2">
+<h2 id="org3ac7056"><a id="ID-f4e4fab8-d414-4790-be85-130f330e8633"></a><span class="section-number-2">1</span> best time to buy and sell stock</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> maxProfit(prices []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(prices) &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mp <span class="typename">int</span></span><br><span class="line">  min_p := prices[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">for</span> _, price := <span class="keyword">range</span> prices {</span><br><span class="line">    <span class="keyword">if</span> price-min_p &gt; mp {</span><br><span class="line">      mp = price - min_p</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> price &lt; min_p {</span><br><span class="line">      min_p = price</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> mp</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org42ceeef" class="outline-2">
+<h2 id="org42ceeef"><a id="ID-5d3a8d0f-7cb5-42ce-a280-8e8e55a9b44e"></a><span class="section-number-2">2</span> plus one</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> plusOne(digits []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> carry <span class="typename">int</span></span><br><span class="line">  carry = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> index := <span class="built_in">len</span>(digits) - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index -= <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> carry+digits[index] == <span class="number">10</span> {</span><br><span class="line">      carry = <span class="number">1</span></span><br><span class="line">      digits[index] = <span class="number">0</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      digits[index] += carry</span><br><span class="line">      carry = <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> carry == <span class="number">0</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> carry == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>([]<span class="typename">int</span>{<span class="number">1</span>}, digits...)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> digits</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org65abef7" class="outline-2">
+<h2 id="org65abef7"><a id="ID-955a32cc-ff35-432c-87da-c1173739bd61"></a><span class="section-number-2">3</span> pascal's triangle</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> generate(numRows <span class="typename">int</span>) [][]<span class="typename">int</span> {</span><br><span class="line">  pt_arr := <span class="built_in">make</span>([][]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">if</span> numRows &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  pt_arr = <span class="built_in">append</span>(pt_arr, []<span class="typename">int</span>{<span class="number">1</span>})</span><br><span class="line">  <span class="keyword">if</span> numRows == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  pt_arr = <span class="built_in">append</span>(pt_arr, []<span class="typename">int</span>{<span class="number">1</span>, <span class="number">1</span>})</span><br><span class="line">  <span class="keyword">if</span> numRows &lt; <span class="number">3</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">3</span>; i &lt;= numRows; i += <span class="number">1</span> {</span><br><span class="line">    pt := <span class="built_in">make</span>([]<span class="typename">int</span>, i)</span><br><span class="line">    pre_pt := pt_arr[i-<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">    <span class="keyword">for</span> index, _ := <span class="keyword">range</span> pre_pt {</span><br><span class="line">      <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">        pt[index] = pre_pt[index]</span><br><span class="line">        pre = pre_pt[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> index == <span class="built_in">len</span>(pre_pt)-<span class="number">1</span> {</span><br><span class="line">        pt[index] = pre + pre_pt[index]</span><br><span class="line">        pt[index+<span class="number">1</span>] = pre_pt[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      pt[index] = pre + pre_pt[index]</span><br><span class="line">      pre = pre_pt[index]</span><br><span class="line">    }</span><br><span class="line">    pt_arr = <span class="built_in">append</span>(pt_arr, pt)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pt_arr</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    fmt.Println(generate(<span class="number">3</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org01dd28c" class="outline-2">
+<h2 id="org01dd28c"><a id="ID-f2b7b1c8-839c-4976-96d1-e95394e59b64"></a><span class="section-number-2">4</span> pascal's triangle II</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> getRow(rowIndex <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  rowIndex += <span class="number">1</span></span><br><span class="line">  pt_row := <span class="built_in">make</span>([]<span class="typename">int</span>, rowIndex)</span><br><span class="line">  <span class="keyword">if</span> rowIndex &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_row</span><br><span class="line">  }</span><br><span class="line">  pt_row[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> rowIndex == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_row</span><br><span class="line">  }</span><br><span class="line">  pt_row[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">3</span>; i &lt;= rowIndex; i += <span class="number">1</span> {</span><br><span class="line">    ptr := pt_row[<span class="number">0</span>:i]</span><br><span class="line">    pre_ptr := pt_row[<span class="number">0</span> : i-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">    <span class="keyword">for</span> index, _ := <span class="keyword">range</span> pre_ptr {</span><br><span class="line">      <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">        pre = pre_ptr[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> index == <span class="built_in">len</span>(pre_ptr)-<span class="number">1</span> {</span><br><span class="line">        ptr[index+<span class="number">1</span>] = pre_ptr[index]</span><br><span class="line">        ptr[index] = pre + pre_ptr[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      pre_num := pre_ptr[index]</span><br><span class="line">      ptr[index], pre = pre+pre_num, pre_num</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pt_row</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    fmt.Println(getRow(<span class="number">4</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf283f6b" class="outline-2">
+<h2 id="orgf283f6b"><a id="ID-026862fc-98ae-49f7-bd7e-ecdb6854aebf"></a><span class="section-number-2">5</span> array partition I</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> min(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &gt; b {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> arrayPairSum(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  sort.Ints(nums)</span><br><span class="line">  <span class="keyword">var</span> p_sum <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index := <span class="number">0</span>; index &lt; <span class="built_in">len</span>(nums); index += <span class="number">2</span> {</span><br><span class="line">    p_sum += min(nums[index], nums[index+<span class="number">1</span>])</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> p_sum</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orga2f8065" class="outline-2">
+<h2 id="orga2f8065"><a id="ID-3f563c9d-eac2-4ca7-8684-4c031064e172"></a><span class="section-number-2">6</span> find all numbers disappeared in an array</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> findDisappearedNumbers(nums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> nums</span><br><span class="line">  }</span><br><span class="line">  dis_nums := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> pre, pre_index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index+<span class="number">1</span> != num &amp;&amp; num != <span class="number">0</span> {</span><br><span class="line">      pre = num</span><br><span class="line">      pre_index = index</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> pre == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> dis_nums</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> nums[pre-<span class="number">1</span>] != pre &amp;&amp; nums[pre-<span class="number">1</span>] != <span class="number">0</span> {</span><br><span class="line">      nums[pre-<span class="number">1</span>], pre = pre, nums[pre-<span class="number">1</span>]</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> nums[pre-<span class="number">1</span>] == <span class="number">0</span> {</span><br><span class="line">      nums[pre-<span class="number">1</span>] = pre</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    nums[pre_index] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">      <span class="keyword">if</span> index+<span class="number">1</span> != num &amp;&amp; num != <span class="number">0</span> {</span><br><span class="line">        pre = num</span><br><span class="line">        pre_index = index</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  nums[pre-<span class="number">1</span>] = pre</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index+<span class="number">1</span> != num {</span><br><span class="line">      dis_nums = <span class="built_in">append</span>(dis_nums, index+<span class="number">1</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dis_nums</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> findDisappearedNumbers(nums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  marks := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> nums {</span><br><span class="line">    marks[num-<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  dis_nums := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> index, mark := <span class="keyword">range</span> marks {</span><br><span class="line">    <span class="keyword">if</span> mark == <span class="number">0</span> {</span><br><span class="line">      dis_nums = <span class="built_in">append</span>(dis_nums, index+<span class="number">1</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> dis_nums</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(findDisappearedNumbers([]<span class="typename">int</span>{<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org322de56" class="outline-2">
+<h2 id="org322de56"><a id="ID-a6cad07b-f004-4e13-ae5f-8580d32df685"></a><span class="section-number-2">7</span> two sum</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> twoSum(nums []<span class="typename">int</span>, target <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">    indices := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">        fir := nums[i]</span><br><span class="line">        <span class="keyword">for</span> j := i+<span class="number">1</span>; j &lt; <span class="built_in">len</span>(nums); j +=<span class="number">1</span> {</span><br><span class="line">            secd := nums[j]</span><br><span class="line">            <span class="keyword">if</span> fir + secd == target {</span><br><span class="line">                indices = <span class="built_in">append</span>(indices, i)</span><br><span class="line">                indices = <span class="built_in">append</span>(indices, j)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> indices</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * type ListNode struct {</span><br><span class="line"> *     Val int</span><br><span class="line"> *     Next *ListNode</span><br><span class="line"> * }</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">func</span> addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {</span><br><span class="line">  <span class="keyword">var</span> carry <span class="typename">int</span></span><br><span class="line">  <span class="keyword">var</span> sum_head, sum_curr *ListNode</span><br><span class="line">  <span class="keyword">for</span> {</span><br><span class="line">    <span class="keyword">if</span> l1 == <span class="constant">nil</span> &amp;&amp; l2 == <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">if</span> carry &gt; <span class="number">0</span> {</span><br><span class="line">        sum_node := &amp;ListNode{</span><br><span class="line">          Val:  carry,</span><br><span class="line">          Next: <span class="constant">nil</span>,</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> sum_head != <span class="constant">nil</span> {</span><br><span class="line">          sum_curr.Next = sum_node</span><br><span class="line">          sum_curr = sum_node</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          sum_head = sum_node</span><br><span class="line">          sum_curr = sum_node</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> sum <span class="typename">int</span></span><br><span class="line">    <span class="keyword">if</span> l1 != <span class="constant">nil</span> &amp;&amp; l2 != <span class="constant">nil</span> {</span><br><span class="line">      sum = l1.Val + l2.Val + carry</span><br><span class="line">      l1, l2 = l1.Next, l2.Next</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> l2 == <span class="constant">nil</span> {</span><br><span class="line">      sum = l1.Val + carry</span><br><span class="line">      l1 = l1.Next</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> l1 == <span class="constant">nil</span> {</span><br><span class="line">      sum = l2.Val + carry</span><br><span class="line">      l2 = l2.Next</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> sum &gt; <span class="number">9</span> {</span><br><span class="line">      carry = <span class="number">1</span></span><br><span class="line">      sum -= <span class="number">10</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      carry = <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    sum_node := &amp;ListNode{</span><br><span class="line">      Val:  sum,</span><br><span class="line">      Next: <span class="constant">nil</span>,</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> sum_head != <span class="constant">nil</span> {</span><br><span class="line">      sum_curr.Next = sum_node</span><br><span class="line">      sum_curr = sum_node</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      sum_head = sum_node</span><br><span class="line">      sum_curr = sum_node</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> sum_head</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> ListNode <span class="keyword">struct</span> {</span><br><span class="line">  Val <span class="typename">int</span></span><br><span class="line">  Next *ListNode</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> make_list(vals []<span class="typename">int</span>) *ListNode{</span><br><span class="line">  <span class="keyword">var</span> lst, lst_c *ListNode</span><br><span class="line">  <span class="keyword">for</span> _, val := <span class="keyword">range</span> vals {</span><br><span class="line">    node := &amp;ListNode{</span><br><span class="line">      Val: val,</span><br><span class="line">      Next: <span class="constant">nil</span>,</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> lst != <span class="constant">nil</span> {</span><br><span class="line">      lst_c.Next = node</span><br><span class="line">      lst_c = node</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      lst = node</span><br><span class="line">      lst_c = node</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> lst</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> print_list(lst *ListNode) {</span><br><span class="line">  <span class="keyword">var</span> str <span class="typename">string</span></span><br><span class="line">  <span class="keyword">for</span> {</span><br><span class="line">    <span class="keyword">if</span> lst == <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">    str += fmt.Sprintf(<span class="string">"%d,"</span>, lst.Val)</span><br><span class="line">    lst = lst.Next</span><br><span class="line">  }</span><br><span class="line">  str = strings.Trim(str, <span class="string">","</span>)</span><br><span class="line">  fmt.Printf(<span class="string">"[%s]"</span>, str)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  l1 := make_list([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>})</span><br><span class="line">  l2 := make_list([]<span class="typename">int</span>{<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>})</span><br><span class="line">  sum_lst := addTwoNumbers(l1,l2)</span><br><span class="line">  print_list(sum_lst)</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb8a2ca3" class="outline-2">
+<h2 id="orgb8a2ca3"><a id="ID-e61189bf-00f4-47e4-9573-7f449688d5ef"></a><span class="section-number-2">8</span> two sum II - input array is sorted</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> twoSum(nums []<span class="typename">int</span>, target <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  indices := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    fir := nums[i]</span><br><span class="line">    <span class="keyword">for</span> j := i + <span class="number">1</span>; j &lt; <span class="built_in">len</span>(nums); j += <span class="number">1</span> {</span><br><span class="line">      secd := nums[j]</span><br><span class="line">      <span class="keyword">if</span> fir+secd == target {</span><br><span class="line">        indices = <span class="built_in">append</span>(indices, i+<span class="number">1</span>)</span><br><span class="line">        indices = <span class="built_in">append</span>(indices, j+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> indices</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d2f290" class="outline-2">
+<h2 id="org2d2f290"><a id="ID-ff6497bd-6708-49cc-8fec-b31ad19be5b5"></a><span class="section-number-2">9</span> remove duplicates from sorted array</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> removeDuplicates(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">2</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">  <span class="keyword">var</span> size <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">      pre = num</span><br><span class="line">      size = <span class="number">1</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> pre != num {</span><br><span class="line">      pre = num</span><br><span class="line">      nums[size] = num</span><br><span class="line">      size += <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f8e93b" class="outline-2">
+<h2 id="org6f8e93b"><a id="ID-6ca329cf-96b6-406e-b1ac-f72f5e276e2f"></a><span class="section-number-2">10</span> remove element</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> removeElement(nums []<span class="typename">int</span>, val <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> size <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">      <span class="keyword">if</span> num == val {</span><br><span class="line">        size = <span class="number">0</span></span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        size = <span class="number">1</span></span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num != val {</span><br><span class="line">      nums[size] = num</span><br><span class="line">      size += <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd60aeff" class="outline-2">
+<h2 id="orgd60aeff"><a id="ID-eecdd18d-3a8d-4b15-8486-83931c55d6d8"></a><span class="section-number-2">11</span> majority element</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> majorityElement(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  num_M := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">int</span>)</span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> nums {</span><br><span class="line">    time := num_M[num]</span><br><span class="line">    num_M[num] = time + <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mt_num, max_times <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> num, time := <span class="keyword">range</span> num_M {</span><br><span class="line">    <span class="keyword">if</span> time &gt; max_times {</span><br><span class="line">      mt_num = num</span><br><span class="line">      max_times = time</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> mt_num</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc7c5809" class="outline-2">
+<h2 id="orgc7c5809"><a id="ID-020d91c3-f039-49e0-9c39-6808fec46f85"></a><span class="section-number-2">12</span> shortest unsorted continuous subarray</h2>
+<div class="outline-text-2" id="text-12">
+</div>
+</div>
+<div id="outline-container-org8306566" class="outline-2">
+<h2 id="org8306566"><a id="ID-e99a3f76-2d7f-4ab9-a908-beb1a83f094c"></a><span class="section-number-2">13</span> reshape the matrix</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+</div>
+<div id="outline-container-orgb1693b7" class="outline-2">
+<h2 id="orgb1693b7"><a id="ID-8848824b-c05f-499a-8698-097e6d5f188f"></a><span class="section-number-2">14</span> search insert position</h2>
+<div class="outline-text-2" id="text-14">
+</div>
+</div>
+
+Last Updated 2017-07-17 Mon 16:15.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/16/leetcode-tree/" rel="next" title="Leetcode-tree">
+                <i class="fa fa-chevron-left"></i> Leetcode-tree
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+
+      
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/07/16/leetcode-tree/">Leetcode-tree</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/leetcode/">Leetcode编程练习</a></li>
+        
+        </ul>
+      
+      
+
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400" alt="Brantou">
+          <p class="site-author-name" itemprop="name">Brantou</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/brantou" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/brantou89" target="_blank" title="Twitter" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org3ac7056"><span class="nav-text">1 best time to buy and sell stock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org42ceeef"><span class="nav-text">2 plus one</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org65abef7"><span class="nav-text">3 pascal's triangle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org01dd28c"><span class="nav-text">4 pascal's triangle II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf283f6b"><span class="nav-text">5 array partition I</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga2f8065"><span class="nav-text">6 find all numbers disappeared in an array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org322de56"><span class="nav-text">7 two sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb8a2ca3"><span class="nav-text">8 two sum II - input array is sorted</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2d2f290"><span class="nav-text">9 remove duplicates from sorted array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6f8e93b"><span class="nav-text">10 remove element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd60aeff"><span class="nav-text">11 majority element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc7c5809"><span class="nav-text">12 shortest unsorted continuous subarray</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8306566"><span class="nav-text">13 reshape the matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb1693b7"><span class="nav-text">14 search insert position</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/07/16/leetcode-array/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/89947/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

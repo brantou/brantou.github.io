@@ -572,7 +572,7 @@ exit status 66
 修复这个 <i>race condition</i> 问题，可通过读写发生在一个 <code>goroutine</code> 中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &amp;lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &amp;lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &amp;lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -615,7 +615,7 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 这次修复依旧没能解决问题，因为用户自定义的 /Reader/，可能在读的过程中，执行写操作，这个时候共享的缓冲区就造成数据污染。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &#36825;&#37324;&#30340;p&#23601;&#26159;&#20195;&#34920;&#30340;&#23601;&#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &amp;#36825;&amp;#37324;&amp;#30340;p&amp;#23601;&amp;#26159;&amp;#20195;&amp;#34920;&amp;#30340;&amp;#23601;&amp;#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -714,9 +714,9 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
-        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-array-slice-string/">数组，切片：‘append’的机制</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-cover-story/">Go的测试覆盖率</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/24/go-http-trace/">Go的HTTP tracing</a></li>
         
@@ -828,7 +828,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -839,7 +839,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -850,7 +850,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

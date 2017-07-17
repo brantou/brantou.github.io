@@ -335,6 +335,443 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/16/leetcode-array/" itemprop="url">Leetcode-array</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/16/leetcode-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-org3ac7056" class="outline-2">
+<h2 id="org3ac7056"><a id="ID-f4e4fab8-d414-4790-be85-130f330e8633"></a><span class="section-number-2">1</span> best time to buy and sell stock</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> maxProfit(prices []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(prices) &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mp <span class="typename">int</span></span><br><span class="line">  min_p := prices[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">for</span> _, price := <span class="keyword">range</span> prices {</span><br><span class="line">    <span class="keyword">if</span> price-min_p &gt; mp {</span><br><span class="line">      mp = price - min_p</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> price &lt; min_p {</span><br><span class="line">      min_p = price</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> mp</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org42ceeef" class="outline-2">
+<h2 id="org42ceeef"><a id="ID-5d3a8d0f-7cb5-42ce-a280-8e8e55a9b44e"></a><span class="section-number-2">2</span> plus one</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> plusOne(digits []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> carry <span class="typename">int</span></span><br><span class="line">  carry = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> index := <span class="built_in">len</span>(digits) - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index -= <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> carry+digits[index] == <span class="number">10</span> {</span><br><span class="line">      carry = <span class="number">1</span></span><br><span class="line">      digits[index] = <span class="number">0</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      digits[index] += carry</span><br><span class="line">      carry = <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> carry == <span class="number">0</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> carry == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>([]<span class="typename">int</span>{<span class="number">1</span>}, digits...)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> digits</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org65abef7" class="outline-2">
+<h2 id="org65abef7"><a id="ID-955a32cc-ff35-432c-87da-c1173739bd61"></a><span class="section-number-2">3</span> pascal's triangle</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> generate(numRows <span class="typename">int</span>) [][]<span class="typename">int</span> {</span><br><span class="line">  pt_arr := <span class="built_in">make</span>([][]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">if</span> numRows &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  pt_arr = <span class="built_in">append</span>(pt_arr, []<span class="typename">int</span>{<span class="number">1</span>})</span><br><span class="line">  <span class="keyword">if</span> numRows == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  pt_arr = <span class="built_in">append</span>(pt_arr, []<span class="typename">int</span>{<span class="number">1</span>, <span class="number">1</span>})</span><br><span class="line">  <span class="keyword">if</span> numRows &lt; <span class="number">3</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_arr</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">3</span>; i &lt;= numRows; i += <span class="number">1</span> {</span><br><span class="line">    pt := <span class="built_in">make</span>([]<span class="typename">int</span>, i)</span><br><span class="line">    pre_pt := pt_arr[i-<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">    <span class="keyword">for</span> index, _ := <span class="keyword">range</span> pre_pt {</span><br><span class="line">      <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">        pt[index] = pre_pt[index]</span><br><span class="line">        pre = pre_pt[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> index == <span class="built_in">len</span>(pre_pt)-<span class="number">1</span> {</span><br><span class="line">        pt[index] = pre + pre_pt[index]</span><br><span class="line">        pt[index+<span class="number">1</span>] = pre_pt[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      pt[index] = pre + pre_pt[index]</span><br><span class="line">      pre = pre_pt[index]</span><br><span class="line">    }</span><br><span class="line">    pt_arr = <span class="built_in">append</span>(pt_arr, pt)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pt_arr</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    fmt.Println(generate(<span class="number">3</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org01dd28c" class="outline-2">
+<h2 id="org01dd28c"><a id="ID-f2b7b1c8-839c-4976-96d1-e95394e59b64"></a><span class="section-number-2">4</span> pascal's triangle II</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> getRow(rowIndex <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  rowIndex += <span class="number">1</span></span><br><span class="line">  pt_row := <span class="built_in">make</span>([]<span class="typename">int</span>, rowIndex)</span><br><span class="line">  <span class="keyword">if</span> rowIndex &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_row</span><br><span class="line">  }</span><br><span class="line">  pt_row[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> rowIndex == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> pt_row</span><br><span class="line">  }</span><br><span class="line">  pt_row[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">3</span>; i &lt;= rowIndex; i += <span class="number">1</span> {</span><br><span class="line">    ptr := pt_row[<span class="number">0</span>:i]</span><br><span class="line">    pre_ptr := pt_row[<span class="number">0</span> : i-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">    <span class="keyword">for</span> index, _ := <span class="keyword">range</span> pre_ptr {</span><br><span class="line">      <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">        pre = pre_ptr[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> index == <span class="built_in">len</span>(pre_ptr)-<span class="number">1</span> {</span><br><span class="line">        ptr[index+<span class="number">1</span>] = pre_ptr[index]</span><br><span class="line">        ptr[index] = pre + pre_ptr[index]</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      pre_num := pre_ptr[index]</span><br><span class="line">      ptr[index], pre = pre+pre_num, pre_num</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pt_row</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    fmt.Println(getRow(<span class="number">4</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf283f6b" class="outline-2">
+<h2 id="orgf283f6b"><a id="ID-026862fc-98ae-49f7-bd7e-ecdb6854aebf"></a><span class="section-number-2">5</span> array partition I</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> min(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &gt; b {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> arrayPairSum(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  sort.Ints(nums)</span><br><span class="line">  <span class="keyword">var</span> p_sum <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index := <span class="number">0</span>; index &lt; <span class="built_in">len</span>(nums); index += <span class="number">2</span> {</span><br><span class="line">    p_sum += min(nums[index], nums[index+<span class="number">1</span>])</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> p_sum</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orga2f8065" class="outline-2">
+<h2 id="orga2f8065"><a id="ID-3f563c9d-eac2-4ca7-8684-4c031064e172"></a><span class="section-number-2">6</span> find all numbers disappeared in an array</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> findDisappearedNumbers(nums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> nums</span><br><span class="line">  }</span><br><span class="line">  dis_nums := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> pre, pre_index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index+<span class="number">1</span> != num &amp;&amp; num != <span class="number">0</span> {</span><br><span class="line">      pre = num</span><br><span class="line">      pre_index = index</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> pre == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> dis_nums</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> nums[pre-<span class="number">1</span>] != pre &amp;&amp; nums[pre-<span class="number">1</span>] != <span class="number">0</span> {</span><br><span class="line">      nums[pre-<span class="number">1</span>], pre = pre, nums[pre-<span class="number">1</span>]</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> nums[pre-<span class="number">1</span>] == <span class="number">0</span> {</span><br><span class="line">      nums[pre-<span class="number">1</span>] = pre</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    nums[pre_index] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">      <span class="keyword">if</span> index+<span class="number">1</span> != num &amp;&amp; num != <span class="number">0</span> {</span><br><span class="line">        pre = num</span><br><span class="line">        pre_index = index</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  nums[pre-<span class="number">1</span>] = pre</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index+<span class="number">1</span> != num {</span><br><span class="line">      dis_nums = <span class="built_in">append</span>(dis_nums, index+<span class="number">1</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dis_nums</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> findDisappearedNumbers(nums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  marks := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> nums {</span><br><span class="line">    marks[num-<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  dis_nums := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> index, mark := <span class="keyword">range</span> marks {</span><br><span class="line">    <span class="keyword">if</span> mark == <span class="number">0</span> {</span><br><span class="line">      dis_nums = <span class="built_in">append</span>(dis_nums, index+<span class="number">1</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> dis_nums</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(findDisappearedNumbers([]<span class="typename">int</span>{<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org322de56" class="outline-2">
+<h2 id="org322de56"><a id="ID-a6cad07b-f004-4e13-ae5f-8580d32df685"></a><span class="section-number-2">7</span> two sum</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> twoSum(nums []<span class="typename">int</span>, target <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">    indices := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">        fir := nums[i]</span><br><span class="line">        <span class="keyword">for</span> j := i+<span class="number">1</span>; j &lt; <span class="built_in">len</span>(nums); j +=<span class="number">1</span> {</span><br><span class="line">            secd := nums[j]</span><br><span class="line">            <span class="keyword">if</span> fir + secd == target {</span><br><span class="line">                indices = <span class="built_in">append</span>(indices, i)</span><br><span class="line">                indices = <span class="built_in">append</span>(indices, j)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> indices</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * type ListNode struct {</span><br><span class="line"> *     Val int</span><br><span class="line"> *     Next *ListNode</span><br><span class="line"> * }</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">func</span> addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {</span><br><span class="line">  <span class="keyword">var</span> carry <span class="typename">int</span></span><br><span class="line">  <span class="keyword">var</span> sum_head, sum_curr *ListNode</span><br><span class="line">  <span class="keyword">for</span> {</span><br><span class="line">    <span class="keyword">if</span> l1 == <span class="constant">nil</span> &amp;&amp; l2 == <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">if</span> carry &gt; <span class="number">0</span> {</span><br><span class="line">        sum_node := &amp;ListNode{</span><br><span class="line">          Val:  carry,</span><br><span class="line">          Next: <span class="constant">nil</span>,</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> sum_head != <span class="constant">nil</span> {</span><br><span class="line">          sum_curr.Next = sum_node</span><br><span class="line">          sum_curr = sum_node</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          sum_head = sum_node</span><br><span class="line">          sum_curr = sum_node</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> sum <span class="typename">int</span></span><br><span class="line">    <span class="keyword">if</span> l1 != <span class="constant">nil</span> &amp;&amp; l2 != <span class="constant">nil</span> {</span><br><span class="line">      sum = l1.Val + l2.Val + carry</span><br><span class="line">      l1, l2 = l1.Next, l2.Next</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> l2 == <span class="constant">nil</span> {</span><br><span class="line">      sum = l1.Val + carry</span><br><span class="line">      l1 = l1.Next</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> l1 == <span class="constant">nil</span> {</span><br><span class="line">      sum = l2.Val + carry</span><br><span class="line">      l2 = l2.Next</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> sum &gt; <span class="number">9</span> {</span><br><span class="line">      carry = <span class="number">1</span></span><br><span class="line">      sum -= <span class="number">10</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      carry = <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    sum_node := &amp;ListNode{</span><br><span class="line">      Val:  sum,</span><br><span class="line">      Next: <span class="constant">nil</span>,</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> sum_head != <span class="constant">nil</span> {</span><br><span class="line">      sum_curr.Next = sum_node</span><br><span class="line">      sum_curr = sum_node</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      sum_head = sum_node</span><br><span class="line">      sum_curr = sum_node</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> sum_head</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> ListNode <span class="keyword">struct</span> {</span><br><span class="line">  Val <span class="typename">int</span></span><br><span class="line">  Next *ListNode</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> make_list(vals []<span class="typename">int</span>) *ListNode{</span><br><span class="line">  <span class="keyword">var</span> lst, lst_c *ListNode</span><br><span class="line">  <span class="keyword">for</span> _, val := <span class="keyword">range</span> vals {</span><br><span class="line">    node := &amp;ListNode{</span><br><span class="line">      Val: val,</span><br><span class="line">      Next: <span class="constant">nil</span>,</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> lst != <span class="constant">nil</span> {</span><br><span class="line">      lst_c.Next = node</span><br><span class="line">      lst_c = node</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      lst = node</span><br><span class="line">      lst_c = node</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> lst</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> print_list(lst *ListNode) {</span><br><span class="line">  <span class="keyword">var</span> str <span class="typename">string</span></span><br><span class="line">  <span class="keyword">for</span> {</span><br><span class="line">    <span class="keyword">if</span> lst == <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">    str += fmt.Sprintf(<span class="string">"%d,"</span>, lst.Val)</span><br><span class="line">    lst = lst.Next</span><br><span class="line">  }</span><br><span class="line">  str = strings.Trim(str, <span class="string">","</span>)</span><br><span class="line">  fmt.Printf(<span class="string">"[%s]"</span>, str)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  l1 := make_list([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>})</span><br><span class="line">  l2 := make_list([]<span class="typename">int</span>{<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>})</span><br><span class="line">  sum_lst := addTwoNumbers(l1,l2)</span><br><span class="line">  print_list(sum_lst)</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb8a2ca3" class="outline-2">
+<h2 id="orgb8a2ca3"><a id="ID-e61189bf-00f4-47e4-9573-7f449688d5ef"></a><span class="section-number-2">8</span> two sum II - input array is sorted</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> twoSum(nums []<span class="typename">int</span>, target <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  indices := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    fir := nums[i]</span><br><span class="line">    <span class="keyword">for</span> j := i + <span class="number">1</span>; j &lt; <span class="built_in">len</span>(nums); j += <span class="number">1</span> {</span><br><span class="line">      secd := nums[j]</span><br><span class="line">      <span class="keyword">if</span> fir+secd == target {</span><br><span class="line">        indices = <span class="built_in">append</span>(indices, i+<span class="number">1</span>)</span><br><span class="line">        indices = <span class="built_in">append</span>(indices, j+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> indices</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d2f290" class="outline-2">
+<h2 id="org2d2f290"><a id="ID-ff6497bd-6708-49cc-8fec-b31ad19be5b5"></a><span class="section-number-2">9</span> remove duplicates from sorted array</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> removeDuplicates(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">2</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> pre <span class="typename">int</span></span><br><span class="line">  <span class="keyword">var</span> size <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">      pre = num</span><br><span class="line">      size = <span class="number">1</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> pre != num {</span><br><span class="line">      pre = num</span><br><span class="line">      nums[size] = num</span><br><span class="line">      size += <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f8e93b" class="outline-2">
+<h2 id="org6f8e93b"><a id="ID-6ca329cf-96b6-406e-b1ac-f72f5e276e2f"></a><span class="section-number-2">10</span> remove element</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> removeElement(nums []<span class="typename">int</span>, val <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> size <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> index, num := <span class="keyword">range</span> nums {</span><br><span class="line">    <span class="keyword">if</span> index == <span class="number">0</span> {</span><br><span class="line">      <span class="keyword">if</span> num == val {</span><br><span class="line">        size = <span class="number">0</span></span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        size = <span class="number">1</span></span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num != val {</span><br><span class="line">      nums[size] = num</span><br><span class="line">      size += <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> size</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd60aeff" class="outline-2">
+<h2 id="orgd60aeff"><a id="ID-eecdd18d-3a8d-4b15-8486-83931c55d6d8"></a><span class="section-number-2">11</span> majority element</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> majorityElement(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  num_M := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">int</span>)</span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> nums {</span><br><span class="line">    time := num_M[num]</span><br><span class="line">    num_M[num] = time + <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mt_num, max_times <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> num, time := <span class="keyword">range</span> num_M {</span><br><span class="line">    <span class="keyword">if</span> time &gt; max_times {</span><br><span class="line">      mt_num = num</span><br><span class="line">      max_times = time</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> mt_num</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc7c5809" class="outline-2">
+<h2 id="orgc7c5809"><a id="ID-020d91c3-f039-49e0-9c39-6808fec46f85"></a><span class="section-number-2">12</span> shortest unsorted continuous subarray</h2>
+<div class="outline-text-2" id="text-12">
+</div>
+</div>
+<div id="outline-container-org8306566" class="outline-2">
+<h2 id="org8306566"><a id="ID-e99a3f76-2d7f-4ab9-a908-beb1a83f094c"></a><span class="section-number-2">13</span> reshape the matrix</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+</div>
+<div id="outline-container-orgb1693b7" class="outline-2">
+<h2 id="orgb1693b7"><a id="ID-8848824b-c05f-499a-8698-097e6d5f188f"></a><span class="section-number-2">14</span> search insert position</h2>
+<div class="outline-text-2" id="text-14">
+</div>
+</div>
+
+Last Updated 2017-07-17 Mon 16:15.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -768,184 +1205,6 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
-                2017-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-编程语言最常见的特征之一是数组的概念。
-数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
-</p>
-<ul class="org-ul">
-<li>固定的size，还是可变的size?</li>
-<li>size是类型的一部分吗?</li>
-<li>多维数组看起来是什么样子的？</li>
-<li>空数组代表了什么含义？</li>
-</ul>
-
-
-<p>
-以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
-</p>
-
-<p>
-在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
-关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
-不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
-也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
-</p>
-
-<p>
-在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1088,7 +1347,7 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
 示例代码如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1117,7 +1376,7 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1255,7 +1514,7 @@ HTML输出产生了巨大的回报：
 所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;amp;&amp;amp; g()</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
@@ -1284,6 +1543,184 @@ HTML输出产生了巨大的回报：
 Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+</p>
+<ul class="org-ul">
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
+</ul>
+
+
+<p>
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+</p>
+
+<p>
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
+</p>
+
+<p>
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1468,14 +1905,14 @@ httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件�
 然后才能启动请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
-DNS Info: {Addrs:[{IP:192.168.83.230 Zone:}] Err:<nil> Coalesced:false}
+DNS Info: {Addrs:[{IP:192.168.83.230 Zone:}] Err:&lt;nil&gt; Coalesced:false}
 Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 
-</nil></pre>
+</pre>
 
 <p>
 在 <i>round trip</i> 中，/http.DefaultTransport/ 会在事件发生时调用每个钩子。
@@ -1495,7 +1932,7 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 下面的示例使用 <i>http.RoundTripper wrapper</i> 来标识当前的请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1503,7 +1940,7 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 </p>
 <pre class="example">
 Connection reused for https://google.com? false
-Connection reused for https://www.google.com.hk/?gfe_rd=cr&ei=olwkWd3BAa-M8Qfjs73IBA? false
+Connection reused for https://www.google.com.hk/?gfe_rd=cr&amp;ei=olwkWd3BAa-M8Qfjs73IBA? false
 
 </pre>
 
@@ -1787,7 +2224,7 @@ exit status 66
 修复这个 <i>race condition</i> 问题，可通过读写发生在一个 <code>goroutine</code> 中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &amp;lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &amp;lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &amp;lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1830,7 +2267,7 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 这次修复依旧没能解决问题，因为用户自定义的 /Reader/，可能在读的过程中，执行写操作，这个时候共享的缓冲区就造成数据污染。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &#36825;&#37324;&#30340;p&#23601;&#26159;&#20195;&#34920;&#30340;&#23601;&#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &amp;#36825;&amp;#37324;&amp;#30340;p&amp;#23601;&amp;#26159;&amp;#20195;&amp;#34920;&amp;#30340;&amp;#23601;&amp;#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -2023,7 +2460,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
 <i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>)：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -2109,7 +2546,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
 示例函数的结尾，由gen启动的goroutine将返回而不会发送泄漏。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// gen generates integers in a separate goroutine and</span></span><br><span class="line">  <span class="comment">// sends them to the returned channel.</span></span><br><span class="line">  <span class="comment">// The callers of gen need to cancel the context once</span></span><br><span class="line">  <span class="comment">// they are done consuming generated integers not to leak</span></span><br><span class="line">  <span class="comment">// the internal goroutine started by gen.</span></span><br><span class="line">  gen := <span class="keyword">func</span>(ctx context.Context) &lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    n := <span class="number">1</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      <span class="keyword">for</span> {</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">          <span class="keyword">return</span> <span class="comment">// returning not to leak the goroutine</span></span><br><span class="line">        <span class="keyword">case</span> dst &lt;- n:</span><br><span class="line">          n++</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> dst</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// cancel when we are finished consuming integers</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) {</span><br><span class="line">    fmt.Println(n)</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">5</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// gen generates integers in a separate goroutine and</span></span><br><span class="line">  <span class="comment">// sends them to the returned channel.</span></span><br><span class="line">  <span class="comment">// The callers of gen need to cancel the context once</span></span><br><span class="line">  <span class="comment">// they are done consuming generated integers not to leak</span></span><br><span class="line">  <span class="comment">// the internal goroutine started by gen.</span></span><br><span class="line">  gen := <span class="keyword">func</span>(ctx context.Context) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    n := <span class="number">1</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      <span class="keyword">for</span> {</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">          <span class="keyword">return</span> <span class="comment">// returning not to leak the goroutine</span></span><br><span class="line">        <span class="keyword">case</span> dst &amp;lt;- n:</span><br><span class="line">          n++</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> dst</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// cancel when we are finished consuming integers</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) {</span><br><span class="line">    fmt.Println(n)</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">5</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2121,7 +2558,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
 <i>WithDeadline</i> 的示例,通过一个截止日期的 <i>Context</i> 来告知一个阻塞的函数，一旦它到了最终期限，就放弃它的工作。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  d := time.Now().Add(<span class="number">50</span> * time.Millisecond)</span><br><span class="line">  ctx, cancel := context.WithDeadline(context.Background(), d)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Even though ctx will be expired, it is good practice to call its</span></span><br><span class="line">  <span class="comment">// cancelation function in any case. Failure to do so may keep the</span></span><br><span class="line">  <span class="comment">// context and its parent alive longer than necessary.</span></span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err())</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  d := time.Now().Add(<span class="number">50</span> * time.Millisecond)</span><br><span class="line">  ctx, cancel := context.WithDeadline(context.Background(), d)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Even though ctx will be expired, it is good practice to call its</span></span><br><span class="line">  <span class="comment">// cancelation function in any case. Failure to do so may keep the</span></span><br><span class="line">  <span class="comment">// context and its parent alive longer than necessary.</span></span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err())</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2133,7 +2570,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
 <i>WithTimeount</i> 的示例, 传递具有超时的 <i>Context</i> 以告知阻塞函数，它将在超时过后丢弃其工作。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// Pass a context with a timeout to tell a blocking function that it</span></span><br><span class="line">  <span class="comment">// should abandon its work after the timeout elapses.</span></span><br><span class="line">  ctx, cancel := context.WithTimeout(context.Background(), <span class="number">50</span>*time.Millisecond)</span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err()) <span class="comment">// prints "context deadline exceeded"</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// Pass a context with a timeout to tell a blocking function that it</span></span><br><span class="line">  <span class="comment">// should abandon its work after the timeout elapses.</span></span><br><span class="line">  ctx, cancel := context.WithTimeout(context.Background(), <span class="number">50</span>*time.Millisecond)</span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err()) <span class="comment">// prints "context deadline exceeded"</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2265,7 +2702,7 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 <i>Search</i> 将传递闭包给 <i>httpDo</i> 来处理HTTP响应：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> results Results</span><br><span class="line">err = httpDo(ctx, req, <span class="keyword">func</span>(resp *http.Response, err error) error {</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parse the JSON search result.</span></span><br><span class="line">  <span class="comment">// https://developers.google.com/web-search/docs/#fonje</span></span><br><span class="line">  <span class="keyword">var</span> data <span class="keyword">struct</span> {</span><br><span class="line">    ResponseData <span class="keyword">struct</span> {</span><br><span class="line">      Results []<span class="keyword">struct</span> {</span><br><span class="line">        TitleNoFormatting <span class="typename">string</span></span><br><span class="line">        URL               <span class="typename">string</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> err := json.NewDecoder(resp.Body).Decode(&amp;data); err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> _, res := <span class="keyword">range</span> data.ResponseData.Results {</span><br><span class="line">    results = <span class="built_in">append</span>(results, Result{Title: res.TitleNoFormatting, URL: res.URL})</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">})</span><br><span class="line"><span class="comment">// httpDo waits for the closure we provided to return, so it's safe to</span></span><br><span class="line"><span class="comment">// read results here.</span></span><br><span class="line"><span class="keyword">return</span> results, err</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> results Results</span><br><span class="line">err = httpDo(ctx, req, <span class="keyword">func</span>(resp *http.Response, err error) error {</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parse the JSON search result.</span></span><br><span class="line">  <span class="comment">// https://developers.google.com/web-search/docs/#fonje</span></span><br><span class="line">  <span class="keyword">var</span> data <span class="keyword">struct</span> {</span><br><span class="line">    ResponseData <span class="keyword">struct</span> {</span><br><span class="line">      Results []<span class="keyword">struct</span> {</span><br><span class="line">        TitleNoFormatting <span class="typename">string</span></span><br><span class="line">        URL               <span class="typename">string</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> err := json.NewDecoder(resp.Body).Decode(&amp;amp;data); err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> _, res := <span class="keyword">range</span> data.ResponseData.Results {</span><br><span class="line">    results = <span class="built_in">append</span>(results, Result{Title: res.TitleNoFormatting, URL: res.URL})</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">})</span><br><span class="line"><span class="comment">// httpDo waits for the closure we provided to return, so it's safe to</span></span><br><span class="line"><span class="comment">// read results here.</span></span><br><span class="line"><span class="keyword">return</span> results, err</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -2273,7 +2710,7 @@ Google Web Search API请求包括搜索查询和用户IP作为查询参数：
 如果在 <code>goroutine</code> 退出之前关闭了ctx.Done，它将取消该请求：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> httpDo(ctx context.Context, req *http.Request, f <span class="keyword">func</span>(*http.Response, error) error) error {</span><br><span class="line">    <span class="comment">// Run the HTTP request in a goroutine and pass the response to f.</span></span><br><span class="line">    tr := &amp;http.Transport{}</span><br><span class="line">    client := &amp;http.Client{Transport: tr}</span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() { c &lt;- f(client.Do(req)) }()</span><br><span class="line">    <span class="keyword">select</span> {</span><br><span class="line">    <span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">        tr.CancelRequest(req)</span><br><span class="line">        &lt;-c <span class="comment">// Wait for f to return.</span></span><br><span class="line">        <span class="keyword">return</span> ctx.Err()</span><br><span class="line">    <span class="keyword">case</span> err := &lt;-c:</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> httpDo(ctx context.Context, req *http.Request, f <span class="keyword">func</span>(*http.Response, error) error) error {</span><br><span class="line">    <span class="comment">// Run the HTTP request in a goroutine and pass the response to f.</span></span><br><span class="line">    tr := &amp;amp;http.Transport{}</span><br><span class="line">    client := &amp;amp;http.Client{Transport: tr}</span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() { c &amp;lt;- f(client.Do(req)) }()</span><br><span class="line">    <span class="keyword">select</span> {</span><br><span class="line">    <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">        tr.CancelRequest(req)</span><br><span class="line">        &amp;lt;-c <span class="comment">// Wait for f to return.</span></span><br><span class="line">        <span class="keyword">return</span> ctx.Err()</span><br><span class="line">    <span class="keyword">case</span> err := &amp;lt;-c:</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -2900,303 +3337,6 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述，解题思路，实际编程。
-</p>
-
-<div id="outline-container-orgebfae46" class="outline-2">
-<h2 id="orgebfae46"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-orga24e2f8" class="outline-3">
-<h3 id="orga24e2f8"><span class="section-number-3">1.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
-另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
-</p>
-</div>
-</div>
-<div id="outline-container-orgf7bfc31" class="outline-3">
-<h3 id="orgf7bfc31"><span class="section-number-3">1.2</span> 解题思路</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
-数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
-</p>
-</div>
-</div>
-<div id="outline-container-org2b17a7b" class="outline-3">
-<h3 id="org2b17a7b"><span class="section-number-3">1.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果:
-</p>
-<pre class="example">
-12AB34CD56EF78GH910IJ
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb0e5ceb" class="outline-2">
-<h2 id="orgb0e5ceb"><span class="section-number-2">2</span> 随机抽奖</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-org0f7c7b2" class="outline-3">
-<h3 id="org0f7c7b2"><span class="section-number-3">2.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-用户随机抽奖，数据结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org4e4797a" class="outline-3">
-<h3 id="org4e4797a"><span class="section-number-3">2.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
-把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-orgca6e361" class="outline-3">
-<h3 id="orgca6e361"><span class="section-number-3">2.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: f, award count: 178
-user: d, award count: 152
-user: b, award count: 159
-user: e, award count: 182
-user: c, award count: 170
-user: a, award count: 159
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org7b1c11c" class="outline-2">
-<h2 id="org7b1c11c"><span class="section-number-2">3</span> 权重抽奖</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org82c740e" class="outline-3">
-<h3 id="org82c740e"><span class="section-number-3">3.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd86680a" class="outline-3">
-<h3 id="orgd86680a"><span class="section-number-3">3.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
-理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
-把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org50fc75c" class="outline-3">
-<h3 id="org50fc75c"><span class="section-number-3">3.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &amp;gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: c, award count: 1667
-user: f, award count: 3310
-user: e, award count: 1099
-user: d, award count: 2276
-user: b, award count: 549
-user: a, award count: 1099
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb4367be" class="outline-2">
-<h2 id="orgb4367be"><span class="section-number-2">4</span> 总结</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
-我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
-</p>
-</div>
-</div>
-
-Last Updated 2017-05-25 Thu 22:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3610,172 +3750,11 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/13/consul-and-docker/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/13/consul-and-docker/" itemprop="url">consul的docker环境配置</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-13T00:00:00+08:00">
-                2017-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/13/consul-and-docker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/13/consul-and-docker/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-构造consul的docker集群
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk '{print tolower($0)}') -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-参看集群状态
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker exec -t node0 consul info</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-Network Coordinates in consul
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/datacenters</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/nodes</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-健康检查
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
-</div>
-
-Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3818,7 +3797,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3829,7 +3808,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -3840,7 +3819,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

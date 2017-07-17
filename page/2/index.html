@@ -335,6 +335,464 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
+分三步阐述出来：问题描述，解题思路，实际编程。
+</p>
+
+<div id="outline-container-orgebfae46" class="outline-2">
+<h2 id="orgebfae46"><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orga24e2f8" class="outline-3">
+<h3 id="orga24e2f8"><span class="section-number-3">1.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
+另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf7bfc31" class="outline-3">
+<h3 id="orgf7bfc31"><span class="section-number-3">1.2</span> 解题思路</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
+数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
+</p>
+</div>
+</div>
+<div id="outline-container-org2b17a7b" class="outline-3">
+<h3 id="org2b17a7b"><span class="section-number-3">1.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果:
+</p>
+<pre class="example">
+12AB34CD56EF78GH910IJ
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0e5ceb" class="outline-2">
+<h2 id="orgb0e5ceb"><span class="section-number-2">2</span> 随机抽奖</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org0f7c7b2" class="outline-3">
+<h3 id="org0f7c7b2"><span class="section-number-3">2.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+用户随机抽奖，数据结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e4797a" class="outline-3">
+<h3 id="org4e4797a"><span class="section-number-3">2.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
+把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-orgca6e361" class="outline-3">
+<h3 id="orgca6e361"><span class="section-number-3">2.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: f, award count: 178
+user: d, award count: 152
+user: b, award count: 159
+user: e, award count: 182
+user: c, award count: 170
+user: a, award count: 159
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7b1c11c" class="outline-2">
+<h2 id="org7b1c11c"><span class="section-number-2">3</span> 权重抽奖</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org82c740e" class="outline-3">
+<h3 id="org82c740e"><span class="section-number-3">3.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd86680a" class="outline-3">
+<h3 id="orgd86680a"><span class="section-number-3">3.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
+理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
+把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-org50fc75c" class="outline-3">
+<h3 id="org50fc75c"><span class="section-number-3">3.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &amp;gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: c, award count: 1667
+user: f, award count: 3310
+user: e, award count: 1099
+user: d, award count: 2276
+user: b, award count: 549
+user: a, award count: 1099
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb4367be" class="outline-2">
+<h2 id="orgb4367be"><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
+我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-25 Thu 22:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/13/consul-and-docker/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/13/consul-and-docker/" itemprop="url">consul的docker环境配置</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-13T00:00:00+08:00">
+                2017-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/13/consul-and-docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/13/consul-and-docker/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+构造consul的docker集群
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+参看集群状态
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker exec -t node0 consul info</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+Network Coordinates in consul
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/datacenters</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/nodes</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+健康检查
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
+</div>
+
+Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/14/org-column-view-tutorial/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1282,8 +1740,8 @@ ITEM for the headline title
 </p>
 </blockquote>
 
-<div id="outline-container-org87c53e4" class="outline-2">
-<h2 id="introduction"><a id="org87c53e4"></a><span class="section-number-2">1</span> 序言</h2>
+<div id="outline-container-org007914f" class="outline-2">
+<h2 id="introduction"><a id="org007914f"></a><a id="ID-bee7e406-bb22-498e-a068-f0402cde93d0"></a><span class="section-number-2">1</span> 序言</h2>
 <div class="outline-text-2" id="text-introduction">
 <p>
 <b>Bable</b> 可让许多不同的语言工作一起。
@@ -1514,6 +1972,167 @@ org-mode我用了两年，却未曾深入。
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/go-logrus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/21/go-logrus/" itemprop="url">Go的日志库logrus试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T00:00:00+08:00">
+                2017-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/21/go-logrus/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/21/go-logrus/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-org0af01a0" class="outline-2">
+<h2 id="org0af01a0"><a id="ID-9c33a24e-99e1-4882-a837-1efea5ca6544"></a><span class="section-number-2">1</span> 示例</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">  log <span class="string">"github.com/sirupsen/logrus"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> init() {</span><br><span class="line">  <span class="comment">// Log as JSON instead of the default ASCII formatter.</span></span><br><span class="line">  log.SetFormatter(&amp;log.JSONFormatter{})</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Output to stdout instead of the default stderr</span></span><br><span class="line">  <span class="comment">// Can be any io.Writer, see below for File example</span></span><br><span class="line">  log.SetOutput(os.Stdout)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Only log the warning severity or above.</span></span><br><span class="line">  log.SetLevel(log.WarnLevel)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"animal"</span>: <span class="string">"walrus"</span>,</span><br><span class="line">    <span class="string">"size"</span>:   <span class="number">10</span>,</span><br><span class="line">  }).Info(<span class="string">"A group of walrus emerges from the ocean"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">122</span>,</span><br><span class="line">  }).Warn(<span class="string">"The group's number increased tremendously!"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">100</span>,</span><br><span class="line">  }).Fatal(<span class="string">"The ice breaks!"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// A common pattern is to re-use fields between logging statements by re-using</span></span><br><span class="line">  <span class="comment">// the logrus.Entry returned from WithFields()</span></span><br><span class="line">  contextLogger := log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"common"</span>: <span class="string">"this is a common field"</span>,</span><br><span class="line">    <span class="string">"other"</span>:  <span class="string">"I also should be logged always"</span>,</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line">  contextLogger.Info(<span class="string">"I'll be logged with common and other field"</span>)</span><br><span class="line">  contextLogger.Info(<span class="string">"Me too"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/leetcode/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1660,344 +2279,11 @@ org-mode我用了两年，却未曾深入。
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/11/org-syntax/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/11/org-syntax/" itemprop="url">Org-mode的语法解读</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T00:00:00+08:00">
-                2017-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/11/org-syntax/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/11/org-syntax/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/dev/org-syntax.html" rel="external nofollow noopener noreferrer" target="_blank">Org Syntax (draft)</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>由 <b>Nicolas Goaziou</b> 编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<p>
-本文档描述和说明被org的解析器和导出器框架使用的语法，当然还有几个对于当前语法的意见和建议。
-</p>
-
-<p>
-在 <b>Org</b> 语法中核心概念是： 只有 <b>headlines</b>, <b>sections</b>, <b>planning lines</b> 和 <b>property drawers</b> 四种语法结构是上下文无关的<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup><sup>, </sup><sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>；
-其他语法结构只能存在于特定 <i>Environments</i> 之中。
-</p>
-
-<p>
-<i>Environments</i> 从大到小(作用范围的尺度来做分类标准,从最宽到最窄)，大致可分为三类: "Greater element", "Element" 和 "Object"。
-<b>Element</b> 被用到了两个类的命名中，Greater 和 non-Greater, 这代表了什么呢？代表了这两类有共通之处，即它们的上下文都会被清除，重新初始化。
-</p>
-
-<p>
-<b>Paragraph</b> 是最小的语法单元。 定义 <b>Element</b> 的子语法结构和 <b>Paragraph</b> 同级,即不能包含 <b>Paragraph</b> 或者被包含在 <b>Paragraph</b> 中。
-一个 <b>Object</b> 可以作为一部分被一个 <b>Element</b> 所包含。 <b>Greater element</b> 的任意部分都可以是一个 <b>Element</b> 。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/11/org-syntax/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/07/hello-world/" itemprop="url">Hello World</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T00:00:00+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/07/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/07/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" rel="external nofollow noopener noreferrer" target="_blank">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" rel="external nofollow noopener noreferrer" target="_blank">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" rel="external nofollow noopener noreferrer" target="_blank">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" rel="external nofollow noopener noreferrer" target="_blank">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" rel="external nofollow noopener noreferrer" target="_blank">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" rel="external nofollow noopener noreferrer" target="_blank">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2040,7 +2326,7 @@ org-mode我用了两年，却未曾深入。
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2051,7 +2337,7 @@ org-mode我用了两年，却未曾深入。
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2062,7 +2348,7 @@ org-mode我用了两年，却未曾深入。
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
