@@ -441,18 +441,12 @@
 
 <p>
 折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
 </p>
 
-<p>
-源码地址：<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py</a>,
-</p>
-
-<p>
-若是帮你解决了问题，或者给了你启发，不要吝啬给我加一星。
-</p>
-
-<div id="outline-container-org4feefb0" class="outline-2">
-<h2 id="org4feefb0"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div id="outline-container-org1bb6571" class="outline-2">
+<h2 id="org1bb6571"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
@@ -476,8 +470,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd07c4e1" class="outline-2">
-<h2 id="orgd07c4e1"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div id="outline-container-orgf3d8c1f" class="outline-2">
+<h2 id="orgf3d8c1f"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 过程如下：
@@ -506,7 +500,7 @@
 <img src="/images/zhihu-login-args.jpg">
 <p>
 从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
-<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Goole </a>了下 <i>xsrf</i> 的含义， 竟然是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
+<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
 </p>
 <img src="/images/zhihu-xsrf.jpg"></li>
 <li><p>
@@ -518,8 +512,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orge55db99" class="outline-2">
-<h2 id="orge55db99"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+<div id="outline-container-org031109e" class="outline-2">
+<h2 id="org031109e"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 经过上述步骤登陆成功了，有点小激动，有没有！
@@ -542,8 +536,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org3ebbde7" class="outline-2">
-<h2 id="org3ebbde7"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div id="outline-container-org51c85e3" class="outline-2">
+<h2 id="org51c85e3"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
@@ -559,8 +553,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb36bce4" class="outline-2">
-<h2 id="orgb36bce4"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div id="outline-container-orgb7173f4" class="outline-2">
+<h2 id="orgb7173f4"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
@@ -571,15 +565,13 @@
 
 <p>
 若是你遇到什么问题，尽量提出来，欢迎一起来讨论解决。
-</p>
-
-<p>
-源码地址： <a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py</a>
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
 </p>
 </div>
 </div>
 
-Last Updated 2017-08-23 Wed 14:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-23 Wed 14:46.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
