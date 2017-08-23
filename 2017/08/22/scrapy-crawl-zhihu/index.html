@@ -135,7 +135,7 @@ scrapy genspider z">
 <meta property="og:image" content="https://brantou.github.io/images/zhihu-xsrf.jpg">
 <meta property="og:image" content="https://brantou.github.io/images/zhihu-bearer-token.png">
 <meta property="og:image" content="https://brantou.github.io/images/zhihu-feeds.png">
-<meta property="og:updated_time" content="2017-08-23T06:46:39.668Z">
+<meta property="og:updated_time" content="2017-08-23T06:57:12.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scrapy模拟知乎登陆">
 <meta name="twitter:description" content="折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
@@ -487,8 +487,8 @@ scrapy genspider z">
 若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
 </p>
 
-<div id="outline-container-org1bb6571" class="outline-2">
-<h2 id="org1bb6571"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div id="outline-container-orgc923412" class="outline-2">
+<h2 id="orgc923412"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
@@ -512,30 +512,26 @@ scrapy genspider z">
 </div>
 </div>
 
-<div id="outline-container-orgf3d8c1f" class="outline-2">
-<h2 id="orgf3d8c1f"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div id="outline-container-org8c6f552" class="outline-2">
+<h2 id="org8c6f552"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 过程如下：
 </p>
 <ul class="org-ul">
-<li>进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息，</li>
-</ul>
-<p>
-完善的 <i>Header</i> 信息能尽量伪装爬虫，
+<li><p>
+进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息， 完善的 <i>Header</i> 信息能尽量伪装爬虫，
 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。
 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
 </p>
 <img src="/images/zhihu-headers-cookies.jpg">
-
 <p>
 <i>Header</i> 和 <i>Cookie</i> 整理如下:
 </p>
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headers = {</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>:</span><br><span class="line">    <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'*/*'</span>,</span><br><span class="line">    <span class="string">'X-Requested-With'</span>:</span><br><span class="line">    <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    <span class="string">'DNT'</span>:</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com/'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>:</span><br><span class="line">    <span class="string">'zh-CN,zh;q=0.8,en;q=0.6'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">cookies = {</span><br><span class="line">    <span class="string">'d_c0'</span>:</span><br><span class="line">    <span class="string">'"AHCAtu1iqAmPTped76X1ZdN0X_qAwhjdLUU=|1458699045"'</span>,</span><br><span class="line">    <span class="string">'__utma'</span>:</span><br><span class="line">    <span class="string">'51854390.1407411155.1458699046.1458699046.1458699046.1'</span>,</span><br><span class="line">    <span class="string">'__utmv'</span>:</span><br><span class="line">    <span class="string">'51854390.000--|3=entry_date=20160322=1'</span>,</span><br><span class="line">    <span class="string">'_zap'</span>:</span><br><span class="line">    <span class="string">'850897bb-cba4-4d0b-8653-fd65e7578ac2'</span>,</span><br><span class="line">    <span class="string">'q_c1'</span>:</span><br><span class="line">    <span class="string">'b7918ff9a5514d2981c30050c8c732e1|1502937247000|1491446589000'</span>,</span><br><span class="line">    <span class="string">'aliyungf_tc'</span>:</span><br><span class="line">    <span class="string">'AQAAAHVgviiNyQsAOhSntJ5J/coWYtad'</span>,</span><br><span class="line">    <span class="string">'_xsrf'</span>:</span><br><span class="line">    <span class="string">'b12fdca8-cb35-407a-bc4c-6b05feff37cb'</span>,</span><br><span class="line">    <span class="string">'l_cap_id'</span>:</span><br><span class="line">    <span class="string">'"MDk0MzRjYjM4NjAwNDU0MzhlYWNlODQ3MGQzZWM0YWU=|1503382513|9af99534aa22d5db92c7f58b45f3f3c772675fed"'</span>,</span><br><span class="line">    <span class="string">'r_cap_id'</span>:</span><br><span class="line">    <span class="string">'"M2RlNDZjN2RkNTBmNGFmNDk2ZjY4NjIzY2FmNTE4NDg=|1503382513|13370a99ee367273b71d877de17f05b2986ce0ef"'</span>,</span><br><span class="line">    <span class="string">'cap_id'</span>:</span><br><span class="line">    <span class="string">'"NmZjODUxZjQ0NzgxNGEzNmJiOTJhOTlkMTVjNWIxMDQ=|1503382513|dba2e9c6af7f950547474f827ef440d7a2950163"'</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
+</div></li>
 
-<ul class="org-ul">
 <li><p>
 在浏览器中，模拟登陆，抓取登陆请求信息。
 </p>
@@ -545,6 +541,7 @@ scrapy genspider z">
 <a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
 </p>
 <img src="/images/zhihu-xsrf.jpg"></li>
+
 <li><p>
 整理以上，代码如下：
 </p>
@@ -554,8 +551,9 @@ scrapy genspider z">
 </ul>
 </div>
 </div>
-<div id="outline-container-org031109e" class="outline-2">
-<h2 id="org031109e"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+
+<div id="outline-container-org6ee8eaa" class="outline-2">
+<h2 id="org6ee8eaa"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 经过上述步骤登陆成功了，有点小激动，有没有！
@@ -565,6 +563,7 @@ scrapy genspider z">
 通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z<sub>c0</sub></i> 对应的信息。
 </p>
 <img src="/images/zhihu-bearer-token.png">
+
 <p>
 <i>z<sub>c0</sub></i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
 然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
@@ -578,8 +577,8 @@ scrapy genspider z">
 </div>
 </div>
 </div>
-<div id="outline-container-org51c85e3" class="outline-2">
-<h2 id="org51c85e3"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div id="outline-container-org693adc0" class="outline-2">
+<h2 id="org693adc0"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
@@ -595,8 +594,8 @@ scrapy genspider z">
 </div>
 </div>
 
-<div id="outline-container-orgb7173f4" class="outline-2">
-<h2 id="orgb7173f4"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div id="outline-container-org0b315da" class="outline-2">
+<h2 id="org0b315da"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
@@ -613,7 +612,7 @@ scrapy genspider z">
 </div>
 </div>
 
-Last Updated 2017-08-23 Wed 14:46.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-23 Wed 14:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -868,7 +867,7 @@ Last Updated 2017-08-23 Wed 14:46.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org1bb6571"><span class="nav-text">1 工具准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf3d8c1f"><span class="nav-text">2 模拟登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org031109e"><span class="nav-text">3 设置Bearer Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org51c85e3"><span class="nav-text">4 获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb7173f4"><span class="nav-text">5 写在最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc923412"><span class="nav-text">1 工具准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8c6f552"><span class="nav-text">2 模拟登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6ee8eaa"><span class="nav-text">3 设置Bearer Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org693adc0"><span class="nav-text">4 获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0b315da"><span class="nav-text">5 写在最后</span></a></li></ol></div>
             
 
           </div>
