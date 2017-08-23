@@ -445,8 +445,8 @@
 若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
 </p>
 
-<div id="outline-container-org930cbb4" class="outline-2">
-<h2 id="org930cbb4"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div id="outline-container-orge869d50" class="outline-2">
+<h2 id="orge869d50"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
@@ -470,8 +470,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8c4e297" class="outline-2">
-<h2 id="org8c4e297"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div id="outline-container-org93f030f" class="outline-2">
+<h2 id="org93f030f"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 过程如下：
@@ -508,20 +508,20 @@
 </div>
 </div>
 
-<div id="outline-container-org4a45dd5" class="outline-2">
-<h2 id="org4a45dd5"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+<div id="outline-container-orgd24ec8d" class="outline-2">
+<h2 id="orgd24ec8d"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 经过上述步骤登陆成功了，有点小激动，有没有！
 但苦难到此还远没有结束，这个时候尝试抓取最近热门话题，直接返回 <i>code:401</i> ,未授权的访问。
 授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
 在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
-通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z<sub>c0</sub></i> 对应的信息。
+通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z_c0</i> 对应的信息。
 </p>
 <img src="/images/zhihu-bearer-token.png">
 
 <p>
-<i>z<sub>c0</sub></i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
+<i>z_c0</i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
 然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
 </p>
 
@@ -533,8 +533,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgf76a03c" class="outline-2">
-<h2 id="orgf76a03c"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div id="outline-container-org2ad457e" class="outline-2">
+<h2 id="org2ad457e"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
@@ -550,8 +550,8 @@
 </div>
 </div>
 
-<div id="outline-container-org06578b3" class="outline-2">
-<h2 id="org06578b3"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div id="outline-container-org921bf86" class="outline-2">
+<h2 id="org921bf86"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
@@ -568,7 +568,7 @@
 </div>
 </div>
 
-Last Updated 2017-08-23 Wed 15:13.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
