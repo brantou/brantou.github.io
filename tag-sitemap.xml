@@ -16,6 +16,13 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/weekly/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/lookup/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,20 +31,6 @@
 
     <url>
         <loc>https://brantou.github.io/tags/column-view/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-syntax/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-internal-structure/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -58,7 +51,14 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/weekly/</loc>
+        <loc>https://brantou.github.io/tags/org-syntax/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-internal-structure/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -206,21 +206,21 @@
 
     <url>
         <loc>https://brantou.github.io/tags/scrapy/</loc>
-        <lastmod>2017-08-23T06:05:51.956Z</lastmod>
+        <lastmod>2017-08-23T06:24:54.375Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/python/</loc>
-        <lastmod>2017-08-23T06:05:51.956Z</lastmod>
+        <lastmod>2017-08-23T06:24:54.375Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/crawler/</loc>
-        <lastmod>2017-08-23T06:05:51.956Z</lastmod>
+        <lastmod>2017-08-23T06:24:54.375Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
