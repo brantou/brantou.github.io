@@ -445,8 +445,8 @@
 若是帮你解决了问题，或者给了你启发，不要吝啬给我加一星。
 </p>
 
-<div id="outline-container-orgecdfda7" class="outline-2">
-<h2 id="orgecdfda7"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div id="outline-container-orge9a5fc6" class="outline-2">
+<h2 id="orge9a5fc6"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
@@ -470,8 +470,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc66bcc6" class="outline-2">
-<h2 id="orgc66bcc6"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div id="outline-container-org97c7735" class="outline-2">
+<h2 id="org97c7735"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 过程如下：
@@ -483,8 +483,8 @@
 完善的 <i>Header</i> 信息能尽量伪装爬虫，
 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。
 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
-<img src="file:///images/zhihu-headers-cookies.jpg" alt="zhihu-headers-cookies.jpg">
 </p>
+<img src="/images/zhihu-headers-cookies.jpg">
 
 <p>
 <i>Header</i> 和 <i>Cookie</i> 整理如下:
@@ -494,11 +494,15 @@
 </div>
 
 <ul class="org-ul">
-<li>在浏览器中，模拟登陆，抓取登陆请求信息。
-<img src="file:///images/zhihu-login-args.jpg" alt="zhihu-login-args.jpg">
+<li><p>
+在浏览器中，模拟登陆，抓取登陆请求信息。
+</p>
+<img src="/images/zhihu-login-args.jpg">
+<p>
 从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
 <a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Goole </a>了下 <i>xsrf</i> 的含义， 竟然是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
-<img src="file:///images/zhihu-xsrf.jpg" alt="zhihu-xsrf.jpg"></li>
+</p>
+<img src="/images/zhihu-xsrf.jpg"></li>
 <li><p>
 整理以上，代码如下：
 </p>
@@ -508,8 +512,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae54d1e" class="outline-2">
-<h2 id="orgae54d1e"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+<div id="outline-container-orga94bd9c" class="outline-2">
+<h2 id="orga94bd9c"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 经过上述步骤登陆成功了，有点小激动，有没有！
@@ -517,7 +521,9 @@
 授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
 在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
 通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z<sub>c0</sub></i> 对应的信息。
-<img src="file:///images/zhihu-bearer-token.png" alt="zhihu-bearer-token.png">
+</p>
+<img src="/images/zhihu-bearer-token.png">
+<p>
 <i>z<sub>c0</sub></i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
 然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
 </p>
@@ -530,8 +536,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0a9a2cd" class="outline-2">
-<h2 id="org0a9a2cd"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div id="outline-container-orga9aaadb" class="outline-2">
+<h2 id="orga9aaadb"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
@@ -542,13 +548,13 @@
 
 <p>
 获取的数据，采用json格式， 如下所示:
-<img src="file:///images/zhihu-feeds.png" alt="zhihu-feeds.png">
 </p>
+<img src="/images/zhihu-feeds.png">
 </div>
 </div>
 
-<div id="outline-container-orgb55d680" class="outline-2">
-<h2 id="orgb55d680"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div id="outline-container-orge3bc287" class="outline-2">
+<h2 id="orge3bc287"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
@@ -564,7 +570,7 @@
 </div>
 </div>
 
-Last Updated 2017-08-23 Wed 14:24.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-23 Wed 14:38.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
