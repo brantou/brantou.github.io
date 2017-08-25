@@ -124,7 +124,9 @@ import jiebaseg_list = jieba.cut(srcWd, cut_all=True)print(u&apos;Full mode:&apo
 <meta property="og:image" content="https://brantou.github.io/images/constitution-s.png">
 <meta property="og:image" content="https://brantou.github.io/images/xiyouji.png">
 <meta property="og:image" content="https://brantou.github.io/images/xiyouji-mask.png">
-<meta property="og:updated_time" content="2017-08-25T10:28:06.416Z">
+<meta property="og:image" content="https://brantou.github.io/images/xiyouji-custom.png">
+<meta property="og:image" content="https://brantou.github.io/images/xiyouji-color.png">
+<meta property="og:updated_time" content="2017-08-25T16:21:31.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="玩转词云">
 <meta name="twitter:description" content="1 jieba中文分词&amp;#x2013;做最好的Python中文分词组件
@@ -466,12 +468,12 @@ import jiebaseg_list = jieba.cut(srcWd, cut_all=True)print(u&apos;Full mode:&apo
         
 
 
-<div id="outline-container-orga13ae5a" class="outline-2">
-<h2 id="orga13ae5a"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词&#x2013;做最好的Python中文分词组件</h2>
+<div id="outline-container-orge8bc921" class="outline-2">
+<h2 id="orge8bc921"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词&#x2013;做最好的Python中文分词组件</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org812795e" class="outline-3">
-<h3 id="org812795e"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
+<div id="outline-container-orgd99db56" class="outline-3">
+<h3 id="orgd99db56"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">u'Full mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">False</span>)</span><br><span class="line">print(<span class="string">u'Default mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(srcWd)</span><br><span class="line">print(<span class="string">u', '</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
@@ -492,8 +494,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </pre>
 </div>
 </div>
-<div id="outline-container-org0109e6a" class="outline-3">
-<h3 id="org0109e6a"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
+<div id="outline-container-org2e6aede" class="outline-3">
+<h3 id="org2e6aede"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 招聘信息收集了很多，但是关键字提取却不是很理想，我查看了jiaba的词典里，基本没有对英文专有名词的支持，
@@ -518,8 +520,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </div>
 </div>
 
-<div id="outline-container-orgac26c4c" class="outline-3">
-<h3 id="orgac26c4c"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
+<div id="outline-container-org2d8f1ad" class="outline-3">
+<h3 id="org2d8f1ad"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
@@ -533,128 +535,36 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </div>
 </div>
 
-<div id="outline-container-orgf624ef8" class="outline-3">
-<h3 id="orgf624ef8"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
+<div id="outline-container-orgf63fe7d" class="outline-3">
+<h3 id="orgf63fe7d"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.extract_tags(srcWd, allowPOS=())))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span></span><br><span class="line">                                                ))))</span><br><span class="line">wordlst = jieba.analyse.extract_tags(</span><br><span class="line">    srcWd, withWeight=<span class="keyword">True</span>, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> wordlst:</span><br><span class="line">    print(word[<span class="number">0</span>] + <span class="string">": "</span> + str(word[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
 </div>
 
-<pre class="example">
-理解能力, 经验, 良好, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 使用, 扎实, 协作, 抽象, 优先
-理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
-
-</pre>
-
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.textrank(srcWd)))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.textrank(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
 </div>
-
-<pre class="example">
-经验, 数据, 能力, 理解能力, 业务, 平台, 使用, 基础, 沟通, 考虑, 数据仓库, 协作, 模型, 抽象, 建模, 工作, 计算机, 学科, 团队, 数据挖掘
-经验, 数据, 理解能力, 能力, 业务, 平台, 数据仓库, 基础, 建模, 工作, 协作, 模型, odps, hive, hadoop, 计算机, 学科, 团队, 数据挖掘, 优先
-
-</pre>
 </div>
 </div>
 
-<div id="outline-container-org9f9fca0" class="outline-3">
-<h3 id="org9f9fca0"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
+<div id="outline-container-org2fbc541" class="outline-3">
+<h3 id="org2fbc541"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">words = pseg.cut(srcWd)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> words:</span><br><span class="line">    print(<span class="string">'%s %s'</span> % (word, flag))</span><br></pre></td></tr></table></figure>
 </div>
-
-<pre class="example">
-1. m
-  x
-扎实 a
-的 uj
-计算机 n
-学科 n
-基础 n
-  x
-2. m
-  x
-数据仓库 nz
-和 c
-数据 n
-建模 n
-工作 vn
-经验 n
-三年 m
-以上 f
-， x
-良好 a
-的 uj
-业务 n
-理解能力 n
-和 c
-模型 n
-抽象 v
-能力 n
-  x
-3. m
-  x
-有 v
-海量 n
-大 a
-数据 n
-平台 n
-使用 v
-经验 n
-， x
-熟悉 v
-hadoop nz
-、 x
-odps eng
-、 x
-hive nz
-等 u
-平台 n
-的 uj
-使用 v
-  x
-4. m
-  x
-有 v
-数据挖掘 nz
-经验 n
-的 uj
-优先 vn
-考虑 v
-  x
-5. m
-  x
-具有 v
-良好 a
-的 uj
-沟通 v
-和 c
-团队 n
-协作 vn
-能力 n
-， x
-对 p
-业务 n
-有 v
-良好 a
-的 uj
-理解能力 n
-和 c
-敏锐度 n
-</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org28bc50a" class="outline-2">
-<h2 id="org28bc50a"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> 词云</h2>
+<div id="outline-container-org368661f" class="outline-2">
+<h2 id="org368661f"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> 词云</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 
-<div id="outline-container-org2994d67" class="outline-3">
-<h3 id="org2994d67"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 简单词云&#x2013;美国宪法的词云</h3>
+<div id="outline-container-org12e8883" class="outline-3">
+<h3 id="org12e8883"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 简单词云&#x2013;美国宪法的词云</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Minimal Example</span><br><span class="line">===============</span><br><span class="line">Generating a square wordcloud from the US constitution using default arguments.</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(<span class="string">'../resource/constitution.txt'</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate a word cloud image</span></span><br><span class="line">wordcloud = WordCloud(width=<span class="number">640</span>, height=<span class="number">480</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-n.png'</span>)</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(width=<span class="number">640</span>, height=<span class="number">480</span>, max_font_size=<span class="number">40</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-s.png'</span>)</span><br></pre></td></tr></table></figure>
@@ -666,21 +576,25 @@ hive nz
 </div>
 </div>
 
-<div id="outline-container-org6da7bf2" class="outline-3">
-<h3 id="org6da7bf2"><a id="ID-a83e73b6-c132-4eb3-b968-d985cd2a5ceb"></a><span class="section-number-3">2.2</span> 西游记的词云</h3>
+<div id="outline-container-orge161fb3" class="outline-3">
+<h3 id="orge161fb3"><a id="ID-a83e73b6-c132-4eb3-b968-d985cd2a5ceb"></a><span class="section-number-3">2.2</span> 西游记的词云</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">font_path = <span class="string">'../resource/tyzkaishu.ttf'</span></span><br><span class="line">width = <span class="number">640</span></span><br><span class="line">height = <span class="number">480</span></span><br><span class="line"></span><br><span class="line">text = open(<span class="string">'../resource/xiyouji.txt'</span>).read()</span><br><span class="line">words = jieba.analyse.extract_tags(text, topK=<span class="number">100</span>, withWeight=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">word_freqs = {}</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    word_freqs[word[<span class="number">0</span>]] = word[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path, width=width,</span><br><span class="line">    height=height).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji.png'</span>)</span><br><span class="line"></span><br><span class="line">mask = np.array(Image.open(<span class="string">'../resource/stormtrooper_mask.png'</span>))</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    background_color=<span class="string">"white"</span>,</span><br><span class="line">    font_path=font_path,</span><br><span class="line">    width=width,</span><br><span class="line">    height=height,</span><br><span class="line">    mask=mask).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-mask.png'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, ImageColorGenerator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grey_color_func</span><span class="params">(word,</span><br><span class="line">                    font_size,</span><br><span class="line">                    position,</span><br><span class="line">                    orientation,</span><br><span class="line">                    random_state=None,</span><br><span class="line">                    **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hsl(0, 0%%, %d%%)"</span> % random.randint(<span class="number">60</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">font_path = <span class="string">'../resource/tyzkaishu.ttf'</span></span><br><span class="line">width = <span class="number">640</span></span><br><span class="line">height = <span class="number">480</span></span><br><span class="line"></span><br><span class="line">text = open(<span class="string">'../resource/xiyouji.txt'</span>).read()</span><br><span class="line">words = jieba.analyse.extract_tags(text, topK=<span class="number">200</span>, withWeight=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">word_freqs = {}</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    word_freqs[word[<span class="number">0</span>]] = word[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path, width=width,</span><br><span class="line">    height=height).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji.png'</span>)</span><br><span class="line"></span><br><span class="line">mask = np.array(Image.open(<span class="string">'../resource/stormtrooper_mask.png'</span>))</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path,</span><br><span class="line">    width=width,</span><br><span class="line">    height=height,</span><br><span class="line">    mask=mask).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-mask.png'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># recolor wordcloud</span></span><br><span class="line">wordcloud.recolor(color_func=grey_color_func, random_state=<span class="number">3</span>)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-custom.png'</span>)</span><br><span class="line"></span><br><span class="line">alice_coloring = np.array(Image.open(<span class="string">'../resource/alice_color.png'</span>))</span><br><span class="line"><span class="comment"># create coloring from image</span></span><br><span class="line">image_colors = ImageColorGenerator(alice_coloring)</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path,</span><br><span class="line">    width=width,</span><br><span class="line">    height=height,</span><br><span class="line">    background_color=<span class="string">"white"</span>,</span><br><span class="line">    mask=alice_coloring,</span><br><span class="line">    max_font_size=<span class="number">40</span>,</span><br><span class="line">    random_state=<span class="number">42</span>).generate_from_frequencies(word_freqs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># recolor wordcloud</span></span><br><span class="line">wordcloud.recolor(color_func=image_colors)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-color.png'</span>)</span><br></pre></td></tr></table></figure>
 </div>
 
 <img src="/images/xiyouji.png">
 
 <img src="/images/xiyouji-mask.png">
+
+<img src="/images/xiyouji-custom.png">
+
+<img src="/images/xiyouji-color.png">
 </div>
 </div>
 </div>
 
-Last Updated 2017-08-25 Fri 18:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-26 Sat 00:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -942,7 +856,7 @@ Last Updated 2017-08-25 Fri 18:28.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orga13ae5a"><span class="nav-text">1 jieba中文分词–做最好的Python中文分词组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org812795e"><span class="nav-text">1.1 分词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0109e6a"><span class="nav-text">1.2 自定义词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgac26c4c"><span class="nav-text">1.3 调整词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf624ef8"><span class="nav-text">1.4 关键词提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9f9fca0"><span class="nav-text">1.5 词性标注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org28bc50a"><span class="nav-text">2 词云</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org2994d67"><span class="nav-text">2.1 简单词云–美国宪法的词云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6da7bf2"><span class="nav-text">2.2 西游记的词云</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orge8bc921"><span class="nav-text">1 jieba中文分词–做最好的Python中文分词组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd99db56"><span class="nav-text">1.1 分词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2e6aede"><span class="nav-text">1.2 自定义词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2d8f1ad"><span class="nav-text">1.3 调整词典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf63fe7d"><span class="nav-text">1.4 关键词提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org2fbc541"><span class="nav-text">1.5 词性标注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org368661f"><span class="nav-text">2 词云</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org12e8883"><span class="nav-text">2.1 简单词云–美国宪法的词云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge161fb3"><span class="nav-text">2.2 西游记的词云</span></a></li></ol></li></ol></div>
             
 
           </div>
