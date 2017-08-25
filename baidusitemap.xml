@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</loc>
+    <lastmod>2017-08-25T07:45:07.664Z</lastmod>
+    <data>
+        <display>
+        <title>玩转词云</title>
+        <pubTime>2017-08-21T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>jieba</tag>
+         
+        <tag>wordcloud</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/</loc>
     <lastmod>2017-08-23T07:21:47.933Z</lastmod>
     <data>
@@ -375,32 +399,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的语法解读</title>
-        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>org-syntax</tag>
-         
-        <tag>org-internal-structure</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -423,18 +421,22 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Org-mode的列视图简明教程</title>
-        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        <title>Org-mode表查找功能的简明教程</title>
+        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
         
         <tag>tutorial</tag>
          
         <tag>org-mode</tag>
          
-        <tag>column-view</tag>
+        <tag>table</tag>
+         
+        <tag>spreadsheet</tag>
+         
+        <tag>lookup</tag>
          
          
            
@@ -473,22 +475,20 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Org-mode表查找功能的简明教程</title>
-        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
+        <title>Org-mode的语法解读</title>
+        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
         
         <tag>tutorial</tag>
          
         <tag>org-mode</tag>
          
-        <tag>table</tag>
+        <tag>org-syntax</tag>
          
-        <tag>spreadsheet</tag>
-         
-        <tag>lookup</tag>
+        <tag>org-internal-structure</tag>
          
          
            
@@ -514,6 +514,30 @@
            
              
               <breadCrumb title="review" url="https://brantou.github.io/categories/review/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的列视图简明教程</title>
+        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>column-view</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>

@@ -335,6 +335,359 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/python-jieba-wordcloud/" itemprop="url">玩转词云</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:00:00+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/22/python-jieba-wordcloud/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/python-jieba-wordcloud/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-orga9b5a36" class="outline-2">
+<h2 id="orga9b5a36"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词&#x2013;做最好的Python中文分词组件</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org1a63ca2" class="outline-3">
+<h3 id="org1a63ca2"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">u'Full mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">False</span>)</span><br><span class="line">print(<span class="string">u'Default mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(srcWd)</span><br><span class="line">print(<span class="string">u', '</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+Full mode:做/ 最好/ 的/ Python/ 中文/ 分词/ 词组/ 组件
+Default mode:做/ 最好/ 的/ Python/ 中文/ 分词/ 组件
+做, 最好, 的, Python, 中文, 分词, 组件
+
+</pre>
+
+<pre class="example">
+Full mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/
+Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
+我, 目前, 在, 学习, Golang, 和, Python, 。
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org31b5698" class="outline-3">
+<h3 id="org31b5698"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+招聘信息收集了很多，但是关键字提取却不是很理想，我查看了jiaba的词典里，基本没有对英文专有名词的支持，
+这可苦煞了我，但是jieba支持自定义词典，我来生成英文的专有名词的词典好了。一行一行的加，难为我这个懒人了，
+但总有好心人，已经整理好了，试想这个名词是不是招聘网站已经整理好了，而且分门别类的，只需要把它们取回来就好了。
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html</span><span class="params">(url)</span>:</span></span><br><span class="line">    request = urllib2.Request(url)</span><br><span class="line">    request.add_header(</span><br><span class="line">        <span class="string">'User-Agent'</span>,</span><br><span class="line">        <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span></span><br><span class="line">    )</span><br><span class="line">    html = urllib2.urlopen(request)</span><br><span class="line">    <span class="keyword">return</span> html.read()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_soup</span><span class="params">(url)</span>:</span></span><br><span class="line">    soup = BeautifulSoup(get_html(url), <span class="string">'lxml'</span>)</span><br><span class="line">    <span class="keyword">return</span> soup</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_lagou</span><span class="params">()</span>:</span></span><br><span class="line">    words = []</span><br><span class="line">    url = <span class="string">'https://www.lagou.com/'</span></span><br><span class="line">    soup = get_soup(url)</span><br><span class="line">    category_list = soup.find_all(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'menu_sub dn'</span>})</span><br><span class="line">    <span class="keyword">for</span> category <span class="keyword">in</span> category_list:</span><br><span class="line">        dls = category.find_all(<span class="string">'dl'</span>)</span><br><span class="line">        <span class="keyword">for</span> dl <span class="keyword">in</span> dls:</span><br><span class="line">            names = dl.dd.find_all(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">                words.append(name.text)</span><br><span class="line">    <span class="keyword">return</span> words</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_zhipin</span><span class="params">()</span>:</span></span><br><span class="line">    words = []</span><br><span class="line">    url = <span class="string">'http://www.zhipin.com/'</span></span><br><span class="line">    soup = get_soup(url)</span><br><span class="line">    job_menu = soup.find(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'job-menu'</span>})</span><br><span class="line">    dls = job_menu.find_all(<span class="string">'dl'</span>)</span><br><span class="line">    <span class="keyword">for</span> dl <span class="keyword">in</span> dls:</span><br><span class="line">        divs = dl.find_all(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'text'</span>})</span><br><span class="line">        <span class="keyword">for</span> div <span class="keyword">in</span> divs:</span><br><span class="line">            names = div.find_all(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">                words.append(name.text)</span><br><span class="line">    <span class="keyword">return</span> words</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+看来我思维受限了，招聘网站整理的信息都是高频信息，但是广度肯定是不够的，那怎么办呢。
+这个时候 <a href="https://stackoverflow.com/tags?page=1&tab=popular" rel="external nofollow noopener noreferrer" target="_blank">stackoverflow</a> 闪现在我的脑海中，没有那个网站里有关技术的广度，能和它匹敌了。
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_stackoverflow</span><span class="params">()</span>:</span></span><br><span class="line">  words = []</span><br><span class="line">  <span class="keyword">for</span> pageNo <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">20</span>):</span><br><span class="line">      url = <span class="string">'https://stackoverflow.com/tags?page=%d&amp;tab=popular'</span> % (pageNo)</span><br><span class="line">      soup = get_soup(url)</span><br><span class="line">      tags_list = soup.find(<span class="string">'div'</span>, attrs={<span class="string">'id'</span>: <span class="string">'tags_list'</span>})</span><br><span class="line">      trs = tags_list.table.find_all(<span class="string">'tr'</span>)</span><br><span class="line">      <span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">          tds = tr.find_all(<span class="string">'td'</span>)</span><br><span class="line">          <span class="keyword">for</span> td <span class="keyword">in</span> tds:</span><br><span class="line">              words.append(td.a.text)</span><br><span class="line">  <span class="keyword">return</span> words</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org384d647" class="outline-3">
+<h3 id="org384d647"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
+理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org88fe95c" class="outline-3">
+<h3 id="org88fe95c"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.extract_tags(srcWd, allowPOS=())))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span></span><br><span class="line">                                                ))))</span><br><span class="line">wordlst = jieba.analyse.extract_tags(</span><br><span class="line">    srcWd, withWeight=<span class="keyword">True</span>, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> wordlst:</span><br><span class="line">    print(word[<span class="number">0</span>] + <span class="string">": "</span> + str(word[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+理解能力, 经验, 良好, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 使用, 扎实, 协作, 抽象, 优先
+理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
+
+</pre>
+
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.textrank(srcWd)))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.textrank(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+经验, 数据, 能力, 理解能力, 业务, 平台, 使用, 基础, 沟通, 考虑, 数据仓库, 协作, 模型, 抽象, 建模, 工作, 计算机, 学科, 团队, 数据挖掘
+经验, 数据, 理解能力, 能力, 业务, 平台, 数据仓库, 基础, 建模, 工作, 协作, 模型, odps, hive, hadoop, 计算机, 学科, 团队, 数据挖掘, 优先
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org415b716" class="outline-3">
+<h3 id="org415b716"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">words = pseg.cut(srcWd)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> words:</span><br><span class="line">    print(<span class="string">'%s %s'</span> % (word, flag))</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+1. m
+  x
+扎实 a
+的 uj
+计算机 n
+学科 n
+基础 n
+  x
+2. m
+  x
+数据仓库 nz
+和 c
+数据 n
+建模 n
+工作 vn
+经验 n
+三年 m
+以上 f
+， x
+良好 a
+的 uj
+业务 n
+理解能力 n
+和 c
+模型 n
+抽象 v
+能力 n
+  x
+3. m
+  x
+有 v
+海量 n
+大 a
+数据 n
+平台 n
+使用 v
+经验 n
+， x
+熟悉 v
+hadoop nz
+、 x
+odps eng
+、 x
+hive nz
+等 u
+平台 n
+的 uj
+使用 v
+  x
+4. m
+  x
+有 v
+数据挖掘 nz
+经验 n
+的 uj
+优先 vn
+考虑 v
+  x
+5. m
+  x
+具有 v
+良好 a
+的 uj
+沟通 v
+和 c
+团队 n
+协作 vn
+能力 n
+， x
+对 p
+业务 n
+有 v
+良好 a
+的 uj
+理解能力 n
+和 c
+敏锐度 n
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org557c30f" class="outline-2">
+<h2 id="org557c30f"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> 词云</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+
+<div id="outline-container-org2cc1c66" class="outline-3">
+<h3 id="org2cc1c66"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 美国宪法的词云</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Minimal Example</span><br><span class="line">===============</span><br><span class="line">Generating a square wordcloud from the US constitution using default arguments.</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(<span class="string">'../resource/constitution.txt'</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate a word cloud image</span></span><br><span class="line">wordcloud = WordCloud().generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-n.png'</span>)</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(max_font_size=<span class="number">40</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-b.png'</span>)</span><br></pre></td></tr></table></figure>
+</div>
+
+<img src="/images/images/constitution-n.png">
+
+<img src="/images/images/constitution-b.png">
+</div>
+</div>
+</div>
+
+Last Updated 2017-08-25 Fri 15:45.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -571,161 +924,6 @@
 Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
-                2017-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1442,6 +1640,161 @@ Last Updated 2017-07-24 Mon 00:26.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1875,6 +2228,184 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+</p>
+<ul class="org-ul">
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
+</ul>
+
+
+<p>
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+</p>
+
+<p>
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
+</p>
+
+<p>
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2213,184 +2744,6 @@ HTML输出产生了巨大的回报：
 Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
-                2017-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-编程语言最常见的特征之一是数组的概念。
-数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
-</p>
-<ul class="org-ul">
-<li>固定的size，还是可变的size?</li>
-<li>size是类型的一部分吗?</li>
-<li>多维数组看起来是什么样子的？</li>
-<li>空数组代表了什么含义？</li>
-</ul>
-
-
-<p>
-以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
-</p>
-
-<p>
-在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
-关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
-不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
-也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
-</p>
-
-<p>
-在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -3462,542 +3815,6 @@ Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/17/go-concurrency-patterns-pipelines/" itemprop="url">Golang的并发模式：管道和撤销</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">
-                2017-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/17/go-concurrency-patterns-pipelines/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/17/go-concurrency-patterns-pipelines/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
-</p>
-
-<div id="outline-container-org0b35331" class="outline-2">
-<h2 id="org0b35331"><span class="section-number-2">1</span> 什么是管道？</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Go没有对于管道的正式定义，它只是并发模式中的一种。
-非正式的，管道就是通过 <code>channel</code> 连接的一系列片段，其中每个片段是一组功能相同的 <code>goroutine</code> 。
-在每个片段， <code>goroutine</code> 完成如下功能：
-</p>
-<ul class="org-ul">
-<li>通过 <i>inbound channel</i> 从上流片段接受数据</li>
-<li>在数据上执行计算，通常产生新数据</li>
-<li>把新数据通过 <i>outbound channel</i> 传到下流片段</li>
-</ul>
-
-<p>
-每个片段都有任意数量的 <i>inbound</i> 和 <i>outbound channel</i> ，
-当然第一个和最后一个排除在外，因为前者只有 <i>outbound channel</i>, 后者只有 <i>inbound channel</i> 。
-第一片段有时称为 <i>source</i> 或 <i>producer</i> ; 最后阶段，/sink/ 或 <i>consumer</i> 。
-</p>
-
-<p>
-从一个简单的示例管道开始，解释思路和技巧。 之后，呈现一个更加现实的例子。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org5754ed1" class="outline-2">
-<h2 id="org5754ed1"><span class="section-number-2">2</span> 平方数示例</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-当前示例，管道包含三个片段。
-</p>
-
-<p>
-第一个片段 <i>gen</i> , 把整数数组转换成一个可取出整数的 <code>channel</code> 。
-<i>gen</i> 函数启动 <code>goroutine</code> 发生数据到 <code>channel</code> ,发送完成后关闭 <code>channel</code>:
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">            out &amp;lt;- n</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-第二个片段 <i>sq</i> ，从一个 <code>channel</code> 中接收整数，并返回一个可取出每个接收的整数的平方的 <code>channel</code> 。
-在 <i>inbound channel</i> 关闭后，此片段已将所有值发送到下游，然后关闭 <i>outbound channel</i> :
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">func</span> sq(in &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">            out &amp;lt;- n * n</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>main</i> 函数 设置流水线并运行最后一个片段：从第二片段接收值并打印，直到 <code>channel</code> 关闭：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline.</span></span><br><span class="line">    c := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    out := sq(c)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the output.</span></span><br><span class="line">    fmt.Println(&amp;lt;-out) <span class="comment">// 4</span></span><br><span class="line">    fmt.Println(&amp;lt;-out) <span class="comment">// 9</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-由于 <i>sq</i> 的 <i>inbound channel</i> 和 <i>outbound channel</i> 具有相同的类型，因此可以迭代使用任意次数。
-重写 <i>main</i> ，使其像其他片段,循环从 <i>inbound channel</i> 取出数据：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Set up the pipeline and consume the output.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> sq(sq(gen(<span class="number">2</span>, <span class="number">3</span>))) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 16 then 81</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org4188709" class="outline-2">
-<h2 id="org4188709"><span class="section-number-2">3</span> 扇出，扇入</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-多个函数从相同的 <code>channel</code> 读取，直到该 <code>channel</code> 关闭; 这被称为扇出。 这提供了在一组 <i>worker</i> 之间分配工作以并行化CPU使用和 I/O 的方式。
-</p>
-
-<p>
-一个函数可以从多个输入接收数据，并进行数据处理，直到所有的输入 <code>channel</code> 多路复合到单个 <code>channel</code> 上，当所有输入都关闭时，复合的 <code>channel</code> 关闭。 这被称为扇入。
-</p>
-
-<p>
-改变的管道流程, 运行两个 <i>sq</i> 的实例，每个实例从相同的输入 <i>channel</i> 读取(扇出)。 引入新的函数 <i>merge</i> 以演示扇入：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the merged output from c1 and c2.</span></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> merge(c1, c2) {</span><br><span class="line">        fmt.Println(n) <span class="comment">// 4 then 9, or 9 then 4</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>merge</i> 函数将 <code>channel</code> 列表转换为单个通道，为每个 <i>inbound channel</i> 启动一个 <code>goroutine</code> ,
-来将 <i>inbound channel</i> 值复制到唯一 <i>outbound channel</i> 。
-一旦所有的输出 <code>goroutines</code> 都已经启动后,
-再启动一个 <code>goroutine</code> , 待所有的 <i>channel</i> 发送完成后来关闭 <i>outbound channel</i> 。
-</p>
-
-<p>
-往一个 <i>closed channel</i> 发送数据将会 <i>panic</i> ，所以要确保所有的发送都是在 <i>channel</i> 关闭之前完成的。
-<code>sync.WaitGroup</code> 提供了一种简单的同步方法:
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> merge(cs ...&amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">    <span class="comment">// copies values from c to out until c is closed, then calls wg.Done.</span></span><br><span class="line">    output := <span class="keyword">func</span>(c &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">            out &amp;lt;- n</span><br><span class="line">        }</span><br><span class="line">        wg.Done()</span><br><span class="line">    }</span><br><span class="line">    wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">    <span class="keyword">for</span> _, c := <span class="keyword">range</span> cs {</span><br><span class="line">        <span class="keyword">go</span> output(c)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">    <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        wg.Wait()</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orga10aa67" class="outline-2">
-<h2 id="orga10aa67"><span class="section-number-2">4</span> 稍作停顿</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-管道函数有如下模式：
-</p>
-<ul class="org-ul">
-<li>当所有发送操作完成时，片段关闭其 <i>outbound channel</i> 。</li>
-<li>片段不断接收来自 <i>inbound channel</i> 的值，直到这些 <i>channel</i> 关闭。</li>
-</ul>
-
-<p>
-该模式允许每个接收片段使用 <i>range loop</i> ，
-以确保所有值都已成功发送到下游后退出所有 <code>goroutine</code> 。
-</p>
-
-<p>
-但是在实际管道应用中，片段并不总是能够收到所有 <i>inbound</i> 值。
-有时这是被设计：接收者可能只需要一个子集来进行后续处理。
-更常见的情况是，由于 <i>inbound</i> 值显示在早期片段引入了错误，因此片段应该早早的退出。
-在以上任一情况下，接收者不必等待剩余的值到达，并且我们希望较早的片段停止生成稍后片段不需要的值。
-</p>
-
-<p>
-在上面的管道示例中，如果片段无法使用所有 <i>inbound</i> 值，则尝试发送这些值的 <code>goroutines</code> 将无限期地阻塞下去：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">  c1 := sq(in)</span><br><span class="line">  c2 := sq(in)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Consume the first value from output.</span></span><br><span class="line">  out := merge(c1, c2)</span><br><span class="line">  fmt.Println(&amp;lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">  <span class="comment">// Since we didn't receive the second value from out,</span></span><br><span class="line">  <span class="comment">// one of the output goroutines is hung attempting to send it.</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-这是一个资源泄漏： <code>goroutines</code> 消耗内存和运行时资源， <code>goroutine</code> 栈中的堆引用使数据不被垃圾回收。
-<code>goroutines</code> 不被垃圾收集机制回收; 它们必须自己退出。
-</p>
-
-<p>
-即使下游片段没能接收所有 <i>inbound</i> 值，管道的上游片段也可能需要提前退出。
-执行此操作的一种方法是将 <i>outbound channel</i> 更改为具有缓冲区。
-缓冲区可以保存固定数量的值; 如果缓冲区中有空间，则发送立即完成 ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>, <span class="number">2</span>) <span class="comment">// buffer size 2</span></span><br><span class="line">c &amp;lt;- <span class="number">1</span>  <span class="comment">// succeeds immediately</span></span><br><span class="line">c &amp;lt;- <span class="number">2</span>  <span class="comment">// succeeds immediately</span></span><br><span class="line">c &amp;lt;- <span class="number">3</span>  <span class="comment">// blocks until another goroutine does &amp;lt;-c and receives 1</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-在创建 <code>channel</code> 时，若是知道将要发送的数据量，缓冲区可以简化代码。
-例如，可重写 <i>gen</i> 拷贝整数到 <code>channel</code> 的缓冲区中， 避免 <code>goroutine</code> 创建:
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> gen(nums ...<span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line">    <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">        out &amp;lt;- n</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">close</span>(out)</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-回到管道中阻塞的 <code>goroutine</code> ，可以考虑为 <i>merge</i> 返回的 <i>outbound channel</i> 添加一个缓冲区：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> merge(cs ...&amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>, <span class="number">1</span>) <span class="comment">// enough space for the unread inputs</span></span><br><span class="line">    <span class="comment">// ... the rest is unchanged ...</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-虽然上面的代码不再阻塞，但上面的代码依赖于当前是知道将要接收到多少数据的和要往下流发送多少数据。
-这样的代码不健壮，如果 <i>gen</i> 接收的数据多于 <i>1</i> ， 或者下流只接收一部分值，那么将会永久的阻塞 ~goroutine~。
-固定长度的缓存不可取，相应的在代码中需要为下流片段提供一种通用的方法，来通知上流片段它们将停止接收输入。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orga6a4b6a" class="outline-2">
-<h2 id="orga6a4b6a"><span class="section-number-2">5</span> 明确取消</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-当 <i>main</i> 函数决定不再从上游片段/outbound channel/ 接收数据时，
-它需要告诉上流片段的 <code>goroutine</code> 终止发送操作。
-下面的代码演示了如何通知, 通过往称为 <i>done</i> 的 <code>channel</code> 上发送值来实现。
-发送两个值，因为有两个被阻止的发送者：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">func</span> main() {</span><br><span class="line">    runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line"></span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the first value from output.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{}, <span class="number">2</span>)</span><br><span class="line">    out := merge(done, c1, c2)</span><br><span class="line">    fmt.Println(&amp;lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Tell the remaining senders we're leaving.</span></span><br><span class="line">    done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">    done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line"></span><br><span class="line">    fmt.Println(&amp;lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">       time.Sleep(<span class="number">2</span>*time.Second)</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-发送 <code>goroutines</code> 使用 <i>select</i> 语句替换其发送操作，该语句在发送发生时或从 <i>done</i> 接收到值时继续进行。
-<i>done</i> 值类型是空结构体，因为该值无关紧要：它只是接收事件，表示应该放弃后续发送。
-输出 <code>goroutine</code> 在其 <i>inbound channel</i> 上继续循环，因此上游片段不被阻塞。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> merge(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, cs ...&amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">  <span class="comment">// copies values from c to out until c is closed, then calls wg.Done.</span></span><br><span class="line">  output := <span class="keyword">func</span>(name <span class="typename">string</span>, c &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">    <span class="keyword">defer</span> <span class="keyword">func</span>(){</span><br><span class="line">      fmt.Println(<span class="string">"[goroutine ruturn]["</span>, name, <span class="string">"]"</span>)</span><br><span class="line">      wg.Done()</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">      fmt.Println(<span class="string">"[IN LOOP][BEFORE select]["</span>, name, <span class="string">"]"</span>)</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> out &amp;lt;- n:</span><br><span class="line">        fmt.Println(<span class="string">"[IN LOOP][FROM c]["</span>, name, <span class="string">"]"</span>)</span><br><span class="line">      <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">        fmt.Println(<span class="string">"[IN LOOP][FROM done]["</span>, name, <span class="string">"]"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">"[AFTER LOOP]["</span>, name, <span class="string">"]"</span>)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">  <span class="keyword">for</span> index, c := <span class="keyword">range</span> cs {</span><br><span class="line">    name := fmt.Sprintf(<span class="string">"goroutine %d"</span>, index)</span><br><span class="line">    <span class="keyword">go</span> output(name, c)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">  <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    wg.Wait()</span><br><span class="line">    fmt.Println(<span class="string">"[AFTER WAIT]"</span>)</span><br><span class="line">    <span class="built_in">close</span>(out)</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-上面的方法有一个问题：每个下游接收者都需要知道潜在阻塞的上游发送者的数量，
-并安排在提前返回时向这些发送者发信号。 跟踪这些计数是乏味和容易出错的。
-</p>
-
-<p>
-其实我们需要一种方法来告诉未知的无限数量的 <code>goroutine</code> 停止往下游发送它们的值。
-在 <i>Go</i> 中，可以通过关闭 <i>channel</i> 来执行此操作，
-因为关闭 <i>channel</i> 上的接收操作都是立刻完成的，产生相应数据类型的零值。
-</p>
-
-<p>
-这意味着 <i>main</i> 函数可以通过关闭 <i>done channel</i> 来解除所有发件人的阻塞。
-这个关闭操作实际上是发送者的广播信号。
-重新编排管道函数， 添加 <i>done channel</i> 的延迟关闭函数 ，
-从而使 <i>main</i> 函数的所有返回路径都会发出信号，以使管道片段退出。
-</p>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">func</span> main() {</span><br><span class="line">    runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set up a done channel that's shared by the whole pipeline,</span></span><br><span class="line">    <span class="comment">// and close that channel when this pipeline exits, as a signal</span></span><br><span class="line">    <span class="comment">// for all the goroutines we started to exit.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line"></span><br><span class="line">    in := gen(done, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(done, in)</span><br><span class="line">    c2 := sq(done, in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the first value from output.</span></span><br><span class="line">    out := merge(done, c1, c2)</span><br><span class="line">    fmt.Println(&amp;lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// done will be closed by the deferred call.</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-现在每个管道片段可以在 <code>channel</code>  关闭后轻松的返回， <i>merge</i> 中的 <i>output routine</i> 不用担心 <i>inbound channel</i> 的数据，因为
-当 <i>done channel</i> 关闭时，上游发送者会停止数据的发送。 <i>output</i> 通过 <i>defer</i> 语句确保在所有返回路径上调用 <i>wg.Done</i> :
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> merge(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, cs ...&amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">  <span class="comment">// copies values from c to out until c or done is closed, then calls</span></span><br><span class="line">  <span class="comment">// wg.Done.</span></span><br><span class="line">  output := <span class="keyword">func</span>(c &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) {</span><br><span class="line">    <span class="keyword">defer</span> wg.Done()</span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> c {</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> out &amp;lt;- n:</span><br><span class="line">      <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  wg.Add(<span class="built_in">len</span>(cs))</span><br><span class="line">  <span class="keyword">for</span> _, c := <span class="keyword">range</span> cs {</span><br><span class="line">    <span class="keyword">go</span> output(c)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start a goroutine to close out once all the output goroutines are</span></span><br><span class="line">  <span class="comment">// done.  This must start after the wg.Add call.</span></span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    wg.Wait()</span><br><span class="line">    <span class="built_in">close</span>(out)</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-类型的， <i>sq</i> 可在 <i>done</i> 关闭后直接返回。 <i>sq</i> 通过 <i>defer</i> 语句确保在所有返回路径上关闭 <i>out channel</i> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> sq(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, in &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">  out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(out)</span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> in {</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> out &amp;lt;- n * n:</span><br><span class="line">      <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>gen</i> 大体和 <i>sq</i> 类型， 在 <i>done</i> 返回， 通过 <i>defer</i> 语句确保 <i>out channel</i> 关闭：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> gen(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, nums ...<span class="typename">int</span>) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">  out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(out)</span><br><span class="line">    <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums {</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> out &amp;lt;- n:</span><br><span class="line">      <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-管道构建的指导方针：
-</p>
-<ul class="org-ul">
-<li>当所有发送操作完成时，片段关闭其 <i>outbound channel</i> 。</li>
-<li>片段持续从 <i>inbound channel</i> 中接收值，直到这些 <i>channel</i> 关闭或发件人被取消阻塞。</li>
-</ul>
-
-<p>
-管道有两种方式能解除发送者的阻塞：
-</p>
-<ul class="org-ul">
-<li>确保所有发送的值都有足够的缓冲区, 有足够的缓冲区就不会阻塞了。</li>
-<li>当接收方放弃从 <i>channel</i> 接收数据时，显式地发送信号来解除发送者的阻塞</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orga0ddce6" class="outline-2">
-<h2 id="orga0ddce6"><span class="section-number-2">6</span> MD5摘要示例</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-现在来看看更真实的管道应用。
-</p>
-
-<p>
-<code>MD5</code> 是一种消息摘要算法，可用作文件校验和。 命令行实用程序 <i>md5sum</i> 打印文件列表的摘要值。
-</p>
-<pre class="example">
-% md5sum *.go
-d47c2bbc28298ca9befdfbc5d3aa4e65  bounded.go
-ee869afd31f83cbb2d10ee81b2b831dc  parallel.go
-b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
-</pre>
-
-<p>
-示例程序像 <i>md5sum</i> ，但是以单个目录作为参数，并打印该目录下每个常规文件的摘要值，并按路径名排序。
-</p>
-<pre class="example">
-% go run serial.go .
-d47c2bbc28298ca9befdfbc5d3aa4e65  bounded.go
-ee869afd31f83cbb2d10ee81b2b831dc  parallel.go
-b88175e65fdcbc01ac08aaf1fd9b5e96  serial.go
-</pre>
-
-<p>
-示例程序的 <i>main</i> 函数 调用一个辅助函数 <i>MD5All</i> ，它返回一个从路径名到摘要值的 <i>map</i> ，然后排序并打印结果：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">    <span class="comment">// Calculate the MD5 sum of all files under the specified directory,</span></span><br><span class="line">    <span class="comment">// then print the results sorted by path name.</span></span><br><span class="line">    m, err := MD5All(os.Args[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">var</span> paths []<span class="typename">string</span></span><br><span class="line">    <span class="keyword">for</span> path := <span class="keyword">range</span> m {</span><br><span class="line">        paths = <span class="built_in">append</span>(paths, path)</span><br><span class="line">    }</span><br><span class="line">    sort.Strings(paths)</span><br><span class="line">    <span class="keyword">for</span> _, path := <span class="keyword">range</span> paths {</span><br><span class="line">        fmt.Printf(<span class="string">"%x  %s\n"</span>, m[path], path)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-
-<div id="outline-container-org133aa2f" class="outline-3">
-<h3 id="org133aa2f"><span class="section-number-3">6.1</span> 串行版</h3>
-<div class="outline-text-3" id="text-6-1">
-<p>
-<i>MD5All</i> 函数是讨论的焦点。 在 <a href="https://blog.golang.org/pipelines/serial.go" rel="external nofollow noopener noreferrer" target="_blank">serial.go</a> 中的实现不使用并发性，只是在遍历文件树时读取和计算校验和。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">        }</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> err</span><br><span class="line">        }</span><br><span class="line">        m[path] = md5.Sum(data)</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org72f1989" class="outline-3">
-<h3 id="org72f1989"><span class="section-number-3">6.2</span> 并行版</h3>
-<div class="outline-text-3" id="text-6-2">
-<p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> ，将 <i>MD5All</i> 函数分为两级管道。 第一级， <i>sumFiles</i> ，遍历树，
-为每个文件做校验和创建 <code>goroutine</code> , 并将结果发送到 <i>result</i> 类型的 <i>channel</i> 上：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> result <span class="keyword">struct</span> {</span><br><span class="line">    path <span class="typename">string</span></span><br><span class="line">    sum  [md5.Size]<span class="typename">byte</span></span><br><span class="line">    err  error</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>sumFiles</i> 返回两个 <code>channel</code> ：一个用于传递结果，另一个用于返回 <i>filepath.Walk</i> 返回的错误。
-<i>walk</i> 函数启动一个新的 <code>goroutine</code> 来处理每个常规文件，然后检查 <i>done</i> 。 如果完成关闭， <i>walk</i> 将立即停止：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> sumFiles(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, root <span class="typename">string</span>) (&amp;lt;-<span class="keyword">chan</span> result, &amp;lt;-<span class="keyword">chan</span> error) {</span><br><span class="line">    <span class="comment">// For each regular file, start a goroutine that sums the file and sends</span></span><br><span class="line">    <span class="comment">// the result on c.  Send the result of the walk on errc.</span></span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> result)</span><br><span class="line">    errc := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">        <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">        err := filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">            <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">                <span class="keyword">return</span> err</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">                <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            wg.Add(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">                data, err := ioutil.ReadFile(path)</span><br><span class="line">                <span class="keyword">select</span> {</span><br><span class="line">                <span class="keyword">case</span> c &amp;lt;- result{path, md5.Sum(data), err}:</span><br><span class="line">                <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">                }</span><br><span class="line">                wg.Done()</span><br><span class="line">            }()</span><br><span class="line">            <span class="comment">// Abort the walk if done is closed.</span></span><br><span class="line">            <span class="keyword">select</span> {</span><br><span class="line">            <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">                <span class="keyword">return</span> errors.New(<span class="string">"walk canceled"</span>)</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">        <span class="comment">// Walk has returned, so all calls to wg.Add are done.  Start a</span></span><br><span class="line">        <span class="comment">// goroutine to close c once all the sends are done.</span></span><br><span class="line">        <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">            wg.Wait()</span><br><span class="line">            <span class="built_in">close</span>(c)</span><br><span class="line">        }()</span><br><span class="line">        <span class="comment">// No select needed here, since errc is buffered.</span></span><br><span class="line">        errc &amp;lt;- err</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> c, errc</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>MD5All</i> 从 <code>channel</code> 中接受摘要值，返回最早出现的错误，并通过 <i>defer</i> 来关闭 <i>done</i> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">    <span class="comment">// MD5All closes the done channel when it returns; it may do so before</span></span><br><span class="line">    <span class="comment">// receiving all the values from c and errc.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line"></span><br><span class="line">    c, errc := sumFiles(done, root)</span><br><span class="line"></span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">    <span class="keyword">for</span> r := <span class="keyword">range</span> c {</span><br><span class="line">        <span class="keyword">if</span> r.err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">return</span> <span class="constant">nil</span>, r.err</span><br><span class="line">        }</span><br><span class="line">        m[r.path] = r.sum</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> err := &amp;lt;-errc; err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org1dcad26" class="outline-3">
-<h3 id="org1dcad26"><span class="section-number-3">6.3</span> 受限的并行</h3>
-<div class="outline-text-3" id="text-6-3">
-<p>
-在 <a href="https://blog.golang.org/pipelines/parallel.go" rel="external nofollow noopener noreferrer" target="_blank">parallel.go</a> 的 <i>MD5All</i> 实现中为每个文件创建一个 <code>goroutine</code> 。
-试想一下，若是一个目录中有许多大文件，上面的实现，很可能导致资源枯竭。
-可以通过限制同时打开的问题个数来解决资源占用的问题。在 <a href="https://blog.golang.org/pipelines/bounded.go" rel="external nofollow noopener noreferrer" target="_blank">bounded.go</a> 中， 创建固定数量的用于读取文件的 <code>goroutine</code> 。
-重新设计流程，包含三个片段： 遍历目录树， 读取文件生成摘要，收集摘要。
-</p>
-
-<p>
-第一个片段 <i>walkFiles</i> , 过滤出常规文件路径，同时往下游发送：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> walkFiles(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, root <span class="typename">string</span>) (&amp;lt;-<span class="keyword">chan</span> <span class="typename">string</span>, &amp;lt;-<span class="keyword">chan</span> error) {</span><br><span class="line">  paths := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">string</span>)</span><br><span class="line">  errc := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    <span class="comment">// Close the paths channel after Walk returns.</span></span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(paths)</span><br><span class="line">    <span class="comment">// No select needed for this send, since errc is buffered.</span></span><br><span class="line">    errc &amp;lt;- filepath.Walk(root, <span class="keyword">func</span>(path <span class="typename">string</span>, info os.FileInfo, err error) error {</span><br><span class="line">      <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> !info.Mode().IsRegular() {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">select</span> {</span><br><span class="line">      <span class="keyword">case</span> paths &amp;lt;- path:</span><br><span class="line">      <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">        <span class="keyword">return</span> errors.New(<span class="string">"walk canceled"</span>)</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">    })</span><br><span class="line">  }()</span><br><span class="line">  <span class="keyword">return</span> paths, errc</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-中间片段启动固定数量的 <i>digester</i> <code>goroutine</code> 从 <i>paths</i> <code>channel</code> 中接受文件名， 通过 <i>c</i> <code>channel</code>  来回写摘要值：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> digester(done &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}, paths &amp;lt;-<span class="keyword">chan</span> <span class="typename">string</span>, c <span class="keyword">chan</span>&amp;lt;- result) {</span><br><span class="line">    <span class="keyword">for</span> path := <span class="keyword">range</span> paths {</span><br><span class="line">        data, err := ioutil.ReadFile(path)</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> c &amp;lt;- result{path, md5.Sum(data), err}:</span><br><span class="line">        <span class="keyword">case</span> &amp;lt;-done:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-与以前的示例不同，/digester/ 不会关闭其输出 <code>channel</code> ，因为多个 <code>goroutine</code> 正在共享 <code>channel</code> 上发送。
-相反，当所有的 <i>digester</i> 完成时，MD5All中的代码会关闭 <code>channel</code> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// MD5All reads all the files in the file tree rooted at root and returns a map</span></span><br><span class="line"><span class="comment">// from file path to the MD5 sum of the file's contents.  If the directory walk</span></span><br><span class="line"><span class="comment">// fails or any read operation fails, MD5All returns an error.  In that case,</span></span><br><span class="line"><span class="comment">// MD5All does not wait for inflight read operations to complete.</span></span><br><span class="line"><span class="keyword">func</span> MD5All(root <span class="typename">string</span>) (<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>, error) {</span><br><span class="line">  <span class="comment">// MD5All closes the done channel when it returns; it may do so before</span></span><br><span class="line">  <span class="comment">// receiving all the values from c and errc.</span></span><br><span class="line">  done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line">  <span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line"></span><br><span class="line">  paths, errc := walkFiles(done, root)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Start a fixed number of goroutines to read and digest files.</span></span><br><span class="line">  c := <span class="built_in">make</span>(<span class="keyword">chan</span> result) <span class="comment">// HLc</span></span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  <span class="keyword">const</span> numDigesters = <span class="number">20</span></span><br><span class="line">  wg.Add(numDigesters)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; numDigesters; i++ {</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      digester(done, paths, c) <span class="comment">// HLc</span></span><br><span class="line">      wg.Done()</span><br><span class="line">    }()</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">    wg.Wait()</span><br><span class="line">    <span class="built_in">close</span>(c) <span class="comment">// HLc</span></span><br><span class="line">  }()</span><br><span class="line">  <span class="comment">// End of pipeline. OMIT</span></span><br><span class="line"></span><br><span class="line">  m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>][md5.Size]<span class="typename">byte</span>)</span><br><span class="line">  <span class="keyword">for</span> r := <span class="keyword">range</span> c {</span><br><span class="line">    <span class="keyword">if</span> r.err != <span class="constant">nil</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">nil</span>, r.err</span><br><span class="line">    }</span><br><span class="line">    m[r.path] = r.sum</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// Check whether the Walk failed.</span></span><br><span class="line">  <span class="keyword">if</span> err := &amp;lt;-errc; err != <span class="constant">nil</span> { <span class="comment">// HLerrc</span></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> m, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-可以让每个 <i>digester</i> 创建并返回自己的输出 <code>channel</code> ，但是后面需要额外的 <code>goroutine</code> 来扇入结果。
-</p>
-
-<p>
-最后片段接收 <i>c</i> 的所有结果，然后从 <i>errc</i> 检查错误。 此检查不能早于从 <i>c</i> 中接受数据，因为在此之前， <i>walkFiles</i> 可能会被下游阻塞。
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org0874dcd" class="outline-2">
-<h2 id="org0874dcd"><span class="section-number-2">7</span> 总结</h2>
-<div class="outline-text-2" id="text-7">
-<p>
-本文介绍了Go中构建管道流的技术。
-处理这种管道中的故障是很棘手的，因为管道中的任一片段都可能被尝试发送下游值而阻塞，并且下游片段可能也不再关心或者需要输入数据。
-本文展示了如何关闭 <code>channel</code> 方式来向管道启动的所有 <code>goroutines</code> 广播“完成”信号，并且正确地定义了管道构建的准则。
-</p>
-</div>
-</div>
-
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -4045,7 +3862,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -4067,7 +3884,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

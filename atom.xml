@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-08-23T07:21:47.933Z</updated>
+  <updated>2017-08-25T07:45:07.664Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>玩转词云</title>
+    <link href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/"/>
+    <id>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</id>
+    <published>2017-08-21T16:00:00.000Z</published>
+    <updated>2017-08-25T07:45:07.664Z</updated>
+    
+    <summary type="html">
+    
+      
+
+
+&lt;div id=&quot;outline-container-orga9b5a36&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orga9b5a36&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="python" scheme="https://brantou.github.io/tags/python/"/>
+    
+      <category term="jieba" scheme="https://brantou.github.io/tags/jieba/"/>
+    
+      <category term="wordcloud" scheme="https://brantou.github.io/tags/wordcloud/"/>
+    
+  </entry>
   
   <entry>
     <title>scrapy模拟登陆知乎</title>
@@ -44,6 +72,29 @@
   </entry>
   
   <entry>
+    <title>Leetcode-array</title>
+    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
+    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
+    <published>2017-07-15T16:00:00.000Z</published>
+    <updated>2017-07-23T16:26:00.627Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typ
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leetcode-tree</title>
     <link href="https://brantou.github.io/2017/07/16/leetcode-tree/"/>
     <id>https://brantou.github.io/2017/07/16/leetcode-tree/</id>
@@ -64,29 +115,6 @@
       <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
       <category term="tree" scheme="https://brantou.github.io/tags/tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode-array</title>
-    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
-    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
-    <published>2017-07-15T16:00:00.000Z</published>
-    <updated>2017-07-23T16:26:00.627Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typ
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -125,39 +153,6 @@
       <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
     
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   
@@ -205,6 +200,39 @@
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go的测试覆盖率</title>
+    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
+    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
+    <published>2017-05-24T03:00:00.000Z</published>
+    <updated>2017-05-25T08:59:02.418Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+&lt;/p&gt;
+
+&lt;p&gt;
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU &lt;a href=&quot;http://gcc.gnu
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
+    
+      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   
@@ -798,34 +826,6 @@ org-mode我用了两年，却未曾深入。
 最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
 归纳整理于此，以作留存，馈与日后。
 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
-    
-    
-      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
-    
-      <category term="manual" scheme="https://brantou.github.io/tags/manual/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的日志库logrus试用</title>
-    <link href="https://brantou.github.io/2017/03/21/go-logrus/"/>
-    <id>https://brantou.github.io/2017/03/21/go-logrus/</id>
-    <published>2017-03-20T16:00:00.000Z</published>
-    <updated>2017-06-19T15:25:31.801Z</updated>
-    
-    <summary type="html">
-    
-      
-
-
-&lt;div id=&quot;outline-container-org0af01a0&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org0af01a0&quot;&gt;&lt;a id=&quot;ID-9c33a24e-99e1-4882-a837-1efea5ca6544&quot;&gt;&lt;/a&gt;&lt;span c
     
     </summary>
     
