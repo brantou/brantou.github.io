@@ -440,12 +440,12 @@
             
 
 
-<div id="outline-container-orga9b5a36" class="outline-2">
-<h2 id="orga9b5a36"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词&#x2013;做最好的Python中文分词组件</h2>
+<div id="outline-container-org7feed8f" class="outline-2">
+<h2 id="org7feed8f"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词&#x2013;做最好的Python中文分词组件</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1a63ca2" class="outline-3">
-<h3 id="org1a63ca2"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
+<div id="outline-container-org70473e0" class="outline-3">
+<h3 id="org70473e0"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">u'Full mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">False</span>)</span><br><span class="line">print(<span class="string">u'Default mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(srcWd)</span><br><span class="line">print(<span class="string">u', '</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
@@ -466,8 +466,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </pre>
 </div>
 </div>
-<div id="outline-container-org31b5698" class="outline-3">
-<h3 id="org31b5698"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
+<div id="outline-container-org8a79115" class="outline-3">
+<h3 id="org8a79115"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 招聘信息收集了很多，但是关键字提取却不是很理想，我查看了jiaba的词典里，基本没有对英文专有名词的支持，
@@ -492,8 +492,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </div>
 </div>
 
-<div id="outline-container-org384d647" class="outline-3">
-<h3 id="org384d647"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
+<div id="outline-container-orgd61c465" class="outline-3">
+<h3 id="orgd61c465"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
@@ -507,8 +507,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </div>
 </div>
 
-<div id="outline-container-org88fe95c" class="outline-3">
-<h3 id="org88fe95c"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
+<div id="outline-container-orgfb6f624" class="outline-3">
+<h3 id="orgfb6f624"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.extract_tags(srcWd, allowPOS=())))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span></span><br><span class="line">                                                ))))</span><br><span class="line">wordlst = jieba.analyse.extract_tags(</span><br><span class="line">    srcWd, withWeight=<span class="keyword">True</span>, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> wordlst:</span><br><span class="line">    print(word[<span class="number">0</span>] + <span class="string">": "</span> + str(word[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
@@ -532,8 +532,8 @@ Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
 </div>
 </div>
 
-<div id="outline-container-org415b716" class="outline-3">
-<h3 id="org415b716"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
+<div id="outline-container-orga13dcf8" class="outline-3">
+<h3 id="orga13dcf8"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">words = pseg.cut(srcWd)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> words:</span><br><span class="line">    print(<span class="string">'%s %s'</span> % (word, flag))</span><br></pre></td></tr></table></figure>
@@ -622,26 +622,26 @@ hive nz
 </div>
 </div>
 
-<div id="outline-container-org557c30f" class="outline-2">
-<h2 id="org557c30f"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> 词云</h2>
+<div id="outline-container-org703a510" class="outline-2">
+<h2 id="org703a510"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> 词云</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 
-<div id="outline-container-org2cc1c66" class="outline-3">
-<h3 id="org2cc1c66"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 美国宪法的词云</h3>
+<div id="outline-container-orgac6398e" class="outline-3">
+<h3 id="orgac6398e"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 美国宪法的词云</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Minimal Example</span><br><span class="line">===============</span><br><span class="line">Generating a square wordcloud from the US constitution using default arguments.</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(<span class="string">'../resource/constitution.txt'</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate a word cloud image</span></span><br><span class="line">wordcloud = WordCloud().generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-n.png'</span>)</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(max_font_size=<span class="number">40</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-b.png'</span>)</span><br></pre></td></tr></table></figure>
 </div>
 
-<img src="/images/images/constitution-n.png">
+<img src="/images/constitution-n.png">
 
-<img src="/images/images/constitution-b.png">
+<img src="/images/constitution-b.png">
 </div>
 </div>
 </div>
 
-Last Updated 2017-08-25 Fri 15:45.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-25 Fri 15:47.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
