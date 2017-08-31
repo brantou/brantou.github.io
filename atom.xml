@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-08-31T09:59:51.280Z</updated>
+  <updated>2017-08-31T10:18:34.878Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>学习Python新方式</title>
+    <title>写Python的新方式</title>
     <link href="https://brantou.github.io/2017/08/30/ob-python-intro/"/>
     <id>https://brantou.github.io/2017/08/30/ob-python-intro/</id>
     <published>2017-08-29T16:00:00.000Z</published>
-    <updated>2017-08-31T09:59:51.280Z</updated>
+    <updated>2017-08-31T10:18:34.878Z</updated>
     
     <summary type="html">
     
@@ -51,6 +51,34 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
+    <title>玩转词云</title>
+    <link href="https://brantou.github.io/2017/08/25/python-jieba-wordcloud/"/>
+    <id>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</id>
+    <published>2017-08-24T16:00:00.000Z</published>
+    <updated>2017-08-31T10:17:32.336Z</updated>
+    
+    <summary type="html">
+    
+      
+
+
+&lt;div id=&quot;outline-container-org62b70cb&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org62b70cb&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="python" scheme="https://brantou.github.io/tags/python/"/>
+    
+      <category term="jieba" scheme="https://brantou.github.io/tags/jieba/"/>
+    
+      <category term="wordcloud" scheme="https://brantou.github.io/tags/wordcloud/"/>
+    
+  </entry>
+  
+  <entry>
     <title>scrapy模拟登陆知乎</title>
     <link href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/"/>
     <id>https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/</id>
@@ -75,34 +103,6 @@ and authoring documents with a fast and effecti
       <category term="python" scheme="https://brantou.github.io/tags/python/"/>
     
       <category term="crawler" scheme="https://brantou.github.io/tags/crawler/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>玩转词云</title>
-    <link href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/"/>
-    <id>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</id>
-    <published>2017-08-21T16:00:00.000Z</published>
-    <updated>2017-08-29T14:46:39.478Z</updated>
-    
-    <summary type="html">
-    
-      
-
-
-&lt;div id=&quot;outline-container-orgf1716a1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgf1716a1&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="python" scheme="https://brantou.github.io/tags/python/"/>
-    
-      <category term="jieba" scheme="https://brantou.github.io/tags/jieba/"/>
-    
-      <category term="wordcloud" scheme="https://brantou.github.io/tags/wordcloud/"/>
     
   </entry>
   

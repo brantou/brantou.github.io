@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
-    <lastmod>2017-08-31T09:59:51.280Z</lastmod>
+    <lastmod>2017-08-31T10:18:34.878Z</lastmod>
     <data>
         <display>
-        <title>学习Python新方式</title>
+        <title>写Python的新方式</title>
         <pubTime>2017-08-29T16:00:00.000Z</pubTime>
         
         <tag>tutorial</tag>
@@ -27,6 +27,30 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
+    <lastmod>2017-08-31T10:17:32.336Z</lastmod>
+    <data>
+        <display>
+        <title>玩转词云</title>
+        <pubTime>2017-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>jieba</tag>
+         
+        <tag>wordcloud</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
@@ -57,30 +81,6 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</loc>
-    <lastmod>2017-08-29T14:46:39.478Z</lastmod>
-    <data>
-        <display>
-        <title>玩转词云</title>
-        <pubTime>2017-08-21T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>jieba</tag>
-         
-        <tag>wordcloud</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
