@@ -120,9 +120,10 @@ and authoring documents with a fast and effective plain-text system.
 
 Org-mode 类似于 Markdown , 但是远胜于 Markdown 。
 曾有小伙伴说过，">
+<meta property="og:image" content="https://brantou.github.io/images/babel-fish.jpg">
 <meta property="og:image" content="https://brantou.github.io/images/python-matplot-fig.png">
 <meta property="og:image" content="https://brantou.github.io/images/xiyouji-mask.png">
-<meta property="og:updated_time" content="2017-08-31T10:58:46.332Z">
+<meta property="og:updated_time" content="2017-08-31T11:06:27.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写Python的新方式">
 <meta name="twitter:description" content="Org mode is for keeping notes, maintaining TODO lists, planning projects,
@@ -133,7 +134,7 @@ and authoring documents with a fast and effective plain-text system.
 
 Org-mode 类似于 Markdown , 但是远胜于 Markdown 。
 曾有小伙伴说过，">
-<meta name="twitter:image" content="https://brantou.github.io/images/python-matplot-fig.png">
+<meta name="twitter:image" content="https://brantou.github.io/images/babel-fish.jpg">
 
 
 
@@ -482,6 +483,8 @@ and authoring documents with a fast and effective plain-text system.
 所谓的元编程，即是 <code>Org-mode</code> 搭建了一个多语言可以交互执行的环境， 在这个环境中，可选用各语言的特性，来分解执行一个大型任务。
 </p>
 
+<img src="/images/babel-fish.jpg">
+
 <p>
 <code>Org-mode</code> 对于比较流行的语言都有很好的支持，
 而且对于新语言，也可以很容易添加支持，本人就给两种语言添加过支持。
@@ -490,8 +493,8 @@ and authoring documents with a fast and effective plain-text system.
 <code>Org-mode</code> 中的 <code>Python</code> 源代码块可用于定义函数、过滤器和数据分析、创建图表以及生成可重现的研究论文。
 </p>
 
-<div id="outline-container-org787ec00" class="outline-2">
-<h2 id="org787ec00"><a id="ID-dd1c7aab-e7a8-4c27-a12d-46fbe3f98cdb"></a><span class="section-number-2">1</span> 配置</h2>
+<div id="outline-container-orgb4faaf3" class="outline-2">
+<h2 id="orgb4faaf3"><a id="ID-dd1c7aab-e7a8-4c27-a12d-46fbe3f98cdb"></a><span class="section-number-2">1</span> 配置</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这里假设 <code>Python</code>  的开发环境已配置完毕，若是还没配置，请自行google。
@@ -508,16 +511,16 @@ and authoring documents with a fast and effective plain-text system.
 </div>
 </div>
 
-<div id="outline-container-org948fc76" class="outline-2">
-<h2 id="org948fc76"><a id="ID-8b5e6e60-dddf-4813-8bfe-2ba85444f3ee"></a><span class="section-number-2">2</span> Org-mode对于Python源码块的支持</h2>
+<div id="outline-container-org589634f" class="outline-2">
+<h2 id="org589634f"><a id="ID-8b5e6e60-dddf-4813-8bfe-2ba85444f3ee"></a><span class="section-number-2">2</span> Org-mode对于Python源码块的支持</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbdc9a2a" class="outline-3">
-<h3 id="orgbdc9a2a"><a id="ID-aaa9eaf4-7c30-48e2-a737-45fe5c77b7c5"></a><span class="section-number-3">2.1</span> 头参数</h3>
+<div id="outline-container-org975f460" class="outline-3">
+<h3 id="org975f460"><a id="ID-aaa9eaf4-7c30-48e2-a737-45fe5c77b7c5"></a><span class="section-number-3">2.1</span> 头参数</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org44fcf6d" class="outline-4">
-<h4 id="org44fcf6d"><a id="ID-d1554529-76b0-41d1-b0eb-db13448dee88"></a><span class="section-number-4">2.1.1</span> 语言特定的头参数</h4>
+<div id="outline-container-org71dfd8e" class="outline-4">
+<h4 id="org71dfd8e"><a id="ID-d1554529-76b0-41d1-b0eb-db13448dee88"></a><span class="section-number-4">2.1.1</span> 语言特定的头参数</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>:results {output, value}: 默认 <code>value</code> 模式, 即 <i>functional mode</i>, 像函数一样执行，然后返回计算结果。</li>
@@ -529,8 +532,8 @@ and authoring documents with a fast and effective plain-text system.
 </div>
 </div>
 
-<div id="outline-container-orgec4ce7d" class="outline-4">
-<h4 id="orgec4ce7d"><a id="ID-ad484d0a-a8ae-4d72-800e-9a5a41ae3283"></a><span class="section-number-4">2.1.2</span> 公共头参数</h4>
+<div id="outline-container-orgec0f3f8" class="outline-4">
+<h4 id="orgec0f3f8"><a id="ID-ad484d0a-a8ae-4d72-800e-9a5a41ae3283"></a><span class="section-number-4">2.1.2</span> 公共头参数</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>:seesion [name]: 默认非 <code>session</code> 模式。</li>
@@ -541,8 +544,8 @@ and authoring documents with a fast and effective plain-text system.
 </div>
 </div>
 
-<div id="outline-container-org4575d20" class="outline-3">
-<h3 id="org4575d20"><a id="ID-1b1aa351-fb05-4fbe-bdc5-f55b93d38b79"></a><span class="section-number-3">2.2</span> Sessions</h3>
+<div id="outline-container-orgc42d32b" class="outline-3">
+<h3 id="orgc42d32b"><a id="ID-1b1aa351-fb05-4fbe-bdc5-f55b93d38b79"></a><span class="section-number-3">2.2</span> Sessions</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 python完全支持 <code>session</code> 模式，包括命名 <code>session</code> 。
@@ -566,8 +569,8 @@ python中的 <code>session</code> 模式与 <code>non-session</code> 模式略�
 </p>
 </div>
 
-<div id="outline-container-org50e397f" class="outline-4">
-<h4 id="org50e397f"><a id="ID-7e6dfa8c-70a2-402a-ae11-355ebd5b0c31"></a><span class="section-number-4">2.2.1</span> Session mode</h4>
+<div id="outline-container-org3f17966" class="outline-4">
+<h4 id="org3f17966"><a id="ID-7e6dfa8c-70a2-402a-ae11-355ebd5b0c31"></a><span class="section-number-4">2.2.1</span> Session mode</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 # blank lines not OK in indented blocks, and don't use return()
@@ -589,8 +592,8 @@ foo(1)
 </div>
 </div>
 
-<div id="outline-container-orgefbb952" class="outline-4">
-<h4 id="orgefbb952"><a id="ID-0259c9cf-ebd7-431d-bd21-02f11ac76ca3"></a><span class="section-number-4">2.2.2</span> Non-session mode</h4>
+<div id="outline-container-org109a705" class="outline-4">
+<h4 id="org109a705"><a id="ID-0259c9cf-ebd7-431d-bd21-02f11ac76ca3"></a><span class="section-number-4">2.2.2</span> Non-session mode</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <pre class="example">
 # blank lines OK in indented blocks, and use return()
@@ -634,8 +637,8 @@ plt.savefig('images/myfig.pdf')
 </div>
 </div>
 
-<div id="outline-container-org27acdca" class="outline-3">
-<h3 id="org27acdca"><a id="ID-499cadec-6fdf-4f0f-91e0-586ecb78bb70"></a><span class="section-number-3">2.3</span> 返回类型</h3>
+<div id="outline-container-orgbe1271e" class="outline-3">
+<h3 id="orgbe1271e"><a id="ID-499cadec-6fdf-4f0f-91e0-586ecb78bb70"></a><span class="section-number-3">2.3</span> 返回类型</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>value：=value= 结果是代码块中求值的最后一个表达式的值。 <code>session</code> 模式下使用的python解释器特殊变量“_” 来引用最后一个表达式的值。</li>
@@ -644,8 +647,8 @@ plt.savefig('images/myfig.pdf')
 </div>
 </div>
 </div>
-<div id="outline-container-org084d6a1" class="outline-2">
-<h2 id="org084d6a1"><a id="ID-98d57d43-f1ad-40fe-bae1-9f248c41068e"></a><span class="section-number-2">3</span> 使用示例</h2>
+<div id="outline-container-orgc6cfaff" class="outline-2">
+<h2 id="orgc6cfaff"><a id="ID-98d57d43-f1ad-40fe-bae1-9f248c41068e"></a><span class="section-number-2">3</span> 使用示例</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><p>
@@ -803,16 +806,16 @@ return(data[val])
 </div>
 </div>
 
-<div id="outline-container-org5e77e5a" class="outline-2">
-<h2 id="org5e77e5a"><a id="ID-411b11c2-85b5-40ca-894b-c915ddb9325e"></a><span class="section-number-2">4</span> 前方预警</h2>
+<div id="outline-container-orga3eaa05" class="outline-2">
+<h2 id="orga3eaa05"><a id="ID-411b11c2-85b5-40ca-894b-c915ddb9325e"></a><span class="section-number-2">4</span> 前方预警</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 当把 <code>utf-8</code> 的字符串传给 <code>Python</code> , 需要格外小心。
 </p>
 </div>
 
-<div id="outline-container-org605d961" class="outline-3">
-<h3 id="org605d961"><a id="ID-005389e6-3af8-4987-a226-7d857f9fe35f"></a><span class="section-number-3">4.1</span> 传递utf-8字符串到Python</h3>
+<div id="outline-container-org181c38e" class="outline-3">
+<h3 id="org181c38e"><a id="ID-005389e6-3af8-4987-a226-7d857f9fe35f"></a><span class="section-number-3">4.1</span> 传递utf-8字符串到Python</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 #+NAME: unicode_str
@@ -847,8 +850,8 @@ SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file <stdin> on line 3, b
 </div>
 </div>
 
-<div id="outline-container-org0e452a5" class="outline-3">
-<h3 id="org0e452a5"><a id="ID-9e5a70ba-c852-4a19-8200-d20c395ab2af"></a><span class="section-number-3">4.2</span> 传递utf-8字符串到Python的变通方法</h3>
+<div id="outline-container-org71ff9de" class="outline-3">
+<h3 id="org71ff9de"><a id="ID-9e5a70ba-c852-4a19-8200-d20c395ab2af"></a><span class="section-number-3">4.2</span> 传递utf-8字符串到Python的变通方法</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 一个变通方法是使用 <code>:preamble</code> ,如下所示:
@@ -869,18 +872,20 @@ SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file <stdin> on line 3, b
 </div>
 </div>
 </div>
-<div id="outline-container-org03d234b" class="outline-2">
-<h2 id="org03d234b"><a id="ID-86504328-89bc-461b-805b-ab7d0f252ad6"></a><span class="section-number-2">5</span> 参考文档</h2>
+<div id="outline-container-org7c8b55d" class="outline-2">
+<h2 id="org7c8b55d"><a id="ID-86504328-89bc-461b-805b-ab7d0f252ad6"></a><span class="section-number-2">5</span> 参考文档</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html" rel="external nofollow noopener noreferrer" target="_blank">Python Source Code Blocks in Org Mode</a></li>
 <li><a href="https://brantou.github.io/2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
 <li><a href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
+<li><a href="http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code" rel="external nofollow noopener noreferrer" target="_blank">Working with source code</a></li>
+<li><a href="http://orgmode.org/worg/org-contrib/babel/" rel="external nofollow noopener noreferrer" target="_blank">Babel: active code in Org-mode</a></li>
 </ul>
 </div>
 </div>
 
-Last Updated 2017-08-31 Thu 18:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-31 Thu 19:06.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -1156,7 +1161,7 @@ Last Updated 2017-08-31 Thu 18:58.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org787ec00"><span class="nav-text">1 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org948fc76"><span class="nav-text">2 Org-mode对于Python源码块的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbdc9a2a"><span class="nav-text">2.1 头参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org44fcf6d"><span class="nav-text">2.1.1 语言特定的头参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgec4ce7d"><span class="nav-text">2.1.2 公共头参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4575d20"><span class="nav-text">2.2 Sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org50e397f"><span class="nav-text">2.2.1 Session mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgefbb952"><span class="nav-text">2.2.2 Non-session mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org27acdca"><span class="nav-text">2.3 返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org084d6a1"><span class="nav-text">3 使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5e77e5a"><span class="nav-text">4 前方预警</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org605d961"><span class="nav-text">4.1 传递utf-8字符串到Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0e452a5"><span class="nav-text">4.2 传递utf-8字符串到Python的变通方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org03d234b"><span class="nav-text">5 参考文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb4faaf3"><span class="nav-text">1 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org589634f"><span class="nav-text">2 Org-mode对于Python源码块的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org975f460"><span class="nav-text">2.1 头参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org71dfd8e"><span class="nav-text">2.1.1 语言特定的头参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgec0f3f8"><span class="nav-text">2.1.2 公共头参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc42d32b"><span class="nav-text">2.2 Sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org3f17966"><span class="nav-text">2.2.1 Session mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org109a705"><span class="nav-text">2.2.2 Non-session mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbe1271e"><span class="nav-text">2.3 返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc6cfaff"><span class="nav-text">3 使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga3eaa05"><span class="nav-text">4 前方预警</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org181c38e"><span class="nav-text">4.1 传递utf-8字符串到Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org71ff9de"><span class="nav-text">4.2 传递utf-8字符串到Python的变通方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7c8b55d"><span class="nav-text">5 参考文档</span></a></li></ol></div>
             
 
           </div>
