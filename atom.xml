@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-08-29T14:46:39.478Z</updated>
+  <updated>2017-08-31T09:59:51.280Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -16,30 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>玩转词云</title>
-    <link href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/"/>
-    <id>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</id>
-    <published>2017-08-21T16:00:00.000Z</published>
-    <updated>2017-08-29T14:46:39.478Z</updated>
+    <title>学习Python新方式</title>
+    <link href="https://brantou.github.io/2017/08/30/ob-python-intro/"/>
+    <id>https://brantou.github.io/2017/08/30/ob-python-intro/</id>
+    <published>2017-08-29T16:00:00.000Z</published>
+    <updated>2017-08-31T09:59:51.280Z</updated>
     
     <summary type="html">
     
       
 
-
-&lt;div id=&quot;outline-container-orgf1716a1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgf1716a1&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;blockquote&gt;
+&lt;p&gt;
+Org mode is for keeping notes, maintaining TODO lists, planning projects,
+and authoring documents with a fast and effecti
     
     </summary>
     
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
     
+    
+      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
+    
+      <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
+    
+      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
+    
+      <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
     
       <category term="python" scheme="https://brantou.github.io/tags/python/"/>
-    
-      <category term="jieba" scheme="https://brantou.github.io/tags/jieba/"/>
-    
-      <category term="wordcloud" scheme="https://brantou.github.io/tags/wordcloud/"/>
     
   </entry>
   
@@ -72,25 +79,30 @@
   </entry>
   
   <entry>
-    <title>Leetcode-array</title>
-    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
-    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
-    <published>2017-07-15T16:00:00.000Z</published>
-    <updated>2017-07-23T16:26:00.627Z</updated>
+    <title>玩转词云</title>
+    <link href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/"/>
+    <id>https://brantou.github.io/2017/08/22/python-jieba-wordcloud/</id>
+    <published>2017-08-21T16:00:00.000Z</published>
+    <updated>2017-08-29T14:46:39.478Z</updated>
     
     <summary type="html">
     
       
 
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typ
+
+&lt;div id=&quot;outline-container-orgf1716a1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgf1716a1&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
     
     </summary>
     
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+      <category term="python" scheme="https://brantou.github.io/tags/python/"/>
+    
+      <category term="jieba" scheme="https://brantou.github.io/tags/jieba/"/>
+    
+      <category term="wordcloud" scheme="https://brantou.github.io/tags/wordcloud/"/>
     
   </entry>
   
@@ -119,11 +131,34 @@
   </entry>
   
   <entry>
+    <title>Leetcode-array</title>
+    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
+    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
+    <published>2017-07-15T16:00:00.000Z</published>
+    <updated>2017-07-23T16:26:00.627Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typ
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在Org-mode中执行Go代码</title>
     <link href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/"/>
     <id>https://brantou.github.io/2017/06/12/go-source-code-block-in-org/</id>
     <published>2017-06-11T16:00:00.000Z</published>
-    <updated>2017-06-13T07:16:30.940Z</updated>
+    <updated>2017-08-30T15:02:34.224Z</updated>
     
     <summary type="html">
     
@@ -347,6 +382,31 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
+    <title>Gopher面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-06-12T11:01:04.303Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一周回顾--2017-05-12</title>
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
@@ -369,31 +429,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-06-12T11:01:04.303Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   
@@ -809,34 +844,6 @@ Babel augments Org-mode support for code blocks by providing:
       <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
     
       <category term="元编程" scheme="https://brantou.github.io/tags/%E5%85%83%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Org-mode手册</title>
-    <link href="https://brantou.github.io/2017/03/21/just-try/"/>
-    <id>https://brantou.github.io/2017/03/21/just-try/</id>
-    <published>2017-03-20T16:00:00.000Z</published>
-    <updated>2017-05-24T06:57:27.490Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;
-org-mode我用了两年，却未曾深入。
-最近两周静下心来，仔仔细细的钻研了一番，深深被这厮震撼到了，作为文档编辑工作，在我的认知范围里，无出其右。
-归纳整理于此，以作留存，馈与日后。
-&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
-    
-    
-      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
-    
-      <category term="manual" scheme="https://brantou.github.io/tags/manual/"/>
     
   </entry>
   

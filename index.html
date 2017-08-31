@@ -335,6 +335,845 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/30/ob-python-intro/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/30/ob-python-intro/" itemprop="url">学习Python新方式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T00:00:00+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/ob-python-intro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/30/ob-python-intro/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<blockquote>
+<p>
+Org mode is for keeping notes, maintaining TODO lists, planning projects,
+and authoring documents with a fast and effective plain-text system.
+</p>
+</blockquote>
+
+<p>
+<code>Org-mode</code> 类似于 <code>Markdown</code> , 但是远胜于 <code>Markdown</code> 。
+曾有小伙伴说过， <code>Org-mode</code> 是 <code>Markdown</code> 的封神模式， 个人觉得这话一点不夸张，
+相比较而言， <code>Markdown</code> 只是一套简洁的文档格式， 而 <code>Org-mode</code> 除了涵盖作为文档格式的简洁之外，
+还可用于记笔记，维护 <b>TODO</b> 列表， 工程管理,以及可用于元编程。
+对于元编程的支持请参与，我之前的文章， Babel: org-mode的元编程。
+</p>
+
+<p>
+所谓的元编程，即是 <code>Org-mode</code> 搭建了一个多语言可以交互执行的环境，
+在这个环境中，可选用各语言的特性，来分解执行一个大型任务。
+</p>
+
+<p>
+<code>Org-mode</code> 对于比较流行的语言都有很好的支持，
+而且对于新语言，也可以很容易添加支持，本人就给两种语言添加过支持。
+本文章主要讲述 <code>Org-mode</code> 对于 <code>Python</code> 源代码块的支持,
+<code>Python</code> 相当的流行, 所以在 <code>Org-mode</code> 中被很完美的支持。
+<code>Org-mode</code> 中的 <code>Python</code> 源代码块可用于定义函数、过滤器和数据分析、创建图表以及生成可重现的研究论文。
+</p>
+
+<div id="outline-container-orgcdb113a" class="outline-2">
+<h2 id="orgcdb113a"><a id="ID-dd1c7aab-e7a8-4c27-a12d-46fbe3f98cdb"></a><span class="section-number-2">1</span> 配置</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+这里假设 <code>Python</code>  的开发环境已配置完毕，若是还没配置，请自行google。
+</p>
+
+<p>
+<code>Org-mode</code> 已内置在新的 <b>Emacs</b> 中，但是默认情况下， 只有 <code>emacs-lisp</code> 可被执行。
+要启用或禁用其他语言, 可通过 <b>Emacs</b> 自定义交互界面来配置  <code>org-babel-load-languages</code> 变量,
+或者将代码添加到 <code>init</code> 文件中, 启用python的代码如下所示:
+</p>
+<div class="org-src-container">
+<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-babel-do-load-languages</span></span><br><span class="line"> <span class="quoted">'org-babel-load-languages</span></span><br><span class="line"> <span class="quoted">'((python . <span class="literal">t</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f0774c" class="outline-2">
+<h2 id="org5f0774c"><a id="ID-8b5e6e60-dddf-4813-8bfe-2ba85444f3ee"></a><span class="section-number-2">2</span> Org-mode对于Python源码块的支持</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org46f6881" class="outline-3">
+<h3 id="org46f6881"><a id="ID-aaa9eaf4-7c30-48e2-a737-45fe5c77b7c5"></a><span class="section-number-3">2.1</span> 头参数</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org19701b7" class="outline-4">
+<h4 id="org19701b7"><a id="ID-d1554529-76b0-41d1-b0eb-db13448dee88"></a><span class="section-number-4">2.1.1</span> 语言特定的头参数</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>:results {output, value}: 默认 <code>value</code> 模式, 即 <i>functional mode</i>, 像函数一样执行，然后返回计算结果。</li>
+<li>:preamble: 前导代码，插入到最前面（不常用）。 默认为空。</li>
+<li>:return: 要返回的值（仅用于result-type为 <code>value</code> 时，不在 <code>session</code> 模式下;不常用）。
+默认值为空，在 <code>Non-session</code> 模式下，使用 <code>return()</code> 返回值。</li>
+<li>:python: 执行Python代码的程序名称。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga4f837b" class="outline-4">
+<h4 id="orga4f837b"><a id="ID-ad484d0a-a8ae-4d72-800e-9a5a41ae3283"></a><span class="section-number-4">2.1.2</span> 公共头参数</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>:seesion [name]: 默认非 <code>session</code> 模式。</li>
+<li>:var data=data-table: <code>Org-mode</code> 的 <code>table</code> 可被当做列表传递给Python代码块。</li>
+<li>:exports {code, results, both, none}: 完全支持 <code>babel</code> 的导出选项。</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9751e51" class="outline-3">
+<h3 id="org9751e51"><a id="ID-1b1aa351-fb05-4fbe-bdc5-f55b93d38b79"></a><span class="section-number-3">2.2</span> Sessions</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+python完全支持 <code>session</code> 模式，包括命名 <code>session</code> 。
+在 <code>session</code> 模式下，代码块都运行在同一个长时间运行的 <code>python</code> 的交互式解释器 <code>session</code> 中，就像你在交互式 <code>python</code> 键入的一样。
+可以拥有多个 <code>session</code> ，而且它们是完全相互独立。
+</p>
+
+<p>
+<code>session</code>  可用于定义函数，设置变量和在源块之间共享代码。
+</p>
+
+<p>
+python中的 <code>session</code> 模式与 <code>non-session</code> 模式略有不同，因为在 <code>session</code> 模式下， 你正在与单个“交互式” <code>python session</code> 交互。
+在 <code>python</code> 的交互模式中，空行是特殊的：它们表示缩进代码块的结束, 所以会写出一些稍微不同的 <code>python</code> 代码。
+</p>
+
+<p>
+另外，在 <code>non-session</code> 模式下，python代码块将被包装在一个函数中， 所以要返回一个值（ <code>:result value mode</code> ），你必须使用一个return语句。
+在 <code>session</code> 模式下， <code>python</code> 代码由解释器直接评估，而不是在一个函数的上下文中，
+最后一个语句的值将被自动返回，因此不能使用 <code>return</code> 语句。
+</p>
+</div>
+
+<div id="outline-container-org7614b1e" class="outline-4">
+<h4 id="org7614b1e"><a id="ID-7e6dfa8c-70a2-402a-ae11-355ebd5b0c31"></a><span class="section-number-4">2.2.1</span> Session mode</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<pre class="example">
+# blank lines not OK in indented blocks, and don't use return()
+# Source block is passed directly to interactive python;
+# value is value of _ at end.
+#+begin_src python :session
+def foo(x):
+  if x>0:
+    return x+1
+  else:
+    return x-1
+
+foo(1)
+#+end_src
+
+#+RESULTS:
+: 2
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org697c4bd" class="outline-4">
+<h4 id="org697c4bd"><a id="ID-0259c9cf-ebd7-431d-bd21-02f11ac76ca3"></a><span class="section-number-4">2.2.2</span> Non-session mode</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<pre class="example">
+# blank lines OK in indented blocks, and use return()
+# Entire source block will get indented and used as the body of main()
+#+begin_src python
+def foo(x):
+  if x>0:
+    return x+1
+
+  else:
+    return x-1
+
+return foo(5)
+#+end_src
+
+#+RESULTS:
+: 6
+</pre>
+
+
+<p>
+最后，如果你使用 <code>matplotlib</code> 的图形功能，同时使用 <code>seesion</code> 模式，
+必须显式设置后端, 例如 <b>PDF</b> , <b>PNG</b> 或其他文件导出后端。 见下面示例:
+</p>
+<pre class="example">
+#+begin_src python :session :results file
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+fig=plt.figure(figsize=(3,2))
+plt.plot([1,3,2])
+fig.tight_layout()
+plt.savefig('images/myfig.pdf')
+'images/myfig.pdf' # return this to org-mode
+#+end_src
+
+#+RESULTS:
+[[file:images/myfig.pdf]]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbfd5455" class="outline-3">
+<h3 id="orgbfd5455"><a id="ID-499cadec-6fdf-4f0f-91e0-586ecb78bb70"></a><span class="section-number-3">2.3</span> 返回类型</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>value：=value= 结果是代码块中求值的最后一个表达式的值。 <code>session</code> 模式下使用的python解释器特殊变量“_” 来引用最后一个表达式的值。</li>
+<li>output：=output= 结果来自 <code>python</code> 代码打印到 <code>stdout</code> 上任意信息。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org18482d2" class="outline-2">
+<h2 id="org18482d2"><a id="ID-98d57d43-f1ad-40fe-bae1-9f248c41068e"></a><span class="section-number-2">3</span> 使用示例</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><p>
+Hello World!
+</p>
+<pre class="example">
+#+begin_src python :results output
+  print "Hello, world!"
+#+end_src
+
+#+RESULTS:
+: Hello, world!
+</pre></li>
+
+<li><p>
+参数
+</p>
+<pre class="example">
+#+NAME: square
+#+BEGIN_SRC python :var num=5
+  def square(x):
+      return x*x
+
+  return square(num)
+#+END_SRC
+
+#+RESULTS: square
+: 25
+
+#+CALL: square(num=10)
+
+#+RESULTS:
+: 100
+</pre></li>
+
+<li><p>
+文学编程
+</p>
+<pre class="example">
+
+#+NAME: square
+#+BEGIN_SRC python
+  def square(x):
+      return x*x
+#+END_SRC
+
+#+NAME: calc-square
+#+BEGIN_SRC python :var num=5 :noweb strip-export :results output
+  <<square>>
+  print(square(num))
+#+END_SRC
+
+#+RESULTS: calc-square
+: 25
+
+#+CALL: calc-square(num=7)
+
+#+RESULTS:
+: 49
+
+</square></pre></li>
+
+<li><p>
+内联调用(Inline calling):
+</p>
+<pre class="example">
+2 加 2 等于 src_python{return(2+2)}
+</pre>
+
+<p>
+当导出 <b>HTML</b> 或者 <b>LaTeX/PDF</b> 时，如下所示：
+</p>
+<pre class="example">
+2 加 2 等于 4
+</pre></li>
+
+<li><p>
+使用Org-mode的table作为参数
+</p>
+<pre class="example">
+#+tblname: data_table
+| a | 1 |
+| b | 2 |
+| c | 3 |
+#+begin_src python :var val=1 :var data=data_table
+# Return row specified by val.
+# In non-session mode, use return to return results.
+return(data[val])
+#+end_src
+
+#+RESULTS:
+| b | 2 |
+</pre></li>
+
+<li><p>
+绘画
+</p>
+<pre class="example">
+#+begin_src python :results file
+  import matplotlib, numpy
+  matplotlib.use('Agg')
+  import matplotlib.pyplot as plt
+  fig=plt.figure(figsize=(4,2))
+  x=numpy.linspace(-15,15)
+  plt.plot(numpy.sin(x)/x)
+  fig.tight_layout()
+  plt.savefig('../images/python-matplot-fig.png')
+  return '../images/python-matplot-fig.png'
+#+end_src
+
+#+RESULTS:
+[[file:../images/python-matplot-fig.png]]
+</pre>
+
+<img src="/images//images/python-matplot-fig.png"></li>
+
+<li><p>
+词云
+</p>
+<pre class="example">
+
+#+BEGIN_SRC python :preamble "# -*- coding: utf-8 -*-" :results value file
+  import jieba.analyse
+  from wordcloud import WordCloud, ImageColorGenerator
+  import numpy as np
+  from PIL import Image
+  import random
+
+  font_path = '../resource/tyzkaishu.ttf'
+  width = 640
+  height = 480
+
+  text = open('../resource/xiyouji.txt').read()
+  words = jieba.analyse.extract_tags(text, topK=200, withWeight=True)
+
+  word_freqs = {}
+  for word in words:
+      word_freqs[word[0]] = word[1]
+
+  mask = np.array(Image.open('../resource/stormtrooper_mask.png'))
+  wordcloud = WordCloud(
+      font_path=font_path, width=width, height=height,
+      mask=mask).generate_from_frequencies(word_freqs)
+  wordcloud.to_file('../images/xiyouji-mask.png')
+  return '../images/xiyouji-mask.png'
+#+END_SRC
+
+#+RESULTS:
+[[file:../images/xiyouji-mask.png]]
+
+</pre>
+
+<img src="/images/xiyouji-mask.png"></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga3c9003" class="outline-2">
+<h2 id="orga3c9003"><a id="ID-411b11c2-85b5-40ca-894b-c915ddb9325e"></a><span class="section-number-2">4</span> 前方预警</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+当把 <code>utf-8</code> 的字符串传给 <code>Python</code> , 需要格外小心。
+</p>
+</div>
+
+<div id="outline-container-org1460cd6" class="outline-3">
+<h3 id="org1460cd6"><a id="ID-005389e6-3af8-4987-a226-7d857f9fe35f"></a><span class="section-number-3">4.1</span> 传递utf-8字符串到Python</h3>
+<div class="outline-text-3" id="text-4-1">
+<pre class="example">
+#+NAME: unicode_str
+#+BEGIN_EXAMPLE
+  “this string is not ascii!”
+#+END_EXAMPLE
+
+</pre>
+
+<pre class="example">
+#+NAME: error-in-passing-var
+#+BEGIN_SRC python :var data=unicode_str
+  return data
+#+END_SRC
+
+</pre>
+
+<pre class="example">
+#+RESULTS: error-in-passing-var
+
+</pre>
+
+<p>
+上面代码不会生成任何输出, 并在 <code>*Org-Babel Error Output*</code> 的缓冲区中打印以下消息:
+</p>
+<blockquote>
+<p>
+File &ldquo;<stdin>&rdquo;, line 3
+SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file <stdin> on line 3, but no encoding declared; see <a href="http://python.org/dev/peps/pep-0263/" rel="external nofollow noopener noreferrer" target="_blank">http://python.org/dev/peps/pep-0263/</a> for details
+</stdin></stdin></p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org8446837" class="outline-3">
+<h3 id="org8446837"><a id="ID-9e5a70ba-c852-4a19-8200-d20c395ab2af"></a><span class="section-number-3">4.2</span> 传递utf-8字符串到Python的变通方法</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+一个变通方法是使用 <code>:preamble</code> ,如下所示:
+</p>
+<pre class="example">
+#+NAME: ok-in-passing-var
+#+BEGIN_SRC python :preamble "# -*- coding: utf-8 -*-" :var data=unicode_str
+  return data
+#+END_SRC
+
+</pre>
+
+<pre class="example">
+#+RESULTS: ok-in-passing-var
+: “this string is not ascii!”
+
+</pre>
+</div>
+</div>
+</div>
+
+Last Updated 2017-08-31 Thu 17:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/scrapy-crawl-zhihu/" itemprop="url">scrapy模拟登陆知乎</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:00:00+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/22/scrapy-crawl-zhihu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/scrapy-crawl-zhihu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
+</p>
+
+<div id="outline-container-orge869d50" class="outline-2">
+<h2 id="orge869d50"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">scrapy genspider zhihu</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+使用以上命令生成知乎爬虫,代码如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhihuSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'zhihu'</span></span><br><span class="line">    allowed_domains = [<span class="string">'www.zhihu.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://www.zhihu.com/'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+有一点切记，不要忘了启用 <i>Cookies</i>, <b>切记切记</b> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Disable cookies (enabled by default)</span></span><br><span class="line">COOKIES_ENABLED = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org93f030f" class="outline-2">
+<h2 id="org93f030f"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+过程如下：
+</p>
+<ul class="org-ul">
+<li><p>
+进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息， 完善的 <i>Header</i> 信息能尽量伪装爬虫， 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
+</p>
+<img src="/images/zhihu-headers-cookies.jpg">
+<p>
+<i>Header</i> 和 <i>Cookie</i> 整理如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headers = {</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>:</span><br><span class="line">    <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'*/*'</span>,</span><br><span class="line">    <span class="string">'X-Requested-With'</span>:</span><br><span class="line">    <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    <span class="string">'DNT'</span>:</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com/'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>:</span><br><span class="line">    <span class="string">'zh-CN,zh;q=0.8,en;q=0.6'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">cookies = {</span><br><span class="line">    <span class="string">'d_c0'</span>:</span><br><span class="line">    <span class="string">'"AHCAtu1iqAmPTped76X1ZdN0X_qAwhjdLUU=|1458699045"'</span>,</span><br><span class="line">    <span class="string">'__utma'</span>:</span><br><span class="line">    <span class="string">'51854390.1407411155.1458699046.1458699046.1458699046.1'</span>,</span><br><span class="line">    <span class="string">'__utmv'</span>:</span><br><span class="line">    <span class="string">'51854390.000--|3=entry_date=20160322=1'</span>,</span><br><span class="line">    <span class="string">'_zap'</span>:</span><br><span class="line">    <span class="string">'850897bb-cba4-4d0b-8653-fd65e7578ac2'</span>,</span><br><span class="line">    <span class="string">'q_c1'</span>:</span><br><span class="line">    <span class="string">'b7918ff9a5514d2981c30050c8c732e1|1502937247000|1491446589000'</span>,</span><br><span class="line">    <span class="string">'aliyungf_tc'</span>:</span><br><span class="line">    <span class="string">'AQAAAHVgviiNyQsAOhSntJ5J/coWYtad'</span>,</span><br><span class="line">    <span class="string">'_xsrf'</span>:</span><br><span class="line">    <span class="string">'b12fdca8-cb35-407a-bc4c-6b05feff37cb'</span>,</span><br><span class="line">    <span class="string">'l_cap_id'</span>:</span><br><span class="line">    <span class="string">'"MDk0MzRjYjM4NjAwNDU0MzhlYWNlODQ3MGQzZWM0YWU=|1503382513|9af99534aa22d5db92c7f58b45f3f3c772675fed"'</span>,</span><br><span class="line">    <span class="string">'r_cap_id'</span>:</span><br><span class="line">    <span class="string">'"M2RlNDZjN2RkNTBmNGFmNDk2ZjY4NjIzY2FmNTE4NDg=|1503382513|13370a99ee367273b71d877de17f05b2986ce0ef"'</span>,</span><br><span class="line">    <span class="string">'cap_id'</span>:</span><br><span class="line">    <span class="string">'"NmZjODUxZjQ0NzgxNGEzNmJiOTJhOTlkMTVjNWIxMDQ=|1503382513|dba2e9c6af7f950547474f827ef440d7a2950163"'</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div></li>
+
+<li><p>
+在浏览器中，模拟登陆，抓取登陆请求信息。
+</p>
+<img src="/images/zhihu-login-args.jpg">
+<p>
+从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
+<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
+</p>
+<img src="/images/zhihu-xsrf.jpg"></li>
+
+<li><p>
+整理以上，代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loginUrl = <span class="string">'https://www.zhihu.com/#signin'</span></span><br><span class="line">siginUrl = <span class="string">'https://www.zhihu.com/login/email'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.loginUrl,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            cookies=self.cookies,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: <span class="number">1</span>},</span><br><span class="line">            callback=self.post_login)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    xsrf = response.css(</span><br><span class="line">        <span class="string">'div.view-signin &gt; form &gt; input[name=_xsrf]::attr(value)'</span></span><br><span class="line">    ).extract_first()</span><br><span class="line">    self.headers[<span class="string">'X-Xsrftoken'</span>] = xsrf</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.siginUrl,</span><br><span class="line">            method=<span class="string">'POST'</span>,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'_xsrf'</span>: xsrf,</span><br><span class="line">                <span class="string">'captcha_type'</span>: <span class="string">'cn'</span>,</span><br><span class="line">                <span class="string">'email'</span>: <span class="string">'xxxxxx@163.com'</span>,</span><br><span class="line">                <span class="string">'password'</span>: <span class="string">'xxxxxx'</span>,</span><br><span class="line">            },</span><br><span class="line">            callback=self.after_login)</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd24ec8d" class="outline-2">
+<h2 id="orgd24ec8d"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+经过上述步骤登陆成功了，有点小激动，有没有！
+但苦难到此还远没有结束，这个时候尝试抓取最近热门话题，直接返回 <i>code:401</i> ,未授权的访问。
+授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
+在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
+通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z_c0</i> 对应的信息。
+</p>
+<img src="/images/zhihu-bearer-token.png">
+
+<p>
+<i>z_c0</i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
+然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
+</p>
+
+<p>
+代码整理如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    print(<span class="string">'after_login'</span>, jdict)</span><br><span class="line">    <span class="keyword">if</span> jdict[<span class="string">'r'</span>] == <span class="number">0</span>:</span><br><span class="line">        z_c0 = response.headers.getlist(<span class="string">'Set-Cookie'</span>)[<span class="number">2</span>].split(<span class="string">';'</span>)[<span class="number">0</span>].split(</span><br><span class="line">            <span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">        self.headers[<span class="string">'authorization'</span>] = <span class="string">'Bearer '</span> + z_c0</span><br><span class="line">        <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">            url=self.feedUrl,</span><br><span class="line">            method=<span class="string">'GET'</span>,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'action_feed'</span>: <span class="string">'True'</span>,</span><br><span class="line">                <span class="string">'limit'</span>: <span class="string">'10'</span>,</span><br><span class="line">                <span class="string">'action'</span>: <span class="string">'down'</span>,</span><br><span class="line">                <span class="string">'after_id'</span>: str(self.curFeedId),</span><br><span class="line">                <span class="string">'desktop'</span>: <span class="string">'true'</span></span><br><span class="line">            },</span><br><span class="line">            callback=self.parse)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(jdict[<span class="string">'error'</span>])</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org2ad457e" class="outline-2">
+<h2 id="org2ad457e"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">feedUrl = <span class="string">'https://www.zhihu.com/api/v3/feed/topstory'</span></span><br><span class="line">nextFeedUrl = <span class="string">''</span></span><br><span class="line">curFeedId = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'zhihu.json'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">        fd.write(response.body)</span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    jdatas = jdict[<span class="string">'data'</span>]</span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> jdatas:</span><br><span class="line">        entry[<span class="string">'pid'</span>] = entry[<span class="string">'id'</span>]</span><br><span class="line">        <span class="keyword">yield</span> entry</span><br><span class="line"></span><br><span class="line">    jpaging = jdict[<span class="string">'paging'</span>]</span><br><span class="line">    self.curFeedId += len(jdatas)</span><br><span class="line">    <span class="keyword">if</span> jpaging[<span class="string">'is_end'</span>] == <span class="keyword">False</span> <span class="keyword">and</span> self.curFeedId &lt; <span class="number">50</span>:</span><br><span class="line">        self.nextFeedUrl = jpaging[<span class="string">'next'</span>]</span><br><span class="line">        <span class="keyword">yield</span> self.next_request(response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next_request</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">        url=self.nextFeedUrl,</span><br><span class="line">        method=<span class="string">'GET'</span>,</span><br><span class="line">        meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">        headers=self.headers,</span><br><span class="line">        callback=self.parse)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+获取的数据，采用json格式， 如下所示:
+</p>
+<img src="/images/zhihu-feeds.png">
+</div>
+</div>
+
+<div id="outline-container-org921bf86" class="outline-2">
+<h2 id="org921bf86"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
+所谓的模拟登陆，只是在scrapy中尽量的模拟在浏览器中的交互过程，使服务端无感抓包过程。
+请求中附加有效的 <i>Cookies</i> 和 <i>Headers</i> 头信息，可有效的迷惑服务端，
+同时在交互的过程中，获取后续请求必要信息和认证信息，使得整个流程能不断先前。
+</p>
+
+<p>
+若是你遇到什么问题，尽量提出来，欢迎一起来讨论解决。
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
+</p>
+</div>
+</div>
+
+Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/python-jieba-wordcloud/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -638,7 +1477,7 @@ Last Updated 2017-08-29 Tue 22:46.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -657,7 +1496,7 @@ Last Updated 2017-08-29 Tue 22:46.<br>Render by <a href="https://github.com/Code
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/22/scrapy-crawl-zhihu/" itemprop="url">scrapy模拟登陆知乎</a></h2>
+                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
         
 
         <div class="post-meta">
@@ -669,8 +1508,8 @@ Last Updated 2017-08-29 Tue 22:46.<br>Render by <a href="https://github.com/Code
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:00:00+08:00">
-                2017-08-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
               </time>
             
 
@@ -711,8 +1550,8 @@ Last Updated 2017-08-29 Tue 22:46.<br>Render by <a href="https://github.com/Code
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/22/scrapy-crawl-zhihu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/scrapy-crawl-zhihu/" itemprop="commentsCount"></span>
+                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -739,141 +1578,16 @@ Last Updated 2017-08-29 Tue 22:46.<br>Render by <a href="https://github.com/Code
 
       
         
-          
-            
-
-<p>
-折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
-源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
-若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
+          <p>
+<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
 </p>
-
-<div id="outline-container-orge869d50" class="outline-2">
-<h2 id="orge869d50"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">scrapy genspider zhihu</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-使用以上命令生成知乎爬虫,代码如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhihuSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'zhihu'</span></span><br><span class="line">    allowed_domains = [<span class="string">'www.zhihu.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://www.zhihu.com/'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-有一点切记，不要忘了启用 <i>Cookies</i>, <b>切记切记</b> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Disable cookies (enabled by default)</span></span><br><span class="line">COOKIES_ENABLED = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org93f030f" class="outline-2">
-<h2 id="org93f030f"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-过程如下：
-</p>
-<ul class="org-ul">
-<li><p>
-进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息， 完善的 <i>Header</i> 信息能尽量伪装爬虫， 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
-</p>
-<img src="/images/zhihu-headers-cookies.jpg">
-<p>
-<i>Header</i> 和 <i>Cookie</i> 整理如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headers = {</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>:</span><br><span class="line">    <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'*/*'</span>,</span><br><span class="line">    <span class="string">'X-Requested-With'</span>:</span><br><span class="line">    <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    <span class="string">'DNT'</span>:</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com/'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>:</span><br><span class="line">    <span class="string">'zh-CN,zh;q=0.8,en;q=0.6'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">cookies = {</span><br><span class="line">    <span class="string">'d_c0'</span>:</span><br><span class="line">    <span class="string">'"AHCAtu1iqAmPTped76X1ZdN0X_qAwhjdLUU=|1458699045"'</span>,</span><br><span class="line">    <span class="string">'__utma'</span>:</span><br><span class="line">    <span class="string">'51854390.1407411155.1458699046.1458699046.1458699046.1'</span>,</span><br><span class="line">    <span class="string">'__utmv'</span>:</span><br><span class="line">    <span class="string">'51854390.000--|3=entry_date=20160322=1'</span>,</span><br><span class="line">    <span class="string">'_zap'</span>:</span><br><span class="line">    <span class="string">'850897bb-cba4-4d0b-8653-fd65e7578ac2'</span>,</span><br><span class="line">    <span class="string">'q_c1'</span>:</span><br><span class="line">    <span class="string">'b7918ff9a5514d2981c30050c8c732e1|1502937247000|1491446589000'</span>,</span><br><span class="line">    <span class="string">'aliyungf_tc'</span>:</span><br><span class="line">    <span class="string">'AQAAAHVgviiNyQsAOhSntJ5J/coWYtad'</span>,</span><br><span class="line">    <span class="string">'_xsrf'</span>:</span><br><span class="line">    <span class="string">'b12fdca8-cb35-407a-bc4c-6b05feff37cb'</span>,</span><br><span class="line">    <span class="string">'l_cap_id'</span>:</span><br><span class="line">    <span class="string">'"MDk0MzRjYjM4NjAwNDU0MzhlYWNlODQ3MGQzZWM0YWU=|1503382513|9af99534aa22d5db92c7f58b45f3f3c772675fed"'</span>,</span><br><span class="line">    <span class="string">'r_cap_id'</span>:</span><br><span class="line">    <span class="string">'"M2RlNDZjN2RkNTBmNGFmNDk2ZjY4NjIzY2FmNTE4NDg=|1503382513|13370a99ee367273b71d877de17f05b2986ce0ef"'</span>,</span><br><span class="line">    <span class="string">'cap_id'</span>:</span><br><span class="line">    <span class="string">'"NmZjODUxZjQ0NzgxNGEzNmJiOTJhOTlkMTVjNWIxMDQ=|1503382513|dba2e9c6af7f950547474f827ef440d7a2950163"'</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div></li>
-
-<li><p>
-在浏览器中，模拟登陆，抓取登陆请求信息。
-</p>
-<img src="/images/zhihu-login-args.jpg">
-<p>
-从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
-<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
-</p>
-<img src="/images/zhihu-xsrf.jpg"></li>
-
-<li><p>
-整理以上，代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loginUrl = <span class="string">'https://www.zhihu.com/#signin'</span></span><br><span class="line">siginUrl = <span class="string">'https://www.zhihu.com/login/email'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.loginUrl,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            cookies=self.cookies,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: <span class="number">1</span>},</span><br><span class="line">            callback=self.post_login)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    xsrf = response.css(</span><br><span class="line">        <span class="string">'div.view-signin &gt; form &gt; input[name=_xsrf]::attr(value)'</span></span><br><span class="line">    ).extract_first()</span><br><span class="line">    self.headers[<span class="string">'X-Xsrftoken'</span>] = xsrf</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.siginUrl,</span><br><span class="line">            method=<span class="string">'POST'</span>,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'_xsrf'</span>: xsrf,</span><br><span class="line">                <span class="string">'captcha_type'</span>: <span class="string">'cn'</span>,</span><br><span class="line">                <span class="string">'email'</span>: <span class="string">'xxxxxx@163.com'</span>,</span><br><span class="line">                <span class="string">'password'</span>: <span class="string">'xxxxxx'</span>,</span><br><span class="line">            },</span><br><span class="line">            callback=self.after_login)</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-</div></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgd24ec8d" class="outline-2">
-<h2 id="orgd24ec8d"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-经过上述步骤登陆成功了，有点小激动，有没有！
-但苦难到此还远没有结束，这个时候尝试抓取最近热门话题，直接返回 <i>code:401</i> ,未授权的访问。
-授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
-在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
-通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z_c0</i> 对应的信息。
-</p>
-<img src="/images/zhihu-bearer-token.png">
-
-<p>
-<i>z_c0</i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
-然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
-</p>
-
-<p>
-代码整理如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    print(<span class="string">'after_login'</span>, jdict)</span><br><span class="line">    <span class="keyword">if</span> jdict[<span class="string">'r'</span>] == <span class="number">0</span>:</span><br><span class="line">        z_c0 = response.headers.getlist(<span class="string">'Set-Cookie'</span>)[<span class="number">2</span>].split(<span class="string">';'</span>)[<span class="number">0</span>].split(</span><br><span class="line">            <span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">        self.headers[<span class="string">'authorization'</span>] = <span class="string">'Bearer '</span> + z_c0</span><br><span class="line">        <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">            url=self.feedUrl,</span><br><span class="line">            method=<span class="string">'GET'</span>,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'action_feed'</span>: <span class="string">'True'</span>,</span><br><span class="line">                <span class="string">'limit'</span>: <span class="string">'10'</span>,</span><br><span class="line">                <span class="string">'action'</span>: <span class="string">'down'</span>,</span><br><span class="line">                <span class="string">'after_id'</span>: str(self.curFeedId),</span><br><span class="line">                <span class="string">'desktop'</span>: <span class="string">'true'</span></span><br><span class="line">            },</span><br><span class="line">            callback=self.parse)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(jdict[<span class="string">'error'</span>])</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org2ad457e" class="outline-2">
-<h2 id="org2ad457e"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">feedUrl = <span class="string">'https://www.zhihu.com/api/v3/feed/topstory'</span></span><br><span class="line">nextFeedUrl = <span class="string">''</span></span><br><span class="line">curFeedId = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'zhihu.json'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">        fd.write(response.body)</span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    jdatas = jdict[<span class="string">'data'</span>]</span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> jdatas:</span><br><span class="line">        entry[<span class="string">'pid'</span>] = entry[<span class="string">'id'</span>]</span><br><span class="line">        <span class="keyword">yield</span> entry</span><br><span class="line"></span><br><span class="line">    jpaging = jdict[<span class="string">'paging'</span>]</span><br><span class="line">    self.curFeedId += len(jdatas)</span><br><span class="line">    <span class="keyword">if</span> jpaging[<span class="string">'is_end'</span>] == <span class="keyword">False</span> <span class="keyword">and</span> self.curFeedId &lt; <span class="number">50</span>:</span><br><span class="line">        self.nextFeedUrl = jpaging[<span class="string">'next'</span>]</span><br><span class="line">        <span class="keyword">yield</span> self.next_request(response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next_request</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">        url=self.nextFeedUrl,</span><br><span class="line">        method=<span class="string">'GET'</span>,</span><br><span class="line">        meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">        headers=self.headers,</span><br><span class="line">        callback=self.parse)</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-获取的数据，采用json格式， 如下所示:
-</p>
-<img src="/images/zhihu-feeds.png">
-</div>
-</div>
-
-<div id="outline-container-org921bf86" class="outline-2">
-<h2 id="org921bf86"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
-所谓的模拟登陆，只是在scrapy中尽量的模拟在浏览器中的交互过程，使服务端无感抓包过程。
-请求中附加有效的 <i>Cookies</i> 和 <i>Headers</i> 头信息，可有效的迷惑服务端，
-同时在交互的过程中，获取后续请求必要信息和认证信息，使得整个流程能不断先前。
-</p>
-
-<p>
-若是你遇到什么问题，尽量提出来，欢迎一起来讨论解决。
-源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
-若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
-</p>
-</div>
-</div>
-
-Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1590,161 +2304,6 @@ Last Updated 2017-07-24 Mon 00:26.<br>Render by <a href="https://github.com/Code
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
-                2017-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1898,8 +2457,8 @@ Last Updated 2017-07-24 Mon 00:26.<br>Render by <a href="https://github.com/Code
 <code>Org-mode</code> 通过 <code>Babel</code> 执行代码，对此不熟悉的读者， 可阅读我之前<a href="https://brantou.github.io/2017/04/01/babel-intro/">翻译的文档</a>。
 </p>
 
-<div id="outline-container-org34bb3cd" class="outline-2">
-<h2 id="org34bb3cd"><span class="section-number-2">1</span> ob-go</h2>
+<div id="outline-container-org0a70757" class="outline-2">
+<h2 id="org0a70757"><a id="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b"></a><span class="section-number-2">1</span> ob-go</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>Babel</code> 可执行<a href="http://orgmode.org/worg/org-contrib/babel/languages.html" rel="external nofollow noopener noreferrer" target="_blank">多种语言的代码</a>， 但官方的收录的语言支持中，没有Go。
@@ -1908,8 +2467,8 @@ Last Updated 2017-07-24 Mon 00:26.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 
-<div id="outline-container-orgcd8ce04" class="outline-3">
-<h3 id="orgcd8ce04"><span class="section-number-3">1.1</span> 简介</h3>
+<div id="outline-container-org62b41ed" class="outline-3">
+<h3 id="org62b41ed"><a id="ID-7637b028-9f26-49f5-a833-49b4275f0ab8"></a><span class="section-number-3">1.1</span> 简介</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://github.com/pope/ob-go" rel="external nofollow noopener noreferrer" target="_blank">ob-go</a> 使<a href="https://brantou.github.io/2017/04/01/babel-intro/"> Org-babel</a> 可执行Go代码。
@@ -1939,8 +2498,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-org475ba10" class="outline-3">
-<h3 id="org475ba10"><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
+<div id="outline-container-org619c63f" class="outline-3">
+<h3 id="org619c63f"><a id="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe"></a><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 除了 <code>Babel</code> 的常规头参数之外，下面是一些Go语言特定的头文件。
@@ -1957,9 +2516,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-
-<div id="outline-container-org2fd6188" class="outline-2">
-<h2 id="org2fd6188"><span class="section-number-2">2</span> 配置</h2>
+<div id="outline-container-orgd7f9485" class="outline-2">
+<h2 id="orgd7f9485"><a id="ID-92d63e46-c8e6-445f-979a-f55e4664a632"></a><span class="section-number-2">2</span> 配置</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这里假设Go的开发环境已经配置完毕，同时你的机器上的 <code>Emacs</code> 和 <code>Org-mode</code> 都是最近的版本，对于 <code>Babel</code> 都是完整支持的。
@@ -1972,14 +2530,14 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 配置 <code>org-babel-load-languages</code>, 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; 'org-babel-load-languages&#10; '((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
 </div></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org796d9c5" class="outline-2">
-<h2 id="org796d9c5"><span class="section-number-2">3</span> 编码流程</h2>
+<div id="outline-container-orgdb4ef63" class="outline-2">
+<h2 id="orgdb4ef63"><a id="ID-874bcc5c-b558-4afb-9610-1277a8886b34"></a><span class="section-number-2">3</span> 编码流程</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 最近在 <a href="https://leetcode.com/brantou89/" rel="external nofollow noopener noreferrer" target="_blank">LeetCode</a> 上做编程训练，这里就以解决上面的问题的流程来做说明。
@@ -2001,11 +2559,13 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-org977fa97" class="outline-2">
-<h2 id="org977fa97"><span class="section-number-2">4</span> 使用示例</h2>
+<div id="outline-container-org8ec4a53" class="outline-2">
+<h2 id="org8ec4a53"><a id="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6"></a><span class="section-number-2">4</span> 使用示例</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org3dd9823" class="outline-3">
-<h3 id="org3dd9823"><span class="section-number-3">4.1</span> 导入多个包</h3>
+</div>
+
+<div id="outline-container-orgf0304b2" class="outline-3">
+<h3 id="orgf0304b2"><a id="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2"></a><span class="section-number-3">4.1</span> 导入多个包</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "time")
@@ -2021,8 +2581,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-org9c64019" class="outline-3">
-<h3 id="org9c64019"><span class="section-number-3">4.2</span> 命令行参数传递</h3>
+<div id="outline-container-org530b230" class="outline-3">
+<h3 id="org530b230"><a id="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a"></a><span class="section-number-3">4.2</span> 命令行参数传递</h3>
 <div class="outline-text-3" id="text-4-2">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "os") :args '("bable" "golang")
@@ -2038,8 +2598,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-orgab9bd41" class="outline-3">
-<h3 id="orgab9bd41"><span class="section-number-3">4.3</span> 多入参</h3>
+<div id="outline-container-org51082a5" class="outline-3">
+<h3 id="org51082a5"><a id="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0"></a><span class="section-number-3">4.3</span> 多入参</h3>
 <div class="outline-text-3" id="text-4-3">
 <pre class="example">
 #+NAME: sum
@@ -2067,14 +2627,14 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-org51726ff" class="outline-3">
-<h3 id="org51726ff"><span class="section-number-3">4.4</span> 代码组织</h3>
+<div id="outline-container-orge602578" class="outline-3">
+<h3 id="orge602578"><a id="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d"></a><span class="section-number-3">4.4</span> 代码组织</h3>
 <div class="outline-text-3" id="text-4-4">
 <pre class="example">
 #+NAME: min
 #+BEGIN_SRC  go
   func min(a, b int) int {
-    if a &gt; b {
+    if a > b {
       return b
     } else {
       return a
@@ -2087,9 +2647,9 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 <pre class="example">
 #+NAME: get-min
 #+BEGIN_SRC go :var a=0 b=0 :imports "fmt" :noweb strip-export
-  &lt;&lt;min&gt;&gt;
+  <<min>>
 
-</pre>
+</min></pre>
 
 <pre class="example">
   func main() {
@@ -2113,8 +2673,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-orgd6a0f48" class="outline-2">
-<h2 id="orgd6a0f48"><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-org7192fd7" class="outline-2">
+<h2 id="org7192fd7"><a id="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e"></a><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Org-mode于我来说，就是一个神器，打破了我对一个编辑器的认知，打破了我对一个信息收集器的认知。
@@ -2131,7 +2691,7 @@ Org-mode依托于强大的 <i>Emacs</i>, 借助于 <i>Babel</i>,  使文档和�
 </div>
 </div>
 
-Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
@@ -3301,470 +3861,6 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/19/go-concurrency-patterns-context/" itemprop="url">Golang的并发模式：Context</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T00:00:00+08:00">
-                2017-05-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/19/go-concurrency-patterns-context/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/19/go-concurrency-patterns-context/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-在go服务端，每个传入的 <i>request</i> 都在自己的 <code>goroutine</code> 中做后续处理。
-<i>request handlers</i> 经常启动其他 <code>goroutines</code> 以访问后端，如数据库和rpc服务。
-服务于 <i>request</i> 的一组常用典型的 <code>goroutines</code> 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
-当 <i>request</i> 被取消或触发超时时，在该 <i>request</i> 上工作的所有 <code>goroutine</code> 应该快速退出，以便系统可以回收所使用的任何资源。
-</p>
-
-<p>
-在google内部，开发了一个 <i>context</i> 包，可以轻松地跨越api边界,传递请求范围值，取消信号和截止日期到 <i>request</i> 所涉及的所有 <code>goroutine</code> 。
-该包是开源的被称作 <a href="https://golang.org/pkg/contextkj" rel="external nofollow noopener noreferrer" target="_blank">context</a>。 本文介绍了如何使用该包并提供了一个完整的工作示例。
-</p>
-
-<div id="outline-container-org125fcf2" class="outline-2">
-<h2 id="org125fcf2"><span class="section-number-2">1</span> context</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-<i>context</i> 包的核心就是 <i>context</i> 类型(这里的描述是精简的，详情可见<a href="https://golang.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>)：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a context carries a deadline, cancelation signal, and request-scoped values</span></span><br><span class="line"><span class="comment">// across api boundaries. its methods are safe for simultaneous use by multiple</span></span><br><span class="line"><span class="comment">// goroutines.</span></span><br><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> {</span><br><span class="line">    <span class="comment">// done returns a channel that is closed when this context is canceled</span></span><br><span class="line">    <span class="comment">// or times out.</span></span><br><span class="line">    Done() &amp;lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>{}</span><br><span class="line"></span><br><span class="line">    <span class="comment">// err indicates why this context was canceled, after the done channel</span></span><br><span class="line">    <span class="comment">// is closed.</span></span><br><span class="line">    Err() error</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deadline returns the time when this context will be canceled, if any.</span></span><br><span class="line">    Deadline() (deadline time.time, ok <span class="typename">bool</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value returns the value associated with key or nil if none.</span></span><br><span class="line">    Value(key <span class="keyword">interface</span>{}) <span class="keyword">interface</span>{}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>Done</i> 方法返回一个 <i>channel</i> ，用于发送取消信号(代表 <i>Context</i> 已关闭)到运行时函数：当 <code>channel</code> 关闭时，函数应该放弃后续流程并返回。
-<i>Err</i> 方法返回一个错误，指出为什么 <i>context</i> 被取消。 管道和取消文章更详细地讨论了 <i>done channel</i> 的惯用法。
-</p>
-
-<p>
-由于 <i>Done channel</i> 只接收的原因，/Context/ 没有取消方法：接收取消信号的函数通常不应当具备发送信号的功能。
-特别是，当父操作启动子操作的 <code>goroutines</code> 时，这些子操作不应该能够取消父操作。
-相反， <i>WithCancel</i> 函数（如下所述）提供了一种取消新的 <i>Context</i> 值的方法。
-</p>
-
-<p>
-<i>Context</i> 可以安全地同时用于多个 <code>goroutines</code> 。
-代码可以将单个 <i>Context</i> 传递给任意数量的 <code>goroutine</code> ，并能发送取消该Context的信号到所有的关联的 <code>goroutine</code> 。
-</p>
-
-<p>
-<i>Deadline</i> 方法允许功能确定是否应该开始工作; 如果剩下的时间太少，可能不值得。
-代码中也可能会使用截止时间来为I/O操作设置超时。
-</p>
-
-<p>
-<i>Value</i> 允许 <i>Context</i> 传送请求数据。 该数据必须能安全的同时用于多个 <code>goroutine</code> 。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org812c573" class="outline-2">
-<h2 id="org812c573"><span class="section-number-2">2</span> Context的衍生</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-<i>context/包提供了从现有 /Context</i> 衍生出新的 <i>Context</i> 的函数。
-这些 <i>Context</i> 形成一个树状的层级结构：当一个 <i>Context</i> 被取消时，从它衍生出的所有 <i>Context</i> 也被取消。
-</p>
-
-<p>
-<i>Background</i> 是任何Context树的根; 它永远不会被取消：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Background returns an empty Context. It is never canceled, has no deadline,</span></span><br><span class="line"><span class="comment">// and has no values. Background is typically used in main, init, and tests,</span></span><br><span class="line"><span class="comment">// and as the top-level Context for incoming requests.</span></span><br><span class="line"><span class="keyword">func</span> Background() Context</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>WithCancel</i> 和 <i>WithTimeout</i> 返回衍生出的 <i>Context</i> ，衍生出的子 <i>Context</i> 可早于父 <i>Context</i> 被取消。
-与传入的 <i>request</i> 相关联的上下文通常在请求处理程序返回时被取消。 <i>WithCancel</i> 也可用于在使用多个副本时取消冗余请求。
-<i>WithTimeout</i> 对设置后台服务器请求的最后期限很有用：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// WithCancel returns a copy of parent whose Done channel is closed as soon as</span></span><br><span class="line"> <span class="comment">// parent.Done is closed or cancel is called.</span></span><br><span class="line"> <span class="keyword">func</span> WithCancel(parent Context) (ctx Context, cancel CancelFunc)</span><br><span class="line"></span><br><span class="line"> <span class="comment">// A CancelFunc cancels a Context.</span></span><br><span class="line"> <span class="keyword">type</span> CancelFunc <span class="keyword">func</span>()</span><br><span class="line"></span><br><span class="line"> <span class="comment">// WithTimeout returns a copy of parent whose Done channel is closed as soon as</span></span><br><span class="line"> <span class="comment">// parent.Done is closed, cancel is called, or timeout elapses. The new</span></span><br><span class="line"> <span class="comment">// Context's Deadline is the sooner of now+timeout and the parent's deadline, if</span></span><br><span class="line"> <span class="comment">// any. If the timer is still running, the cancel function releases its</span></span><br><span class="line"> <span class="comment">// resources.</span></span><br><span class="line"> <span class="keyword">func</span> WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// WithDeadline returns a copy of the parent context with the deadline adjusted</span></span><br><span class="line"><span class="comment">// to be no later than d. If the parent's deadline is already earlier than d,</span></span><br><span class="line"><span class="comment">// WithDeadline(parent, d) is semantically equivalent to parent. The returned</span></span><br><span class="line"><span class="comment">// context's Done channel is closed when the deadline expires, when the returned</span></span><br><span class="line"><span class="comment">// cancel function is called, or when the parent context's Done channel is</span></span><br><span class="line"><span class="comment">// closed, whichever happens first.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Canceling this context releases resources associated with it, so code should</span></span><br><span class="line"><span class="comment">// call cancel as soon as the operations running in this Context complete.</span></span><br><span class="line"><span class="keyword">func</span> WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>WithValue</i> 提供了一种将请求范围内的值与 <i>Context</i> 相关联的方法：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// WithValue returns a copy of parent whose Value method returns val for key.</span></span><br><span class="line"><span class="keyword">func</span> WithValue(parent Context, key <span class="keyword">interface</span>{}, val <span class="keyword">interface</span>{}) Context</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-注： 使用context的Value相关方法只应该用于在程序和接口中传递的和请求相关的元数据，不要用它来传递一些可选的参数；
-</p>
-
-<p>
-掌握如何使用 <i>context</i> 包的最佳方法是通过一个真实完整的示例。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orge22df5e" class="outline-2">
-<h2 id="orge22df5e"><span class="section-number-2">3</span> Context使用的简单示例</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-简单的示例，更容易理解 <i>Context</i> 各衍生函数适用的场景，而且编辑本文档使用的是 <b>Org-mode</b>,  在编辑的过程中，即可执行(对org-mode感兴趣的人，可在评论里联系我)。
-这里的代码，来源于 <i>context</i> 的<a href="https://golang.org/pkg/context/" rel="external nofollow noopener noreferrer" target="_blank">godoc</a>。
-</p>
-</div>
-<div id="outline-container-orgcc89522" class="outline-3">
-<h3 id="orgcc89522"><span class="section-number-3">3.1</span> WithCancel</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-<i>WithCancel</i> 的示例, 演示如何使用可取消 <i>context</i> 来防止 <code>goroutine</code> 泄漏。
-示例函数的结尾，由gen启动的goroutine将返回而不会发送泄漏。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// gen generates integers in a separate goroutine and</span></span><br><span class="line">  <span class="comment">// sends them to the returned channel.</span></span><br><span class="line">  <span class="comment">// The callers of gen need to cancel the context once</span></span><br><span class="line">  <span class="comment">// they are done consuming generated integers not to leak</span></span><br><span class="line">  <span class="comment">// the internal goroutine started by gen.</span></span><br><span class="line">  gen := <span class="keyword">func</span>(ctx context.Context) &amp;lt;-<span class="keyword">chan</span> <span class="typename">int</span> {</span><br><span class="line">    dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">int</span>)</span><br><span class="line">    n := <span class="number">1</span></span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">      <span class="keyword">for</span> {</span><br><span class="line">        <span class="keyword">select</span> {</span><br><span class="line">        <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">          <span class="keyword">return</span> <span class="comment">// returning not to leak the goroutine</span></span><br><span class="line">        <span class="keyword">case</span> dst &amp;lt;- n:</span><br><span class="line">          n++</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }()</span><br><span class="line">    <span class="keyword">return</span> dst</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// cancel when we are finished consuming integers</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) {</span><br><span class="line">    fmt.Println(n)</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">5</span> {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org827223b" class="outline-3">
-<h3 id="org827223b"><span class="section-number-3">3.2</span> WithDeadline</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-<i>WithDeadline</i> 的示例,通过一个截止日期的 <i>Context</i> 来告知一个阻塞的函数，一旦它到了最终期限，就放弃它的工作。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  d := time.Now().Add(<span class="number">50</span> * time.Millisecond)</span><br><span class="line">  ctx, cancel := context.WithDeadline(context.Background(), d)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Even though ctx will be expired, it is good practice to call its</span></span><br><span class="line">  <span class="comment">// cancelation function in any case. Failure to do so may keep the</span></span><br><span class="line">  <span class="comment">// context and its parent alive longer than necessary.</span></span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err())</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgfd54479" class="outline-3">
-<h3 id="orgfd54479"><span class="section-number-3">3.3</span> Withtimeount</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-<i>WithTimeount</i> 的示例, 传递具有超时的 <i>Context</i> 以告知阻塞函数，它将在超时过后丢弃其工作。
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="comment">// Pass a context with a timeout to tell a blocking function that it</span></span><br><span class="line">  <span class="comment">// should abandon its work after the timeout elapses.</span></span><br><span class="line">  ctx, cancel := context.WithTimeout(context.Background(), <span class="number">50</span>*time.Millisecond)</span><br><span class="line">  <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">select</span> {</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">    fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">  <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">    fmt.Println(ctx.Err()) <span class="comment">// prints "context deadline exceeded"</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgb5b530e" class="outline-3">
-<h3 id="orgb5b530e"><span class="section-number-3">3.4</span> WithValue</h3>
-<div class="outline-text-3" id="text-3-4">
-<p>
-<i>WithValue</i> 的简单示例代码：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"context"</span></span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">type</span> favContextKey <span class="typename">string</span></span><br><span class="line"></span><br><span class="line">  f := <span class="keyword">func</span>(ctx context.Context, k favContextKey) {</span><br><span class="line">    <span class="keyword">if</span> v := ctx.Value(k); v != <span class="constant">nil</span> {</span><br><span class="line">      fmt.Println(<span class="string">"found value:"</span>, v)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    fmt.Println(<span class="string">"key not found:"</span>, k)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  k := favContextKey(<span class="string">"language"</span>)</span><br><span class="line">  ctx := context.WithValue(context.Background(), k, <span class="string">"Go"</span>)</span><br><span class="line"></span><br><span class="line">  f(ctx, k)</span><br><span class="line">  f(ctx, favContextKey(<span class="string">"color"</span>))</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgfac0195" class="outline-2">
-<h2 id="orgfac0195"><span class="section-number-2">4</span> 示例：Google Web Search</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-示例是一个HTTP服务器，通过将查询“golang”转发到 <a href="https://developers.google.com/web-search/docs/hh" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 并渲染查询结果, 来处理 "/search？q=golang＆timeout=1s" 之类的URL。
-timeout参数告诉服务器在该时间过去之后取消请求。
-</p>
-
-<p>
-示例代码被拆分为三个包：
-</p>
-<ul class="org-ul">
-<li><a href="https://blog.golang.org/context/server/server.go" rel="external nofollow noopener noreferrer" target="_blank">server</a> 提供了 <i>main</i> 函数和 "/search" 的处理函数。</li>
-<li><a href="https://blog.golang.org/context/userip/userip.go" rel="external nofollow noopener noreferrer" target="_blank">userip</a> 提供了从 <i>request</i> 提取用户ip地址和关联一个 <i>Context</i> 的函数。</li>
-<li><a href="https://blog.golang.org/context/google/google.go" rel="external nofollow noopener noreferrer" target="_blank">google</a> 提供了把搜索字段发送的 <b>Google</b> 的 <i>Search</i> 函数。</li>
-</ul>
-</div>
-
-<div id="outline-container-org083339e" class="outline-3">
-<h3 id="org083339e"><span class="section-number-3">4.1</span> server</h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-服务器通过为 <i>golang</i> 提供前几个 <i>Google</i> 搜索结果来处理像 "<i>search？q=golang" 之类的请求。
-它注册 /handleSearch</i> 来处理 "<i>search"。 处理函数创建一个名为ctx的 /Context</i> ，并在处理程序返回时,一并被取消。
-如果 <i>request</i> 包含超时URL参数，则超时时会自动取消上下文：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> handleSearch(w http.ResponseWriter, req *http.Request) {</span><br><span class="line">  <span class="comment">// ctx is the Context for this handler. Calling cancel closes the</span></span><br><span class="line">  <span class="comment">// ctx.Done channel, which is the cancellation signal for requests</span></span><br><span class="line">  <span class="comment">// started by this handler.</span></span><br><span class="line">  <span class="keyword">var</span> (</span><br><span class="line">    ctx    context.Context</span><br><span class="line">    cancel context.CancelFunc</span><br><span class="line">  )</span><br><span class="line">  timeout, err := time.ParseDuration(req.FormValue(<span class="string">"timeout"</span>))</span><br><span class="line">  <span class="keyword">if</span> err == <span class="constant">nil</span> {</span><br><span class="line">    <span class="comment">// The request has a timeout, so create a context that is</span></span><br><span class="line">    <span class="comment">// canceled automatically when the timeout expires.</span></span><br><span class="line">    ctx, cancel = context.WithTimeout(context.Background(), timeout)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    ctx, cancel = context.WithCancel(context.Background())</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> cancel() <span class="comment">// Cancel ctx as soon as handleSearch returns.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-处理程序从 <i>request</i> 中提取查询关键字，并通过调用 <i>userip</i> 包来提取客户端的IP地址。
-后端请求需要客户端的IP地址，因此handleSearch将其附加到ctx：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Check the search query.</span></span><br><span class="line">query := req.FormValue(<span class="string">"q"</span>)</span><br><span class="line"><span class="keyword">if</span> query == <span class="string">""</span> {</span><br><span class="line">  http.Error(w, <span class="string">"no query"</span>, http.StatusBadRequest)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Store the user IP in ctx for use by code in other packages.</span></span><br><span class="line">userIP, err := userip.FromRequest(req)</span><br><span class="line"><span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">  http.Error(w, err.Error(), http.StatusBadRequest)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line">ctx = userip.NewContext(ctx, userIP)</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-处理程序使用ctx和查询关键字调用 <i>google.Search</i> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Run the Google search and print the results.</span></span><br><span class="line">start := time.Now()</span><br><span class="line">results, err := google.Search(ctx, query)</span><br><span class="line">elapsed := time.Since(start)</span><br><span class="line"><span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">  http.Error(w, err.Error(), http.StatusInternalServerError)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-如果搜索成功，处理程序将渲染返回结果：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> err := resultsTemplate.Execute(w, <span class="keyword">struct</span> {</span><br><span class="line">  Results          google.Results</span><br><span class="line">  Timeout, Elapsed time.Duration</span><br><span class="line">}{</span><br><span class="line">  Results: results,</span><br><span class="line">  Timeout: timeout,</span><br><span class="line">  Elapsed: elapsed,</span><br><span class="line">}); err != <span class="constant">nil</span> {</span><br><span class="line">  log.Print(err)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3f0c711" class="outline-3">
-<h3 id="org3f0c711"><span class="section-number-3">4.2</span> userip</h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-userip包提供从请求中提取用户IP地址并将其与 <i>Context</i> 相关联的函数。
-<i>Context</i> 提供了 key-value 映射的 <i>map</i> ，其中 <i>key</i> 和 <i>value</i> 均为 <code>interface{}</code> 类型。
-<i>key</i> 类型必须支持相等性， <i>value</i> 必须是多个 <code>goroutine</code> 安全的。
-<i>userip</i> 这样的包会隐藏 <i>map</i> 的细节，并提供强类型访问特定的 <i>Context</i> 值。
-</p>
-
-<p>
-为了避免关键字冲突， <i>userip</i> 定义了一个不导出的类型 <i>key</i> ，并使用此类型的值作为 <i>Context</i>  的关键字：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// The key type is unexported to prevent collisions with context keys defined in</span></span><br><span class="line"><span class="comment">// other packages.</span></span><br><span class="line"><span class="keyword">type</span> key <span class="typename">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// userIPkey is the context key for the user IP address.  Its value of zero is</span></span><br><span class="line"><span class="comment">// arbitrary.  If this package defined other context keys, they would have</span></span><br><span class="line"><span class="comment">// different integer values.</span></span><br><span class="line"><span class="keyword">const</span> userIPKey key = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>FromRequest</i> 从 <i>http.Request</i> 中提取一个 <i>userIP</i> 值：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromRequest(req *http.Request) (net.IP, error) {</span><br><span class="line">  ip, _, err := net.SplitHostPort(req.RemoteAddr)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  userIP := net.ParseIP(ip)</span><br><span class="line">  <span class="keyword">if</span> userIP == <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">nil</span>, fmt.Errorf(<span class="string">"userip: %q is not IP:port"</span>, req.RemoteAddr)</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> userIP, <span class="constant">nil</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-NewContext返回一个带有userIP的新Context：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> NewContext(ctx context.Context, userIP net.IP) context.Context {</span><br><span class="line">    <span class="keyword">return</span> context.WithValue(ctx, userIPKey, userIP)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>FromContext</i> 从 <i>Context</i> 中提取 <i>userIP</i> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> FromContext(ctx context.Context) (net.IP, <span class="typename">bool</span>) {</span><br><span class="line">    <span class="comment">// ctx.Value returns nil if ctx has no value for the key;</span></span><br><span class="line">    <span class="comment">// the net.IP type assertion returns ok=false for nil.</span></span><br><span class="line">    userIP, ok := ctx.Value(userIPKey).(net.IP)</span><br><span class="line">    <span class="keyword">return</span> userIP, ok</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge2ca788" class="outline-3">
-<h3 id="orge2ca788"><span class="section-number-3">4.3</span> google</h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-<i>google.Search</i> 函数向 <a href="https://developers.google.com/web-search/docs/" rel="external nofollow noopener noreferrer" target="_blank">Google Web Search API</a> 发出HTTP请求，并解析JSON编码结果。
-它接受Context参数ctx，并且在ctx.Done关闭时立即返回。
-</p>
-
-<p>
-Google Web Search API请求包括搜索查询和用户IP作为查询参数：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Search(ctx context.Context, query <span class="typename">string</span>) (Results, error) {</span><br><span class="line">    <span class="comment">// Prepare the Google Search API request.</span></span><br><span class="line">    req, err := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://ajax.googleapis.com/ajax/services/search/web?v=1.0"</span>, <span class="constant">nil</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="constant">nil</span>, err</span><br><span class="line">    }</span><br><span class="line">    q := req.URL.Query()</span><br><span class="line">    q.Set(<span class="string">"q"</span>, query)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If ctx is carrying the user IP address, forward it to the server.</span></span><br><span class="line">    <span class="comment">// Google APIs use the user IP to distinguish server-initiated requests</span></span><br><span class="line">    <span class="comment">// from end-user requests.</span></span><br><span class="line">    <span class="keyword">if</span> userIP, ok := userip.FromContext(ctx); ok {</span><br><span class="line">        q.Set(<span class="string">"userip"</span>, userIP.String())</span><br><span class="line">    }</span><br><span class="line">    req.URL.RawQuery = q.Encode()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Issue the HTTP request and handle the response.</span></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>Search</i> 使用一个辅助函数 <i>httpDo</i> 来发出HTTP请求, 如果在处理请求或响应时关闭 <i>ctx.Done</i> ，取消 <i>httpDo</i> 。
-<i>Search</i> 将传递闭包给 <i>httpDo</i> 来处理HTTP响应：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> results Results</span><br><span class="line">err = httpDo(ctx, req, <span class="keyword">func</span>(resp *http.Response, err error) error {</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parse the JSON search result.</span></span><br><span class="line">  <span class="comment">// https://developers.google.com/web-search/docs/#fonje</span></span><br><span class="line">  <span class="keyword">var</span> data <span class="keyword">struct</span> {</span><br><span class="line">    ResponseData <span class="keyword">struct</span> {</span><br><span class="line">      Results []<span class="keyword">struct</span> {</span><br><span class="line">        TitleNoFormatting <span class="typename">string</span></span><br><span class="line">        URL               <span class="typename">string</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> err := json.NewDecoder(resp.Body).Decode(&amp;amp;data); err != <span class="constant">nil</span> {</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">for</span> _, res := <span class="keyword">range</span> data.ResponseData.Results {</span><br><span class="line">    results = <span class="built_in">append</span>(results, Result{Title: res.TitleNoFormatting, URL: res.URL})</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="constant">nil</span></span><br><span class="line">})</span><br><span class="line"><span class="comment">// httpDo waits for the closure we provided to return, so it's safe to</span></span><br><span class="line"><span class="comment">// read results here.</span></span><br><span class="line"><span class="keyword">return</span> results, err</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>httpDo</i> 函数发起HTTP请求，并在新的 <code>goroutine</code> 中处理其响应。
-如果在 <code>goroutine</code> 退出之前关闭了ctx.Done，它将取消该请求：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> httpDo(ctx context.Context, req *http.Request, f <span class="keyword">func</span>(*http.Response, error) error) error {</span><br><span class="line">    <span class="comment">// Run the HTTP request in a goroutine and pass the response to f.</span></span><br><span class="line">    tr := &amp;amp;http.Transport{}</span><br><span class="line">    client := &amp;amp;http.Client{Transport: tr}</span><br><span class="line">    c := <span class="built_in">make</span>(<span class="keyword">chan</span> error, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="keyword">func</span>() { c &amp;lt;- f(client.Do(req)) }()</span><br><span class="line">    <span class="keyword">select</span> {</span><br><span class="line">    <span class="keyword">case</span> &amp;lt;-ctx.Done():</span><br><span class="line">        tr.CancelRequest(req)</span><br><span class="line">        &amp;lt;-c <span class="comment">// Wait for f to return.</span></span><br><span class="line">        <span class="keyword">return</span> ctx.Err()</span><br><span class="line">    <span class="keyword">case</span> err := &amp;lt;-c:</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org8f34ed2" class="outline-2">
-<h2 id="org8f34ed2"><span class="section-number-2">5</span> 适配Context到已有代码</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-许多服务器框架提供用于承载请求范围值的包和类型。
-可以定义 <i>Context</i> 接口的新实现，以便使得现有的框架和期望Context参数的代码进行适配。
-</p>
-
-<p>
-例如，Gorilla的 <a href="http://www.gorillatoolkit.org/pkg/context" rel="external nofollow noopener noreferrer" target="_blank">github.com/gorilla/context</a> 包允许处理程序通过提供从HTTP请求到键值对的映射来将数据与传入的请求相关联。
-在 <a href="https://blog.golang.org/context/gorilla/gorilla.go" rel="external nofollow noopener noreferrer" target="_blank">gorilla.go</a> 中，提供了一个 <i>Context</i> 实现，其 <i>Value</i> 方法返回与 <i>Gorilla</i> 包中的特定HTTP请求相关联的值。
-</p>
-
-<p>
-其他软件包提供了类似于 <i>Context</i> 的取消支持。
-例如，<a href="http://godoc.org/gopkg.in/tomb.v2" rel="external nofollow noopener noreferrer" target="_blank">Tomb</a> 提供了一种杀死方法，通过关闭死亡 <code>channel</code> 来发出取消信号。
-Tomb还提供了等待 <code>goroutine</code> 退出的方法，类似于sync.WaitGroup。
-在 <a href="https://blog.golang.org/context/tomb/tomb.go" rel="external nofollow noopener noreferrer" target="_blank">tomb.go</a> 中，提供一个 <i>Context</i> 实现，当其父 <i>Context</i> 被取消或提供的 <i>Tomb</i> 被杀死时，该 <i>Context</i> 被取消。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd18f478" class="outline-2">
-<h2 id="orgd18f478"><span class="section-number-2">6</span> 总结</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-在Google，我们要求Go程序员通过 <i>Context</i> 参数作为传入和传出请求之间的呼叫路径上每个函数的第一个参数。
-这允许由许多不同团队开发的Go代码进行良好的互操作。 它提供对超时和取消的简单控制，并确保安全证书等关键值正确转移Go程序。
-</p>
-
-<p>
-希望在 <i>Context</i> 上构建的服务器框架应该提供 <i>Context</i> 的实现，以便在它们的包之间和期望 <i>Context</i> 参数的包之间进行适配。
-客户端库将接受来自调用代码的 <i>Context</i> 。
-通过为请求范围的数据和取消建立通用接口， <i>Context</i> 使得开发人员更容易地共享用于创建可扩展服务的代码。
-</p>
-</div>
-</div>
-
-Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3812,7 +3908,7 @@ Last Updated 2017-05-23 Tue 15:30.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

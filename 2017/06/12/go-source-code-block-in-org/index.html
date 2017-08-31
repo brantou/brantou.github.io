@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://brantou.github.io/images/go-babel/go-ob-ex.gif">
 <meta property="og:image" content="https://brantou.github.io/images/go-babel/go-ob-leetcode.gif">
 <meta property="og:image" content="https://brantou.github.io/images/go-babel/go-ob-leetcode-cmp.gif">
-<meta property="og:updated_time" content="2017-06-13T07:16:30.940Z">
+<meta property="og:updated_time" content="2017-08-30T15:02:34.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Org-mode中执行Go代码">
 <meta name="twitter:description" content="在未使用 org-mode 前，学习和实验Go的特性（例如 context ）的步骤如下：
@@ -526,8 +526,8 @@
 <code>Org-mode</code> 通过 <code>Babel</code> 执行代码，对此不熟悉的读者， 可阅读我之前<a href="https://brantou.github.io/2017/04/01/babel-intro/">翻译的文档</a>。
 </p>
 
-<div id="outline-container-org34bb3cd" class="outline-2">
-<h2 id="org34bb3cd"><span class="section-number-2">1</span> ob-go</h2>
+<div id="outline-container-org0a70757" class="outline-2">
+<h2 id="org0a70757"><a id="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b"></a><span class="section-number-2">1</span> ob-go</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>Babel</code> 可执行<a href="http://orgmode.org/worg/org-contrib/babel/languages.html" rel="external nofollow noopener noreferrer" target="_blank">多种语言的代码</a>， 但官方的收录的语言支持中，没有Go。
@@ -536,8 +536,8 @@
 </p>
 </div>
 
-<div id="outline-container-orgcd8ce04" class="outline-3">
-<h3 id="orgcd8ce04"><span class="section-number-3">1.1</span> 简介</h3>
+<div id="outline-container-org62b41ed" class="outline-3">
+<h3 id="org62b41ed"><a id="ID-7637b028-9f26-49f5-a833-49b4275f0ab8"></a><span class="section-number-3">1.1</span> 简介</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://github.com/pope/ob-go" rel="external nofollow noopener noreferrer" target="_blank">ob-go</a> 使<a href="https://brantou.github.io/2017/04/01/babel-intro/"> Org-babel</a> 可执行Go代码。
@@ -567,8 +567,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-org475ba10" class="outline-3">
-<h3 id="org475ba10"><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
+<div id="outline-container-org619c63f" class="outline-3">
+<h3 id="org619c63f"><a id="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe"></a><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 除了 <code>Babel</code> 的常规头参数之外，下面是一些Go语言特定的头文件。
@@ -585,9 +585,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-
-<div id="outline-container-org2fd6188" class="outline-2">
-<h2 id="org2fd6188"><span class="section-number-2">2</span> 配置</h2>
+<div id="outline-container-orgd7f9485" class="outline-2">
+<h2 id="orgd7f9485"><a id="ID-92d63e46-c8e6-445f-979a-f55e4664a632"></a><span class="section-number-2">2</span> 配置</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这里假设Go的开发环境已经配置完毕，同时你的机器上的 <code>Emacs</code> 和 <code>Org-mode</code> 都是最近的版本，对于 <code>Babel</code> 都是完整支持的。
@@ -600,14 +599,14 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 配置 <code>org-babel-load-languages</code>, 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; 'org-babel-load-languages&#10; '((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
 </div></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org796d9c5" class="outline-2">
-<h2 id="org796d9c5"><span class="section-number-2">3</span> 编码流程</h2>
+<div id="outline-container-orgdb4ef63" class="outline-2">
+<h2 id="orgdb4ef63"><a id="ID-874bcc5c-b558-4afb-9610-1277a8886b34"></a><span class="section-number-2">3</span> 编码流程</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 最近在 <a href="https://leetcode.com/brantou89/" rel="external nofollow noopener noreferrer" target="_blank">LeetCode</a> 上做编程训练，这里就以解决上面的问题的流程来做说明。
@@ -629,11 +628,13 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-org977fa97" class="outline-2">
-<h2 id="org977fa97"><span class="section-number-2">4</span> 使用示例</h2>
+<div id="outline-container-org8ec4a53" class="outline-2">
+<h2 id="org8ec4a53"><a id="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6"></a><span class="section-number-2">4</span> 使用示例</h2>
 <div class="outline-text-2" id="text-4">
-</div><div id="outline-container-org3dd9823" class="outline-3">
-<h3 id="org3dd9823"><span class="section-number-3">4.1</span> 导入多个包</h3>
+</div>
+
+<div id="outline-container-orgf0304b2" class="outline-3">
+<h3 id="orgf0304b2"><a id="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2"></a><span class="section-number-3">4.1</span> 导入多个包</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "time")
@@ -649,8 +650,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-org9c64019" class="outline-3">
-<h3 id="org9c64019"><span class="section-number-3">4.2</span> 命令行参数传递</h3>
+<div id="outline-container-org530b230" class="outline-3">
+<h3 id="org530b230"><a id="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a"></a><span class="section-number-3">4.2</span> 命令行参数传递</h3>
 <div class="outline-text-3" id="text-4-2">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "os") :args '("bable" "golang")
@@ -666,8 +667,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-orgab9bd41" class="outline-3">
-<h3 id="orgab9bd41"><span class="section-number-3">4.3</span> 多入参</h3>
+<div id="outline-container-org51082a5" class="outline-3">
+<h3 id="org51082a5"><a id="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0"></a><span class="section-number-3">4.3</span> 多入参</h3>
 <div class="outline-text-3" id="text-4-3">
 <pre class="example">
 #+NAME: sum
@@ -695,14 +696,14 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </pre>
 </div>
 </div>
-<div id="outline-container-org51726ff" class="outline-3">
-<h3 id="org51726ff"><span class="section-number-3">4.4</span> 代码组织</h3>
+<div id="outline-container-orge602578" class="outline-3">
+<h3 id="orge602578"><a id="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d"></a><span class="section-number-3">4.4</span> 代码组织</h3>
 <div class="outline-text-3" id="text-4-4">
 <pre class="example">
 #+NAME: min
 #+BEGIN_SRC  go
   func min(a, b int) int {
-    if a &gt; b {
+    if a > b {
       return b
     } else {
       return a
@@ -715,9 +716,9 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 <pre class="example">
 #+NAME: get-min
 #+BEGIN_SRC go :var a=0 b=0 :imports "fmt" :noweb strip-export
-  &lt;&lt;min&gt;&gt;
+  <<min>>
 
-</pre>
+</min></pre>
 
 <pre class="example">
   func main() {
@@ -741,8 +742,8 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 </div>
 </div>
 
-<div id="outline-container-orgd6a0f48" class="outline-2">
-<h2 id="orgd6a0f48"><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-org7192fd7" class="outline-2">
+<h2 id="org7192fd7"><a id="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e"></a><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Org-mode于我来说，就是一个神器，打破了我对一个编辑器的认知，打破了我对一个信息收集器的认知。
@@ -759,7 +760,7 @@ Org-mode依托于强大的 <i>Emacs</i>, 借助于 <i>Babel</i>,  使文档和�
 </div>
 </div>
 
-Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -822,8 +823,8 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/16/leetcode-tree/" rel="prev" title="Leetcode-tree">
-                Leetcode-tree <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/16/leetcode-array/" rel="prev" title="Leetcode-array">
+                Leetcode-array <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -839,13 +840,13 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">学习Python新方式</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/11/org-syntax/">Org-mode的语法解读</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/go-logrus/">Go的日志库logrus试用</a></li>
         
@@ -955,7 +956,7 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1039,7 +1040,7 @@ Last Updated 2017-06-13 Tue 15:16.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org34bb3cd"><span class="nav-text">1 ob-go</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcd8ce04"><span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org475ba10"><span class="nav-text">1.2 Go特定的头参数(Header Arguments)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2fd6188"><span class="nav-text">2 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org796d9c5"><span class="nav-text">3 编码流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org977fa97"><span class="nav-text">4 使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org3dd9823"><span class="nav-text">4.1 导入多个包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9c64019"><span class="nav-text">4.2 命令行参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgab9bd41"><span class="nav-text">4.3 多入参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org51726ff"><span class="nav-text">4.4 代码组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd6a0f48"><span class="nav-text">5 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org0a70757"><span class="nav-text">1 ob-go</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org62b41ed"><span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org619c63f"><span class="nav-text">1.2 Go特定的头参数(Header Arguments)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd7f9485"><span class="nav-text">2 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdb4ef63"><span class="nav-text">3 编码流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8ec4a53"><span class="nav-text">4 使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf0304b2"><span class="nav-text">4.1 导入多个包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org530b230"><span class="nav-text">4.2 命令行参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org51082a5"><span class="nav-text">4.3 多入参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orge602578"><span class="nav-text">4.4 代码组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7192fd7"><span class="nav-text">5 总结</span></a></li></ol></div>
             
 
           </div>
