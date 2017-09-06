@@ -112,7 +112,7 @@
 然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
 自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
 分三步阐述出来：问题描述">
-<meta property="og:updated_time" content="2017-09-06T08:43:03.479Z">
+<meta property="og:updated_time" content="2017-09-06T10:21:50.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gopher面试中的Coding">
 <meta name="twitter:description" content="从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
@@ -455,13 +455,13 @@
 分三步阐述出来：问题描述，解题思路，实际编程。
 </p>
 
-<div id="outline-container-orge412205" class="outline-2">
-<h2 id="orge412205"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div id="outline-container-org833bdb9" class="outline-2">
+<h2 id="org833bdb9"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org1fc54ad" class="outline-3">
-<h3 id="org1fc54ad"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
+<div id="outline-container-org91e0bc7" class="outline-3">
+<h3 id="org91e0bc7"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
@@ -469,8 +469,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-orgebe2e0a" class="outline-3">
-<h3 id="orgebe2e0a"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
+<div id="outline-container-org880fa05" class="outline-3">
+<h3 id="org880fa05"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
@@ -478,8 +478,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-orgb0c16c4" class="outline-3">
-<h3 id="orgb0c16c4"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
+<div id="outline-container-org1da453b" class="outline-3">
+<h3 id="org1da453b"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
@@ -495,12 +495,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe665da" class="outline-2">
-<h2 id="orgbe665da"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
+<div id="outline-container-orgbd5c840" class="outline-2">
+<h2 id="orgbd5c840"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0f3c1b7" class="outline-3">
-<h3 id="org0f3c1b7"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
+<div id="outline-container-orgdc6a543" class="outline-3">
+<h3 id="orgdc6a543"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用户随机抽奖，数据结构如下所示：
@@ -510,8 +510,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgf49ea91" class="outline-3">
-<h3 id="orgf49ea91"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
+<div id="outline-container-orgb66facf" class="outline-3">
+<h3 id="orgb66facf"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
@@ -519,8 +519,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org8fd75ae" class="outline-3">
-<h3 id="org8fd75ae"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
+<div id="outline-container-orgfd6a37c" class="outline-3">
+<h3 id="orgfd6a37c"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -541,12 +541,12 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-org5327d3e" class="outline-2">
-<h2 id="org5327d3e"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
+<div id="outline-container-org7aec3ef" class="outline-2">
+<h2 id="org7aec3ef"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orga0f2563" class="outline-3">
-<h3 id="orga0f2563"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
+<div id="outline-container-org3df6968" class="outline-3">
+<h3 id="org3df6968"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
@@ -556,8 +556,8 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-org5411aa6" class="outline-3">
-<h3 id="org5411aa6"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
+<div id="outline-container-org0dc440f" class="outline-3">
+<h3 id="org0dc440f"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
@@ -566,8 +566,8 @@ user: a, award count: 159
 </p>
 </div>
 </div>
-<div id="outline-container-orgaf0d14b" class="outline-3">
-<h3 id="orgaf0d14b"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
+<div id="outline-container-orgac8c707" class="outline-3">
+<h3 id="orgac8c707"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -638,8 +638,8 @@ user: a, award count: 1099
 </div>
 </div>
 
-<div id="outline-container-orga94cc8c" class="outline-2">
-<h2 id="orga94cc8c"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-orgb620481" class="outline-2">
+<h2 id="orgb620481"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
@@ -648,7 +648,7 @@ user: a, award count: 1099
 </div>
 </div>
 
-Last Updated 2017-09-06 Wed 16:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-09-06 Wed 18:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
       
     </div>
@@ -918,7 +918,7 @@ Last Updated 2017-09-06 Wed 16:43.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orge412205"><span class="nav-text">1 交替打印数字和字母</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org1fc54ad"><span class="nav-text">1.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgebe2e0a"><span class="nav-text">1.2 解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb0c16c4"><span class="nav-text">1.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbe665da"><span class="nav-text">2 随机抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org0f3c1b7"><span class="nav-text">2.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf49ea91"><span class="nav-text">2.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org8fd75ae"><span class="nav-text">2.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5327d3e"><span class="nav-text">3 权重抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orga0f2563"><span class="nav-text">3.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org5411aa6"><span class="nav-text">3.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgaf0d14b"><span class="nav-text">3.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga94cc8c"><span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org833bdb9"><span class="nav-text">1 交替打印数字和字母</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org91e0bc7"><span class="nav-text">1.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org880fa05"><span class="nav-text">1.2 解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1da453b"><span class="nav-text">1.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbd5c840"><span class="nav-text">2 随机抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgdc6a543"><span class="nav-text">2.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgb66facf"><span class="nav-text">2.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgfd6a37c"><span class="nav-text">2.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7aec3ef"><span class="nav-text">3 权重抽奖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org3df6968"><span class="nav-text">3.1 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0dc440f"><span class="nav-text">3.2 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgac8c707"><span class="nav-text">3.3 实际编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb620481"><span class="nav-text">4 总结</span></a></li></ol></div>
             
 
           </div>
