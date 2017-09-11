@@ -1446,13 +1446,13 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 分三步阐述出来：问题描述，解题思路，实际编程。
 </p>
 
-<div id="outline-container-org989adc8" class="outline-2">
-<h2 id="org989adc8"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div id="outline-container-org8e9f2f5" class="outline-2">
+<h2 id="org8e9f2f5"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org9d8bbc9" class="outline-3">
-<h3 id="org9d8bbc9"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
+<div id="outline-container-org83a7388" class="outline-3">
+<h3 id="org83a7388"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
@@ -1460,8 +1460,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-orgc543162" class="outline-3">
-<h3 id="orgc543162"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
+<div id="outline-container-orgf1b9a3d" class="outline-3">
+<h3 id="orgf1b9a3d"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
@@ -1469,8 +1469,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org63a0dff" class="outline-3">
-<h3 id="org63a0dff"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
+<div id="outline-container-org87a7671" class="outline-3">
+<h3 id="org87a7671"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
@@ -1483,15 +1483,24 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 12AB34CD56EF78GH910IJ
 
 </pre>
+
+<blockquote>
+<p>
+看完上面的代码，是不是会有些疑惑，为什么 <code>chan_c</code> 需要缓存，而 <code>chan_n</code> 不需要呢? <br>
+当两个打印 <code>goroutine</code> 无限交替运行时，没有缓存是OK的，
+但很明显上面的示例不是，打印数字的 <code>goroutine</code> 先退出，也就失去了 <code>goroutine</code> 来读取 <code>chan_c</code> 中的内容了，
+而打印字母的goroutine就会阻塞在 <code>chan_c <- true<="" code=""> 这里，这样就导致了死锁。
+</-></code></p>
+</blockquote>
 </div>
 </div>
 </div>
-<div id="outline-container-org31d90a2" class="outline-2">
-<h2 id="org31d90a2"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
+<div id="outline-container-orgb64cbab" class="outline-2">
+<h2 id="orgb64cbab"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga41ca36" class="outline-3">
-<h3 id="orga41ca36"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
+<div id="outline-container-org7fb534b" class="outline-3">
+<h3 id="org7fb534b"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用户随机抽奖，数据结构如下所示：
@@ -1501,8 +1510,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 </div>
-<div id="outline-container-org923a054" class="outline-3">
-<h3 id="org923a054"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
+<div id="outline-container-org3b21bc8" class="outline-3">
+<h3 id="org3b21bc8"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
@@ -1510,8 +1519,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 </div>
-<div id="outline-container-org0b4d5c2" class="outline-3">
-<h3 id="org0b4d5c2"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
+<div id="outline-container-org57fb117" class="outline-3">
+<h3 id="org57fb117"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1532,12 +1541,12 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-orge2bae2b" class="outline-2">
-<h2 id="orge2bae2b"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
+<div id="outline-container-org052457e" class="outline-2">
+<h2 id="org052457e"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org70f2035" class="outline-3">
-<h3 id="org70f2035"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
+<div id="outline-container-orga11fe37" class="outline-3">
+<h3 id="orga11fe37"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
@@ -1547,8 +1556,8 @@ user: a, award count: 159
 </div>
 </div>
 </div>
-<div id="outline-container-org5147d5c" class="outline-3">
-<h3 id="org5147d5c"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
+<div id="outline-container-org73b7ad0" class="outline-3">
+<h3 id="org73b7ad0"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
@@ -1557,8 +1566,8 @@ user: a, award count: 159
 </p>
 </div>
 </div>
-<div id="outline-container-org6f9f81c" class="outline-3">
-<h3 id="org6f9f81c"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
+<div id="outline-container-org4910a24" class="outline-3">
+<h3 id="org4910a24"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1628,6 +1637,18 @@ user: a, award count: 1099
 
 <blockquote>
 <p>
+上面代码使用了闭包避免了多次抽奖时频繁的初始化，
+但每次抽奖的复杂度O(n)，很明显依旧有可优化的空间，可使用二分搜索来使复杂度降到 <code>O(log n)</code>,
+代码如下：
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// &#26368;&#21518;&#19968;&#21517;&#20013;&#22870;</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<blockquote>
+<p>
 在已知长度的情况下，应使用 <code>array[index]=num</code> 而避免使用 <code>array=append(array, num)</code>, 代码和测试如下：
 </p>
 </blockquote>
@@ -1644,8 +1665,8 @@ user: a, award count: 1099
 </div>
 </div>
 
-<div id="outline-container-orgcd9f4da" class="outline-2">
-<h2 id="orgcd9f4da"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-orgc46e7c2" class="outline-2">
+<h2 id="orgc46e7c2"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
@@ -1654,7 +1675,7 @@ user: a, award count: 1099
 </div>
 </div>
 
-Last Updated 2017-09-07 Thu 00:15.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-09-08 Fri 10:27.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
 
           
         
