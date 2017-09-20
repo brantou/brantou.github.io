@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
+        <lastmod>2017-09-20T02:27:29.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
         <lastmod>2017-09-08T02:27:26.278Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -41,14 +49,6 @@
     <url>
         <loc>https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/</loc>
         <lastmod>2017-08-23T07:21:47.933Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
-        <lastmod>2017-07-23T16:26:00.627Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
