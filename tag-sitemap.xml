@@ -135,13 +135,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/manual/</loc>
-        <lastmod>2017-06-19T15:25:31.801Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/%E5%85%83%E7%BC%96%E7%A8%8B/</loc>
         <lastmod>2017-07-10T03:46:44.763Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -184,20 +177,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2017-08-31T14:25:35.299Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-08-31T14:25:35.299Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/babel/</loc>
         <lastmod>2017-08-31T14:25:35.299Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -226,15 +205,36 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-09-08T02:27:26.278Z</lastmod>
+        <loc>https://brantou.github.io/tags/leetcode/</loc>
+        <lastmod>2017-09-21T15:14:03.666Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/leetcode/</loc>
-        <lastmod>2017-09-21T01:50:41.248Z</lastmod>
+        <loc>https://brantou.github.io/tags/tutorial/</loc>
+        <lastmod>2017-10-13T09:33:57.209Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-mode/</loc>
+        <lastmod>2017-10-13T09:33:57.209Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/manual/</loc>
+        <lastmod>2017-10-13T09:33:57.209Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/golang/</loc>
+        <lastmod>2017-10-18T06:50:15.827Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

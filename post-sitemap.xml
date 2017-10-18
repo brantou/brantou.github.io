@@ -7,16 +7,24 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
-        <lastmod>2017-09-21T01:50:41.248Z</lastmod>
+        <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
+        <lastmod>2017-10-18T06:50:15.827Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
-        <lastmod>2017-09-08T02:27:26.278Z</lastmod>
+        <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
+        <lastmod>2017-10-13T09:33:57.209Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
+        <lastmod>2017-09-21T15:14:03.666Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -113,14 +121,6 @@
     <url>
         <loc>https://brantou.github.io/2017/05/24/go-cover-story/</loc>
         <lastmod>2017-05-25T08:59:02.418Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/03/21/just-try/</loc>
-        <lastmod>2017-05-24T06:57:27.490Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
