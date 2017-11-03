@@ -131,7 +131,7 @@ curl http://httpbin.org/get
 
 {  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;curl/7.47.0&quot;">
 <meta property="og:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
-<meta property="og:updated_time" content="2017-11-03T08:01:47.241Z">
+<meta property="og:updated_time" content="2017-11-03T09:08:44.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Babel--有趣的事">
 <meta name="twitter:description" content="1 数据格式化(:wrap)
@@ -478,13 +478,13 @@ curl http://httpbin.org/get
         
 
 
-<div id="outline-container-orgb3e1350" class="outline-2">
-<h2 id="orgb3e1350"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-org3e9fd2d" class="outline-2">
+<h2 id="org3e9fd2d"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org4ece561" class="outline-3">
-<h3 id="org4ece561"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-orgd6fba4a" class="outline-3">
+<h3 id="orgd6fba4a"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -496,8 +496,8 @@ curl http://httpbin.org/get
 </div>
 </div>
 
-<div id="outline-container-org9a264e9" class="outline-3">
-<h3 id="org9a264e9"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-org97879e8" class="outline-3">
+<h3 id="org97879e8"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
@@ -542,8 +542,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-org08eb43a" class="outline-2">
-<h2 id="org08eb43a"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-orgf7852de" class="outline-2">
+<h2 id="orgf7852de"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -581,8 +581,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org46e3b2a" class="outline-2">
-<h2 id="org46e3b2a"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-orga565df8" class="outline-2">
+<h2 id="orga565df8"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -596,13 +596,59 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org2ff658f" class="outline-2">
-<h2 id="org2ff658f"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
+<div id="outline-container-orge22f91c" class="outline-2">
+<h2 id="orge22f91c"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">df \&#10;|sed '1d' \&#10;|awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;|awk '{print $2}'</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/sh&#10;df \&#10;|sed '1d' \&#10;|awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;|awk '{print $2}'</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 
-Last Updated 2017-11-03 Fri 16:01.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+<div id="outline-container-orgbdd45fe" class="outline-3">
+<h3 id="orgbdd45fe"><a id="ID-5d1aab74-2f16-4b4f-bc14-2e481ac619ac"></a><span class="section-number-3">4.1</span> the mount point of the fullest disk</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+
+<div id="outline-container-orgc2c21b1" class="outline-4">
+<h4 id="orgc2c21b1"><a id="ID-2936bec9-d09d-4624-b44f-2e49a74d3a40"></a><span class="section-number-4">4.1.1</span> query all mounted disks</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">df \</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc5ae607" class="outline-4">
+<h4 id="orgc5ae607"><a id="ID-d5b89e26-1a42-4ab2-9ae0-12c7e54de3ee"></a><span class="section-number-4">4.1.2</span> strip the header row</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">|sed '1d' \</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8aa797" class="outline-4">
+<h4 id="orga8aa797"><a id="ID-e48cf0cc-0804-4839-bd3e-1853f9ede314"></a><span class="section-number-4">4.1.3</span> sort by the percent full</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">|awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb252864" class="outline-4">
+<h4 id="orgb252864"><a id="ID-27b51726-fa02-4325-b045-0bcb2580fa72"></a><span class="section-number-4">4.1.4</span> extract the mount point</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">|awk '{print $2}'</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+Last Updated 2017-11-03 Fri 17:08.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -876,7 +922,7 @@ Last Updated 2017-11-03 Fri 16:01.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb3e1350"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org4ece561"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9a264e9"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org08eb43a"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org46e3b2a"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2ff658f"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org3e9fd2d"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd6fba4a"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org97879e8"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf7852de"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga565df8"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge22f91c"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbdd45fe"><span class="nav-text">4.1 the mount point of the fullest disk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc2c21b1"><span class="nav-text">4.1.1 query all mounted disks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgc5ae607"><span class="nav-text">4.1.2 strip the header row</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orga8aa797"><span class="nav-text">4.1.3 sort by the percent full</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb252864"><span class="nav-text">4.1.4 extract the mount point</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
