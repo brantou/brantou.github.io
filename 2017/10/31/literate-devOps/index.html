@@ -131,7 +131,7 @@ curl http://httpbin.org/get
 
 {  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;curl/7.47.0&quot;">
 <meta property="og:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
-<meta property="og:updated_time" content="2017-11-03T09:37:18.375Z">
+<meta property="og:updated_time" content="2017-11-03T09:39:07.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Babel--有趣的事">
 <meta name="twitter:description" content="1 数据格式化(:wrap)
@@ -478,13 +478,13 @@ curl http://httpbin.org/get
         
 
 
-<div id="outline-container-org6a6286a" class="outline-2">
-<h2 id="org6a6286a"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-orgf5f5191" class="outline-2">
+<h2 id="orgf5f5191"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-orgcada889" class="outline-3">
-<h3 id="orgcada889"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-org740674b" class="outline-3">
+<h3 id="org740674b"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -496,8 +496,8 @@ curl http://httpbin.org/get
 </div>
 </div>
 
-<div id="outline-container-org6d16250" class="outline-3">
-<h3 id="org6d16250"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-org3c9fc4f" class="outline-3">
+<h3 id="org3c9fc4f"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
@@ -542,8 +542,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-orgb0f0e0d" class="outline-2">
-<h2 id="orgb0f0e0d"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-org8e17684" class="outline-2">
+<h2 id="org8e17684"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -581,8 +581,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-orgb33c670" class="outline-2">
-<h2 id="orgb33c670"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-orgc629b25" class="outline-2">
+<h2 id="orgc629b25"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -596,11 +596,11 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org0c3de64" class="outline-2">
-<h2 id="org0c3de64"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
+<div id="outline-container-org35817c3" class="outline-2">
+<h2 id="org35817c3"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes&#10;#+BEGIN_SRC shell :noweb yes :shebang #!/bin/sh&#10;  \lt\lt fullest-disk \gt\gt&#10;#+END_SRC&#10;&#10;&#10;** the mount point of the fullest disk&#10;   :PROPERTIES:&#10;   :header-args:shell: :noweb-ref fullest-disk&#10;   :END:&#10;&#10;*** query all mounted disks&#10;    #+BEGIN_SRC shell&#10;        df \&#10;    #+END_SRC&#10;*** strip the header row&#10;    #+BEGIN_SRC shell&#10;        |sed '1d' \&#10;    #+END_SRC&#10;*** sort by the percent full&#10;    #+BEGIN_SRC shell&#10;        |awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;    #+END_SRC&#10;*** extract the mount point&#10;    #+BEGIN_SRC shell&#10;      |awk '{print $2}'&#10;    #+END_SRC&#10;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes&#10;#+BEGIN_SRC shell :noweb yes :shebang #!/bin/sh&#10;: &#38;lt;&#38;lt;fullest-disk&#38;gt;&#38;gt;&#10;#+END_SRC&#10;&#10;&#10;** the mount point of the fullest disk&#10;   :PROPERTIES:&#10;   :header-args:shell: :noweb-ref fullest-disk&#10;   :END:&#10;&#10;*** query all mounted disks&#10;    #+BEGIN_SRC shell&#10;        df \&#10;    #+END_SRC&#10;*** strip the header row&#10;    #+BEGIN_SRC shell&#10;        |sed '1d' \&#10;    #+END_SRC&#10;*** sort by the percent full&#10;    #+BEGIN_SRC shell&#10;        |awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;    #+END_SRC&#10;*** extract the mount point&#10;    #+BEGIN_SRC shell&#10;      |awk '{print $2}'&#10;    #+END_SRC&#10;</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -612,7 +612,7 @@ tangle出的代码如下：
 </div>
 </div>
 
-Last Updated 2017-11-03 Fri 17:37.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-03 Fri 17:39.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -886,7 +886,7 @@ Last Updated 2017-11-03 Fri 17:37.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org6a6286a"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgcada889"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6d16250"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb0f0e0d"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb33c670"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0c3de64"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf5f5191"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org740674b"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org3c9fc4f"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8e17684"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc629b25"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org35817c3"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a></li></ol></div>
             
 
           </div>
