@@ -100,25 +100,18 @@
 
 
 
-<meta name="description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
-request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
-服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
-当 request 被取消或触发超时时，在该 request 上工作">
+<meta name="description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。 当 request 被取消或触发超时时，在该 request 上工作">
+<meta name="keywords" content="golang,context">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang的并发模式：Context">
 <meta property="og:url" content="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
-request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
-服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
-当 request 被取消或触发超时时，在该 request 上工作">
+<meta property="og:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。 当 request 被取消或触发超时时，在该 request 上工作">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-23T07:30:52.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang的并发模式：Context">
-<meta name="twitter:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。
-request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。
-服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。
-当 request 被取消或触发超时时，在该 request 上工作">
+<meta name="twitter:description" content="在go服务端，每个传入的 request 都在自己的 goroutine 中做后续处理。 request handlers 经常启动其他 goroutines 以访问后端，如数据库和rpc服务。 服务于 request 的一组常用典型的 goroutines 访问特定的请求值，例如最终用户的身份，授权令牌和请求的截止日期。 当 request 被取消或触发超时时，在该 request 上工作">
 
 
 

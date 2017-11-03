@@ -100,43 +100,18 @@
 
 
 
-<meta name="description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
-
-
-
-1 什么是管道？
-
-
-Go没有对于管道的正式定义，它只是并发模式中的一种。
-非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。
-在每个片段， goroutine 完成如下功能：">
+<meta name="description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。    1 什么是管道？   Go没有对于管道的正式定义，它只是并发模式中的一种。 非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。 在每个片段， goroutine 完成如下功能：">
+<meta name="keywords" content="golang,channel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang的并发模式：管道和撤销">
 <meta property="og:url" content="https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
-
-
-
-1 什么是管道？
-
-
-Go没有对于管道的正式定义，它只是并发模式中的一种。
-非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。
-在每个片段， goroutine 完成如下功能：">
+<meta property="og:description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。    1 什么是管道？   Go没有对于管道的正式定义，它只是并发模式中的一种。 非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。 在每个片段， goroutine 完成如下功能：">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-23T05:28:49.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang的并发模式：管道和撤销">
-<meta name="twitter:description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
-
-
-
-1 什么是管道？
-
-
-Go没有对于管道的正式定义，它只是并发模式中的一种。
-非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。
-在每个片段， goroutine 完成如下功能：">
+<meta name="twitter:description" content="Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。    1 什么是管道？   Go没有对于管道的正式定义，它只是并发模式中的一种。 非正式的，管道就是通过 channel 连接的一系列片段，其中每个片段是一组功能相同的 goroutine 。 在每个片段， goroutine 完成如下功能：">
 
 
 

@@ -100,51 +100,20 @@
 
 
 
-<meta name="description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-
-
-
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU gcov 在二进制文件中设置执行分支断点。
-当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
-
-
-
-这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta name="description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。 如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。    计算测试覆盖率的通常方法是埋点二进制可执行文件。 例如，GNU gcov 在二进制文件中设置执行分支断点。 当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。    这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta name="keywords" content="golang,测试覆盖率,test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go的测试覆盖率">
 <meta property="og:url" content="https://brantou.github.io/2017/05/24/go-cover-story/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-
-
-
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU gcov 在二进制文件中设置执行分支断点。
-当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
-
-
-
-这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta property="og:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。 如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。    计算测试覆盖率的通常方法是埋点二进制可执行文件。 例如，GNU gcov 在二进制文件中设置执行分支断点。 当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。    这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://brantou.github.io/images/go-test-cover-set.png">
 <meta property="og:image" content="https://brantou.github.io/images/go-test-cover-count.png">
 <meta property="og:updated_time" content="2017-05-25T08:59:02.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go的测试覆盖率">
-<meta name="twitter:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-
-
-
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU gcov 在二进制文件中设置执行分支断点。
-当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
-
-
-
-这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
+<meta name="twitter:description" content="测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。 如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。    计算测试覆盖率的通常方法是埋点二进制可执行文件。 例如，GNU gcov 在二进制文件中设置执行分支断点。 当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。    这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方">
 <meta name="twitter:image" content="https://brantou.github.io/images/go-test-cover-set.png">
 
 
