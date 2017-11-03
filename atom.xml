@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-08-31T14:25:35.299Z</updated>
+  <updated>2017-11-03T07:50:35.264Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Babel--有趣的事</title>
+    <link href="https://brantou.github.io/2017/10/31/literate-devOps/"/>
+    <id>https://brantou.github.io/2017/10/31/literate-devOps/</id>
+    <published>2017-10-30T16:00:00.000Z</published>
+    <updated>2017-11-03T07:50:35.264Z</updated>
+    
+    <summary type="html">
+    
+      
+
+
+&lt;div id=&quot;outline-container-orgd06878f&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgd06878f&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
+    
+    </summary>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
+    
+    
+      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
+    
+      <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
+    
+      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
+    
+      <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
+    
+      <category term="devOps" scheme="https://brantou.github.io/tags/devOps/"/>
+    
+  </entry>
   
   <entry>
     <title>写Python的新方式</title>
@@ -55,7 +87,7 @@ and authoring documents with a fast and effecti
     <link href="https://brantou.github.io/2017/08/25/python-jieba-wordcloud/"/>
     <id>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</id>
     <published>2017-08-24T16:00:00.000Z</published>
-    <updated>2017-08-31T10:17:32.336Z</updated>
+    <updated>2017-08-31T15:13:54.547Z</updated>
     
     <summary type="html">
     
@@ -98,9 +130,9 @@ and authoring documents with a fast and effecti
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="scrapy" scheme="https://brantou.github.io/tags/scrapy/"/>
-    
       <category term="python" scheme="https://brantou.github.io/tags/python/"/>
+    
+      <category term="scrapy" scheme="https://brantou.github.io/tags/scrapy/"/>
     
       <category term="crawler" scheme="https://brantou.github.io/tags/crawler/"/>
     
@@ -192,6 +224,39 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
+    <title>Go的测试覆盖率</title>
+    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
+    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
+    <published>2017-05-24T03:00:00.000Z</published>
+    <updated>2017-05-25T08:59:02.418Z</updated>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+&lt;/p&gt;
+
+&lt;p&gt;
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU &lt;a href=&quot;http://gcc.gnu
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
+    
+      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数组，切片：‘append’的机制</title>
     <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
     <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
@@ -235,39 +300,6 @@ and authoring documents with a fast and effecti
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   
@@ -785,65 +817,6 @@ ITEM for the headline title
       <category term="table" scheme="https://brantou.github.io/tags/table/"/>
     
       <category term="spreadsheet" scheme="https://brantou.github.io/tags/spreadsheet/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Babel: org-mode的元编程</title>
-    <link href="https://brantou.github.io/2017/04/01/babel-intro/"/>
-    <id>https://brantou.github.io/2017/04/01/babel-intro/</id>
-    <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-07-10T03:46:44.763Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;
-原文&lt;a href=&quot;http://orgmode.org/worg/org-contrib/babel/intro.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Babel: Introduction&lt;/a&gt;, 由 &lt;b&gt;Eric Schulte&lt;/b&gt; ,  &lt;b&gt;Dan Davison&lt;/b&gt;, &lt;b&gt;Tom Dye&lt;/b&gt; 编辑，维护。本文只做学习之用。
-&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div id=&quot;outline-container-org007914f&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;&lt;a id=&quot;org007914f&quot;&gt;&lt;/a&gt;&lt;a id=&quot;ID-bee7e406-bb22-498e-a068-f0402cde93d0&quot;&gt;&lt;/a&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-introduction&quot;&gt;
-&lt;p&gt;
-&lt;b&gt;Bable&lt;/b&gt; 可让许多不同的语言工作一起。
-编程语言生活在自然语言的 &lt;code&gt;Org-mode&lt;/code&gt; 文档的代码块之中。
-一个数据片段可从一个表格传递给一个 &lt;code&gt;Pythoh&lt;/code&gt; 代码块，然后可能再转移到一个 &lt;code&gt;R&lt;/code&gt; 代码块，
-最终以数据块被嵌入段落的中间而终结，或者通过 &lt;code&gt;gnuplot&lt;/code&gt; 代码块生成图片嵌入在文档中。
-&lt;/p&gt;
-
-&lt;p&gt;
-通过扩展 &lt;a href=&quot;http://orgmode.org/&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org-mode&lt;/a&gt;, 使其具有编辑,导出和执行源代码的功能, &lt;b&gt;Babel&lt;/b&gt; 将 &lt;code&gt;Org-mode&lt;/code&gt; 变成了文学编程和可重复性研究的工具。
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Babel&lt;/b&gt; 通过提供以下特性来增强 &lt;a href=&quot;http://orgmode.org/manual/Literal-examples.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org-mode对代码代码块的支持&lt;/a&gt;:
-Babel augments Org-mode support for code blocks by providing:
-&lt;/p&gt;
-
-&lt;ul class=&quot;org-ul&quot;&gt;
-&lt;li&gt;代码块的交互和执行结果导出&lt;/li&gt;
-&lt;li&gt;代码块可像函数一样可参数化，引用其他代码块，可被远程调用&lt;/li&gt;
-&lt;li&gt;拼接，导出源代码到文件支持文学编程。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
-    
-    
-      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
-    
-      <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
-    
-      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
-    
-      <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
-    
-      <category term="元编程" scheme="https://brantou.github.io/tags/%E5%85%83%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   

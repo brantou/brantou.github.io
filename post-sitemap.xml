@@ -7,6 +7,22 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/10/31/literate-devOps/</loc>
+        <lastmod>2017-11-03T07:50:35.264Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+        <lastmod>2017-10-31T13:54:15.569Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
         <lastmod>2017-10-18T06:50:15.827Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,16 +47,16 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
-        <lastmod>2017-08-31T14:25:35.299Z</lastmod>
+        <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
+        <lastmod>2017-08-31T15:13:54.547Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
-        <lastmod>2017-08-31T10:17:32.336Z</lastmod>
+        <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
+        <lastmod>2017-08-31T14:25:35.299Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -73,14 +89,6 @@
     <url>
         <loc>https://brantou.github.io/2017/07/16/leetcode-tree/</loc>
         <lastmod>2017-07-16T07:30:55.768Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-        <lastmod>2017-07-10T03:46:44.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -159,7 +167,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+        <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -167,7 +175,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+        <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

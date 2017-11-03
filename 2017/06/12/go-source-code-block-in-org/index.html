@@ -599,7 +599,7 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 配置 <code>org-babel-load-languages</code>, 如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; 'org-babel-load-languages&#10; '((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
 </div></li>
 </ul>
 </div>
@@ -703,7 +703,7 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 #+NAME: min
 #+BEGIN_SRC  go
   func min(a, b int) int {
-    if a > b {
+    if a &gt; b {
       return b
     } else {
       return a
@@ -716,9 +716,9 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 <pre class="example">
 #+NAME: get-min
 #+BEGIN_SRC go :var a=0 b=0 :imports "fmt" :noweb strip-export
-  <<min>>
+  &lt;&lt;min&gt;&gt;
 
-</min></pre>
+</pre>
 
 <pre class="example">
   func main() {
@@ -813,8 +813,8 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/go-array-slice-string/" rel="next" title="数组，切片：‘append’的机制">
-                <i class="fa fa-chevron-left"></i> 数组，切片：‘append’的机制
+              <a href="/2017/05/24/go-cover-story/" rel="next" title="Go的测试覆盖率">
+                <i class="fa fa-chevron-left"></i> Go的测试覆盖率
               </a>
             
           </div>
@@ -840,15 +840,15 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
-        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/11/org-syntax/">Org-mode的语法解读</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/10/31/literate-devOps/">Babel--有趣的事</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/go-logrus/">Go的日志库logrus试用</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
         
         </ul>
       
@@ -956,7 +956,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -978,7 +978,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

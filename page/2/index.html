@@ -335,6 +335,332 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/23/go-race-detector/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/23/go-race-detector/" itemprop="url">Go的竞态探测器</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-23T00:00:00+08:00">
+                2017-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/23/go-race-detector/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/23/go-race-detector/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+<i>Race conditions</i> 是最隐晦和难以捉摸的编程错误之一。
+通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
+Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
+需要谨慎，勤勉和测试。 工具很有帮助。
+</p>
+
+<p>
+Go 1.1引入竞态探测器，一个用于在Go代码中查找 <i>Race conditions</i> 的新工具。
+它基于 <i>C/C++ ThreadSanitizer运行库</i> ，此库被用于检测Google内部代码库和Chromium中的许多错误。
+该技术于2012年9月与Go集成; 此后，它已经应用到了标准库中。
+它现在已经成为持续建设过程的一部分，在这些过程中，它们会随着时间的推移而捕捉到产生的 <i>Race conditions</i> 。
+</p>
+
+<div id="outline-container-org721db6d" class="outline-2">
+<h2 id="org721db6d"><span class="section-number-2">1</span> 工作原理</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+竞态探测器集成在go工具链中。
+当设置了-race命令行标志时，编译器将使用访问内存的时间和方式的代码记录下来,用于设置所有内存访问，
+而运行时库会监视对共享变量的不同步访问。 当检测到这种“racy”行为时，会打印一个警告。
+</p>
+
+<p>
+由于其设计，竞态探测器只能在运行代码实际触发时才能检测到竞争条件，这意味着需要在真实的工作负载下运行启用探测器。
+然而，启用竞态探测的可执行文件可能使用十倍的CPU和内存，因此始终启用探测器是不切实际的。
+出于这个困境的一个办法是在启用竞态探测的情况下运行一些测试。
+负载测试和集成测试是很好的候选者，因为它们往往会执行代码的并发部分。
+另外的可选途径：生产工作负载环境中, 在运行的服务器池中, 部署单个启用竞态探测的实例。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99bbb86" class="outline-2">
+<h2 id="org99bbb86"><span class="section-number-2">2</span> 使用</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+竞态探测器与Go工具链完全集成。 要启用竞态检测器的情况下,构建代码，只需将 <i>-race</i> 标志添加到命令行：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -race mypkg    // <span class="built_in">test</span> the package</span><br><span class="line">go run -race mysrc.go  // compile and run the program</span><br><span class="line">go build -race mycmd   // build the <span class="built_in">command</span></span><br><span class="line">go install -race mypkg // install the package</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5e4378" class="outline-2">
+<h2 id="orgc5e4378"><span class="section-number-2">3</span> 示例</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgeabab20" class="outline-3">
+<h3 id="orgeabab20"><span class="section-number-3">3.1</span> Timer.Reset</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+当前例子是竞态探测器发现的实际bug的简化版本。
+在使用定时器, 0到1秒的随机时间间隔之后打印消息。 打印过程反复进行了五秒钟。
+使用 <code>time.AfterFunc</code> 为第一条消息创建一个 <code>Timer</code> ，然后使用 <code>Reset</code> 方法调度下一条消息，每次都复用原有 <code>Timer</code> 。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  })</span><br><span class="line">  time.Sleep(<span class="number">5</span> * time.Second)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这似乎是合理的代码，但在某些情况下，它以令人惊讶的方式失败：
+</p>
+<pre class="example">
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x8 pc=0x41e38a]
+
+goroutine 4 [running]:
+time.stopTimer(0x8, 0x12fe6b35d9472d96)
+    src/pkg/runtime/ztime_linux_amd64.c:35 +0x25
+time.(*Timer).Reset(0x0, 0x4e5904f, 0x1)
+    src/pkg/time/sleep.go:81 +0x42
+main.func·001()
+    race.go:14 +0xe3
+created by time.goFunc
+    src/pkg/time/sleep.go:122 +0x48
+</pre>
+
+<p>
+发生了什么？ 启用竞态探测器的然后在运行一次：
+</p>
+<pre class="example">
+==================
+WARNING: DATA RACE
+Read at 0x00c420084018 by goroutine 7:
+  main.main.func1()
+      /tmp/babel-27165ee_/go-src-27165GUv.go:17 +0x17c
+
+Previous write at 0x00c420084018 by main goroutine:
+  main.main()
+      /tmp/babel-27165ee_/go-src-27165GUv.go:18 +0x17a
+
+Goroutine 7 (running) created at:
+  time.goFunc()
+      /home/parallels/.gvm/gos/go1.8/src/time/sleep.go:170 +0x51
+==================
+Found 1 data race(s)
+exit status 66
+</pre>
+
+<p>
+竞态探测器展示出问题根源：来自不同 <code>goroutines</code> 对变量 <i>t</i> 有不同步读和写。
+如果初始定时器时间间隔非常小，则定时器函数可能会在主 <code>goroutine</code> 赋值到 <i>t</i> 之前触发，因此对 <i>t.Reset</i> 的调用发生在 <i>nil</i> 上。
+</p>
+
+<p>
+修复这个 <i>race condition</i> 问题，可通过读写发生在一个 <code>goroutine</code> 中：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &amp;lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &amp;lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &amp;lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+主 <code>goroutine</code> 完全负责设置和重置定时器 <i>t</i> ，通过一个新的重置 <code>channel</code> 传达重置定时器的信号，然后以线程安全的方式重置定时器。
+</p>
+
+<p>
+最简单但不相对不那么高效的方式是<a href="http://play.golang.org/p/kuWTrY0pS4" rel="external nofollow noopener noreferrer" target="_blank">避免复用timer</a>。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org01dc808" class="outline-3">
+<h3 id="org01dc808"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+ioutil包的 <i>Discard</i> 实现了接口 <i>io.Writer</i> , 但是忽略了所有写给它的数据。 可认为如 <i>dev/null 一般：发送你需要读取而不需要存储的数据的一个地方。
+它通常与 /io.Copy</i> 一起使用，清空reader，如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">io.Copy(ioutil.Discard, reader)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+回到2011年7月，Go团队注意到，以这种方式使用Discard效率不高：Copy功能在每次调用时内部都会分配一个 <i>32kB</i> 的缓冲区，
+但是当与 <i>Discard</i> 一起使用时，缓冲区完全没必要，因为只是丢弃读取到的数据。
+他们认为这种惯用的复制和丢弃不应该那么昂贵。修复此问题的方式，就是给 <i>Writer</i> 实现方法 <i>ReadFrom</i>,如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">writer.ReadFrom(reader)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类型具有内部缓冲区，该缓冲区在其所有用户之间共享。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> blackHole [<span class="number">4096</span>]<span class="typename">byte</span> <span class="comment">// shared buffer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (devNull) ReadFrom(r io.Reader) (n <span class="typename">int64</span>, err error) {</span><br><span class="line">    readSize := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        readSize, err = r.Read(blackHole[:])</span><br><span class="line">        n += <span class="typename">int64</span>(readSize)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">if</span> err == io.EOF {</span><br><span class="line">                <span class="keyword">return</span> n, <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这次修复依旧没能解决问题，因为用户自定义的 /Reader/，可能在读的过程中，执行写操作，这个时候共享的缓冲区就造成数据污染。
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &amp;#36825;&amp;#37324;&amp;#30340;p&amp;#23601;&amp;#26159;&amp;#20195;&amp;#34920;&amp;#30340;&amp;#23601;&amp;#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+最终还是通过为每次使用的 <i>ioutil.Discard</i> 添加唯一的缓冲区，来消除共享缓冲区的 <i>Race condition</i> 。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5d2a1eb" class="outline-2">
+<h2 id="org5d2a1eb"><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+竞态探测器是检查并发程序正确性的强大工具。 它不会呈现虚假问题，所以请认真地对待。
+</p>
+
+<p>
+还在等什么？现在就对你的代码运行“go test -race”吧！
+</p>
+</div>
+</div>
+
+Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1473,7 +1799,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 <h3 id="org66b3280"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1489,8 +1815,8 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 看完上面的代码，是不是会有些疑惑，为什么 <code>chan_c</code> 需要缓存，而 <code>chan_n</code> 不需要呢? <br>
 当两个打印 <code>goroutine</code> 无限交替运行时，没有缓存是OK的，
 但很明显上面的示例不是，打印数字的 <code>goroutine</code> 先退出，也就失去了 <code>goroutine</code> 来读取 <code>chan_c</code> 中的内容了，
-而打印字母的goroutine就会阻塞在 <code>chan_c <- true<="" code=""> 这里，这样就导致了死锁。
-</-></code></p>
+而打印字母的goroutine就会阻塞在 <code>chan_c &lt;- true</code> 这里，这样就导致了死锁。
+</p>
 </blockquote>
 
 <blockquote>
@@ -1499,7 +1825,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 </p>
 </blockquote>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">    &lt;-chan_c</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">&lt;-done</span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &amp;lt;- <span class="constant">true</span></span><br><span class="line">    &amp;lt;-chan_c</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &amp;lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &amp;lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &amp;lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">&amp;lt;-done</span><br><span class="line">&amp;lt;-done</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -1516,7 +1842,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 用户随机抽奖，数据结构如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&#20013;&#65292;key&#20195;&#34920;&#21517;&#31216;&#65292;value&#20195;&#34920;&#25104;&#20132;&#21333;&#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -1533,7 +1859,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 <h3 id="orgb4d79ad"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1562,7 +1888,7 @@ user: a, award count: 159
 数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&#20013;&#65292;key&#20195;&#34920;&#21517;&#31216;&#65292;value&#20195;&#34920;&#25104;&#20132;&#21333;&#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// map&amp;#20013;&amp;#65292;key&amp;#20195;&amp;#34920;&amp;#21517;&amp;#31216;&amp;#65292;value&amp;#20195;&amp;#34920;&amp;#25104;&amp;#20132;&amp;#21333;&amp;#25968;</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -1580,7 +1906,7 @@ user: a, award count: 159
 <h3 id="orgabbb033"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &amp;gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -1603,7 +1929,7 @@ user: a, award count: 1099
 </blockquote>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _name, num := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    offset_num += num</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = _name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _name, num := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    offset_num += num</span><br><span class="line">    <span class="keyword">if</span> award_num &amp;lt; offset_num {</span><br><span class="line">      name = _name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <blockquote>
@@ -1614,7 +1940,7 @@ user: a, award count: 1099
 </blockquote>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">n_map := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">bool</span>)</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ {</span><br><span class="line">  n_map[i] = <span class="constant">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br><span class="line">fmt.Print(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">n_map := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">bool</span>)</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &amp;lt;= <span class="number">10</span>; i++ {</span><br><span class="line">  n_map[i] = <span class="constant">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br><span class="line">fmt.Print(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
@@ -1631,7 +1957,7 @@ user: a, award count: 1099
 </blockquote>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">    offset_num += users[u_name]</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">    offset_num += users[u_name]</span><br><span class="line">    <span class="keyword">if</span> award_num &amp;lt; offset_num {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <blockquote>
@@ -1642,7 +1968,7 @@ user: a, award count: 1099
 </blockquote>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">    <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">      offset_num += users[u_name]</span><br><span class="line">      <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">        <span class="keyword">return</span> u_name</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &#32570;&#30465;&#36820;&#22238;&#65292;&#27491;&#24120;&#24773;&#20917;&#19979;&#65292;&#19981;&#20250;&#36816;&#34892;&#21040;&#27492;&#22788;</span></span><br><span class="line">    <span class="keyword">return</span> name_arr[<span class="number">0</span>]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">    <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">      offset_num += users[u_name]</span><br><span class="line">      <span class="keyword">if</span> award_num &amp;lt; offset_num {</span><br><span class="line">        <span class="keyword">return</span> u_name</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &amp;#32570;&amp;#30465;&amp;#36820;&amp;#22238;&amp;#65292;&amp;#27491;&amp;#24120;&amp;#24773;&amp;#20917;&amp;#19979;&amp;#65292;&amp;#19981;&amp;#20250;&amp;#36816;&amp;#34892;&amp;#21040;&amp;#27492;&amp;#22788;</span></span><br><span class="line">    <span class="keyword">return</span> name_arr[<span class="number">0</span>]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <blockquote>
@@ -1654,7 +1980,7 @@ user: a, award count: 1099
 </blockquote>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// &#26368;&#21518;&#19968;&#21517;&#20013;&#22870;</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &amp;lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &amp;gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &amp;lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// &amp;#26368;&amp;#21518;&amp;#19968;&amp;#21517;&amp;#20013;&amp;#22870;</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &amp;gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <blockquote>
@@ -1663,7 +1989,7 @@ user: a, award count: 1099
 </p>
 </blockquote>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  test_len := <span class="number">10000000</span></span><br><span class="line">  start := time.Now()</span><br><span class="line">  s := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s = <span class="built_in">append</span>(s, i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line"></span><br><span class="line">  start = time.Now()</span><br><span class="line">  s1 := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s1[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  test_len := <span class="number">10000000</span></span><br><span class="line">  start := time.Now()</span><br><span class="line">  s := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; test_len; i++ {</span><br><span class="line">    s = <span class="built_in">append</span>(s, i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line"></span><br><span class="line">  start = time.Now()</span><br><span class="line">  s1 := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &amp;lt; test_len; i++ {</span><br><span class="line">    s1[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
@@ -3146,188 +3472,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/01/babel-intro/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/01/babel-intro/" itemprop="url">Babel: org-mode的元编程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T00:00:00+08:00">
-                2017-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/01/babel-intro/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/01/babel-intro/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-contrib/babel/intro.html" rel="external nofollow noopener noreferrer" target="_blank">Babel: Introduction</a>, 由 <b>Eric Schulte</b> ,  <b>Dan Davison</b>, <b>Tom Dye</b> 编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-org007914f" class="outline-2">
-<h2 id="introduction"><a id="org007914f"></a><a id="ID-bee7e406-bb22-498e-a068-f0402cde93d0"></a><span class="section-number-2">1</span> 序言</h2>
-<div class="outline-text-2" id="text-introduction">
-<p>
-<b>Bable</b> 可让许多不同的语言工作一起。
-编程语言生活在自然语言的 <code>Org-mode</code> 文档的代码块之中。
-一个数据片段可从一个表格传递给一个 <code>Pythoh</code> 代码块，然后可能再转移到一个 <code>R</code> 代码块，
-最终以数据块被嵌入段落的中间而终结，或者通过 <code>gnuplot</code> 代码块生成图片嵌入在文档中。
-</p>
-
-<p>
-通过扩展 <a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">Org-mode</a>, 使其具有编辑,导出和执行源代码的功能, <b>Babel</b> 将 <code>Org-mode</code> 变成了文学编程和可重复性研究的工具。
-</p>
-
-<p>
-<b>Babel</b> 通过提供以下特性来增强 <a href="http://orgmode.org/manual/Literal-examples.html" rel="external nofollow noopener noreferrer" target="_blank">Org-mode对代码代码块的支持</a>:
-Babel augments Org-mode support for code blocks by providing:
-</p>
-
-<ul class="org-ul">
-<li>代码块的交互和执行结果导出</li>
-<li>代码块可像函数一样可参数化，引用其他代码块，可被远程调用</li>
-<li>拼接，导出源代码到文件支持文学编程。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/01/babel-intro/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3375,7 +3519,7 @@ Babel augments Org-mode support for code blocks by providing:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3397,7 +3541,7 @@ Babel augments Org-mode support for code blocks by providing:
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

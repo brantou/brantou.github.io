@@ -4,6 +4,64 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/10/31/literate-devOps/</loc>
+    <lastmod>2017-11-03T07:50:35.264Z</lastmod>
+    <data>
+        <display>
+        <title>Babel--有趣的事</title>
+        <pubTime>2017-10-30T16:00:00.000Z</pubTime>
+        
+        <tag>org-mode</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>active-code</tag>
+         
+        <tag>literate-programming</tag>
+         
+        <tag>devOps</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
+    <lastmod>2017-10-31T13:54:15.569Z</lastmod>
+    <data>
+        <display>
+        <title>Babel: org-mode的元编程</title>
+        <pubTime>2017-03-31T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>active-code</tag>
+         
+        <tag>literate-programming</tag>
+         
+        <tag>元编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/05/14/interview-code/</loc>
     <lastmod>2017-10-18T06:50:15.827Z</lastmod>
     <data>
@@ -68,6 +126,30 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
+    <lastmod>2017-08-31T15:13:54.547Z</lastmod>
+    <data>
+        <display>
+        <title>玩转词云</title>
+        <pubTime>2017-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>jieba</tag>
+         
+        <tag>wordcloud</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
     <lastmod>2017-08-31T14:25:35.299Z</lastmod>
     <data>
@@ -91,30 +173,6 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
-    <lastmod>2017-08-31T10:17:32.336Z</lastmod>
-    <data>
-        <display>
-        <title>玩转词云</title>
-        <pubTime>2017-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>jieba</tag>
-         
-        <tag>wordcloud</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
@@ -159,9 +217,9 @@
         <title>scrapy模拟登陆知乎</title>
         <pubTime>2017-08-21T16:00:00.000Z</pubTime>
         
-        <tag>scrapy</tag>
-         
         <tag>python</tag>
+         
+        <tag>scrapy</tag>
          
         <tag>crawler</tag>
          
@@ -211,36 +269,6 @@
            
              
               <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/01/babel-intro/</loc>
-    <lastmod>2017-07-10T03:46:44.763Z</lastmod>
-    <data>
-        <display>
-        <title>Babel: org-mode的元编程</title>
-        <pubTime>2017-03-31T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>babel</tag>
-         
-        <tag>active-code</tag>
-         
-        <tag>literate-programming</tag>
-         
-        <tag>元编程</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>
@@ -429,77 +457,21 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Org-mode的列视图简明教程</title>
-        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        <title>Golang的并发模式：管道和撤销</title>
+        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
         
-        <tag>tutorial</tag>
+        <tag>golang</tag>
          
-        <tag>org-mode</tag>
-         
-        <tag>column-view</tag>
+        <tag>channel</tag>
          
          
            
              
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode表查找功能的简明教程</title>
-        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>table</tag>
-         
-        <tag>spreadsheet</tag>
-         
-        <tag>lookup</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的语法解读</title>
-        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>org-syntax</tag>
-         
-        <tag>org-internal-structure</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
@@ -553,21 +525,77 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
+    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Golang的并发模式：管道和撤销</title>
-        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
+        <title>Org-mode的语法解读</title>
+        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
         
-        <tag>golang</tag>
+        <tag>tutorial</tag>
          
-        <tag>channel</tag>
+        <tag>org-mode</tag>
+         
+        <tag>org-syntax</tag>
+         
+        <tag>org-internal-structure</tag>
          
          
            
              
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的列视图简明教程</title>
+        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>column-view</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode表查找功能的简明教程</title>
+        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>table</tag>
+         
+        <tag>spreadsheet</tag>
+         
+        <tag>lookup</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>
