@@ -16,6 +16,20 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/column-view/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/lookup/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/org-table/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,20 +59,6 @@
 
     <url>
         <loc>https://brantou.github.io/tags/weekly/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/column-view/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/lookup/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -114,14 +114,14 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/spreadsheet/</loc>
+        <loc>https://brantou.github.io/tags/table/</loc>
         <lastmod>2017-06-01T05:40:06.363Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/table/</loc>
+        <loc>https://brantou.github.io/tags/spreadsheet/</loc>
         <lastmod>2017-06-01T05:40:06.363Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
