@@ -440,13 +440,13 @@
             
 
 
-<div id="outline-container-org7757530" class="outline-2">
-<h2 id="org7757530"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-org888b992" class="outline-2">
+<h2 id="org888b992"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org4891273" class="outline-3">
-<h3 id="org4891273"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-orga5d0d3e" class="outline-3">
+<h3 id="orga5d0d3e"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -458,8 +458,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb08c3eb" class="outline-3">
-<h3 id="orgb08c3eb"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-orgb243e43" class="outline-3">
+<h3 id="orgb243e43"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
@@ -504,8 +504,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-org3960927" class="outline-2">
-<h2 id="org3960927"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-orga1f2c5b" class="outline-2">
+<h2 id="orga1f2c5b"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -543,8 +543,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-orga167c6f" class="outline-2">
-<h2 id="orga167c6f"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-orgb49d786" class="outline-2">
+<h2 id="orgb49d786"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -558,11 +558,11 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org0ae0a2b" class="outline-2">
-<h2 id="org0ae0a2b"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
+<div id="outline-container-orgea3b16b" class="outline-2">
+<h2 id="orgea3b16b"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes&#10;#+BEGIN_SRC shell :noweb yes :shebang #!/bin/sh&#10;  ,&#38;lt;&#38;lt;fullest-disk&#38;gt;&#38;gt;&#10;#+END_SRC&#10;&#10;&#10;** the mount point of the fullest disk&#10;   :PROPERTIES:&#10;   :header-args:shell: :noweb-ref fullest-disk&#10;   :END:&#10;&#10;*** query all mounted disks&#10;    #+BEGIN_SRC shell&#10;        df \&#10;    #+END_SRC&#10;*** strip the header row&#10;    #+BEGIN_SRC shell&#10;        |sed '1d' \&#10;    #+END_SRC&#10;*** sort by the percent full&#10;    #+BEGIN_SRC shell&#10;        |awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;    #+END_SRC&#10;*** extract the mount point&#10;    #+BEGIN_SRC shell&#10;      |awk '{print $2}'&#10;    #+END_SRC&#10;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes&#10;#+BEGIN_SRC shell :noweb yes :shebang #!/bin/sh&#10;  \lt\ltfullest-disk\gt\gt&#10;#+END_SRC&#10;&#10;&#10;** the mount point of the fullest disk&#10;   :PROPERTIES:&#10;   :header-args:shell: :noweb-ref fullest-disk&#10;   :END:&#10;&#10;*** query all mounted disks&#10;    #+BEGIN_SRC shell&#10;        df \&#10;    #+END_SRC&#10;*** strip the header row&#10;    #+BEGIN_SRC shell&#10;        |sed '1d' \&#10;    #+END_SRC&#10;*** sort by the percent full&#10;    #+BEGIN_SRC shell&#10;        |awk '{print $5 &#34; &#34; $6}' | sort -n | tail -1 \&#10;    #+END_SRC&#10;*** extract the mount point&#10;    #+BEGIN_SRC shell&#10;      |awk '{print $2}'&#10;    #+END_SRC&#10;</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -574,7 +574,7 @@ tangle出的代码如下：
 </div>
 </div>
 
-Last Updated 2017-11-03 Fri 17:34.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-03 Fri 17:35.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
