@@ -457,13 +457,13 @@
             
 
 
-<div id="outline-container-orgcaa26e7" class="outline-2">
-<h2 id="orgcaa26e7"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-org886a1af" class="outline-2">
+<h2 id="org886a1af"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org7d37db2" class="outline-3">
-<h3 id="org7d37db2"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-org592ece4" class="outline-3">
+<h3 id="org592ece4"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -475,8 +475,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9645fb9" class="outline-3">
-<h3 id="org9645fb9"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-org4cc2337" class="outline-3">
+<h3 id="org4cc2337"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
@@ -491,8 +491,8 @@ Fri Nov  3 23:05:34 CST 2017
 </div>
 </div>
 
-<div id="outline-container-org2fbdeb8" class="outline-2">
-<h2 id="org2fbdeb8"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-org12c22ad" class="outline-2">
+<h2 id="org12c22ad"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -530,8 +530,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org30eaccb" class="outline-2">
-<h2 id="org30eaccb"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-org83e3ddc" class="outline-2">
+<h2 id="org83e3ddc"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -545,8 +545,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org88d4400" class="outline-2">
-<h2 id="org88d4400"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
+<div id="outline-container-orgb65dfe9" class="outline-2">
+<h2 id="orgb65dfe9"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 #+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes

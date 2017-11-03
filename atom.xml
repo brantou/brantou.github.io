@@ -30,8 +30,8 @@
         
 
 
-&lt;div id=&quot;outline-container-orgcaa26e7&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgcaa26e7&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-org886a1af&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org886a1af&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -448,34 +448,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-10-18T06:50:15.827Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-  </entry>
-  
-  <entry>
     <title>一周回顾--2017-05-12</title>
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
@@ -501,6 +473,34 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gopher面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-10-18T06:50:15.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   
