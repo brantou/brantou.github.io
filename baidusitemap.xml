@@ -189,6 +189,8 @@
         
         <tag>tutorial</tag>
          
+        <tag>golang</tag>
+         
         <tag>org-mode</tag>
          
         <tag>babel</tag>
@@ -196,8 +198,6 @@
         <tag>active-code</tag>
          
         <tag>literate-programming</tag>
-         
-        <tag>golang</tag>
          
          
            
@@ -457,6 +457,32 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>在Org-mode的电子表格中使用elisp公式</title>
+        <pubTime>2017-04-07T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>spreadsheet</tag>
+         
+        <tag>org-table</tag>
+         
+        <tag>emacs-lisp</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -485,25 +511,19 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
+    <loc>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>在Org-mode的电子表格中使用elisp公式</title>
-        <pubTime>2017-04-07T16:00:00.000Z</pubTime>
+        <title>一周回顾--2017-05-12</title>
+        <pubTime>2017-05-13T16:00:00.000Z</pubTime>
         
-        <tag>tutorial</tag>
-         
-        <tag>spreadsheet</tag>
-         
-        <tag>org-table</tag>
-         
-        <tag>emacs-lisp</tag>
+        <tag>weekly</tag>
          
          
            
              
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+              <breadCrumb title="review" url="https://brantou.github.io/categories/review/"/>
           
         </display>
     </data>
@@ -537,6 +557,28 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Golang的并发模式：管道和撤销</title>
+        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>channel</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -554,48 +596,6 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>一周回顾--2017-05-12</title>
-        <pubTime>2017-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>weekly</tag>
-         
-         
-           
-             
-              <breadCrumb title="review" url="https://brantou.github.io/categories/review/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Golang的并发模式：管道和撤销</title>
-        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
-        
-        <tag>golang</tag>
-         
-        <tag>channel</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
