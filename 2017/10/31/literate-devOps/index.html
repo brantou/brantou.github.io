@@ -152,7 +152,8 @@ ifconfig
 
 docker0   Link encap:Ethernet  HWaddr 02:42:00:ea:60:b5
 	  inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.">
-<meta property="og:updated_time" content="2017-11-03T07:50:35.264Z">
+<meta property="og:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
+<meta property="og:updated_time" content="2017-11-03T07:58:32.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Babel--有趣的事">
 <meta name="twitter:description" content="1 数据格式化(:wrap)
@@ -179,6 +180,7 @@ ifconfig
 
 docker0   Link encap:Ethernet  HWaddr 02:42:00:ea:60:b5
 	  inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.">
+<meta name="twitter:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
 
 
 
@@ -509,13 +511,13 @@ docker0   Link encap:Ethernet  HWaddr 02:42:00:ea:60:b5
         
 
 
-<div id="outline-container-orgd06878f" class="outline-2">
-<h2 id="orgd06878f"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-orgb5e8fd8" class="outline-2">
+<h2 id="orgb5e8fd8"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org79ff275" class="outline-3">
-<h3 id="org79ff275"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-org09f2674" class="outline-3">
+<h3 id="org09f2674"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -523,8 +525,8 @@ docker0   Link encap:Ethernet  HWaddr 02:42:00:ea:60:b5
 </div>
 </div>
 
-<div id="outline-container-orgd33af60" class="outline-3">
-<h3 id="orgd33af60"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-orga26ffeb" class="outline-3">
+<h3 id="orga26ffeb"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
@@ -569,8 +571,8 @@ lo        Link encap:Local Loopback
 </div>
 </div>
 
-<div id="outline-container-orgad8505f" class="outline-2">
-<h2 id="orgad8505f"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-orgd0d61e2" class="outline-2">
+<h2 id="orgd0d61e2"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -608,8 +610,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org7c6132f" class="outline-2">
-<h2 id="org7c6132f"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-org9195391" class="outline-2">
+<h2 id="org9195391"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -618,16 +620,18 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">@startuml&#10;cli -&#38;gt; serv:  auth req&#10;serv --&#38;gt; cli: auth res&#10;@enduml</span><br></pre></td></tr></table></figure>
 </div>
+
+<img src="/images/devOps/just-try-post.png">
 </div>
 </div>
 
-<div id="outline-container-org7e398de" class="outline-2">
-<h2 id="org7e398de"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
+<div id="outline-container-org4a8349a" class="outline-2">
+<h2 id="org4a8349a"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb风格的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 </div>
 
-Last Updated 2017-11-03 Fri 15:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-03 Fri 15:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -901,7 +905,7 @@ Last Updated 2017-11-03 Fri 15:50.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd06878f"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org79ff275"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgd33af60"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgad8505f"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7c6132f"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7e398de"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb5e8fd8"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org09f2674"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orga26ffeb"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd0d61e2"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9195391"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4a8349a"><span class="nav-text">4 noweb风格的引用(:noweb-ref)</span></a></li></ol></div>
             
 
           </div>
