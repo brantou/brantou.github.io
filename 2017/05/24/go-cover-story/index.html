@@ -469,8 +469,8 @@
 它采用了一种不寻常的方式来生成覆盖率统计数据，这种方法建立在Godoc的技术的基础上。
 </p>
 
-<div id="outline-container-org2f4cacf" class="outline-2">
-<h2 id="org2f4cacf"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
+<div id="outline-container-org42304ae" class="outline-2">
+<h2 id="org42304ae"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 对于Go的新测试覆盖工具，采取了一种避免动态调试的不同方法。
@@ -482,21 +482,21 @@
 示例代码如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
 测试代码如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> {</span><br><span class="line">    in  <span class="typename">int</span></span><br><span class="line">    out <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tests = []Test{</span><br><span class="line">    {-<span class="number">1</span>, <span class="string">"negative"</span>},</span><br><span class="line">    {<span class="number">5</span>, <span class="string">"small"</span>},</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestSize(t *testing.T) {</span><br><span class="line">    <span class="keyword">for</span> i, test := <span class="keyword">range</span> tests {</span><br><span class="line">        size := Size(test.in)</span><br><span class="line">        <span class="keyword">if</span> size != test.out {</span><br><span class="line">            t.Errorf(<span class="string">"#%d: Size(%d)=%s; want %s"</span>, i, test.in, size, test.out)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> {</span><br><span class="line">    in  <span class="typename">int</span></span><br><span class="line">    out <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tests = []Test{</span><br><span class="line">    {-<span class="number">1</span>, <span class="string">"negative"</span>},</span><br><span class="line">    {<span class="number">5</span>, <span class="string">"small"</span>},</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestSize(t *testing.T) {</span><br><span class="line">    <span class="keyword">for</span> i, test := <span class="keyword">range</span> tests {</span><br><span class="line">        size := Size(test.in)</span><br><span class="line">        <span class="keyword">if</span> size != test.out {</span><br><span class="line">            t.Errorf(<span class="string">"#%d: Size(%d)=%s; want %s"</span>, i, test.in, size, test.out)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
 执行代码覆盖率测试如下：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -cover</span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -cover</span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
@@ -511,7 +511,7 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &amp;lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -527,8 +527,8 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 </div>
 </div>
 
-<div id="outline-container-orgcc2c0d2" class="outline-2">
-<h2 id="orgcc2c0d2"><span class="section-number-2">2</span> 查看结果</h2>
+<div id="outline-container-org88fd324" class="outline-2">
+<h2 id="org88fd324"><span class="section-number-2">2</span> 查看结果</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 上面的例子的测试覆盖率很差。 为了探索具体为什么，需要 <i>go test</i> 写一个 <i>coverage profile</i> ，
@@ -536,7 +536,7 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 这很容易做：使用 <i>-coverprofile</i> 标志来指定输出的文件：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -coverprofile=size_coverage.out</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -coverprofile=size_coverage.out</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -548,14 +548,14 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 一开始，可以要求 <i>覆盖率</i> 按函数分解，虽然在当前情况下没有太多意义，因为只有一个函数：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -func=size_coverage.out</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -func=size_coverage.out</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
 查看的更有趣的方式是获取 <i>覆盖率信息注释的源代码</i> 的HTML展示。 该显示由 <i>-html</i> 标志调用：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -html=size_coverage.out</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -html=size_coverage.out</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -571,8 +571,8 @@ ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
 </div>
 </div>
 
-<div id="outline-container-org70e9f50" class="outline-2">
-<h2 id="org70e9f50"><span class="section-number-2">3</span> 热力图</h2>
+<div id="outline-container-org2f65095" class="outline-2">
+<h2 id="org2f65095"><span class="section-number-2">3</span> 热力图</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 源代码级方式来测试覆盖率的一大优点在于，可以很容易用不同的方式对代码进行埋点处理。
@@ -631,8 +631,8 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-<div id="outline-container-org0987391" class="outline-2">
-<h2 id="org0987391"><span class="section-number-2">4</span> 基础块</h2>
+<div id="outline-container-org04da28f" class="outline-2">
+<h2 id="org04da28f"><span class="section-number-2">4</span> 基础块</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 你可能已经注意到，上一个示例中/ 有关于闭合大括号中间的行的计数/ 不是你所期望的那样。 这是因为一直以来 <i>test coverage</i> 都不是一个不精确的科学。
@@ -649,7 +649,7 @@ HTML输出产生了巨大的回报：
 所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;amp;&amp;amp; g()</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
@@ -661,8 +661,8 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-<div id="outline-container-orgd49f431" class="outline-2">
-<h2 id="orgd49f431"><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-orgb11766d" class="outline-2">
+<h2 id="orgb11766d"><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这是关于 <i>Go 1.2 test coverage</i> 故事。
@@ -675,7 +675,7 @@ HTML输出产生了巨大的回报：
 </div>
 </div>
 
-Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -949,7 +949,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org2f4cacf"><span class="nav-text">1 Go的测试覆盖率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcc2c0d2"><span class="nav-text">2 查看结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org70e9f50"><span class="nav-text">3 热力图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0987391"><span class="nav-text">4 基础块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd49f431"><span class="nav-text">5 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org42304ae"><span class="nav-text">1 Go的测试覆盖率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org88fd324"><span class="nav-text">2 查看结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2f65095"><span class="nav-text">3 热力图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org04da28f"><span class="nav-text">4 基础块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb11766d"><span class="nav-text">5 总结</span></a></li></ol></div>
             
 
           </div>

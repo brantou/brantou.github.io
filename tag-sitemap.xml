@@ -9,20 +9,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/weekly/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/channel/</loc>
-        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/column-view/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,6 +45,20 @@
 
     <url>
         <loc>https://brantou.github.io/tags/org-internal-structure/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/weekly/</loc>
+        <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/channel/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -213,35 +213,35 @@
 
     <url>
         <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-11-03T14:39:39.186Z</lastmod>
+        <lastmod>2017-11-03T15:05:36.450Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/babel/</loc>
-        <lastmod>2017-11-03T14:39:39.186Z</lastmod>
+        <lastmod>2017-11-03T15:05:36.450Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/active-code/</loc>
-        <lastmod>2017-11-03T14:39:39.186Z</lastmod>
+        <lastmod>2017-11-03T15:05:36.450Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/literate-programming/</loc>
-        <lastmod>2017-11-03T14:39:39.186Z</lastmod>
+        <lastmod>2017-11-03T15:05:36.450Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/devOps/</loc>
-        <lastmod>2017-11-03T14:39:39.186Z</lastmod>
+        <lastmod>2017-11-03T15:05:36.450Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

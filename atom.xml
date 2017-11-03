@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-11-03T14:39:39.186Z</updated>
+  <updated>2017-11-03T15:05:36.450Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://brantou.github.io/2017/10/31/literate-devOps/"/>
     <id>https://brantou.github.io/2017/10/31/literate-devOps/</id>
     <published>2017-10-30T16:00:00.000Z</published>
-    <updated>2017-11-03T14:39:39.186Z</updated>
+    <updated>2017-11-03T15:05:36.450Z</updated>
     
     <summary type="html">
     
@@ -30,8 +30,8 @@
         
 
 
-&lt;div id=&quot;outline-container-orgb25bf56&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgb25bf56&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-orgcaa26e7&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgcaa26e7&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -103,8 +103,8 @@ and authoring documents with a fast and effecti
         
 
 
-&lt;div id=&quot;outline-container-org62b70cb&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org62b70cb&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-orgf71ca50&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgf71ca50&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -152,6 +152,32 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
+    <title>Leetcode-array</title>
+    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
+    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
+    <published>2017-07-15T16:00:00.000Z</published>
+    <updated>2017-09-21T15:14:03.666Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leetcode-tree</title>
     <link href="https://brantou.github.io/2017/07/16/leetcode-tree/"/>
     <id>https://brantou.github.io/2017/07/16/leetcode-tree/</id>
@@ -172,32 +198,6 @@ and authoring documents with a fast and effecti
       <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
       <category term="tree" scheme="https://brantou.github.io/tags/tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode-array</title>
-    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
-    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
-    <published>2017-07-15T16:00:00.000Z</published>
-    <updated>2017-09-21T15:14:03.666Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typ
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -433,7 +433,7 @@ Go的并发机制使得编写干净并发代码变得容易，但它们并不能
 Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本文介绍了这种管道的示例，突出描述失败时的细微之处，并介绍了优雅地处理故障的技术。
 &lt;/p&gt;
 
-&lt;div id=&quot;outline-container-org0b35331&quot; class=&quot;outline-2
+&lt;div id=&quot;outline-container-orgb69cfc6&quot; class=&quot;outline-2
       
     
     </summary>
@@ -546,9 +546,9 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-orgfa56eb7&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgfa56eb7&quot;&gt;简介：默认列视图&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgfa56eb7&quot;&gt;
+&lt;div id=&quot;outline-container-org14b5582&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org14b5582&quot;&gt;简介：默认列视图&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org14b5582&quot;&gt;
 &lt;p&gt;
 首先按 &lt;code&gt;C-c C-x C-c&lt;/code&gt; 打开默认列视图, 将每个 &lt;i&gt;outline item&lt;/i&gt; 转换成一个显示其某些属性的表格行。
 &lt;/p&gt;
@@ -653,9 +653,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org8a47483&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org8a47483&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org8a47483&quot;&gt;
+&lt;div id=&quot;outline-container-orga774b6e&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orga774b6e&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orga774b6e&quot;&gt;
 &lt;p&gt;
 &lt;code&gt;Org&lt;/code&gt; 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
@@ -694,9 +694,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org9a4b3c3&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org9a4b3c3&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org9a4b3c3&quot;&gt;
+&lt;div id=&quot;outline-container-orgcef4046&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgcef4046&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgcef4046&quot;&gt;
 &lt;p&gt;
 本教程介绍如何在Org表中使用Emacs Lisp作为公式。
 如果想要了解如何使用Org作为电子表格系统的一般教程，请阅读&lt;a href=&quot;https://brantou.github.io/2017/04/06/org-spreadsheet-intro/&quot;&gt;这个教程&lt;/a&gt;。
@@ -733,9 +733,9 @@ ITEM for the headline title
 &lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div id=&quot;outline-container-org250dea6&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org250dea6&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org250dea6&quot;&gt;
+&lt;div id=&quot;outline-container-org1643432&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org1643432&quot;&gt;序言&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org1643432&quot;&gt;
 &lt;p&gt;
 这篇简短的教程将介绍使用 &lt;code&gt;Org&lt;/code&gt; 作为电子表格系统需要的基础知识。
 &lt;/p&gt;

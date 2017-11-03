@@ -447,8 +447,8 @@
 收集的信息可用于调试延迟问题，服务监控，编写自适应系统等。
 </p>
 
-<div id="outline-container-orgee2e95c" class="outline-2">
-<h2 id="orgee2e95c"><span class="section-number-2">1</span> HTTP事件</h2>
+<div id="outline-container-orgf2feb33" class="outline-2">
+<h2 id="orgf2feb33"><span class="section-number-2">1</span> HTTP事件</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件的信息。 这些事件包括：
@@ -463,8 +463,8 @@ httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件�
 </div>
 </div>
 
-<div id="outline-container-org52492b8" class="outline-2">
-<h2 id="org52492b8"><span class="section-number-2">2</span> 跟踪事件</h2>
+<div id="outline-container-orgb1783ff" class="outline-2">
+<h2 id="orgb1783ff"><span class="section-number-2">2</span> 跟踪事件</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 可以通过将包含钩子函数的 <a href="https://golang.org/pkg/net/http/httptrace/#ClientTrace" rel="external nofollow noopener noreferrer" target="_blank">*httptrace.ClientTrace</a> 放在请求的 <a href="https://golang.org/pkg/context/#Context" rel="external nofollow noopener noreferrer" target="_blank">context.Context</a> 中来启用 <i>HTTP tracing</i> 。
@@ -477,7 +477,7 @@ httptrace包提供了许多钩子，用于在HTTP往返期间收集各种事件�
 然后才能启动请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: <span class="keyword">func</span>(connInfo httptrace.GotConnInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"Got Conn: %+v\n"</span>, connInfo)</span><br><span class="line">    },</span><br><span class="line">    DNSDone: <span class="keyword">func</span>(dnsInfo httptrace.DNSDoneInfo) {</span><br><span class="line">      fmt.Printf(<span class="string">"DNS Info: %+v\n"</span>, dnsInfo)</span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line">  _, err := http.DefaultTransport.RoundTrip(req)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <pre class="example">
@@ -493,8 +493,8 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 </div>
 </div>
 
-<div id="outline-container-org958d7fc" class="outline-2">
-<h2 id="org958d7fc"><span class="section-number-2">3</span> 跟踪http.Client</h2>
+<div id="outline-container-org0e1d0f9" class="outline-2">
+<h2 id="org0e1d0f9"><span class="section-number-2">3</span> 跟踪http.Client</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 跟踪机制旨在跟踪单个http.Transport.RoundTrip的生命周期中的事件。
@@ -504,7 +504,7 @@ Got Conn: {Conn:0xc42001ce00 Reused:false WasIdle:false IdleTime:0s}
 下面的示例使用 <i>http.RoundTripper wrapper</i> 来标识当前的请求。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"net/http/httptrace"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// transport is an http.RoundTripper that keeps track of the in-flight</span></span><br><span class="line"><span class="comment">// request and implements hooks to report HTTP tracing events.</span></span><br><span class="line"><span class="keyword">type</span> transport <span class="keyword">struct</span> {</span><br><span class="line">  current *http.Request</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// RoundTrip wraps http.DefaultTransport.RoundTrip to keep track</span></span><br><span class="line"><span class="comment">// of the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {</span><br><span class="line">  t.current = req</span><br><span class="line">  <span class="keyword">return</span> http.DefaultTransport.RoundTrip(req)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// GotConn prints whether the connection has been used previously</span></span><br><span class="line"><span class="comment">// for the current request.</span></span><br><span class="line"><span class="keyword">func</span> (t *transport) GotConn(info httptrace.GotConnInfo) {</span><br><span class="line">  fmt.Printf(<span class="string">"Connection reused for %v? %v\n"</span>, t.current.URL, info.Reused)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  t := &amp;transport{}</span><br><span class="line"></span><br><span class="line">  req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"https://google.com"</span>, <span class="constant">nil</span>)</span><br><span class="line">  trace := &amp;httptrace.ClientTrace{</span><br><span class="line">    GotConn: t.GotConn,</span><br><span class="line">  }</span><br><span class="line">  req = req.WithContext(httptrace.WithClientTrace(req.Context(), trace))</span><br><span class="line"></span><br><span class="line">  client := &amp;http.Client{Transport: t}</span><br><span class="line">  <span class="keyword">if</span> _, err := client.Do(req); err != <span class="constant">nil</span> {</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -526,8 +526,8 @@ net/http包中的 <i>Transport</i> 支持跟踪 HTTP/1 和 HTTP/2 的 request。
 </div>
 </div>
 
-<div id="outline-container-orgb23a7cc" class="outline-2">
-<h2 id="orgb23a7cc"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-org73f8ce8" class="outline-2">
+<h2 id="org73f8ce8"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 对于那些有兴趣调试HTTP请求延迟和编写工具来进行出站流量的网络调试的人来说， <i>HTTP tracing</i> 是一个有价值的补充。
@@ -536,7 +536,7 @@ net/http包中的 <i>Transport</i> 支持跟踪 HTTP/1 和 HTTP/2 的 request。
 </div>
 </div>
 
-Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -808,7 +808,7 @@ Last Updated 2017-05-24 Wed 00:02.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgee2e95c"><span class="nav-text">1 HTTP事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org52492b8"><span class="nav-text">2 跟踪事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org958d7fc"><span class="nav-text">3 跟踪http.Client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb23a7cc"><span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf2feb33"><span class="nav-text">1 HTTP事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb1783ff"><span class="nav-text">2 跟踪事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0e1d0f9"><span class="nav-text">3 跟踪http.Client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org73f8ce8"><span class="nav-text">4 总结</span></a></li></ol></div>
             
 
           </div>

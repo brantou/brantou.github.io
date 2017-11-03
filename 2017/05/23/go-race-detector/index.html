@@ -455,8 +455,8 @@ Go 1.1引入竞态探测器，一个用于在Go代码中查找 <i>Race condition
 它现在已经成为持续建设过程的一部分，在这些过程中，它们会随着时间的推移而捕捉到产生的 <i>Race conditions</i> 。
 </p>
 
-<div id="outline-container-org721db6d" class="outline-2">
-<h2 id="org721db6d"><span class="section-number-2">1</span> 工作原理</h2>
+<div id="outline-container-orgeb69458" class="outline-2">
+<h2 id="orgeb69458"><span class="section-number-2">1</span> 工作原理</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 竞态探测器集成在go工具链中。
@@ -474,23 +474,24 @@ Go 1.1引入竞态探测器，一个用于在Go代码中查找 <i>Race condition
 </div>
 </div>
 
-<div id="outline-container-org99bbb86" class="outline-2">
-<h2 id="org99bbb86"><span class="section-number-2">2</span> 使用</h2>
+<div id="outline-container-orgb6dde19" class="outline-2">
+<h2 id="orgb6dde19"><span class="section-number-2">2</span> 使用</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 竞态探测器与Go工具链完全集成。 要启用竞态检测器的情况下,构建代码，只需将 <i>-race</i> 标志添加到命令行：
 </p>
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -race mypkg    // <span class="built_in">test</span> the package</span><br><span class="line">go run -race mysrc.go  // compile and run the program</span><br><span class="line">go build -race mycmd   // build the <span class="built_in">command</span></span><br><span class="line">go install -race mypkg // install the package</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">test</span> -race mypkg    // <span class="built_in">test</span> the package</span><br><span class="line">go run -race mysrc.go  // compile and run the program</span><br><span class="line">go build -race mycmd   // build the <span class="built_in">command</span></span><br><span class="line">go install -race mypkg // install the package</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc5e4378" class="outline-2">
-<h2 id="orgc5e4378"><span class="section-number-2">3</span> 示例</h2>
+<div id="outline-container-org0f6b715" class="outline-2">
+<h2 id="org0f6b715"><span class="section-number-2">3</span> 示例</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgeabab20" class="outline-3">
-<h3 id="orgeabab20"><span class="section-number-3">3.1</span> Timer.Reset</h3>
+</div>
+<div id="outline-container-org882f069" class="outline-3">
+<h3 id="org882f069"><span class="section-number-3">3.1</span> Timer.Reset</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 当前例子是竞态探测器发现的实际bug的简化版本。
@@ -498,7 +499,7 @@ Go 1.1引入竞态探测器，一个用于在Go代码中查找 <i>Race condition
 使用 <code>time.AfterFunc</code> 为第一条消息创建一个 <code>Timer</code> ，然后使用 <code>Reset</code> 方法调度下一条消息，每次都复用原有 <code>Timer</code> 。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  })</span><br><span class="line">  time.Sleep(<span class="number">5</span> * time.Second)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  })</span><br><span class="line">  time.Sleep(<span class="number">5</span> * time.Second)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -550,7 +551,7 @@ exit status 66
 修复这个 <i>race condition</i> 问题，可通过读写发生在一个 <code>goroutine</code> 中：
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &amp;lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &amp;lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &amp;lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">  start := time.Now()</span><br><span class="line">  reset := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">var</span> t *time.Timer</span><br><span class="line">  t = time.AfterFunc(randomDuration(), <span class="keyword">func</span>() {</span><br><span class="line">    fmt.Println(time.Now().Sub(start))</span><br><span class="line">    reset &lt;- <span class="constant">true</span></span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">for</span> time.Since(start) &lt; <span class="number">5</span>*time.Second {</span><br><span class="line">    &lt;-reset</span><br><span class="line">    t.Reset(randomDuration())</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> randomDuration() time.Duration {</span><br><span class="line">  <span class="keyword">return</span> time.Duration(rand.Int63n(<span class="number">1e9</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -563,8 +564,8 @@ exit status 66
 </div>
 </div>
 
-<div id="outline-container-org01dc808" class="outline-3">
-<h3 id="org01dc808"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
+<div id="outline-container-org6d541c8" class="outline-3">
+<h3 id="org6d541c8"><span class="section-number-3">3.2</span> ioutil.Discard</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 ioutil包的 <i>Discard</i> 实现了接口 <i>io.Writer</i> , 但是忽略了所有写给它的数据。 可认为如 <i>dev/null 一般：发送你需要读取而不需要存储的数据的一个地方。
@@ -586,14 +587,14 @@ ioutil包的 <i>Discard</i> 实现了接口 <i>io.Writer</i> , 但是忽略了�
 Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类型具有内部缓冲区，该缓冲区在其所有用户之间共享。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> blackHole [<span class="number">4096</span>]<span class="typename">byte</span> <span class="comment">// shared buffer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (devNull) ReadFrom(r io.Reader) (n <span class="typename">int64</span>, err error) {</span><br><span class="line">    readSize := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        readSize, err = r.Read(blackHole[:])</span><br><span class="line">        n += <span class="typename">int64</span>(readSize)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">if</span> err == io.EOF {</span><br><span class="line">                <span class="keyword">return</span> n, <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> blackHole [<span class="number">4096</span>]<span class="typename">byte</span> <span class="comment">// shared buffer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (devNull) ReadFrom(r io.Reader) (n <span class="typename">int64</span>, err error) {</span><br><span class="line">    readSize := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        readSize, err = r.Read(blackHole[:])</span><br><span class="line">        n += <span class="typename">int64</span>(readSize)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="constant">nil</span> {</span><br><span class="line">            <span class="keyword">if</span> err == io.EOF {</span><br><span class="line">                <span class="keyword">return</span> n, <span class="constant">nil</span></span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
 这次修复依旧没能解决问题，因为用户自定义的 /Reader/，可能在读的过程中，执行写操作，这个时候共享的缓冲区就造成数据污染。
 </p>
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  &amp;#36825;&amp;#37324;&amp;#30340;p&amp;#23601;&amp;#26159;&amp;#20195;&amp;#34920;&amp;#30340;&amp;#23601;&amp;#26159;balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> trackDigestReader <span class="keyword">struct</span> {</span><br><span class="line">  r io.Reader</span><br><span class="line">  h hash.Hash</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (t trackDigestReader) Read(p []<span class="typename">byte</span>) (n <span class="typename">int</span>, err error) {</span><br><span class="line">  n, err = t.r.Read(p) <span class="comment">//  这里的p就是代表的就是balckHode</span></span><br><span class="line">  t.h.Write(p[:n])</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">tdr := trackDigestReader{r: file, h: sha1.New()}</span><br><span class="line">io.Copy(ioutil.Discard, tdr)</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
@@ -603,8 +604,8 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 </div>
 </div>
 
-<div id="outline-container-org5d2a1eb" class="outline-2">
-<h2 id="org5d2a1eb"><span class="section-number-2">4</span> 总结</h2>
+<div id="outline-container-org43ecbf0" class="outline-2">
+<h2 id="org43ecbf0"><span class="section-number-2">4</span> 总结</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 竞态探测器是检查并发程序正确性的强大工具。 它不会呈现虚假问题，所以请认真地对待。
@@ -616,7 +617,7 @@ Go团队向 <i>Discard</i> 的底层类型添加了一个ReadFrom方法，该类
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.0.6)
+Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -890,7 +891,7 @@ Last Updated 2017-05-23 Tue 22:17.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org721db6d"><span class="nav-text">1 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org99bbb86"><span class="nav-text">2 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc5e4378"><span class="nav-text">3 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgeabab20"><span class="nav-text">3.1 Timer.Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org01dc808"><span class="nav-text">3.2 ioutil.Discard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5d2a1eb"><span class="nav-text">4 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeb69458"><span class="nav-text">1 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb6dde19"><span class="nav-text">2 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0f6b715"><span class="nav-text">3 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org882f069"><span class="nav-text">3.1 Timer.Reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6d541c8"><span class="nav-text">3.2 ioutil.Discard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org43ecbf0"><span class="nav-text">4 总结</span></a></li></ol></div>
             
 
           </div>

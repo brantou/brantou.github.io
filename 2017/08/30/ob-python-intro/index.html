@@ -481,8 +481,8 @@ one spoken language to another.  <br>
 <code>Org-mode</code> 中的 <code>Python</code> 源代码块可用于定义函数、过滤器和数据分析、创建图表以及生成可重现的研究论文。
 </p>
 
-<div id="outline-container-org10d35fa" class="outline-2">
-<h2 id="org10d35fa"><a id="ID-dd1c7aab-e7a8-4c27-a12d-46fbe3f98cdb"></a><span class="section-number-2">1</span> 配置</h2>
+<div id="outline-container-org4447609" class="outline-2">
+<h2 id="org4447609"><a id="ID-dd1c7aab-e7a8-4c27-a12d-46fbe3f98cdb"></a><span class="section-number-2">1</span> 配置</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这里假设 <code>Python</code>  的开发环境已配置完毕，若是还没配置，请自行google。
@@ -494,21 +494,21 @@ one spoken language to another.  <br>
 或者将代码添加到 <code>init</code> 文件中, 启用python的代码如下所示:
 </p>
 <div class="org-src-container">
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-babel-do-load-languages</span></span><br><span class="line"> <span class="quoted">'org-babel-load-languages</span></span><br><span class="line"> <span class="quoted">'((python . <span class="literal">t</span>))</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-babel-do-load-languages</span></span><br><span class="line"> <span class="quoted">'org-babel-load-languages</span></span><br><span class="line"> <span class="quoted">'((python . <span class="literal">t</span>))</span>)</span></span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7335ea0" class="outline-2">
-<h2 id="org7335ea0"><a id="ID-8b5e6e60-dddf-4813-8bfe-2ba85444f3ee"></a><span class="section-number-2">2</span> Org-mode对于Python源码块的支持</h2>
+<div id="outline-container-orgf011755" class="outline-2">
+<h2 id="orgf011755"><a id="ID-8b5e6e60-dddf-4813-8bfe-2ba85444f3ee"></a><span class="section-number-2">2</span> Org-mode对于Python源码块的支持</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc5f597e" class="outline-3">
-<h3 id="orgc5f597e"><a id="ID-aaa9eaf4-7c30-48e2-a737-45fe5c77b7c5"></a><span class="section-number-3">2.1</span> 头参数</h3>
+<div id="outline-container-orga4603d2" class="outline-3">
+<h3 id="orga4603d2"><a id="ID-aaa9eaf4-7c30-48e2-a737-45fe5c77b7c5"></a><span class="section-number-3">2.1</span> 头参数</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org5f61d31" class="outline-4">
-<h4 id="org5f61d31"><a id="ID-d1554529-76b0-41d1-b0eb-db13448dee88"></a><span class="section-number-4">2.1.1</span> 语言特定的头参数</h4>
+<div id="outline-container-org6f426f2" class="outline-4">
+<h4 id="org6f426f2"><a id="ID-d1554529-76b0-41d1-b0eb-db13448dee88"></a><span class="section-number-4">2.1.1</span> 语言特定的头参数</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>:results {output, value}: 默认 <code>value</code> 模式, 即 <i>functional mode</i>, 像函数一样执行，然后返回计算结果。</li>
@@ -520,8 +520,8 @@ one spoken language to another.  <br>
 </div>
 </div>
 
-<div id="outline-container-orgfb59c48" class="outline-4">
-<h4 id="orgfb59c48"><a id="ID-ad484d0a-a8ae-4d72-800e-9a5a41ae3283"></a><span class="section-number-4">2.1.2</span> 公共头参数</h4>
+<div id="outline-container-orgb133abd" class="outline-4">
+<h4 id="orgb133abd"><a id="ID-ad484d0a-a8ae-4d72-800e-9a5a41ae3283"></a><span class="section-number-4">2.1.2</span> 公共头参数</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>:seesion [name]: 默认非 <code>session</code> 模式。</li>
@@ -532,8 +532,8 @@ one spoken language to another.  <br>
 </div>
 </div>
 
-<div id="outline-container-org4a58f3e" class="outline-3">
-<h3 id="org4a58f3e"><a id="ID-1b1aa351-fb05-4fbe-bdc5-f55b93d38b79"></a><span class="section-number-3">2.2</span> Sessions</h3>
+<div id="outline-container-org709ba44" class="outline-3">
+<h3 id="org709ba44"><a id="ID-1b1aa351-fb05-4fbe-bdc5-f55b93d38b79"></a><span class="section-number-3">2.2</span> Sessions</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 python完全支持 <code>session</code> 模式，包括命名 <code>session</code> 。
@@ -557,8 +557,8 @@ python中的 <code>session</code> 模式与 <code>non-session</code> 模式略�
 </p>
 </div>
 
-<div id="outline-container-org9a79f23" class="outline-4">
-<h4 id="org9a79f23"><a id="ID-7e6dfa8c-70a2-402a-ae11-355ebd5b0c31"></a><span class="section-number-4">2.2.1</span> Session mode</h4>
+<div id="outline-container-org03da991" class="outline-4">
+<h4 id="org03da991"><a id="ID-7e6dfa8c-70a2-402a-ae11-355ebd5b0c31"></a><span class="section-number-4">2.2.1</span> Session mode</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <pre class="example">
 # blank lines not OK in indented blocks, and don't use return()
@@ -566,7 +566,7 @@ python中的 <code>session</code> 模式与 <code>non-session</code> 模式略�
 # value is value of _ at end.
 #+begin_src python :session
 def foo(x):
-  if x>0:
+  if x&gt;0:
     return x+1
   else:
     return x-1
@@ -580,15 +580,15 @@ foo(1)
 </div>
 </div>
 
-<div id="outline-container-orga5b4a3c" class="outline-4">
-<h4 id="orga5b4a3c"><a id="ID-0259c9cf-ebd7-431d-bd21-02f11ac76ca3"></a><span class="section-number-4">2.2.2</span> Non-session mode</h4>
+<div id="outline-container-org8d8d698" class="outline-4">
+<h4 id="org8d8d698"><a id="ID-0259c9cf-ebd7-431d-bd21-02f11ac76ca3"></a><span class="section-number-4">2.2.2</span> Non-session mode</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <pre class="example">
 # blank lines OK in indented blocks, and use return()
 # Entire source block will get indented and used as the body of main()
 #+begin_src python
 def foo(x):
-  if x>0:
+  if x&gt;0:
     return x+1
 
   else:
@@ -625,8 +625,8 @@ plt.savefig('images/myfig.pdf')
 </div>
 </div>
 
-<div id="outline-container-org0489f49" class="outline-3">
-<h3 id="org0489f49"><a id="ID-499cadec-6fdf-4f0f-91e0-586ecb78bb70"></a><span class="section-number-3">2.3</span> 返回类型</h3>
+<div id="outline-container-org9bdcd83" class="outline-3">
+<h3 id="org9bdcd83"><a id="ID-499cadec-6fdf-4f0f-91e0-586ecb78bb70"></a><span class="section-number-3">2.3</span> 返回类型</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>value：=value= 结果是代码块中求值的最后一个表达式的值。 <code>session</code> 模式下使用的python解释器特殊变量“_” 来引用最后一个表达式的值。</li>
@@ -635,8 +635,8 @@ plt.savefig('images/myfig.pdf')
 </div>
 </div>
 </div>
-<div id="outline-container-org5b28c4a" class="outline-2">
-<h2 id="org5b28c4a"><a id="ID-98d57d43-f1ad-40fe-bae1-9f248c41068e"></a><span class="section-number-2">3</span> 使用示例</h2>
+<div id="outline-container-orgfe6d677" class="outline-2">
+<h2 id="orgfe6d677"><a id="ID-98d57d43-f1ad-40fe-bae1-9f248c41068e"></a><span class="section-number-2">3</span> 使用示例</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><p>
@@ -685,7 +685,7 @@ Hello World!
 
 #+NAME: calc-square
 #+BEGIN_SRC python :var num=5 :noweb strip-export :results output
-  <<square>>
+  &lt;&lt;square&gt;&gt;
   print(square(num))
 #+END_SRC
 
@@ -697,7 +697,7 @@ Hello World!
 #+RESULTS:
 : 49
 
-</square></pre></li>
+</pre></li>
 
 <li><p>
 内联调用(Inline calling):
@@ -794,16 +794,16 @@ return(data[val])
 </div>
 </div>
 
-<div id="outline-container-org184ca3d" class="outline-2">
-<h2 id="org184ca3d"><a id="ID-411b11c2-85b5-40ca-894b-c915ddb9325e"></a><span class="section-number-2">4</span> 前方预警</h2>
+<div id="outline-container-org2bdd8ef" class="outline-2">
+<h2 id="org2bdd8ef"><a id="ID-411b11c2-85b5-40ca-894b-c915ddb9325e"></a><span class="section-number-2">4</span> 前方预警</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 当把 <code>utf-8</code> 的字符串传给 <code>Python</code> , 需要格外小心。
 </p>
 </div>
 
-<div id="outline-container-orgbbe27d9" class="outline-3">
-<h3 id="orgbbe27d9"><a id="ID-005389e6-3af8-4987-a226-7d857f9fe35f"></a><span class="section-number-3">4.1</span> 传递utf-8字符串到Python</h3>
+<div id="outline-container-orga3916bb" class="outline-3">
+<h3 id="orga3916bb"><a id="ID-005389e6-3af8-4987-a226-7d857f9fe35f"></a><span class="section-number-3">4.1</span> 传递utf-8字符串到Python</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 #+NAME: unicode_str
@@ -831,15 +831,15 @@ return(data[val])
 </p>
 <blockquote>
 <p>
-File &ldquo;<stdin>&rdquo;, line 3
-SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file <stdin> on line 3, but no encoding declared; see <a href="http://python.org/dev/peps/pep-0263/" rel="external nofollow noopener noreferrer" target="_blank">http://python.org/dev/peps/pep-0263/</a> for details
-</stdin></stdin></p>
+File &ldquo;&lt;stdin&gt;&rdquo;, line 3
+SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file &lt;stdin&gt; on line 3, but no encoding declared; see <a href="http://python.org/dev/peps/pep-0263/" rel="external nofollow noopener noreferrer" target="_blank">http://python.org/dev/peps/pep-0263/</a> for details
+</p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-org83cd442" class="outline-3">
-<h3 id="org83cd442"><a id="ID-9e5a70ba-c852-4a19-8200-d20c395ab2af"></a><span class="section-number-3">4.2</span> 传递utf-8字符串到Python的变通方法</h3>
+<div id="outline-container-org787b457" class="outline-3">
+<h3 id="org787b457"><a id="ID-9e5a70ba-c852-4a19-8200-d20c395ab2af"></a><span class="section-number-3">4.2</span> 传递utf-8字符串到Python的变通方法</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 一个变通方法是使用 <code>:preamble</code> ,如下所示:
@@ -860,8 +860,8 @@ SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file <stdin> on line 3, b
 </div>
 </div>
 </div>
-<div id="outline-container-org1933fa4" class="outline-2">
-<h2 id="org1933fa4"><a id="ID-86504328-89bc-461b-805b-ab7d0f252ad6"></a><span class="section-number-2">5</span> 参考文档</h2>
+<div id="outline-container-orgaaa780c" class="outline-2">
+<h2 id="orgaaa780c"><a id="ID-86504328-89bc-461b-805b-ab7d0f252ad6"></a><span class="section-number-2">5</span> 参考文档</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html" rel="external nofollow noopener noreferrer" target="_blank">Python Source Code Blocks in Org Mode</a></li>
@@ -1153,7 +1153,7 @@ Last Updated 2017-08-31 Thu 22:25.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org10d35fa"><span class="nav-text">1 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7335ea0"><span class="nav-text">2 Org-mode对于Python源码块的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgc5f597e"><span class="nav-text">2.1 头参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org5f61d31"><span class="nav-text">2.1.1 语言特定的头参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgfb59c48"><span class="nav-text">2.1.2 公共头参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org4a58f3e"><span class="nav-text">2.2 Sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org9a79f23"><span class="nav-text">2.2.1 Session mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orga5b4a3c"><span class="nav-text">2.2.2 Non-session mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org0489f49"><span class="nav-text">2.3 返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5b28c4a"><span class="nav-text">3 使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org184ca3d"><span class="nav-text">4 前方预警</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orgbbe27d9"><span class="nav-text">4.1 传递utf-8字符串到Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org83cd442"><span class="nav-text">4.2 传递utf-8字符串到Python的变通方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1933fa4"><span class="nav-text">5 参考文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org4447609"><span class="nav-text">1 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf011755"><span class="nav-text">2 Org-mode对于Python源码块的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orga4603d2"><span class="nav-text">2.1 头参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org6f426f2"><span class="nav-text">2.1.1 语言特定的头参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#orgb133abd"><span class="nav-text">2.1.2 公共头参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org709ba44"><span class="nav-text">2.2 Sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#org03da991"><span class="nav-text">2.2.1 Session mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#org8d8d698"><span class="nav-text">2.2.2 Non-session mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9bdcd83"><span class="nav-text">2.3 返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfe6d677"><span class="nav-text">3 使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2bdd8ef"><span class="nav-text">4 前方预警</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orga3916bb"><span class="nav-text">4.1 传递utf-8字符串到Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org787b457"><span class="nav-text">4.2 传递utf-8字符串到Python的变通方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgaaa780c"><span class="nav-text">5 参考文档</span></a></li></ol></div>
             
 
           </div>
