@@ -124,7 +124,7 @@
 <meta property="og:description" content="1 数据格式化(:wrap)     1.1 json格式化   curl http://httpbin.org/get    1234567891011{  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
-<meta property="og:updated_time" content="2017-11-05T10:14:56.963Z">
+<meta property="og:updated_time" content="2017-11-05T15:07:47.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="org-babel有趣的事">
 <meta name="twitter:description" content="1 数据格式化(:wrap)     1.1 json格式化   curl http://httpbin.org/get    1234567891011{  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;">
@@ -461,13 +461,13 @@
         
 
 
-<div id="outline-container-orgdfe9d30" class="outline-2">
-<h2 id="orgdfe9d30"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-orgd7b8119" class="outline-2">
+<h2 id="orgd7b8119"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-orge7653c3" class="outline-3">
-<h3 id="orge7653c3"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-org04d36ef" class="outline-3">
+<h3 id="org04d36ef"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -479,8 +479,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1644e61" class="outline-3">
-<h3 id="org1644e61"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-orgf9376a7" class="outline-3">
+<h3 id="orgf9376a7"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
@@ -495,8 +495,8 @@ Fri Nov  3 23:05:34 CST 2017
 </div>
 </div>
 
-<div id="outline-container-org4c8abe8" class="outline-2">
-<h2 id="org4c8abe8"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-org52d2429" class="outline-2">
+<h2 id="org52d2429"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -534,8 +534,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org91b51ab" class="outline-2">
-<h2 id="org91b51ab"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-orgbf40de4" class="outline-2">
+<h2 id="orgbf40de4"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -549,8 +549,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org6bbe66c" class="outline-2">
-<h2 id="org6bbe66c"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
+<div id="outline-container-org66d69a8" class="outline-2">
+<h2 id="org66d69a8"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 #+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes
@@ -589,8 +589,8 @@ tangle出的代码如下：
 </div>
 </div>
 </div>
-<div id="outline-container-org55e5fe4" class="outline-2">
-<h2 id="org55e5fe4"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
+<div id="outline-container-org805669d" class="outline-2">
+<h2 id="org805669d"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 在做相关操作时，可能需要预先初始化，同时又不想这些初始化过程出现在代码流程中，
@@ -619,8 +619,8 @@ nope
 </div>
 </div>
 
-<div id="outline-container-orgbfd3e57" class="outline-2">
-<h2 id="orgbfd3e57"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
+<div id="outline-container-org7fcf01e" class="outline-2">
+<h2 id="org7fcf01e"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 可在命令行中调用代码块实现的函数，如下面所示：
@@ -631,13 +631,20 @@ nope
 </div>
 </div>
 
-<div id="outline-container-orge871e81" class="outline-2">
-<h2 id="orge871e81"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> <span class="todo TODO">TODO</span> Database(sql)</h2>
+<div id="outline-container-org050b798" class="outline-2">
+<h2 id="org050b798"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> 连接mysql</h2>
 <div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">tables</span>;</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> host, <span class="keyword">user</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="number">1</span>;</span></span><br></pre></td></tr></table></figure>
+</div>
 </div>
 </div>
 
-Last Updated 2017-11-05 Sun 18:14.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-05 Sun 23:07.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -887,6 +894,12 @@ Last Updated 2017-11-05 Sun 18:14.<br>Render by <a href="https://github.com/Code
                       <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/u/105d1cd5010c" target="_blank" title="Jianshu" rel="external nofollow noopener noreferrer">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>Jianshu</a>
+                </span>
+              
             
           </div>
 
@@ -911,7 +924,7 @@ Last Updated 2017-11-05 Sun 18:14.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdfe9d30"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orge7653c3"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org1644e61"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4c8abe8"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org91b51ab"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6bbe66c"><span class="nav-text">4 noweb的引用(:noweb-ref)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org55e5fe4"><span class="nav-text">5 预处理/后置操作(:prologue/:epilogue)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbfd3e57"><span class="nav-text">6 批量执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge871e81"><span class="nav-text">7 TODO Database(sql)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd7b8119"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org04d36ef"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orgf9376a7"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org52d2429"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgbf40de4"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org66d69a8"><span class="nav-text">4 noweb的引用(:noweb-ref)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org805669d"><span class="nav-text">5 预处理/后置操作(:prologue/:epilogue)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7fcf01e"><span class="nav-text">6 批量执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org050b798"><span class="nav-text">7 连接mysql</span></a></li></ol></div>
             
 
           </div>
