@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-11-05T15:07:47.277Z</updated>
+  <updated>2017-11-07T02:54:24.550Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gomodifytags</title>
+    <link href="https://brantou.github.io/2017/11/07/go-modify-tags/"/>
+    <id>https://brantou.github.io/2017/11/07/go-modify-tags/</id>
+    <published>2017-11-06T16:00:00.000Z</published>
+    <updated>2017-11-07T02:54:24.550Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-orgfe04ae0&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgfe04ae0&quot;&gt;&lt;a id=&quot;ID-27719462-7684-42eb-a615-d34c2696f4b2&quot;&gt;&lt;/a&gt;&lt;span c
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="tool" scheme="https://brantou.github.io/tags/tool/"/>
+    
+  </entry>
   
   <entry>
     <title>org-babel有趣的事</title>
@@ -715,151 +744,6 @@ ITEM for the headline title
       <category term="org-table" scheme="https://brantou.github.io/tags/org-table/"/>
     
       <category term="emacs-lisp" scheme="https://brantou.github.io/tags/emacs-lisp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Org-mode的电子表格的简明教程</title>
-    <link href="https://brantou.github.io/2017/04/06/org-spreadsheet-intro/"/>
-    <id>https://brantou.github.io/2017/04/06/org-spreadsheet-intro/</id>
-    <published>2017-04-05T16:00:00.000Z</published>
-    <updated>2017-06-01T05:40:06.363Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;
-原文&lt;a href=&quot;http://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org as a spreadsheet system: a short introduction&lt;/a&gt;, 由 &lt;b&gt;Bastien&lt;/b&gt;  编辑，维护。本文只做学习之用。
-&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div id=&quot;outline-container-org1643432&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org1643432&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-org1643432&quot;&gt;
-&lt;p&gt;
-这篇简短的教程将介绍使用 &lt;code&gt;Org&lt;/code&gt; 作为电子表格系统需要的基础知识。
-&lt;/p&gt;
-
-&lt;p&gt;
-从一个非常简单的表开始:
-&lt;/p&gt;
-&lt;table border=&quot;2&quot; cellspacing=&quot;0&quot; cellpadding=&quot;6&quot; rules=&quot;groups&quot; frame=&quot;hsides&quot;&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class=&quot;org-left&quot;&gt;
-
-&lt;col class=&quot;org-right&quot;&gt;
-
-&lt;col class=&quot;org-right&quot;&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-left&quot;&gt;student&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;maths&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;physics&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;bertrand&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;13&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;09&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;henri&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;15&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;14&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;arnold&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;17&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;13&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;
-上面的表格在 &lt;code&gt;Org&lt;/code&gt; 文件中的样式:
-&lt;/p&gt;
-&lt;pre class=&quot;example&quot;&gt;
-| student  | maths | physics |
-|----------+-------+---------|
-| bertrand |    13 |      09 |
-| henri    |    15 |      14 |
-| arnold   |    17 |      13 |
-
-&lt;/pre&gt;
-
-&lt;p&gt;
-本教程的目的是阐述如何从上面简单的表生成出如下所示的包含平均每个学生和每个学科的平均分的表：
-&lt;/p&gt;
-&lt;table border=&quot;2&quot; cellspacing=&quot;0&quot; cellpadding=&quot;6&quot; rules=&quot;groups&quot; frame=&quot;hsides&quot;&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class=&quot;org-left&quot;&gt;
-
-&lt;col class=&quot;org-right&quot;&gt;
-
-&lt;col class=&quot;org-right&quot;&gt;
-
-&lt;col class=&quot;org-right&quot;&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-left&quot;&gt;student&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;maths&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;physics&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;org-right&quot;&gt;mean&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;bertrand&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;13&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;09&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;henri&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;15&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;14&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;14.5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;arnold&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;17&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;13&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;org-left&quot;&gt;means&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;15&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;12&lt;/td&gt;
-&lt;td class=&quot;org-right&quot;&gt;13.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-    
-    </summary>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
-    
-    
-      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
-    
-      <category term="table" scheme="https://brantou.github.io/tags/table/"/>
-    
-      <category term="spreadsheet" scheme="https://brantou.github.io/tags/spreadsheet/"/>
     
   </entry>
   
