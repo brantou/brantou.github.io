@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="1 StructTag   1234567891011package mainimport (  &quot;fmt&quot;  &quot;reflect&quot;)func main() {  tag := reflect.StructTag(`species:&quot;gopher&quot; color:&quot;blue&quot;`)  fmt.Println(tag.Get(&quot;color&quot;), tag.Get(&quot;species&quot;))}    bl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-07T02:54:24.550Z">
+<meta property="og:updated_time" content="2017-11-07T05:37:52.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gomodifytags">
 <meta name="twitter:description" content="1 StructTag   1234567891011package mainimport (  &quot;fmt&quot;  &quot;reflect&quot;)func main() {  tag := reflect.StructTag(`species:&quot;gopher&quot; color:&quot;blue&quot;`)  fmt.Println(tag.Get(&quot;color&quot;), tag.Get(&quot;species&quot;))}    bl">
@@ -459,8 +459,8 @@
         
 
 
-<div id="outline-container-orgfe04ae0" class="outline-2">
-<h2 id="orgfe04ae0"><a id="ID-27719462-7684-42eb-a615-d34c2696f4b2"></a><span class="section-number-2">1</span> StructTag</h2>
+<div id="outline-container-orgf8b158e" class="outline-2">
+<h2 id="orgf8b158e"><a id="ID-27719462-7684-42eb-a615-d34c2696f4b2"></a><span class="section-number-2">1</span> StructTag</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  tag := reflect.StructTag(<span class="string">`species:"gopher" color:"blue"`</span>)</span><br><span class="line">  fmt.Println(tag.Get(<span class="string">"color"</span>), tag.Get(<span class="string">"species"</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -484,8 +484,8 @@ json:"foo_bar" xml:"foo" hcl:"foo,squash"
 </div>
 </div>
 
-<div id="outline-container-org83efe90" class="outline-2">
-<h2 id="org83efe90"><a id="ID-5680af25-d743-4316-a633-2328fc17afde"></a><span class="section-number-2">2</span> AST(抽象语法树)</h2>
+<div id="outline-container-org4582145" class="outline-2">
+<h2 id="org4582145"><a id="ID-5680af25-d743-4316-a633-2328fc17afde"></a><span class="section-number-2">2</span> AST(抽象语法树)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 遍历语法树，展示结构体字段列表：
@@ -502,16 +502,16 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-<div id="outline-container-org850e1f8" class="outline-2">
-<h2 id="org850e1f8"><a id="ID-4e24c993-d2b1-49d0-8e6c-33156a21989b"></a><span class="section-number-2">3</span> gomodifytags</h2>
+<div id="outline-container-org2a26a0e" class="outline-2">
+<h2 id="org2a26a0e"><a id="ID-4e24c993-d2b1-49d0-8e6c-33156a21989b"></a><span class="section-number-2">3</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span> {</span><br><span class="line">  Name        <span class="typename">string</span></span><br><span class="line">  Port        <span class="typename">int</span></span><br><span class="line">  EnableLogs  <span class="typename">bool</span></span><br><span class="line">  BaseDomain  <span class="typename">string</span></span><br><span class="line">  Credentials <span class="keyword">struct</span> {</span><br><span class="line">    Username <span class="typename">string</span></span><br><span class="line">    Password <span class="typename">string</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 
-<div id="outline-container-org4e5bd9e" class="outline-3">
-<h3 id="org4e5bd9e"><a id="ID-55031635-8b27-40d7-a026-8e7edd885281"></a><span class="section-number-3">3.1</span> Struct based modification</h3>
+<div id="outline-container-orga38b74f" class="outline-3">
+<h3 id="orga38b74f"><a id="ID-55031635-8b27-40d7-a026-8e7edd885281"></a><span class="section-number-3">3.1</span> Struct based modification</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">gomodifytags -file demo.go -struct Server -add-tags json -w</span><br></pre></td></tr></table></figure>
@@ -596,8 +596,8 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-<div id="outline-container-org20dc650" class="outline-3">
-<h3 id="org20dc650"><a id="ID-fab400c7-942e-418d-b15f-89e9999cec8a"></a><span class="section-number-3">3.2</span> Line based modification</h3>
+<div id="outline-container-orged69275" class="outline-3">
+<h3 id="orged69275"><a id="ID-fab400c7-942e-418d-b15f-89e9999cec8a"></a><span class="section-number-3">3.2</span> Line based modification</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">gomodifytags -file demo.go -line 8,11 -clear-tags json</span><br></pre></td></tr></table></figure>
@@ -632,9 +632,29 @@ Tag:   `json:"foo"`
 </div>
 </div>
 </div>
+
+<div id="outline-container-org9bad716" class="outline-3">
+<h3 id="org9bad716"><a id="ID-2cd29cbf-09d0-4d03-911d-d50d1c87f49e"></a><span class="section-number-3">3.3</span> Shortcoming</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> {</span><br><span class="line">  First_name <span class="typename">string</span></span><br><span class="line">  Last_name  <span class="typename">string</span></span><br><span class="line">  addr       <span class="typename">string</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-11-07 Tue 10:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">gomodifytags -file user.go -struct User -add-tags json</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+期望得到的结果是： <code>first_name</code> ,但是却得到了 <code>first___name</code>, 同时 <code>addr</code> 字段不导出也生成了 <code>tag</code>, 如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> {</span><br><span class="line">  First_name <span class="typename">string</span> <span class="string">`json:"first___name"`</span></span><br><span class="line">  Last_name  <span class="typename">string</span> <span class="string">`json:"last___name"`</span></span><br><span class="line">  addr       <span class="typename">string</span> <span class="string">`json:"addr"`</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+Last Updated 2017-11-07 Tue 13:37.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -908,7 +928,7 @@ Last Updated 2017-11-07 Tue 10:54.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfe04ae0"><span class="nav-text">1 StructTag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org83efe90"><span class="nav-text">2 AST(抽象语法树)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org850e1f8"><span class="nav-text">3 gomodifytags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org4e5bd9e"><span class="nav-text">3.1 Struct based modification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org20dc650"><span class="nav-text">3.2 Line based modification</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf8b158e"><span class="nav-text">1 StructTag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4582145"><span class="nav-text">2 AST(抽象语法树)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2a26a0e"><span class="nav-text">3 gomodifytags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orga38b74f"><span class="nav-text">3.1 Struct based modification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orged69275"><span class="nav-text">3.2 Line based modification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org9bad716"><span class="nav-text">3.3 Shortcoming</span></a></li></ol></li></ol></div>
             
 
           </div>
