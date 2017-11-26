@@ -457,8 +457,8 @@
             
 
 
-<div id="outline-container-orge9bf1cb" class="outline-2">
-<h2 id="orge9bf1cb"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
+<div id="outline-container-org41a374c" class="outline-2">
+<h2 id="org41a374c"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/josharian/impl</span><br></pre></td></tr></table></figure>
@@ -467,6 +467,14 @@
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">impl -h</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+Usage of impl:
+  -dir string
+	    package source directory, useful for vendored code
+</p>
+</blockquote>
 
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">impl &#39;f *File&#39; io.ReadWriteCloser</span><br></pre></td></tr></table></figure>
@@ -478,17 +486,17 @@
 </div>
 </div>
 
-<div id="outline-container-org49d88ca" class="outline-2">
-<h2 id="org49d88ca"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
+<div id="outline-container-orgc2b6852" class="outline-2">
+<h2 id="orgc2b6852"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-请参见我之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
+请参见之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5872691" class="outline-2">
-<h2 id="org5872691"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
+<div id="outline-container-org1e7a42a" class="outline-2">
+<h2 id="org1e7a42a"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/lukehoban/go-outline</span><br></pre></td></tr></table></figure>
@@ -497,6 +505,18 @@
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-outline -h</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+Usage of go-outline:
+  -f string
+	    the path to the file to outline
+  -imports-only
+	    parse imports only
+  -src string
+	  source code of the file to outline
+</p>
+</blockquote>
 
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -507,12 +527,16 @@
 </div>
 
 <div class="org-src-container">
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {</span><br><span class="line">        "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">        "<span class="attribute">type</span>": <span class="value"><span class="string">"package"</span></span>,</span><br><span class="line">        "<span class="attribute">start</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">        "<span class="attribute">end</span>": <span class="value"><span class="number">72</span></span>,</span><br><span class="line">        "<span class="attribute">children</span>": <span class="value">[</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"\"fmt\""</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"import"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">22</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">27</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">29</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">72</span></span><br><span class="line">            </span>}</span><br><span class="line">        ]</span><br><span class="line">    </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-outline <span class="operator">-f</span> main.go -imports-only</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
-<div id="outline-container-org1e6e689" class="outline-2">
-<h2 id="org1e6e689"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
+<div id="outline-container-org02d3fb7" class="outline-2">
+<h2 id="org02d3fb7"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/newhook/go-symbols</span><br></pre></td></tr></table></figure>
@@ -522,13 +546,25 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-symbols -h</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+Usage of go-symbols:
+  -tags build tags
+	    a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-symbols <span class="variable">$GOPATH</span>/src/github.com/astaxie/beego beego</span><br></pre></td></tr></table></figure>
 </div>
+
+<div class="org-src-container">
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line"> {</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"BeegoOutput"</span></span>,</span><br><span class="line">  "<span class="attribute">kind</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">  "<span class="attribute">package</span>": <span class="value"><span class="string">"context"</span></span>,</span><br><span class="line">  "<span class="attribute">path</span>": <span class="value"><span class="string">"/home/parallels/.gvm/pkgsets/go1.9/global/src/github.com/astaxie/beego/context/output.go"</span></span>,</span><br><span class="line">  "<span class="attribute">line</span>": <span class="value"><span class="number">35</span></span>,</span><br><span class="line">  "<span class="attribute">character</span>": <span class="value"><span class="number">0</span></span><br><span class="line"> </span>},</span><br><span class="line"> {</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"BeegoInput"</span></span>,</span><br><span class="line">  "<span class="attribute">kind</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">  "<span class="attribute">package</span>": <span class="value"><span class="string">"context"</span></span>,</span><br><span class="line">  "<span class="attribute">path</span>": <span class="value"><span class="string">"/home/parallels/.gvm/pkgsets/go1.9/global/src/github.com/astaxie/beego/context/input.go"</span></span>,</span><br><span class="line">  "<span class="attribute">line</span>": <span class="value"><span class="number">43</span></span>,</span><br><span class="line">  "<span class="attribute">character</span>": <span class="value"><span class="number">0</span></span><br><span class="line"> </span>},</span><br><span class="line"> {</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"NewBeegoRequest"</span></span>,</span><br><span class="line">  "<span class="attribute">kind</span>": <span class="value"><span class="string">"func"</span></span>,</span><br><span class="line">  "<span class="attribute">package</span>": <span class="value"><span class="string">"httplib"</span></span>,</span><br><span class="line">  "<span class="attribute">path</span>": <span class="value"><span class="string">"/home/parallels/.gvm/pkgsets/go1.9/global/src/github.com/astaxie/beego/httplib/httplib.go"</span></span>,</span><br><span class="line">  "<span class="attribute">line</span>": <span class="value"><span class="number">80</span></span>,</span><br><span class="line">  "<span class="attribute">character</span>": <span class="value"><span class="number">0</span></span><br><span class="line"> </span>},</span><br><span class="line"> {</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"BeegoHTTPSettings"</span></span>,</span><br><span class="line">  "<span class="attribute">kind</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">  "<span class="attribute">package</span>": <span class="value"><span class="string">"httplib"</span></span>,</span><br><span class="line">  "<span class="attribute">path</span>": <span class="value"><span class="string">"/home/parallels/.gvm/pkgsets/go1.9/global/src/github.com/astaxie/beego/httplib/httplib.go"</span></span>,</span><br><span class="line">  "<span class="attribute">line</span>": <span class="value"><span class="number">130</span></span>,</span><br><span class="line">  "<span class="attribute">character</span>": <span class="value"><span class="number">0</span></span><br><span class="line"> </span>},</span><br><span class="line"> {</span><br><span class="line">  "<span class="attribute">name</span>": <span class="value"><span class="string">"BeegoHTTPRequest"</span></span>,</span><br><span class="line">  "<span class="attribute">kind</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">  "<span class="attribute">package</span>": <span class="value"><span class="string">"httplib"</span></span>,</span><br><span class="line">  "<span class="attribute">path</span>": <span class="value"><span class="string">"/home/parallels/.gvm/pkgsets/go1.9/global/src/github.com/astaxie/beego/httplib/httplib.go"</span></span>,</span><br><span class="line">  "<span class="attribute">line</span>": <span class="value"><span class="number">146</span></span>,</span><br><span class="line">  "<span class="attribute">character</span>": <span class="value"><span class="number">0</span></span><br><span class="line"> </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 </div>
 </div>
-<div id="outline-container-orgf431d65" class="outline-2">
-<h2 id="orgf431d65"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
+</div>
+<div id="outline-container-org2773ff2" class="outline-2">
+<h2 id="org2773ff2"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 An autocompletion daemon for the Go programming language.
@@ -540,11 +576,44 @@ An autocompletion daemon for the Go programming language.
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gocode -h</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+Usage: gocode [-s] [-f=&lt;format&gt;] [-in=&lt;path&gt;] [-sock=&lt;type&gt;] [-addr=&lt;addr&gt;]
+     &lt;command&gt; [&lt;args&gt;]
+</p>
+
+<p>
+Flags:
+  -addr string
+	    address for tcp socket (default &ldquo;127.0.0.1:37373&rdquo;)
+  -debug
+	    enable server-side debug mode
+  -f string
+	    output format (vim | emacs | nice | csv | csv-with-package | json) (default &ldquo;nice&rdquo;)
+  -in string
+	    use this file instead of stdin input
+  -profile int
+	    port on which to expose profiling information for pprof; 0 to disable profiling
+  -s	run a server instead of a client
+  -sock string
+	    socket type (unix | tcp) (default &ldquo;unix&rdquo;)
+</p>
+
+<p>
+Commands:
+  autocomplete [&lt;path&gt;] &lt;offset&gt;     main autocompletion command
+  close                              close the gocode daemon
+  status                             gocode daemon status report
+  drop-cache                         drop gocode daemon&rsquo;s cache
+  set [&lt;name&gt; [&lt;value&gt;]]             list or set config options
+</p>
+</blockquote>
 </div>
 </div>
 
-<div id="outline-container-org01aa5d2" class="outline-2">
-<h2 id="org01aa5d2"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
+<div id="outline-container-org3aac70b" class="outline-2">
+<h2 id="org3aac70b"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Print where symbols are defined in Go source code.
@@ -556,11 +625,31 @@ Print where symbols are defined in Go source code.
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godef -h</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+usage: godef [flags] [expr]
+  -A	print all type and members information
+  -a	print public type and member information
+  -acme
+	    use current acme window
+  -debug
+	    debug mode
+  -f string
+	    Go source filename
+  -i	read file from stdin
+  -json
+	    output location in JSON format (-t flag is ignored)
+  -o int
+	    file offset of identifier in stdin (default -1)
+  -t	print type information
+</p>
+</blockquote>
 </div>
 </div>
 
-<div id="outline-container-orgb9c76c6" class="outline-2">
-<h2 id="orgb9c76c6"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
+<div id="outline-container-org15ac01c" class="outline-2">
+<h2 id="org15ac01c"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Retrieve documentation for items in Go source code.
@@ -572,11 +661,39 @@ Retrieve documentation for items in Go source code.
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gogetdoc -h</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+Usage of gogetdoc
+  -cpuprofile string
+	    write cpu profile to file
+  -json
+	    enable extended JSON output
+  -linelength int
+	    maximum length of a line in the output (in Unicode code points) (default 80)
+  -modified
+	    read an archive of modified files from standard input
+  -pos string
+	    Filename and byte offset of item to document, e.g. foo.go:#123
+  -tags build tags
+	    a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
+  -u	show unexported fields
+</p>
+
+<p>
+The archive format for the -modified flag consists of the file name, followed
+by a newline, the decimal file size, another newline, and the contents of the file.
+</p>
+
+<p>
+This allows editors to supply gogetdoc with the contents of their unsaved buffers.
+</p>
+</blockquote>
 </div>
 </div>
 
-<div id="outline-container-orga340abe" class="outline-2">
-<h2 id="orga340abe"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
+<div id="outline-container-orga6a262e" class="outline-2">
+<h2 id="orga6a262e"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Golint is a linter for Go source code.
@@ -589,14 +706,35 @@ Golint is a linter for Go source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">golint -h</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+Usage of golint:
+	golint [flags] # runs on package in current directory
+	golint [flags] [packages]
+	golint [flags] [directories] # where a &rsquo;/&#x2026;&rsquo; suffix includes all sub-directories
+	golint [flags] [files] # all must belong to a single package
+Flags:
+  -min_confidence float
+	    minimum confidence of a problem to print it (default 0.8)
+  -set_exit_status
+	  set exit status to 1 if any issues are found
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">golint google.go</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+google.go:19:1: exported function Search should have comment or be unexported
+</p>
+</blockquote>
 </div>
 </div>
 
-<div id="outline-container-orgbe34984" class="outline-2">
-<h2 id="orgbe34984"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
+<div id="outline-container-org25f4420" class="outline-2">
+<h2 id="org25f4420"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Gopkgs is tools that provide list of available Go packages that can be imported.
@@ -611,14 +749,37 @@ This are alternative to <code>go list all</code>, it just faster.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gopkgs -help</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+Usage of gopkgs:
+  -format string
+	    custom output format (default &ldquo;{ {.ImportPath} }&rdquo;)
+  -help
+	  show this message
+</p>
+
+
+<p>
+Use -format to custom the output using template syntax. The struct being passed to template is:
+</p>
+
+<p>
+type Pkg struct {
+    Dir        string <i>/ directory containing package sources
+    ImportPath string /</i> import path of package in dir
+    Name       string // package name
+}
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gopkgs -format <span class="string">"{ {.Name} };{ {.ImportPath} }"</span></span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc5027c2" class="outline-2">
-<h2 id="orgc5027c2"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
+<div id="outline-container-org3fb3b64" class="outline-2">
+<h2 id="org3fb3b64"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v golang.org/x/tools/cmd/gorename</span><br></pre></td></tr></table></figure>
@@ -627,11 +788,171 @@ This are alternative to <code>go list all</code>, it just faster.
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gorename -help</span><br></pre></td></tr></table></figure>
 </div>
+
+<blockquote>
+<p>
+gorename: precise type-safe renaming of identifiers in Go source code.
+</p>
+
+<p>
+Usage:
+</p>
+
+<p>
+gorename (-from &lt;spec&gt; | -offset &lt;file&gt;:#&lt;byte-offset&gt;) -to &lt;name&gt; [-force]
+</p>
+
+<p>
+You must specify the object (named entity) to rename using the -offset
+or -from flag.  Exactly one must be specified.
+</p>
+
+<p>
+Flags:
+</p>
+
+<p>
+-offset    specifies the filename and byte offset of an identifier to rename.
+	   This form is intended for use by text editors.
+</p>
+
+<p>
+-from      specifies the object to rename using a query notation;
+	   This form is intended for interactive use at the command line.
+	   A legal -from query has one of the following forms:
+</p>
+
+<p>
+&ldquo;encoding/json&rdquo;.Decoder.Decode        method of package-level named type
+(*&ldquo;encoding/json&rdquo;.Decoder).Decode     ditto, alternative syntax
+&ldquo;encoding/json&rdquo;.Decoder.buf           field of package-level named struct type
+&ldquo;encoding/json&rdquo;.HTMLEscape            package member (const, func, var, type)
+&ldquo;encoding/json&rdquo;.Decoder.Decode::x     local object x within a method
+&ldquo;encoding/json&rdquo;.HTMLEscape::x         local object x within a function
+&ldquo;encoding/json&rdquo;::x                    object x anywhere within a package
+json.go::x                            object x within file json.go
+</p>
+
+<p>
+Double-quotes must be escaped when writing a shell command.
+Quotes may be omitted for single-segment import paths such as &ldquo;fmt&rdquo;.
+</p>
+
+<p>
+For methods, the parens and &rsquo;*&rsquo; on the receiver type are both
+optional.
+</p>
+
+<p>
+It is an error if one of the ::x queries matches multiple
+objects.
+</p>
+
+<p>
+-to        the new name.
+</p>
+
+<p>
+-force     causes the renaming to proceed even if conflicts were reported.
+	   The resulting program may be ill-formed, or experience a change
+	   in behaviour.
+</p>
+
+<p>
+WARNING: this flag may even cause the renaming tool to crash.
+(In due course this bug will be fixed by moving certain
+analyses into the type-checker.)
+</p>
+
+<p>
+-d         display diffs instead of rewriting files
+</p>
+
+<p>
+-v         enables verbose logging.
+</p>
+
+<p>
+gorename automatically computes the set of packages that might be
+affected.  For a local renaming, this is just the package specified by
+-from or -offset, but for a potentially exported name, gorename scans
+the workspace ($GOROOT and $GOPATH).
+</p>
+
+<p>
+gorename rejects renamings of concrete methods that would change the
+assignability relation between types and interfaces.  If the interface
+change was intentional, initiate the renaming at the interface method.
+</p>
+
+<p>
+gorename rejects any renaming that would create a conflict at the point
+of declaration, or a reference conflict (ambiguity or shadowing), or
+anything else that could cause the resulting program not to compile.
+</p>
+
+
+<p>
+Examples:
+</p>
+
+<p>
+$ gorename -offset file.go:#123 -to foo
+</p>
+
+<p>
+Rename the object whose identifier is at byte offset 123 within file file.go.
+</p>
+
+<p>
+$ gorename -from &rsquo;&ldquo;bytes&rdquo;.Buffer.Len&rsquo; -to Size
+</p>
+
+<p>
+Rename the &ldquo;Len&rdquo; method of the *bytes.Buffer type to &ldquo;Size&rdquo;.
+</p>
+
+<p>
+-&#x2014; TODO -&#x2014;
+</p>
+
+<p>
+Correctness:
+</p>
+<ul class="org-ul">
+<li>handle dot imports correctly</li>
+<li>document limitations (reflection, &rsquo;implements&rsquo; algorithm).</li>
+<li>sketch a proof of exhaustiveness.</li>
+</ul>
+
+<p>
+Features:
+</p>
+<ul class="org-ul">
+<li>support running on packages specified as *.go files on the command line</li>
+<li>support running on programs containing errors (loader.Config.AllowErrors)</li>
+<li>allow users to specify a scope other than &ldquo;global&rdquo; (to avoid being
+stuck by neglected packages in $GOPATH that don&rsquo;t build).</li>
+<li>support renaming the package clause (no object)</li>
+<li>support renaming an import path (no ident or object)
+(requires filesystem + SCM updates).</li>
+<li>detect and reject edits to autogenerated files (cgo, protobufs)
+and optionally $GOROOT packages.</li>
+<li>report all conflicts, or at least all qualitatively distinct ones.
+Sometimes we stop to avoid redundancy, but
+it may give a disproportionate sense of safety in -force mode.</li>
+<li>support renaming all instances of a pattern, e.g.
+all receiver vars of a given type,
+all local variables of a given type,
+all PkgNames for a given package.</li>
+<li>emit JSON output for other editors and tools.</li>
+</ul>
+</blockquote>
 </div>
 </div>
 
-<div id="outline-container-orgda54308" class="outline-2">
-<h2 id="orgda54308"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">11</span> goreturns</h2>
+<div id="outline-container-org4822de6" class="outline-2">
+<h2 id="org4822de6"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">11</span> goreturns</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 A gofmt/goimports-like tool for Go programmers that fills
@@ -649,18 +970,41 @@ in Go return statements with zero values to match the func return types
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">goreturns -h</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+usage: goreturns [flags] [path &#x2026;]
+  -b	remove bare returns
+  -d	display diffs instead of rewriting files
+  -e	report all errors (not just the first 10 on different lines)
+  -i	run goimports on the file prior to processing (default true)
+  -l	list files whose formatting differs from goreturns&rsquo;s
+  -local string
+put imports beginning with this string after 3rd-party packages (see goimports)
+  -p	print non-fatal typechecking errors to stderr
+  -w	write result to (source) file instead of stdout
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">goreturns goreturnsdemo.go</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> goreturnsdemo</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"errors"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> F() (<span class="typename">int</span>, error) { <span class="keyword">return</span> <span class="number">0</span>, errors.New(<span class="string">"foo"</span>) }</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">goreturns <span class="operator">-d</span> goreturnsdemo.go</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff goreturnsdemo.<span class="keyword">go</span> gofmt/goreturnsdemo.<span class="keyword">go</span></span><br><span class="line">--- /tmp/gofmt948886532 <span class="number">2017</span>-<span class="number">11</span>-<span class="number">26</span> <span class="number">18</span>:<span class="number">59</span>:<span class="number">03.671955645</span> +<span class="number">0800</span></span><br><span class="line">+++ /tmp/gofmt584282515 <span class="number">2017</span>-<span class="number">11</span>-<span class="number">26</span> <span class="number">18</span>:<span class="number">59</span>:<span class="number">03.671955645</span> +<span class="number">0800</span></span><br><span class="line">@@ -<span class="number">1</span>,<span class="number">6</span> +<span class="number">1</span>,<span class="number">5</span> @@</span><br><span class="line"> <span class="keyword">package</span> goreturnsdemo</span><br><span class="line"></span><br><span class="line">-</span><br><span class="line"> <span class="keyword">import</span> <span class="string">"errors"</span></span><br><span class="line"></span><br><span class="line">-<span class="keyword">func</span> F() (<span class="typename">int</span>, error) { <span class="keyword">return</span> errors.New(<span class="string">"foo"</span>) }</span><br><span class="line">+<span class="keyword">func</span> F() (<span class="typename">int</span>, error) { <span class="keyword">return</span> <span class="number">0</span>, errors.New(<span class="string">"foo"</span>) }</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org24cabf2" class="outline-2">
-<h2 id="org24cabf2"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">12</span> gotests</h2>
+<div id="outline-container-org6690771" class="outline-2">
+<h2 id="org6690771"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">12</span> gotests</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Generate Go tests from your source code.
@@ -673,14 +1017,32 @@ Generate Go tests from your source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gotests -h</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+Usage of gotests:
+  -all
+	    generate tests for all functions and methods
+  -excl string
+	    regexp. generate tests for functions and methods that don&rsquo;t match. Takes precedence over -only, -exported, and -all
+  -exported
+	    generate tests for exported functions and methods. Takes precedence over -only and -all
+  -i	print test inputs in error messages
+  -nosubtests
+	    disable generating tests using the Go 1.7 subtests feature
+  -only string
+	    regexp. generate tests for functions and methods that match only. Takes precedence over -all
+  -w	write output to (test) files instead of stdout
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gotests -all ./</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1310a22" class="outline-2">
-<h2 id="org1310a22"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">13</span> guru</h2>
+<div id="outline-container-org653dab2" class="outline-2">
+<h2 id="org653dab2"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">13</span> guru</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 guru: a tool for answering questions about Go source code.
@@ -688,8 +1050,8 @@ guru: a tool for answering questions about Go source code.
 </div>
 </div>
 
-<div id="outline-container-orgb8b6573" class="outline-2">
-<h2 id="orgb8b6573"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">14</span> godepgraph</h2>
+<div id="outline-container-orgd50e6de" class="outline-2">
+<h2 id="orgd50e6de"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">14</span> godepgraph</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 godepgraph is a program for generating a dependency graph of Go packages.
@@ -702,8 +1064,33 @@ godepgraph is a program for generating a dependency graph of Go packages.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godepgraph -h</span><br></pre></td></tr></table></figure>
 </div>
 
+<blockquote>
+<p>
+Usage of godepgraph:
+  -d	show dependencies of packages in the Go standard library
+  -horizontal
+	    lay out the dependency graph horizontally instead of vertically
+  -i string
+	    a comma-separated list of packages to ignore
+  -l int
+	    max level of go dependency graph (default 256)
+  -o string
+	    a comma-separated list of prefixes to include
+  -p string
+	    a comma-separated list of prefixes to ignore
+  -s	ignore packages in the Go standard library
+  -t	include test packages
+  -tags string
+	  a comma-separated list of build tags to consider satisified during the build
+</p>
+</blockquote>
+
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godepgraph github.com/kisielk/godepgraph</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph godep {&#10;_0 [label=&#34;flag&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_1 [label=&#34;fmt&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_2 [label=&#34;github.com/kisielk/godepgraph&#34; style=&#34;filled&#34; color=&#34;paleturquoise&#34;];&#10;_2 -&#62; _0;&#10;_2 -&#62; _1;&#10;_2 -&#62; _3;&#10;_2 -&#62; _4;&#10;_2 -&#62; _5;&#10;_2 -&#62; _6;&#10;_2 -&#62; _7;&#10;_3 [label=&#34;go/build&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_4 [label=&#34;log&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_5 [label=&#34;os&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_6 [label=&#34;sort&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;_7 [label=&#34;strings&#34; style=&#34;filled&#34; color=&#34;palegreen&#34;];&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
@@ -714,7 +1101,7 @@ godepgraph is a program for generating a dependency graph of Go packages.
 </div>
 </div>
 
-Last Updated 2017-11-26 Sun 20:00.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-26 Sun 20:48.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
