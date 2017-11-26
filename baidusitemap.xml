@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
+    <lastmod>2017-11-26T12:00:20.131Z</lastmod>
+    <data>
+        <display>
+        <title>Go语言不完全工具列表</title>
+        <pubTime>2017-11-23T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>tool</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/11/07/go-modify-tags/</loc>
     <lastmod>2017-11-07T05:37:52.633Z</lastmod>
     <data>
@@ -479,28 +501,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Golang的并发模式：管道和撤销</title>
-        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
-        
-        <tag>golang</tag>
-         
-        <tag>channel</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -618,6 +618,28 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Golang的并发模式：管道和撤销</title>
+        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>channel</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
