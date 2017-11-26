@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-11-26T12:48:24.917Z</updated>
+  <updated>2017-11-26T12:51:51.699Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://brantou.github.io/2017/11/24/go-tool/"/>
     <id>https://brantou.github.io/2017/11/24/go-tool/</id>
     <published>2017-11-23T16:00:00.000Z</published>
-    <updated>2017-11-26T12:48:24.917Z</updated>
+    <updated>2017-11-26T12:51:51.699Z</updated>
     
     <summary type="html">
     
@@ -30,8 +30,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org41a374c&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org41a374c&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-org1c64215&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org1c64215&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -50,7 +50,7 @@
     <link href="https://brantou.github.io/2017/11/07/go-modify-tags/"/>
     <id>https://brantou.github.io/2017/11/07/go-modify-tags/</id>
     <published>2017-11-06T16:00:00.000Z</published>
-    <updated>2017-11-07T05:37:52.633Z</updated>
+    <updated>2017-11-09T07:00:31.890Z</updated>
     
     <summary type="html">
     
@@ -59,8 +59,8 @@
         
 
 
-&lt;div id=&quot;outline-container-orgf8b158e&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgf8b158e&quot;&gt;&lt;a id=&quot;ID-27719462-7684-42eb-a615-d34c2696f4b2&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-org24b6d06&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org24b6d06&quot;&gt;&lt;a id=&quot;ID-27719462-7684-42eb-a615-d34c2696f4b2&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -88,8 +88,8 @@
         
 
 
-&lt;div id=&quot;outline-container-orgd7b8119&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgd7b8119&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-orgeff9a50&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgeff9a50&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -301,42 +301,6 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
     <title>数组，切片：‘append’的机制</title>
     <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
     <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
@@ -380,6 +344,42 @@ and authoring documents with a fast and effecti
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go的测试覆盖率</title>
+    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
+    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
+    <published>2017-05-24T03:00:00.000Z</published>
+    <updated>2017-05-25T08:59:02.418Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+&lt;/p&gt;
+
+&lt;p&gt;
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU &lt;a href=&quot;http://gcc.gnu
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
+    
+      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   
@@ -506,6 +506,34 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
+    <title>Gopher面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-10-18T06:50:15.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一周回顾--2017-05-12</title>
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
@@ -531,34 +559,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-10-18T06:50:15.827Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   

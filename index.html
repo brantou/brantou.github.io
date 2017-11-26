@@ -457,8 +457,8 @@
             
 
 
-<div id="outline-container-org41a374c" class="outline-2">
-<h2 id="org41a374c"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
+<div id="outline-container-org1c64215" class="outline-2">
+<h2 id="org1c64215"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/josharian/impl</span><br></pre></td></tr></table></figure>
@@ -468,13 +468,11 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">impl -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of impl:
   -dir string
-	    package source directory, useful for vendored code
-</p>
-</blockquote>
+      package source directory, useful for vendored code
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">impl &#39;f *File&#39; io.ReadWriteCloser</span><br></pre></td></tr></table></figure>
@@ -486,8 +484,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-orgc2b6852" class="outline-2">
-<h2 id="orgc2b6852"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
+<div id="outline-container-org84c03c8" class="outline-2">
+<h2 id="org84c03c8"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 请参见之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
@@ -495,8 +493,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-org1e7a42a" class="outline-2">
-<h2 id="org1e7a42a"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
+<div id="outline-container-org55b9dce" class="outline-2">
+<h2 id="org55b9dce"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/lukehoban/go-outline</span><br></pre></td></tr></table></figure>
@@ -506,17 +504,15 @@ Usage of impl:
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-outline -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of go-outline:
   -f string
-	    the path to the file to outline
+      the path to the file to outline
   -imports-only
-	    parse imports only
+      parse imports only
   -src string
-	  source code of the file to outline
-</p>
-</blockquote>
+      source code of the file to outline
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -535,8 +531,8 @@ Usage of go-outline:
 </div>
 </div>
 </div>
-<div id="outline-container-org02d3fb7" class="outline-2">
-<h2 id="org02d3fb7"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
+<div id="outline-container-org0874335" class="outline-2">
+<h2 id="org0874335"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/newhook/go-symbols</span><br></pre></td></tr></table></figure>
@@ -546,13 +542,11 @@ Usage of go-outline:
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-symbols -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of go-symbols:
   -tags build tags
-	    a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
-</p>
-</blockquote>
+      a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go-symbols <span class="variable">$GOPATH</span>/src/github.com/astaxie/beego beego</span><br></pre></td></tr></table></figure>
@@ -563,8 +557,8 @@ Usage of go-symbols:
 </div>
 </div>
 </div>
-<div id="outline-container-org2773ff2" class="outline-2">
-<h2 id="org2773ff2"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
+<div id="outline-container-org725d328" class="outline-2">
+<h2 id="org725d328"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 An autocompletion daemon for the Go programming language.
@@ -577,43 +571,37 @@ An autocompletion daemon for the Go programming language.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gocode -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage: gocode [-s] [-f=&lt;format&gt;] [-in=&lt;path&gt;] [-sock=&lt;type&gt;] [-addr=&lt;addr&gt;]
      &lt;command&gt; [&lt;args&gt;]
-</p>
 
-<p>
 Flags:
   -addr string
-	    address for tcp socket (default &ldquo;127.0.0.1:37373&rdquo;)
+      address for tcp socket (default "127.0.0.1:37373")
   -debug
-	    enable server-side debug mode
+      enable server-side debug mode
   -f string
-	    output format (vim | emacs | nice | csv | csv-with-package | json) (default &ldquo;nice&rdquo;)
+      output format (vim | emacs | nice | csv | csv-with-package | json) (default "nice")
   -in string
-	    use this file instead of stdin input
+      use this file instead of stdin input
   -profile int
-	    port on which to expose profiling information for pprof; 0 to disable profiling
+      port on which to expose profiling information for pprof; 0 to disable profiling
   -s	run a server instead of a client
   -sock string
-	    socket type (unix | tcp) (default &ldquo;unix&rdquo;)
-</p>
+      socket type (unix | tcp) (default "unix")
 
-<p>
 Commands:
   autocomplete [&lt;path&gt;] &lt;offset&gt;     main autocompletion command
   close                              close the gocode daemon
   status                             gocode daemon status report
-  drop-cache                         drop gocode daemon&rsquo;s cache
+  drop-cache                         drop gocode daemon's cache
   set [&lt;name&gt; [&lt;value&gt;]]             list or set config options
-</p>
-</blockquote>
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org3aac70b" class="outline-2">
-<h2 id="org3aac70b"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
+<div id="outline-container-orgbef56f4" class="outline-2">
+<h2 id="orgbef56f4"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Print where symbols are defined in Go source code.
@@ -626,30 +614,28 @@ Print where symbols are defined in Go source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godef -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 usage: godef [flags] [expr]
   -A	print all type and members information
   -a	print public type and member information
   -acme
-	    use current acme window
+      use current acme window
   -debug
-	    debug mode
+      debug mode
   -f string
-	    Go source filename
+      Go source filename
   -i	read file from stdin
   -json
-	    output location in JSON format (-t flag is ignored)
+      output location in JSON format (-t flag is ignored)
   -o int
-	    file offset of identifier in stdin (default -1)
+      file offset of identifier in stdin (default -1)
   -t	print type information
-</p>
-</blockquote>
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org15ac01c" class="outline-2">
-<h2 id="org15ac01c"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
+<div id="outline-container-orgb171a6f" class="outline-2">
+<h2 id="orgb171a6f"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Retrieve documentation for items in Go source code.
@@ -662,38 +648,32 @@ Retrieve documentation for items in Go source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gogetdoc -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of gogetdoc
   -cpuprofile string
-	    write cpu profile to file
+      write cpu profile to file
   -json
-	    enable extended JSON output
+      enable extended JSON output
   -linelength int
-	    maximum length of a line in the output (in Unicode code points) (default 80)
+      maximum length of a line in the output (in Unicode code points) (default 80)
   -modified
-	    read an archive of modified files from standard input
+      read an archive of modified files from standard input
   -pos string
-	    Filename and byte offset of item to document, e.g. foo.go:#123
+      Filename and byte offset of item to document, e.g. foo.go:#123
   -tags build tags
-	    a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
+      a list of build tags to consider satisfied during the build. For more information about build tags, see the description of build constraints in the documentation for the go/build package
   -u	show unexported fields
-</p>
 
-<p>
 The archive format for the -modified flag consists of the file name, followed
 by a newline, the decimal file size, another newline, and the contents of the file.
-</p>
 
-<p>
 This allows editors to supply gogetdoc with the contents of their unsaved buffers.
-</p>
-</blockquote>
+</pre>
 </div>
 </div>
 
-<div id="outline-container-orga6a262e" class="outline-2">
-<h2 id="orga6a262e"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
+<div id="outline-container-org481a4b6" class="outline-2">
+<h2 id="org481a4b6"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Golint is a linter for Go source code.
@@ -706,35 +686,32 @@ Golint is a linter for Go source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">golint -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of golint:
 	golint [flags] # runs on package in current directory
 	golint [flags] [packages]
-	golint [flags] [directories] # where a &rsquo;/&#x2026;&rsquo; suffix includes all sub-directories
+	golint [flags] [directories] # where a '/...' suffix includes all sub-directories
 	golint [flags] [files] # all must belong to a single package
 Flags:
   -min_confidence float
-	    minimum confidence of a problem to print it (default 0.8)
+      minimum confidence of a problem to print it (default 0.8)
   -set_exit_status
-	  set exit status to 1 if any issues are found
-</p>
-</blockquote>
+      set exit status to 1 if any issues are found
+
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">golint google.go</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 google.go:19:1: exported function Search should have comment or be unexported
-</p>
-</blockquote>
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org25f4420" class="outline-2">
-<h2 id="org25f4420"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
+<div id="outline-container-org314ed95" class="outline-2">
+<h2 id="org314ed95"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Gopkgs is tools that provide list of available Go packages that can be imported.
@@ -749,28 +726,22 @@ This are alternative to <code>go list all</code>, it just faster.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gopkgs -help</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of gopkgs:
   -format string
-	    custom output format (default &ldquo;{ {.ImportPath} }&rdquo;)
+      custom output format (default "{ {.ImportPath} }")
   -help
-	  show this message
-</p>
+      show this message
 
 
-<p>
 Use -format to custom the output using template syntax. The struct being passed to template is:
-</p>
 
-<p>
-type Pkg struct {
-    Dir        string <i>/ directory containing package sources
-    ImportPath string /</i> import path of package in dir
-    Name       string // package name
-}
-</p>
-</blockquote>
+  type Pkg struct {
+      Dir        string // directory containing package sources
+      ImportPath string // import path of package in dir
+      Name       string // package name
+  }
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gopkgs -format <span class="string">"{ {.Name} };{ {.ImportPath} }"</span></span><br></pre></td></tr></table></figure>
@@ -778,8 +749,8 @@ type Pkg struct {
 </div>
 </div>
 
-<div id="outline-container-org3fb3b64" class="outline-2">
-<h2 id="org3fb3b64"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
+<div id="outline-container-orgc48c35d" class="outline-2">
+<h2 id="orgc48c35d"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v golang.org/x/tools/cmd/gorename</span><br></pre></td></tr></table></figure>
@@ -789,170 +760,113 @@ type Pkg struct {
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gorename -help</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 gorename: precise type-safe renaming of identifiers in Go source code.
-</p>
 
-<p>
 Usage:
-</p>
 
-<p>
-gorename (-from &lt;spec&gt; | -offset &lt;file&gt;:#&lt;byte-offset&gt;) -to &lt;name&gt; [-force]
-</p>
+ gorename (-from &lt;spec&gt; | -offset &lt;file&gt;:#&lt;byte-offset&gt;) -to &lt;name&gt; [-force]
 
-<p>
 You must specify the object (named entity) to rename using the -offset
 or -from flag.  Exactly one must be specified.
-</p>
 
-<p>
 Flags:
-</p>
 
-<p>
--offset    specifies the filename and byte offset of an identifier to rename.
-	   This form is intended for use by text editors.
-</p>
+  -offset    specifies the filename and byte offset of an identifier to rename.
+             This form is intended for use by text editors.
 
-<p>
--from      specifies the object to rename using a query notation;
-	   This form is intended for interactive use at the command line.
-	   A legal -from query has one of the following forms:
-</p>
+  -from      specifies the object to rename using a query notation;
+             This form is intended for interactive use at the command line.
+             A legal -from query has one of the following forms:
 
-<p>
-&ldquo;encoding/json&rdquo;.Decoder.Decode        method of package-level named type
-(*&ldquo;encoding/json&rdquo;.Decoder).Decode     ditto, alternative syntax
-&ldquo;encoding/json&rdquo;.Decoder.buf           field of package-level named struct type
-&ldquo;encoding/json&rdquo;.HTMLEscape            package member (const, func, var, type)
-&ldquo;encoding/json&rdquo;.Decoder.Decode::x     local object x within a method
-&ldquo;encoding/json&rdquo;.HTMLEscape::x         local object x within a function
-&ldquo;encoding/json&rdquo;::x                    object x anywhere within a package
-json.go::x                            object x within file json.go
-</p>
+    "encoding/json".Decoder.Decode        method of package-level named type
+    (*"encoding/json".Decoder).Decode     ditto, alternative syntax
+    "encoding/json".Decoder.buf           field of package-level named struct type
+    "encoding/json".HTMLEscape            package member (const, func, var, type)
+    "encoding/json".Decoder.Decode::x     local object x within a method
+    "encoding/json".HTMLEscape::x         local object x within a function
+    "encoding/json"::x                    object x anywhere within a package
+    json.go::x                            object x within file json.go
 
-<p>
-Double-quotes must be escaped when writing a shell command.
-Quotes may be omitted for single-segment import paths such as &ldquo;fmt&rdquo;.
-</p>
+             Double-quotes must be escaped when writing a shell command.
+             Quotes may be omitted for single-segment import paths such as "fmt".
 
-<p>
-For methods, the parens and &rsquo;*&rsquo; on the receiver type are both
-optional.
-</p>
+             For methods, the parens and '*' on the receiver type are both
+             optional.
 
-<p>
-It is an error if one of the ::x queries matches multiple
-objects.
-</p>
+             It is an error if one of the ::x queries matches multiple
+             objects.
 
-<p>
--to        the new name.
-</p>
+  -to        the new name.
 
-<p>
--force     causes the renaming to proceed even if conflicts were reported.
-	   The resulting program may be ill-formed, or experience a change
-	   in behaviour.
-</p>
+  -force     causes the renaming to proceed even if conflicts were reported.
+             The resulting program may be ill-formed, or experience a change
+             in behaviour.
 
-<p>
-WARNING: this flag may even cause the renaming tool to crash.
-(In due course this bug will be fixed by moving certain
-analyses into the type-checker.)
-</p>
+             WARNING: this flag may even cause the renaming tool to crash.
+             (In due course this bug will be fixed by moving certain
+             analyses into the type-checker.)
 
-<p>
--d         display diffs instead of rewriting files
-</p>
+  -d         display diffs instead of rewriting files
 
-<p>
--v         enables verbose logging.
-</p>
+  -v         enables verbose logging.
 
-<p>
 gorename automatically computes the set of packages that might be
 affected.  For a local renaming, this is just the package specified by
 -from or -offset, but for a potentially exported name, gorename scans
 the workspace ($GOROOT and $GOPATH).
-</p>
 
-<p>
 gorename rejects renamings of concrete methods that would change the
 assignability relation between types and interfaces.  If the interface
 change was intentional, initiate the renaming at the interface method.
-</p>
 
-<p>
 gorename rejects any renaming that would create a conflict at the point
 of declaration, or a reference conflict (ambiguity or shadowing), or
 anything else that could cause the resulting program not to compile.
-</p>
 
 
-<p>
 Examples:
-</p>
 
-<p>
 $ gorename -offset file.go:#123 -to foo
-</p>
 
-<p>
-Rename the object whose identifier is at byte offset 123 within file file.go.
-</p>
+  Rename the object whose identifier is at byte offset 123 within file file.go.
 
-<p>
-$ gorename -from &rsquo;&ldquo;bytes&rdquo;.Buffer.Len&rsquo; -to Size
-</p>
+$ gorename -from '"bytes".Buffer.Len' -to Size
 
-<p>
-Rename the &ldquo;Len&rdquo; method of the *bytes.Buffer type to &ldquo;Size&rdquo;.
-</p>
+  Rename the "Len" method of the *bytes.Buffer type to "Size".
 
-<p>
--&#x2014; TODO -&#x2014;
-</p>
+---- TODO ----
 
-<p>
 Correctness:
-</p>
-<ul class="org-ul">
-<li>handle dot imports correctly</li>
-<li>document limitations (reflection, &rsquo;implements&rsquo; algorithm).</li>
-<li>sketch a proof of exhaustiveness.</li>
-</ul>
+- handle dot imports correctly
+- document limitations (reflection, 'implements' algorithm).
+- sketch a proof of exhaustiveness.
 
-<p>
 Features:
-</p>
-<ul class="org-ul">
-<li>support running on packages specified as *.go files on the command line</li>
-<li>support running on programs containing errors (loader.Config.AllowErrors)</li>
-<li>allow users to specify a scope other than &ldquo;global&rdquo; (to avoid being
-stuck by neglected packages in $GOPATH that don&rsquo;t build).</li>
-<li>support renaming the package clause (no object)</li>
-<li>support renaming an import path (no ident or object)
-(requires filesystem + SCM updates).</li>
-<li>detect and reject edits to autogenerated files (cgo, protobufs)
-and optionally $GOROOT packages.</li>
-<li>report all conflicts, or at least all qualitatively distinct ones.
-Sometimes we stop to avoid redundancy, but
-it may give a disproportionate sense of safety in -force mode.</li>
-<li>support renaming all instances of a pattern, e.g.
-all receiver vars of a given type,
-all local variables of a given type,
-all PkgNames for a given package.</li>
-<li>emit JSON output for other editors and tools.</li>
-</ul>
-</blockquote>
+- support running on packages specified as *.go files on the command line
+- support running on programs containing errors (loader.Config.AllowErrors)
+- allow users to specify a scope other than "global" (to avoid being
+  stuck by neglected packages in $GOPATH that don't build).
+- support renaming the package clause (no object)
+- support renaming an import path (no ident or object)
+  (requires filesystem + SCM updates).
+- detect and reject edits to autogenerated files (cgo, protobufs)
+  and optionally $GOROOT packages.
+- report all conflicts, or at least all qualitatively distinct ones.
+  Sometimes we stop to avoid redundancy, but
+  it may give a disproportionate sense of safety in -force mode.
+- support renaming all instances of a pattern, e.g.
+  all receiver vars of a given type,
+  all local variables of a given type,
+  all PkgNames for a given package.
+- emit JSON output for other editors and tools.
+
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org4822de6" class="outline-2">
-<h2 id="org4822de6"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">11</span> goreturns</h2>
+<div id="outline-container-org28b141a" class="outline-2">
+<h2 id="org28b141a"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">11</span> goreturns</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 A gofmt/goimports-like tool for Go programmers that fills
@@ -970,20 +884,19 @@ in Go return statements with zero values to match the func return types
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">goreturns -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
-usage: goreturns [flags] [path &#x2026;]
+<pre class="example">
+usage: goreturns [flags] [path ...]
   -b	remove bare returns
   -d	display diffs instead of rewriting files
   -e	report all errors (not just the first 10 on different lines)
   -i	run goimports on the file prior to processing (default true)
-  -l	list files whose formatting differs from goreturns&rsquo;s
+  -l	list files whose formatting differs from goreturns's
   -local string
 put imports beginning with this string after 3rd-party packages (see goimports)
   -p	print non-fatal typechecking errors to stderr
   -w	write result to (source) file instead of stdout
-</p>
-</blockquote>
+
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">goreturns goreturnsdemo.go</span><br></pre></td></tr></table></figure>
@@ -1003,8 +916,8 @@ put imports beginning with this string after 3rd-party packages (see goimports)
 </div>
 </div>
 
-<div id="outline-container-org6690771" class="outline-2">
-<h2 id="org6690771"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">12</span> gotests</h2>
+<div id="outline-container-org7bd8528" class="outline-2">
+<h2 id="org7bd8528"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">12</span> gotests</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Generate Go tests from your source code.
@@ -1017,23 +930,21 @@ Generate Go tests from your source code.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gotests -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of gotests:
   -all
-	    generate tests for all functions and methods
+      generate tests for all functions and methods
   -excl string
-	    regexp. generate tests for functions and methods that don&rsquo;t match. Takes precedence over -only, -exported, and -all
+      regexp. generate tests for functions and methods that don't match. Takes precedence over -only, -exported, and -all
   -exported
-	    generate tests for exported functions and methods. Takes precedence over -only and -all
+      generate tests for exported functions and methods. Takes precedence over -only and -all
   -i	print test inputs in error messages
   -nosubtests
-	    disable generating tests using the Go 1.7 subtests feature
+      disable generating tests using the Go 1.7 subtests feature
   -only string
-	    regexp. generate tests for functions and methods that match only. Takes precedence over -all
+      regexp. generate tests for functions and methods that match only. Takes precedence over -all
   -w	write output to (test) files instead of stdout
-</p>
-</blockquote>
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gotests -all ./</span><br></pre></td></tr></table></figure>
@@ -1041,8 +952,8 @@ Usage of gotests:
 </div>
 </div>
 
-<div id="outline-container-org653dab2" class="outline-2">
-<h2 id="org653dab2"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">13</span> guru</h2>
+<div id="outline-container-orgf192092" class="outline-2">
+<h2 id="orgf192092"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">13</span> guru</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 guru: a tool for answering questions about Go source code.
@@ -1050,8 +961,8 @@ guru: a tool for answering questions about Go source code.
 </div>
 </div>
 
-<div id="outline-container-orgd50e6de" class="outline-2">
-<h2 id="orgd50e6de"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">14</span> godepgraph</h2>
+<div id="outline-container-org1ab375f" class="outline-2">
+<h2 id="org1ab375f"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">14</span> godepgraph</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 godepgraph is a program for generating a dependency graph of Go packages.
@@ -1064,26 +975,24 @@ godepgraph is a program for generating a dependency graph of Go packages.
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godepgraph -h</span><br></pre></td></tr></table></figure>
 </div>
 
-<blockquote>
-<p>
+<pre class="example">
 Usage of godepgraph:
   -d	show dependencies of packages in the Go standard library
   -horizontal
-	    lay out the dependency graph horizontally instead of vertically
+      lay out the dependency graph horizontally instead of vertically
   -i string
-	    a comma-separated list of packages to ignore
+      a comma-separated list of packages to ignore
   -l int
-	    max level of go dependency graph (default 256)
+      max level of go dependency graph (default 256)
   -o string
-	    a comma-separated list of prefixes to include
+      a comma-separated list of prefixes to include
   -p string
-	    a comma-separated list of prefixes to ignore
+      a comma-separated list of prefixes to ignore
   -s	ignore packages in the Go standard library
   -t	include test packages
   -tags string
-	  a comma-separated list of build tags to consider satisified during the build
-</p>
-</blockquote>
+      a comma-separated list of build tags to consider satisified during the build
+</pre>
 
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">godepgraph github.com/kisielk/godepgraph</span><br></pre></td></tr></table></figure>
@@ -1101,7 +1010,7 @@ Usage of godepgraph:
 </div>
 </div>
 
-Last Updated 2017-11-26 Sun 20:48.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-26 Sun 20:51.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
@@ -1261,8 +1170,8 @@ Last Updated 2017-11-26 Sun 20:48.<br>Render by <a href="https://github.com/Code
             
 
 
-<div id="outline-container-orgf8b158e" class="outline-2">
-<h2 id="orgf8b158e"><a id="ID-27719462-7684-42eb-a615-d34c2696f4b2"></a><span class="section-number-2">1</span> StructTag</h2>
+<div id="outline-container-org24b6d06" class="outline-2">
+<h2 id="org24b6d06"><a id="ID-27719462-7684-42eb-a615-d34c2696f4b2"></a><span class="section-number-2">1</span> StructTag</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  tag := reflect.StructTag(<span class="string">`species:"gopher" color:"blue"`</span>)</span><br><span class="line">  fmt.Println(tag.Get(<span class="string">"color"</span>), tag.Get(<span class="string">"species"</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1286,8 +1195,8 @@ json:"foo_bar" xml:"foo" hcl:"foo,squash"
 </div>
 </div>
 
-<div id="outline-container-org4582145" class="outline-2">
-<h2 id="org4582145"><a id="ID-5680af25-d743-4316-a633-2328fc17afde"></a><span class="section-number-2">2</span> AST(抽象语法树)</h2>
+<div id="outline-container-org9966ce4" class="outline-2">
+<h2 id="org9966ce4"><a id="ID-5680af25-d743-4316-a633-2328fc17afde"></a><span class="section-number-2">2</span> AST(抽象语法树)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 遍历语法树，展示结构体字段列表：
@@ -1304,16 +1213,16 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-<div id="outline-container-org2a26a0e" class="outline-2">
-<h2 id="org2a26a0e"><a id="ID-4e24c993-d2b1-49d0-8e6c-33156a21989b"></a><span class="section-number-2">3</span> gomodifytags</h2>
+<div id="outline-container-orgdf830f9" class="outline-2">
+<h2 id="orgdf830f9"><a id="ID-4e24c993-d2b1-49d0-8e6c-33156a21989b"></a><span class="section-number-2">3</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span> {</span><br><span class="line">  Name        <span class="typename">string</span></span><br><span class="line">  Port        <span class="typename">int</span></span><br><span class="line">  EnableLogs  <span class="typename">bool</span></span><br><span class="line">  BaseDomain  <span class="typename">string</span></span><br><span class="line">  Credentials <span class="keyword">struct</span> {</span><br><span class="line">    Username <span class="typename">string</span></span><br><span class="line">    Password <span class="typename">string</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 
-<div id="outline-container-orga38b74f" class="outline-3">
-<h3 id="orga38b74f"><a id="ID-55031635-8b27-40d7-a026-8e7edd885281"></a><span class="section-number-3">3.1</span> Struct based modification</h3>
+<div id="outline-container-orge22bd54" class="outline-3">
+<h3 id="orge22bd54"><a id="ID-55031635-8b27-40d7-a026-8e7edd885281"></a><span class="section-number-3">3.1</span> Struct based modification</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">gomodifytags -file demo.go -struct Server -add-tags json -w</span><br></pre></td></tr></table></figure>
@@ -1398,8 +1307,8 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-<div id="outline-container-orged69275" class="outline-3">
-<h3 id="orged69275"><a id="ID-fab400c7-942e-418d-b15f-89e9999cec8a"></a><span class="section-number-3">3.2</span> Line based modification</h3>
+<div id="outline-container-org6e1dd2f" class="outline-3">
+<h3 id="org6e1dd2f"><a id="ID-fab400c7-942e-418d-b15f-89e9999cec8a"></a><span class="section-number-3">3.2</span> Line based modification</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">gomodifytags -file demo.go -line 8,11 -clear-tags json</span><br></pre></td></tr></table></figure>
@@ -1435,8 +1344,8 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-<div id="outline-container-org9bad716" class="outline-3">
-<h3 id="org9bad716"><a id="ID-2cd29cbf-09d0-4d03-911d-d50d1c87f49e"></a><span class="section-number-3">3.3</span> Shortcoming</h3>
+<div id="outline-container-orgc635d7a" class="outline-3">
+<h3 id="orgc635d7a"><a id="ID-2cd29cbf-09d0-4d03-911d-d50d1c87f49e"></a><span class="section-number-3">3.3</span> Shortcoming</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> {</span><br><span class="line">  First_name <span class="typename">string</span></span><br><span class="line">  Last_name  <span class="typename">string</span></span><br><span class="line">  addr       <span class="typename">string</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
@@ -1456,7 +1365,7 @@ Tag:   `json:"foo"`
 </div>
 </div>
 
-Last Updated 2017-11-07 Tue 13:37.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-09 Thu 15:00.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
@@ -1616,13 +1525,13 @@ Last Updated 2017-11-07 Tue 13:37.<br>Render by <a href="https://github.com/Code
             
 
 
-<div id="outline-container-orgd7b8119" class="outline-2">
-<h2 id="orgd7b8119"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-orgeff9a50" class="outline-2">
+<h2 id="orgeff9a50"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-org04d36ef" class="outline-3">
-<h3 id="org04d36ef"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-orge26ee1d" class="outline-3">
+<h3 id="orge26ee1d"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
@@ -1634,8 +1543,8 @@ Last Updated 2017-11-07 Tue 13:37.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 
-<div id="outline-container-orgf9376a7" class="outline-3">
-<h3 id="orgf9376a7"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-org911e7bb" class="outline-3">
+<h3 id="org911e7bb"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
@@ -1650,8 +1559,8 @@ Fri Nov  3 23:05:34 CST 2017
 </div>
 </div>
 
-<div id="outline-container-org52d2429" class="outline-2">
-<h2 id="org52d2429"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-org920f269" class="outline-2">
+<h2 id="org920f269"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
@@ -1689,8 +1598,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-orgbf40de4" class="outline-2">
-<h2 id="orgbf40de4"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-org6965591" class="outline-2">
+<h2 id="org6965591"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
@@ -1704,8 +1613,8 @@ rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </div>
 </div>
 
-<div id="outline-container-org66d69a8" class="outline-2">
-<h2 id="org66d69a8"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
+<div id="outline-container-org387d888" class="outline-2">
+<h2 id="org387d888"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 #+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes
@@ -1744,8 +1653,8 @@ tangle出的代码如下：
 </div>
 </div>
 </div>
-<div id="outline-container-org805669d" class="outline-2">
-<h2 id="org805669d"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
+<div id="outline-container-org844080f" class="outline-2">
+<h2 id="org844080f"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 在做相关操作时，可能需要预先初始化，同时又不想这些初始化过程出现在代码流程中，
@@ -1774,8 +1683,8 @@ nope
 </div>
 </div>
 
-<div id="outline-container-org7fcf01e" class="outline-2">
-<h2 id="org7fcf01e"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
+<div id="outline-container-org087bc02" class="outline-2">
+<h2 id="org087bc02"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 可在命令行中调用代码块实现的函数，如下面所示：
@@ -1786,8 +1695,8 @@ nope
 </div>
 </div>
 
-<div id="outline-container-org050b798" class="outline-2">
-<h2 id="org050b798"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> 连接mysql</h2>
+<div id="outline-container-orgd059e17" class="outline-2">
+<h2 id="orgd059e17"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> 连接mysql</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">tables</span>;</span></span><br></pre></td></tr></table></figure>
@@ -4379,7 +4288,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-cover-story/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -4398,7 +4307,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/24/go-cover-story/" itemprop="url">Go的测试覆盖率</a></h2>
+                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
         
 
         <div class="post-meta">
@@ -4452,8 +4361,8 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/24/go-cover-story/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-cover-story/" itemprop="commentsCount"></span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -4483,243 +4392,39 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
 
       
         
-          
-            
-
-<p>
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-</p>
-
-<p>
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU <a href="http://gcc.gnu.org/onlinedocs/gcc/Gcov.html" rel="external nofollow noopener noreferrer" target="_blank">gcov</a> 在二进制文件中设置执行分支断点。
-当每个分支执行时，断点被清除，并且分支的目标语句被标记为“被覆盖”。
-</p>
-
-<p>
-这种方法是成功和广泛使用的。 Go的早期测试覆盖工具甚至以相同的方式工作。但它有问题。
-由于分析二进制文件的执行是很困难的，所以很难实现。
-它还需要将执行跟踪绑定回源代码的可靠方法，这也可能是困难的。
-那里的问题包括不正确的调试信息和诸如内联功能的问题, 使分析变得复杂。
-最重要的是，这种方法非常不具有可移植性。
-对于每个机器架构需要重新编写，在某种程度上,可能对于每个操作系统都需要重新编写，因为从系统到系统的调试支持差异很大。
-</p>
-
-<p>
-<i>Go 1.2</i> 的发布引入了一个 <i>test coverage</i> 的新工具，
-它采用了一种不寻常的方式来生成覆盖率统计数据，这种方法建立在Godoc的技术的基础上。
-</p>
-
-<div id="outline-container-org42304ae" class="outline-2">
-<h2 id="org42304ae"><span class="section-number-2">1</span> Go的测试覆盖率</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-对于Go的新测试覆盖工具，采取了一种避免动态调试的不同方法。
-想法很简单：在编译之前重写包的源代码，以埋点，编译和运行修改的源，并转储统计信息。
-重写很容易编排，因为 <i>go的工具链</i> 控制从源到测试到执行的整个流程。
-</p>
-
-<p>
-示例代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">switch</span> {</span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">  <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">  <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-测试代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> {</span><br><span class="line">    in  <span class="typename">int</span></span><br><span class="line">    out <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tests = []Test{</span><br><span class="line">    {-<span class="number">1</span>, <span class="string">"negative"</span>},</span><br><span class="line">    {<span class="number">5</span>, <span class="string">"small"</span>},</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestSize(t *testing.T) {</span><br><span class="line">    <span class="keyword">for</span> i, test := <span class="keyword">range</span> tests {</span><br><span class="line">        size := Size(test.in)</span><br><span class="line">        <span class="keyword">if</span> size != test.out {</span><br><span class="line">            t.Errorf(<span class="string">"#%d: Size(%d)=%s; want %s"</span>, i, test.in, size, test.out)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-执行代码覆盖率测试如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -cover</span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-PASS
-coverage: 42.9% of statements
-ok  	_/home/parallels/program/org/github-pages/source/src/cover/size	0.001s
-/home/parallels/program/org/github-pages/source/_posts
-
-</pre>
-
-<p>
-启用测试覆盖后，/go test/ 运行 <i>cover</i> 工具，在编译之前重写源代码。 以下是重写后的 <i>Size</i> 函数：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> Size(a <span class="typename">int</span>) <span class="typename">string</span> {</span><br><span class="line">    GoCover.Count[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">switch</span> {</span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"negative"</span></span><br><span class="line">    <span class="keyword">case</span> a == <span class="number">0</span>:</span><br><span class="line">        GoCover.Count[<span class="number">3</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">10</span>:</span><br><span class="line">        GoCover.Count[<span class="number">4</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"small"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">100</span>:</span><br><span class="line">        GoCover.Count[<span class="number">5</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"big"</span></span><br><span class="line">    <span class="keyword">case</span> a &lt; <span class="number">1000</span>:</span><br><span class="line">        GoCover.Count[<span class="number">6</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"huge"</span></span><br><span class="line">    }</span><br><span class="line">    GoCover.Count[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"enormous"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-上面示例的每个可执行部分用赋值语句进行注解，赋值语句用于在运行时做统计。
-计数器与 <i>cover</i> 工具生成的第二个只读数据结构记录的语句的原始源位置相关联。
-测试运行完成后，收集计数器，通过查看设置的数量的来计算百分比。
-</p>
-
-<p>
-虽然分配注解看起来可能很昂贵，但是它被编译为单个“移动”指令。 因此，其运行时开销不大，运行典型（或更实际）测试时只增加约3％开销。
-这使得把测试覆盖率作为标准开发流程的一部分是合情合理的。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org88fd324" class="outline-2">
-<h2 id="org88fd324"><span class="section-number-2">2</span> 查看结果</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-上面的例子的测试覆盖率很差。 为了探索具体为什么，需要 <i>go test</i> 写一个 <i>coverage profile</i> ，
-这是一个保存收集的统计信息的文件，以便能详细地研究覆盖的细节。
-这很容易做：使用 <i>-coverprofile</i> 标志来指定输出的文件：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go <span class="built_in">test</span> -coverprofile=size_coverage.out</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-注： <i>-coverprofile</i> 标志自动设置 <i>-cover</i> 来启用覆盖率分析。
-</p>
-
-<p>
-测试与以前一样运行，但结果保存在文件中。 要研究它们，需要运行 <i>test coverage tool</i> 。
-一开始，可以要求 <i>覆盖率</i> 按函数分解，虽然在当前情况下没有太多意义，因为只有一个函数：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -func=size_coverage.out</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-查看的更有趣的方式是获取 <i>覆盖率信息注释的源代码</i> 的HTML展示。 该显示由 <i>-html</i> 标志调用：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../src/cover/size/</span><br><span class="line">go tool cover -html=size_coverage.out</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-运行此命令时，浏览器将弹出窗口，已覆盖（绿色），未覆盖（红色）和 未埋点（灰色）。 下面是一个屏幕截图：
-</p>
-<img src="/images/go-test-cover-set.png">
-
-
-<p>
-有了这个信息页，问题变得很明显：上面忽略了几个 <i>case</i> 的测试！
-可以准确地看出具体是哪一个，这样可以轻松地提高的测试覆盖率。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org2f65095" class="outline-2">
-<h2 id="org2f65095"><span class="section-number-2">3</span> 热力图</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-源代码级方式来测试覆盖率的一大优点在于，可以很容易用不同的方式对代码进行埋点处理。
-例如，不仅可以检测是否已执行了一个语句，而且还可以查询执行了多少次。
-</p>
-
-<p>
-<i>go test</i> 命令接受 <i>-covermode</i> 标志将覆盖模式设置为三种设置之一：
+          <p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
 </p>
 <ul class="org-ul">
-<li>set: 每个语句是否执行？</li>
-<li>count: 每个语句执行了几次？</li>
-<li>atomic: 类似于 <i>count</i>, 但表示的是并行程序中的精确计数</li>
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
 </ul>
 
 
 <p>
-<i>set</i> 是默认设置，上面示例已经看到了。
-只有运行并行算法需要精确的计数时，才需要进行 <i>atomic</i> 设置。
-它使用来自 sync/atomic 包的原子操作，这可能会相当昂贵。
-然而，对于大多数情况， <i>count</i> 模式工作正常，并且像默认设置模式一样非常快。
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
 </p>
 
 <p>
-下面来试试一个标准包， <i>fmt</i> 格式化包语句执行的计数。
-进行测试并写出 <i>coverage profile</i>  ，以便能够很好地进行信息的呈现。
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go <span class="built_in">test</span> -covermode=count -coverprofile=../src/cover/count.out fmt</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-这比以前的例子好的测试覆盖率。 （覆盖率不受覆盖模式的影响）可以显示函数细节：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -func=../src/cover/count.out</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-HTML输出产生了巨大的回报：
-</p>
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go tool cover -html=../src/cover/count.out</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-<i>pad</i> 函数如下所示：
-</p>
-<img src="/images/go-test-cover-count.png">
-
-<p>
-注意绿色的强度是如何变化。 最明亮的绿色的代表较高的执行数; 较少灰暗的绿色代表较低的执行数。
-甚至可以将鼠标悬停在语句上，以便在弹出的 <i>tool tip</i> 中提示实际计数。
-<i>test coverage</i> 产生了关于函数执行的大量信息，在分析中很有用的信息。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org04da28f" class="outline-2">
-<h2 id="org04da28f"><span class="section-number-2">4</span> 基础块</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-你可能已经注意到，上一个示例中/ 有关于闭合大括号中间的行的计数/ 不是你所期望的那样。 这是因为一直以来 <i>test coverage</i> 都不是一个不精确的科学。
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
 </p>
 
 <p>
-这里发生的很值得解释。 我们希望覆盖注解由程序中的分支划分，当二进制文件在传统方法中被调用时，它们是分开的。
-不过，通过重写源代码很难做到这一点，因为分支没有明确展示在源代码中。
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
 </p>
-
-<p>
-覆盖注解的作用是是埋点，通常由大括号来限定。
-一般来说，使之工作正常是非常困难的。
-所使用的算法的处理结果是闭合括号看起来像属于它配对的块，而开放大括号看起来像属于块之外。 一个更有趣的结果出现在如下的一个表达式中：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f() &amp;&amp; g()</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-没有试图单独调用对f和g的调用，无论事实如何，它们总是看起来像是运行相同的次数。
-</p>
-
-<p>
-公平来说，即使gcov在这里也有麻烦。 该工具使机制正确，但呈现是基于行的，因此可能会错过一些细微差别。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgb11766d" class="outline-2">
-<h2 id="orgb11766d"><span class="section-number-2">5</span> 总结</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-这是关于 <i>Go 1.2 test coverage</i> 故事。
-具有有趣实现的新工具不仅可以实现测试覆盖率的统计，而且易于解释，甚至可以提取 <i>profile</i> 信息。
-</p>
-
-<p>
-测试是软件开发和的重要组成部分，/test coverage/ 为测试策略添加一个简单的标准。 走向前， <i>test</i> 和 <i>cover</i> 。
-</p>
-</div>
-</div>
-
-Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -4819,7 +4524,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -4830,7 +4535,7 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

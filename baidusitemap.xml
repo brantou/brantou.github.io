@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
-    <lastmod>2017-11-26T12:48:24.917Z</lastmod>
+    <lastmod>2017-11-26T12:51:51.699Z</lastmod>
     <data>
         <display>
         <title>Go语言不完全工具列表</title>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>https://brantou.github.io/2017/11/07/go-modify-tags/</loc>
-    <lastmod>2017-11-07T05:37:52.633Z</lastmod>
+    <lastmod>2017-11-09T07:00:31.890Z</lastmod>
     <data>
         <display>
         <title>gomodifytags</title>
@@ -521,6 +521,30 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的列视图简明教程</title>
+        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>column-view</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -537,30 +561,6 @@
         <tag>spreadsheet</tag>
          
         <tag>lookup</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的列视图简明教程</title>
-        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>column-view</tag>
          
          
            
@@ -599,6 +599,28 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Golang的并发模式：管道和撤销</title>
+        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>channel</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -618,28 +640,6 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Golang的并发模式：管道和撤销</title>
-        <pubTime>2017-05-16T16:00:00.000Z</pubTime>
-        
-        <tag>golang</tag>
-         
-        <tag>channel</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
