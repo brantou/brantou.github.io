@@ -125,7 +125,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://brantou.github.io/images/go-tool/godepgraph.png">
 <meta property="og:image" content="https://brantou.github.io/images/go-tool/go-callvis.png">
-<meta property="og:updated_time" content="2017-11-28T10:10:01.697Z">
+<meta property="og:updated_time" content="2017-11-28T15:26:37.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go语言不完全工具列表">
 <meta name="twitter:description" content="1 impl   go get -u github.com/josharian/impl    impl -h    Usage of impl:   -dir string       package source directory, useful for vendored code    impl &amp;#39;f *File&amp;#39; io.ReadWriteCloser    123">
@@ -462,8 +462,8 @@
         
 
 
-<div id="outline-container-org6bb5e43" class="outline-2">
-<h2 id="org6bb5e43"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
+<div id="outline-container-org746f52e" class="outline-2">
+<h2 id="org746f52e"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/josharian/impl</span><br></pre></td></tr></table></figure>
@@ -489,8 +489,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-orgd83483c" class="outline-2">
-<h2 id="orgd83483c"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
+<div id="outline-container-org8fd8334" class="outline-2">
+<h2 id="org8fd8334"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 请参见之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
@@ -498,8 +498,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-orgb712ca1" class="outline-2">
-<h2 id="orgb712ca1"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
+<div id="outline-container-org02ec4e0" class="outline-2">
+<h2 id="org02ec4e0"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/lukehoban/go-outline</span><br></pre></td></tr></table></figure>
@@ -520,7 +520,7 @@ Usage of go-outline:
 </pre>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Outline <span class="keyword">struct</span> {</span><br><span class="line">  Label <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name <span class="typename">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">  cmd  <span class="typename">string</span></span><br><span class="line">  args <span class="typename">string</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Outline <span class="keyword">struct</span> {</span><br><span class="line">  Label <span class="typename">string</span></span><br><span class="line">  Type  <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (ol *Outline) Label() <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">return</span> ol.Label</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name <span class="typename">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">  cmd  <span class="typename">string</span></span><br><span class="line">  args <span class="typename">string</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
@@ -528,7 +528,7 @@ Usage of go-outline:
 </div>
 
 <div class="org-src-container">
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {</span><br><span class="line">        "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">        "<span class="attribute">type</span>": <span class="value"><span class="string">"package"</span></span>,</span><br><span class="line">        "<span class="attribute">start</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">        "<span class="attribute">end</span>": <span class="value"><span class="number">168</span></span>,</span><br><span class="line">        "<span class="attribute">children</span>": <span class="value">[</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"\"fmt\""</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"import"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">23</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">28</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">35</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">68</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"name"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">74</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">78</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"cmd"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">95</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">98</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"args"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">109</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">113</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">124</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">168</span></span><br><span class="line">            </span>}</span><br><span class="line">        ]</span><br><span class="line">    </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {</span><br><span class="line">        "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">        "<span class="attribute">type</span>": <span class="value"><span class="string">"package"</span></span>,</span><br><span class="line">        "<span class="attribute">start</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">        "<span class="attribute">end</span>": <span class="value"><span class="number">240</span></span>,</span><br><span class="line">        "<span class="attribute">children</span>": <span class="value">[</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"\"fmt\""</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"import"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">23</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">28</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">35</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">83</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Label"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">receiverType</span>": <span class="value"><span class="string">"*Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">85</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">140</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"name"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">146</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">150</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"cmd"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">167</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">170</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"args"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">181</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">185</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">196</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">240</span></span><br><span class="line">            </span>}</span><br><span class="line">        ]</span><br><span class="line">    </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
@@ -536,8 +536,8 @@ Usage of go-outline:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdce2460" class="outline-2">
-<h2 id="orgdce2460"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
+<div id="outline-container-org9a4947a" class="outline-2">
+<h2 id="org9a4947a"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/newhook/go-symbols</span><br></pre></td></tr></table></figure>
@@ -562,8 +562,8 @@ Usage of go-symbols:
 </div>
 </div>
 </div>
-<div id="outline-container-org81640d0" class="outline-2">
-<h2 id="org81640d0"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
+<div id="outline-container-orgc6b2899" class="outline-2">
+<h2 id="orgc6b2899"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 An autocompletion daemon for the Go programming language.
@@ -605,8 +605,8 @@ Commands:
 </div>
 </div>
 
-<div id="outline-container-orgf241237" class="outline-2">
-<h2 id="orgf241237"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
+<div id="outline-container-orgfc97681" class="outline-2">
+<h2 id="orgfc97681"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Print where symbols are defined in Go source code.
@@ -639,8 +639,8 @@ usage: godef [flags] [expr]
 </div>
 </div>
 
-<div id="outline-container-org9a8f354" class="outline-2">
-<h2 id="org9a8f354"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
+<div id="outline-container-orge24e2e8" class="outline-2">
+<h2 id="orge24e2e8"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Retrieve documentation for items in Go source code.
@@ -677,8 +677,8 @@ This allows editors to supply gogetdoc with the contents of their unsaved buffer
 </div>
 </div>
 
-<div id="outline-container-orgf83a932" class="outline-2">
-<h2 id="orgf83a932"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
+<div id="outline-container-org07b82af" class="outline-2">
+<h2 id="org07b82af"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Golint is a linter for Go source code.
@@ -715,8 +715,8 @@ google.go:19:1: exported function Search should have comment or be unexported
 </div>
 </div>
 
-<div id="outline-container-org8aec65c" class="outline-2">
-<h2 id="org8aec65c"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
+<div id="outline-container-orgb359869" class="outline-2">
+<h2 id="orgb359869"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Gopkgs is tools that provide list of available Go packages that can be imported.
@@ -754,8 +754,8 @@ Use -format to custom the output using template syntax. The struct being passed 
 </div>
 </div>
 
-<div id="outline-container-orgcfcb3d1" class="outline-2">
-<h2 id="orgcfcb3d1"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
+<div id="outline-container-org6b74159" class="outline-2">
+<h2 id="org6b74159"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v golang.org/x/tools/cmd/gorename</span><br></pre></td></tr></table></figure>
@@ -870,8 +870,8 @@ Features:
 </div>
 </div>
 
-<div id="outline-container-org9499f83" class="outline-2">
-<h2 id="org9499f83"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
+<div id="outline-container-orgf6e599a" class="outline-2">
+<h2 id="orgf6e599a"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v github.com/godoctor/godoctor</span><br></pre></td></tr></table></figure>
@@ -914,8 +914,8 @@ For complete usage information, see the user manual: http://gorefactor.org/doc.h
 </div>
 </div>
 
-<div id="outline-container-orgd67d561" class="outline-2">
-<h2 id="orgd67d561"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
+<div id="outline-container-org7699eab" class="outline-2">
+<h2 id="org7699eab"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 A gofmt/goimports-like tool for Go programmers that fills
@@ -965,8 +965,8 @@ put imports beginning with this string after 3rd-party packages (see goimports)
 </div>
 </div>
 
-<div id="outline-container-org1f53af6" class="outline-2">
-<h2 id="org1f53af6"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
+<div id="outline-container-orgaa4079f" class="outline-2">
+<h2 id="orgaa4079f"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Generate Go tests from your source code.
@@ -1001,8 +1001,8 @@ Usage of gotests:
 </div>
 </div>
 
-<div id="outline-container-org88e2060" class="outline-2">
-<h2 id="org88e2060"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
+<div id="outline-container-org1af5908" class="outline-2">
+<h2 id="org1af5908"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 guru: a tool for answering questions about Go source code.
@@ -1010,8 +1010,8 @@ guru: a tool for answering questions about Go source code.
 </div>
 </div>
 
-<div id="outline-container-org3abcd49" class="outline-2">
-<h2 id="org3abcd49"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
+<div id="outline-container-org824c0d1" class="outline-2">
+<h2 id="org824c0d1"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 godepgraph is a program for generating a dependency graph of Go packages.
@@ -1058,8 +1058,8 @@ Usage of godepgraph:
 <img src="/images/go-tool/godepgraph.png">
 </div>
 </div>
-<div id="outline-container-orgaccc516" class="outline-2">
-<h2 id="orgaccc516"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
+<div id="outline-container-org93f7611" class="outline-2">
+<h2 id="org93f7611"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/TrueFurby/go-callvis</span><br></pre></td></tr></table></figure>
@@ -1101,8 +1101,8 @@ Usage of go-callvis:
 <img src="/images/go-tool/go-callvis.png">
 </div>
 </div>
-<div id="outline-container-org345de86" class="outline-2">
-<h2 id="org345de86"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
+<div id="outline-container-org761e358" class="outline-2">
+<h2 id="org761e358"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/KyleBanks/depth/cmd/depth</span><br></pre></td></tr></table></figure>
@@ -1184,8 +1184,8 @@ strings
 </div>
 </div>
 
-<div id="outline-container-org475f360" class="outline-2">
-<h2 id="org475f360"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
+<div id="outline-container-org825d079" class="outline-2">
+<h2 id="org825d079"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v mvdan.cc/interfacer</span><br></pre></td></tr></table></figure>
@@ -1209,7 +1209,7 @@ simple.go:24:19: undeclared name: St
 </div>
 </div>
 
-Last Updated 2017-11-28 Tue 18:10.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-11-28 Tue 23:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
       
     </div>
@@ -1483,7 +1483,7 @@ Last Updated 2017-11-28 Tue 18:10.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org6bb5e43"><span class="nav-text">1 impl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd83483c"><span class="nav-text">2 gomodifytags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb712ca1"><span class="nav-text">3 go-outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdce2460"><span class="nav-text">4 go-symbols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org81640d0"><span class="nav-text">5 gocode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf241237"><span class="nav-text">6 godef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9a8f354"><span class="nav-text">7 gogetdoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf83a932"><span class="nav-text">8 golint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8aec65c"><span class="nav-text">9 gopkgs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcfcb3d1"><span class="nav-text">10 gorename</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9499f83"><span class="nav-text">11 godoctor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd67d561"><span class="nav-text">12 goreturns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1f53af6"><span class="nav-text">13 gotests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org88e2060"><span class="nav-text">14 guru</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org3abcd49"><span class="nav-text">15 godepgraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgaccc516"><span class="nav-text">16 go-callvis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org345de86"><span class="nav-text">17 depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org475f360"><span class="nav-text">18 interface</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org746f52e"><span class="nav-text">1 impl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org8fd8334"><span class="nav-text">2 gomodifytags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org02ec4e0"><span class="nav-text">3 go-outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org9a4947a"><span class="nav-text">4 go-symbols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc6b2899"><span class="nav-text">5 gocode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgfc97681"><span class="nav-text">6 godef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orge24e2e8"><span class="nav-text">7 gogetdoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org07b82af"><span class="nav-text">8 golint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgb359869"><span class="nav-text">9 gopkgs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6b74159"><span class="nav-text">10 gorename</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgf6e599a"><span class="nav-text">11 godoctor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7699eab"><span class="nav-text">12 goreturns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgaa4079f"><span class="nav-text">13 gotests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1af5908"><span class="nav-text">14 guru</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org824c0d1"><span class="nav-text">15 godepgraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org93f7611"><span class="nav-text">16 go-callvis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org761e358"><span class="nav-text">17 depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org825d079"><span class="nav-text">18 interface</span></a></li></ol></div>
             
 
           </div>
