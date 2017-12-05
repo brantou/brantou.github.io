@@ -115,20 +115,18 @@
 
 
 
-<meta name="description" content="1 数据格式化(:wrap)     1.1 json格式化   curl http://httpbin.org/get    1234567891011{  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;">
+<meta name="description" content="1 数据格式化(:wrap)     1.1 json格式化   #+BEGIN_SRC sh :results code :wrap SRC js :exports both   curl http://httpbin.org/get #+END_SRC  #+RESULTS: #+BEGIN_SRC js {   &quot;args&quot;: {},   &quot;headers&quot;: {     &quot;Acce">
 <meta name="keywords" content="org-mode,babel,active-code,literate-programming,devOps">
 <meta property="og:type" content="article">
 <meta property="og:title" content="org-babel有趣的事">
 <meta property="og:url" content="https://brantou.github.io/2017/10/31/literate-devOps/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="1 数据格式化(:wrap)     1.1 json格式化   curl http://httpbin.org/get    1234567891011{  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;">
+<meta property="og:description" content="1 数据格式化(:wrap)     1.1 json格式化   #+BEGIN_SRC sh :results code :wrap SRC js :exports both   curl http://httpbin.org/get #+END_SRC  #+RESULTS: #+BEGIN_SRC js {   &quot;args&quot;: {},   &quot;headers&quot;: {     &quot;Acce">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
-<meta property="og:updated_time" content="2017-11-05T15:07:47.277Z">
+<meta property="og:updated_time" content="2017-12-05T15:20:29.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="org-babel有趣的事">
-<meta name="twitter:description" content="1 数据格式化(:wrap)     1.1 json格式化   curl http://httpbin.org/get    1234567891011{  &quot;args&quot;: {},  &quot;headers&quot;: {    &quot;Accept&quot;: &quot;*/*&quot;,    &quot;Connection&quot;: &quot;close&quot;,    &quot;Host&quot;: &quot;httpbin.org&quot;,    &quot;User-Agent&quot;: &quot;">
-<meta name="twitter:image" content="https://brantou.github.io/images/devOps/just-try-post.png">
+<meta name="twitter:description" content="1 数据格式化(:wrap)     1.1 json格式化   #+BEGIN_SRC sh :results code :wrap SRC js :exports both   curl http://httpbin.org/get #+END_SRC  #+RESULTS: #+BEGIN_SRC js {   &quot;args&quot;: {},   &quot;headers&quot;: {     &quot;Acce">
 
 
 
@@ -461,96 +459,121 @@
         
 
 
-<div id="outline-container-orgeff9a50" class="outline-2">
-<h2 id="orgeff9a50"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
+<div id="outline-container-org23ec5dd" class="outline-2">
+<h2 id="org23ec5dd"><a id="ID-971ec1fe-4655-44a8-bf63-812a49eea408"></a><span class="section-number-2">1</span> 数据格式化(:wrap)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 
-<div id="outline-container-orge26ee1d" class="outline-3">
-<h3 id="orge26ee1d"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
+<div id="outline-container-org9a3a29a" class="outline-3">
+<h3 id="org9a3a29a"><a id="ID-0f26d666-d128-4e66-a635-f329a88b6650"></a><span class="section-number-3">1.1</span> json格式化</h3>
 <div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl http://httpbin.org/get</span><br></pre></td></tr></table></figure>
+<pre class="example">
+#+BEGIN_SRC sh :results code :wrap SRC js :exports both
+  curl http://httpbin.org/get
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Connection": "close",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/7.47.0"
+  },
+  "origin": "180.167.20.58",
+  "url": "http://httpbin.org/get"
+}
+#+END_SRC
+</pre>
+</div>
 </div>
 
-<div class="org-src-container">
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="string">"args"</span>: {},</span><br><span class="line">  <span class="string">"headers"</span>: {</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>,</span><br><span class="line">    <span class="string">"Connection"</span>: <span class="string">"close"</span>,</span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>,</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"curl/7.47.0"</span></span><br><span class="line">  },</span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"180.167.20.58"</span>,</span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get"</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org911e7bb" class="outline-3">
-<h3 id="org911e7bb"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
+<div id="outline-container-org3d63782" class="outline-3">
+<h3 id="org3d63782"><a id="ID-801b7ed8-d5c0-4a12-9d9b-c384dde9cf77"></a><span class="section-number-3">1.2</span> 其他格式化</h3>
 <div class="outline-text-3" id="text-1-2">
-<div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
-</div>
+<pre class="example">
+#+BEGIN_SRC sh :wrap QUOTE :results raw :exports both
+  date
+#+END_SRC
 
-<blockquote>
-<p>
+#+RESULTS:
+#+BEGIN_QUOTE
 Fri Nov  3 23:05:34 CST 2017
-</p>
-</blockquote>
+#+END_QUOTE
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org920f269" class="outline-2">
-<h2 id="org920f269"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
+<div id="outline-container-org25baf69" class="outline-2">
+<h2 id="org25baf69"><a id="ID-3760ee64-f27b-4b3a-9c51-489ba333bca2"></a><span class="section-number-2">2</span> 变量设置在Header中</h2>
 <div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
-</div>
-
 <pre class="example">
+** 变量设置在Header中
+   :PROPERTIES:
+   :ID:       d7b197d7-f925-47b7-bcc0-37e182761619
+   :header-args:shell: :var host="google.com" :results pp :session brantou :exports both
+   :END:
+   #+BEGIN_SRC shell
+     ping $host -c 2
+   #+END_SRC
 
-$ PING google.com (192.168.83.230) 56(84) bytes of data.
-64 bytes from 192.168.83.230: icmp_seq=1 ttl=128 time=9.60 ms
-64 bytes from 192.168.83.230: icmp_seq=2 ttl=128 time=25.4 ms
+   #+RESULTS:
+   :
+   : $ PING google.com (192.168.83.230) 56(84) bytes of data.
+   : 64 bytes from 192.168.83.230: icmp_seq=1 ttl=128 time=9.60 ms
+   : 64 bytes from 192.168.83.230: icmp_seq=2 ttl=128 time=25.4 ms
+   :
+   : --- google.com ping statistics ---
+   : packet loss, time 1001ms
+   : rtt min/avg/max/mdev = 9.609/17.508/25.408/7.900 ms
 
---- google.com ping statistics ---
-packet loss, time 1001ms
-rtt min/avg/max/mdev = 9.609/17.508/25.408/7.900 ms
+   覆盖变量 *host* 和 *session* 置为空！
+   #+BEGIN_SRC shell :var host="baidu.com" :session none
+     ping $host -c 2
+   #+END_SRC
 
+   #+RESULTS:
+   : PING baidu.com (111.13.101.208) 56(84) bytes of data.
+   : 64 bytes from 111.13.101.208: icmp_seq=1 ttl=128 time=35.5 ms
+   : 64 bytes from 111.13.101.208: icmp_seq=2 ttl=128 time=49.2 ms
+   :
+   : --- baidu.com ping statistics ---
+   : 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+   : rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
 </pre>
-
-<p>
-覆盖变量 <b>host</b> 和 <b>session</b> 置为空！
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">ping $host -c 2</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-PING baidu.com (111.13.101.208) 56(84) bytes of data.
-64 bytes from 111.13.101.208: icmp_seq=1 ttl=128 time=35.5 ms
-64 bytes from 111.13.101.208: icmp_seq=2 ttl=128 time=49.2 ms
-
---- baidu.com ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-rtt min/avg/max/mdev = 35.517/42.361/49.206/6.847 ms
-
-</pre>
 </div>
 </div>
 
-<div id="outline-container-org6965591" class="outline-2">
-<h2 id="org6965591"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
+<div id="outline-container-org559b982" class="outline-2">
+<h2 id="org559b982"><a id="ID-8d4ffdca-6c2c-49f2-b8a4-b94bdc0fe460"></a><span class="section-number-2">3</span> 结果的预处理(:post)</h2>
 <div class="outline-text-2" id="text-3">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_path=img_path.replace(<span class="string">'[[file:..'</span>, <span class="string">''</span>).replace(<span class="string">']]'</span>, <span class="string">''</span>)</span><br><span class="line">print(<span class="string">'&lt;img src="'</span>+img_path+<span class="string">'" /&gt;'</span>)</span><br></pre></td></tr></table></figure>
-</div>
+<pre class="example">
+#+NAME: img_wrap
+#+BEGIN_SRC python :var img_path="" :results output
+  img_path=img_path.replace('[[file:..', '').replace(']]', '')
+  print('&lt;img src="'+img_path+'" /&gt;')
+#+END_SRC
 
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">@startuml&#10;cli -&#62; serv:  auth req&#10;serv --&#62; cli: auth res&#10;@enduml</span><br></pre></td></tr></table></figure>
-</div>
+#+HEADER: :file ../images/devOps/just-try-post.png :exports both
+#+BEGIN_SRC plantuml :mkdirp yes :post img_wrap(img_path=*this*) :wrap EXPORT html
+  @startuml
+  cli -&gt; serv:  auth req
+  serv --&gt; cli: auth res
+  @enduml
+#+END_SRC
 
-<img src="/images/devOps/just-try-post.png">
+#+RESULTS:
+#+BEGIN_EXPORT html
+&lt;img src="/images/devOps/just-try-post.png" /&gt;
+#+END_EXPORT
+</pre>
 </div>
 </div>
-
-<div id="outline-container-org387d888" class="outline-2">
-<h2 id="org387d888"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
+<div id="outline-container-org78c0e10" class="outline-2">
+<h2 id="org78c0e10"><a id="ID-31ba7156-3ae9-410b-bd91-e93edb1b5046"></a><span class="section-number-2">4</span> noweb的引用(:noweb-ref)</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 #+HEADER: :tangle ../src/devOps/noweb_ref.sh :mkdirp yes
@@ -589,38 +612,33 @@ tangle出的代码如下：
 </div>
 </div>
 </div>
-<div id="outline-container-org844080f" class="outline-2">
-<h2 id="org844080f"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
+<div id="outline-container-org72086f3" class="outline-2">
+<h2 id="org72086f3"><a id="ID-da1d2589-8df1-4eda-a480-46a06d84d7cd"></a><span class="section-number-2">5</span> 预处理/后置操作(:prologue/:epilogue)</h2>
 <div class="outline-text-2" id="text-5">
-<p>
+<pre class="example">
 在做相关操作时，可能需要预先初始化，同时又不想这些初始化过程出现在代码流程中，
-这个时候你可使用 <b>:prologue</b> 来关联相关语句来达到预处理的效果。
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">echo &#34;nope&#34;</span><br></pre></td></tr></table></figure>
-</div>
+这个时候你可使用 *:prologue* 来关联相关语句来达到预处理的效果。
+#+NAME: prologue-example
+#+BEGIN_SRC shell :prologue "echo yep; exit 0" :exports both
+  echo "nope"
+#+END_SRC
 
-<pre class="example">
-yep
+#+RESULTS: prologue-example
+: yep
 
-</pre>
+*:epilogue* 正好和 *:prologue* 完成的功能相反，用于后置处理，完成清理工作。
+#+BEGIN_SRC shell :epilogue "exit 0; echo yep" :exports both
+  echo "nope"
+#+END_SRC
 
-<p>
-<b>:epilogue</b> 正好和 <b>:prologue</b> 完成的功能相反，用于后置处理，完成清理工作。
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">echo &#34;nope&#34;</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-nope
-
+#+RESULTS:
+: nope
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org087bc02" class="outline-2">
-<h2 id="org087bc02"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
+<div id="outline-container-orgc48d8ed" class="outline-2">
+<h2 id="orgc48d8ed"><a id="ID-22c26ba6-18ba-4f00-961d-a1999dd868ba"></a><span class="section-number-2">6</span> 批量执行</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 可在命令行中调用代码块实现的函数，如下面所示：
@@ -631,20 +649,66 @@ nope
 </div>
 </div>
 
-<div id="outline-container-orgd059e17" class="outline-2">
-<h2 id="orgd059e17"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> 连接mysql</h2>
+<div id="outline-container-org5c2a921" class="outline-2">
+<h2 id="org5c2a921"><a id="ID-a29fa69a-00f6-4b18-a776-c14295a76874"></a><span class="section-number-2">7</span> 连接mysql</h2>
 <div class="outline-text-2" id="text-7">
-<div class="org-src-container">
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">show</span> <span class="keyword">tables</span>;</span></span><br></pre></td></tr></table></figure>
+<pre class="example">
+#+BEGIN_SRC sql
+  show tables;
+#+END_SRC
+
+#+RESULTS:
+| Tables_in_mysql           |
+|---------------------------|
+| columns_priv              |
+| db                        |
+| engine_cost               |
+| event                     |
+| func                      |
+| general_log               |
+| gtid_executed             |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| ndb_binlog_index          |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| server_cost               |
+| servers                   |
+| slave_master_info         |
+| slave_relay_log_info      |
+| slave_worker_info         |
+| slow_log                  |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
+
+#+BEGIN_SRC sql
+  SELECT host, user FROM user WHERE 1;
+#+END_SRC
+
+#+RESULTS:
+| host      | user             |
+|-----------+------------------|
+| %         | brantou          |
+| localhost | debian-sys-maint |
+| localhost | mysql.session    |
+| localhost | mysql.sys        |
+| localhost | root             |
+</pre>
+</div>
 </div>
 
-<div class="org-src-container">
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> host, <span class="keyword">user</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="number">1</span>;</span></span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-Last Updated 2017-11-05 Sun 23:07.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-12-05 Tue 23:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.3)
 
       
     </div>
@@ -928,7 +992,7 @@ Last Updated 2017-11-05 Sun 23:07.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeff9a50"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#orge26ee1d"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org911e7bb"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org920f269"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org6965591"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org387d888"><span class="nav-text">4 noweb的引用(:noweb-ref)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org844080f"><span class="nav-text">5 预处理/后置操作(:prologue/:epilogue)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org087bc02"><span class="nav-text">6 批量执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd059e17"><span class="nav-text">7 连接mysql</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org23ec5dd"><span class="nav-text">1 数据格式化(:wrap)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org9a3a29a"><span class="nav-text">1.1 json格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org3d63782"><span class="nav-text">1.2 其他格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org25baf69"><span class="nav-text">2 变量设置在Header中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org559b982"><span class="nav-text">3 结果的预处理(:post)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org78c0e10"><span class="nav-text">4 noweb的引用(:noweb-ref)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org72086f3"><span class="nav-text">5 预处理/后置操作(:prologue/:epilogue)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc48d8ed"><span class="nav-text">6 批量执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org5c2a921"><span class="nav-text">7 连接mysql</span></a></li></ol></div>
             
 
           </div>

@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/10/31/literate-devOps/</loc>
+        <lastmod>2017-12-05T15:20:29.486Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
         <lastmod>2017-12-01T06:40:41.509Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +25,6 @@
     <url>
         <loc>https://brantou.github.io/2017/11/07/go-modify-tags/</loc>
         <lastmod>2017-11-09T07:00:31.890Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/10/31/literate-devOps/</loc>
-        <lastmod>2017-11-05T15:07:47.277Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
