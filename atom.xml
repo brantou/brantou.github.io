@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-12-01T06:40:41.509Z</updated>
+  <updated>2017-12-08T04:31:26.879Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Emacs支持gomodifytags</title>
+    <link href="https://brantou.github.io/2017/12/05/emacs-go-tag/"/>
+    <id>https://brantou.github.io/2017/12/05/emacs-go-tag/</id>
+    <published>2017-12-04T16:00:00.000Z</published>
+    <updated>2017-12-08T04:31:26.879Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+受到&lt;a href=&quot;http://www.jianshu.com/p/20b533c5c3f9&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;《Go 终极指南：编写一个 Go 工具》&lt;/a&gt;
+      
+    
+    </summary>
+    
+      <category term="emacs-plugin" scheme="https://brantou.github.io/categories/emacs-plugin/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="emacs-plugin" scheme="https://brantou.github.io/tags/emacs-plugin/"/>
+    
+      <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Go语言不完全工具列表</title>
     <link href="https://brantou.github.io/2017/11/24/go-tool/"/>
     <id>https://brantou.github.io/2017/11/24/go-tool/</id>
     <published>2017-11-23T16:00:00.000Z</published>
-    <updated>2017-12-01T06:40:41.509Z</updated>
+    <updated>2017-12-06T14:36:38.611Z</updated>
     
     <summary type="html">
     
@@ -30,8 +62,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org3ec603b&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org3ec603b&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-org34259ba&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org34259ba&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot;&gt;&lt;/a&gt;&lt;span c
       
     
     </summary>
@@ -301,6 +333,42 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
+    <title>Go的测试覆盖率</title>
+    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
+    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
+    <published>2017-05-24T03:00:00.000Z</published>
+    <updated>2017-05-25T08:59:02.418Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+&lt;/p&gt;
+
+&lt;p&gt;
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU &lt;a href=&quot;http://gcc.gnu
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
+    
+      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数组，切片：‘append’的机制</title>
     <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
     <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
@@ -344,42 +412,6 @@ and authoring documents with a fast and effecti
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   
@@ -506,34 +538,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
   </entry>
   
   <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-10-18T06:50:15.827Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-  </entry>
-  
-  <entry>
     <title>一周回顾--2017-05-12</title>
     <link href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/"/>
     <id>https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/</id>
@@ -559,6 +563,34 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
     
     
       <category term="weekly" scheme="https://brantou.github.io/tags/weekly/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gopher面试中的Coding</title>
+    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
+    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
+    <published>2017-05-13T16:00:00.000Z</published>
+    <updated>2017-10-18T06:50:15.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   
@@ -693,47 +725,6 @@ ITEM for the headline title
       <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
     
       <category term="column-view" scheme="https://brantou.github.io/tags/column-view/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Org-mode表查找功能的简明教程</title>
-    <link href="https://brantou.github.io/2017/04/09/org-lookups/"/>
-    <id>https://brantou.github.io/2017/04/09/org-lookups/</id>
-    <published>2017-04-08T16:00:00.000Z</published>
-    <updated>2017-05-23T05:28:49.597Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;
-原文&lt;a href=&quot;http://orgmode.org/worg/org-tutorials/org-lookups.html&quot; rel=&quot;external nofollow noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Org tutorial on table lookup functions&lt;/a&gt;, 由 &lt;b&gt;Jarmo Hurri&lt;/b&gt;  编辑，维护。本文只做学习之用。
-&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div id=&quot;outline-container-orga774b6e&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orga774b6e&quot;&gt;序言&lt;/h2&gt;
-&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orga774b6e&quot;&gt;
-&lt;p&gt;
-&lt;code&gt;Org&lt;/code&gt; 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
-这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
-以下示例将有助于开始使用这些功能。
-&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
-    
-    
-      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
-    
-      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
-    
-      <category term="table" scheme="https://brantou.github.io/tags/table/"/>
-    
-      <category term="spreadsheet" scheme="https://brantou.github.io/tags/spreadsheet/"/>
-    
-      <category term="lookup" scheme="https://brantou.github.io/tags/lookup/"/>
     
   </entry>
   

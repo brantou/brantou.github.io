@@ -739,6 +739,192 @@ Last Updated 2017-05-25 Thu 16:59.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+编程语言最常见的特征之一是数组的概念。
+数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
+</p>
+<ul class="org-ul">
+<li>固定的size，还是可变的size?</li>
+<li>size是类型的一部分吗?</li>
+<li>多维数组看起来是什么样子的？</li>
+<li>空数组代表了什么含义？</li>
+</ul>
+
+
+<p>
+以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
+</p>
+
+<p>
+在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
+关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
+不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
+也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
+</p>
+
+<p>
+在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-http-trace/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2344,411 +2530,6 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述，解题思路，实际编程。
-</p>
-
-<div id="outline-container-org8c288dc" class="outline-2">
-<h2 id="org8c288dc"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
-<div class="outline-text-2" id="text-1">
-</div>
-
-<div id="outline-container-orgc0c0525" class="outline-3">
-<h3 id="orgc0c0525"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
-另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
-</p>
-</div>
-</div>
-<div id="outline-container-org4766921" class="outline-3">
-<h3 id="org4766921"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
-数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
-</p>
-</div>
-</div>
-<div id="outline-container-org3ed2b68" class="outline-3">
-<h3 id="org3ed2b68"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果:
-</p>
-<pre class="example">
-12AB34CD56EF78GH910IJ
-
-</pre>
-
-<blockquote>
-<p>
-看完上面的代码，是不是会有些疑惑，为什么 <code>chan_c</code> 需要缓存，而 <code>chan_n</code> 不需要呢? <br>
-当两个打印 <code>goroutine</code> 无限交替运行时，没有缓存是OK的，
-但很明显上面的示例不是，打印数字的 <code>goroutine</code> 先退出，也就失去了 <code>goroutine</code> 来读取 <code>chan_c</code> 中的内容了，
-而打印字母的goroutine就会阻塞在 <code>chan_c &lt;- true</code> 这里，这样就导致了死锁。
-</p>
-</blockquote>
-
-<blockquote>
-<p>
-当然无缓存版也是可以，代码如下：
-</p>
-</blockquote>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">    &lt;-chan_c</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">&lt;-done</span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org964b8ee" class="outline-2">
-<h2 id="org964b8ee"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgc966ea8" class="outline-3">
-<h3 id="orgc966ea8"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-用户随机抽奖，数据结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org1827d4a" class="outline-3">
-<h3 id="org1827d4a"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
-把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-orge6441af" class="outline-3">
-<h3 id="orge6441af"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: f, award count: 178
-user: d, award count: 152
-user: b, award count: 159
-user: e, award count: 182
-user: c, award count: 170
-user: a, award count: 159
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org82bc2cf" class="outline-2">
-<h2 id="org82bc2cf"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-orgb5b4496" class="outline-3">
-<h3 id="orgb5b4496"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org7f9f5b7" class="outline-3">
-<h3 id="org7f9f5b7"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
-理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
-把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org588c080" class="outline-3">
-<h3 id="org588c080"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: c, award count: 1667
-user: f, award count: 3310
-user: e, award count: 1099
-user: d, award count: 2276
-user: b, award count: 549
-user: a, award count: 1099
-
-</pre>
-
-<blockquote>
-<p>
-感谢各位的评论，让我受益匪浅，上面代码确实有太多的槽点，感谢吐槽，代码更正如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _name, num := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    offset_num += num</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = _name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-由于一直以为Golang的map <code>for range</code> 是可重入的，但现实是前后两轮遍历到的 <code>key</code> 的顺序居然是被随机化的，
-代码示例如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n_map := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">bool</span>)</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ {</span><br><span class="line">  n_map[i] = <span class="constant">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br><span class="line">fmt.Print(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-91257103468
-46810325791
-
-</pre>
-
-<blockquote>
-<p>
-由于map的不可重入性， 以及 <a href="http://www.jianshu.com/u/53c9aad81bbb" rel="external nofollow noopener noreferrer" target="_blank">liguoqinjim</a> 给出的<a href="https://imgur.com/sG4nh4v" rel="external nofollow noopener noreferrer" target="_blank"> 示例代码</a> 和 <a href="https://imgur.com/Gq95IYP" rel="external nofollow noopener noreferrer" target="_blank">运行结果</a> 证明了map的 <code>for range</code> 的伪随机性，
-代码修改如下(在<a href="https://play.golang.org/p/mf-40sHFzc" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">    offset_num += users[u_name]</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-上面代码，对于多次调用会有性能问题，每次都要重新计算 <code>sum_num</code> 和创建 <code>name_arr</code>, 使用闭包优化实现，
-代码如下(在<a href="https://play.golang.org/p/dgc07E_Z1j" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">    <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">      offset_num += users[u_name]</span><br><span class="line">      <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">        <span class="keyword">return</span> u_name</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 缺省返回，正常情况下，不会运行到此处</span></span><br><span class="line">    <span class="keyword">return</span> name_arr[<span class="number">0</span>]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-上面代码使用了闭包避免了多次抽奖时频繁的初始化，
-但每次抽奖的复杂度O(n)，很明显依旧有可优化的空间，可使用二分搜索来使复杂度降到 <code>O(log n)</code>,
-代码如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// 最后一名中奖</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-在已知长度的情况下，应使用 <code>array[index]=num</code> 而避免使用 <code>array=append(array, num)</code>, 代码和测试如下：
-</p>
-</blockquote>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  test_len := <span class="number">10000000</span></span><br><span class="line">  start := time.Now()</span><br><span class="line">  s := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s = <span class="built_in">append</span>(s, i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line"></span><br><span class="line">  start = time.Now()</span><br><span class="line">  s1 := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s1[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-132.123121ms
-27.453897ms
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgaf58aaf" class="outline-2">
-<h2 id="orgaf58aaf"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
-我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
-</p>
-</div>
-</div>
-
-Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/weekly-review-ending-2017-05-12/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3129,6 +2910,411 @@ Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/Code
 </div>
 
 Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
+然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
+自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
+分三步阐述出来：问题描述，解题思路，实际编程。
+</p>
+
+<div id="outline-container-org8c288dc" class="outline-2">
+<h2 id="org8c288dc"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+
+<div id="outline-container-orgc0c0525" class="outline-3">
+<h3 id="orgc0c0525"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
+另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
+</p>
+</div>
+</div>
+<div id="outline-container-org4766921" class="outline-3">
+<h3 id="org4766921"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
+数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
+</p>
+</div>
+</div>
+<div id="outline-container-org3ed2b68" class="outline-3">
+<h3 id="org3ed2b68"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果:
+</p>
+<pre class="example">
+12AB34CD56EF78GH910IJ
+
+</pre>
+
+<blockquote>
+<p>
+看完上面的代码，是不是会有些疑惑，为什么 <code>chan_c</code> 需要缓存，而 <code>chan_n</code> 不需要呢? <br>
+当两个打印 <code>goroutine</code> 无限交替运行时，没有缓存是OK的，
+但很明显上面的示例不是，打印数字的 <code>goroutine</code> 先退出，也就失去了 <code>goroutine</code> 来读取 <code>chan_c</code> 中的内容了，
+而打印字母的goroutine就会阻塞在 <code>chan_c &lt;- true</code> 这里，这样就导致了死锁。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+当然无缓存版也是可以，代码如下：
+</p>
+</blockquote>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">    &lt;-chan_c</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">&lt;-done</span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org964b8ee" class="outline-2">
+<h2 id="org964b8ee"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgc966ea8" class="outline-3">
+<h3 id="orgc966ea8"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+用户随机抽奖，数据结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org1827d4a" class="outline-3">
+<h3 id="org1827d4a"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
+把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-orge6441af" class="outline-3">
+<h3 id="orge6441af"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: f, award count: 178
+user: d, award count: 152
+user: b, award count: 159
+user: e, award count: 182
+user: c, award count: 170
+user: a, award count: 159
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org82bc2cf" class="outline-2">
+<h2 id="org82bc2cf"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgb5b4496" class="outline-3">
+<h3 id="orgb5b4496"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
+</p>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f9f5b7" class="outline-3">
+<h3 id="org7f9f5b7"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
+理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
+把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
+</p>
+</div>
+</div>
+<div id="outline-container-org588c080" class="outline-3">
+<h3 id="org588c080"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+代码执行结果：
+</p>
+<pre class="example">
+user: c, award count: 1667
+user: f, award count: 3310
+user: e, award count: 1099
+user: d, award count: 2276
+user: b, award count: 549
+user: a, award count: 1099
+
+</pre>
+
+<blockquote>
+<p>
+感谢各位的评论，让我受益匪浅，上面代码确实有太多的槽点，感谢吐槽，代码更正如下：
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _name, num := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    offset_num += num</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = _name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<blockquote>
+<p>
+由于一直以为Golang的map <code>for range</code> 是可重入的，但现实是前后两轮遍历到的 <code>key</code> 的顺序居然是被随机化的，
+代码示例如下：
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n_map := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">bool</span>)</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ {</span><br><span class="line">  n_map[i] = <span class="constant">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br><span class="line">fmt.Print(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+91257103468
+46810325791
+
+</pre>
+
+<blockquote>
+<p>
+由于map的不可重入性， 以及 <a href="http://www.jianshu.com/u/53c9aad81bbb" rel="external nofollow noopener noreferrer" target="_blank">liguoqinjim</a> 给出的<a href="https://imgur.com/sG4nh4v" rel="external nofollow noopener noreferrer" target="_blank"> 示例代码</a> 和 <a href="https://imgur.com/Gq95IYP" rel="external nofollow noopener noreferrer" target="_blank">运行结果</a> 证明了map的 <code>for range</code> 的伪随机性，
+代码修改如下(在<a href="https://play.golang.org/p/mf-40sHFzc" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">    offset_num += users[u_name]</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<blockquote>
+<p>
+上面代码，对于多次调用会有性能问题，每次都要重新计算 <code>sum_num</code> 和创建 <code>name_arr</code>, 使用闭包优化实现，
+代码如下(在<a href="https://play.golang.org/p/dgc07E_Z1j" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">    <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">      offset_num += users[u_name]</span><br><span class="line">      <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">        <span class="keyword">return</span> u_name</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 缺省返回，正常情况下，不会运行到此处</span></span><br><span class="line">    <span class="keyword">return</span> name_arr[<span class="number">0</span>]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<blockquote>
+<p>
+上面代码使用了闭包避免了多次抽奖时频繁的初始化，
+但每次抽奖的复杂度O(n)，很明显依旧有可优化的空间，可使用二分搜索来使复杂度降到 <code>O(log n)</code>,
+代码如下：
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// 最后一名中奖</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<blockquote>
+<p>
+在已知长度的情况下，应使用 <code>array[index]=num</code> 而避免使用 <code>array=append(array, num)</code>, 代码和测试如下：
+</p>
+</blockquote>
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  test_len := <span class="number">10000000</span></span><br><span class="line">  start := time.Now()</span><br><span class="line">  s := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s = <span class="built_in">append</span>(s, i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line"></span><br><span class="line">  start = time.Now()</span><br><span class="line">  s1 := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s1[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+132.123121ms
+27.453897ms
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf58aaf" class="outline-2">
+<h2 id="orgaf58aaf"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
+我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
+</p>
+</div>
+</div>
+
+Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
@@ -3580,180 +3766,6 @@ ITEM for the headline title
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/04/09/org-lookups/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/09/org-lookups/" itemprop="url">Org-mode表查找功能的简明教程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T00:00:00+08:00">
-                2017-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/09/org-lookups/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/04/09/org-lookups/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>
-原文<a href="http://orgmode.org/worg/org-tutorials/org-lookups.html" rel="external nofollow noopener noreferrer" target="_blank">Org tutorial on table lookup functions</a>, 由 <b>Jarmo Hurri</b>  编辑，维护。本文只做学习之用。
-</p>
-</blockquote>
-
-<div id="outline-container-orga774b6e" class="outline-2">
-<h2 id="orga774b6e">序言</h2>
-<div class="outline-text-2" id="text-orga774b6e">
-<p>
-<code>Org</code> 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
-这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
-以下示例将有助于开始使用这些功能。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/09/org-lookups/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </div></div></article>
-
-
-    
   </section>
 
   
@@ -3806,7 +3818,7 @@ ITEM for the headline title
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3817,7 +3829,7 @@ ITEM for the headline title
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3828,7 +3840,7 @@ ITEM for the headline title
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

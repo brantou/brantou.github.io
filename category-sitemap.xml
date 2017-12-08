@@ -21,15 +21,22 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/</loc>
-        <lastmod>2017-12-01T06:40:41.509Z</lastmod>
+        <loc>https://brantou.github.io/categories/org-mode/</loc>
+        <lastmod>2017-12-05T15:20:29.486Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://brantou.github.io/categories/org-mode/</loc>
-        <lastmod>2017-12-05T15:20:29.486Z</lastmod>
+        <loc>https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/</loc>
+        <lastmod>2017-12-06T14:36:38.611Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/categories/emacs-plugin/</loc>
+        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

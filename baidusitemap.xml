@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/12/05/emacs-go-tag/</loc>
+    <lastmod>2017-12-08T04:31:26.879Z</lastmod>
+    <data>
+        <display>
+        <title>Emacs支持gomodifytags</title>
+        <pubTime>2017-12-04T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>emacs-plugin</tag>
+         
+        <tag>elisp</tag>
+         
+        <tag>tools</tag>
+         
+         
+           
+             
+              <breadCrumb title="emacs-plugin" url="https://brantou.github.io/categories/emacs-plugin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
+    <lastmod>2017-12-06T14:36:38.611Z</lastmod>
+    <data>
+        <display>
+        <title>Go语言不完全工具列表</title>
+        <pubTime>2017-11-23T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>tool</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/10/31/literate-devOps/</loc>
     <lastmod>2017-12-05T15:20:29.486Z</lastmod>
     <data>
@@ -25,28 +73,6 @@
            
              
               <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
-    <lastmod>2017-12-01T06:40:41.509Z</lastmod>
-    <data>
-        <display>
-        <title>Go语言不完全工具列表</title>
-        <pubTime>2017-11-23T16:00:00.000Z</pubTime>
-        
-        <tag>golang</tag>
-         
-        <tag>tool</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
           
         </display>
     </data>
@@ -521,58 +547,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的列视图简明教程</title>
-        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>column-view</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode表查找功能的简明教程</title>
-        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>table</tag>
-         
-        <tag>spreadsheet</tag>
-         
-        <tag>lookup</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/04/08/org-spreadsheet-lisp-formulas/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -587,6 +561,56 @@
         <tag>org-table</tag>
          
         <tag>emacs-lisp</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的语法解读</title>
+        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>org-syntax</tag>
+         
+        <tag>org-internal-structure</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的列视图简明教程</title>
+        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>column-view</tag>
          
          
            
@@ -621,20 +645,22 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
+    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Org-mode的语法解读</title>
-        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
+        <title>Org-mode表查找功能的简明教程</title>
+        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
         
         <tag>tutorial</tag>
          
         <tag>org-mode</tag>
          
-        <tag>org-syntax</tag>
+        <tag>table</tag>
          
-        <tag>org-internal-structure</tag>
+        <tag>spreadsheet</tag>
+         
+        <tag>lookup</tag>
          
          
            

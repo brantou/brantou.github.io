@@ -349,6 +349,304 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/05/emacs-go-tag/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/05/emacs-go-tag/" itemprop="url">Emacs支持gomodifytags</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T00:00:00+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/emacs-plugin/" itemprop="url" rel="index">
+                    <span itemprop="name">emacs-plugin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/05/emacs-go-tag/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/05/emacs-go-tag/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+受到<a href="http://www.jianshu.com/p/20b533c5c3f9" rel="external nofollow noopener noreferrer" target="_blank">《Go 终极指南：编写一个 Go 工具》</a>的启发，萌生了把 <a href="https://github.com/fatih/gomodifytags" rel="external nofollow noopener noreferrer" target="_blank">gomodifytags</a> 封装成emacs-plugin的想法，
+然后经过两周的努力，诞生了<a href="https://github.com/brantou/emacs-go-tag" rel="external nofollow noopener noreferrer" target="_blank">emacs-go-tag</a>。
+<code>emacs-go-tag</code> 实现了两个命令： <code>go-tag-add</code> 添加结构体字段tag， <code>go-tag-remove</code> 删除结构体字段tag。
+</p>
+
+<div id="outline-container-orgc48f952" class="outline-2">
+<h2 id="orgc48f952"><a id="ID-c1a9f516-96c0-43f0-a40e-3541cc0e5014"></a><span class="section-number-2">1</span> 安装依赖</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>emacs-go-tag</code> 有两个依赖项， <code>gomodifytags</code> 和 <a href="https://github.com/dominikh/go-mode.el" rel="external nofollow noopener noreferrer" target="_blank">go-mode.el</a>，若使用emacs做Go开发 <code>go-mode.el</code> 应该已经在使用了。
+gomodifytags安装如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/fatih/gomodifytags</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orged22cb8" class="outline-2">
+<h2 id="orged22cb8"><a id="ID-dcb13c65-0204-4e14-8446-9c0e5e3fe2be"></a><span class="section-number-2">2</span> 安装</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+目前emacs-go-tag已发布到了<a href="https://melpa.org/" rel="external nofollow noopener noreferrer" target="_blank">MELPA</a>上，可使用如下命令安装：
+<code>M-x package-install [RET] go-tag [RET]</code>
+若是没发现go-tag,你需要使用如下命令来刷新,然后在使用上面的命令进行安装:
+<code>M-x package-refresh-contents [RET]</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org72fc9aa" class="outline-2">
+<h2 id="org72fc9aa"><a id="ID-fc076558-8801-441a-a81c-d8b7b380046f"></a><span class="section-number-2">3</span> 配置</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+目前 <code>gomodifytags</code> 支持三种转换如下：
+</p>
+<ul class="org-ul">
+<li>snakecase: BaseDomain -&gt; base_domain</li>
+<li>camelcase: BaseDomain -&gt; baseDomain</li>
+<li>lispcase: BaseDomain -&gt; base-domain</li>
+</ul>
+
+<p>
+默认使用 <code>snakecase</code> , 若你准备使用 <code>camelcase</code>, 可配置如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq go-tag-args (list &#34;-transform&#34; &#34;camelcase&#34;))</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+快捷键配置示例：
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(with-eval-after-load &#39;go-mode&#10;  (define-key go-mode-map (kbd &#34;C-c t&#34;) #&#39;go-tag-add)&#10;  (define-key go-mode-map (kbd &#34;C-c T&#34;) #&#39;go-tag-remove))</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga466eb8" class="outline-2">
+<h2 id="orga466eb8"><a id="ID-115052a8-4563-4ddc-a6cb-7f8a37fe8746"></a><span class="section-number-2">4</span> 使用说明</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+  若是你有使用 vim-go 的 <code>GoAddTags</code> 和 <code>GoRemoveTags</code> 命令的经验， 那么你会很快上手 <code>emacs-go-tag</code>,
+因为两者的行为完全一致（若有不同，请反馈）。
+</p>
+</div>
+<div id="outline-container-org7fe761d" class="outline-3">
+<h3 id="org7fe761d"><a id="ID-1bda75e3-95d3-44e4-b511-302dc6596fff"></a><span class="section-number-3">4.1</span> <code>go-tag-add</code></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<code>:[range] go-tag-add [key],[option] [key1],[option] …</code>
+为结构体字段添加tag。如果在一个结构中调用，会自动添加json字段tag。
+若在结构体之外调用，或者文件格式不正确，则会给出错误消息。
+</p>
+
+<p>
+如果给出 <code>[range]</code> ，则只有选定的字段将被改变。
+</p>
+
+<p>
+默认的json可以通过提供一个或多个 <code>[key]</code> 参数来改变。
+添加xml和db的例子是：
+<code>:go-tag-add xml db</code>
+</p>
+
+<p>
+若提供了 <code>[option]</code> 也提供了，会在添加tag时，一同添加 <code>option</code> , 或者修改已存在的tag。 如下：
+<code>:go-tag-add json,omitempty</code>
+</p>
+
+<p>
+也可以定义一个常数值而不是默认的基于字段的值。 例如，以下命令将添加`valid：“1”`到所有字段。
+<code>:go-tag-add valid=1</code>
+</p>
+
+<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-add.gif">
+</div>
+</div>
+
+<div id="outline-container-org6024715" class="outline-3">
+<h3 id="org6024715"><a id="ID-1dd1e27b-cb8e-4caf-b6ec-244226ad4499"></a><span class="section-number-3">4.2</span> <code>go-tag-remove</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>:[range] go-tag-add [key],[option] [key1],[option] …</code>
+ 移除结构字段的字段标记。 如果在一个结构中调用，它会自动删除所有的字段tag。
+ 如果在结构体定义之外调用，或者文件格式不正确，则会给出错误消息。
+</p>
+
+<p>
+如果给出 <code>[range]</code> ，则只有选定的字段将被改变。
+</p>
+
+<p>
+如果给出 <code>[key]</code> ，则只会删除这些key相关的tag。 如下只删除json相关的tag：
+<code>:go-tag-remove json</code>
+</p>
+
+<p>
+如果 <code>[option]</code> 和 <code>[key]</code> 一同传递，则只会删除 <code>option</code> 。
+例如，下面命令只会从包含json的字段中删除omitempty选项：
+<code>:go-tag-remove json,omitempty</code>
+</p>
+
+<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-remove.gif">
+</div>
+</div>
+</div>
+
+<div id="outline-container-org387a0cc" class="outline-2">
+<h2 id="org387a0cc"><a id="ID-9437067b-8701-479f-b594-84460bf62310"></a><span class="section-number-2">5</span> 最后</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+感谢 <code>GoCN每日新闻</code> 的每日推送，让我得以读到 <a href="http://www.jianshu.com/p/20b533c5c3f9" rel="external nofollow noopener noreferrer" target="_blank">《Go 终极指南：编写一个 Go 工具》</a>, 然后我才得以写出这个emacs-plugin。
+这里给出项目地址：<a href="https://github.com/brantou/emacs-go-tag" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/brantou/emacs-go-tag</a>, 欢迎大家来使用和来提问题，若是你觉得对你有帮助， <code>就给颗星</code> 吧。
+</p>
+</div>
+</div>
+
+Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/11/24/go-tool/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -457,8 +755,8 @@
             
 
 
-<div id="outline-container-org3ec603b" class="outline-2">
-<h2 id="org3ec603b"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
+<div id="outline-container-org34259ba" class="outline-2">
+<h2 id="org34259ba"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/josharian/impl</span><br></pre></td></tr></table></figure>
@@ -484,8 +782,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-org4ebfe8f" class="outline-2">
-<h2 id="org4ebfe8f"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
+<div id="outline-container-orge324540" class="outline-2">
+<h2 id="orge324540"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 请参见之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
@@ -493,8 +791,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-org20c413a" class="outline-2">
-<h2 id="org20c413a"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
+<div id="outline-container-org64b2805" class="outline-2">
+<h2 id="org64b2805"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/lukehoban/go-outline</span><br></pre></td></tr></table></figure>
@@ -515,7 +813,7 @@ Usage of go-outline:
 </pre>
 
 <div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Outline <span class="keyword">struct</span> {</span><br><span class="line">  Label <span class="typename">string</span></span><br><span class="line">  Type  <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (ol *Outline) Label() <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">return</span> ol.Label</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">"brantou"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">  cmd  <span class="typename">string</span></span><br><span class="line">  args <span class="typename">string</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Outline <span class="keyword">struct</span> {</span><br><span class="line">  Label <span class="typename">string</span></span><br><span class="line">  Type  <span class="typename">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (ol *Outline) Label() <span class="typename">string</span> {</span><br><span class="line">  <span class="keyword">return</span> ol.Label</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">  name = <span class="string">"brantou"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> email = <span class="string">"brantou89@gmail.com"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">  cmd  <span class="typename">string</span></span><br><span class="line">  args <span class="typename">string</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Printf(<span class="string">"hello world!"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
@@ -523,7 +821,7 @@ Usage of go-outline:
 </div>
 
 <div class="org-src-container">
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {</span><br><span class="line">        "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">        "<span class="attribute">type</span>": <span class="value"><span class="string">"package"</span></span>,</span><br><span class="line">        "<span class="attribute">start</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">        "<span class="attribute">end</span>": <span class="value"><span class="number">240</span></span>,</span><br><span class="line">        "<span class="attribute">children</span>": <span class="value">[</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"\"fmt\""</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"import"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">23</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">28</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">35</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">83</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Label"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">receiverType</span>": <span class="value"><span class="string">"*Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">85</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">140</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"name"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">146</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">150</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"cmd"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">167</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">170</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"args"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">181</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">185</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">196</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">240</span></span><br><span class="line">            </span>}</span><br><span class="line">        ]</span><br><span class="line">    </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {</span><br><span class="line">        "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">        "<span class="attribute">type</span>": <span class="value"><span class="string">"package"</span></span>,</span><br><span class="line">        "<span class="attribute">start</span>": <span class="value"><span class="number">1</span></span>,</span><br><span class="line">        "<span class="attribute">end</span>": <span class="value"><span class="number">290</span></span>,</span><br><span class="line">        "<span class="attribute">children</span>": <span class="value">[</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"\"fmt\""</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"import"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">23</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">28</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"type"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">35</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">83</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"Label"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">receiverType</span>": <span class="value"><span class="string">"*Outline"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">85</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">140</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"name"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"constant"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">152</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">156</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"email"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"constant"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">178</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">183</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"cmd"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">217</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">220</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"args"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"variable"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">231</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">235</span></span><br><span class="line">            </span>},</span><br><span class="line">            {</span><br><span class="line">                "<span class="attribute">label</span>": <span class="value"><span class="string">"main"</span></span>,</span><br><span class="line">                "<span class="attribute">type</span>": <span class="value"><span class="string">"function"</span></span>,</span><br><span class="line">                "<span class="attribute">start</span>": <span class="value"><span class="number">246</span></span>,</span><br><span class="line">                "<span class="attribute">end</span>": <span class="value"><span class="number">290</span></span><br><span class="line">            </span>}</span><br><span class="line">        ]</span><br><span class="line">    </span>}</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
@@ -531,8 +829,8 @@ Usage of go-outline:
 </div>
 </div>
 </div>
-<div id="outline-container-org40b4103" class="outline-2">
-<h2 id="org40b4103"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
+<div id="outline-container-orgd90efd6" class="outline-2">
+<h2 id="orgd90efd6"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/newhook/go-symbols</span><br></pre></td></tr></table></figure>
@@ -557,8 +855,8 @@ Usage of go-symbols:
 </div>
 </div>
 </div>
-<div id="outline-container-orga48cef7" class="outline-2">
-<h2 id="orga48cef7"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
+<div id="outline-container-org8e33406" class="outline-2">
+<h2 id="org8e33406"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 An autocompletion daemon for the Go programming language.
@@ -600,8 +898,8 @@ Commands:
 </div>
 </div>
 
-<div id="outline-container-orgb2d36fb" class="outline-2">
-<h2 id="orgb2d36fb"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
+<div id="outline-container-org00fe6fe" class="outline-2">
+<h2 id="org00fe6fe"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Print where symbols are defined in Go source code.
@@ -634,8 +932,8 @@ usage: godef [flags] [expr]
 </div>
 </div>
 
-<div id="outline-container-org581fb27" class="outline-2">
-<h2 id="org581fb27"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
+<div id="outline-container-org6f93efe" class="outline-2">
+<h2 id="org6f93efe"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Retrieve documentation for items in Go source code.
@@ -672,8 +970,8 @@ This allows editors to supply gogetdoc with the contents of their unsaved buffer
 </div>
 </div>
 
-<div id="outline-container-orgf72b016" class="outline-2">
-<h2 id="orgf72b016"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
+<div id="outline-container-org021d835" class="outline-2">
+<h2 id="org021d835"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Golint is a linter for Go source code.
@@ -710,8 +1008,8 @@ google.go:19:1: exported function Search should have comment or be unexported
 </div>
 </div>
 
-<div id="outline-container-org740a906" class="outline-2">
-<h2 id="org740a906"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
+<div id="outline-container-org1ada718" class="outline-2">
+<h2 id="org1ada718"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Gopkgs is tools that provide list of available Go packages that can be imported.
@@ -749,8 +1047,8 @@ Use -format to custom the output using template syntax. The struct being passed 
 </div>
 </div>
 
-<div id="outline-container-orgc2b5b3b" class="outline-2">
-<h2 id="orgc2b5b3b"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
+<div id="outline-container-org8ce3490" class="outline-2">
+<h2 id="org8ce3490"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v golang.org/x/tools/cmd/gorename</span><br></pre></td></tr></table></figure>
@@ -865,8 +1163,8 @@ Features:
 </div>
 </div>
 
-<div id="outline-container-org7e11746" class="outline-2">
-<h2 id="org7e11746"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
+<div id="outline-container-org45152cf" class="outline-2">
+<h2 id="org45152cf"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v github.com/godoctor/godoctor</span><br></pre></td></tr></table></figure>
@@ -909,8 +1207,8 @@ For complete usage information, see the user manual: http://gorefactor.org/doc.h
 </div>
 </div>
 
-<div id="outline-container-org3b15e9f" class="outline-2">
-<h2 id="org3b15e9f"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
+<div id="outline-container-orgceb971c" class="outline-2">
+<h2 id="orgceb971c"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 A gofmt/goimports-like tool for Go programmers that fills
@@ -960,8 +1258,8 @@ put imports beginning with this string after 3rd-party packages (see goimports)
 </div>
 </div>
 
-<div id="outline-container-orgba285e6" class="outline-2">
-<h2 id="orgba285e6"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
+<div id="outline-container-org243e145" class="outline-2">
+<h2 id="org243e145"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Generate Go tests from your source code.
@@ -996,8 +1294,8 @@ Usage of gotests:
 </div>
 </div>
 
-<div id="outline-container-orga83a9a4" class="outline-2">
-<h2 id="orga83a9a4"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
+<div id="outline-container-orgd6a3968" class="outline-2">
+<h2 id="orgd6a3968"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 guru: a tool for answering questions about Go source code.
@@ -1005,8 +1303,8 @@ guru: a tool for answering questions about Go source code.
 </div>
 </div>
 
-<div id="outline-container-orgfa1b6b8" class="outline-2">
-<h2 id="orgfa1b6b8"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
+<div id="outline-container-org4fa4c96" class="outline-2">
+<h2 id="org4fa4c96"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 godepgraph is a program for generating a dependency graph of Go packages.
@@ -1053,8 +1351,8 @@ Usage of godepgraph:
 <img src="/images/go-tool/godepgraph.png">
 </div>
 </div>
-<div id="outline-container-org2099c2f" class="outline-2">
-<h2 id="org2099c2f"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
+<div id="outline-container-orgdd24c57" class="outline-2">
+<h2 id="orgdd24c57"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/TrueFurby/go-callvis</span><br></pre></td></tr></table></figure>
@@ -1096,8 +1394,8 @@ Usage of go-callvis:
 <img src="/images/go-tool/go-callvis.png">
 </div>
 </div>
-<div id="outline-container-org8eead61" class="outline-2">
-<h2 id="org8eead61"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
+<div id="outline-container-orgd0c6bf9" class="outline-2">
+<h2 id="orgd0c6bf9"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/KyleBanks/depth/cmd/depth</span><br></pre></td></tr></table></figure>
@@ -1179,8 +1477,8 @@ strings
 </div>
 </div>
 
-<div id="outline-container-orgb1c49f0" class="outline-2">
-<h2 id="orgb1c49f0"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
+<div id="outline-container-orgbea2406" class="outline-2">
+<h2 id="orgbea2406"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v mvdan.cc/interfacer</span><br></pre></td></tr></table></figure>
@@ -1204,7 +1502,7 @@ simple.go:24:19: undeclared name: St
 </div>
 </div>
 
-Last Updated 2017-12-01 Fri 14:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-12-06 Wed 22:36.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
           
         
@@ -4535,192 +4833,6 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/24/go-array-slice-string/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/24/go-array-slice-string/" itemprop="url">数组，切片：‘append’的机制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T11:00:00+08:00">
-                2017-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/24/go-array-slice-string/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/24/go-array-slice-string/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-编程语言最常见的特征之一是数组的概念。
-数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
-</p>
-<ul class="org-ul">
-<li>固定的size，还是可变的size?</li>
-<li>size是类型的一部分吗?</li>
-<li>多维数组看起来是什么样子的？</li>
-<li>空数组代表了什么含义？</li>
-</ul>
-
-
-<p>
-以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
-</p>
-
-<p>
-在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
-关键的一步是引入了 <i>切片</i> ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
-不过，到目前为止，Go的新手经常会在 <i>切片</i> 的工作方式上遇到问题，
-也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 <i>切片</i> 。
-</p>
-
-<p>
-在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 <i>append</i> 内置函数的工作原理以及为什么它如此的工作。
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/24/go-array-slice-string/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4773,7 +4885,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4784,7 +4896,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -4795,7 +4907,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
