@@ -240,20 +240,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tool/</loc>
-        <lastmod>2017-12-06T14:36:38.611Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/emacs-plugin/</loc>
         <lastmod>2017-12-08T04:31:26.879Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -268,8 +254,50 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/dlv/</loc>
+        <lastmod>2017-12-10T08:57:05.081Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/tools/</loc>
-        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
+        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/gdb/</loc>
+        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/emacs/</loc>
+        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/debug/</loc>
+        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/golang/</loc>
+        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tool/</loc>
+        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

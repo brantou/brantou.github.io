@@ -349,6 +349,364 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/go-dlv-try/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/09/go-dlv-try/" itemprop="url">go-dlv试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/09/go-dlv-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/go-dlv-try/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-orgab0c325" class="outline-2">
+<h2 id="orgab0c325"><a id="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3"></a><span class="section-number-2">1</span> 源码</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"sync"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> dostuff(wg *sync.WaitGroup, i <span class="typename">int</span>) {</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  time.Sleep(<span class="number">300</span> * time.Second)</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  wg.Done()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  workers := <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  wg.Add(workers)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; workers; i++ {</span><br><span class="line">    <span class="keyword">go</span> dostuff(&amp;wg, i)</span><br><span class="line">  }</span><br><span class="line">  wg.Wait()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/09/gdb-ui-just-try/" itemprop="url">GDB-UI试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/09/gdb-ui-just-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/gdb-ui-just-try/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-org2f8337e" class="outline-2">
+<h2 id="org2f8337e"><a id="ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6"></a><span class="section-number-2">1</span> 源码</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> {</span><br><span class="line">  <span class="keyword">float</span> a;</span><br><span class="line">  <span class="keyword">float</span> b;</span><br><span class="line">} substruct;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> {</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  substruct r;</span><br><span class="line">} c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line">  <span class="keyword">int</span> m[<span class="number">10</span>] = {<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>,<span class="number">36</span>,<span class="number">49</span>,<span class="number">64</span>,<span class="number">81</span>};</span><br><span class="line">  n = <span class="number">5</span>;</span><br><span class="line">  myproc(n);</span><br><span class="line">  c.i = <span class="number">1</span>;</span><br><span class="line">  c.r.a = <span class="number">0.5</span>;</span><br><span class="line">  c.r.b = <span class="number">0.25</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myproc</span><span class="params">(n)</span></span><br><span class="line"></span>{</span><br><span class="line">  <span class="keyword">int</span> p;</span><br><span class="line">  p = <span class="number">2</span>*n;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Two times %d is %d\n"</span>, n, p);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+用 -g 选项编译程序：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cc -g -c myproc.c</span><br><span class="line">cc -g -o myprog myprog.c myproc.o</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb9afbe9" class="outline-2">
+<h2 id="orgb9afbe9"><a id="ID-005e298e-7e90-45ca-9cac-d842a25e6e8b"></a><span class="section-number-2">2</span> 使用</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+参见<a href="http://tigersoldier.is-programmer.com/2010/3/26/use-gdb-in-emacs.16324.html" rel="external nofollow noopener noreferrer" target="_blank">在Emacs中使用gdb调试程序</a>。
+</p>
+</div>
+</div>
+
+Last Updated 2017-12-11 Mon 13:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/05/emacs-go-tag/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -755,8 +1113,8 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
             
 
 
-<div id="outline-container-org34259ba" class="outline-2">
-<h2 id="org34259ba"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
+<div id="outline-container-org8b63c4c" class="outline-2">
+<h2 id="org8b63c4c"><a id="ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff"></a><span class="section-number-2">1</span> impl</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/josharian/impl</span><br></pre></td></tr></table></figure>
@@ -782,8 +1140,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-orge324540" class="outline-2">
-<h2 id="orge324540"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
+<div id="outline-container-org2896719" class="outline-2">
+<h2 id="org2896719"><a id="ID-251f4189-ea0e-4de2-a3c2-10f537e227b4"></a><span class="section-number-2">2</span> gomodifytags</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 请参见之前的文章<a href="https://brantou.github.io/2017/11/07/go-modify-tags/">gomodifytags</a>。
@@ -791,8 +1149,8 @@ Usage of impl:
 </div>
 </div>
 
-<div id="outline-container-org64b2805" class="outline-2">
-<h2 id="org64b2805"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
+<div id="outline-container-orgfb101a3" class="outline-2">
+<h2 id="orgfb101a3"><a id="ID-42607192-5087-43d2-b6e7-8af2bb30a487"></a><span class="section-number-2">3</span> go-outline</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/lukehoban/go-outline</span><br></pre></td></tr></table></figure>
@@ -829,8 +1187,8 @@ Usage of go-outline:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd90efd6" class="outline-2">
-<h2 id="orgd90efd6"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
+<div id="outline-container-orgd2d0bc2" class="outline-2">
+<h2 id="orgd2d0bc2"><a id="ID-498d0e01-e59e-406e-82db-bbe477366bf6"></a><span class="section-number-2">4</span> go-symbols</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/newhook/go-symbols</span><br></pre></td></tr></table></figure>
@@ -855,8 +1213,8 @@ Usage of go-symbols:
 </div>
 </div>
 </div>
-<div id="outline-container-org8e33406" class="outline-2">
-<h2 id="org8e33406"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
+<div id="outline-container-org0ca29b8" class="outline-2">
+<h2 id="org0ca29b8"><a id="ID-462c9dc1-3148-4be0-bf12-751821247f33"></a><span class="section-number-2">5</span> gocode</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 An autocompletion daemon for the Go programming language.
@@ -898,8 +1256,8 @@ Commands:
 </div>
 </div>
 
-<div id="outline-container-org00fe6fe" class="outline-2">
-<h2 id="org00fe6fe"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
+<div id="outline-container-orge6f83af" class="outline-2">
+<h2 id="orge6f83af"><a id="ID-47e74814-b835-46d4-9aba-309f255f196c"></a><span class="section-number-2">6</span> godef</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Print where symbols are defined in Go source code.
@@ -932,8 +1290,8 @@ usage: godef [flags] [expr]
 </div>
 </div>
 
-<div id="outline-container-org6f93efe" class="outline-2">
-<h2 id="org6f93efe"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
+<div id="outline-container-orgd59b70c" class="outline-2">
+<h2 id="orgd59b70c"><a id="ID-62c99ab8-8ebb-4ff8-aa2b-3db15c05f369"></a><span class="section-number-2">7</span> gogetdoc</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Retrieve documentation for items in Go source code.
@@ -970,8 +1328,8 @@ This allows editors to supply gogetdoc with the contents of their unsaved buffer
 </div>
 </div>
 
-<div id="outline-container-org021d835" class="outline-2">
-<h2 id="org021d835"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
+<div id="outline-container-orgbbc3b19" class="outline-2">
+<h2 id="orgbbc3b19"><a id="ID-db601da2-3073-45f0-b00d-f326ff290618"></a><span class="section-number-2">8</span> golint</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Golint is a linter for Go source code.
@@ -1008,8 +1366,8 @@ google.go:19:1: exported function Search should have comment or be unexported
 </div>
 </div>
 
-<div id="outline-container-org1ada718" class="outline-2">
-<h2 id="org1ada718"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
+<div id="outline-container-org44c34cc" class="outline-2">
+<h2 id="org44c34cc"><a id="ID-e280d3b0-98ff-4e2d-9c92-50c2d92976ba"></a><span class="section-number-2">9</span> gopkgs</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Gopkgs is tools that provide list of available Go packages that can be imported.
@@ -1047,8 +1405,8 @@ Use -format to custom the output using template syntax. The struct being passed 
 </div>
 </div>
 
-<div id="outline-container-org8ce3490" class="outline-2">
-<h2 id="org8ce3490"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
+<div id="outline-container-org0e75f38" class="outline-2">
+<h2 id="org0e75f38"><a id="ID-8a91213d-e07e-454e-a015-3625c86bc711"></a><span class="section-number-2">10</span> gorename</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v golang.org/x/tools/cmd/gorename</span><br></pre></td></tr></table></figure>
@@ -1163,8 +1521,8 @@ Features:
 </div>
 </div>
 
-<div id="outline-container-org45152cf" class="outline-2">
-<h2 id="org45152cf"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
+<div id="outline-container-org67d45db" class="outline-2">
+<h2 id="org67d45db"><a id="ID-62a70222-9660-44be-a5f3-f1ed5bfc70be"></a><span class="section-number-2">11</span> godoctor</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v github.com/godoctor/godoctor</span><br></pre></td></tr></table></figure>
@@ -1207,8 +1565,8 @@ For complete usage information, see the user manual: http://gorefactor.org/doc.h
 </div>
 </div>
 
-<div id="outline-container-orgceb971c" class="outline-2">
-<h2 id="orgceb971c"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
+<div id="outline-container-orgc942a00" class="outline-2">
+<h2 id="orgc942a00"><a id="ID-8ece098f-545f-4245-b311-4dece9c55844"></a><span class="section-number-2">12</span> goreturns</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 A gofmt/goimports-like tool for Go programmers that fills
@@ -1258,8 +1616,8 @@ put imports beginning with this string after 3rd-party packages (see goimports)
 </div>
 </div>
 
-<div id="outline-container-org243e145" class="outline-2">
-<h2 id="org243e145"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
+<div id="outline-container-org022db47" class="outline-2">
+<h2 id="org022db47"><a id="ID-b00fe929-fb7c-4645-9baf-69cada4aed85"></a><span class="section-number-2">13</span> gotests</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Generate Go tests from your source code.
@@ -1294,8 +1652,8 @@ Usage of gotests:
 </div>
 </div>
 
-<div id="outline-container-orgd6a3968" class="outline-2">
-<h2 id="orgd6a3968"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
+<div id="outline-container-org77d616d" class="outline-2">
+<h2 id="org77d616d"><a id="ID-f19924ac-e110-4510-95a2-0f9789d593f2"></a><span class="section-number-2">14</span> guru</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 guru: a tool for answering questions about Go source code.
@@ -1303,8 +1661,8 @@ guru: a tool for answering questions about Go source code.
 </div>
 </div>
 
-<div id="outline-container-org4fa4c96" class="outline-2">
-<h2 id="org4fa4c96"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
+<div id="outline-container-orgd019ac8" class="outline-2">
+<h2 id="orgd019ac8"><a id="ID-acbc4ee2-047d-44e9-8dd2-4cf8f92a1eb0"></a><span class="section-number-2">15</span> godepgraph</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 godepgraph is a program for generating a dependency graph of Go packages.
@@ -1351,8 +1709,8 @@ Usage of godepgraph:
 <img src="/images/go-tool/godepgraph.png">
 </div>
 </div>
-<div id="outline-container-orgdd24c57" class="outline-2">
-<h2 id="orgdd24c57"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
+<div id="outline-container-org461e254" class="outline-2">
+<h2 id="org461e254"><a id="ID-ba02c35c-ca55-410d-8be6-985dd772ada6"></a><span class="section-number-2">16</span> go-callvis</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/TrueFurby/go-callvis</span><br></pre></td></tr></table></figure>
@@ -1394,8 +1752,8 @@ Usage of go-callvis:
 <img src="/images/go-tool/go-callvis.png">
 </div>
 </div>
-<div id="outline-container-orgd0c6bf9" class="outline-2">
-<h2 id="orgd0c6bf9"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
+<div id="outline-container-org349996f" class="outline-2">
+<h2 id="org349996f"><a id="ID-92f86679-df70-43b9-9bd8-ff5f1938040a"></a><span class="section-number-2">17</span> depth</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/KyleBanks/depth/cmd/depth</span><br></pre></td></tr></table></figure>
@@ -1477,8 +1835,8 @@ strings
 </div>
 </div>
 
-<div id="outline-container-orgbea2406" class="outline-2">
-<h2 id="orgbea2406"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
+<div id="outline-container-org94dfc1b" class="outline-2">
+<h2 id="org94dfc1b"><a id="ID-cb85213d-12e5-4875-9378-7f6284c8e21f"></a><span class="section-number-2">18</span> interface</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u -v mvdan.cc/interfacer</span><br></pre></td></tr></table></figure>
@@ -1501,8 +1859,123 @@ simple.go:24:19: undeclared name: St
 </p>
 </div>
 </div>
+<div id="outline-container-org38fe7d1" class="outline-2">
+<h2 id="org38fe7d1"><a id="ID-5cd1b815-d8e8-4f74-90b2-812cd8003f86"></a><span class="section-number-2">19</span> safesql</h2>
+<div class="outline-text-2" id="text-19">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get -u github.com/stripe/safesql</span><br></pre></td></tr></table></figure>
+</div>
 
-Last Updated 2017-12-06 Wed 22:36.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">safesql</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+Usage: safesql [-q] [-v] package1 [package2 ...]
+  -q	Only print on failure
+  -v	Verbose mode
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcbd5bb5" class="outline-2">
+<h2 id="orgcbd5bb5"><a id="ID-ae9ef244-2d16-4543-9856-dbc4a51ff34b"></a><span class="section-number-2">20</span> aligncheck</h2>
+<div class="outline-text-2" id="text-20">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get github.com/opennota/check/cmd/aligncheck</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">aligncheck  github.com/astaxie/beego</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+github.com/astaxie/beego: config.go:33:6: struct Config could have size 520 (currently 552)
+github.com/astaxie/beego: config.go:51:6: struct Listen could have size 120 (currently 152)
+github.com/astaxie/beego: config.go:71:6: struct WebConfig could have size 264 (currently 288)
+github.com/astaxie/beego: config.go:89:6: struct SessionConfig could have size 104 (currently 128)
+github.com/astaxie/beego: controller.go:67:6: struct Controller could have size 224 (currently 232)
+github.com/astaxie/beego: router.go:124:6: struct ControllerRegister could have size 168 (currently 176)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8c17bc2" class="outline-2">
+<h2 id="org8c17bc2"><a id="ID-f85130fb-b9a6-4fed-bc5e-b4f89dc4d956"></a><span class="section-number-2">21</span> structcheck</h2>
+<div class="outline-text-2" id="text-21">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get github.com/opennota/check/cmd/structcheck</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">structcheck -h</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+Usage of structcheck:
+  -a	Count assignments only
+  -e	Report exported fields
+  -t	Load test files too
+  -tags string
+      Build tags
+</pre>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">structcheck fmt</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+fmt: ~/.gvm/gos/go1.9/src/fmt/scan.go:169:2: fmt.ssave.nlIsEnd
+fmt: ~/.gvm/gos/go1.9/src/fmt/scan.go:170:2: fmt.ssave.nlIsSpace
+fmt: ~/.gvm/gos/go1.9/src/fmt/scan.go:171:2: fmt.ssave.argLimit
+fmt: ~/.gvm/gos/go1.9/src/fmt/scan.go:172:2: fmt.ssave.limit
+fmt: ~/.gvm/gos/go1.9/src/fmt/scan.go:173:2: fmt.ssave.maxWid
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:30:2: fmt.fmtFlags.zero
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:35:2: fmt.fmtFlags.plusV
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:36:2: fmt.fmtFlags.sharpV
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:25:2: fmt.fmtFlags.precPresent
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:27:2: fmt.fmtFlags.plus
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:29:2: fmt.fmtFlags.space
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:24:2: fmt.fmtFlags.widPresent
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:26:2: fmt.fmtFlags.minus
+fmt: ~/.gvm/gos/go1.9/src/fmt/format.go:28:2: fmt.fmtFlags.sharp
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgaaec9a8" class="outline-2">
+<h2 id="orgaaec9a8"><a id="ID-27ddf18f-120a-4ac5-bf45-3d578593daca"></a><span class="section-number-2">22</span> varcheck</h2>
+<div class="outline-text-2" id="text-22">
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">go get github.com/opennota/check/cmd/varcheck</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">varcheck -h</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+Usage of varcheck:
+  -e	Report exported variables and constants
+</pre>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">varcheck image/jpeg</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/reader.go:74:2: adobeTransformYCbCr
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/reader.go:75:2: adobeTransformYCbCrK
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:54:2: quantIndexLuminance
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:55:2: quantIndexChrominance
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:91:2: huffIndexLuminanceDC
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:92:2: huffIndexLuminanceAC
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:93:2: huffIndexChrominanceDC
+image/jpeg: ~/.gvm/gos/go1.9/src/image/jpeg/writer.go:94:2: huffIndexChrominanceAC
+</pre>
+</div>
+</div>
+
+Last Updated 2017-12-13 Wed 17:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
           
         
@@ -3504,169 +3977,6 @@ Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
-                2017-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-array/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4391,453 +4701,11 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/go-source-code-block-in-org/" itemprop="url">在Org-mode中执行Go代码</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T00:00:00+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/org-mode/" itemprop="url" rel="index">
-                    <span itemprop="name">org-mode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/go-source-code-block-in-org/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/12/go-source-code-block-in-org/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-在未使用 <code>org-mode</code> 前，学习和实验Go的特性（例如 <i>context</i> ）的步骤如下：
-</p>
-<ul class="org-ul">
-<li>打开终端</li>
-<li>跳转到学习示例目录下</li>
-<li>创建子目录，例如 <i>context</i> , 然后跳入子目录， 创建 <i>main.go</i> 文件</li>
-<li>编写简单的示例代码</li>
-<li>编译和运行代码示例,若出错调试，返回上个步骤</li>
-</ul>
-<p>
-上面的过程有些可精简，例如在IDE中，目录跳转可在对话框中完成，代码的编写，编译和运行都可在IDE中完成。
-在IDE中流程如下：
-</p>
-<ul class="org-ul">
-<li>在学习示例目录下，创建一个新的示例工程</li>
-<li>编写简单的示例代码, 编译和运行</li>
-</ul>
-<p>
-在IDE中，整个流程精简了很多。
-作为语言使用者，我们可能需要把实验过的示例代码留存，以便能应用在日后的开发中。
-上面的两个流程，都会根据实验的包或者语言特性，创建相应的子目录，经过这样的处理，代码示例都聚合到了一起，方便了翻阅和修改。
-示例代码的执行结果，大多是直接输出到终端的，你要验证原有示例代码的执行结果，你必须要重新执行代码，因为执行结果并没有留存。
-若是这个示例代码，是很久之前的，可能是一年以前的， 这个时候你看到代码的时候，可能会时一脸懵逼。
-这个时候你会想，为什么当时没有多留些信息，让我知道，为什么做这个示例，以及这段代码完成了什么功能。
-</p>
-
-<p>
-<code>Org-mode</code> 简单配置后， 可完美的解决以上问题，代码留存，执行结果留存，文学编程（在编码过程中书写文档）。
-</p>
-<img src="/images/go-babel/go-babel-example.jpeg">
-<p>
-上图展示了一个子问题的各个部分，问题描述，解决方案，代码，以及代码的执行结果。
-子问题对应 <code>Org-mode</code> 中的子目录，然后所有问题都可聚合在一个 <code>Org-mode</code> 文档中。
-现在流程可简化为：
-</p>
-<ul class="org-ul">
-<li>跳转到 <code>Org-mode</code> 文档中</li>
-<li>创建子目录，书写解决方案，编码实现</li>
-</ul>
-<p>
-借助 <code>Org-mode</code> 强大的特性，可很容易的复用代码以及查询。
-</p>
-
-<p>
-对于 <code>Org-mode</code> 不熟悉的，可先浏览<a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">Org-mode的主页</a>。
-<code>Org-mode</code> 通过 <code>Babel</code> 执行代码，对此不熟悉的读者， 可阅读我之前<a href="https://brantou.github.io/2017/04/01/babel-intro/">翻译的文档</a>。
-</p>
-
-<div id="outline-container-orge357985" class="outline-2">
-<h2 id="orge357985"><a id="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b"></a><span class="section-number-2">1</span> ob-go</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-<code>Babel</code> 可执行<a href="http://orgmode.org/worg/org-contrib/babel/languages.html" rel="external nofollow noopener noreferrer" target="_blank">多种语言的代码</a>， 但官方的收录的语言支持中，没有Go。
-但Go是如此的炙手可热，没有官方支持，肯定也会有先行者实现支持。
-感谢 <a href="https://github.com/pope" rel="external nofollow noopener noreferrer" target="_blank">pope</a> 在 <a href="http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-C.html" rel="external nofollow noopener noreferrer" target="_blank">ob-C</a> 实现了ob-go , 实现了 <code>Babel</code> 对于Go的支持。
-</p>
-</div>
-
-<div id="outline-container-org3ea6268" class="outline-3">
-<h3 id="org3ea6268"><a id="ID-7637b028-9f26-49f5-a833-49b4275f0ab8"></a><span class="section-number-3">1.1</span> 简介</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-<a href="https://github.com/pope/ob-go" rel="external nofollow noopener noreferrer" target="_blank">ob-go</a> 使<a href="https://brantou.github.io/2017/04/01/babel-intro/"> Org-babel</a> 可执行Go代码。
-与解释语言可直接执行不同，Go需要先编译为可执行文件，然后运行。
-Go代码通过 <code>go run</code> 命令编译和运行。
-若代码中没有 <code>main</code> 函数，默认情况下，代码会被包裹在简单的 <code>main</code> 函数中。
-若 <code>:package</code> 选项没设置并且代码中没有声明 <code>package</code> ， 则 <code>main</code> package 被声明。
-示例如下，代码被执行，执行结果被回写到 <code>buffer</code> 中。
-</p>
-<pre class="example">
-#+BEGIN_SRC go :imports "fmt"
-  fmt.Println("Hello, org-mode")
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: Hello, org-mode
-
-</pre>
-
-<p>
-使用快捷键 <code>C-c C-v v</code> 可查看被扩展后的代码。
-</p>
-<img src="/images/go-babel/go-ob-ex.gif">
-</div>
-</div>
-
-<div id="outline-container-orgcd287a5" class="outline-3">
-<h3 id="orgcd287a5"><a id="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe"></a><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-除了 <code>Babel</code> 的常规头参数之外，下面是一些Go语言特定的头文件。
-</p>
-<dl class="org-dl">
-<dt><code>:args</code></dt><dd>传递命令行参数到代码编译后的可执行文件，传递超过多参数，需要使用 <code>list</code> 。</dd>
-<dt><code>:flags</code></dt><dd>传递给 <code>go run</code> 或者 <code>go build</code> 的flags(未使用成功)。</dd>
-<dt><code>:main</code></dt><dd>若没设置 <code>no</code> ， 代码将会被包裹在 <code>main</code> 函数中。默认 <code>yes</code> 。</dd>
-<dt><code>:imports</code></dt><dd>为代码提供 <i>imports</i> 的快捷支持。 当处理 <code>main</code> 函数时，应该使用这个选项。 要 <i>import</i> 多个包，请使用 <code>list</code> 。</dd>
-<dt><code>:package</code></dt><dd>设置当前代码块 <i>tangle</i> 时的包名。 需要： <code>:main no</code> 。 若没设置，同时代码中没有包名声明， <code>main</code> 包将被声明。</dd>
-<dt><code>:var</code></dt><dd><code>ob-go</code> 支持 <code>Babel</code> 的变量，不过目前还不完备。</dd>
-</dl>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgd3ca905" class="outline-2">
-<h2 id="orgd3ca905"><a id="ID-92d63e46-c8e6-445f-979a-f55e4664a632"></a><span class="section-number-2">2</span> 配置</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-这里假设Go的开发环境已经配置完毕，同时你的机器上的 <code>Emacs</code> 和 <code>Org-mode</code> 都是最近的版本，对于 <code>Babel</code> 都是完整支持的。
-由于 <code>ob-go</code> 没有并入 <code>Org-mode</code> 所以需要单独配置。 步骤如下：
-</p>
-<ul class="org-ul">
-<li><code>M-x find-library ob-C</code> , 找到的目录 <code>org-plus-contrib</code></li>
-<li>新建 <i>ob-go.el</i> , 然后把 <a href="https://github.com/brantou/ob-go/blob/master/ob-go.el" rel="external nofollow noopener noreferrer" target="_blank">github中代码</a> 复制到新建的文件中</li>
-<li><p>
-配置 <code>org-babel-load-languages</code>, 如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
-</div></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orga9aca57" class="outline-2">
-<h2 id="orga9aca57"><a id="ID-874bcc5c-b558-4afb-9610-1277a8886b34"></a><span class="section-number-2">3</span> 编码流程</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-最近在 <a href="https://leetcode.com/brantou89/" rel="external nofollow noopener noreferrer" target="_blank">LeetCode</a> 上做编程训练，这里就以解决上面的问题的流程来做说明。
-</p>
-<ul class="org-ul">
-<li>在LeetCode页面上，仔细阅读和理解问题，这里以 <a href="https://leetcode.com/problems/merge-two-binary-trees/" rel="external nofollow noopener noreferrer" target="_blank">Merge Two Binary Trees</a> 为例</li>
-<li>跳转到 <i>leetcode.org</i> ， 创建 <i>merge two binary trees</i> 子目录</li>
-<li>创建名为 <i>merge-two-bt</i> 的Go代码块</li>
-<li><p>
-通过快捷键 <code>C-c '</code> 打开Go语言特定的编辑模式buffer中,然后编码。
-在编码过程完成后， <code>C-c '</code> 完成并关闭编辑buffer；或者对自己编辑不满意， <code>C-c C-k</code> 取消编辑并关闭编辑buffer。
-</p>
-<img src="/images/go-babel/go-ob-leetcode.gif"></li>
-<li><p>
-把定义好的代码块整合到一起，然后执行(<a href="https://play.golang.org/p/93dZx1kg6l" rel="external nofollow noopener noreferrer" target="_blank">完整代码</a>)。
-</p>
-<img src="/images/go-babel/go-ob-leetcode-cmp.gif"></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org94e5333" class="outline-2">
-<h2 id="org94e5333"><a id="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6"></a><span class="section-number-2">4</span> 使用示例</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-
-<div id="outline-container-orgbe6cbb1" class="outline-3">
-<h3 id="orgbe6cbb1"><a id="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2"></a><span class="section-number-3">4.1</span> 导入多个包</h3>
-<div class="outline-text-3" id="text-4-1">
-<pre class="example">
-#+BEGIN_SRC go :imports '("fmt" "time")
-  fmt.Println("当前时间：", time.Now())
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: 当前时间： 2017-06-12 18:04:20.562355811 +0800 CST
-
-</pre>
-</div>
-</div>
-<div id="outline-container-org11da369" class="outline-3">
-<h3 id="org11da369"><a id="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a"></a><span class="section-number-3">4.2</span> 命令行参数传递</h3>
-<div class="outline-text-3" id="text-4-2">
-<pre class="example">
-#+BEGIN_SRC go :imports '("fmt" "os") :args '("bable" "golang")
-  fmt.Println(os.Args[1], os.Args[2])
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: bable golang
-
-</pre>
-</div>
-</div>
-<div id="outline-container-org1bde250" class="outline-3">
-<h3 id="org1bde250"><a id="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0"></a><span class="section-number-3">4.3</span> 多入参</h3>
-<div class="outline-text-3" id="text-4-3">
-<pre class="example">
-#+NAME: sum
-#+BEGIN_SRC go :imports "fmt" :var a=12 b=13
-  fmt.Println(a+b)
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: 25
-
-</pre>
-
-<pre class="example">
-#+call: sum(a=22,b=23)
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: 45
-
-</pre>
-</div>
-</div>
-<div id="outline-container-org56bb93e" class="outline-3">
-<h3 id="org56bb93e"><a id="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d"></a><span class="section-number-3">4.4</span> 代码组织</h3>
-<div class="outline-text-3" id="text-4-4">
-<pre class="example">
-#+NAME: min
-#+BEGIN_SRC  go
-  func min(a, b int) int {
-    if a &gt; b {
-      return b
-    } else {
-      return a
-    }
-  }
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+NAME: get-min
-#+BEGIN_SRC go :var a=0 b=0 :imports "fmt" :noweb strip-export
-  &lt;&lt;min&gt;&gt;
-
-</pre>
-
-<pre class="example">
-  func main() {
-    fmt.Println(min(a,b))
-  }
-#+END_SRC
-
-</pre>
-
-<pre class="example">
-#+call: get-min(27, 23)
-
-</pre>
-
-<pre class="example">
-#+RESULTS:
-: 23
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org4023302" class="outline-2">
-<h2 id="org4023302"><a id="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e"></a><span class="section-number-2">5</span> 总结</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-Org-mode于我来说，就是一个神器，打破了我对一个编辑器的认知，打破了我对一个信息收集器的认知。
-Org-mode依托于强大的 <i>Emacs</i>, 借助于 <i>Babel</i>,  使文档和代码无缝的结合在了一起, 一会编码，一会记录，
-一会调试，一会执行。 不失为，学习语言，尝试新工具的不二神器。
-再来一段Go代码:
-</p>
-<pre class="example">
-#+BEGIN_SRC go :imports "fmt"
-  fmt.Println("Goodbye, Gopher!")
-#+END_SRC
-
-</pre>
-</div>
-</div>
-
-Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -4885,7 +4753,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4907,7 +4775,7 @@ Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

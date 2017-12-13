@@ -7,16 +7,32 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/12/05/emacs-go-tag/</loc>
-        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
+        <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
+        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
-        <lastmod>2017-12-06T14:36:38.611Z</lastmod>
+        <loc>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</loc>
+        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/12/09/go-dlv-try/</loc>
+        <lastmod>2017-12-10T08:57:05.081Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/12/05/emacs-go-tag/</loc>
+        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
