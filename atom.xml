@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-12-18T14:49:30.250Z</updated>
+  <updated>2017-12-18T14:51:29.208Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://brantou.github.io/2017/12/18/tmux-script/"/>
     <id>https://brantou.github.io/2017/12/18/tmux-script/</id>
     <published>2017-12-17T16:00:00.000Z</published>
-    <updated>2017-12-18T14:49:30.250Z</updated>
+    <updated>2017-12-18T14:51:29.208Z</updated>
     
     <summary type="html">
     
@@ -30,7 +30,7 @@
         
 
 &lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!/bin/bash&amp;#10;&amp;#10;tmux ne
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class
       
     
     </summary>
