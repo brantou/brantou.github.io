@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2017/11/24/tmux-script/</loc>
+        <lastmod>2017-12-18T14:37:36.854Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
-        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
+        <lastmod>2017-12-13T10:24:52.226Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

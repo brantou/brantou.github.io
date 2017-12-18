@@ -290,14 +290,21 @@
 
     <url>
         <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
+        <lastmod>2017-12-13T10:24:52.226Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/tool/</loc>
-        <lastmod>2017-12-13T09:17:32.716Z</lastmod>
+        <lastmod>2017-12-18T14:37:36.854Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tmux/</loc>
+        <lastmod>2017-12-18T14:37:36.854Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

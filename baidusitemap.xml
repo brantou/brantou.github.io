@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2017/11/24/tmux-script/</loc>
+    <lastmod>2017-12-18T14:37:36.854Z</lastmod>
+    <data>
+        <display>
+        <title>tmux自动化</title>
+        <pubTime>2017-11-23T16:00:00.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>tmux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2017/11/24/go-tool/</loc>
-    <lastmod>2017-12-13T09:17:32.716Z</lastmod>
+    <lastmod>2017-12-13T10:24:52.226Z</lastmod>
     <data>
         <display>
         <title>Go语言不完全工具列表</title>
@@ -581,32 +603,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的语法解读</title>
-        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>org-syntax</tag>
-         
-        <tag>org-internal-structure</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -715,6 +711,32 @@
         <tag>org-table</tag>
          
         <tag>emacs-lisp</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的语法解读</title>
+        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>org-syntax</tag>
+         
+        <tag>org-internal-structure</tag>
          
          
            

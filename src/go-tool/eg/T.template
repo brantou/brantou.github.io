@@ -1,0 +1,15 @@
+package template
+
+
+import (
+  "time"
+)
+
+func before(t time.Time, d time.Duration) time.Time {
+  // if already time.Duration, do not cast.
+  return t.Add(time.Duration(d))
+}
+
+func after(t time.Time, d time.Duration) time.Time {
+  return t.Add(d * time.Nanosecond)
+}
