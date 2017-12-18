@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[tmux自动化]]></title>
+    <url>%2F2017%2F12%2F18%2Ftmux-script%2F</url>
+    <content type="text"><![CDATA[#!/bin/bash&#10;&#10;tmux new -s htop \; neww -d &#39;cd ~/ &#38;&#38; htop&#39; \; splitw -d \; selectp -t 1 \; detach&#10;tmux new -s top \; neww -d &#39;cd ~/ &#38;&#38; top&#39; \; splitw -d \; selectp -t 1 \; detach #!/bin/bash&#10;&#10;tmux new -s htop \; \&#10; send-keys -t htop:0 &#39;cd ~/ &#38;&#38; htop&#39; C-m \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t htop:0.1 &#39;cd ~/ &#38;&#38; clear&#39; C-m \; detach #!/bin/bash&#10;&#10;CMDS=( &#34;htop&#34; &#34;top&#34; )&#10;CMDPATH=&#34;~&#34;&#10;&#10;for cmd in &#34;${CMDS[@]}&#34;&#10;do&#10; tmux new -s $cmd \; \&#10; send-keys -t $cmd:0 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; &#39;$cmd C-m \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t $cmd:0.1 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; clear&#39; C-m \; detach&#10;done #!/bin/bash&#10;&#10;servs = (&#34;api&#34; &#34;cashier&#34; &#34;notify&#34; &#34;magic&#34; &#34;privacy&#34;)&#10;rootPath = $GOPATH/src/path-to-serv&#10;&#10;for serv in &#34;${servs[@]}&#34;&#10;do&#10; tmux has-session -t $serv&#10; if [ $? = 0]; then&#10; continue&#10; fi&#10;&#10; servPath = $rootPath&#34;/&#34;$serv&#10; tmux new -s $serv -n serv \; \&#10; send-keys -t $serv:0 &#39;cd &#39;$servPath&#39; &#38;&#38; bee run&#39; \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t $serv:0.1 &#39;cd &#39;$servPath C-m \; detach&#10;done Last Updated 2017-12-18 Mon 22:49.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 9.1.4)]]></content>
+      <categories>
+        <category>技术积累</category>
+      </categories>
+      <tags>
+        <tag>tool</tag>
+        <tag>tmux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[GDB-UI试用]]></title>
     <url>%2F2017%2F12%2F09%2Fgdb-ui-just-try%2F</url>
     <content type="text"><![CDATA[1 源码 12345678910111213141516171819typedef struct { float a; float b;} substruct;struct { int i; substruct r;} c;void main() { int n = 4; int m[10] = {0,1,4,9,16,25,36,49,64,81}; n = 5; myproc(n); c.i = 1; c.r.a = 0.5; c.r.b = 0.25;} 123456void myproc(n){ int p; p = 2*n; printf("Two times %d is %d\n", n, p);} 用 -g 选项编译程序： 12cc -g -c myproc.ccc -g -o myprog myprog.c myproc.o 2 使用 参见在Emacs中使用gdb调试程序。 Last Updated 2017-12-11 Mon 13:54.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 9.1.4)]]></content>
@@ -41,18 +53,6 @@
         <tag>emacs-plugin</tag>
         <tag>elisp</tag>
         <tag>tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[tmux自动化]]></title>
-    <url>%2F2017%2F11%2F24%2Ftmux-script%2F</url>
-    <content type="text"><![CDATA[#!/bin/bash&#10;&#10;tmux new -s htop \; neww -d &#39;cd ~/ &#38;&#38; htop&#39; \; splitw -d \; selectp -t 1 \; detach&#10;tmux new -s top \; neww -d &#39;cd ~/ &#38;&#38; top&#39; \; splitw -d \; selectp -t 1 \; detach #!/bin/bash&#10;&#10;tmux new -s htop \; \&#10; send-keys -t htop:0 &#39;cd ~/ &#38;&#38; htop&#39; C-m \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t htop:0.1 &#39;cd ~/ &#38;&#38; clear&#39; C-m \; detach #!/bin/bash&#10;&#10;CMDS=( &#34;htop&#34; &#34;top&#34; )&#10;CMDPATH=&#34;~&#34;&#10;&#10;for cmd in &#34;${CMDS[@]}&#34;&#10;do&#10; tmux new -s $cmd \; \&#10; send-keys -t $cmd:0 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; &#39;$cmd C-m \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t $cmd:0.1 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; clear&#39; C-m \; detach&#10;done #!/bin/bash&#10;&#10;servs = (&#34;api&#34; &#34;cashier&#34; &#34;notify&#34; &#34;magic&#34; &#34;privacy&#34;)&#10;rootPath = $GOPATH/src/path-to-serv&#10;&#10;for serv in &#34;${servs[@]}&#34;&#10;do&#10; tmux has-session -t $serv&#10; if [ $? = 0]; then&#10; continue&#10; fi&#10;&#10; servPath = $rootPath&#34;/&#34;$serv&#10; tmux new -s $serv -n serv \; \&#10; send-keys -t $serv:0 &#39;cd &#39;$servPath&#39; &#38;&#38; bee run&#39; \; \&#10; splitw -d \; selectp -t 1 \; \&#10; send-keys -t $serv:0.1 &#39;cd &#39;$servPath C-m \; detach&#10;done Last Updated 2017-12-18 Mon 22:37.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 9.1.4)]]></content>
-      <categories>
-        <category>技术积累</category>
-      </categories>
-      <tags>
-        <tag>tool</tag>
-        <tag>tmux</tag>
       </tags>
   </entry>
   <entry>

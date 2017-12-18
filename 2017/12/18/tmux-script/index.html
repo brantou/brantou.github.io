@@ -119,11 +119,11 @@
 <meta name="keywords" content="tool,tmux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tmux自动化">
-<meta property="og:url" content="https://brantou.github.io/2017/11/24/tmux-script/index.html">
+<meta property="og:url" content="https://brantou.github.io/2017/12/18/tmux-script/index.html">
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="#!/bin/bash&amp;#10;&amp;#10;tmux new -s htop \; neww -d &amp;#39;cd ~/ &amp;#38;&amp;#38; htop&amp;#39; \; splitw -d  \; selectp -t 1 \; detach&amp;#10;tmux new -s top \; neww -d &amp;#39;cd ~/ &amp;#38;&amp;#38; top&amp;#39; \; splitw -d">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T14:37:36.854Z">
+<meta property="og:updated_time" content="2017-12-18T14:49:30.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tmux自动化">
 <meta name="twitter:description" content="#!/bin/bash&amp;#10;&amp;#10;tmux new -s htop \; neww -d &amp;#39;cd ~/ &amp;#38;&amp;#38; htop&amp;#39; \; splitw -d  \; selectp -t 1 \; detach&amp;#10;tmux new -s top \; neww -d &amp;#39;cd ~/ &amp;#38;&amp;#38; top&amp;#39; \; splitw -d">
@@ -156,7 +156,7 @@
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/11/24/tmux-script/">
+  <link rel="canonical" href="https://brantou.github.io/2017/12/18/tmux-script/">
 
 
 
@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/11/24/tmux-script/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/18/tmux-script/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T00:00:00+08:00">
-                2017-11-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T00:00:00+08:00">
+                2017-12-18
               </time>
             
 
@@ -421,8 +421,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/24/tmux-script/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/24/tmux-script/" itemprop="commentsCount"></span>
+                <a href="/2017/12/18/tmux-script/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/18/tmux-script/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -474,7 +474,7 @@
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;servs = (&#34;api&#34; &#34;cashier&#34; &#34;notify&#34; &#34;magic&#34; &#34;privacy&#34;)&#10;rootPath = $GOPATH/src/path-to-serv&#10;&#10;for serv in &#34;${servs[@]}&#34;&#10;do&#10;    tmux has-session -t $serv&#10;    if [ $? = 0]; then&#10;        continue&#10;    fi&#10;&#10;    servPath = $rootPath&#34;/&#34;$serv&#10;    tmux new -s $serv -n serv \; \&#10;         send-keys -t $serv:0 &#39;cd &#39;$servPath&#39; &#38;&#38; bee run&#39; \; \&#10;         splitw -d \; selectp -t 1 \; \&#10;         send-keys -t $serv:0.1 &#39;cd &#39;$servPath C-m \; detach&#10;done</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-12-18 Mon 22:37.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+Last Updated 2017-12-18 Mon 22:49.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
       
     </div>
@@ -507,8 +507,8 @@ Last Updated 2017-12-18 Mon 22:37.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/24/go-tool/" rel="next" title="Go语言不完全工具列表">
-                <i class="fa fa-chevron-left"></i> Go语言不完全工具列表
+              <a href="/2017/12/09/gdb-ui-just-try/" rel="next" title="GDB-UI试用">
+                <i class="fa fa-chevron-left"></i> GDB-UI试用
               </a>
             
           </div>
@@ -516,10 +516,6 @@ Last Updated 2017-12-18 Mon 22:37.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/05/emacs-go-tag/" rel="prev" title="Emacs支持gomodifytags">
-                Emacs支持gomodifytags <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -917,7 +913,7 @@ Last Updated 2017-12-18 Mon 22:37.<br>Render by <a href="https://github.com/Code
 		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/11/24/tmux-script/"});
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/12/18/tmux-script/"});
 		
 
 		(function() {

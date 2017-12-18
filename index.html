@@ -349,6 +349,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/18/tmux-script/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/18/tmux-script/" itemprop="url">tmux自动化</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T00:00:00+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/18/tmux-script/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/18/tmux-script/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;tmux new -s htop \; neww -d &#39;cd ~/ &#38;&#38; htop&#39; \; splitw -d  \; selectp -t 1 \; detach&#10;tmux new -s top \; neww -d &#39;cd ~/ &#38;&#38; top&#39; \; splitw -d  \; selectp -t 1 \; detach</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;tmux new -s htop \; \&#10;     send-keys -t htop:0 &#39;cd ~/ &#38;&#38; htop&#39; C-m \; \&#10;     splitw -d \; selectp -t 1 \; \&#10;     send-keys -t htop:0.1 &#39;cd ~/ &#38;&#38; clear&#39; C-m \; detach</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;CMDS=( &#34;htop&#34; &#34;top&#34; )&#10;CMDPATH=&#34;~&#34;&#10;&#10;for cmd in &#34;${CMDS[@]}&#34;&#10;do&#10;    tmux new -s $cmd \; \&#10;         send-keys -t $cmd:0 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; &#39;$cmd C-m \; \&#10;         splitw -d \; selectp -t 1 \; \&#10;         send-keys -t $cmd:0.1 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; clear&#39; C-m \; detach&#10;done</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;servs = (&#34;api&#34; &#34;cashier&#34; &#34;notify&#34; &#34;magic&#34; &#34;privacy&#34;)&#10;rootPath = $GOPATH/src/path-to-serv&#10;&#10;for serv in &#34;${servs[@]}&#34;&#10;do&#10;    tmux has-session -t $serv&#10;    if [ $? = 0]; then&#10;        continue&#10;    fi&#10;&#10;    servPath = $rootPath&#34;/&#34;$serv&#10;    tmux new -s $serv -n serv \; \&#10;         send-keys -t $serv:0 &#39;cd &#39;$servPath&#39; &#38;&#38; bee run&#39; \; \&#10;         splitw -d \; selectp -t 1 \; \&#10;         send-keys -t $serv:0.1 &#39;cd &#39;$servPath C-m \; detach&#10;done</span><br></pre></td></tr></table></figure>
+</div>
+
+Last Updated 2017-12-18 Mon 22:49.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -954,181 +1129,6 @@ gomodifytags安装如下:
 </div>
 
 Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/11/24/tmux-script/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/24/tmux-script/" itemprop="url">tmux自动化</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T00:00:00+08:00">
-                2017-11-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/24/tmux-script/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/24/tmux-script/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;tmux new -s htop \; neww -d &#39;cd ~/ &#38;&#38; htop&#39; \; splitw -d  \; selectp -t 1 \; detach&#10;tmux new -s top \; neww -d &#39;cd ~/ &#38;&#38; top&#39; \; splitw -d  \; selectp -t 1 \; detach</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;tmux new -s htop \; \&#10;     send-keys -t htop:0 &#39;cd ~/ &#38;&#38; htop&#39; C-m \; \&#10;     splitw -d \; selectp -t 1 \; \&#10;     send-keys -t htop:0.1 &#39;cd ~/ &#38;&#38; clear&#39; C-m \; detach</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;CMDS=( &#34;htop&#34; &#34;top&#34; )&#10;CMDPATH=&#34;~&#34;&#10;&#10;for cmd in &#34;${CMDS[@]}&#34;&#10;do&#10;    tmux new -s $cmd \; \&#10;         send-keys -t $cmd:0 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; &#39;$cmd C-m \; \&#10;         splitw -d \; selectp -t 1 \; \&#10;         send-keys -t $cmd:0.1 &#39;cd &#39;$CMDPATH&#39; &#38;&#38; clear&#39; C-m \; detach&#10;done</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;servs = (&#34;api&#34; &#34;cashier&#34; &#34;notify&#34; &#34;magic&#34; &#34;privacy&#34;)&#10;rootPath = $GOPATH/src/path-to-serv&#10;&#10;for serv in &#34;${servs[@]}&#34;&#10;do&#10;    tmux has-session -t $serv&#10;    if [ $? = 0]; then&#10;        continue&#10;    fi&#10;&#10;    servPath = $rootPath&#34;/&#34;$serv&#10;    tmux new -s $serv -n serv \; \&#10;         send-keys -t $serv:0 &#39;cd &#39;$servPath&#39; &#38;&#38; bee run&#39; \; \&#10;         splitw -d \; selectp -t 1 \; \&#10;         send-keys -t $serv:0.1 &#39;cd &#39;$servPath C-m \; detach&#10;done</span><br></pre></td></tr></table></figure>
-</div>
-
-Last Updated 2017-12-18 Mon 22:37.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
           
         

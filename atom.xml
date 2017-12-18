@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-12-11T05:54:58.642Z</updated>
+  <updated>2017-12-18T14:49:30.250Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tmux自动化</title>
+    <link href="https://brantou.github.io/2017/12/18/tmux-script/"/>
+    <id>https://brantou.github.io/2017/12/18/tmux-script/</id>
+    <published>2017-12-17T16:00:00.000Z</published>
+    <updated>2017-12-18T14:49:30.250Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!/bin/bash&amp;#10;&amp;#10;tmux ne
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="tool" scheme="https://brantou.github.io/tags/tool/"/>
+    
+      <category term="tmux" scheme="https://brantou.github.io/tags/tmux/"/>
+    
+  </entry>
   
   <entry>
     <title>GDB-UI试用</title>
@@ -113,34 +141,6 @@
       <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
     
       <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tmux自动化</title>
-    <link href="https://brantou.github.io/2017/11/24/tmux-script/"/>
-    <id>https://brantou.github.io/2017/11/24/tmux-script/</id>
-    <published>2017-11-23T16:00:00.000Z</published>
-    <updated>2017-12-18T14:37:36.854Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!/bin/bash&amp;#10;&amp;#10;tmux ne
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="tool" scheme="https://brantou.github.io/tags/tool/"/>
-    
-      <category term="tmux" scheme="https://brantou.github.io/tags/tmux/"/>
     
   </entry>
   
