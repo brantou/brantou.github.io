@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="1234#!/bin/bashtmux new -s htop \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; htop&apos; \; splitw -d  \; selectp -t 1 \; detachtmux new -s top \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; top&apos; \; splitw -d  \; selectp -t 1 \; detach">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T14:51:29.208Z">
+<meta property="og:updated_time" content="2018-01-17T07:20:27.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tmux自动化">
 <meta name="twitter:description" content="1234#!/bin/bashtmux new -s htop \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; htop&apos; \; splitw -d  \; selectp -t 1 \; detachtmux new -s top \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; top&apos; \; splitw -d  \; selectp -t 1 \; detach">
@@ -459,22 +459,26 @@
         
 
 <div class="org-src-container">
+
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">tmux new <span class="operator">-s</span> htop \; neww <span class="operator">-d</span> <span class="string">'cd ~/ &amp;&amp; htop'</span> \; splitw <span class="operator">-d</span>  \; selectp -t <span class="number">1</span> \; detach</span><br><span class="line">tmux new <span class="operator">-s</span> top \; neww <span class="operator">-d</span> <span class="string">'cd ~/ &amp;&amp; top'</span> \; splitw <span class="operator">-d</span>  \; selectp -t <span class="number">1</span> \; detach</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
+
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">tmux new <span class="operator">-s</span> htop \; \</span><br><span class="line">     send-keys -t htop:<span class="number">0</span> <span class="string">'cd ~/ &amp;&amp; htop'</span> C-m \; \</span><br><span class="line">     splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">     send-keys -t htop:<span class="number">0.1</span> <span class="string">'cd ~/ &amp;&amp; clear'</span> C-m \; detach</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">CMDS=( <span class="string">"htop"</span> <span class="string">"top"</span> )</span><br><span class="line">CMDPATH=<span class="string">"~"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="string">"<span class="variable">${CMDS[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$cmd</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$cmd</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; '</span><span class="variable">$cmd</span> C-m \; \</span><br><span class="line">         splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$cmd</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; clear'</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">CMDS=( <span class="string">"htop"</span> <span class="string">"top"</span> )</span><br><span class="line">CMDPATH=<span class="string">"~"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="string">"<span class="variable">${CMDS[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$cmd</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$cmd</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; '</span><span class="variable">$cmd</span> C-m \; \</span><br><span class="line">	 splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$cmd</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; clear'</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">servs = (<span class="string">"api"</span> <span class="string">"cashier"</span> <span class="string">"notify"</span> <span class="string">"magic"</span> <span class="string">"privacy"</span>)</span><br><span class="line">rootPath = <span class="variable">$GOPATH</span>/src/path-to-serv</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> serv <span class="keyword">in</span> <span class="string">"<span class="variable">${servs[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux has-session -t <span class="variable">$serv</span></span><br><span class="line">    <span class="keyword">if</span> [ $? = <span class="number">0</span>]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">continue</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    servPath = <span class="variable">$rootPath</span><span class="string">"/"</span><span class="variable">$serv</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$serv</span> -n serv \; \</span><br><span class="line">         send-keys -t <span class="variable">$serv</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$servPath</span><span class="string">' &amp;&amp; bee run'</span> \; \</span><br><span class="line">         splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$serv</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$servPath</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">servs = (<span class="string">"cashier"</span> <span class="string">"notify"</span> <span class="string">"magic"</span> <span class="string">"privacy"</span>)</span><br><span class="line">rootPath = <span class="variable">$GOPATH</span>/src/path-to-serv</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> serv <span class="keyword">in</span> <span class="string">"<span class="variable">${servs[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux has-session -t <span class="variable">$serv</span></span><br><span class="line">    <span class="keyword">if</span> [ $? = <span class="number">0</span>]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">continue</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    servPath = <span class="variable">$rootPath</span><span class="string">"/"</span><span class="variable">$serv</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$serv</span> -n serv \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$servPath</span><span class="string">' &amp;&amp; bee run'</span> \; \</span><br><span class="line">	 splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$servPath</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+Last Updated 2018-01-17 Wed 15:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -507,8 +511,8 @@ Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/09/gdb-ui-just-try/" rel="next" title="GDB-UI试用">
-                <i class="fa fa-chevron-left"></i> GDB-UI试用
+              <a href="/2017/12/09/go-dlv-try/" rel="next" title="go-dlv试用">
+                <i class="fa fa-chevron-left"></i> go-dlv试用
               </a>
             
           </div>
@@ -516,6 +520,10 @@ Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/Code
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/26/go-imp-ecrg/" rel="prev" title="Go实现鼓励金发放逻辑">
+                Go实现鼓励金发放逻辑 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -643,7 +651,7 @@ Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -737,7 +745,7 @@ Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

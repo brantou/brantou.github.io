@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2017-12-18T14:51:29.208Z</updated>
+  <updated>2018-01-29T10:23:54.005Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Go实现鼓励金发放逻辑</title>
+    <link href="https://brantou.github.io/2018/01/26/go-imp-ecrg/"/>
+    <id>https://brantou.github.io/2018/01/26/go-imp-ecrg/</id>
+    <published>2018-01-25T16:00:00.000Z</published>
+    <updated>2018-01-29T10:23:54.005Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+  什么是鼓励金？我想大家应该都有用过，例如今早我买包子时，就抵扣了部分金额。
+用支付宝或者微信支付，支付成功后会返还一小笔钱，从周日到周四累计5天，然后在周五和周六抵现金使用，
+这笔钱就是鼓励金(当然支付宝称作奖励金)。
+我们现在几乎每天都在使用支付宝或者微信，每天
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
     <title>tmux自动化</title>
     <link href="https://brantou.github.io/2017/12/18/tmux-script/"/>
     <id>https://brantou.github.io/2017/12/18/tmux-script/</id>
     <published>2017-12-17T16:00:00.000Z</published>
-    <updated>2017-12-18T14:51:29.208Z</updated>
+    <updated>2018-01-17T07:20:27.980Z</updated>
     
     <summary type="html">
     
@@ -30,7 +59,8 @@
         
 
 &lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class
+
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span clas
       
     
     </summary>
@@ -41,39 +71,6 @@
       <category term="tool" scheme="https://brantou.github.io/tags/tool/"/>
     
       <category term="tmux" scheme="https://brantou.github.io/tags/tmux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GDB-UI试用</title>
-    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
-    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
-    <published>2017-12-08T16:00:00.000Z</published>
-    <updated>2017-12-11T05:54:58.642Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-
-&lt;div id=&quot;outline-container-org2f8337e&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org2f8337e&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot;&gt;&lt;/a&gt;&lt;span c
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
-      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
-    
-      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
-    
-      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
   </entry>
   
@@ -109,6 +106,39 @@
       <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
       <category term="dlv" scheme="https://brantou.github.io/tags/dlv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GDB-UI试用</title>
+    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
+    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
+    <published>2017-12-08T16:00:00.000Z</published>
+    <updated>2017-12-11T05:54:58.642Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-org2f8337e&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org2f8337e&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot;&gt;&lt;/a&gt;&lt;span c
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
+      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
+    
+      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
+    
+      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
   </entry>
   
@@ -338,6 +368,30 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
+    <title>Leetcode-tree</title>
+    <link href="https://brantou.github.io/2017/07/16/leetcode-tree/"/>
+    <id>https://brantou.github.io/2017/07/16/leetcode-tree/</id>
+    <published>2017-07-15T16:00:00.000Z</published>
+    <updated>2017-07-16T07:30:55.768Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;
+&lt;i&gt;LeetCode&lt;/i&gt; 编程训练的积累，目前在努力做题中，日后整理！
+&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+      <category term="tree" scheme="https://brantou.github.io/tags/tree/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leetcode-array</title>
     <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
     <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
@@ -364,35 +418,11 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
-    <title>Leetcode-tree</title>
-    <link href="https://brantou.github.io/2017/07/16/leetcode-tree/"/>
-    <id>https://brantou.github.io/2017/07/16/leetcode-tree/</id>
-    <published>2017-07-15T16:00:00.000Z</published>
-    <updated>2017-07-16T07:30:55.768Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;
-&lt;i&gt;LeetCode&lt;/i&gt; 编程训练的积累，目前在努力做题中，日后整理！
-&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
-    
-      <category term="tree" scheme="https://brantou.github.io/tags/tree/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在Org-mode中执行Go代码</title>
     <link href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/"/>
     <id>https://brantou.github.io/2017/06/12/go-source-code-block-in-org/</id>
     <published>2017-06-11T16:00:00.000Z</published>
-    <updated>2017-08-30T15:02:34.224Z</updated>
+    <updated>2017-12-24T15:05:38.642Z</updated>
     
     <summary type="html">
     
@@ -404,9 +434,11 @@ and authoring documents with a fast and effecti
 在未使用 &lt;code&gt;org-mode&lt;/code&gt; 前，学习和实验Go的特性（例如 &lt;i&gt;context&lt;/i&gt; ）的步骤如下：
 &lt;/p&gt;
 &lt;ul class=&quot;org-ul&quot;&gt;
-&lt;li&gt;打开终端&lt;/li&gt;
-&lt;li&gt;跳转到学习示例目录下&lt;/li&gt;
-&lt;li&gt;创建子目录
+&lt;li&gt;打开终端
+&lt;/li&gt;
+&lt;li&gt;跳转到学习示例目录下
+&lt;/li&gt;
+&lt;li&gt;创建子
       
     
     </summary>
@@ -630,34 +662,6 @@ Go的并发原语可轻松构建有效利用I/O和多CPU的流水线管道。本
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="channel" scheme="https://brantou.github.io/tags/channel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gopher面试中的Coding</title>
-    <link href="https://brantou.github.io/2017/05/14/interview-code/"/>
-    <id>https://brantou.github.io/2017/05/14/interview-code/</id>
-    <published>2017-05-13T16:00:00.000Z</published>
-    <updated>2017-10-18T06:50:15.827Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
   </entry>
   

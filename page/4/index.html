@@ -349,6 +349,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/21/go-logrus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/21/go-logrus/" itemprop="url">Go的日志库logrus试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T00:00:00+08:00">
+                2017-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/org-mode/" itemprop="url" rel="index">
+                    <span itemprop="name">org-mode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/21/go-logrus/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/03/21/go-logrus/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-orgeafc818" class="outline-2">
+<h2 id="orgeafc818"><a id="ID-9c33a24e-99e1-4882-a837-1efea5ca6544"></a><span class="section-number-2">1</span> 示例</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">  log <span class="string">"github.com/sirupsen/logrus"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> init() {</span><br><span class="line">  <span class="comment">// Log as JSON instead of the default ASCII formatter.</span></span><br><span class="line">  log.SetFormatter(&amp;log.JSONFormatter{})</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Output to stdout instead of the default stderr</span></span><br><span class="line">  <span class="comment">// Can be any io.Writer, see below for File example</span></span><br><span class="line">  log.SetOutput(os.Stdout)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Only log the warning severity or above.</span></span><br><span class="line">  log.SetLevel(log.WarnLevel)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"animal"</span>: <span class="string">"walrus"</span>,</span><br><span class="line">    <span class="string">"size"</span>:   <span class="number">10</span>,</span><br><span class="line">  }).Info(<span class="string">"A group of walrus emerges from the ocean"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">122</span>,</span><br><span class="line">  }).Warn(<span class="string">"The group's number increased tremendously!"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">100</span>,</span><br><span class="line">  }).Fatal(<span class="string">"The ice breaks!"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// A common pattern is to re-use fields between logging statements by re-using</span></span><br><span class="line">  <span class="comment">// the logrus.Entry returned from WithFields()</span></span><br><span class="line">  contextLogger := log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"common"</span>: <span class="string">"this is a common field"</span>,</span><br><span class="line">    <span class="string">"other"</span>:  <span class="string">"I also should be logged always"</span>,</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line">  contextLogger.Info(<span class="string">"I'll be logged with common and other field"</span>)</span><br><span class="line">  contextLogger.Info(<span class="string">"Me too"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/03/11/org-syntax/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -737,7 +906,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -831,7 +1000,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

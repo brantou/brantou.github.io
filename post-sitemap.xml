@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/2018/01/26/go-imp-ecrg/</loc>
+        <lastmod>2018-01-29T10:23:54.005Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/2017/12/18/tmux-script/</loc>
-        <lastmod>2017-12-18T14:51:29.208Z</lastmod>
+        <lastmod>2018-01-17T07:20:27.980Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/2017/06/12/go-source-code-block-in-org/</loc>
+        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -105,14 +121,6 @@
     <url>
         <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
         <lastmod>2017-08-31T14:25:35.299Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/2017/06/12/go-source-code-block-in-org/</loc>
-        <lastmod>2017-08-30T15:02:34.224Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

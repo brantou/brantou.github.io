@@ -1,0 +1,15 @@
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 100 size 
+read data 40 size 
+EOF
+timeout
+timeout
+timeout
+timeout

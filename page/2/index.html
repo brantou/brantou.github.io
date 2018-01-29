@@ -349,6 +349,457 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/scrapy-crawl-zhihu/" itemprop="url">scrapy模拟登陆知乎</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:00:00+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/22/scrapy-crawl-zhihu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/scrapy-crawl-zhihu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
+</p>
+
+<div id="outline-container-org1cc815d" class="outline-2">
+<h2 id="org1cc815d"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
+</p>
+<div class="org-src-container">
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">scrapy genspider zhihu</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+使用以上命令生成知乎爬虫,代码如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhihuSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'zhihu'</span></span><br><span class="line">    allowed_domains = [<span class="string">'www.zhihu.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://www.zhihu.com/'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+有一点切记，不要忘了启用 <i>Cookies</i>, <b>切记切记</b> ：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Disable cookies (enabled by default)</span></span><br><span class="line">COOKIES_ENABLED = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc9b7b3c" class="outline-2">
+<h2 id="orgc9b7b3c"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+过程如下：
+</p>
+<ul class="org-ul">
+<li><p>
+进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息， 完善的 <i>Header</i> 信息能尽量伪装爬虫， 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
+</p>
+<img src="/images/zhihu-headers-cookies.jpg">
+<p>
+<i>Header</i> 和 <i>Cookie</i> 整理如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">headers = {</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>:</span><br><span class="line">    <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'*/*'</span>,</span><br><span class="line">    <span class="string">'X-Requested-With'</span>:</span><br><span class="line">    <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    <span class="string">'DNT'</span>:</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com/'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>:</span><br><span class="line">    <span class="string">'zh-CN,zh;q=0.8,en;q=0.6'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">cookies = {</span><br><span class="line">    <span class="string">'d_c0'</span>:</span><br><span class="line">    <span class="string">'"AHCAtu1iqAmPTped76X1ZdN0X_qAwhjdLUU=|1458699045"'</span>,</span><br><span class="line">    <span class="string">'__utma'</span>:</span><br><span class="line">    <span class="string">'51854390.1407411155.1458699046.1458699046.1458699046.1'</span>,</span><br><span class="line">    <span class="string">'__utmv'</span>:</span><br><span class="line">    <span class="string">'51854390.000--|3=entry_date=20160322=1'</span>,</span><br><span class="line">    <span class="string">'_zap'</span>:</span><br><span class="line">    <span class="string">'850897bb-cba4-4d0b-8653-fd65e7578ac2'</span>,</span><br><span class="line">    <span class="string">'q_c1'</span>:</span><br><span class="line">    <span class="string">'b7918ff9a5514d2981c30050c8c732e1|1502937247000|1491446589000'</span>,</span><br><span class="line">    <span class="string">'aliyungf_tc'</span>:</span><br><span class="line">    <span class="string">'AQAAAHVgviiNyQsAOhSntJ5J/coWYtad'</span>,</span><br><span class="line">    <span class="string">'_xsrf'</span>:</span><br><span class="line">    <span class="string">'b12fdca8-cb35-407a-bc4c-6b05feff37cb'</span>,</span><br><span class="line">    <span class="string">'l_cap_id'</span>:</span><br><span class="line">    <span class="string">'"MDk0MzRjYjM4NjAwNDU0MzhlYWNlODQ3MGQzZWM0YWU=|1503382513|9af99534aa22d5db92c7f58b45f3f3c772675fed"'</span>,</span><br><span class="line">    <span class="string">'r_cap_id'</span>:</span><br><span class="line">    <span class="string">'"M2RlNDZjN2RkNTBmNGFmNDk2ZjY4NjIzY2FmNTE4NDg=|1503382513|13370a99ee367273b71d877de17f05b2986ce0ef"'</span>,</span><br><span class="line">    <span class="string">'cap_id'</span>:</span><br><span class="line">    <span class="string">'"NmZjODUxZjQ0NzgxNGEzNmJiOTJhOTlkMTVjNWIxMDQ=|1503382513|dba2e9c6af7f950547474f827ef440d7a2950163"'</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div></li>
+
+<li><p>
+在浏览器中，模拟登陆，抓取登陆请求信息。
+</p>
+<img src="/images/zhihu-login-args.jpg">
+<p>
+从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
+<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
+</p>
+<img src="/images/zhihu-xsrf.jpg"></li>
+
+<li><p>
+整理以上，代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">loginUrl = <span class="string">'https://www.zhihu.com/#signin'</span></span><br><span class="line">siginUrl = <span class="string">'https://www.zhihu.com/login/email'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.loginUrl,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            cookies=self.cookies,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: <span class="number">1</span>},</span><br><span class="line">            callback=self.post_login)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    xsrf = response.css(</span><br><span class="line">        <span class="string">'div.view-signin &gt; form &gt; input[name=_xsrf]::attr(value)'</span></span><br><span class="line">    ).extract_first()</span><br><span class="line">    self.headers[<span class="string">'X-Xsrftoken'</span>] = xsrf</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.siginUrl,</span><br><span class="line">            method=<span class="string">'POST'</span>,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'_xsrf'</span>: xsrf,</span><br><span class="line">                <span class="string">'captcha_type'</span>: <span class="string">'cn'</span>,</span><br><span class="line">                <span class="string">'email'</span>: <span class="string">'xxxxxx@163.com'</span>,</span><br><span class="line">                <span class="string">'password'</span>: <span class="string">'xxxxxx'</span>,</span><br><span class="line">            },</span><br><span class="line">            callback=self.after_login)</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb9f1576" class="outline-2">
+<h2 id="orgb9f1576"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+经过上述步骤登陆成功了，有点小激动，有没有！
+但苦难到此还远没有结束，这个时候尝试抓取最近热门话题，直接返回 <i>code:401</i> ,未授权的访问。
+授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
+在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
+通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z_c0</i> 对应的信息。
+</p>
+<img src="/images/zhihu-bearer-token.png">
+
+<p>
+<i>z_c0</i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
+然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
+</p>
+
+<p>
+代码整理如下:
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    print(<span class="string">'after_login'</span>, jdict)</span><br><span class="line">    <span class="keyword">if</span> jdict[<span class="string">'r'</span>] == <span class="number">0</span>:</span><br><span class="line">        z_c0 = response.headers.getlist(<span class="string">'Set-Cookie'</span>)[<span class="number">2</span>].split(<span class="string">';'</span>)[<span class="number">0</span>].split(</span><br><span class="line">            <span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">        self.headers[<span class="string">'authorization'</span>] = <span class="string">'Bearer '</span> + z_c0</span><br><span class="line">        <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">            url=self.feedUrl,</span><br><span class="line">            method=<span class="string">'GET'</span>,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'action_feed'</span>: <span class="string">'True'</span>,</span><br><span class="line">                <span class="string">'limit'</span>: <span class="string">'10'</span>,</span><br><span class="line">                <span class="string">'action'</span>: <span class="string">'down'</span>,</span><br><span class="line">                <span class="string">'after_id'</span>: str(self.curFeedId),</span><br><span class="line">                <span class="string">'desktop'</span>: <span class="string">'true'</span></span><br><span class="line">            },</span><br><span class="line">            callback=self.parse)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(jdict[<span class="string">'error'</span>])</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf5037e3" class="outline-2">
+<h2 id="orgf5037e3"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">feedUrl = <span class="string">'https://www.zhihu.com/api/v3/feed/topstory'</span></span><br><span class="line">nextFeedUrl = <span class="string">''</span></span><br><span class="line">curFeedId = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'zhihu.json'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">        fd.write(response.body)</span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    jdatas = jdict[<span class="string">'data'</span>]</span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> jdatas:</span><br><span class="line">        entry[<span class="string">'pid'</span>] = entry[<span class="string">'id'</span>]</span><br><span class="line">        <span class="keyword">yield</span> entry</span><br><span class="line"></span><br><span class="line">    jpaging = jdict[<span class="string">'paging'</span>]</span><br><span class="line">    self.curFeedId += len(jdatas)</span><br><span class="line">    <span class="keyword">if</span> jpaging[<span class="string">'is_end'</span>] == <span class="keyword">False</span> <span class="keyword">and</span> self.curFeedId &lt; <span class="number">50</span>:</span><br><span class="line">        self.nextFeedUrl = jpaging[<span class="string">'next'</span>]</span><br><span class="line">        <span class="keyword">yield</span> self.next_request(response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next_request</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">        url=self.nextFeedUrl,</span><br><span class="line">        method=<span class="string">'GET'</span>,</span><br><span class="line">        meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">        headers=self.headers,</span><br><span class="line">        callback=self.parse)</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+获取的数据，采用json格式， 如下所示:
+</p>
+<img src="/images/zhihu-feeds.png">
+</div>
+</div>
+
+<div id="outline-container-orgcf8188e" class="outline-2">
+<h2 id="orgcf8188e"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
+所谓的模拟登陆，只是在scrapy中尽量的模拟在浏览器中的交互过程，使服务端无感抓包过程。
+请求中附加有效的 <i>Cookies</i> 和 <i>Headers</i> 头信息，可有效的迷惑服务端，
+同时在交互的过程中，获取后续请求必要信息和认证信息，使得整个流程能不断先前。
+</p>
+
+<p>
+若是你遇到什么问题，尽量提出来，欢迎一起来讨论解决。
+源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
+若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
+</p>
+</div>
+</div>
+
+Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>
+<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
+</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-array/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1086,169 +1537,6 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/07/16/leetcode-tree/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/16/leetcode-tree/" itemprop="url">Leetcode-tree</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T00:00:00+08:00">
-                2017-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/16/leetcode-tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/07/16/leetcode-tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>
-<i>LeetCode</i> 编程训练的积累，目前在努力做题中，日后整理！
-</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/16/leetcode-tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/06/12/go-source-code-block-in-org/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1360,19 +1648,26 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
 在未使用 <code>org-mode</code> 前，学习和实验Go的特性（例如 <i>context</i> ）的步骤如下：
 </p>
 <ul class="org-ul">
-<li>打开终端</li>
-<li>跳转到学习示例目录下</li>
-<li>创建子目录，例如 <i>context</i> , 然后跳入子目录， 创建 <i>main.go</i> 文件</li>
-<li>编写简单的示例代码</li>
-<li>编译和运行代码示例,若出错调试，返回上个步骤</li>
+<li>打开终端
+</li>
+<li>跳转到学习示例目录下
+</li>
+<li>创建子目录，例如 <i>context</i> , 然后跳入子目录， 创建 <i>main.go</i> 文件
+</li>
+<li>编写简单的示例代码
+</li>
+<li>编译和运行代码示例,若出错调试，返回上个步骤
+</li>
 </ul>
 <p>
 上面的过程有些可精简，例如在IDE中，目录跳转可在对话框中完成，代码的编写，编译和运行都可在IDE中完成。
 在IDE中流程如下：
 </p>
 <ul class="org-ul">
-<li>在学习示例目录下，创建一个新的示例工程</li>
-<li>编写简单的示例代码, 编译和运行</li>
+<li>在学习示例目录下，创建一个新的示例工程
+</li>
+<li>编写简单的示例代码, 编译和运行
+</li>
 </ul>
 <p>
 在IDE中，整个流程精简了很多。
@@ -1386,15 +1681,22 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
 <p>
 <code>Org-mode</code> 简单配置后， 可完美的解决以上问题，代码留存，执行结果留存，文学编程（在编码过程中书写文档）。
 </p>
-<img src="/images/go-babel/go-babel-example.jpeg">
+<div class="export">
+<p>
+&lt;img src="/images/go-babel/go-babel-example.jpeg&rdquo; /&gt;
+</p>
+
+</div>
 <p>
 上图展示了一个子问题的各个部分，问题描述，解决方案，代码，以及代码的执行结果。
 子问题对应 <code>Org-mode</code> 中的子目录，然后所有问题都可聚合在一个 <code>Org-mode</code> 文档中。
 现在流程可简化为：
 </p>
 <ul class="org-ul">
-<li>跳转到 <code>Org-mode</code> 文档中</li>
-<li>创建子目录，书写解决方案，编码实现</li>
+<li>跳转到 <code>Org-mode</code> 文档中
+</li>
+<li>创建子目录，书写解决方案，编码实现
+</li>
 </ul>
 <p>
 借助 <code>Org-mode</code> 强大的特性，可很容易的复用代码以及查询。
@@ -1405,8 +1707,8 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
 <code>Org-mode</code> 通过 <code>Babel</code> 执行代码，对此不熟悉的读者， 可阅读我之前<a href="https://brantou.github.io/2017/04/01/babel-intro/">翻译的文档</a>。
 </p>
 
-<div id="outline-container-orge357985" class="outline-2">
-<h2 id="orge357985"><a id="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b"></a><span class="section-number-2">1</span> ob-go</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b" name="ID-7833b08e-6e45-4aa0-bf51-408bf3e8933b"></a><span class="section-number-2">1</span> ob-go</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>Babel</code> 可执行<a href="http://orgmode.org/worg/org-contrib/babel/languages.html" rel="external nofollow noopener noreferrer" target="_blank">多种语言的代码</a>， 但官方的收录的语言支持中，没有Go。
@@ -1415,8 +1717,8 @@ Last Updated 2017-09-21 Thu 23:14.<br>Render by <a href="https://github.com/Code
 </p>
 </div>
 
-<div id="outline-container-org3ea6268" class="outline-3">
-<h3 id="org3ea6268"><a id="ID-7637b028-9f26-49f5-a833-49b4275f0ab8"></a><span class="section-number-3">1.1</span> 简介</h3>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><a id="ID-7637b028-9f26-49f5-a833-49b4275f0ab8" name="ID-7637b028-9f26-49f5-a833-49b4275f0ab8"></a><span class="section-number-3">1.1</span> 简介</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <a href="https://github.com/pope/ob-go" rel="external nofollow noopener noreferrer" target="_blank">ob-go</a> 使<a href="https://brantou.github.io/2017/04/01/babel-intro/"> Org-babel</a> 可执行Go代码。
@@ -1430,153 +1732,167 @@ Go代码通过 <code>go run</code> 命令编译和运行。
 #+BEGIN_SRC go :imports "fmt"
   fmt.Println("Hello, org-mode")
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : Hello, org-mode
-
 </pre>
 
 <p>
 使用快捷键 <code>C-c C-v v</code> 可查看被扩展后的代码。
 </p>
-<img src="/images/go-babel/go-ob-ex.gif">
+<div class="export">
+<p>
+&lt;img src="/images/go-babel/go-ob-ex.gif&rdquo; /&gt;
+</p>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgcd287a5" class="outline-3">
-<h3 id="orgcd287a5"><a id="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe"></a><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><a id="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe" name="ID-b1f03234-2e94-4371-aa89-325e9cb3eebe"></a><span class="section-number-3">1.2</span> Go特定的头参数(Header Arguments)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 除了 <code>Babel</code> 的常规头参数之外，下面是一些Go语言特定的头文件。
 </p>
 <dl class="org-dl">
-<dt><code>:args</code></dt><dd>传递命令行参数到代码编译后的可执行文件，传递超过多参数，需要使用 <code>list</code> 。</dd>
-<dt><code>:flags</code></dt><dd>传递给 <code>go run</code> 或者 <code>go build</code> 的flags(未使用成功)。</dd>
-<dt><code>:main</code></dt><dd>若没设置 <code>no</code> ， 代码将会被包裹在 <code>main</code> 函数中。默认 <code>yes</code> 。</dd>
-<dt><code>:imports</code></dt><dd>为代码提供 <i>imports</i> 的快捷支持。 当处理 <code>main</code> 函数时，应该使用这个选项。 要 <i>import</i> 多个包，请使用 <code>list</code> 。</dd>
-<dt><code>:package</code></dt><dd>设置当前代码块 <i>tangle</i> 时的包名。 需要： <code>:main no</code> 。 若没设置，同时代码中没有包名声明， <code>main</code> 包将被声明。</dd>
-<dt><code>:var</code></dt><dd><code>ob-go</code> 支持 <code>Babel</code> 的变量，不过目前还不完备。</dd>
+<dt> <code>:args</code> </dt><dd>            传递命令行参数到代码编译后的可执行文件，传递超过多参数，需要使用 <code>list</code> 。
+</dd>
+<dt> <code>:flags</code> </dt><dd>              传递给 <code>go run</code> 或者 <code>go build</code> 的flags(未使用成功)。
+</dd>
+<dt> <code>:main</code> </dt><dd>             若没设置 <code>no</code> ， 代码将会被包裹在 <code>main</code> 函数中。默认 <code>yes</code> 。
+</dd>
+<dt> <code>:imports</code> </dt><dd>                为代码提供 <i>imports</i> 的快捷支持。 当处理 <code>main</code> 函数时，应该使用这个选项。 要 <i>import</i> 多个包，请使用 <code>list</code> 。
+</dd>
+<dt> <code>:package</code> </dt><dd>                设置当前代码块 <i>tangle</i> 时的包名。 需要： <code>:main no</code> 。 若没设置，同时代码中没有包名声明， <code>main</code> 包将被声明。
+</dd>
+<dt> <code>:var</code> </dt><dd>            <code>ob-go</code> 支持 <code>Babel</code> 的变量，不过目前还不完备。
+</dd>
 </dl>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd3ca905" class="outline-2">
-<h2 id="orgd3ca905"><a id="ID-92d63e46-c8e6-445f-979a-f55e4664a632"></a><span class="section-number-2">2</span> 配置</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-92d63e46-c8e6-445f-979a-f55e4664a632" name="ID-92d63e46-c8e6-445f-979a-f55e4664a632"></a><span class="section-number-2">2</span> 配置</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这里假设Go的开发环境已经配置完毕，同时你的机器上的 <code>Emacs</code> 和 <code>Org-mode</code> 都是最近的版本，对于 <code>Babel</code> 都是完整支持的。
 由于 <code>ob-go</code> 没有并入 <code>Org-mode</code> 所以需要单独配置。 步骤如下：
 </p>
 <ul class="org-ul">
-<li><code>M-x find-library ob-C</code> , 找到的目录 <code>org-plus-contrib</code></li>
-<li>新建 <i>ob-go.el</i> , 然后把 <a href="https://github.com/brantou/ob-go/blob/master/ob-go.el" rel="external nofollow noopener noreferrer" target="_blank">github中代码</a> 复制到新建的文件中</li>
-<li><p>
-配置 <code>org-babel-load-languages</code>, 如下：
-</p>
+<li><code>M-x find-library ob-C</code> , 找到的目录 <code>org-plus-contrib</code>
+</li>
+<li>新建 <i>ob-go.el</i> , 然后把 <a href="https://github.com/brantou/ob-go/blob/master/ob-go.el" rel="external nofollow noopener noreferrer" target="_blank">github中代码</a> 复制到新建的文件中
+</li>
+<li>配置 <code>org-babel-load-languages</code>, 如下：
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((python . t)&#10;   (C . t)&#10;   (go . t)&#10;   (emacs-lisp . t)&#10;   (shell . t)))</span><br></pre></td></tr></table></figure>
-</div></li>
+</div>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga9aca57" class="outline-2">
-<h2 id="orga9aca57"><a id="ID-874bcc5c-b558-4afb-9610-1277a8886b34"></a><span class="section-number-2">3</span> 编码流程</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-874bcc5c-b558-4afb-9610-1277a8886b34" name="ID-874bcc5c-b558-4afb-9610-1277a8886b34"></a><span class="section-number-2">3</span> 编码流程</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 最近在 <a href="https://leetcode.com/brantou89/" rel="external nofollow noopener noreferrer" target="_blank">LeetCode</a> 上做编程训练，这里就以解决上面的问题的流程来做说明。
 </p>
 <ul class="org-ul">
-<li>在LeetCode页面上，仔细阅读和理解问题，这里以 <a href="https://leetcode.com/problems/merge-two-binary-trees/" rel="external nofollow noopener noreferrer" target="_blank">Merge Two Binary Trees</a> 为例</li>
-<li>跳转到 <i>leetcode.org</i> ， 创建 <i>merge two binary trees</i> 子目录</li>
-<li>创建名为 <i>merge-two-bt</i> 的Go代码块</li>
-<li><p>
-通过快捷键 <code>C-c '</code> 打开Go语言特定的编辑模式buffer中,然后编码。
-在编码过程完成后， <code>C-c '</code> 完成并关闭编辑buffer；或者对自己编辑不满意， <code>C-c C-k</code> 取消编辑并关闭编辑buffer。
+<li>在LeetCode页面上，仔细阅读和理解问题，这里以 <a href="https://leetcode.com/problems/merge-two-binary-trees/" rel="external nofollow noopener noreferrer" target="_blank">Merge Two Binary Trees</a> 为例
+</li>
+<li>跳转到 <i>leetcode.org</i> ， 创建 <i>merge two binary trees</i> 子目录
+</li>
+<li>创建名为 <i>merge-two-bt</i> 的Go代码块
+</li>
+<li>通过快捷键 <code>C-c '= 打开Go语言特定的编辑模式buffer中,然后编码。
+    在编码过程完成后， =C-c '= 完成并关闭编辑buffer；或者对自己编辑不满意， =C-c C-k</code> 取消编辑并关闭编辑buffer。
+<div class="export">
+<p>
+&lt;img src="/images/go-babel/go-ob-leetcode.gif&rdquo; /&gt;
 </p>
-<img src="/images/go-babel/go-ob-leetcode.gif"></li>
-<li><p>
-把定义好的代码块整合到一起，然后执行(<a href="https://play.golang.org/p/93dZx1kg6l" rel="external nofollow noopener noreferrer" target="_blank">完整代码</a>)。
+
+</div>
+</li>
+<li>把定义好的代码块整合到一起，然后执行(<a href="https://play.golang.org/p/93dZx1kg6l" rel="external nofollow noopener noreferrer" target="_blank">完整代码</a>)。
+<div class="export">
+<p>
+&lt;img src="/images/go-babel/go-ob-leetcode-cmp.gif&rdquo; /&gt;
 </p>
-<img src="/images/go-babel/go-ob-leetcode-cmp.gif"></li>
+
+</div>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org94e5333" class="outline-2">
-<h2 id="org94e5333"><a id="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6"></a><span class="section-number-2">4</span> 使用示例</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6" name="ID-431ab3b1-5167-4291-9052-8cfdf59a46b6"></a><span class="section-number-2">4</span> 使用示例</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 
-<div id="outline-container-orgbe6cbb1" class="outline-3">
-<h3 id="orgbe6cbb1"><a id="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2"></a><span class="section-number-3">4.1</span> 导入多个包</h3>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><a id="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2" name="ID-02c50881-cbba-4a4b-b4b4-c795a68230a2"></a><span class="section-number-3">4.1</span> 导入多个包</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "time")
   fmt.Println("当前时间：", time.Now())
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : 当前时间： 2017-06-12 18:04:20.562355811 +0800 CST
-
 </pre>
 </div>
 </div>
-<div id="outline-container-org11da369" class="outline-3">
-<h3 id="org11da369"><a id="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a"></a><span class="section-number-3">4.2</span> 命令行参数传递</h3>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><a id="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a" name="ID-dcfbf20f-9a74-44f0-b9f6-a54161937d0a"></a><span class="section-number-3">4.2</span> 命令行参数传递</h3>
 <div class="outline-text-3" id="text-4-2">
 <pre class="example">
 #+BEGIN_SRC go :imports '("fmt" "os") :args '("bable" "golang")
   fmt.Println(os.Args[1], os.Args[2])
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : bable golang
-
 </pre>
 </div>
 </div>
-<div id="outline-container-org1bde250" class="outline-3">
-<h3 id="org1bde250"><a id="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0"></a><span class="section-number-3">4.3</span> 多入参</h3>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><a id="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0" name="ID-5062984d-dc0e-413d-a226-6b20e4ea44f0"></a><span class="section-number-3">4.3</span> 多入参</h3>
 <div class="outline-text-3" id="text-4-3">
 <pre class="example">
 #+NAME: sum
 #+BEGIN_SRC go :imports "fmt" :var a=12 b=13
   fmt.Println(a+b)
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : 25
-
 </pre>
 
 <pre class="example">
 #+call: sum(a=22,b=23)
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : 45
-
 </pre>
 </div>
 </div>
-<div id="outline-container-org56bb93e" class="outline-3">
-<h3 id="org56bb93e"><a id="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d"></a><span class="section-number-3">4.4</span> 代码组织</h3>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><a id="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d" name="ID-bb583b9e-9294-4a4b-84d7-24ebfddbfc6d"></a><span class="section-number-3">4.4</span> 代码组织</h3>
 <div class="outline-text-3" id="text-4-4">
 <pre class="example">
 #+NAME: min
@@ -1589,14 +1905,12 @@ Go代码通过 <code>go run</code> 命令编译和运行。
     }
   }
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+NAME: get-min
 #+BEGIN_SRC go :var a=0 b=0 :imports "fmt" :noweb strip-export
   &lt;&lt;min&gt;&gt;
-
 </pre>
 
 <pre class="example">
@@ -1604,25 +1918,22 @@ Go代码通过 <code>go run</code> 命令编译和运行。
     fmt.Println(min(a,b))
   }
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+call: get-min(27, 23)
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : 23
-
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4023302" class="outline-2">
-<h2 id="org4023302"><a id="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e"></a><span class="section-number-2">5</span> 总结</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a id="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e" name="ID-0cdd3e45-27dc-448c-a9a8-f62a21ed0a6e"></a><span class="section-number-2">5</span> 总结</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Org-mode于我来说，就是一个神器，打破了我对一个编辑器的认知，打破了我对一个信息收集器的认知。
@@ -1634,12 +1945,11 @@ Org-mode依托于强大的 <i>Emacs</i>, 借助于 <i>Babel</i>,  使文档和�
 #+BEGIN_SRC go :imports "fmt"
   fmt.Println("Goodbye, Gopher!")
 #+END_SRC
-
 </pre>
 </div>
 </div>
 
-Last Updated 2017-08-30 Wed 23:02.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-12-24 Sun 23:05.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
           
         
@@ -3859,411 +4169,6 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/interview-code/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/14/interview-code/" itemprop="url">Gopher面试中的Coding</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/14/interview-code/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/interview-code/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-  从四月份下半月开始，陆陆续续面试了几家公司，都是golang的岗位。每一次面试，侧重点都会有不同，有的会直接给过来一道试题，
-然后边解题，边讲述自己的思路，然后面试官根据你的思路和你交流沟通；有的呢，让讲述自己最近做过的项目，遇到的难点，
-自己怎么解决的问题思路，而无独有偶的呢，这样的面试中，都要需要展示编码能力。这篇文章就把自己最近面试中遇到的每一个编程问题，
-分三步阐述出来：问题描述，解题思路，实际编程。
-</p>
-
-<div id="outline-container-org8c288dc" class="outline-2">
-<h2 id="org8c288dc"><a id="ID-17c86ad6-2b61-42bb-8e49-6e4bc060e259"></a><span class="section-number-2">1</span> 交替打印数字和字母</h2>
-<div class="outline-text-2" id="text-1">
-</div>
-
-<div id="outline-container-orgc0c0525" class="outline-3">
-<h3 id="orgc0c0525"><a id="ID-317c050f-3b8f-4bfb-b096-064a8f45c0e1"></a><span class="section-number-3">1.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-使用两个 <code>goroutine</code> 交替打印序列，一个 <code>goroutinue</code> 打印数字，
-另外一个goroutine打印字母， 最终效果如下 <i>12AB34CD56EF78GH910IJ</i> 。
-</p>
-</div>
-</div>
-<div id="outline-container-org4766921" class="outline-3">
-<h3 id="org4766921"><a id="ID-f472cfd1-12e4-4d0b-b2a2-f8bad5b29086"></a><span class="section-number-3">1.2</span> 解题思路</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-问题很简单，使用 <code>channel</code> 来控制打印的进度。使用两个 <code>channel</code> ，来分别控制数字和字母的打印序列，
-数字打印完成后通过 <code>channel</code> 通知字母打印, 字母打印完成后通知数字打印，然后周而复始的工作。
-</p>
-</div>
-</div>
-<div id="outline-container-org3ed2b68" class="outline-3">
-<h3 id="org3ed2b68"><a id="ID-e6831f76-c231-4f4e-ba31-c1df9f7a261c"></a><span class="section-number-3">1.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>, <span class="number">1</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_c</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">chan_c &lt;- <span class="constant">true</span></span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果:
-</p>
-<pre class="example">
-12AB34CD56EF78GH910IJ
-
-</pre>
-
-<blockquote>
-<p>
-看完上面的代码，是不是会有些疑惑，为什么 <code>chan_c</code> 需要缓存，而 <code>chan_n</code> 不需要呢? <br>
-当两个打印 <code>goroutine</code> 无限交替运行时，没有缓存是OK的，
-但很明显上面的示例不是，打印数字的 <code>goroutine</code> 先退出，也就失去了 <code>goroutine</code> 来读取 <code>chan_c</code> 中的内容了，
-而打印字母的goroutine就会阻塞在 <code>chan_c &lt;- true</code> 这里，这样就导致了死锁。
-</p>
-</blockquote>
-
-<blockquote>
-<p>
-当然无缓存版也是可以，代码如下：
-</p>
-</blockquote>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(runtime.NumCPU())</span><br><span class="line">chan_n := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">chan_c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="typename">bool</span>)</span><br><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>{})</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">11</span>; i += <span class="number">2</span> {</span><br><span class="line">    fmt.Print(i)</span><br><span class="line">    fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">    chan_n &lt;- <span class="constant">true</span></span><br><span class="line">    &lt;-chan_c</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">func</span>() {</span><br><span class="line">  char_seq := []<span class="typename">string</span>{<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>}</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i += <span class="number">2</span> {</span><br><span class="line">    &lt;-chan_n</span><br><span class="line">    fmt.Print(char_seq[i])</span><br><span class="line">    fmt.Print(char_seq[i+<span class="number">1</span>])</span><br><span class="line">    chan_c &lt;- <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  done &lt;- <span class="keyword">struct</span>{}{}</span><br><span class="line">}()</span><br><span class="line"></span><br><span class="line">&lt;-done</span><br><span class="line">&lt;-done</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org964b8ee" class="outline-2">
-<h2 id="org964b8ee"><a id="ID-c9c5fb3f-eef3-427e-9f4c-032eb6dd3df1"></a><span class="section-number-2">2</span> 随机抽奖</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgc966ea8" class="outline-3">
-<h3 id="orgc966ea8"><a id="ID-66acfc33-6729-481b-a9aa-f7bbc54928e4"></a><span class="section-number-3">2.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-用户随机抽奖，数据结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org1827d4a" class="outline-3">
-<h3 id="org1827d4a"><a id="ID-22985cf6-155a-4443-adce-6209fc40df69"></a><span class="section-number-3">2.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-从map中选取随机用户，拿到这个编码问题，有点懵逼,但仔细一想，只需把关注用户的区间，转变一下数据结构即解题。
-把map转成array，思考起来就简单多了，原有问题变成了从0至n-1中选取一个数字，数字对应的用户即中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-orge6441af" class="outline-3">
-<h3 id="orge6441af"><a id="ID-f7838473-b75c-4011-94a4-18e52866ac9e"></a><span class="section-number-3">2.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  sizeOfUsers := <span class="built_in">len</span>(users)</span><br><span class="line">  award_index := rand.Intn(sizeOfUsers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, _ := <span class="keyword">range</span> users {</span><br><span class="line">    <span class="keyword">if</span> index == award_index {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: f, award count: 178
-user: d, award count: 152
-user: b, award count: 159
-user: e, award count: 182
-user: c, award count: 170
-user: a, award count: 159
-
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org82bc2cf" class="outline-2">
-<h2 id="org82bc2cf"><a id="ID-12c70fe7-cd5c-4fb1-ae9c-f9f79cadbce1"></a><span class="section-number-2">3</span> 权重抽奖</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-orgb5b4496" class="outline-3">
-<h3 id="orgb5b4496"><a id="ID-0d909edb-37e7-4e57-a93f-9d5a96dfdcff"></a><span class="section-number-3">3.1</span> 问题描述</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-数据结构和上面一致，只是问题发生变化，需要更加用户的成单数来抽奖，用户成单越多，中奖概率越高，结构如下所示：
-</p>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map中，key代表名称，value代表成交单数</span></span><br><span class="line"><span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">  <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"b"</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">"c"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="string">"d"</span>: <span class="number">12</span>,</span><br><span class="line">  <span class="string">"f"</span>: <span class="number">1</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-org7f9f5b7" class="outline-3">
-<h3 id="org7f9f5b7"><a id="ID-bd39ec8c-bee0-44a5-a079-0417271794f6"></a><span class="section-number-3">3.2</span> 解决思路</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-这一题是上一题的延伸，加了订单数进去，做为权重来为用户抽奖。此题和上面的问题如此的相似，可把上面的问题，
-理解成所有的用户权重都相同的抽奖，而此题是权重不同的抽奖。解决此问题，依旧是把map转为数组来思考，
-把各用户的权重，从前到后依次拼接到数轴上，数轴的起点到终点即时中奖区间，而随机数落到的那个用户的区间，那个用户即为中奖用户。
-</p>
-</div>
-</div>
-<div id="outline-container-org588c080" class="outline-3">
-<h3 id="org588c080"><a id="ID-02dc1488-c9fa-4b95-9aea-d70daa8a05f5"></a><span class="section-number-3">3.3</span> 实际编码</h3>
-<div class="outline-text-3" id="text-3-3">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"math/rand"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">type</span> A_user <span class="keyword">struct</span> {</span><br><span class="line">    Name   <span class="typename">string</span></span><br><span class="line">    Offset <span class="typename">int64</span></span><br><span class="line">    Num    <span class="typename">int64</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  a_user_arr := <span class="built_in">make</span>([]*A_user, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> name, num := <span class="keyword">range</span> users {</span><br><span class="line">    a_user := &amp;A_user{</span><br><span class="line">      Name:   name,</span><br><span class="line">      Offset: sum_num,</span><br><span class="line">      Num:    num,</span><br><span class="line">    }</span><br><span class="line">    a_user_arr = <span class="built_in">append</span>(a_user_arr, a_user)</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    a_user := a_user_arr[index]</span><br><span class="line">    <span class="keyword">if</span> a_user.Offset+a_user.Num &gt; award_num {</span><br><span class="line">      name = a_user.Name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span> = <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>{</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">"c"</span>: <span class="number">15</span>,</span><br><span class="line">    <span class="string">"d"</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: <span class="number">30</span>,</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().Unix())</span><br><span class="line">  award_stat := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10000</span>; i += <span class="number">1</span> {</span><br><span class="line">    name := GetAwardUserName(users)</span><br><span class="line">    <span class="keyword">if</span> count, ok := award_stat[name]; ok {</span><br><span class="line">      award_stat[name] = count + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      award_stat[name] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> name, count := <span class="keyword">range</span> award_stat {</span><br><span class="line">    fmt.Printf(<span class="string">"user: %s, award count: %d\n"</span>, name, count)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-代码执行结果：
-</p>
-<pre class="example">
-user: c, award count: 1667
-user: f, award count: 3310
-user: e, award count: 1099
-user: d, award count: 2276
-user: b, award count: 549
-user: a, award count: 1099
-
-</pre>
-
-<blockquote>
-<p>
-感谢各位的评论，让我受益匪浅，上面代码确实有太多的槽点，感谢吐槽，代码更正如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _name, num := <span class="keyword">range</span> a_user_arr {</span><br><span class="line">    offset_num += num</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = _name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-由于一直以为Golang的map <code>for range</code> 是可重入的，但现实是前后两轮遍历到的 <code>key</code> 的顺序居然是被随机化的，
-代码示例如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n_map := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">int</span>]<span class="typename">bool</span>)</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ {</span><br><span class="line">  n_map[i] = <span class="constant">true</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br><span class="line">fmt.Print(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">for</span> num, _ := <span class="keyword">range</span> n_map {</span><br><span class="line">  fmt.Print(num)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-91257103468
-46810325791
-
-</pre>
-
-<blockquote>
-<p>
-由于map的不可重入性， 以及 <a href="http://www.jianshu.com/u/53c9aad81bbb" rel="external nofollow noopener noreferrer" target="_blank">liguoqinjim</a> 给出的<a href="https://imgur.com/sG4nh4v" rel="external nofollow noopener noreferrer" target="_blank"> 示例代码</a> 和 <a href="https://imgur.com/Gq95IYP" rel="external nofollow noopener noreferrer" target="_blank">运行结果</a> 证明了map的 <code>for range</code> 的伪随机性，
-代码修改如下(在<a href="https://play.golang.org/p/mf-40sHFzc" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardUserName(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (name <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">  <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">    offset_num += users[u_name]</span><br><span class="line">    <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">      name = u_name</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-上面代码，对于多次调用会有性能问题，每次都要重新计算 <code>sum_num</code> 和创建 <code>name_arr</code>, 使用闭包优化实现，
-代码如下(在<a href="https://play.golang.org/p/dgc07E_Z1j" rel="external nofollow noopener noreferrer" target="_blank">Playground</a> 中可查看完整代码):
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    sum_num += num</span><br><span class="line">    name_arr = <span class="built_in">append</span>(name_arr, u_name)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> offset_num <span class="typename">int64</span></span><br><span class="line">    <span class="keyword">for</span> _, u_name := <span class="keyword">range</span> name_arr {</span><br><span class="line">      offset_num += users[u_name]</span><br><span class="line">      <span class="keyword">if</span> award_num &lt; offset_num {</span><br><span class="line">        <span class="keyword">return</span> u_name</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 缺省返回，正常情况下，不会运行到此处</span></span><br><span class="line">    <span class="keyword">return</span> name_arr[<span class="number">0</span>]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-上面代码使用了闭包避免了多次抽奖时频繁的初始化，
-但每次抽奖的复杂度O(n)，很明显依旧有可优化的空间，可使用二分搜索来使复杂度降到 <code>O(log n)</code>,
-代码如下：
-</p>
-</blockquote>
-
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> GetAwardGenerator(users <span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int64</span>) (generator <span class="keyword">func</span>() <span class="typename">string</span>) {</span><br><span class="line">  <span class="keyword">var</span> sum_num <span class="typename">int64</span></span><br><span class="line">  name_arr := <span class="built_in">make</span>([]<span class="typename">string</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  offset_arr := <span class="built_in">make</span>([]<span class="typename">int64</span>, <span class="built_in">len</span>(users))</span><br><span class="line">  <span class="keyword">var</span> index <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> u_name, num := <span class="keyword">range</span> users {</span><br><span class="line">    name_arr[index] = u_name</span><br><span class="line">    offset_arr[index] = sum_num</span><br><span class="line">    sum_num += num</span><br><span class="line">    index += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  generator = <span class="keyword">func</span>() <span class="typename">string</span> {</span><br><span class="line">    award_num := rand.Int63n(sum_num)</span><br><span class="line">    <span class="keyword">return</span> name_arr[binary_search(offset_arr, award_num)]</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> binary_search(nums []<span class="typename">int64</span>, target <span class="typename">int64</span>) <span class="typename">int</span> {</span><br><span class="line">  start, end := <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> start &lt;= end {</span><br><span class="line">    mid := start + (end-start)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; target {</span><br><span class="line">      end = mid - <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> nums[mid] &lt; target {</span><br><span class="line">      <span class="keyword">if</span> mid+<span class="number">1</span> == <span class="built_in">len</span>(nums) { <span class="comment">// 最后一名中奖</span></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> nums[mid+<span class="number">1</span>] &gt; target {</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">      }</span><br><span class="line">      start = mid + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> mid</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<blockquote>
-<p>
-在已知长度的情况下，应使用 <code>array[index]=num</code> 而避免使用 <code>array=append(array, num)</code>, 代码和测试如下：
-</p>
-</blockquote>
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  test_len := <span class="number">10000000</span></span><br><span class="line">  start := time.Now()</span><br><span class="line">  s := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s = <span class="built_in">append</span>(s, i)</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line"></span><br><span class="line">  start = time.Now()</span><br><span class="line">  s1 := <span class="built_in">make</span>([]<span class="typename">int</span>, test_len)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; test_len; i++ {</span><br><span class="line">    s1[i] = i</span><br><span class="line">  }</span><br><span class="line">  fmt.Println(time.Now().Sub(start).String())</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-132.123121ms
-27.453897ms
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgaf58aaf" class="outline-2">
-<h2 id="orgaf58aaf"><a id="ID-3e4019ba-085f-486b-9492-8947c297fba5"></a><span class="section-number-2">4</span> 总结</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-问题一来自一家公司 , 侧重于语言特性；问题二三来自另外一家公司 ，侧重于解决问题的思路；本人更喜欢第二种，很有启发性。
-我之后会把其他自己认为比较有趣的编程任务，整理到此篇文章中，敬请期待。
-</p>
-</div>
-</div>
-
-Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4316,7 +4221,7 @@ Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4410,7 +4315,7 @@ Last Updated 2017-10-18 Wed 14:50.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

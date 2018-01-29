@@ -349,6 +349,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2018/01/26/go-imp-ecrg/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/26/go-imp-ecrg/" itemprop="url">Go实现鼓励金发放逻辑</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T00:00:00+08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/26/go-imp-ecrg/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/26/go-imp-ecrg/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<p>
+  什么是鼓励金？我想大家应该都有用过，例如今早我买包子时，就抵扣了部分金额。
+用支付宝或者微信支付，支付成功后会返还一小笔钱，从周日到周四累计5天，然后在周五和周六抵现金使用，
+这笔钱就是鼓励金(当然支付宝称作奖励金)。
+我们现在几乎每天都在使用支付宝或者微信，每天都会接触鼓励金，但是你知道鼓励金发放的一般逻辑嘛，
+或者说如果让你来做一个类似鼓励金一样的产品，你会怎样来实现发放逻辑呢。
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-013c67fb-f943-485c-ab55-ad47bf0e4304" name="ID-013c67fb-f943-485c-ab55-ad47bf0e4304"></a><span class="section-number-2">1</span> 问题描述</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+问题描述，洋气一点，可以称作产品需求，需求如下：
+</p>
+<ul class="org-ul">
+<li>根据订单金额分阶段发放,金额越高，得到的鼓励金要相应升高
+</li>
+<li>每个金额阶段中再分层，每个层次指定发放金额的最小值和最大值，并指定百分比
+</li>
+<li>商家可以根据上述两条规则自定义自己的发放逻辑
+</li>
+<li>商家可分时段自定义发放倍率(放大或者缩小发送的金额)
+</li>
+<li>平台可自定义全平台的发放倍率
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-854271ac-9260-4351-8433-6af146e14440" name="ID-854271ac-9260-4351-8433-6af146e14440"></a><span class="section-number-2">2</span> 解决思路与数据结构设计</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>
+数据结构如下：
+</p>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Ecrg_fee_dura <span class="keyword">struct</span> {</span><br><span class="line">  Upper <span class="typename">float64</span></span><br><span class="line">  Lower <span class="typename">float64</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Ecrg_fee_item <span class="keyword">struct</span> {</span><br><span class="line">  Num  <span class="typename">int</span></span><br><span class="line">  Dura *Ecgr_fee_dura</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Ecrg_fee <span class="keyword">struct</span> {</span><br><span class="line">  Amount   <span class="typename">float64</span></span><br><span class="line">  Item_arr []*Ecgr_fee_item</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Ecrg_fee_arr []*Ecrg_fee = []*Ecrg_fee{</span><br><span class="line">  &amp;Ecrg_fee{</span><br><span class="line">    Amount: <span class="number">99.99</span>,</span><br><span class="line">    Item_arr: []*Ecrg_fee_item{</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">700</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">1.1</span>, Lower: <span class="number">0.8</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">900</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">2.0</span>, Lower: <span class="number">1.0</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">1000</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">5.0</span>, Lower: <span class="number">1.8</span>}},</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">  &amp;Ecrg_fee{</span><br><span class="line">    Amount: <span class="number">49.99</span>,</span><br><span class="line">    Item_arr: []*Ecrg_fee_item{</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">700</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.6</span>, Lower: <span class="number">0.25</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">900</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">1.25</span>, Lower: <span class="number">0.5</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">1000</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">2.0</span>, Lower: <span class="number">1.0</span>}},</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">  &amp;Ecrg_fee{</span><br><span class="line">    Amount: <span class="number">29.99</span>,</span><br><span class="line">    Item_arr: []*Ecrg_fee_item{</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">700</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.4</span>, Lower: <span class="number">0.25</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">900</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.6</span>, Lower: <span class="number">0.3</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">1000</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">1.0</span>, Lower: <span class="number">0.5</span>}},</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">  &amp;Ecrg_fee{</span><br><span class="line">    Amount: <span class="number">19.99</span>,</span><br><span class="line">    Item_arr: []*Ecrg_fee_item{</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">700</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.25</span>, Lower: <span class="number">0.1</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">900</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.5</span>, Lower: <span class="number">0.2</span>}},</span><br><span class="line">      &amp;Ecrg_fee_item{Num: <span class="number">1000</span>, Dura: &amp;Ecrg_fee_dura{Upper: <span class="number">0.8</span>, Lower: <span class="number">0.4</span>}},</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+给出数据结构和规则列表示例，应该就明白一半了，另一半的说明如下:
+</p>
+<ul class="org-ul">
+<li><code>Ecrg_fee_arr</code> 数组金额是从高到底，这里使用有序的列表来表示区间，第一项代表区间99.99到无限大，第二项代表49.99到99.99&#x2026;
+</li>
+<li><code>Ecrg_fee_item</code> 定义了中奖规则，由一个整数 <code>Num</code> 和一个区间 <code>Dura</code> 组成，
+<code>Dura</code> 代表发放金额的上限和下限， <code>Num</code> 就要放到数组中来理解, 同样这里也使用了有序数组来表示区间，只不过这里使用的是递增数组。
+<code>Item_arr</code> 的第一项表示1-700,代表的含义是随机1-1000，命中1-700的概率，也就是说这里使用此项定义出70%的概率区间;
+第二项表示701-900，代表的含义是随机1-1000，命中701-900的概率，也就是说这里使用此项定义出20%的概率区间&#x2026;
+</li>
+<li>数据结构和以上的解析基本映射出相应的算法执行步骤：
+<ol class="org-ol">
+<li>比对金额，定位金额区间
+</li>
+<li>生成随机数，定位发放规则
+</li>
+<li>生成随机数，生成鼓励金
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-c41c69d8-a4f5-409d-9263-bd9b471b4266" name="ID-c41c69d8-a4f5-409d-9263-bd9b471b4266"></a><span class="section-number-2">3</span> 编码实现</h2>
+<div class="outline-text-2" id="text-3">
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 四舍五入</span></span><br><span class="line"><span class="keyword">func</span> FormatPrice(p <span class="typename">float64</span>) <span class="typename">float64</span> {</span><br><span class="line">  p = math.Floor((p+<span class="number">0.005</span>)*<span class="number">100</span>) / <span class="number">100</span></span><br><span class="line">  <span class="keyword">return</span> math.Max(p, <span class="number">0.01</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取全平台倍率</span></span><br><span class="line"><span class="keyword">func</span> GetEcrgFactor() <span class="typename">float64</span> {</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1.0</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取鼓励金发放订单最低金额</span></span><br><span class="line"><span class="keyword">func</span> GetEcrgThreshold() <span class="typename">float64</span> {</span><br><span class="line">  <span class="keyword">return</span> <span class="number">9.9</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> CalcEcrgAmount(</span><br><span class="line">  amount <span class="typename">float64</span>, <span class="comment">// 订单金额</span></span><br><span class="line">  factor <span class="typename">float64</span>, <span class="comment">// 发放倍率</span></span><br><span class="line">  ecrg_fee_arr []*Ecrg_fee, <span class="comment">// 发放规则</span></span><br><span class="line">) (</span><br><span class="line">  ecrg_amount <span class="typename">float64</span>,</span><br><span class="line">  code <span class="typename">int</span>, err error,</span><br><span class="line">) {</span><br><span class="line">  <span class="keyword">if</span> amount &lt; Ecrg_amount_threshold {</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加鼓励金发放倍率</span></span><br><span class="line">  factor = factor * GetEcrgFactor()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 规则未定义</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(ecrg_fee_arr) &lt; <span class="number">1</span> {</span><br><span class="line">    ecrg_amount = amount * <span class="number">0.01</span> * factor</span><br><span class="line">    ecrg_amount = FormatPrice(ecrg_amount)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  rand.Seed(time.Now().UnixNano())</span><br><span class="line">  <span class="comment">// 遍历区间列表</span></span><br><span class="line">  <span class="keyword">for</span> index, _ := <span class="keyword">range</span> ecrg_fee_arr {</span><br><span class="line">    ecrg_fee := ecrg_fee_arr[index]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定位金额区间</span></span><br><span class="line">    <span class="keyword">if</span> amount-ecrg_fee.Amount &gt; <span class="number">0.001</span> {</span><br><span class="line">      <span class="comment">// 生成随机数--用于定位发放规则</span></span><br><span class="line">      rand_num := rand.Intn(<span class="number">1000</span>) + <span class="number">1</span></span><br><span class="line">      <span class="keyword">for</span> index, _ := <span class="keyword">range</span> ecrg_fee.Item_arr {</span><br><span class="line">	ecrg_item := ecrg_fee.Item_arr[index]</span><br><span class="line">	<span class="comment">// 定位中奖区间</span></span><br><span class="line">	<span class="keyword">if</span> rand_num &lt;= ecrg_item.Num {</span><br><span class="line">	  fee_dura := ecrg_item.Dura</span><br><span class="line">	  <span class="comment">// 生成随机数--用于生成发放金额</span></span><br><span class="line">	  rand_n := rand.Intn(<span class="number">100</span>) + <span class="number">1</span></span><br><span class="line">	  <span class="comment">// 生成发放金额</span></span><br><span class="line">	  ecrg_amount = fee_dura.Lower + ((<span class="typename">float64</span>(rand_n)/<span class="number">100.00</span>)*</span><br><span class="line">	    (fee_dura.Upper-fee_dura.Lower))*factor</span><br><span class="line">	  log.Printf(<span class="string">"[CalcEcrgAmount] amount: %v, factor %v, "</span>+</span><br><span class="line">	    <span class="string">"rand_num: %v, rand_n: %v, dura: %v, ecrg_amount: %v"</span>,</span><br><span class="line">	    amount, factor, rand_num, rand_n, *fee_dura, ecrg_amount,</span><br><span class="line">	  )</span><br><span class="line"></span><br><span class="line">	  <span class="comment">// 发放金额格式化</span></span><br><span class="line">	  ecrg_amount = FormatPrice(ecrg_amount)</span><br><span class="line">	  <span class="keyword">return</span></span><br><span class="line">	}</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-4295ac94-dddf-409e-b912-3460e4ab3f63" name="ID-4295ac94-dddf-409e-b912-3460e4ab3f63"></a><span class="section-number-2">4</span> 总结</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+以上给出了一个鼓励金或者奖励金一个粗糙的实现，欢迎大家，给出更好的设计方案，欢迎讨论。
+</p>
+</div>
+</div>
+
+Last Updated 2018-01-29 Mon 18:23.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/18/tmux-script/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -457,22 +702,195 @@
             
 
 <div class="org-src-container">
+
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">tmux new <span class="operator">-s</span> htop \; neww <span class="operator">-d</span> <span class="string">'cd ~/ &amp;&amp; htop'</span> \; splitw <span class="operator">-d</span>  \; selectp -t <span class="number">1</span> \; detach</span><br><span class="line">tmux new <span class="operator">-s</span> top \; neww <span class="operator">-d</span> <span class="string">'cd ~/ &amp;&amp; top'</span> \; splitw <span class="operator">-d</span>  \; selectp -t <span class="number">1</span> \; detach</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
+
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">tmux new <span class="operator">-s</span> htop \; \</span><br><span class="line">     send-keys -t htop:<span class="number">0</span> <span class="string">'cd ~/ &amp;&amp; htop'</span> C-m \; \</span><br><span class="line">     splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">     send-keys -t htop:<span class="number">0.1</span> <span class="string">'cd ~/ &amp;&amp; clear'</span> C-m \; detach</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">CMDS=( <span class="string">"htop"</span> <span class="string">"top"</span> )</span><br><span class="line">CMDPATH=<span class="string">"~"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="string">"<span class="variable">${CMDS[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$cmd</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$cmd</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; '</span><span class="variable">$cmd</span> C-m \; \</span><br><span class="line">         splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$cmd</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; clear'</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">CMDS=( <span class="string">"htop"</span> <span class="string">"top"</span> )</span><br><span class="line">CMDPATH=<span class="string">"~"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="string">"<span class="variable">${CMDS[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$cmd</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$cmd</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; '</span><span class="variable">$cmd</span> C-m \; \</span><br><span class="line">	 splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$cmd</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$CMDPATH</span><span class="string">' &amp;&amp; clear'</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">servs = (<span class="string">"api"</span> <span class="string">"cashier"</span> <span class="string">"notify"</span> <span class="string">"magic"</span> <span class="string">"privacy"</span>)</span><br><span class="line">rootPath = <span class="variable">$GOPATH</span>/src/path-to-serv</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> serv <span class="keyword">in</span> <span class="string">"<span class="variable">${servs[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux has-session -t <span class="variable">$serv</span></span><br><span class="line">    <span class="keyword">if</span> [ $? = <span class="number">0</span>]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">continue</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    servPath = <span class="variable">$rootPath</span><span class="string">"/"</span><span class="variable">$serv</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$serv</span> -n serv \; \</span><br><span class="line">         send-keys -t <span class="variable">$serv</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$servPath</span><span class="string">' &amp;&amp; bee run'</span> \; \</span><br><span class="line">         splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">         send-keys -t <span class="variable">$serv</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$servPath</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">servs = (<span class="string">"cashier"</span> <span class="string">"notify"</span> <span class="string">"magic"</span> <span class="string">"privacy"</span>)</span><br><span class="line">rootPath = <span class="variable">$GOPATH</span>/src/path-to-serv</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> serv <span class="keyword">in</span> <span class="string">"<span class="variable">${servs[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux has-session -t <span class="variable">$serv</span></span><br><span class="line">    <span class="keyword">if</span> [ $? = <span class="number">0</span>]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">continue</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    servPath = <span class="variable">$rootPath</span><span class="string">"/"</span><span class="variable">$serv</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$serv</span> -n serv \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$servPath</span><span class="string">' &amp;&amp; bee run'</span> \; \</span><br><span class="line">	 splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$servPath</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+Last Updated 2018-01-17 Wed 15:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/go-dlv-try/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/09/go-dlv-try/" itemprop="url">go-dlv试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/09/go-dlv-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/go-dlv-try/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-orgab0c325" class="outline-2">
+<h2 id="orgab0c325"><a id="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3"></a><span class="section-number-2">1</span> 源码</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"sync"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> dostuff(wg *sync.WaitGroup, i <span class="typename">int</span>) {</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  time.Sleep(<span class="number">300</span> * time.Second)</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  wg.Done()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  workers := <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  wg.Add(workers)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; workers; i++ {</span><br><span class="line">    <span class="keyword">go</span> dostuff(&amp;wg, i)</span><br><span class="line">  }</span><br><span class="line">  wg.Wait()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
           
         
@@ -662,175 +1080,6 @@ Last Updated 2017-12-18 Mon 22:51.<br>Render by <a href="https://github.com/Code
 </div>
 
 Last Updated 2017-12-11 Mon 13:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/go-dlv-try/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/go-dlv-try/" itemprop="url">go-dlv试用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
-                2017-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/09/go-dlv-try/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/go-dlv-try/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-
-<div id="outline-container-orgab0c325" class="outline-2">
-<h2 id="orgab0c325"><a id="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3"></a><span class="section-number-2">1</span> 源码</h2>
-<div class="outline-text-2" id="text-1">
-<div class="org-src-container">
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"sync"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> dostuff(wg *sync.WaitGroup, i <span class="typename">int</span>) {</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  time.Sleep(<span class="number">300</span> * time.Second)</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  wg.Done()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  workers := <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  wg.Add(workers)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; workers; i++ {</span><br><span class="line">    <span class="keyword">go</span> dostuff(&amp;wg, i)</span><br><span class="line">  }</span><br><span class="line">  wg.Wait()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
 
           
         
@@ -3875,294 +4124,6 @@ Last Updated 2017-08-31 Thu 23:13.<br>Render by <a href="https://github.com/Code
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/scrapy-crawl-zhihu/" itemprop="url">scrapy模拟登陆知乎</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:00:00+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/scrapy-crawl-zhihu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/scrapy-crawl-zhihu/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-<p>
-折腾了将近两天，中间数次想要放弃，还好硬着头皮搞下去了，在此分享出来，希望有同等需求的各位能少走一些弯路。
-源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
-若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
-</p>
-
-<div id="outline-container-org1cc815d" class="outline-2">
-<h2 id="org1cc815d"><a id="ID-58b6b931-df7c-4492-ae8a-0d0308b629de"></a><span class="section-number-2">1</span> 工具准备</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-在开始之前，请确保 <i>scrpay</i> 正确安装，手头有一款简洁而强大的浏览器， 若是你有使用 <i>postman</i> 那就更好了。
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">scrapy genspider zhihu</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-使用以上命令生成知乎爬虫,代码如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhihuSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'zhihu'</span></span><br><span class="line">    allowed_domains = [<span class="string">'www.zhihu.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://www.zhihu.com/'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-有一点切记，不要忘了启用 <i>Cookies</i>, <b>切记切记</b> ：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Disable cookies (enabled by default)</span></span><br><span class="line">COOKIES_ENABLED = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgc9b7b3c" class="outline-2">
-<h2 id="orgc9b7b3c"><a id="ID-466f6a80-5175-4f0e-97bd-a1bd7f805f4c"></a><span class="section-number-2">2</span> 模拟登陆</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-过程如下：
-</p>
-<ul class="org-ul">
-<li><p>
-进入登录页，获取 <i>Header</i> 和 <i>Cookie</i> 信息， 完善的 <i>Header</i> 信息能尽量伪装爬虫， 有效 <i>Cookie</i> 信息能迷惑知乎服务端，使其认为当前登录非首次登录，若无有效 <i>Cookie</i> 会遭遇验证码。 在抓取数据之前，请在浏览器中登录过知乎，这样才使得 <i>Cookie</i> 是有效的。
-</p>
-<img src="/images/zhihu-headers-cookies.jpg">
-<p>
-<i>Header</i> 和 <i>Cookie</i> 整理如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">headers = {</span><br><span class="line">    <span class="string">'Host'</span>:</span><br><span class="line">    <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'Connection'</span>:</span><br><span class="line">    <span class="string">'keep-alive'</span>,</span><br><span class="line">    <span class="string">'Origin'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com'</span>,</span><br><span class="line">    <span class="string">'User-Agent'</span>:</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>:</span><br><span class="line">    <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span>,</span><br><span class="line">    <span class="string">'Accept'</span>:</span><br><span class="line">    <span class="string">'*/*'</span>,</span><br><span class="line">    <span class="string">'X-Requested-With'</span>:</span><br><span class="line">    <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    <span class="string">'DNT'</span>:</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:</span><br><span class="line">    <span class="string">'https://www.zhihu.com/'</span>,</span><br><span class="line">    <span class="string">'Accept-Encoding'</span>:</span><br><span class="line">    <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">    <span class="string">'Accept-Language'</span>:</span><br><span class="line">    <span class="string">'zh-CN,zh;q=0.8,en;q=0.6'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">cookies = {</span><br><span class="line">    <span class="string">'d_c0'</span>:</span><br><span class="line">    <span class="string">'"AHCAtu1iqAmPTped76X1ZdN0X_qAwhjdLUU=|1458699045"'</span>,</span><br><span class="line">    <span class="string">'__utma'</span>:</span><br><span class="line">    <span class="string">'51854390.1407411155.1458699046.1458699046.1458699046.1'</span>,</span><br><span class="line">    <span class="string">'__utmv'</span>:</span><br><span class="line">    <span class="string">'51854390.000--|3=entry_date=20160322=1'</span>,</span><br><span class="line">    <span class="string">'_zap'</span>:</span><br><span class="line">    <span class="string">'850897bb-cba4-4d0b-8653-fd65e7578ac2'</span>,</span><br><span class="line">    <span class="string">'q_c1'</span>:</span><br><span class="line">    <span class="string">'b7918ff9a5514d2981c30050c8c732e1|1502937247000|1491446589000'</span>,</span><br><span class="line">    <span class="string">'aliyungf_tc'</span>:</span><br><span class="line">    <span class="string">'AQAAAHVgviiNyQsAOhSntJ5J/coWYtad'</span>,</span><br><span class="line">    <span class="string">'_xsrf'</span>:</span><br><span class="line">    <span class="string">'b12fdca8-cb35-407a-bc4c-6b05feff37cb'</span>,</span><br><span class="line">    <span class="string">'l_cap_id'</span>:</span><br><span class="line">    <span class="string">'"MDk0MzRjYjM4NjAwNDU0MzhlYWNlODQ3MGQzZWM0YWU=|1503382513|9af99534aa22d5db92c7f58b45f3f3c772675fed"'</span>,</span><br><span class="line">    <span class="string">'r_cap_id'</span>:</span><br><span class="line">    <span class="string">'"M2RlNDZjN2RkNTBmNGFmNDk2ZjY4NjIzY2FmNTE4NDg=|1503382513|13370a99ee367273b71d877de17f05b2986ce0ef"'</span>,</span><br><span class="line">    <span class="string">'cap_id'</span>:</span><br><span class="line">    <span class="string">'"NmZjODUxZjQ0NzgxNGEzNmJiOTJhOTlkMTVjNWIxMDQ=|1503382513|dba2e9c6af7f950547474f827ef440d7a2950163"'</span>,</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div></li>
-
-<li><p>
-在浏览器中，模拟登陆，抓取登陆请求信息。
-</p>
-<img src="/images/zhihu-login-args.jpg">
-<p>
-从图中可以看到 <i>_xsrf</i> 参数, 这个参数与登陆验证信息无关，但很明显是由登陆页面携带的信息。
-<a href="https://www.google.com.hk/search?q=xsrf" rel="external nofollow noopener noreferrer" target="_blank">Google </a>了下 <i>xsrf</i> 的含义， 是用于防范 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" rel="external nofollow noopener noreferrer" target="_blank">跨站请求伪造</a> 。
-</p>
-<img src="/images/zhihu-xsrf.jpg"></li>
-
-<li><p>
-整理以上，代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">loginUrl = <span class="string">'https://www.zhihu.com/#signin'</span></span><br><span class="line">siginUrl = <span class="string">'https://www.zhihu.com/login/email'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.loginUrl,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            cookies=self.cookies,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: <span class="number">1</span>},</span><br><span class="line">            callback=self.post_login)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    xsrf = response.css(</span><br><span class="line">        <span class="string">'div.view-signin &gt; form &gt; input[name=_xsrf]::attr(value)'</span></span><br><span class="line">    ).extract_first()</span><br><span class="line">    self.headers[<span class="string">'X-Xsrftoken'</span>] = xsrf</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        scrapy.http.FormRequest(</span><br><span class="line">            self.siginUrl,</span><br><span class="line">            method=<span class="string">'POST'</span>,</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'_xsrf'</span>: xsrf,</span><br><span class="line">                <span class="string">'captcha_type'</span>: <span class="string">'cn'</span>,</span><br><span class="line">                <span class="string">'email'</span>: <span class="string">'xxxxxx@163.com'</span>,</span><br><span class="line">                <span class="string">'password'</span>: <span class="string">'xxxxxx'</span>,</span><br><span class="line">            },</span><br><span class="line">            callback=self.after_login)</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-</div></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgb9f1576" class="outline-2">
-<h2 id="orgb9f1576"><a id="ID-57688588-4238-4459-abd5-1e263719316f"></a><span class="section-number-2">3</span> 设置Bearer Token</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-经过上述步骤登陆成功了，有点小激动，有没有！
-但苦难到此还远没有结束，这个时候尝试抓取最近热门话题，直接返回 <i>code:401</i> ,未授权的访问。
-授权信息未设置，导致了此类错误，莫非遗漏了什么，看来只能在浏览器中追踪请求参数来侦测问题。
-在浏览器的请求中，包含了<a href="https://tools.ietf.org/html/rfc6750" rel="external nofollow noopener noreferrer" target="_blank">Bearer Token</a>, 而我在scrapy中模拟的请求中未包含此信息，所以我被服务器认定为未授权的。
-通过观察发现 <i>Bearer Token</i> 的关键部分，就是 <i>Cookies</i> 中的 <i>z_c0</i> 对应的信息。
-</p>
-<img src="/images/zhihu-bearer-token.png">
-
-<p>
-<i>z_c0</i> 包含的信息，是在登陆完成时种下的，所以从登陆完成返回的登陆信息里，获取要设置的 <i>Cookies</i> 信息，
-然后拼接出 <i>Bearer Token</i>,最后设置到 <i>Header</i> 中。
-</p>
-
-<p>
-代码整理如下:
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    print(<span class="string">'after_login'</span>, jdict)</span><br><span class="line">    <span class="keyword">if</span> jdict[<span class="string">'r'</span>] == <span class="number">0</span>:</span><br><span class="line">        z_c0 = response.headers.getlist(<span class="string">'Set-Cookie'</span>)[<span class="number">2</span>].split(<span class="string">';'</span>)[<span class="number">0</span>].split(</span><br><span class="line">            <span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line">        self.headers[<span class="string">'authorization'</span>] = <span class="string">'Bearer '</span> + z_c0</span><br><span class="line">        <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">            url=self.feedUrl,</span><br><span class="line">            method=<span class="string">'GET'</span>,</span><br><span class="line">            meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">            headers=self.headers,</span><br><span class="line">            formdata={</span><br><span class="line">                <span class="string">'action_feed'</span>: <span class="string">'True'</span>,</span><br><span class="line">                <span class="string">'limit'</span>: <span class="string">'10'</span>,</span><br><span class="line">                <span class="string">'action'</span>: <span class="string">'down'</span>,</span><br><span class="line">                <span class="string">'after_id'</span>: str(self.curFeedId),</span><br><span class="line">                <span class="string">'desktop'</span>: <span class="string">'true'</span></span><br><span class="line">            },</span><br><span class="line">            callback=self.parse)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(jdict[<span class="string">'error'</span>])</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf5037e3" class="outline-2">
-<h2 id="orgf5037e3"><a id="ID-5ddbded1-15a4-438e-8121-384fed58614c"></a><span class="section-number-2">4</span> 获取数据</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-上述步骤后，数据获取就水到渠成了，为了检测成功与否， 把返回信息写到文件中,而且只获取前五十个,代码如下：
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">feedUrl = <span class="string">'https://www.zhihu.com/api/v3/feed/topstory'</span></span><br><span class="line">nextFeedUrl = <span class="string">''</span></span><br><span class="line">curFeedId = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'zhihu.json'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">        fd.write(response.body)</span><br><span class="line">    jdict = json.loads(response.body)</span><br><span class="line">    jdatas = jdict[<span class="string">'data'</span>]</span><br><span class="line">    <span class="keyword">for</span> entry <span class="keyword">in</span> jdatas:</span><br><span class="line">        entry[<span class="string">'pid'</span>] = entry[<span class="string">'id'</span>]</span><br><span class="line">        <span class="keyword">yield</span> entry</span><br><span class="line"></span><br><span class="line">    jpaging = jdict[<span class="string">'paging'</span>]</span><br><span class="line">    self.curFeedId += len(jdatas)</span><br><span class="line">    <span class="keyword">if</span> jpaging[<span class="string">'is_end'</span>] == <span class="keyword">False</span> <span class="keyword">and</span> self.curFeedId &lt; <span class="number">50</span>:</span><br><span class="line">        self.nextFeedUrl = jpaging[<span class="string">'next'</span>]</span><br><span class="line">        <span class="keyword">yield</span> self.next_request(response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">next_request</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> scrapy.http.FormRequest(</span><br><span class="line">        url=self.nextFeedUrl,</span><br><span class="line">        method=<span class="string">'GET'</span>,</span><br><span class="line">        meta={<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]},</span><br><span class="line">        headers=self.headers,</span><br><span class="line">        callback=self.parse)</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-获取的数据，采用json格式， 如下所示:
-</p>
-<img src="/images/zhihu-feeds.png">
-</div>
-</div>
-
-<div id="outline-container-orgcf8188e" class="outline-2">
-<h2 id="orgcf8188e"><a id="ID-34cdf8e5-6b5a-42e2-b724-41daa0f66178"></a><span class="section-number-2">5</span> 写在最后</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-知乎的数据，只有登录完成之后，才可有效的获取，所以模拟登陆是无法忽略不管的。
-所谓的模拟登陆，只是在scrapy中尽量的模拟在浏览器中的交互过程，使服务端无感抓包过程。
-请求中附加有效的 <i>Cookies</i> 和 <i>Headers</i> 头信息，可有效的迷惑服务端，
-同时在交互的过程中，获取后续请求必要信息和认证信息，使得整个流程能不断先前。
-</p>
-
-<p>
-若是你遇到什么问题，尽量提出来，欢迎一起来讨论解决。
-源码放在了github上， 欢迎<a href="https://github.com/brantou/crawler/blob/master/jobs/jobs/spiders/zhihu.py" rel="external nofollow noopener noreferrer" target="_blank">前往查看</a>。
-若是帮你解决了问题，或者给了你启发，不要吝啬给<a href="https://github.com/brantou/crawler" rel="external nofollow noopener noreferrer" target="_blank">我加一星</a>。
-</p>
-</div>
-</div>
-
-Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4215,7 +4176,7 @@ Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4309,7 +4270,7 @@ Last Updated 2017-08-23 Wed 15:21.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
