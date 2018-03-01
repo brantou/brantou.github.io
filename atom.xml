@@ -75,6 +75,39 @@
   </entry>
   
   <entry>
+    <title>GDB-UI试用</title>
+    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
+    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
+    <published>2017-12-08T16:00:00.000Z</published>
+    <updated>2017-12-11T05:54:58.642Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-org2f8337e&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;org2f8337e&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot;&gt;&lt;/a&gt;&lt;span c
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
+      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
+    
+      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
+    
+      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
+    
+  </entry>
+  
+  <entry>
     <title>go-dlv试用</title>
     <link href="https://brantou.github.io/2017/12/09/go-dlv-try/"/>
     <id>https://brantou.github.io/2017/12/09/go-dlv-try/</id>
@@ -106,39 +139,6 @@
       <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
       <category term="dlv" scheme="https://brantou.github.io/tags/dlv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GDB-UI试用</title>
-    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
-    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
-    <published>2017-12-08T16:00:00.000Z</published>
-    <updated>2017-12-11T05:54:58.642Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-
-&lt;div id=&quot;outline-container-org2f8337e&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org2f8337e&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot;&gt;&lt;/a&gt;&lt;span c
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
-      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
-    
-      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
-    
-      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
   </entry>
   
@@ -461,42 +461,6 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
     <title>数组，切片：‘append’的机制</title>
     <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
     <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
@@ -540,6 +504,42 @@ and authoring documents with a fast and effecti
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go的测试覆盖率</title>
+    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
+    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
+    <published>2017-05-24T03:00:00.000Z</published>
+    <updated>2017-05-25T08:59:02.418Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;p&gt;
+测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
+如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
+&lt;/p&gt;
+
+&lt;p&gt;
+计算测试覆盖率的通常方法是埋点二进制可执行文件。
+例如，GNU &lt;a href=&quot;http://gcc.gnu
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
+    
+      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
     
   </entry>
   

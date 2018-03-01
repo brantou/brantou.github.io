@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="consul,">
+  <meta name="keywords" content="elisp,tools,">
 
 
 
@@ -115,18 +115,20 @@
 
 
 
-<meta name="description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
-<meta name="keywords" content="consul">
+<meta name="description" content="原文地址:  Regular Expression，你喜欢阅读原汁原味的，请阅读原文 。本文只做学习之用。      Some people, when confronted with a problem, think &quot;I know, I&apos;ll use regular expressions.&quot; Now they have two problems. - Jamie Zawinski">
+<meta name="keywords" content="elisp,tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="consul的docker环境配置">
-<meta property="og:url" content="https://brantou.github.io/2017/05/13/consul-and-docker/index.html">
+<meta property="og:title" content="正则表达式--探索rx宏">
+<meta property="og:url" content="https://brantou.github.io/2017/05/14/regular-expression/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta property="og:description" content="原文地址:  Regular Expression，你喜欢阅读原汁原味的，请阅读原文 。本文只做学习之用。      Some people, when confronted with a problem, think &quot;I know, I&apos;ll use regular expressions.&quot; Now they have two problems. - Jamie Zawinski">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-01T05:40:08.969Z">
+<meta property="og:image" content="http://francismurillo.github.io/hacker/images/exploring-emacs-rx--screencast.gif">
+<meta property="og:updated_time" content="2018-03-01T10:42:08.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="consul的docker环境配置">
-<meta name="twitter:description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta name="twitter:title" content="正则表达式--探索rx宏">
+<meta name="twitter:description" content="原文地址:  Regular Expression，你喜欢阅读原汁原味的，请阅读原文 。本文只做学习之用。      Some people, when confronted with a problem, think &quot;I know, I&apos;ll use regular expressions.&quot; Now they have two problems. - Jamie Zawinski">
+<meta name="twitter:image" content="http://francismurillo.github.io/hacker/images/exploring-emacs-rx--screencast.gif">
 
 
 
@@ -156,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="https://brantou.github.io/2017/05/13/consul-and-docker/">
+  <link rel="canonical" href="https://brantou.github.io/2017/05/14/regular-expression/">
 
 
 
 
 
-  <title>consul的docker环境配置 | Brantou的日常</title>
+  <title>正则表达式--探索rx宏 | Brantou的日常</title>
   
 
 
@@ -350,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/13/consul-and-docker/">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/05/14/regular-expression/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brantou">
@@ -367,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">consul的docker环境配置</h2>
+          <h2 class="post-title" itemprop="name headline">正则表达式--探索rx宏</h2>
         
 
         <div class="post-meta">
@@ -379,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-13T00:00:00+08:00">
-                2017-05-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T00:00:00+08:00">
+                2017-05-14
               </time>
             
 
@@ -389,6 +391,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -399,8 +423,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/13/consul-and-docker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/13/consul-and-docker/" itemprop="commentsCount"></span>
+                <a href="/2017/05/14/regular-expression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/14/regular-expression/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -436,39 +460,271 @@
       
         
 
+<blockquote>
 <p>
-构造consul的docker集群
+原文地址: <a href="http://francismurillo.github.io/2017-03-30-Exploring-Emacs-rx-Macro/" rel="external nofollow noopener noreferrer" target="_blank"> Regular Expression</a>，你喜欢阅读原汁原味的，请阅读原文 。本文只做学习之用。
 </p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
-</div>
+</blockquote>
+
+<blockquote>
+<p>
+Some people, when confronted with a problem, think "I know, I'll use regular expressions."
+Now they have two problems. - Jamie Zawinski
+</p>
+</blockquote>
 
 <p>
-参看集群状态
+最近一直忙于crystal-mode的扩展与维护工作，说实话，真不容易，特别是正则表达式部分，太难阅读。
+所以我准备把之前的正则表达式，改造成更可读的 <code>s-expression</code> 形式的，这样的话，维护起来就能简单很多。
+<a href="https://www.emacswiki.org/emacs/rx" rel="external nofollow noopener noreferrer" target="_blank">rx</a> 宏更好能很好的满足，我要实现的目标。
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker exec -t node0 consul info</span><br></pre></td></tr></table></figure>
-</div>
 
-<p>
-Network Coordinates in consul
-</p>
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/datacenters</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/nodes</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(require &#39;s)  ;; All we need is =s-matches-p=&#10;(require &#39;rx)&#10;&#10;;; Creating a regexp that will match -&#62; &#60;File&#62; [&#60;Line&#62;:&#60;Column] &#60;Suggestion&#62;&#10;(setq this-file-name &#34;regular-expression.org&#34;)&#10;&#10;(s-matches-p&#10; (rx bol&#10;     (eval this-file-name)&#10;     space&#10;     &#34;[&#34; (group (one-or-more digit)) &#34;:&#34; (group (one-or-more digit)) &#34;]&#34;&#10;     space&#10;     (group (zero-or-more anything))&#10;     eol)&#10; &#34;blog.org [17:16] Emacs Lisp, not emacs lisp&#34;)&#10;&#10;;; Produced regexp, I do not want to write or maintain this by hand&#10;&#34;^blog\\.org[[:space:]]\\[\\([[:digit:]]+\\):\\([[:digit:]]+\\)][[:space:]]\\(\\(?:.\\|&#10;\\)*\\)$&#34;</span><br></pre></td></tr></table></figure>
 </div>
 
 <p>
-健康检查
+虽然不那么简洁，但上面的示例很好的说明了在更高抽象等级下编写正则表达式的优点：更易于理解，写起来更舒适，更容易维护。
+同时，使用符号表达式的形式更符合emacs的气质。
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-a19f76ec-2b33-4308-992c-aab479084cb1" name="ID-a19f76ec-2b33-4308-992c-aab479084cb1"></a><span class="section-number-2">1</span> Strings And Quoting</h2>
+<div class="outline-text-2" id="text-1">
+
+<pre class="example">
+STRING
+     matches string STRING literally.
+
+CHAR
+     matches character CHAR literally.
+
+‘(eval FORM)’
+     evaluate FORM and insert result.  If result is a string,
+     ‘regexp-quote’ it.
+</pre>
+
+<p>
+问题：什么样的正则表达式匹配这个字符串： ASCII表中的标点字符: !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^<sub>`</sub>{|}
 </p>
 <div class="org-src-container">
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">;; Escape the double quote here&#10;(setq input &#34;The punctuation characters in the ASCII table are: !\&#34;#$%&#38;&#39;()*+,-./:;&#60;=&#62;?@[\]^_`{|}&#34;)&#10;&#10;(s-matches-p (rx &#34;The punctuation characters in the ASCII table are: !\&#34;#$%&#38;&#39;()*+,-./:;&#60;=&#62;?@[\]^_`{|}&#34;)&#10;&#9;     input) ;; Direct use of strings&#10;&#10;(not (s-matches-p input input)) ;; Does not work because of quoting&#10;(s-matches-p (regexp-quote input) input)&#10;&#10;(s-matches-p (rx (eval input)) input) ;; More rx</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+<p>
+如果你很清楚(正则表达式)语法字符的话, 可以很容易的看出，这个问题只是由引用或转义语法字符引起的。
+函数 <code>regexp-quote</code> 可以转义这些字符，这很简单。 <code>rx</code> 默认转义，可以直接传入字符串。
+最后，可通过 <code>eval</code> 语法来使用字符串变量，来完成转义。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-177d4f1b-9dcd-4436-bf2a-8e0a4d0d62d1" name="ID-177d4f1b-9dcd-4436-bf2a-8e0a4d0d62d1"></a><span class="section-number-2">2</span> Variables And Ranges</h2>
+<div class="outline-text-2" id="text-2">
+
+<pre class="example">
+‘(any SET ...)’
+‘(in SET ...)’
+‘(char SET ...)’
+     matches any character in SET ....  SET may be a character or string.
+     Ranges of characters can be specified as ‘A-Z’ in strings.
+     Ranges may also be specified as conses like ‘(?A . ?Z)’.
+
+     SET may also be the name of a character class: ‘digit’,
+     ‘control’, ‘hex-digit’, ‘blank’, ‘graph’, ‘print’, ‘alnum’,
+     ‘alpha’, ‘ascii’, ‘nonascii’, ‘lower’, ‘punct’, ‘space’, ‘upper’,
+     ‘word’, or one of their synonyms.
+</pre>
+
+<p>
+问题：创建一个正则表达式来匹配 <b>calendar</b> 的所有常见拼写错误，这样就可在文档中找到这个词，
+从而不必来考验写作者的拼写能力。 允许在每个元音位置使用a或e。
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-matches-p (rx &#34;c&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;l&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;nd&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;r&#34;)&#10;&#9;     &#34;celander&#34;)&#10;&#10;(setq misspelling-pattern `(any &#34;a&#34; &#34;e&#34;))&#10;&#10;(s-matches-p (rx &#34;c&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;l&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;nd&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;r&#34;)&#10;&#9;     &#34;calendar&#34;)&#10;&#10;&#34;c[ae]l[ae]nd[ae]r&#34; ;; Generated pattern</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+除了演示一个简单的范围构造，通过熟悉的 <code>eval</code> 使用子模式允许更加模块化地处理这些表达式，这有助于摆脱单一的连接字符串。
+</p>
+
+<p>
+问题：创建一个正则表达式来匹配单个十六进制字符。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-matches-p (rx (any &#34;a-f&#34; &#34;A-F&#34; &#34;0-9&#34;))&#10;&#9;     &#34;A&#34;)&#10;(s-matches-p (rx (in &#34;a-f&#34; &#34;A-F&#34; &#34;0-9&#34;))&#10;&#9;     &#34;A&#34;) ;; Equivalently&#10;&#10;&#34;[0-9A-Fa-f]&#34; ;; Generated pattern&#10;&#10;&#10;(s-matches-p (rx (char hex-digit))&#10;&#9;     &#34;d&#34;) ;; More rx&#10;(s-matches-p (rx hex-digit)&#10;&#9;     &#34;d&#34;) ;; Equivalently&#10;&#10;&#34;[[:xdigit:]]&#34; ;; Generated pattern</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后，范围语法允许熟悉的破折号来表示字符范围。
+Rather, the abstraction of special character ranges like [:upper:] or [:xdigit:] is nice to know.
+Other useful constructs such as word-start, line-end, and punctuation exist that is worthy to be explored.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-3ff08196-27f2-4beb-97c4-c3bcdfdb72fa" name="ID-3ff08196-27f2-4beb-97c4-c3bcdfdb72fa"></a><span class="section-number-2">3</span> Alternatives And Depth</h2>
+<div class="outline-text-2" id="text-3">
+
+<pre class="example">
+‘(or SEXP1 SEXP2 ...)’
+‘(| SEXP1 SEXP2 ...)’
+     matches anything that matches SEXP1 or SEXP2, etc.  If all
+     args are strings, use ‘regexp-opt’ to optimize the resulting
+     regular expression.
+
+‘(zero-or-one SEXP ...)’
+‘(optional SEXP ...)’
+‘(opt SEXP ...)’
+     matches zero or one occurrences of A.
+
+‘(and SEXP1 SEXP2 ...)’
+‘(: SEXP1 SEXP2 ...)’
+‘(seq SEXP1 SEXP2 ...)’
+‘(sequence SEXP1 SEXP2 ...)’
+     matches what SEXP1 matches, followed by what SEXP2 matches, etc.
+
+‘(repeat N SEXP)’
+‘(= N SEXP ...)’
+     matches N occurrences.
+</pre>
+
+<p>
+问题：创建一个正则表达式，当重复应用于文本 <code>Mary, Jane, and Sue went to Mary's house</code>
+会匹配 <code>Mary</code>, <code>Jane</code>, <code>Sue</code> 然后再次匹配 <code>Mary</code> 。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-match-strings-all&#10; (rx (or &#34;Mary&#34; &#34;Jane&#34; &#34;Sue&#34;))&#10; &#34;Mary, Jane, and Sue went to Mary&#39;s house&#34;)&#10;&#10;;; Output&#10;&#39;((&#34;Mary&#34;) (&#34;Jane&#34;) (&#34;Sue&#34;) (&#34;Mary&#34;))&#10;&#10;;; Generated pattern&#10;&#34;\\(?:Jane\\|Mary\\|Sue\\)&#34;</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这个简单的问题是使用与范围和类有关的交替构造的示例。 没有什么花哨的东西，但存在使其细微差别的可能性。
+</p>
+
+<p>
+问题：创建一个匹配0到255的正则表达式。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq range-expression ;; Expression and pattern separated for reuse&#10;      `(or &#34;0&#34;&#10;&#9;   (sequence &#34;1&#34; (optional digit (optional digit)))&#10;&#9;   (sequence &#34;2&#34; (optional&#10;&#9;&#9;&#9;  (or&#10;&#9;&#9;&#9;   (sequence (any &#34;0-4&#34;) (optional digit))&#10;&#9;&#9;&#9;   (sequence &#34;5&#34; (optional (any &#34;0-5&#34;)))&#10;&#9;&#9;&#9;   (sequence (any &#34;6-9&#34;) (optional digit)))))&#10;&#9;   (sequence (any &#34;3-9&#34;) (optional digit))))&#10;&#10;(setq range-pattern (rx (eval range-expression)))&#10;&#10;;; A test for the regular expression&#10;(require &#39;cl)&#10;(cl-every (lambda (number)&#10;&#9;    (s-matches-p range-pattern (number-to-string number)))&#10;&#9;  (number-sequence 0 255))&#10;&#10;;; Generated pattern&#10;&#34;0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?&#34;&#10;&#10;;; To use this IP Addresses&#10;(setq ip4-pattern (rx (repeat 3 (sequence (eval range-expression) &#34;.&#34;))&#10;&#9;&#9;      (eval range-expression)))&#10;&#10;;; Testing for permutation might take too long, one is good enough&#10;(s-matches-p ip4-pattern&#10;&#9;     &#34;61.12.234.251&#34;)&#10;&#10;;; Generated pattern&#10;&#34;\\(?:\\(?:0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?\\)\\.\\)\\{3\\}\\(?:0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?\\)&#34;</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+上面的 <code>range-expression</code> 有问题，下面给出改正和测试如下:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq range-expression ;; Expression and pattern separated for reuse&#10;      `(or &#34;0&#34;&#10;&#9;   (sequence &#34;1&#34; (optional digit (optional digit)))&#10;&#9;   (sequence &#34;2&#34; (optional&#10;&#9;&#9;&#9;  (or&#10;&#9;&#9;&#9;   (sequence (any &#34;0-4&#34;) (optional digit))&#10;&#9;&#9;&#9;   (sequence &#34;5&#34; (optional (any &#34;0-5&#34;)))&#10;&#9;&#9;&#9;   (optional digit))))&#10;&#9;   (sequence (any &#34;3-9&#34;) (optional digit))))&#10;&#10;(setq range-pattern (rx bol (eval range-expression) eol ))&#10;&#10;;; A test for the regular expression&#10;(require &#39;cl)&#10;(cl-every (lambda (number)&#10;&#9;    (s-matches-p range-pattern (number-to-string number)))&#10;&#9;  (number-sequence 0 255))&#10;&#10;(cl-every (lambda (number)&#10;&#9;    (not (s-matches-p range-pattern (number-to-string number))))&#10;&#9;  (number-sequence 256 355))</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这个表达的想法是匹配第一个数字，然后考虑分支。 即使不深入解释，语法应该是有帮助的;
+但三个新的结构值得好好说明下。 首先， <code>optional</code> 或 <code>opt</code> 语法与 <code>zero-or-one</code> 结构等价。
+其次， <code>sequence</code> 或 <code>seq</code> 语法主要是一个表达式包装器，其中列表不是一个原子是必需的。
+第三， <code>repeat</code> 语法与先前模式的重复构造相同。 不管新的语法如何，问题只是在展示语法。
+</p>
+
+<p>
+另外，请记住为正则表达式编写测试。
+</p>
+
+<p>
+在我忘记之前， <code>eval</code> 要求变量存在于解释器中; 这意味着，它们必须在使用之前通过 <code>setq</code> 进行全局设置。
+这就是为什么在片段中的两个 <b>setters</b> 分别设置表达和模式的原因。
+建议通过 <code>defconst</code> 或 <code>defvar</code> 设置表达式或模式作为重构。 不幸的是， <code>let</code> 不能与 <code>eval</code> 一起工作，但这不是一项巨大的成本。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-ebebc313-d891-4699-8b60-9633621747d6" name="ID-ebebc313-d891-4699-8b60-9633621747d6"></a><span class="section-number-2">4</span> Groups And Backreferencs</h2>
+<div class="outline-text-2" id="text-4">
+
+<pre class="example">
+‘(submatch SEXP1 SEXP2 ...)’
+‘(group SEXP1 SEXP2 ...)’
+     like ‘and’, but makes the match accessible with ‘match-end’,
+     ‘match-beginning’, and ‘match-string’.
+
+‘(submatch-n N SEXP1 SEXP2 ...)’
+‘(group-n N SEXP1 SEXP2 ...)’
+     like ‘group’, but make it an explicitly-numbered group with
+     group number N.
+</pre>
+
+<p>
+问题：创建一个正则表达式，以yyyy-mm-dd格式匹配任何日期，并分别捕获年，月和日。 作为额外的挑战，请将组命名。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq date-pattern&#10;      (rx (group-n 3 (repeat 4 digit))&#10;&#9;  &#34;-&#34;&#10;&#9;  (group-n 2 (repeat 2 digit))&#10;&#9;  &#34;-&#34;&#10;&#9;  (group-n 1 (repeat 2 digit))))&#10;&#10;(s-match-strings-all date-pattern&#10;&#9;&#9;     (format-time-string &#34;%F&#34;))&#10;&#10;;; Output and pattern, notice it is day, month and year or reverse order&#10;&#34;\\(?3:[[:digit:]]\\{4\\}\\)-\\(?2:[[:digit:]]\\{2\\}\\)-\\(?1:[[:digit:]]\\{2\\}\\)&#34;&#10;&#39;((&#34;2017-03-30&#34; &#34;30&#34; &#34;03&#34; &#34;2017&#34;))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+捕获 <code>group</code> 是本质的, 这是语法起作用的地方。
+命名 <code>group</code> 在这里是不可能的，相反，仅限于编号 <code>group</code> 。
+需要注意的，这不是宏的限制，而是 <code>Emacs Lisp</code> 正则表达式语法的限制。
+</p>
+
+<p>
+<code>group-n</code> 或 <code>group</code> 语法在意图上很明显。 第一个参数代表组号，其余的是实际的表达式。 没有什么花哨。
+</p>
+
+<p>
+问题：创建一个正则表达式，以yyyy-mm-dd格式匹配“神奇”日期。
+如果年份减去世纪，月份和月份的日期都是相同的数字，则日期是神奇的。
+例如，2008-08-08是一个神奇的约会。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq magical-pattern&#10;      (rx&#10;       (repeat 2 digit)&#10;       (group-n 1 (repeat 2 digit))&#10;       &#34;-&#34;&#10;       (backref 1)&#10;       &#34;-&#34;&#10;       (backref 1)))&#10;&#10;(s-matches-p magical-pattern&#10;&#9;     &#34;2008-08-08&#34;)&#10;&#10;;; Generated pattern&#10;&#34;[[:digit:]]\\{2\\}\\(?1:[[:digit:]]\\{2\\}\\)-\\1-\\1&#34;</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这只是显示反向引用可用。 <code>backref</code> 语法只是用数字参数调用组。 再一次，没什么复杂的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a id="ID-2f7598cf-003b-4394-9389-46021ba79551" name="ID-2f7598cf-003b-4394-9389-46021ba79551"></a><span class="section-number-2">5</span> re-builder</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>
+为了更好的检测编写的正则表达式， <code>Emacs</code> 中存在用于测试和试验正则表达式的用户界面： <code>re-builder</code> 。
+在包含文本的缓冲区上执行命令 <code>re-builder</code> 或 <code>regexp-builder</code> ，然后执行 <code>reb-change-syntax</code> 并选择 <code>rx</code> 。
+如下图所示。
+</p>
+<div class="export">
+<p>
+&lt;img src="<img src="http://francismurillo.github.io/hacker/images/exploring-emacs-rx--screencast.gif" alt="exploring-emacs-rx--screencast.gif">" /&gt;
+</p>
+
+</div>
+<p>
+这个UI可以处理原始表达式，但我们这里只对rx感兴趣。
+详细说明，每次表达式更新时，它都会突出显示任何可能的匹配项。
+虽然它不像动态或程序化，但它作为一个快速实验和检查很方便。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><a id="ID-4a6f9d8d-9929-40e4-9aa0-49b65334d3f0" name="ID-4a6f9d8d-9929-40e4-9aa0-49b65334d3f0"></a><span class="section-number-2">6</span> 总结</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>
+<code>rx</code> 宏不能作为学习正则表达式的替代品，因为它构建的DSL不能完全覆盖所有的细节。但是写原始的正则表达式，真是很痛苦，
+所以使用 <code>rx</code> 宏可在更高的抽象等级上来构造正则表达式，可在更清晰的语义下，构造正则表达式。
+上面没有给出所有的正则语法构造，只给出一些常用的特征，有任何疑惑，请直接阅读函数文档。
+</p>
+</div>
+</div>
+
+Last Updated 2018-03-01 Thu 18:42.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -486,7 +742,9 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
       
         <div class="post-tags">
           
-            <a href="/tags/consul/" rel="tag"># consul</a>
+            <a href="/tags/elisp/" rel="tag"># elisp</a>
+          
+            <a href="/tags/tools/" rel="tag"># tools</a>
           
         </div>
       
@@ -499,8 +757,8 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/14/org-column-view-tutorial/" rel="next" title="Org-mode的列视图简明教程">
-                <i class="fa fa-chevron-left"></i> Org-mode的列视图简明教程
+              <a href="/2017/05/13/consul-and-docker/" rel="next" title="consul的docker环境配置">
+                <i class="fa fa-chevron-left"></i> consul的docker环境配置
               </a>
             
           </div>
@@ -509,8 +767,8 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/14/regular-expression/" rel="prev" title="正则表达式--探索rx宏">
-                正则表达式--探索rx宏 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/interview-code/" rel="prev" title="Gopher面试中的Coding">
+                Gopher面试中的Coding <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,6 +780,17 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
 
       
       
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/05/emacs-go-tag/">Emacs支持gomodifytags</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/09/gdb-ui-just-try/">GDB-UI试用</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/09/go-dlv-try/">go-dlv试用</a></li>
+        
+        </ul>
       
       
 
@@ -612,8 +881,17 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -710,6 +988,22 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">1 Strings And Quoting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-2"><span class="nav-text">2 Variables And Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-3"><span class="nav-text">3 Alternatives And Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-4"><span class="nav-text">4 Groups And Backreferencs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-5"><span class="nav-text">5 re-builder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-6"><span class="nav-text">6 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -900,7 +1194,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
 		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/13/consul-and-docker/"});
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2017/05/14/regular-expression/"});
 		
 
 		(function() {

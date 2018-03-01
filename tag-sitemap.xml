@@ -212,22 +212,8 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/elisp/</loc>
-        <lastmod>2017-12-08T04:31:26.879Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/dlv/</loc>
         <lastmod>2017-12-10T08:57:05.081Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/tools/</loc>
-        <lastmod>2017-12-11T05:54:58.642Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -305,6 +291,20 @@
     <url>
         <loc>https://brantou.github.io/tags/golang/</loc>
         <lastmod>2018-01-29T10:23:54.005Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/elisp/</loc>
+        <lastmod>2018-03-01T10:42:08.055Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tools/</loc>
+        <lastmod>2018-03-01T10:42:08.055Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
