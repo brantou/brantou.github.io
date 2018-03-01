@@ -349,6 +349,429 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2018/03/01/regular-expression/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/01/regular-expression/" itemprop="url">正则表达式--探索rx宏</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T00:00:00+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/01/regular-expression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/01/regular-expression/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<blockquote>
+<p>
+原文地址: <a href="http://francismurillo.github.io/2017-03-30-Exploring-Emacs-rx-Macro/" rel="external nofollow noopener noreferrer" target="_blank"> Regular Expression</a>，你喜欢阅读原汁原味的，请阅读原文 。本文只做学习之用。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Some people, when confronted with a problem, think "I know, I'll use regular expressions."
+Now they have two problems. - Jamie Zawinski
+</p>
+</blockquote>
+
+<p>
+最近一直忙于crystal-mode的扩展与维护工作，说实话，真不容易，特别是正则表达式部分，太难阅读。
+所以我准备把之前的正则表达式，改造成更可读的 <code>s-expression</code> 形式的，这样的话，维护起来就能简单很多。
+<a href="https://www.emacswiki.org/emacs/rx" rel="external nofollow noopener noreferrer" target="_blank">rx</a> 宏更好能很好的满足，我要实现的目标。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(require &#39;s)  ;; All we need is =s-matches-p=&#10;(require &#39;rx)&#10;&#10;;; Creating a regexp that will match -&#62; &#60;File&#62; [&#60;Line&#62;:&#60;Column] &#60;Suggestion&#62;&#10;(setq this-file-name &#34;regular-expression.org&#34;)&#10;&#10;(s-matches-p&#10; (rx bol&#10;     (eval this-file-name)&#10;     space&#10;     &#34;[&#34; (group (one-or-more digit)) &#34;:&#34; (group (one-or-more digit)) &#34;]&#34;&#10;     space&#10;     (group (zero-or-more anything))&#10;     eol)&#10; &#34;blog.org [17:16] Emacs Lisp, not emacs lisp&#34;)&#10;&#10;;; Produced regexp, I do not want to write or maintain this by hand&#10;&#34;^blog\\.org[[:space:]]\\[\\([[:digit:]]+\\):\\([[:digit:]]+\\)][[:space:]]\\(\\(?:.\\|&#10;\\)*\\)$&#34;</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+虽然不那么简洁，但上面的示例很好的说明了在更高抽象等级下编写正则表达式的优点：更易于理解，写起来更舒适，更容易维护。
+同时，使用符号表达式的形式更符合emacs的气质。
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-a19f76ec-2b33-4308-992c-aab479084cb1" name="ID-a19f76ec-2b33-4308-992c-aab479084cb1"></a><span class="section-number-2">1</span> Strings And Quoting</h2>
+<div class="outline-text-2" id="text-1">
+
+<pre class="example">
+STRING
+     matches string STRING literally.
+
+CHAR
+     matches character CHAR literally.
+
+‘(eval FORM)’
+     evaluate FORM and insert result.  If result is a string,
+     ‘regexp-quote’ it.
+</pre>
+
+<p>
+问题：什么样的正则表达式匹配这个字符串： ASCII表中的标点字符: !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^<sub>`</sub>{|}
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">;; Escape the double quote here&#10;(setq input &#34;The punctuation characters in the ASCII table are: !\&#34;#$%&#38;&#39;()*+,-./:;&#60;=&#62;?@[\]^_`{|}&#34;)&#10;&#10;(s-matches-p (rx &#34;The punctuation characters in the ASCII table are: !\&#34;#$%&#38;&#39;()*+,-./:;&#60;=&#62;?@[\]^_`{|}&#34;)&#10;&#9;     input) ;; Direct use of strings&#10;&#10;(not (s-matches-p input input)) ;; Does not work because of quoting&#10;(s-matches-p (regexp-quote input) input)&#10;&#10;(s-matches-p (rx (eval input)) input) ;; More rx</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+如果你很清楚(正则表达式)语法字符的话, 可以很容易的看出，这个问题只是由引用或转义语法字符引起的。
+函数 <code>regexp-quote</code> 可以转义这些字符，这很简单。 <code>rx</code> 默认转义，可以直接传入字符串。
+最后，可通过 <code>eval</code> 语法来使用字符串变量，来完成转义。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-177d4f1b-9dcd-4436-bf2a-8e0a4d0d62d1" name="ID-177d4f1b-9dcd-4436-bf2a-8e0a4d0d62d1"></a><span class="section-number-2">2</span> Variables And Ranges</h2>
+<div class="outline-text-2" id="text-2">
+
+<pre class="example">
+‘(any SET ...)’
+‘(in SET ...)’
+‘(char SET ...)’
+     matches any character in SET ....  SET may be a character or string.
+     Ranges of characters can be specified as ‘A-Z’ in strings.
+     Ranges may also be specified as conses like ‘(?A . ?Z)’.
+
+     SET may also be the name of a character class: ‘digit’,
+     ‘control’, ‘hex-digit’, ‘blank’, ‘graph’, ‘print’, ‘alnum’,
+     ‘alpha’, ‘ascii’, ‘nonascii’, ‘lower’, ‘punct’, ‘space’, ‘upper’,
+     ‘word’, or one of their synonyms.
+</pre>
+
+<p>
+问题：创建一个正则表达式来匹配 <b>calendar</b> 的所有常见拼写错误，这样就可在文档中找到这个词，
+从而不必来考验写作者的拼写能力。 允许在每个元音位置使用a或e。
+</p>
+
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-matches-p (rx &#34;c&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;l&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;nd&#34;&#10;&#9;&#9; (any &#34;a&#34; &#34;e&#34;)&#10;&#9;&#9; &#34;r&#34;)&#10;&#9;     &#34;celander&#34;)&#10;&#10;(setq misspelling-pattern `(any &#34;a&#34; &#34;e&#34;))&#10;&#10;(s-matches-p (rx &#34;c&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;l&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;nd&#34;&#10;&#9;&#9; (eval misspelling-pattern)&#10;&#9;&#9; &#34;r&#34;)&#10;&#9;     &#34;calendar&#34;)&#10;&#10;&#34;c[ae]l[ae]nd[ae]r&#34; ;; Generated pattern</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+除了演示一个简单的范围构造，通过熟悉的 <code>eval</code> 使用子模式允许更加模块化地处理这些表达式，这有助于摆脱单一的连接字符串。
+</p>
+
+<p>
+问题：创建一个正则表达式来匹配单个十六进制字符。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-matches-p (rx (any &#34;a-f&#34; &#34;A-F&#34; &#34;0-9&#34;))&#10;&#9;     &#34;A&#34;)&#10;(s-matches-p (rx (in &#34;a-f&#34; &#34;A-F&#34; &#34;0-9&#34;))&#10;&#9;     &#34;A&#34;) ;; Equivalently&#10;&#10;&#34;[0-9A-Fa-f]&#34; ;; Generated pattern&#10;&#10;&#10;(s-matches-p (rx (char hex-digit))&#10;&#9;     &#34;d&#34;) ;; More rx&#10;(s-matches-p (rx hex-digit)&#10;&#9;     &#34;d&#34;) ;; Equivalently&#10;&#10;&#34;[[:xdigit:]]&#34; ;; Generated pattern</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后，范围语法允许熟悉的破折号来表示字符范围。
+Rather, the abstraction of special character ranges like [:upper:] or [:xdigit:] is nice to know.
+Other useful constructs such as word-start, line-end, and punctuation exist that is worthy to be explored.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-3ff08196-27f2-4beb-97c4-c3bcdfdb72fa" name="ID-3ff08196-27f2-4beb-97c4-c3bcdfdb72fa"></a><span class="section-number-2">3</span> Alternatives And Depth</h2>
+<div class="outline-text-2" id="text-3">
+
+<pre class="example">
+‘(or SEXP1 SEXP2 ...)’
+‘(| SEXP1 SEXP2 ...)’
+     matches anything that matches SEXP1 or SEXP2, etc.  If all
+     args are strings, use ‘regexp-opt’ to optimize the resulting
+     regular expression.
+
+‘(zero-or-one SEXP ...)’
+‘(optional SEXP ...)’
+‘(opt SEXP ...)’
+     matches zero or one occurrences of A.
+
+‘(and SEXP1 SEXP2 ...)’
+‘(: SEXP1 SEXP2 ...)’
+‘(seq SEXP1 SEXP2 ...)’
+‘(sequence SEXP1 SEXP2 ...)’
+     matches what SEXP1 matches, followed by what SEXP2 matches, etc.
+
+‘(repeat N SEXP)’
+‘(= N SEXP ...)’
+     matches N occurrences.
+</pre>
+
+<p>
+问题：创建一个正则表达式，当重复应用于文本 <code>Mary, Jane, and Sue went to Mary's house</code>
+会匹配 <code>Mary</code>, <code>Jane</code>, <code>Sue</code> 然后再次匹配 <code>Mary</code> 。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(s-match-strings-all&#10; (rx (or &#34;Mary&#34; &#34;Jane&#34; &#34;Sue&#34;))&#10; &#34;Mary, Jane, and Sue went to Mary&#39;s house&#34;)&#10;&#10;;; Output&#10;&#39;((&#34;Mary&#34;) (&#34;Jane&#34;) (&#34;Sue&#34;) (&#34;Mary&#34;))&#10;&#10;;; Generated pattern&#10;&#34;\\(?:Jane\\|Mary\\|Sue\\)&#34;</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这个简单的问题是使用与范围和类有关的交替构造的示例。 没有什么花哨的东西，但存在使其细微差别的可能性。
+</p>
+
+<p>
+问题：创建一个匹配0到255的正则表达式。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq range-expression ;; Expression and pattern separated for reuse&#10;      `(or &#34;0&#34;&#10;&#9;   (sequence &#34;1&#34; (optional digit (optional digit)))&#10;&#9;   (sequence &#34;2&#34; (optional&#10;&#9;&#9;&#9;  (or&#10;&#9;&#9;&#9;   (sequence (any &#34;0-4&#34;) (optional digit))&#10;&#9;&#9;&#9;   (sequence &#34;5&#34; (optional (any &#34;0-5&#34;)))&#10;&#9;&#9;&#9;   (sequence (any &#34;6-9&#34;) (optional digit)))))&#10;&#9;   (sequence (any &#34;3-9&#34;) (optional digit))))&#10;&#10;(setq range-pattern (rx (eval range-expression)))&#10;&#10;;; A test for the regular expression&#10;(require &#39;cl)&#10;(cl-every (lambda (number)&#10;&#9;    (s-matches-p range-pattern (number-to-string number)))&#10;&#9;  (number-sequence 0 255))&#10;&#10;;; Generated pattern&#10;&#34;0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?&#34;&#10;&#10;;; To use this IP Addresses&#10;(setq ip4-pattern (rx (repeat 3 (sequence (eval range-expression) &#34;.&#34;))&#10;&#9;&#9;      (eval range-expression)))&#10;&#10;;; Testing for permutation might take too long, one is good enough&#10;(s-matches-p ip4-pattern&#10;&#9;     &#34;61.12.234.251&#34;)&#10;&#10;;; Generated pattern&#10;&#34;\\(?:\\(?:0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?\\)\\.\\)\\{3\\}\\(?:0\\|1\\(?:[[:digit:]][[:digit:]]?\\)?\\|2\\(?:[0-4][[:digit:]]?\\|5[0-5]?\\|[6-9][[:digit:]]?\\)?\\|[3-9][[:digit:]]?\\)&#34;</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+上面的 <code>range-expression</code> 有问题，下面给出改正和测试如下:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq range-expression ;; Expression and pattern separated for reuse&#10;      `(or &#34;0&#34;&#10;&#9;   (sequence &#34;1&#34; (optional digit (optional digit)))&#10;&#9;   (sequence &#34;2&#34; (optional&#10;&#9;&#9;&#9;  (or&#10;&#9;&#9;&#9;   (sequence (any &#34;0-4&#34;) (optional digit))&#10;&#9;&#9;&#9;   (sequence &#34;5&#34; (optional (any &#34;0-5&#34;)))&#10;&#9;&#9;&#9;   (optional digit))))&#10;&#9;   (sequence (any &#34;3-9&#34;) (optional digit))))&#10;&#10;(setq range-pattern (rx bol (eval range-expression) eol ))&#10;&#10;;; A test for the regular expression&#10;(require &#39;cl)&#10;(cl-every (lambda (number)&#10;&#9;    (s-matches-p range-pattern (number-to-string number)))&#10;&#9;  (number-sequence 0 255))&#10;&#10;(cl-every (lambda (number)&#10;&#9;    (not (s-matches-p range-pattern (number-to-string number))))&#10;&#9;  (number-sequence 256 355))</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+这个表达的想法是匹配第一个数字，然后考虑分支。 即使不深入解释，语法应该是有帮助的;
+但三个新的结构值得好好说明下。 首先， <code>optional</code> 或 <code>opt</code> 语法与 <code>zero-or-one</code> 结构等价。
+其次， <code>sequence</code> 或 <code>seq</code> 语法主要是一个表达式包装器，其中列表不是一个原子是必需的。
+第三， <code>repeat</code> 语法与先前模式的重复构造相同。 不管新的语法如何，问题只是在展示语法。
+</p>
+
+<p>
+另外，请记住为正则表达式编写测试。
+</p>
+
+<p>
+在我忘记之前， <code>eval</code> 要求变量存在于解释器中; 这意味着，它们必须在使用之前通过 <code>setq</code> 进行全局设置。
+这就是为什么在片段中的两个 <b>setters</b> 分别设置表达和模式的原因。
+建议通过 <code>defconst</code> 或 <code>defvar</code> 设置表达式或模式作为重构。 不幸的是， <code>let</code> 不能与 <code>eval</code> 一起工作，但这不是一项巨大的成本。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-ebebc313-d891-4699-8b60-9633621747d6" name="ID-ebebc313-d891-4699-8b60-9633621747d6"></a><span class="section-number-2">4</span> Groups And Backreferencs</h2>
+<div class="outline-text-2" id="text-4">
+
+<pre class="example">
+‘(submatch SEXP1 SEXP2 ...)’
+‘(group SEXP1 SEXP2 ...)’
+     like ‘and’, but makes the match accessible with ‘match-end’,
+     ‘match-beginning’, and ‘match-string’.
+
+‘(submatch-n N SEXP1 SEXP2 ...)’
+‘(group-n N SEXP1 SEXP2 ...)’
+     like ‘group’, but make it an explicitly-numbered group with
+     group number N.
+</pre>
+
+<p>
+问题：创建一个正则表达式，以yyyy-mm-dd格式匹配任何日期，并分别捕获年，月和日。 作为额外的挑战，请将组命名。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq date-pattern&#10;      (rx (group-n 3 (repeat 4 digit))&#10;&#9;  &#34;-&#34;&#10;&#9;  (group-n 2 (repeat 2 digit))&#10;&#9;  &#34;-&#34;&#10;&#9;  (group-n 1 (repeat 2 digit))))&#10;&#10;(s-match-strings-all date-pattern&#10;&#9;&#9;     (format-time-string &#34;%F&#34;))&#10;&#10;;; Output and pattern, notice it is day, month and year or reverse order&#10;&#34;\\(?3:[[:digit:]]\\{4\\}\\)-\\(?2:[[:digit:]]\\{2\\}\\)-\\(?1:[[:digit:]]\\{2\\}\\)&#34;&#10;&#39;((&#34;2017-03-30&#34; &#34;30&#34; &#34;03&#34; &#34;2017&#34;))</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+捕获 <code>group</code> 是本质的, 这是语法起作用的地方。
+命名 <code>group</code> 在这里是不可能的，相反，仅限于编号 <code>group</code> 。
+需要注意的，这不是宏的限制，而是 <code>Emacs Lisp</code> 正则表达式语法的限制。
+</p>
+
+<p>
+<code>group-n</code> 或 <code>group</code> 语法在意图上很明显。 第一个参数代表组号，其余的是实际的表达式。 没有什么花哨。
+</p>
+
+<p>
+问题：创建一个正则表达式，以yyyy-mm-dd格式匹配“神奇”日期。
+如果年份减去世纪，月份和月份的日期都是相同的数字，则日期是神奇的。
+例如，2008-08-08是一个神奇的约会。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq magical-pattern&#10;      (rx&#10;       (repeat 2 digit)&#10;       (group-n 1 (repeat 2 digit))&#10;       &#34;-&#34;&#10;       (backref 1)&#10;       &#34;-&#34;&#10;       (backref 1)))&#10;&#10;(s-matches-p magical-pattern&#10;&#9;     &#34;2008-08-08&#34;)&#10;&#10;;; Generated pattern&#10;&#34;[[:digit:]]\\{2\\}\\(?1:[[:digit:]]\\{2\\}\\)-\\1-\\1&#34;</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这只是显示反向引用可用。 <code>backref</code> 语法只是用数字参数调用组。 再一次，没什么复杂的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a id="ID-2f7598cf-003b-4394-9389-46021ba79551" name="ID-2f7598cf-003b-4394-9389-46021ba79551"></a><span class="section-number-2">5</span> re-builder</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>
+为了更好的检测编写的正则表达式， <code>Emacs</code> 中存在用于测试和试验正则表达式的用户界面： <code>re-builder</code> 。
+在包含文本的缓冲区上执行命令 <code>re-builder</code> 或 <code>regexp-builder</code> ，然后执行 <code>reb-change-syntax</code> 并选择 <code>rx</code> 。
+如下图所示。
+</p>
+<div class="export">
+<p>
+&lt;img src="<img src="http://francismurillo.github.io/hacker/images/exploring-emacs-rx--screencast.gif" alt="exploring-emacs-rx--screencast.gif">" /&gt;
+</p>
+
+</div>
+<p>
+这个UI可以处理原始表达式，但我们这里只对rx感兴趣。
+详细说明，每次表达式更新时，它都会突出显示任何可能的匹配项。
+虽然它不像动态或程序化，但它作为一个快速实验和检查很方便。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><a id="ID-4a6f9d8d-9929-40e4-9aa0-49b65334d3f0" name="ID-4a6f9d8d-9929-40e4-9aa0-49b65334d3f0"></a><span class="section-number-2">6</span> 总结</h2>
+<div class="outline-text-2" id="text-6">
+
+<p>
+<code>rx</code> 宏不能作为学习正则表达式的替代品，因为它构建的DSL不能完全覆盖所有的细节。但是写原始的正则表达式，真是很痛苦，
+所以使用 <code>rx</code> 宏可在更高的抽象等级上来构造正则表达式，可在更清晰的语义下，构造正则表达式。
+上面没有给出所有的正则语法构造，只给出一些常用的特征，有任何疑惑，请直接阅读函数文档。
+</p>
+</div>
+</div>
+
+Last Updated 2018-03-01 Thu 21:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2018/01/26/go-imp-ecrg/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -3775,317 +4198,6 @@ SyntaxError: Non-ASCII character &rsquo;\xe2&rsquo; in file &lt;stdin&gt; on lin
 </div>
 
 Last Updated 2017-08-31 Thu 22:25.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/08/25/python-jieba-wordcloud/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/python-jieba-wordcloud/" itemprop="url">玩转词云</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T00:00:00+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/python-jieba-wordcloud/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/25/python-jieba-wordcloud/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-
-<div id="outline-container-orgf71ca50" class="outline-2">
-<h2 id="orgf71ca50"><a id="ID-681fffd0-61dc-44eb-860a-82cfbfe2c080"></a><span class="section-number-2">1</span> jieba中文分词</h2>
-<div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-org91ed432" class="outline-3">
-<h3 id="org91ed432"><a id="ID-a7a6f9a3-eee0-4e7a-8ec2-a3281cbdb2ba"></a><span class="section-number-3">1.1</span> 分词</h3>
-<div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">u'Full mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(srcWd, cut_all=<span class="keyword">False</span>)</span><br><span class="line">print(<span class="string">u'Default mode:'</span> + <span class="string">u'/ '</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(srcWd)</span><br><span class="line">print(<span class="string">u', '</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-Full mode:做/ 最好/ 的/ Python/ 中文/ 分词/ 词组/ 组件
-Default mode:做/ 最好/ 的/ Python/ 中文/ 分词/ 组件
-做, 最好, 的, Python, 中文, 分词, 组件
-
-</pre>
-
-<pre class="example">
-Full mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/
-Default mode:我/ 目前/ 在/ 学习/ Golang/ 和/ Python/ 。
-我, 目前, 在, 学习, Golang, 和, Python, 。
-
-</pre>
-</div>
-</div>
-<div id="outline-container-org42d3c41" class="outline-3">
-<h3 id="org42d3c41"><a id="ID-ba473993-dd11-4116-8578-b31a6161ed0e"></a><span class="section-number-3">1.2</span> 自定义词典</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-招聘信息收集了很多，但是关键字提取却不是很理想，我查看了jiaba的词典里，基本没有对英文专有名词的支持，
-这可苦煞了我，但是jieba支持自定义词典，我来生成英文的专有名词的词典好了。一行一行的加，难为我这个懒人了，
-但总有好心人，已经整理好了，试想这个名词是不是招聘网站已经整理好了，而且分门别类的，只需要把它们取回来就好了。
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html</span><span class="params">(url)</span>:</span></span><br><span class="line">    request = urllib2.Request(url)</span><br><span class="line">    request.add_header(</span><br><span class="line">        <span class="string">'User-Agent'</span>,</span><br><span class="line">        <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'</span></span><br><span class="line">    )</span><br><span class="line">    html = urllib2.urlopen(request)</span><br><span class="line">    <span class="keyword">return</span> html.read()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_soup</span><span class="params">(url)</span>:</span></span><br><span class="line">    soup = BeautifulSoup(get_html(url), <span class="string">'lxml'</span>)</span><br><span class="line">    <span class="keyword">return</span> soup</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_lagou</span><span class="params">()</span>:</span></span><br><span class="line">    words = []</span><br><span class="line">    url = <span class="string">'https://www.lagou.com/'</span></span><br><span class="line">    soup = get_soup(url)</span><br><span class="line">    category_list = soup.find_all(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'menu_sub dn'</span>})</span><br><span class="line">    <span class="keyword">for</span> category <span class="keyword">in</span> category_list:</span><br><span class="line">        dls = category.find_all(<span class="string">'dl'</span>)</span><br><span class="line">        <span class="keyword">for</span> dl <span class="keyword">in</span> dls:</span><br><span class="line">            names = dl.dd.find_all(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">                words.append(name.text)</span><br><span class="line">    <span class="keyword">return</span> words</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_zhipin</span><span class="params">()</span>:</span></span><br><span class="line">    words = []</span><br><span class="line">    url = <span class="string">'http://www.zhipin.com/'</span></span><br><span class="line">    soup = get_soup(url)</span><br><span class="line">    job_menu = soup.find(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'job-menu'</span>})</span><br><span class="line">    dls = job_menu.find_all(<span class="string">'dl'</span>)</span><br><span class="line">    <span class="keyword">for</span> dl <span class="keyword">in</span> dls:</span><br><span class="line">        divs = dl.find_all(<span class="string">'div'</span>, attrs={<span class="string">'class'</span>: <span class="string">'text'</span>})</span><br><span class="line">        <span class="keyword">for</span> div <span class="keyword">in</span> divs:</span><br><span class="line">            names = div.find_all(<span class="string">'a'</span>)</span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">                words.append(name.text)</span><br><span class="line">    <span class="keyword">return</span> words</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>
-看来我思维受限了，招聘网站整理的信息都是高频信息，但是广度肯定是不够的，那怎么办呢。
-这个时候 <a href="https://stackoverflow.com/tags?page=1&amp;tab=popular" rel="external nofollow noopener noreferrer" target="_blank">stackoverflow</a> 闪现在我的脑海中，没有那个网站里有关技术的广度，能和它匹敌了。
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_stackoverflow</span><span class="params">()</span>:</span></span><br><span class="line">  words = []</span><br><span class="line">  <span class="keyword">for</span> pageNo <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">20</span>):</span><br><span class="line">      url = <span class="string">'https://stackoverflow.com/tags?page=%d&amp;tab=popular'</span> % (pageNo)</span><br><span class="line">      soup = get_soup(url)</span><br><span class="line">      tags_list = soup.find(<span class="string">'div'</span>, attrs={<span class="string">'id'</span>: <span class="string">'tags_list'</span>})</span><br><span class="line">      trs = tags_list.table.find_all(<span class="string">'tr'</span>)</span><br><span class="line">      <span class="keyword">for</span> tr <span class="keyword">in</span> trs:</span><br><span class="line">          tds = tr.find_all(<span class="string">'td'</span>)</span><br><span class="line">          <span class="keyword">for</span> td <span class="keyword">in</span> tds:</span><br><span class="line">              words.append(td.a.text)</span><br><span class="line">  <span class="keyword">return</span> words</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org30d0616" class="outline-3">
-<h3 id="org30d0616"><a id="ID-0f9f838d-0b96-4d20-bbd0-f9b31664e187"></a><span class="section-number-3">1.3</span> 调整词典</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
-</div>
-
-<pre class="example">
-理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
-理解能力, 经验, 数据挖掘, 敏锐度, 平台, odps, hadoop, 数据仓库, hive, 建模, 业务, 海量, 能力, 数据, 协作, 优先, 团队, 模型, 计算机, 学科
-
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org68a389b" class="outline-3">
-<h3 id="org68a389b"><a id="ID-7308abe6-a074-4153-a4c0-bb74f199bb07"></a><span class="section-number-3">1.4</span> 关键词提取</h3>
-<div class="outline-text-3" id="text-1-4">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.extract_tags(srcWd, allowPOS=())))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.extract_tags(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span></span><br><span class="line">                                                ))))</span><br><span class="line">wordlst = jieba.analyse.extract_tags(</span><br><span class="line">    srcWd, withWeight=<span class="keyword">True</span>, allowPOS=(<span class="string">'n'</span>, <span class="string">'nt'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> wordlst:</span><br><span class="line">    print(word[<span class="number">0</span>] + <span class="string">": "</span> + str(word[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-</div>
-
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">print(<span class="string">', '</span>.join(jieba.analyse.textrank(srcWd)))</span><br><span class="line">print(<span class="string">', '</span>.join(</span><br><span class="line">    jieba.analyse.textrank(srcWd, allowPOS=(<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'eng'</span>, <span class="string">'vn'</span>))))</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgea53975" class="outline-3">
-<h3 id="orgea53975"><a id="ID-ba65f4b7-159b-440a-9df3-ac90465716e4"></a><span class="section-number-3">1.5</span> 词性标注</h3>
-<div class="outline-text-3" id="text-1-5">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">words = pseg.cut(srcWd)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> words:</span><br><span class="line">    print(<span class="string">'%s %s'</span> % (word, flag))</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org81fc381" class="outline-2">
-<h2 id="org81fc381"><a id="ID-d3a8f6d2-c043-4104-9f83-08e71a7a5c7a"></a><span class="section-number-2">2</span> wordcloud词云</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-
-<div id="outline-container-org5d26997" class="outline-3">
-<h3 id="org5d26997"><a id="ID-9133f12f-f7ba-4019-b21f-fbdea70088b1"></a><span class="section-number-3">2.1</span> 简单词云&#x2013;美国宪法的词云</h3>
-<div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Minimal Example</span><br><span class="line">===============</span><br><span class="line">Generating a square wordcloud from the US constitution using default arguments.</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the whole text.</span></span><br><span class="line">text = open(<span class="string">'../resource/constitution.txt'</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate a word cloud image</span></span><br><span class="line">wordcloud = WordCloud(width=<span class="number">640</span>, height=<span class="number">480</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-n.png'</span>)</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(width=<span class="number">640</span>, height=<span class="number">480</span>, max_font_size=<span class="number">80</span>).generate(text)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/constitution-s.png'</span>)</span><br></pre></td></tr></table></figure>
-</div>
-
-<img src="/images/constitution-n.png">
-
-<img src="/images/constitution-s.png">
-</div>
-</div>
-
-<div id="outline-container-orgfcdf069" class="outline-3">
-<h3 id="orgfcdf069"><a id="ID-74f1f64c-c027-4bd1-bdee-48e68b59bc85"></a><span class="section-number-3">2.2</span> Colored by Group</h3>
-<div class="outline-text-3" id="text-2-2">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> (WordCloud, get_single_color_func)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleGroupedColorFunc</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""Create a color function object which assigns EXACT colors</span><br><span class="line">       to certain words based on the color to words mapping</span><br><span class="line"></span><br><span class="line">       Parameters</span><br><span class="line">       ----------</span><br><span class="line">       color_to_words : dict(str -&gt; list(str))</span><br><span class="line">         A dictionary that maps a color to the list of words.</span><br><span class="line"></span><br><span class="line">       default_color : str</span><br><span class="line">         Color that will be assigned to a word that's not a member</span><br><span class="line">         of any value from color_to_words.</span><br><span class="line">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color_to_words, default_color)</span>:</span></span><br><span class="line">        self.word_to_color = {</span><br><span class="line">            word: color</span><br><span class="line">            <span class="keyword">for</span> (color, words) <span class="keyword">in</span> color_to_words.items() <span class="keyword">for</span> word <span class="keyword">in</span> words</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        self.default_color = default_color</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, word, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.word_to_color.get(word, self.default_color)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupedColorFunc</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""Create a color function object which assigns DIFFERENT SHADES of</span><br><span class="line">       specified colors to certain words based on the color to words mapping.</span><br><span class="line"></span><br><span class="line">       Uses wordcloud.get_single_color_func</span><br><span class="line"></span><br><span class="line">       Parameters</span><br><span class="line">       ----------</span><br><span class="line">       color_to_words : dict(str -&gt; list(str))</span><br><span class="line">         A dictionary that maps a color to the list of words.</span><br><span class="line"></span><br><span class="line">       default_color : str</span><br><span class="line">         Color that will be assigned to a word that's not a member</span><br><span class="line">         of any value from color_to_words.</span><br><span class="line">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color_to_words, default_color)</span>:</span></span><br><span class="line">        self.color_func_to_words = [(get_single_color_func(color), set(words))</span><br><span class="line">                                    <span class="keyword">for</span> (color,</span><br><span class="line">                                         words) <span class="keyword">in</span> color_to_words.items()]</span><br><span class="line"></span><br><span class="line">        self.default_color_func = get_single_color_func(default_color)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_color_func</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""Returns a single_color_func associated with the word"""</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            color_func = next(</span><br><span class="line">                color_func <span class="keyword">for</span> (color_func, words) <span class="keyword">in</span> self.color_func_to_words</span><br><span class="line">                <span class="keyword">if</span> word <span class="keyword">in</span> words)</span><br><span class="line">        <span class="keyword">except</span> StopIteration:</span><br><span class="line">            color_func = self.default_color_func</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> color_func</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, word, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.get_color_func(word)(word, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">text = <span class="string">"""The Zen of Python, by Tim Peters</span><br><span class="line">Beautiful is better than ugly.</span><br><span class="line">Explicit is better than implicit.</span><br><span class="line">Simple is better than complex.</span><br><span class="line">Complex is better than complicated.</span><br><span class="line">Flat is better than nested.</span><br><span class="line">Sparse is better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren't special enough to break the rules.</span><br><span class="line">Although practicality beats purity.</span><br><span class="line">Errors should never pass silently.</span><br><span class="line">Unless explicitly silenced.</span><br><span class="line">In the face of ambiguity, refuse the temptation to guess.</span><br><span class="line">There should be one-- and preferably only one --obvious way to do it.</span><br><span class="line">Although that way may not be obvious at first unless you're Dutch.</span><br><span class="line">Now is better than never.</span><br><span class="line">Although never is often better than *right* now.</span><br><span class="line">If the implementation is hard to explain, it's a bad idea.</span><br><span class="line">If the implementation is easy to explain, it may be a good idea.</span><br><span class="line">Namespaces are one honking great idea -- let's do more of those!"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Since the text is small collocations are turned off and text is lower-cased</span></span><br><span class="line">wc = WordCloud(collocations=<span class="keyword">False</span>).generate(text.lower())</span><br><span class="line"></span><br><span class="line">color_to_words = {</span><br><span class="line">    <span class="comment"># words below will be colored with a green single color function</span></span><br><span class="line">    <span class="string">'#00ff00'</span>: [</span><br><span class="line">        <span class="string">'beautiful'</span>, <span class="string">'explicit'</span>, <span class="string">'simple'</span>, <span class="string">'sparse'</span>, <span class="string">'readability'</span>, <span class="string">'rules'</span>,</span><br><span class="line">        <span class="string">'practicality'</span>, <span class="string">'explicitly'</span>, <span class="string">'one'</span>, <span class="string">'now'</span>, <span class="string">'easy'</span>, <span class="string">'obvious'</span>, <span class="string">'better'</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="comment"># will be colored with a red single color function</span></span><br><span class="line">    <span class="string">'red'</span>: [</span><br><span class="line">        <span class="string">'ugly'</span>, <span class="string">'implicit'</span>, <span class="string">'complex'</span>, <span class="string">'complicated'</span>, <span class="string">'nested'</span>, <span class="string">'dense'</span>,</span><br><span class="line">        <span class="string">'special'</span>, <span class="string">'errors'</span>, <span class="string">'silently'</span>, <span class="string">'ambiguity'</span>, <span class="string">'guess'</span>, <span class="string">'hard'</span></span><br><span class="line">    ]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"># Words that are not in any of the color_to_words values</span></span><br><span class="line"><span class="comment"># will be colored with a grey single color function</span></span><br><span class="line">default_color = <span class="string">'grey'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a color function with single tone</span></span><br><span class="line"><span class="comment"># grouped_color_func = SimpleGroupedColorFunc(color_to_words, default_color)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a color function with multiple tones</span></span><br><span class="line">grouped_color_func = GroupedColorFunc(color_to_words, default_color)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply our color function</span></span><br><span class="line">wc.recolor(color_func=grouped_color_func)</span><br><span class="line">wc.to_file(<span class="string">'../images/grouped-color.png'</span>)</span><br></pre></td></tr></table></figure>
-</div>
-
-<img src="/images/grouped-color.png">
-</div>
-</div>
-
-<div id="outline-container-org19a4bd3" class="outline-3">
-<h3 id="org19a4bd3"><a id="ID-a83e73b6-c132-4eb3-b968-d985cd2a5ceb"></a><span class="section-number-3">2.3</span> 西游记的词云</h3>
-<div class="outline-text-3" id="text-2-3">
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, ImageColorGenerator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grey_color_func</span><span class="params">(word,</span><br><span class="line">                    font_size,</span><br><span class="line">                    position,</span><br><span class="line">                    orientation,</span><br><span class="line">                    random_state=None,</span><br><span class="line">                    **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hsl(0, 0%%, %d%%)"</span> % random.randint(<span class="number">60</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">font_path = <span class="string">'../resource/tyzkaishu.ttf'</span></span><br><span class="line">width = <span class="number">640</span></span><br><span class="line">height = <span class="number">480</span></span><br><span class="line"></span><br><span class="line">text = open(<span class="string">'../resource/xiyouji.txt'</span>).read()</span><br><span class="line">words = jieba.analyse.extract_tags(text, topK=<span class="number">200</span>, withWeight=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">word_freqs = {}</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    word_freqs[word[<span class="number">0</span>]] = word[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path, width=width,</span><br><span class="line">    height=height).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji.png'</span>)</span><br><span class="line"></span><br><span class="line">mask = np.array(Image.open(<span class="string">'../resource/stormtrooper_mask.png'</span>))</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path, width=width, height=height,</span><br><span class="line">    mask=mask).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-mask.png'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># recolor wordcloud</span></span><br><span class="line">wordcloud.recolor(color_func=grey_color_func, random_state=<span class="number">3</span>)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-custom.png'</span>)</span><br><span class="line"></span><br><span class="line">alice_coloring = np.array(Image.open(<span class="string">'../resource/alice_color.png'</span>))</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path,</span><br><span class="line">    width=width,</span><br><span class="line">    height=height,</span><br><span class="line">    background_color=<span class="string">"white"</span>,</span><br><span class="line">    mask=alice_coloring,</span><br><span class="line">    max_font_size=<span class="number">80</span>,</span><br><span class="line">    random_state=<span class="number">42</span>).generate_from_frequencies(word_freqs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create coloring from image</span></span><br><span class="line">image_colors = ImageColorGenerator(alice_coloring)</span><br><span class="line"></span><br><span class="line"><span class="comment"># recolor wordcloud</span></span><br><span class="line">wordcloud.recolor(color_func=image_colors)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/xiyouji-color.png'</span>)</span><br></pre></td></tr></table></figure>
-</div>
-
-<img src="/images/xiyouji.png">
-
-<img src="/images/xiyouji-mask.png">
-
-<img src="/images/xiyouji-custom.png">
-
-<img src="/images/xiyouji-color.png">
-</div>
-</div>
-
-<div id="outline-container-org840cccd" class="outline-3">
-<h3 id="org840cccd"><a id="ID-6fe64167-7458-4049-8b65-94910c927f1d"></a><span class="section-number-3">2.4</span> 阿里招聘的词云</h3>
-<div class="outline-text-3" id="text-2-4">
-<p>
-招聘信息是我使用爬虫趴下来的的，这里只做数据的分析。
-</p>
-<div class="org-src-container">
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"></span><br><span class="line">font_path = <span class="string">'../resource/zhengkaishu.ttf'</span></span><br><span class="line">width = <span class="number">640</span></span><br><span class="line">height = <span class="number">480</span></span><br><span class="line"></span><br><span class="line">client = MongoClient(<span class="string">'mongodb://localhost:27017/'</span>)</span><br><span class="line">jobs = client.jobs.alibaba</span><br><span class="line">text = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> job <span class="keyword">in</span> jobs.find({<span class="string">u'firstCategory'</span>: <span class="string">u'技术类'</span>}):</span><br><span class="line">    <span class="keyword">if</span> job.get(<span class="string">'requirement'</span>):</span><br><span class="line">        text += job.get(<span class="string">'requirement'</span>).replace(<span class="string">'&lt;br/&gt;'</span>, <span class="string">' '</span>) + <span class="string">'\n'</span></span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">'../resource/userdict.txt'</span>)</span><br><span class="line">words = jieba.analyse.extract_tags(text, topK=<span class="number">2000</span>, withWeight=<span class="keyword">True</span>)</span><br><span class="line">word_freqs = {}</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    _word = word[<span class="number">0</span>].lower().capitalize()</span><br><span class="line">    <span class="keyword">if</span> _word <span class="keyword">not</span> <span class="keyword">in</span> word_freqs:</span><br><span class="line">        word_freqs[_word] = word[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        word_freqs[_word] += word[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">mask = np.array(Image.open(<span class="string">'../resource/stormtrooper_mask.png'</span>))</span><br><span class="line">wordcloud = WordCloud(</span><br><span class="line">    font_path=font_path, width=width, height=height,</span><br><span class="line">    mask=mask).generate_from_frequencies(word_freqs)</span><br><span class="line">wordcloud.to_file(<span class="string">'../images/alibaba-mask.png'</span>)</span><br></pre></td></tr></table></figure>
-</div>
-
-<img src="/images/alibaba-mask.png">
-</div>
-</div>
-</div>
-
-Last Updated 2017-08-31 Thu 23:13.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
 
           
         
