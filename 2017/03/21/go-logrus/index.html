@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="1 示例   12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
+<meta name="description" content="1 示例    12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
 <meta name="keywords" content="tutorial,org-mode,manual">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go的日志库logrus试用">
 <meta property="og:url" content="https://brantou.github.io/2017/03/21/go-logrus/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="1 示例   12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
+<meta property="og:description" content="1 示例    12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-06-19T15:25:31.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go的日志库logrus试用">
-<meta name="twitter:description" content="1 示例   12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
+<meta name="twitter:description" content="1 示例    12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (  &quot;os&quot;  log &quot;github.com/sirupsen/logrus&quot;)func init() {  // Log as JSON instead of the">
 
 
 
@@ -459,16 +459,17 @@
         
 
 
-<div id="outline-container-orgeafc818" class="outline-2">
-<h2 id="orgeafc818"><a id="ID-9c33a24e-99e1-4882-a837-1efea5ca6544"></a><span class="section-number-2">1</span> 示例</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-9c33a24e-99e1-4882-a837-1efea5ca6544" name="ID-9c33a24e-99e1-4882-a837-1efea5ca6544"></a><span class="section-number-2">1</span> 示例</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
+
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">  log <span class="string">"github.com/sirupsen/logrus"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> init() {</span><br><span class="line">  <span class="comment">// Log as JSON instead of the default ASCII formatter.</span></span><br><span class="line">  log.SetFormatter(&amp;log.JSONFormatter{})</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Output to stdout instead of the default stderr</span></span><br><span class="line">  <span class="comment">// Can be any io.Writer, see below for File example</span></span><br><span class="line">  log.SetOutput(os.Stdout)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Only log the warning severity or above.</span></span><br><span class="line">  log.SetLevel(log.WarnLevel)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"animal"</span>: <span class="string">"walrus"</span>,</span><br><span class="line">    <span class="string">"size"</span>:   <span class="number">10</span>,</span><br><span class="line">  }).Info(<span class="string">"A group of walrus emerges from the ocean"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">122</span>,</span><br><span class="line">  }).Warn(<span class="string">"The group's number increased tremendously!"</span>)</span><br><span class="line"></span><br><span class="line">  log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"omg"</span>:    <span class="constant">true</span>,</span><br><span class="line">    <span class="string">"number"</span>: <span class="number">100</span>,</span><br><span class="line">  }).Fatal(<span class="string">"The ice breaks!"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// A common pattern is to re-use fields between logging statements by re-using</span></span><br><span class="line">  <span class="comment">// the logrus.Entry returned from WithFields()</span></span><br><span class="line">  contextLogger := log.WithFields(log.Fields{</span><br><span class="line">    <span class="string">"common"</span>: <span class="string">"this is a common field"</span>,</span><br><span class="line">    <span class="string">"other"</span>:  <span class="string">"I also should be logged always"</span>,</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line">  contextLogger.Info(<span class="string">"I'll be logged with common and other field"</span>)</span><br><span class="line">  contextLogger.Info(<span class="string">"Me too"</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -503,8 +504,8 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/11/org-syntax/" rel="next" title="Org-mode的语法解读">
-                <i class="fa fa-chevron-left"></i> Org-mode的语法解读
+              <a href="/2017/03/21/just-try/" rel="next" title="Org-mode手册">
+                <i class="fa fa-chevron-left"></i> Org-mode手册
               </a>
             
           </div>
@@ -513,8 +514,8 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/21/just-try/" rel="prev" title="Org-mode手册">
-                Org-mode手册 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/21/leetcode/" rel="prev" title="Leetcode编程练习">
+                Leetcode编程练习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,13 +533,13 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/just-try/">Org-mode手册</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/04/23/ob-dot-intro/">Dot Source Code Blocks in Org Mode</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
         
         </ul>
       
@@ -658,7 +659,7 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -680,7 +681,7 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -748,7 +749,7 @@ Last Updated 2017-06-19 Mon 23:25.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeafc818"><span class="nav-text">1 示例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">1 示例</span></a></li></ol></div>
             
 
           </div>

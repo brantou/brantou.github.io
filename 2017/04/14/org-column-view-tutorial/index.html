@@ -115,13 +115,13 @@
 
 
 
-<meta name="description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视图。">
+<meta name="description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视">
 <meta name="keywords" content="tutorial,org-mode,column-view">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Org-mode的列视图简明教程">
 <meta property="og:url" content="https://brantou.github.io/2017/04/14/org-column-view-tutorial/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视图。">
+<meta property="og:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-view.png">
 <meta property="og:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-customized-view1.png">
@@ -132,7 +132,7 @@
 <meta property="og:updated_time" content="2017-05-23T05:28:49.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Org-mode的列视图简明教程">
-<meta name="twitter:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视图。">
+<meta name="twitter:description" content="原文Emacs Org&apos;s Column View, 由 Bastien Guerry  编辑，维护。本文只做学习之用。     简介：默认列视图   首先按 C-c C-x C-c 打开默认列视图, 将每个 outline item 转换成一个显示其某些属性的表格行。          只可以在列视图起作用的条目上，按 q 关闭列视图,返回到普通视图, 但可以从缓冲区中的任何位置打开列视">
 <meta name="twitter:image" content="http://orgmode.org/worg/images/thumbs/org-col-default-view.png">
 
 
@@ -471,9 +471,9 @@
 </p>
 </blockquote>
 
-<div id="outline-container-org14b5582" class="outline-2">
-<h2 id="org14b5582">简介：默认列视图</h2>
-<div class="outline-text-2" id="text-org14b5582">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">简介：默认列视图</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 首先按 <code>C-c C-x C-c</code> 打开默认列视图, 将每个 <i>outline item</i> 转换成一个显示其某些属性的表格行。
 </p>
@@ -497,7 +497,6 @@ ITEM for the headline title
   T for the TODO keyword
   P for the priority cookie
   T for the tags
-
 </pre>
 
 <p>
@@ -510,53 +509,57 @@ ITEM for the headline title
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
-
 </pre>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col class="org-left">
+<col class="left">
 
-<col class="org-left">
+<col class="left">
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Element</th>
-<th scope="col" class="org-left">Description</th>
+<th scope="col" class="left">Element</th>
+<th scope="col" class="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">%25ITEM</td>
-<td class="org-left">display the item in a 25-characters-width field</td>
+<td class="left">%25ITEM</td>
+<td class="left">display the item in a 25-characters-width field</td>
 </tr>
 
 <tr>
-<td class="org-left">%TODO</td>
-<td class="org-left">display the TODO state of the item</td>
+<td class="left">%TODO</td>
+<td class="left">display the TODO state of the item</td>
 </tr>
 
 <tr>
-<td class="org-left">%3PRIORITY</td>
-<td class="org-left">display the priority in a 3-chars-width field</td>
+<td class="left">%3PRIORITY</td>
+<td class="left">display the priority in a 3-chars-width field</td>
 </tr>
 
 <tr>
-<td class="org-left">%TAGS</td>
-<td class="org-left">display the tags of the entry</td>
+<td class="left">%TAGS</td>
+<td class="left">display the tags of the entry</td>
 </tr>
 </tbody>
 </table>
 
-<a id="more"></a>
+<div class="export">
+<p>
+&lt;!&#x2013; more &#x2013;&gt;
+</p>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgeb23491" class="outline-2">
-<h2 id="orgeb23491">自定义默认列视图</h2>
-<div class="outline-text-2" id="text-orgeb23491">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">自定义默认列视图</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 好的，现在让我们来自定义列视图。
 </p>
@@ -566,7 +569,6 @@ ITEM for the headline title
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM %5TODO %1PRIORITY %10TAGS
-
 </pre>
 
 
@@ -585,7 +587,6 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 </p>
 <pre class="example">
 #+COLUMNS: %25ITEM(Task) %5TODO(To-do) %1PRIORITY %10TAGS
-
 </pre>
 
 
@@ -600,16 +601,15 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 </div>
 </div>
 
-<div id="outline-container-org756a14d" class="outline-2">
-<h2 id="org756a14d">列视图中添加其他属性</h2>
-<div class="outline-text-2" id="text-org756a14d">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">列视图中添加其他属性</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 要怎么在列视图中添加其他属性呢？ 例如，我们想要添加 <code>SCHEDULED</code> 属性。
 那么只需要重新定义全局 <code>＃+COLUMNS</code> 选项，如下所示：
 </p>
 <pre class="example">
 #+COLUMNS: %30ITEM %10SCHEDULED %TODO %3PRIORITY %TAGS
-
 </pre>
 
 <p>
@@ -626,7 +626,6 @@ TODO字段（％5TODO）现在为5个字符，而优先级和标签字段为1和
 <pre class="example">
 ** Exemple of outline item with a SCHEDULED property
    SCHEDULED: &lt;2007-10-14 dim&gt;
-
 </pre>
 
 <p>
@@ -640,7 +639,6 @@ ALLTAGS      All tags, including inherited ones.
 PRIORITY     The priority of the entry, a string with a single letter.
 DEADLINE     The deadline time string, without the angular brackets.
 SCHEDULED    The scheduling time stamp, without the angular brackets.
-
 </pre>
 
 <p>
@@ -653,9 +651,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-org4c754d3" class="outline-2">
-<h2 id="org4c754d3">定义子树的列视图</h2>
-<div class="outline-text-2" id="text-org4c754d3">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">定义子树的列视图</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 要定义特定条目的列视图，只需添加特殊属性 <code>:COLUMNS:</code> 即可：
 </p>
@@ -664,7 +662,6 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :PROPERTIES:
    :COLUMNS:  %25ITEM %TAGS %PRIORITY %TODO
    :END:
-
 </pre>
 
 <p>
@@ -683,7 +680,6 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 *** TODO Example 1
 *** TODO Example 2
 *** DONE Example 3
-
 </pre>
 
 
@@ -713,9 +709,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-orgc554fc9" class="outline-2">
-<h2 id="orgc554fc9">为某些属性添加 <b>summary-types</b></h2>
-<div class="outline-text-2" id="text-orgc554fc9">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">为某些属性添加 <b>summary-types</b></h2>
+<div class="outline-text-2" id="text-5">
 <p>
 来定义一个包含自己的列视图和一些属性的新条目：
 </p>
@@ -724,7 +720,6 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :PROPERTIES:
    :COLUMNS:  %20ITEM %9Approved(Approved?){X} %Owner %11Status %10Time_Spent{:}
    :END:
-
 </pre>
 
 
@@ -742,40 +737,40 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 
 
 <colgroup>
-<col class="org-left">
+<col class="left">
 
-<col class="org-left">
+<col class="left">
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Element</th>
-<th scope="col" class="org-left">Description</th>
+<th scope="col" class="left">Element</th>
+<th scope="col" class="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">%20ITEM</td>
-<td class="org-left">display the item (20 characters for this field)</td>
+<td class="left">%20ITEM</td>
+<td class="left">display the item (20 characters for this field)</td>
 </tr>
 
 <tr>
-<td class="org-left">%9Approved(Approved?){X}</td>
-<td class="org-left">display the "Approved" property</td>
+<td class="left">%9Approved(Approved?){X}</td>
+<td class="left">display the "Approved" property</td>
 </tr>
 
 <tr>
-<td class="org-left">%Owner</td>
-<td class="org-left">display the "Owner" property</td>
+<td class="left">%Owner</td>
+<td class="left">display the "Owner" property</td>
 </tr>
 
 <tr>
-<td class="org-left">%11Status</td>
-<td class="org-left">display the "Status" property</td>
+<td class="left">%11Status</td>
+<td class="left">display the "Status" property</td>
 </tr>
 
 <tr>
-<td class="org-left">%10Time<sub>Spent</sub>{:}</td>
-<td class="org-left">display the "Time<sub>spent</sub>" property</td>
+<td class="left">%10Time<sub>Spent</sub>{:}</td>
+<td class="left">display the "Time<sub>spent</sub>" property</td>
 </tr>
 </tbody>
 </table>
@@ -799,9 +794,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-org52bbd7e" class="outline-2">
-<h2 id="org52bbd7e">定义属性的所有可能值</h2>
-<div class="outline-text-2" id="text-org52bbd7e">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">定义属性的所有可能值</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 定义 <b>summary-types</b> 类型意味着需要为某些属性设置一组有限的可能值。
 </p>
@@ -826,14 +821,12 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
    :Status_ALL:   "In progress" "Not started yet" "Finished" ""
    :Approved_ALL: "[ ]" "[X]"
    :END:
-
 </pre>
 
 <pre class="example">
 | Owner_ALL    | only accept Tammy Mark Karl Lisa Don                   |
 | Status_ALL   | only accept "In progress" "Not started yet" "Finished" |
 | Approved_ALL | only accept "[ ]" "[X]"                                |
-
 </pre>
 
 <p>
@@ -847,9 +840,9 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-org4385ba8" class="outline-2">
-<h2 id="org4385ba8">在子树中有三个条目的完整的例子</h2>
-<div class="outline-text-2" id="text-org4385ba8">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">在子树中有三个条目的完整的例子</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 下面是一个关于列视图如何影响条目及其子树的显示的示例。 好好观察并测试它。
 </p>
@@ -883,14 +876,13 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
     :Status:   Not started yet
     :Approved: [X]
     :END:
-
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org7ec89ca" class="outline-2">
-<h2 id="org7ec89ca">从列视图编辑属性</h2>
-<div class="outline-text-2" id="text-org7ec89ca">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">从列视图编辑属性</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 到现在为止还挺好。 但是，列视图的一个好处是它可以让您快速访问和编辑任何属性。
 </p>
@@ -913,27 +905,31 @@ SCHEDULED    The scheduling time stamp, without the angular brackets.
 </div>
 </div>
 
-<div id="outline-container-org52613ec" class="outline-2">
-<h2 id="org52613ec">结论：  能做的还有更多更多</h2>
-<div class="outline-text-2" id="text-org52613ec">
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">结论：  能做的还有更多更多</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 好的，以上就是今天的全部了。 但是让我告诉你最后两个提示，让你进一步探索的列视图：
 </p>
 
 <ol class="org-ol">
-<li>您可以使用列视图并循环浏览可见性。</li>
-<li>列视图也适用于议程缓冲区。</li>
+<li>您可以使用列视图并循环浏览可见性。
+</li>
+<li>列视图也适用于议程缓冲区。
+</li>
 </ol>
 
 
 <ul class="org-ul">
-<li><a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">http://orgmode.org/</a></li>
-<li><a href="http://orgmode.org/org.html#Column-view" rel="external nofollow noopener noreferrer" target="_blank">http://orgmode.org/org.html#Column-view</a></li>
+<li><a href="http://orgmode.org/" rel="external nofollow noopener noreferrer" target="_blank">http://orgmode.org/</a>
+</li>
+<li><a href="http://orgmode.org/org.html#Column-view" rel="external nofollow noopener noreferrer" target="_blank">http://orgmode.org/org.html#Column-view</a>
+</li>
 </ul>
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -997,13 +993,13 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/04/23/ob-dot-intro/">Dot Source Code Blocks in Org Mode</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/01/babel-intro/">Babel: org-mode的元编程</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/09/org-lookups/">Org-mode表查找功能的简明教程</a></li>
         
         </ul>
       
@@ -1123,7 +1119,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1145,7 +1141,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1213,7 +1209,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org14b5582"><span class="nav-text">简介：默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgeb23491"><span class="nav-text">自定义默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org756a14d"><span class="nav-text">列视图中添加其他属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4c754d3"><span class="nav-text">定义子树的列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc554fc9"><span class="nav-text">为某些属性添加 summary-types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org52bbd7e"><span class="nav-text">定义属性的所有可能值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org4385ba8"><span class="nav-text">在子树中有三个条目的完整的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org7ec89ca"><span class="nav-text">从列视图编辑属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org52613ec"><span class="nav-text">结论：  能做的还有更多更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">简介：默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-2"><span class="nav-text">自定义默认列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-3"><span class="nav-text">列视图中添加其他属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-4"><span class="nav-text">定义子树的列视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-5"><span class="nav-text">为某些属性添加 summary-types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-6"><span class="nav-text">定义属性的所有可能值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-7"><span class="nav-text">在子树中有三个条目的完整的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-8"><span class="nav-text">从列视图编辑属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-9"><span class="nav-text">结论：  能做的还有更多更多</span></a></li></ol></div>
             
 
           </div>

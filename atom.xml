@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2018-03-01T14:33:01.127Z</updated>
+  <updated>2018-04-25T14:20:21.056Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -15,6 +15,153 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dot Source Code Blocks in Org Mode</title>
+    <link href="https://brantou.github.io/2018/04/23/ob-dot-intro/"/>
+    <id>https://brantou.github.io/2018/04/23/ob-dot-intro/</id>
+    <published>2018-04-22T16:00:00.000Z</published>
+    <updated>2018-04-25T14:20:21.056Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-9a6948a2-bb27-4cd9-b922-6bfbf266efd6&quot; name=&quot;ID-9a6948a2-bb2
+      
+    
+    </summary>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/categories/org-mode/"/>
+    
+    
+      <category term="tutorial" scheme="https://brantou.github.io/tags/tutorial/"/>
+    
+      <category term="org-mode" scheme="https://brantou.github.io/tags/org-mode/"/>
+    
+      <category term="babel" scheme="https://brantou.github.io/tags/babel/"/>
+    
+      <category term="active-code" scheme="https://brantou.github.io/tags/active-code/"/>
+    
+      <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
+    
+      <category term="dot" scheme="https://brantou.github.io/tags/dot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Strings, bytes, runes and characters in Go</title>
+    <link href="https://brantou.github.io/2018/04/03/go-string-rune/"/>
+    <id>https://brantou.github.io/2018/04/03/go-string-rune/</id>
+    <published>2018-04-02T16:00:00.000Z</published>
+    <updated>2018-04-08T10:24:10.051Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-58b2bfbb-02f0-4cdc-963b-2f7dffafbb18&quot; name=&quot;ID-58b2bfbb-02f
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="go" scheme="https://brantou.github.io/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode-greedy</title>
+    <link href="https://brantou.github.io/2018/03/29/leetcode-greedy/"/>
+    <id>https://brantou.github.io/2018/03/29/leetcode-greedy/</id>
+    <published>2018-03-28T16:00:00.000Z</published>
+    <updated>2018-04-25T14:17:06.161Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-36e79c4f-7865-41fc-bd13-57b421ec87c8&quot; name=&quot;ID-36e79c4f-786
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基础算法和数据结构</title>
+    <link href="https://brantou.github.io/2018/03/17/basic-algorithm/"/>
+    <id>https://brantou.github.io/2018/03/17/basic-algorithm/</id>
+    <published>2018-03-16T16:00:00.000Z</published>
+    <updated>2018-04-25T14:07:25.524Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-915f0858-db09-4413-9968-35a7c73ee1b1&quot; name=&quot;ID-915f0858-db0
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode-dynamic-programming</title>
+    <link href="https://brantou.github.io/2018/03/11/leetcode-dp/"/>
+    <id>https://brantou.github.io/2018/03/11/leetcode-dp/</id>
+    <published>2018-03-10T16:00:00.000Z</published>
+    <updated>2018-04-25T14:17:19.083Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-37dd7d5d-23f4-4049-8dbe-2615286ecb56&quot; name=&quot;ID-37dd7d5d-23f
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>正则表达式--探索rx宏</title>
@@ -39,9 +186,9 @@
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
-    
       <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
+      <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
     
   </entry>
   
@@ -79,7 +226,7 @@
     <link href="https://brantou.github.io/2017/12/18/tmux-script/"/>
     <id>https://brantou.github.io/2017/12/18/tmux-script/</id>
     <published>2017-12-17T16:00:00.000Z</published>
-    <updated>2018-01-17T07:20:27.980Z</updated>
+    <updated>2018-04-25T14:19:01.080Z</updated>
     
     <summary type="html">
     
@@ -117,8 +264,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org2f8337e&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org2f8337e&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot; name=&quot;ID-bdb82cb2-9f8
       
     
     </summary>
@@ -126,13 +273,13 @@
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
       <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
     
       <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
     
       <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
     
   </entry>
   
@@ -150,8 +297,8 @@
         
 
 
-&lt;div id=&quot;outline-container-orgab0c325&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgab0c325&quot;&gt;&lt;a id=&quot;ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3&quot; name=&quot;ID-1c90dda7-ff8
       
     
     </summary>
@@ -159,13 +306,13 @@
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
       <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
     
       <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="dlv" scheme="https://brantou.github.io/tags/dlv/"/>
     
@@ -193,13 +340,13 @@
       <category term="emacs-plugin" scheme="https://brantou.github.io/categories/emacs-plugin/"/>
     
     
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="emacs-plugin" scheme="https://brantou.github.io/tags/emacs-plugin/"/>
     
       <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
-    
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
     
   </entry>
   
@@ -217,8 +364,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org9744b49&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org9744b49&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-1da2b186-ec5a-4c33-87fc-4edd8cdc60ff&quot; name=&quot;ID-1da2b186-ec5
       
     
     </summary>
@@ -246,8 +393,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org24b6d06&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org24b6d06&quot;&gt;&lt;a id=&quot;ID-27719462-7684-42eb-a615-d34c2696f4b2&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-27719462-7684-42eb-a615-d34c2696f4b2&quot; name=&quot;ID-27719462-768
       
     
     </summary>
@@ -275,8 +422,8 @@
         
 
 
-&lt;div id=&quot;outline-container-org23ec5dd&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;org23ec5dd&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-971ec1fe-4655-44a8-bf63-812a49eea408&quot; name=&quot;ID-971ec1fe-465
       
     
     </summary>
@@ -301,7 +448,7 @@
     <link href="https://brantou.github.io/2017/08/30/ob-python-intro/"/>
     <id>https://brantou.github.io/2017/08/30/ob-python-intro/</id>
     <published>2017-08-29T16:00:00.000Z</published>
-    <updated>2017-08-31T14:25:35.299Z</updated>
+    <updated>2018-04-23T07:36:21.309Z</updated>
     
     <summary type="html">
     
@@ -339,7 +486,7 @@ and authoring documents with a fast and effecti
     <link href="https://brantou.github.io/2017/08/25/python-jieba-wordcloud/"/>
     <id>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</id>
     <published>2017-08-24T16:00:00.000Z</published>
-    <updated>2017-08-31T15:13:54.547Z</updated>
+    <updated>2018-04-25T14:19:29.023Z</updated>
     
     <summary type="html">
     
@@ -348,8 +495,8 @@ and authoring documents with a fast and effecti
         
 
 
-&lt;div id=&quot;outline-container-orgf71ca50&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgf71ca50&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot;&gt;&lt;/a&gt;&lt;span c
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-681fffd0-61dc-44eb-860a-82cfbfe2c080&quot; name=&quot;ID-681fffd0-61d
       
     
     </summary>
@@ -397,32 +544,6 @@ and authoring documents with a fast and effecti
   </entry>
   
   <entry>
-    <title>Leetcode-array</title>
-    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
-    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
-    <published>2017-07-15T16:00:00.000Z</published>
-    <updated>2017-09-21T15:14:03.666Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;div class=&quot;org-src-container&quot;&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Leetcode-tree</title>
     <link href="https://brantou.github.io/2017/07/16/leetcode-tree/"/>
     <id>https://brantou.github.io/2017/07/16/leetcode-tree/</id>
@@ -431,9 +552,22 @@ and authoring documents with a fast and effecti
     
     <summary type="html">
     
-      &lt;p&gt;
+      
+      
+        
+
+&lt;p&gt;
 &lt;i&gt;LeetCode&lt;/i&gt; 编程训练的积累，目前在努力做题中，日后整理！
 &lt;/p&gt;
+&lt;div class=&quot;export&quot;&gt;
+&lt;p&gt;
+&amp;lt;!&amp;#x2013; more &amp;#x2013;&amp;gt;
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-co
+      
     
     </summary>
     
@@ -443,6 +577,33 @@ and authoring documents with a fast and effecti
       <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
       <category term="tree" scheme="https://brantou.github.io/tags/tree/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode-array</title>
+    <link href="https://brantou.github.io/2017/07/16/leetcode-array/"/>
+    <id>https://brantou.github.io/2017/07/16/leetcode-array/</id>
+    <published>2017-07-15T16:00:00.000Z</published>
+    <updated>2018-04-25T14:16:53.243Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span clas
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+      <category term="leetcode" scheme="https://brantou.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -486,180 +647,6 @@ and authoring documents with a fast and effecti
       <category term="literate-programming" scheme="https://brantou.github.io/tags/literate-programming/"/>
     
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数组，切片：‘append’的机制</title>
-    <link href="https://brantou.github.io/2017/05/24/go-array-slice-string/"/>
-    <id>https://brantou.github.io/2017/05/24/go-array-slice-string/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-27T02:38:04.997Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;
-编程语言最常见的特征之一是数组的概念。
-数组看起来像简单的东西，但是在将它添加到语言中时，必须回答许多问题，例如：
-&lt;/p&gt;
-&lt;ul class=&quot;org-ul&quot;&gt;
-&lt;li&gt;固定的size，还是可变的size?&lt;/li&gt;
-&lt;li&gt;size是类型的一部分吗?&lt;/li&gt;
-&lt;li&gt;多维数组看起来是什么样子的？&lt;/li&gt;
-&lt;li&gt;空数组代表了什么含义？&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;
-以上问题的如何解答，影响着数组在语言中的定位，仅仅是语言的特性还是其设计的核心部分。
-&lt;/p&gt;
-
-&lt;p&gt;
-在Go的早期发展中，在设计感觉正确之前，花了大约一年时间来决定这些问题的答案。
-关键的一步是引入了 &lt;i&gt;切片&lt;/i&gt; ，其建立在固定大小的数组之上，并提供灵活的，可扩展的数据结构。
-不过，到目前为止，Go的新手经常会在 &lt;i&gt;切片&lt;/i&gt; 的工作方式上遇到问题，
-也许是因为来自其他语言的经验使他们戴着有色眼镜来看待 &lt;i&gt;切片&lt;/i&gt; 。
-&lt;/p&gt;
-
-&lt;p&gt;
-在这篇文章中，将尝试清除混淆。 将通过构建代码来解释 &lt;i&gt;append&lt;/i&gt; 内置函数的工作原理以及为什么它如此的工作。
-&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="slice" scheme="https://brantou.github.io/tags/slice/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的测试覆盖率</title>
-    <link href="https://brantou.github.io/2017/05/24/go-cover-story/"/>
-    <id>https://brantou.github.io/2017/05/24/go-cover-story/</id>
-    <published>2017-05-24T03:00:00.000Z</published>
-    <updated>2017-05-25T08:59:02.418Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-测试覆盖率是一个术语，用于统计通过运行程序包的测试多少代码得到执行。
-如果执行测试套件导致80％的语句得到了运行，则测试覆盖率为80％。
-&lt;/p&gt;
-
-&lt;p&gt;
-计算测试覆盖率的通常方法是埋点二进制可执行文件。
-例如，GNU &lt;a href=&quot;http://gcc.gnu
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="测试覆盖率" scheme="https://brantou.github.io/tags/%E6%B5%8B%E8%AF%95%E8%A6%86%E7%9B%96%E7%8E%87/"/>
-    
-      <category term="test" scheme="https://brantou.github.io/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的HTTP tracing</title>
-    <link href="https://brantou.github.io/2017/05/24/go-http-trace/"/>
-    <id>https://brantou.github.io/2017/05/24/go-http-trace/</id>
-    <published>2017-05-23T16:00:00.000Z</published>
-    <updated>2017-05-23T16:02:43.141Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-在Go 1.7中，引入了 &lt;i&gt;HTTP tracing&lt;/i&gt; ，这是在HTTP客户端请求的整个生命周期中收集细粒度信息的工具。
-由 &lt;a href=&quot;https://golang.org/pkg/net/http/httptrace/&quot; rel=&quot;external
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="http-tracing" scheme="https://brantou.github.io/tags/http-tracing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go的竞态探测器</title>
-    <link href="https://brantou.github.io/2017/05/23/go-race-detector/"/>
-    <id>https://brantou.github.io/2017/05/23/go-race-detector/</id>
-    <published>2017-05-22T16:00:00.000Z</published>
-    <updated>2017-05-23T14:17:24.738Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-&lt;i&gt;Race conditions&lt;/i&gt; 是最隐晦和难以捉摸的编程错误之一。
-通常，在代码部署到生产之后很长时间才会发作，而且通常会导致很神秘的故障。
-Go的并发机制使得编写干净并发代码变得容易，但它们并不能防止 /Race conditions/。
-需要谨慎，勤
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="race-detector" scheme="https://brantou.github.io/tags/race-detector/"/>
-    
-      <category term="go-tool-chain" scheme="https://brantou.github.io/tags/go-tool-chain/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang的并发模式：Context</title>
-    <link href="https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/"/>
-    <id>https://brantou.github.io/2017/05/19/go-concurrency-patterns-context/</id>
-    <published>2017-05-18T16:00:00.000Z</published>
-    <updated>2017-05-23T07:30:52.995Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-&lt;p&gt;
-在go服务端，每个传入的 &lt;i&gt;request&lt;/i&gt; 都在自己的 &lt;code&gt;goroutine&lt;/code&gt; 中做后续处理。
-&lt;i&gt;request handlers&lt;/i&gt; 经常启动其他 &lt;code&gt;goroutines&lt;/code&gt; 以访问后端，如数据库和rpc
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
-    
-      <category term="context" scheme="https://brantou.github.io/tags/context/"/>
     
   </entry>
   

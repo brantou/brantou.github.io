@@ -4,6 +4,234 @@
 
     
   <url>
+    <loc>https://brantou.github.io/2018/04/23/ob-dot-intro/</loc>
+    <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+    <data>
+        <display>
+        <title>Dot Source Code Blocks in Org Mode</title>
+        <pubTime>2018-04-22T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>active-code</tag>
+         
+        <tag>literate-programming</tag>
+         
+        <tag>dot</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
+    <lastmod>2018-04-25T14:19:29.023Z</lastmod>
+    <data>
+        <display>
+        <title>玩转词云</title>
+        <pubTime>2017-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>jieba</tag>
+         
+        <tag>wordcloud</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/12/18/tmux-script/</loc>
+    <lastmod>2018-04-25T14:19:01.080Z</lastmod>
+    <data>
+        <display>
+        <title>tmux自动化</title>
+        <pubTime>2017-12-17T16:00:00.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>tmux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2018/03/11/leetcode-dp/</loc>
+    <lastmod>2018-04-25T14:17:19.083Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode-dynamic-programming</title>
+        <pubTime>2018-03-10T16:00:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2018/03/29/leetcode-greedy/</loc>
+    <lastmod>2018-04-25T14:17:06.161Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode-greedy</title>
+        <pubTime>2018-03-28T16:00:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
+    <lastmod>2018-04-25T14:16:53.243Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode-array</title>
+        <pubTime>2017-07-15T16:00:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/03/21/leetcode/</loc>
+    <lastmod>2018-04-25T14:16:39.430Z</lastmod>
+    <data>
+        <display>
+        <title>Leetcode编程练习</title>
+        <pubTime>2017-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2018/03/17/basic-algorithm/</loc>
+    <lastmod>2018-04-25T14:07:25.524Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法和数据结构</title>
+        <pubTime>2018-03-16T16:00:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
+    <lastmod>2018-04-23T07:36:21.309Z</lastmod>
+    <data>
+        <display>
+        <title>写Python的新方式</title>
+        <pubTime>2017-08-29T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>babel</tag>
+         
+        <tag>active-code</tag>
+         
+        <tag>literate-programming</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2018/04/03/go-string-rune/</loc>
+    <lastmod>2018-04-08T10:24:10.051Z</lastmod>
+    <data>
+        <display>
+        <title>Strings, bytes, runes and characters in Go</title>
+        <pubTime>2018-04-02T16:00:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+        <tag>go</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://brantou.github.io/2018/03/01/regular-expression/</loc>
     <lastmod>2018-03-01T14:33:01.127Z</lastmod>
     <data>
@@ -11,9 +239,9 @@
         <title>正则表达式--探索rx宏</title>
         <pubTime>2018-02-28T16:00:00.000Z</pubTime>
         
-        <tag>elisp</tag>
-         
         <tag>tools</tag>
+         
+        <tag>elisp</tag>
          
          
            
@@ -34,28 +262,6 @@
         <pubTime>2018-01-25T16:00:00.000Z</pubTime>
         
         <tag>golang</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/12/18/tmux-script/</loc>
-    <lastmod>2018-01-17T07:20:27.980Z</lastmod>
-    <data>
-        <display>
-        <title>tmux自动化</title>
-        <pubTime>2017-12-17T16:00:00.000Z</pubTime>
-        
-        <tag>tool</tag>
-         
-        <tag>tmux</tag>
          
          
            
@@ -127,13 +333,13 @@
         <title>GDB-UI试用</title>
         <pubTime>2017-12-08T16:00:00.000Z</pubTime>
         
-        <tag>tools</tag>
-         
         <tag>gdb</tag>
          
         <tag>emacs</tag>
          
         <tag>debug</tag>
+         
+        <tag>tools</tag>
          
          
            
@@ -153,13 +359,13 @@
         <title>go-dlv试用</title>
         <pubTime>2017-12-08T16:00:00.000Z</pubTime>
         
-        <tag>golang</tag>
-         
-        <tag>tools</tag>
-         
         <tag>emacs</tag>
          
         <tag>debug</tag>
+         
+        <tag>tools</tag>
+         
+        <tag>golang</tag>
          
         <tag>dlv</tag>
          
@@ -181,13 +387,13 @@
         <title>Emacs支持gomodifytags</title>
         <pubTime>2017-12-04T16:00:00.000Z</pubTime>
         
+        <tag>tools</tag>
+         
         <tag>golang</tag>
          
         <tag>emacs-plugin</tag>
          
         <tag>elisp</tag>
-         
-        <tag>tools</tag>
          
          
            
@@ -324,80 +530,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/07/16/leetcode-array/</loc>
-    <lastmod>2017-09-21T15:14:03.666Z</lastmod>
-    <data>
-        <display>
-        <title>Leetcode-array</title>
-        <pubTime>2017-07-15T16:00:00.000Z</pubTime>
-        
-        <tag>leetcode</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/08/25/python-jieba-wordcloud/</loc>
-    <lastmod>2017-08-31T15:13:54.547Z</lastmod>
-    <data>
-        <display>
-        <title>玩转词云</title>
-        <pubTime>2017-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>jieba</tag>
-         
-        <tag>wordcloud</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/08/30/ob-python-intro/</loc>
-    <lastmod>2017-08-31T14:25:35.299Z</lastmod>
-    <data>
-        <display>
-        <title>写Python的新方式</title>
-        <pubTime>2017-08-29T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>babel</tag>
-         
-        <tag>active-code</tag>
-         
-        <tag>literate-programming</tag>
-         
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/08/22/scrapy-crawl-zhihu/</loc>
     <lastmod>2017-08-23T07:21:47.933Z</lastmod>
     <data>
@@ -410,26 +542,6 @@
         <tag>scrapy</tag>
          
         <tag>crawler</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/03/21/leetcode/</loc>
-    <lastmod>2017-07-17T11:07:47.329Z</lastmod>
-    <data>
-        <display>
-        <title>Leetcode编程练习</title>
-        <pubTime>2017-03-20T16:00:00.000Z</pubTime>
-        
-        <tag>leetcode</tag>
          
          
            
@@ -645,22 +757,44 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
         <display>
-        <title>Org-mode表查找功能的简明教程</title>
-        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
+        <title>Org-mode的语法解读</title>
+        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
         
         <tag>tutorial</tag>
          
         <tag>org-mode</tag>
          
-        <tag>table</tag>
+        <tag>org-syntax</tag>
          
-        <tag>spreadsheet</tag>
+        <tag>org-internal-structure</tag>
          
-        <tag>lookup</tag>
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode的列视图简明教程</title>
+        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>column-view</tag>
          
          
            
@@ -719,56 +853,6 @@
 
     
   <url>
-    <loc>https://brantou.github.io/2017/03/11/org-syntax/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的语法解读</title>
-        <pubTime>2017-03-10T16:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>org-syntax</tag>
-         
-        <tag>org-internal-structure</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://brantou.github.io/2017/04/14/org-column-view-tutorial/</loc>
-    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
-    <data>
-        <display>
-        <title>Org-mode的列视图简明教程</title>
-        <pubTime>2017-04-14T13:00:00.000Z</pubTime>
-        
-        <tag>tutorial</tag>
-         
-        <tag>org-mode</tag>
-         
-        <tag>column-view</tag>
-         
-         
-           
-             
-              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://brantou.github.io/2017/05/17/go-concurrency-patterns-pipelines/</loc>
     <lastmod>2017-05-23T05:28:49.597Z</lastmod>
     <data>
@@ -784,6 +868,34 @@
            
              
               <breadCrumb title="技术积累" url="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://brantou.github.io/2017/04/09/org-lookups/</loc>
+    <lastmod>2017-05-23T05:28:49.597Z</lastmod>
+    <data>
+        <display>
+        <title>Org-mode表查找功能的简明教程</title>
+        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
+        
+        <tag>tutorial</tag>
+         
+        <tag>org-mode</tag>
+         
+        <tag>table</tag>
+         
+        <tag>spreadsheet</tag>
+         
+        <tag>lookup</tag>
+         
+         
+           
+             
+              <breadCrumb title="org-mode" url="https://brantou.github.io/categories/org-mode/"/>
           
         </display>
     </data>

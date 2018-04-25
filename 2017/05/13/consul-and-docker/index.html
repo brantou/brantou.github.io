@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta name="description" content="构造consul的docker集群    sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d -">
 <meta name="keywords" content="consul">
 <meta property="og:type" content="article">
 <meta property="og:title" content="consul的docker环境配置">
 <meta property="og:url" content="https://brantou.github.io/2017/05/13/consul-and-docker/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta property="og:description" content="构造consul的docker集群    sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d -">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-06-01T05:40:08.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="consul的docker环境配置">
-<meta name="twitter:description" content="构造consul的docker集群   sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d --">
+<meta name="twitter:description" content="构造consul的docker集群    sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&amp;#10;sudo docker run -d -">
 
 
 
@@ -440,6 +440,7 @@
 构造consul的docker集群
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name=node0 consul agent -server -client=0.0.0.0 -node=node0 -bootstrap-expect=1 -bind=172.17.0.2 -data-dir=/tmp/consul -ui-dir /ui&#10;sudo docker run -d --name=node1 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node1 -bind=172.17.0.3 -join=172.17.0.2&#10;sudo docker run -d --name=node2 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -server -client=0.0.0.0 -node=node2 -bind=172.17.0.4 -join=172.17.0.2&#10;sudo docker run -d --name=node3 consul agent -node-id=$(uuidgen | awk &#39;{print tolower($0)}&#39;) -client=0.0.0.0 -node=node3 -bind=172.17.0.5 -join=172.17.0.2</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -447,6 +448,7 @@
 参看集群状态
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">sudo docker exec -t node0 consul info</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -454,10 +456,12 @@
 Network Coordinates in consul
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/datacenters</span><br></pre></td></tr></table></figure>
 </div>
 
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.2:8500/v1/coordinate/nodes</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -465,10 +469,11 @@ Network Coordinates in consul
 健康检查
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">curl http://172.17.0.3:8500/v1/health/service/consul</span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -509,8 +514,8 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/14/interview-code/" rel="prev" title="Gopher面试中的Coding">
-                Gopher面试中的Coding <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/weekly-review-ending-2017-05-12/" rel="prev" title="一周回顾--2017-05-12">
+                一周回顾--2017-05-12 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -630,7 +635,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -652,7 +657,7 @@ Last Updated 2017-06-01 Thu 13:40.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

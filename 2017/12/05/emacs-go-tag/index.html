@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="golang,emacs-plugin,elisp,tools,">
+  <meta name="keywords" content="tools,golang,emacs-plugin,elisp,">
 
 
 
@@ -116,7 +116,7 @@
 
 
 <meta name="description" content="受到《Go 终极指南：编写一个 Go 工具》的启发，萌生了把 gomodifytags 封装成emacs-plugin的想法， 然后经过两周的努力，诞生了emacs-go-tag。 emacs-go-tag 实现了两个命令： go-tag-add 添加结构体字段tag， go-tag-remove 删除结构体字段tag。    1 安装依赖   emacs-go-tag 有两个依赖项， go">
-<meta name="keywords" content="golang,emacs-plugin,elisp,tools">
+<meta name="keywords" content="tools,golang,emacs-plugin,elisp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Emacs支持gomodifytags">
 <meta property="og:url" content="https://brantou.github.io/2017/12/05/emacs-go-tag/index.html">
@@ -467,24 +467,25 @@
 <code>emacs-go-tag</code> 实现了两个命令： <code>go-tag-add</code> 添加结构体字段tag， <code>go-tag-remove</code> 删除结构体字段tag。
 </p>
 
-<div id="outline-container-orgc48f952" class="outline-2">
-<h2 id="orgc48f952"><a id="ID-c1a9f516-96c0-43f0-a40e-3541cc0e5014"></a><span class="section-number-2">1</span> 安装依赖</h2>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-c1a9f516-96c0-43f0-a40e-3541cc0e5014" name="ID-c1a9f516-96c0-43f0-a40e-3541cc0e5014"></a><span class="section-number-2">1</span> 安装依赖</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>emacs-go-tag</code> 有两个依赖项， <code>gomodifytags</code> 和 <a href="https://github.com/dominikh/go-mode.el" rel="external nofollow noopener noreferrer" target="_blank">go-mode.el</a>，若使用emacs做Go开发 <code>go-mode.el</code> 应该已经在使用了。
 gomodifytags安装如下:
 </p>
 <div class="org-src-container">
+
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get -u github.com/fatih/gomodifytags</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orged22cb8" class="outline-2">
-<h2 id="orged22cb8"><a id="ID-dcb13c65-0204-4e14-8446-9c0e5e3fe2be"></a><span class="section-number-2">2</span> 安装</h2>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-dcb13c65-0204-4e14-8446-9c0e5e3fe2be" name="ID-dcb13c65-0204-4e14-8446-9c0e5e3fe2be"></a><span class="section-number-2">2</span> 安装</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-目前emacs-go-tag已发布到了<a href="https://melpa.org/" rel="external nofollow noopener noreferrer" target="_blank">MELPA</a>上，可使用如下命令安装：
+目前emacs-go-tag已发布到了<a href="https://melpa.org" rel="external nofollow noopener noreferrer" target="_blank">MELPA</a>上，可使用如下命令安装：
 <code>M-x package-install [RET] go-tag [RET]</code>
 若是没发现go-tag,你需要使用如下命令来刷新,然后在使用上面的命令进行安装:
 <code>M-x package-refresh-contents [RET]</code>
@@ -492,22 +493,26 @@ gomodifytags安装如下:
 </div>
 </div>
 
-<div id="outline-container-org72fc9aa" class="outline-2">
-<h2 id="org72fc9aa"><a id="ID-fc076558-8801-441a-a81c-d8b7b380046f"></a><span class="section-number-2">3</span> 配置</h2>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-fc076558-8801-441a-a81c-d8b7b380046f" name="ID-fc076558-8801-441a-a81c-d8b7b380046f"></a><span class="section-number-2">3</span> 配置</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 目前 <code>gomodifytags</code> 支持三种转换如下：
 </p>
 <ul class="org-ul">
-<li>snakecase: BaseDomain -&gt; base_domain</li>
-<li>camelcase: BaseDomain -&gt; baseDomain</li>
-<li>lispcase: BaseDomain -&gt; base-domain</li>
+<li>snakecase: BaseDomain -&gt; base_domain
+</li>
+<li>camelcase: BaseDomain -&gt; baseDomain
+</li>
+<li>lispcase: BaseDomain -&gt; base-domain
+</li>
 </ul>
 
 <p>
 默认使用 <code>snakecase</code> , 若你准备使用 <code>camelcase</code>, 可配置如下：
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">(setq go-tag-args (list &#34;-transform&#34; &#34;camelcase&#34;))</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -515,22 +520,25 @@ gomodifytags安装如下:
 快捷键配置示例：
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">(with-eval-after-load &#39;go-mode&#10;  (define-key go-mode-map (kbd &#34;C-c t&#34;) #&#39;go-tag-add)&#10;  (define-key go-mode-map (kbd &#34;C-c T&#34;) #&#39;go-tag-remove))</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga466eb8" class="outline-2">
-<h2 id="orga466eb8"><a id="ID-115052a8-4563-4ddc-a6cb-7f8a37fe8746"></a><span class="section-number-2">4</span> 使用说明</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-115052a8-4563-4ddc-a6cb-7f8a37fe8746" name="ID-115052a8-4563-4ddc-a6cb-7f8a37fe8746"></a><span class="section-number-2">4</span> 使用说明</h2>
 <div class="outline-text-2" id="text-4">
+
 <p>
   若是你有使用 vim-go 的 <code>GoAddTags</code> 和 <code>GoRemoveTags</code> 命令的经验， 那么你会很快上手 <code>emacs-go-tag</code>,
 因为两者的行为完全一致（若有不同，请反馈）。
 </p>
 </div>
-<div id="outline-container-org7fe761d" class="outline-3">
-<h3 id="org7fe761d"><a id="ID-1bda75e3-95d3-44e4-b511-302dc6596fff"></a><span class="section-number-3">4.1</span> <code>go-tag-add</code></h3>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><a id="ID-1bda75e3-95d3-44e4-b511-302dc6596fff" name="ID-1bda75e3-95d3-44e4-b511-302dc6596fff"></a><span class="section-number-3">4.1</span> <code>go-tag-add</code></h3>
 <div class="outline-text-3" id="text-4-1">
+
 <p>
 <code>:[range] go-tag-add [key],[option] [key1],[option] …</code>
 为结构体字段添加tag。如果在一个结构中调用，会自动添加json字段tag。
@@ -557,13 +565,19 @@ gomodifytags安装如下:
 <code>:go-tag-add valid=1</code>
 </p>
 
-<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-add.gif">
+<div class="export">
+<p>
+&lt;img src="<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-add.gif" alt="go-tag-add.gif">&rdquo; /&gt;
+</p>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-org6024715" class="outline-3">
-<h3 id="org6024715"><a id="ID-1dd1e27b-cb8e-4caf-b6ec-244226ad4499"></a><span class="section-number-3">4.2</span> <code>go-tag-remove</code></h3>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><a id="ID-1dd1e27b-cb8e-4caf-b6ec-244226ad4499" name="ID-1dd1e27b-cb8e-4caf-b6ec-244226ad4499"></a><span class="section-number-3">4.2</span> <code>go-tag-remove</code></h3>
 <div class="outline-text-3" id="text-4-2">
+
 <p>
 <code>:[range] go-tag-add [key],[option] [key1],[option] …</code>
  移除结构字段的字段标记。 如果在一个结构中调用，它会自动删除所有的字段tag。
@@ -585,13 +599,18 @@ gomodifytags安装如下:
 <code>:go-tag-remove json,omitempty</code>
 </p>
 
-<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-remove.gif">
+<div class="export">
+<p>
+&lt;img src="<img src="https://github.com/brantou/emacs-go-tag/raw/master/img/go-tag-remove.gif" alt="go-tag-remove.gif">&rdquo; /&gt;
+</p>
+
+</div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org387a0cc" class="outline-2">
-<h2 id="org387a0cc"><a id="ID-9437067b-8701-479f-b594-84460bf62310"></a><span class="section-number-2">5</span> 最后</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a id="ID-9437067b-8701-479f-b594-84460bf62310" name="ID-9437067b-8701-479f-b594-84460bf62310"></a><span class="section-number-2">5</span> 最后</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 感谢 <code>GoCN每日新闻</code> 的每日推送，让我得以读到 <a href="http://www.jianshu.com/p/20b533c5c3f9" rel="external nofollow noopener noreferrer" target="_blank">《Go 终极指南：编写一个 Go 工具》</a>, 然后我才得以写出这个emacs-plugin。
@@ -600,7 +619,7 @@ gomodifytags安装如下:
 </div>
 </div>
 
-Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.4)
+Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -618,13 +637,13 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
       
         <div class="post-tags">
           
+            <a href="/tags/tools/" rel="tag"># tools</a>
+          
             <a href="/tags/golang/" rel="tag"># golang</a>
           
             <a href="/tags/emacs-plugin/" rel="tag"># emacs-plugin</a>
           
             <a href="/tags/elisp/" rel="tag"># elisp</a>
-          
-            <a href="/tags/tools/" rel="tag"># tools</a>
           
         </div>
       
@@ -664,15 +683,15 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
         <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
         <ul class="related-posts">
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/09/go-dlv-try/">go-dlv试用</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2018/03/01/regular-expression/">正则表达式--探索rx宏</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/09/go-dlv-try/">go-dlv试用</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/12/09/gdb-ui-just-try/">GDB-UI试用</a></li>
         
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/05/14/interview-code/">Gopher面试中的Coding</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/11/24/go-tool/">Go语言不完全工具列表</a></li>
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/04/03/go-string-rune/">Strings, bytes, runes and characters in Go</a></li>
         
         </ul>
       
@@ -792,7 +811,7 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -814,7 +833,7 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -882,7 +901,7 @@ Last Updated 2017-12-08 Fri 12:31.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc48f952"><span class="nav-text">1 安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orged22cb8"><span class="nav-text">2 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org72fc9aa"><span class="nav-text">3 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orga466eb8"><span class="nav-text">4 使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org7fe761d"><span class="nav-text">4.1 go-tag-add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org6024715"><span class="nav-text">4.2 go-tag-remove</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org387a0cc"><span class="nav-text">5 最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">1 安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-2"><span class="nav-text">2 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-3"><span class="nav-text">3 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-4"><span class="nav-text">4 使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sec-4-1"><span class="nav-text">4.1 go-tag-add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sec-4-2"><span class="nav-text">4.2 go-tag-remove</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-5"><span class="nav-text">5 最后</span></a></li></ol></div>
             
 
           </div>

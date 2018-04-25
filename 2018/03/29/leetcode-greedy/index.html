@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="2NCO1zLkcL">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="leetcode,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brantou的日常" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="1 DONE 分发饼干    State &quot;DONE&quot;       from &quot;TODO&quot;       [2018-03-29 四 15:45]     123456789101112131415161718import &quot;sort&quot;func findContentChildren(g []int, s []int) int {  sort.Ints(g)  sort.Ints(s)  v">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-greedy">
+<meta property="og:url" content="https://brantou.github.io/2018/03/29/leetcode-greedy/index.html">
+<meta property="og:site_name" content="Brantou的日常">
+<meta property="og:description" content="1 DONE 分发饼干    State &quot;DONE&quot;       from &quot;TODO&quot;       [2018-03-29 四 15:45]     123456789101112131415161718import &quot;sort&quot;func findContentChildren(g []int, s []int) int {  sort.Ints(g)  sort.Ints(s)  v">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T14:17:06.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode-greedy">
+<meta name="twitter:description" content="1 DONE 分发饼干    State &quot;DONE&quot;       from &quot;TODO&quot;       [2018-03-29 四 15:45]     123456789101112131415161718import &quot;sort&quot;func findContentChildren(g []int, s []int) int {  sort.Ints(g)  sort.Ints(s)  v">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brantou.github.io/2018/03/29/leetcode-greedy/">
+
+
+
+
+
+  <title>Leetcode-greedy | Brantou的日常</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99654689-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a82c2fbb2a57e8b3c01e31a60807a7f6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brantou的日常</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">二三事</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2018/03/29/leetcode-greedy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Leetcode-greedy</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T00:00:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/29/leetcode-greedy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/29/leetcode-greedy/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-36e79c4f-7865-41fc-bd13-57b421ec87c8" name="ID-36e79c4f-7865-41fc-bd13-57b421ec87c8"></a><span class="section-number-2">1</span> <span class="done DONE">DONE</span> 分发饼干</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-03-29 四 15:45]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"sort"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> findContentChildren(g []<span class="typename">int</span>, s []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  sort.Ints(g)</span><br><span class="line">  sort.Ints(s)</span><br><span class="line">  <span class="keyword">var</span> ans, gi <span class="typename">int</span></span><br><span class="line">  <span class="keyword">for</span> i, _ := <span class="keyword">range</span> s {</span><br><span class="line">    <span class="keyword">for</span> j := gi; j &lt; <span class="built_in">len</span>(g); j += <span class="number">1</span> {</span><br><span class="line">      <span class="keyword">if</span> g[j] &lt;= s[i] {</span><br><span class="line">	gi = j + <span class="number">1</span></span><br><span class="line">	ans += <span class="number">1</span></span><br><span class="line">	<span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a id="ID-2f14b4e1-2312-4d2f-ab45-3646ac520b32" name="ID-2f14b4e1-2312-4d2f-ab45-3646ac520b32"></a><span class="section-number-2">2</span> <span class="done DONE">DONE</span> 分配糖果</h2>
+<div class="outline-text-2" id="text-2">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-03-30 五 17:52]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> max(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &gt; b {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> candy(ratings []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(ratings) == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(ratings) == <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  candys := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="built_in">len</span>(ratings))</span><br><span class="line">  candyHelper(ratings, candys, <span class="number">0</span>, <span class="built_in">len</span>(candys))</span><br><span class="line">  ans := <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i, _ := <span class="keyword">range</span> candys {</span><br><span class="line">    ans += candys[i]</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> candyHelper(ratings, candys []<span class="typename">int</span>, start, end <span class="typename">int</span>) {</span><br><span class="line">  <span class="keyword">if</span> start &gt;= end {</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ti := start</span><br><span class="line">  tn := <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i := start + <span class="number">1</span>; i &lt; end; i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> ratings[i] == ratings[ti] &amp;&amp; ti+tn+<span class="number">1</span> == i {</span><br><span class="line">      tn += <span class="number">1</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ratings[i] &lt; ratings[ti] {</span><br><span class="line">      ti = i</span><br><span class="line">      tn = <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> cs, ce <span class="typename">int</span></span><br><span class="line">  <span class="keyword">if</span> ti &gt; start &amp;&amp; ti+tn &lt; end-<span class="number">1</span> {</span><br><span class="line">    cs, ce = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> ti == start &amp;&amp; ti+tn == end-<span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> start &gt; <span class="number">0</span> &amp;&amp; end &lt; <span class="built_in">len</span>(ratings) {</span><br><span class="line">      cs, ce = candys[start-<span class="number">1</span>]+<span class="number">1</span>, candys[end]+<span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> start == <span class="number">0</span> &amp;&amp; end == <span class="built_in">len</span>(ratings) {</span><br><span class="line">      cs, ce = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> start == <span class="number">0</span> {</span><br><span class="line">      cs, ce = <span class="number">1</span>, candys[end]+<span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> end == <span class="built_in">len</span>(ratings) {</span><br><span class="line">      cs, ce = candys[start-<span class="number">1</span>]+<span class="number">1</span>, <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> ti == start {</span><br><span class="line">    <span class="keyword">if</span> start &gt; <span class="number">0</span> {</span><br><span class="line">      cs = candys[start-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      cs = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">    ce = <span class="number">1</span></span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> ti+tn == end-<span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> end &lt; <span class="built_in">len</span>(ratings) {</span><br><span class="line">      ce = candys[end] + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      ce = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">    cs = <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> tn == <span class="number">0</span> {</span><br><span class="line">    candys[ti] = max(cs, ce)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    candys[ti], candys[ti+tn] = cs, ce</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; tn; i += <span class="number">1</span> {</span><br><span class="line">      candys[ti+i] = <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  candyHelper(ratings, candys, start, ti)</span><br><span class="line">  candyHelper(ratings, candys, ti+tn+<span class="number">1</span>, end)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>, <span class="number">1</span> }))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">1</span>, <span class="number">2</span> }))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">2</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>}))</span><br><span class="line">  fmt.Println(candy([]<span class="typename">int</span>{<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a id="ID-88ec20e4-4cf4-44f2-b1c8-a59e94e9836b" name="ID-88ec20e4-4cf4-44f2-b1c8-a59e94e9836b"></a><span class="section-number-2">3</span> <span class="done DONE">DONE</span> 通配符匹配</h2>
+<div class="outline-text-2" id="text-3">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-02 一 15:50]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"strings"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> isMatch(s <span class="typename">string</span>, p <span class="typename">string</span>) <span class="typename">bool</span> {</span><br><span class="line">  <span class="keyword">for</span> strings.Contains(p, <span class="string">"**"</span>) {</span><br><span class="line">    p = strings.Replace(p, <span class="string">"**"</span>, <span class="string">"*"</span>, -<span class="number">1</span>)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> match(s, p)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> match(s <span class="typename">string</span>, p <span class="typename">string</span>) <span class="typename">bool</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(s) == <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(p) == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(p) == <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(s) &gt; <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(s) == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">for</span> i, _ := <span class="keyword">range</span> p {</span><br><span class="line">      <span class="keyword">if</span> p[i:i+<span class="number">1</span>] != <span class="string">"*"</span> {</span><br><span class="line">	<span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> p[<span class="number">0</span>:<span class="number">1</span>] == <span class="string">"?"</span> || p[<span class="number">0</span>] == s[<span class="number">0</span>] {</span><br><span class="line">    <span class="keyword">return</span> match(s[<span class="number">1</span>:], p[<span class="number">1</span>:])</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> p[<span class="number">0</span>:<span class="number">1</span>] == <span class="string">"*"</span> {</span><br><span class="line">    <span class="keyword">return</span> match(s, p[<span class="number">1</span>:]) || isMatch(s[<span class="number">1</span>:], p)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> isMatch(s <span class="typename">string</span>, p <span class="typename">string</span>) <span class="typename">bool</span> {</span><br><span class="line">  slen, plen := <span class="built_in">len</span>(s), <span class="built_in">len</span>(p)</span><br><span class="line">  i, j := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">  is, ip := -<span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i &lt; slen {</span><br><span class="line">    <span class="keyword">if</span> j == plen {</span><br><span class="line">      <span class="keyword">if</span> ip == -<span class="number">1</span> {</span><br><span class="line">	<span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">	is += <span class="number">1</span></span><br><span class="line">	i = is</span><br><span class="line">	j = ip + <span class="number">1</span></span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> p[j:j+<span class="number">1</span>] == <span class="string">"*"</span> {</span><br><span class="line">      is = i</span><br><span class="line">      ip = j</span><br><span class="line">      j += <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">if</span> s[i] == p[j] || p[j:j+<span class="number">1</span>] == <span class="string">"?"</span> {</span><br><span class="line">	i += <span class="number">1</span></span><br><span class="line">	j += <span class="number">1</span></span><br><span class="line">      } <span class="keyword">else</span> <span class="keyword">if</span> ip == -<span class="number">1</span> {</span><br><span class="line">	<span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">	is += <span class="number">1</span></span><br><span class="line">	i = is</span><br><span class="line">	j = ip + <span class="number">1</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> j &lt; plen &amp;&amp; p[j:j+<span class="number">1</span>] == <span class="string">"*"</span> {</span><br><span class="line">    j += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> j == plen</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a id="ID-3e037888-1f65-4757-a4c5-adfb4dfc11bb" name="ID-3e037888-1f65-4757-a4c5-adfb4dfc11bb"></a><span class="section-number-2">4</span> <span class="done DONE">DONE</span> 拼接最大数</h2>
+<div class="outline-text-2" id="text-4">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-03 二 14:31]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> maxNumber(nums1 []<span class="typename">int</span>, nums2 []<span class="typename">int</span>, k <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> k &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> []<span class="typename">int</span>{}</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums2) &gt; <span class="built_in">len</span>(nums1) {</span><br><span class="line">    nums1, nums2 = nums2, nums1</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  num := nums1[<span class="number">0</span>]</span><br><span class="line">  ai := <span class="number">0</span></span><br><span class="line">  ni := <span class="number">0</span></span><br><span class="line">  prev_ai := <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums1); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums1)+<span class="built_in">len</span>(nums2)-i &lt; k {</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> nums1[i] &gt; num {</span><br><span class="line">      prev_ai = ai</span><br><span class="line">      num = nums1[i]</span><br><span class="line">      ai, ni = <span class="number">0</span>, i</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> nums1[i] == num {</span><br><span class="line">      <span class="keyword">if</span> <span class="number">0</span> != prev_ai &amp;&amp; ai != <span class="number">0</span> {</span><br><span class="line">	num = nums1[i]</span><br><span class="line">	ai, ni = <span class="number">0</span>, i</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(nums2); j += <span class="number">1</span> {</span><br><span class="line">      <span class="keyword">if</span> <span class="built_in">len</span>(nums1)+<span class="built_in">len</span>(nums2)-(i+j) &lt; k {</span><br><span class="line">	<span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> nums2[j] &gt; num {</span><br><span class="line">	prev_ai = ai</span><br><span class="line">	num = nums2[j]</span><br><span class="line">	ai, ni = <span class="number">1</span>, j</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> nums2[j] == num {</span><br><span class="line">	<span class="keyword">if</span> <span class="number">1</span> != prev_ai &amp;&amp; ai != <span class="number">1</span> {</span><br><span class="line">	  num = nums2[j]</span><br><span class="line">	  ai, ni = <span class="number">1</span>, j</span><br><span class="line">	}</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  ans := []<span class="typename">int</span>{num}</span><br><span class="line">  <span class="keyword">if</span> ai == <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(ans, maxNumber(nums1[ni+<span class="number">1</span>:], nums2, k-<span class="number">1</span>)...)</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(ans, maxNumber(nums1, nums2[ni+<span class="number">1</span>:], k-<span class="number">1</span>)...)</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> maxNumber(nums1 []<span class="typename">int</span>, nums2 []<span class="typename">int</span>, k <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  ans := <span class="built_in">make</span>([]<span class="typename">int</span>, k)</span><br><span class="line">  len1, len2 := <span class="built_in">len</span>(nums1), <span class="built_in">len</span>(nums2)</span><br><span class="line">  <span class="keyword">for</span> i := max(k-len2, <span class="number">0</span>); i &lt;= min(k, len1); i += <span class="number">1</span> {</span><br><span class="line">    ans = maxInts(ans, merge(getMax(nums1, i), getMax(nums2, k-i)))</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> getMax(nums []<span class="typename">int</span>, k <span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  ans := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  drop := <span class="built_in">len</span>(nums) - k</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">for</span> drop &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(ans) &gt; <span class="number">0</span> &amp;&amp; nums[i] &gt; ans[<span class="built_in">len</span>(ans)-<span class="number">1</span>] {</span><br><span class="line">      drop -= <span class="number">1</span></span><br><span class="line">      ans = ans[:<span class="built_in">len</span>(ans)-<span class="number">1</span>]</span><br><span class="line">    }</span><br><span class="line">    ans = <span class="built_in">append</span>(ans, nums[i])</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans[:k]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> merge(lnums []<span class="typename">int</span>, rnums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  ans := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="number">0</span>, <span class="built_in">len</span>(lnums)+<span class="built_in">len</span>(rnums))</span><br><span class="line">  li, ri := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">  ll, lr := <span class="built_in">len</span>(lnums), <span class="built_in">len</span>(rnums)</span><br><span class="line">  <span class="keyword">for</span> li &lt; ll &amp;&amp; ri &lt; lr {</span><br><span class="line">    <span class="keyword">if</span> lnums[li] &gt; rnums[ri] {</span><br><span class="line">      ans = <span class="built_in">append</span>(ans, lnums[li])</span><br><span class="line">      li += <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> lnums[li] &lt; rnums[ri] {</span><br><span class="line">      ans = <span class="built_in">append</span>(ans, rnums[ri])</span><br><span class="line">      ri += <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">if</span> isMaxInts(lnums[li:], rnums[ri:]) {</span><br><span class="line">	ans = <span class="built_in">append</span>(ans, lnums[li])</span><br><span class="line">	li += <span class="number">1</span></span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">	ans = <span class="built_in">append</span>(ans, rnums[ri])</span><br><span class="line">	ri += <span class="number">1</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> li &lt; ll {</span><br><span class="line">    ans = <span class="built_in">append</span>(ans, lnums[li:]...)</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> ri &lt; lr {</span><br><span class="line">    ans = <span class="built_in">append</span>(ans, rnums[ri:]...)</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> maxInts(lnums []<span class="typename">int</span>, rnums []<span class="typename">int</span>) []<span class="typename">int</span> {</span><br><span class="line">  i := <span class="number">0</span></span><br><span class="line">  ll, lr := <span class="built_in">len</span>(lnums), <span class="built_in">len</span>(rnums)</span><br><span class="line">  <span class="keyword">for</span> i &lt; ll &amp;&amp; i &lt; lr {</span><br><span class="line">    <span class="keyword">if</span> lnums[i] &gt; rnums[i] {</span><br><span class="line">      <span class="keyword">return</span> lnums</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> lnums[i] &lt; rnums[i] {</span><br><span class="line">      <span class="keyword">return</span> rnums</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> i == ll &amp;&amp; i == lr {</span><br><span class="line">    <span class="keyword">return</span> lnums</span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> i &lt; ll {</span><br><span class="line">    <span class="keyword">return</span> lnums</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> rnums</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> isMaxInts(lnums, rnums []<span class="typename">int</span>) <span class="typename">bool</span> {</span><br><span class="line">  i := <span class="number">0</span></span><br><span class="line">  ll, lr := <span class="built_in">len</span>(lnums), <span class="built_in">len</span>(rnums)</span><br><span class="line">  <span class="keyword">for</span> i &lt; ll &amp;&amp; i &lt; lr {</span><br><span class="line">    <span class="keyword">if</span> lnums[i] &gt; rnums[i] {</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> lnums[i] &lt; rnums[i] {</span><br><span class="line">      <span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> i == ll &amp;&amp; i == lr {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> i &lt; ll {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">true</span></span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">false</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> max(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &gt; b {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> min(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &lt; b {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(maxNumber([]<span class="typename">int</span>{<span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">5</span>}, []<span class="typename">int</span>{<span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">3</span>}, <span class="number">5</span>))</span><br><span class="line">  fmt.Println(maxNumber([]<span class="typename">int</span>{<span class="number">6</span>, <span class="number">7</span>}, []<span class="typename">int</span>{<span class="number">6</span>, <span class="number">0</span>, <span class="number">4</span>}, <span class="number">5</span>))</span><br><span class="line">  fmt.Println(maxNumber([]<span class="typename">int</span>{<span class="number">3</span>, <span class="number">9</span>}, []<span class="typename">int</span>{<span class="number">8</span>, <span class="number">9</span>}, <span class="number">3</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a id="ID-0445296d-ec63-4474-9730-50ef6a8a2f7e" name="ID-0445296d-ec63-4474-9730-50ef6a8a2f7e"></a><span class="section-number-2">5</span> <span class="done DONE">DONE</span> 去除重复字母</h2>
+<div class="outline-text-2" id="text-5">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-03 二 16:36]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> removeDuplicateLetters(s <span class="typename">string</span>) <span class="typename">string</span> {</span><br><span class="line">  sM := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">int</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i += <span class="number">1</span> {</span><br><span class="line">    sM[s[i:i+<span class="number">1</span>]] += <span class="number">1</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> ans <span class="typename">string</span></span><br><span class="line">  drop := <span class="built_in">len</span>(s) - <span class="built_in">len</span>(sM)</span><br><span class="line">  eM := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="typename">string</span>]<span class="typename">bool</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> eM[s[i:i+<span class="number">1</span>]] {</span><br><span class="line">      drop -= <span class="number">1</span></span><br><span class="line">      sM[s[i:i+<span class="number">1</span>]] -= <span class="number">1</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> drop &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(ans) &gt; <span class="number">0</span> &amp;&amp; s[i:i+<span class="number">1</span>] &lt;= ans[<span class="built_in">len</span>(ans)-<span class="number">1</span>:] &amp;&amp; sM[ans[<span class="built_in">len</span>(ans)-<span class="number">1</span>:]] &gt; <span class="number">1</span> {</span><br><span class="line"></span><br><span class="line">      drop -= <span class="number">1</span></span><br><span class="line">      sM[ans[<span class="built_in">len</span>(ans)-<span class="number">1</span>:]] -= <span class="number">1</span></span><br><span class="line">      eM[ans[<span class="built_in">len</span>(ans)-<span class="number">1</span>:]] = <span class="constant">false</span></span><br><span class="line">      ans = ans[:<span class="built_in">len</span>(ans)-<span class="number">1</span>]</span><br><span class="line">    }</span><br><span class="line">    ans += s[i : i+<span class="number">1</span>]</span><br><span class="line">    eM[s[i:i+<span class="number">1</span>]] = <span class="constant">true</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans[:<span class="built_in">len</span>(sM)]</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(removeDuplicateLetters(<span class="string">"bcabc"</span>))</span><br><span class="line">  fmt.Println(removeDuplicateLetters(<span class="string">"cbacdcbc"</span>))</span><br><span class="line">  fmt.Println(removeDuplicateLetters(<span class="string">"ccacbaba"</span>))</span><br><span class="line">  fmt.Println(removeDuplicateLetters(<span class="string">"rusrbofeggbbkyuyjsrzornpdguwzizqszpbicdquakqws"</span>))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><a id="ID-9fb4667d-b748-41be-b32a-47ce03f29a6d" name="ID-9fb4667d-b748-41be-b32a-47ce03f29a6d"></a><span class="section-number-2">6</span> <span class="done DONE">DONE</span> 跳跃游戏 II</h2>
+<div class="outline-text-2" id="text-6">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-03 二 17:17]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> jump(nums []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">2</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  dp := <span class="built_in">make</span>([]<span class="typename">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line">  dp[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(nums); i += <span class="number">1</span> {</span><br><span class="line">    dp[i] = <span class="built_in">len</span>(nums)</span><br><span class="line">    <span class="keyword">for</span> j := i-<span class="number">1</span>; j &gt;= <span class="number">0</span>; j -= <span class="number">1</span> {</span><br><span class="line">      <span class="keyword">if</span> nums[j] &gt;= i-j {</span><br><span class="line">	dp[i] = min(dp[i], dp[j]+<span class="number">1</span>)</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dp[<span class="built_in">len</span>(dp)-<span class="number">1</span>]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> min(a, b <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> a &lt; b {</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(jump([]<span class="typename">int</span>{<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><a id="ID-1bf6dc2b-3cca-4067-9e16-fd28fe51fe5b" name="ID-1bf6dc2b-3cca-4067-9e16-fd28fe51fe5b"></a><span class="section-number-2">7</span> <span class="done DONE">DONE</span> 设置交集大小至少为2</h2>
+<div class="outline-text-2" id="text-7">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-04 三 13:39]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> intersectionSizeTwo(intervals [][]<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  sort.Slice(intervals,</span><br><span class="line">    <span class="keyword">func</span>(i, j <span class="typename">int</span>) <span class="typename">bool</span> {</span><br><span class="line">      <span class="keyword">return</span> intervals[i][<span class="number">1</span>] &lt; intervals[j][<span class="number">1</span>] ||</span><br><span class="line">	intervals[i][<span class="number">1</span>] == intervals[j][<span class="number">1</span>] &amp;&amp; intervals[i][<span class="number">0</span>] &lt; intervals[j][<span class="number">0</span>]</span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">  new_intervals := <span class="built_in">make</span>([][]<span class="typename">int</span>, <span class="number">0</span>)</span><br><span class="line">  left := intervals[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">  right := intervals[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(intervals); i += <span class="number">1</span> {</span><br><span class="line">    interval := intervals[i]</span><br><span class="line">    <span class="keyword">if</span> interval[<span class="number">1</span>] == right {</span><br><span class="line">      left = interval[<span class="number">0</span>]</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> interval[<span class="number">0</span>] &gt; left {</span><br><span class="line">      new_intervals = <span class="built_in">append</span>(new_intervals, []<span class="typename">int</span>{left, right})</span><br><span class="line">      left = interval[<span class="number">0</span>]</span><br><span class="line">      right = interval[<span class="number">1</span>]</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  new_intervals = <span class="built_in">append</span>(new_intervals, []<span class="typename">int</span>{left, right})</span><br><span class="line">  fmt.Println(new_intervals)</span><br><span class="line"></span><br><span class="line">  first := new_intervals[<span class="number">0</span>][<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">  second := first + <span class="number">1</span></span><br><span class="line">  ans := <span class="number">2</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(new_intervals); i += <span class="number">1</span> {</span><br><span class="line">    interval := new_intervals[i]</span><br><span class="line">    <span class="keyword">if</span> interval[<span class="number">0</span>] &gt; second {</span><br><span class="line">      ans += <span class="number">2</span></span><br><span class="line">      first = interval[<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">      second = first + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> interval[<span class="number">0</span>] &gt; first {</span><br><span class="line">      ans += <span class="number">1</span></span><br><span class="line">      first = second</span><br><span class="line">      second = interval[<span class="number">1</span>]</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><a id="ID-f0d89d5e-e5d3-44f2-afd7-f4a3d12985ca" name="ID-f0d89d5e-e5d3-44f2-afd7-f4a3d12985ca"></a><span class="section-number-2">8</span> <span class="done DONE">DONE</span> Course Schedule III</h2>
+<div class="outline-text-2" id="text-8">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-04 三 17:02]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IntHeap []<span class="typename">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (h IntHeap) Len() <span class="typename">int</span>           { <span class="keyword">return</span> <span class="built_in">len</span>(h) }</span><br><span class="line"><span class="keyword">func</span> (h IntHeap) Less(i, j <span class="typename">int</span>) <span class="typename">bool</span> { <span class="keyword">return</span> h[i] &gt; h[j] }</span><br><span class="line"><span class="keyword">func</span> (h IntHeap) Swap(i, j <span class="typename">int</span>)      { h[i], h[j] = h[j], h[i] }</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (h *IntHeap) Push(x <span class="keyword">interface</span>{}) {</span><br><span class="line">  *h = <span class="built_in">append</span>(*h, x.(<span class="typename">int</span>))</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> (h *IntHeap) Pop() <span class="keyword">interface</span>{} {</span><br><span class="line">  old := *h</span><br><span class="line">  n := <span class="built_in">len</span>(old)</span><br><span class="line">  x := old[n-<span class="number">1</span>]</span><br><span class="line">  *h = old[<span class="number">0</span> : n-<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">return</span> x</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> scheduleCourse(courses [][]<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  sort.Slice(courses,</span><br><span class="line">    <span class="keyword">func</span>(i, j <span class="typename">int</span>) <span class="typename">bool</span> {</span><br><span class="line">      <span class="keyword">return</span> courses[i][<span class="number">1</span>] &lt; courses[j][<span class="number">1</span>] ||</span><br><span class="line">	courses[i][<span class="number">1</span>] == courses[j][<span class="number">1</span>] &amp;&amp; courses[i][<span class="number">0</span>] &lt; courses[j][<span class="number">0</span>]</span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">  h := &amp;IntHeap{}</span><br><span class="line">  heap.Init(h)</span><br><span class="line">  curTime := <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(courses); i += <span class="number">1</span> {</span><br><span class="line">    course := courses[i]</span><br><span class="line">    curTime += course[<span class="number">0</span>]</span><br><span class="line">    heap.Push(h, course[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> curTime &gt; course[<span class="number">1</span>] {</span><br><span class="line">      curTime -= heap.Pop(h).(<span class="typename">int</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> h.Len()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(scheduleCourse([][]<span class="typename">int</span>{</span><br><span class="line">    []<span class="typename">int</span>{<span class="number">100</span>, <span class="number">200</span>}, []<span class="typename">int</span>{<span class="number">200</span>, <span class="number">1300</span>},</span><br><span class="line">    []<span class="typename">int</span>{<span class="number">1000</span>, <span class="number">1250</span>}, []<span class="typename">int</span>{<span class="number">2000</span>, <span class="number">3200</span>}}))</span><br><span class="line"></span><br><span class="line">  fmt.Println(scheduleCourse([][]<span class="typename">int</span>{</span><br><span class="line">    []<span class="typename">int</span>{<span class="number">5</span>, <span class="number">5</span>}, []<span class="typename">int</span>{<span class="number">1</span>, <span class="number">2</span>}, []<span class="typename">int</span>{<span class="number">2</span>, <span class="number">6</span>}, []<span class="typename">int</span>{<span class="number">2</span>,<span class="number">7</span>}}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><a id="ID-2c1dd556-3fe4-455e-bdf7-80b91f123998" name="ID-2c1dd556-3fe4-455e-bdf7-80b91f123998"></a><span class="section-number-2">9</span> <span class="done DONE">DONE</span> Patching Array</h2>
+<div class="outline-text-2" id="text-9">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-06 五 17:44]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> minPatches(nums []<span class="typename">int</span>, n <span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  miss, ans, i := <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> miss &lt;= n {</span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="built_in">len</span>(nums) &amp;&amp; nums[i] &lt;= miss {</span><br><span class="line">      miss += nums[i]</span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      miss += miss</span><br><span class="line">      ans += <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><a id="ID-13caf955-d12f-4037-84b0-e3e499ed13bc" name="ID-13caf955-d12f-4037-84b0-e3e499ed13bc"></a><span class="section-number-2">10</span> <span class="done DONE">DONE</span> Couples Holding Hands</h2>
+<div class="outline-text-2" id="text-10">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-07 六 22:05]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> minSwapsCouples(row []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  n, ans := <span class="built_in">len</span>(row), <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; i += <span class="number">2</span> {</span><br><span class="line">    <span class="keyword">var</span> dest <span class="typename">int</span></span><br><span class="line">    <span class="keyword">if</span> row[i]%<span class="number">2</span> == <span class="number">0</span> {</span><br><span class="line">      dest = row[i] + <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      dest = row[i] - <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> row[i+<span class="number">1</span>] == dest {</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    ans += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j := i + <span class="number">2</span>; j &lt; n; j += <span class="number">1</span> {</span><br><span class="line">      <span class="keyword">if</span> row[j] == dest {</span><br><span class="line">	row[i+<span class="number">1</span>], row[j] = row[j], rows[i+<span class="number">1</span>]</span><br><span class="line">	<span class="keyword">break</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><a id="ID-1d946601-7f29-49f8-acf8-3eb346393a9f" name="ID-1d946601-7f29-49f8-acf8-3eb346393a9f"></a><span class="section-number-2">11</span> <span class="done DONE">DONE</span> IPO</h2>
+<div class="outline-text-2" id="text-11">
+
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-06 五 18:40]</span></span>
+</li>
+</ul>
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> findMaximizedCapital(k <span class="typename">int</span>, W <span class="typename">int</span>, Profits []<span class="typename">int</span>, Capital []<span class="typename">int</span>) <span class="typename">int</span> {</span><br><span class="line">  <span class="keyword">if</span> k &lt; <span class="number">1</span> || <span class="built_in">len</span>(Profits) &lt; <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">return</span> W</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  max_profit, index := -<span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(Profits); i += <span class="number">1</span> {</span><br><span class="line">    <span class="keyword">if</span> Capital[i] &lt;= W &amp;&amp; Profits[i] &gt; max_profit {</span><br><span class="line">      max_profit = Profits[i]</span><br><span class="line">      index = i</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> index &lt; <span class="number">0</span> {</span><br><span class="line">    <span class="keyword">return</span> W</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> findMaximizedCapital(k-<span class="number">1</span>, W+max_profit,</span><br><span class="line">    <span class="built_in">append</span>(Profits[<span class="number">0</span>:index], Profits[index+<span class="number">1</span>:]...),</span><br><span class="line">    <span class="built_in">append</span>(Capital[<span class="number">0</span>:index], Capital[index+<span class="number">1</span>:]...))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  fmt.Println(findMaximizedCapital(<span class="number">2</span>, <span class="number">0</span>, []<span class="typename">int</span>{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}, []<span class="typename">int</span>{<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>}))</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2018-04-25 Wed 22:17.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/basic-algorithm/" rel="next" title="基础算法和数据结构">
+                <i class="fa fa-chevron-left"></i> 基础算法和数据结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/03/go-string-rune/" rel="prev" title="Strings, bytes, runes and characters in Go">
+                Strings, bytes, runes and characters in Go <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+
+      
+      
+      
+        <h3 class="article-title" style="font-size: 20px;">相关文章</h3>
+        <ul class="related-posts">
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/03/17/basic-algorithm/">基础算法和数据结构</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/03/11/leetcode-dp/">Leetcode-dynamic-programming</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/07/16/leetcode-array/">Leetcode-array</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/07/16/leetcode-tree/">Leetcode-tree</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/03/21/leetcode/">Leetcode编程练习</a></li>
+        
+        </ul>
+      
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400" alt="Brantou">
+            
+              <p class="site-author-name" itemprop="name">Brantou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brantou" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/brantou89" target="_blank" title="Twitter" rel="external nofollow noopener noreferrer">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:brantou89@gmail.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/u/105d1cd5010c" target="_blank" title="Jianshu" rel="external nofollow noopener noreferrer">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>Jianshu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">1 DONE 分发饼干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-2"><span class="nav-text">2 DONE 分配糖果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-3"><span class="nav-text">3 DONE 通配符匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-4"><span class="nav-text">4 DONE 拼接最大数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-5"><span class="nav-text">5 DONE 去除重复字母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-6"><span class="nav-text">6 DONE 跳跃游戏 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-7"><span class="nav-text">7 DONE 设置交集大小至少为2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-8"><span class="nav-text">8 DONE Course Schedule III</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-9"><span class="nav-text">9 DONE Patching Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-10"><span class="nav-text">10 DONE Couples Holding Hands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-11"><span class="nav-text">11 DONE IPO</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brantou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io" rel="external nofollow noopener noreferrer">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer">NexT.Pisces</a> v5.1.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.github.com" rel="external nofollow noopener noreferrer">GitHub Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 89947, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 89947, xid: "2018/03/29/leetcode-greedy/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/89947/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

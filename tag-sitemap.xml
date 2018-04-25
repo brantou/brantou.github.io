@@ -9,7 +9,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/weekly/</loc>
+        <loc>https://brantou.github.io/tags/channel/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -58,7 +58,7 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/channel/</loc>
+        <loc>https://brantou.github.io/tags/weekly/</loc>
         <lastmod>2017-05-23T05:28:49.597Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -156,34 +156,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/python/</loc>
-        <lastmod>2017-08-31T15:13:54.547Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/jieba/</loc>
-        <lastmod>2017-08-31T15:13:54.547Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/wordcloud/</loc>
-        <lastmod>2017-08-31T15:13:54.547Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/leetcode/</loc>
-        <lastmod>2017-09-21T15:14:03.666Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/manual/</loc>
         <lastmod>2017-10-13T09:33:57.209Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -240,57 +212,8 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/babel/</loc>
-        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/active-code/</loc>
-        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/literate-programming/</loc>
-        <lastmod>2017-12-24T15:05:38.642Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/tool/</loc>
-        <lastmod>2018-01-17T07:20:27.980Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/tmux/</loc>
-        <lastmod>2018-01-17T07:20:27.980Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://brantou.github.io/tags/golang/</loc>
-        <lastmod>2018-01-29T10:23:54.005Z</lastmod>
+        <loc>https://brantou.github.io/tags/tools/</loc>
+        <lastmod>2018-03-01T14:33:01.127Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -303,8 +226,99 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/tools/</loc>
-        <lastmod>2018-03-01T14:33:01.127Z</lastmod>
+        <loc>https://brantou.github.io/tags/golang/</loc>
+        <lastmod>2018-04-08T10:24:10.051Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/go/</loc>
+        <lastmod>2018-04-08T10:24:10.051Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/leetcode/</loc>
+        <lastmod>2018-04-25T14:17:19.083Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tool/</loc>
+        <lastmod>2018-04-25T14:19:01.080Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tmux/</loc>
+        <lastmod>2018-04-25T14:19:01.080Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/python/</loc>
+        <lastmod>2018-04-25T14:19:29.023Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/jieba/</loc>
+        <lastmod>2018-04-25T14:19:29.023Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/wordcloud/</loc>
+        <lastmod>2018-04-25T14:19:29.023Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/tutorial/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/org-mode/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/babel/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/active-code/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/literate-programming/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://brantou.github.io/tags/dot/</loc>
+        <lastmod>2018-04-25T14:20:21.056Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

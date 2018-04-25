@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="Brantou的日常">
 <meta property="og:description" content="1234#!/bin/bashtmux new -s htop \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; htop&apos; \; splitw -d  \; selectp -t 1 \; detachtmux new -s top \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; top&apos; \; splitw -d  \; selectp -t 1 \; detach">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T07:20:27.980Z">
+<meta property="og:updated_time" content="2018-04-25T14:19:01.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tmux自动化">
 <meta name="twitter:description" content="1234#!/bin/bashtmux new -s htop \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; htop&apos; \; splitw -d  \; selectp -t 1 \; detachtmux new -s top \; neww -d &apos;cd ~/ &amp;amp;&amp;amp; top&apos; \; splitw -d  \; selectp -t 1 \; detach">
@@ -478,7 +478,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">servs = (<span class="string">"cashier"</span> <span class="string">"notify"</span> <span class="string">"magic"</span> <span class="string">"privacy"</span>)</span><br><span class="line">rootPath = <span class="variable">$GOPATH</span>/src/path-to-serv</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> serv <span class="keyword">in</span> <span class="string">"<span class="variable">${servs[@]}</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    tmux has-session -t <span class="variable">$serv</span></span><br><span class="line">    <span class="keyword">if</span> [ $? = <span class="number">0</span>]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">continue</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    servPath = <span class="variable">$rootPath</span><span class="string">"/"</span><span class="variable">$serv</span></span><br><span class="line">    tmux new <span class="operator">-s</span> <span class="variable">$serv</span> -n serv \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0</span> <span class="string">'cd '</span><span class="variable">$servPath</span><span class="string">' &amp;&amp; bee run'</span> \; \</span><br><span class="line">	 splitw <span class="operator">-d</span> \; selectp -t <span class="number">1</span> \; \</span><br><span class="line">	 send-keys -t <span class="variable">$serv</span>:<span class="number">0.1</span> <span class="string">'cd '</span><span class="variable">$servPath</span> C-m \; detach</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 </div>
 
-Last Updated 2018-01-17 Wed 15:20.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+Last Updated 2018-04-25 Wed 22:19.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -651,7 +651,7 @@ Last Updated 2018-01-17 Wed 15:20.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -673,7 +673,7 @@ Last Updated 2018-01-17 Wed 15:20.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

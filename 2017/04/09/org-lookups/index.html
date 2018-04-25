@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。">
+<meta name="description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。     &amp;lt;!&amp;#x2013; more &amp;#x201">
 <meta name="keywords" content="tutorial,org-mode,table,spreadsheet,lookup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Org-mode表查找功能的简明教程">
 <meta property="og:url" content="https://brantou.github.io/2017/04/09/org-lookups/index.html">
 <meta property="og:site_name" content="Brantou的日常">
-<meta property="og:description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。">
+<meta property="og:description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。     &amp;lt;!&amp;#x2013; more &amp;#x201">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-23T05:28:49.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Org-mode表查找功能的简明教程">
-<meta name="twitter:description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。">
+<meta name="twitter:description" content="原文Org tutorial on table lookup functions, 由 Jarmo Hurri  编辑，维护。本文只做学习之用。     序言   Org 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。 以下示例将有助于开始使用这些功能。     &amp;lt;!&amp;#x2013; more &amp;#x201">
 
 
 
@@ -464,22 +464,27 @@
 </p>
 </blockquote>
 
-<div id="outline-container-orga774b6e" class="outline-2">
-<h2 id="orga774b6e">序言</h2>
-<div class="outline-text-2" id="text-orga774b6e">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">序言</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 <code>Org</code> 提供三个不同的函数，用于在表中执行搜索和数据依赖的计算。
 这些函数可以用于实现数组关联，统计匹配单元格，结果排名或分组数据。
 以下示例将有助于开始使用这些功能。
 </p>
 
-<a id="more"></a>
+<div class="export">
+<p>
+&lt;!&#x2013; more &#x2013;&gt;
+</p>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-org247af72" class="outline-2">
-<h2 id="org247af72">具有唯一键的关联数组</h2>
-<div class="outline-text-2" id="text-org247af72">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">具有唯一键的关联数组</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 查找最直接的用法是将 <code>Org</code> 表的一部分视为关联数组：一个键可用于查找相应的值。
 </p>
@@ -497,7 +502,6 @@
 | Norwegian krone | nok          |  0.14 |
 | Swedish krona   | sek          |  0.12 |
 | US dollar       | usd          |  0.77 |
-
 </pre>
 
 <p>
@@ -505,6 +509,7 @@
 函数 <code>org-lookup-first</code> 的签名如下:
 </p>
 <div class="org-src-container">
+
 <figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line"><span class="list">(<span class="keyword">org-lookup-first</span> VAL S-LIST R-LIST <span class="keyword">&amp;optional</span> PREDICATE)</span></span><br></pre></td></tr></table></figure>
 </div>
 
@@ -526,14 +531,13 @@
 |  3.7. | fishing licenses | 1400 | nok      |   0.14 |   196. |
 |  3.7. | gasoline         |  340 |          | #ERROR | #ERROR |
  #+TBLFM: $5='(org-lookup-first $4 '(remote(rates,@2$2..@&gt;$2)) '(remote(rates,@2$3..@&gt;$3)))::$6=$5*$3
-
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgdf7056f" class="outline-2">
-<h2 id="orgdf7056f">多个匹配优先排序</h2>
-<div class="outline-text-2" id="text-orgdf7056f">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">多个匹配优先排序</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 教师的常见任务是从总分中分配考试成绩。
 这种分级的起点是具有等级边界的表。
@@ -548,7 +552,6 @@
 |          20 | C     |
 |          30 | B     |
 |          40 | A     |
-
 </pre>
 
 <p>
@@ -556,6 +559,7 @@
 函数 <code>org-lookup-last</code> 的签名与 <code>org-lookup-first</code> 的完全相同:
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-lookup-last VAL S-LIST R-LIST &#38;optional PREDICATE)</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -581,14 +585,13 @@
 | Z       |     5 | F     |
 | W       |    55 | A     |
  #+TBLFM: $3='(org-lookup-last $2 '(remote(grade-boundaries,@2$1..@&gt;$1)) '(remote(grade-boundaries,@2$2..@&gt;$2)) '&gt;=);L
-
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgcaf2b68" class="outline-2">
-<h2 id="orgcaf2b68">统计匹配单元格</h2>
-<div class="outline-text-2" id="text-orgcaf2b68">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">统计匹配单元格</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 函数 <code>org-lookup-all</code> 不能在表等式中使用自己，因为它返回值列表。
 但是，通过将函数与其他 <i>elisp</i> 函数相结合，可执行强大的查找任务。
@@ -599,6 +602,7 @@
 函数 <code>org-lookup-all</code> 的签名与其他两个查找函数的签名完全相同：
 </p>
 <div class="org-src-container">
+
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">(org-lookup-all VAL S-LIST R-LIST &#38;optional PREDICATE)</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -621,14 +625,13 @@
 |-------+---------+---------|
 | total | missing |       7 |
  #+TBLFM: @&gt;$3='(length(org-lookup-all "" '(@2$2..@-1$3) nil));E
-
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org0e5f1ce" class="outline-2">
-<h2 id="org0e5f1ce">排序结果</h2>
-<div class="outline-text-2" id="text-org0e5f1ce">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">排序结果</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 <code>org-lookup-all</code> 的另一个示例应用是结果的自动排序。
 在下表中，总数越大越好。 请注意，Elisp表达式还自动处理关联关系。
@@ -642,14 +645,13 @@
 | D     |    28 |    1 |
 | E     |     9 |    5 |
  #+TBLFM: $3='(+ 1 (length (org-lookup-all $2 '(@2$2..@&gt;$2) nil '&lt;)));N
-
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgd3d83a3" class="outline-2">
-<h2 id="orgd3d83a3">统计原始数据的频率</h2>
-<div class="outline-text-2" id="text-orgd3d83a3">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">统计原始数据的频率</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 数据分析中的常见情况是对可视化的原始数据值进行分类（分组）。
 通常是通过统计在特定范围内的出现频率来完成的。 可使用函数 <code>org-lookup-all</code> ，结合其他 <i>elisp</i> 函数来执行此任务。
@@ -672,7 +674,6 @@
 | G     |    1.0 |
 | H     |    2.3 |
 | I     |    2.8 |
-
 </pre>
 
 <p>
@@ -686,13 +687,11 @@
   (defun in-interval (bounds el)
     (and (&gt;= el (car bounds)) (&lt;= el (cadr bounds))))
 #+END_SRC
-
 </pre>
 
 <pre class="example">
 #+RESULTS:
 : in-interval
-
 </pre>
 
 <p>
@@ -707,13 +706,12 @@
 |           3 |         3.9 |         1 |
 |           4 |         4.9 |         2 |
  #+TBLFM: $3='(length (org-lookup-all '($1 $2) '(remote(raw-data,@2$2..@&gt;$2)) nil 'in-interval));N
-
 </pre>
 </div>
 </div>
-<div id="outline-container-org1c7bffa" class="outline-2">
-<h2 id="org1c7bffa">结论</h2>
-<div class="outline-text-2" id="text-org1c7bffa">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">结论</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Org 的 <code>lookup</code> 函数可用于大量不同的数据相关计算。
 例如，libreoffice或Excel用户熟悉的以下电子表格操作都可以使用它们来实现： <code>HLOOKUP</code> ， <code>VLOOKUP</code> ， <code>COUNTIF</code> ， <code>SUMIF</code> 和 <code>FREQUENCY</code> 。
@@ -721,7 +719,7 @@ Org 的 <code>lookup</code> 函数可用于大量不同的数据相关计算。
 </div>
 </div>
 
-Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 24.5.1 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 9.1.2)
+Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
@@ -789,13 +787,13 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/06/org-spreadsheet-intro/">Org-mode的电子表格的简明教程</a></li>
         
+            <li class="related-posts-item"><a href="https://brantou.github.io//2018/04/23/ob-dot-intro/">Dot Source Code Blocks in Org Mode</a></li>
+        
+            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
+        
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/06/12/go-source-code-block-in-org/">在Org-mode中执行Go代码</a></li>
         
             <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/14/org-column-view-tutorial/">Org-mode的列视图简明教程</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/04/08/org-spreadsheet-lisp-formulas/">在Org-mode的电子表格中使用elisp公式</a></li>
-        
-            <li class="related-posts-item"><a href="https://brantou.github.io//2017/08/30/ob-python-intro/">写Python的新方式</a></li>
         
         </ul>
       
@@ -915,7 +913,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -937,7 +935,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1005,7 +1003,7 @@ Last Updated 2017-05-23 Tue 13:28.<br>Render by <a href="https://github.com/Code
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#orga774b6e"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org247af72"><span class="nav-text">具有唯一键的关联数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdf7056f"><span class="nav-text">多个匹配优先排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgcaf2b68"><span class="nav-text">统计匹配单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0e5f1ce"><span class="nav-text">排序结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgd3d83a3"><span class="nav-text">统计原始数据的频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org1c7bffa"><span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-2"><span class="nav-text">具有唯一键的关联数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-3"><span class="nav-text">多个匹配优先排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-4"><span class="nav-text">统计匹配单元格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-5"><span class="nav-text">排序结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-6"><span class="nav-text">统计原始数据的频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-7"><span class="nav-text">结论</span></a></li></ol></div>
             
 
           </div>
