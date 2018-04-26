@@ -526,11 +526,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph {&#10; $input&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/test-dot.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/test-dot.png" alt="test-dot.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -538,11 +537,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;    main -&#62; parse -&#62; execute;&#10;    main -&#62; init;&#10;    main -&#62; cleanup;&#10;    execute -&#62; make_string;&#10;    execute -&#62; printf&#10;    init -&#62; make_string;&#10;    main -&#62; printf;&#10;    execute -&#62; compare;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/func-call.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/func-call.png" alt="func-call.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -550,11 +548,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;    size =&#34;4,4&#34;;&#10;    main [shape=box];   /* this is a comment */&#10;    main -&#62; parse [weight=8];&#10;    parse -&#62; execute;&#10;    main -&#62; init [style=dotted];&#10;    main -&#62; cleanup;&#10;    execute -&#62; { make_string; printf}&#10;    init -&#62; make_string;&#10;    edge [color=red];   // so is this&#10;    main -&#62; printf [style=bold,label=&#34;100 times&#34;];&#10;    make_string [label=&#34;make a\nstring&#34;];&#10;    node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];&#10;    execute -&#62; compare;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/fancy-func-call.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/fancy-func-call.png" alt="fancy-func-call.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -562,11 +559,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;     a -&#62; b -&#62; c;&#10;     b -&#62; d;&#10;     a [shape=polygon,sides=5,peripheries=3,color=lightblue,style=filled];&#10;     c [shape=polygon,sides=4,skew=.4,label=&#34;hello world&#34;]&#10;     d [shape=invtriangle];&#10;     e [shape=polygon,sides=4,distortion=.7];&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/shape-polygon.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/shape-polygon.png" alt="shape-polygon.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -574,11 +570,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph structs {&#10;node [shape=record];&#10;     struct1 [shape=record,label=&#34;&#60;f0&#62; left|&#60;f1&#62; mid\ dle|&#60;f2&#62; right&#34;];&#10;     struct2 [shape=record,label=&#34;&#60;f0&#62; one|&#60;f1&#62; two&#34;];&#10;     struct3 [shape=record,label=&#34;hello\nworld |{ b |{c|&#60;here&#62; d|e}| f}| g | h&#34;];&#10;     struct1 -&#62; struct2;&#10;     struct1 -&#62; struct3;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/shape-record.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/shape-record.png" alt="shape-record.png">
+</p>
 </div>
 
 
@@ -587,11 +582,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph html {&#10;      abc [shape=none, margin=0, label=&#60;&#10;  &#60;TABLE BORDER=&#34;0&#34; CELLBORDER=&#34;1&#34; CELLSPACING=&#34;0&#34; CELLPADDING=&#34;4&#34;&#62;&#10;  &#60;TR&#62;&#60;TD ROWSPAN=&#34;3&#34;&#62;&#60;FONT COLOR=&#34;red&#34;&#62;hello&#60;/FONT&#62;&#60;BR/&#62;world&#60;/TD&#62;&#10;      &#60;TD COLSPAN=&#34;3&#34;&#62;b&#60;/TD&#62;&#10;      &#60;TD ROWSPAN=&#34;3&#34; BGCOLOR=&#34;lightgrey&#34;&#62;g&#60;/TD&#62;&#10;      &#60;TD ROWSPAN=&#34;3&#34;&#62;h&#60;/TD&#62;&#10;  &#60;/TR&#62;&#10;  &#60;TR&#62;&#60;TD&#62;c&#60;/TD&#62;&#10;      &#60;TD PORT=&#34;here&#34;&#62;d&#60;/TD&#62;&#10;      &#60;TD&#62;e&#60;/TD&#62;&#10;  &#60;/TR&#62;&#10;  &#60;TR&#62;&#60;TD COLSPAN=&#34;3&#34;&#62;f&#60;/TD&#62;&#10;  &#60;/TR&#62;&#10;  &#60;/TABLE&#62;&#62;];&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/label-html.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/label-html.png" alt="label-html.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -599,11 +593,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph g {&#10;    node [shape = record,height=.1];&#10;    node0[label = &#34;&#60;f0&#62; |&#60;f1&#62; G|&#60;f2&#62; &#34;];&#10;    node1[label = &#34;&#60;f0&#62; |&#60;f1&#62; E|&#60;f2&#62; &#34;];&#10;    node2[label = &#34;&#60;f0&#62; |&#60;f1&#62; B|&#60;f2&#62; &#34;];&#10;    node3[label = &#34;&#60;f0&#62; |&#60;f1&#62; F|&#60;f2&#62; &#34;];&#10;    node4[label = &#34;&#60;f0&#62; |&#60;f1&#62; R|&#60;f2&#62; &#34;];&#10;    node5[label = &#34;&#60;f0&#62; |&#60;f1&#62; H|&#60;f2&#62; &#34;];&#10;    node6[label = &#34;&#60;f0&#62; |&#60;f1&#62; Y|&#60;f2&#62; &#34;];&#10;    node7[label = &#34;&#60;f0&#62; |&#60;f1&#62; A|&#60;f2&#62; &#34;];&#10;    node8[label = &#34;&#60;f0&#62; |&#60;f1&#62; C|&#60;f2&#62; &#34;];&#10;    &#34;node0&#34;:f2 -&#62; &#34;node4&#34;:f1;&#10;    &#34;node0&#34;:f0 -&#62; &#34;node1&#34;:f1;&#10;    &#34;node1&#34;:f0 -&#62; &#34;node2&#34;:f1;&#10;    &#34;node1&#34;:f2 -&#62; &#34;node3&#34;:f1;&#10;    &#34;node2&#34;:f2 -&#62; &#34;node8&#34;:f1;&#10;    &#34;node2&#34;:f0 -&#62; &#34;node7&#34;:f1;&#10;    &#34;node4&#34;:f2 -&#62; &#34;node6&#34;:f1;&#10;    &#34;node4&#34;:f0 -&#62; &#34;node5&#34;:f1;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/node-ports.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/node-ports.png" alt="node-ports.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -611,11 +604,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph structs {&#10;     node [shape=record];&#10;     struct1 [shape=record,label=&#34;&#60;f0&#62; left|&#60;f1&#62; middle|&#60;f2&#62; right&#34;];&#10;     struct2 [shape=record,label=&#34;&#60;f0&#62; one|&#60;f1&#62; two&#34;];&#10;     struct3 [shape=record,label=&#34;hello\nworld |{ b |{c|&#60;here&#62; d|e}| f}| g | h&#34;];&#10;     struct1:f1 -&#62; struct2:f0;&#10;     struct1:f2 -&#62; struct3:here;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/node-ports-struct.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/node-ports-struct.png" alt="node-ports-struct.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -623,11 +615,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;    nodesep=.05;&#10;    rankdir=LR;&#10;    node [shape=record,width=.1,height=.1];&#10;&#10;    node0 [label = &#34;&#60;f0&#62; |&#60;f1&#62; |&#60;f2&#62; |&#60;f3&#62; |&#60;f4&#62; |&#60;f5&#62; |&#60;f6&#62; | &#34;,height=2.5];&#10;    node [width = 1.5];&#10;    node1 [label = &#34;{&#60;n&#62; n14 | 719 |&#60;p&#62; }&#34;];&#10;    node2 [label = &#34;{&#60;n&#62; a1  | 805 |&#60;p&#62; }&#34;];&#10;    node3 [label = &#34;{&#60;n&#62; i9  | 718 |&#60;p&#62; }&#34;];&#10;    node4 [label = &#34;{&#60;n&#62; e5  | 989 |&#60;p&#62; }&#34;];&#10;    node5 [label = &#34;{&#60;n&#62; t20 | 959 |&#60;p&#62; }&#34;];&#10;    node6 [label = &#34;{&#60;n&#62; o15 | 794 |&#60;p&#62; }&#34;];&#10;    node7 [label = &#34;{&#60;n&#62; s19 | 659 |&#60;p&#62; }&#34;];&#10;&#10;    node0:f0 -&#62; node1:n;&#10;    node0:f1 -&#62; node2:n;&#10;    node0:f2 -&#62; node3:n;&#10;    node0:f5 -&#62; node4:n;&#10;    node0:f6 -&#62; node5:n;&#10;    node2:p -&#62; node6:n;&#10;    node4:p -&#62; node7:n;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/node-ports-hash.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/node-ports-hash.png" alt="node-ports-hash.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -635,11 +626,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;  subgraph cluster0 {&#10;    node [style=filled,color=white];&#10;    style=filled;&#10;    color=lightgrey;&#10;    a0 -&#62; a1 -&#62; a2 -&#62;a3;&#10;    label = &#34;process #1&#34;;&#10;  }&#10;&#10;  subgraph cluster1 {&#10;    node [style=filled];&#10;    b0 -&#62; b1 -&#62; b2 -&#62;b3;&#10;    label = &#34;process #1&#34;;&#10;    color=blue;&#10;  }&#10;&#10;  start -&#62; a0;&#10;  start -&#62; b0;&#10;  a1 -&#62; b3;&#10;  b2 -&#62; a3;&#10;  a3 -&#62; a0;&#10;  a3 -&#62; end;&#10;  b3 -&#62; end;&#10;&#10;  start [shape=Mdiamond];&#10;  end [shape=Msquare];&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/cluster.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/cluster.png" alt="cluster.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -647,11 +637,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;  size=&#34;8,6&#34;; ratio=fill; node[fontsize=24];&#10;&#10;  ciafan-&#62;computefan; fan-&#62;increment; computefan-&#62;fan; stringdup-&#62;fatal;&#10;  main-&#62;exit; main-&#62;interp_err; main-&#62;ciafan; main-&#62;fatal; main-&#62;malloc;&#10;  main-&#62;strcpy; main-&#62;getopt; main-&#62;init_index; main-&#62;strlen; fan-&#62;fatal;&#10;  fan-&#62;ref; fan-&#62;interp_err; ciafan-&#62;def; fan-&#62;free; computefan-&#62;stdprintf;&#10;  computefan-&#62;get_sym_fields; fan-&#62;exit; fan-&#62;malloc; increment-&#62;strcmp;&#10;  computefan-&#62;malloc; fan-&#62;stdsprintf; fan-&#62;strlen; computefan-&#62;strcmp;&#10;  computefan-&#62;realloc; computefan-&#62;strlen; debug-&#62;sfprintf; debug-&#62;strcat;&#10;  stringdup-&#62;malloc; fatal-&#62;sfprintf; stringdup-&#62;strcpy; stringdup-&#62;strlen;&#10;  fatal-&#62;exit;&#10;&#10;  subgraph &#34;cluster_error.h&#34; { label=&#34;error.h&#34;; interp_err; }&#10;&#10;  subgraph &#34;cluster_sfio.h&#34; { label=&#34;sfio.h&#34;; sfprintf; }&#10;&#10;  subgraph &#34;cluster_ciafan.c&#34; { label=&#34;ciafan.c&#34;; ciafan; computefan; increment; }&#10;&#10;  subgraph &#34;cluster_util.c&#34; { label=&#34;util.c&#34;; stringdup; fatal; debug; }&#10;&#10;  subgraph &#34;cluster_query.h&#34; { label=&#34;query.h&#34;; ref; def; }&#10;&#10;  subgraph &#34;cluster_field.h&#34; { get_sym_fields; }&#10;&#10;  subgraph &#34;cluster_stdio.h&#34; { label=&#34;stdio.h&#34;; stdprintf; stdsprintf; }&#10;&#10;  subgraph &#34;cluster_&#60;libc.a&#62;&#34; { getopt; }&#10;&#10;  subgraph &#34;cluster_stdlib.h&#34; { label=&#34;stdlib.h&#34;; exit; malloc; free; realloc; }&#10;&#10;  subgraph &#34;cluster_main.c&#34; { main; }&#10;&#10;  subgraph &#34;cluster_index.h&#34; { init_index; }&#10;&#10;  subgraph &#34;cluster_string.h&#34; { label=&#34;string.h&#34;; strcpy; strlen; strcmp; strcat; }&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/call-graph-with-labeled-cluster.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/call-graph-with-labeled-cluster.png" alt="call-graph-with-labeled-cluster.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -659,11 +648,10 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;  compound = true;&#10;  subgraph cluster0 {&#10;    a -&#62; b;&#10;    a -&#62; c;&#10;    b -&#62; d;&#10;    c -&#62; d;&#10;  }&#10;  subgraph cluster1 {&#10;    e -&#62; g;&#10;    e -&#62; f;&#10;  }&#10;  b -&#62; f [lhead=cluster1];&#10;  d -&#62; e;&#10;  c -&#62; g [ltail=cluster0,&#10;&#9;  lhead=cluster1];&#10;  c -&#62; e [ltail=cluster0];&#10;  d -&#62; h;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/graph-with-edges-cluster.png&rdquo; /&gt;
-</p>
 
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/graph-with-edges-cluster.png" alt="graph-with-edges-cluster.png">
+</p>
 </div>
 
 <div class="org-src-container">
@@ -671,16 +659,15 @@ a -&gt; b;
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph world {&#10;  size=&#34;7,7&#34;;&#10;  {rank=same; S8 S24 S1 S35 S30;}&#10;  {rank=same; T8 T24 T1 T35 T30;}&#10;  {rank=same; 43 37 36 10 2;}&#10;  {rank=same; 25 9 38 40 13 17 12 18;}&#10;  {rank=same; 26 42 11 3 33 19 39 14 16;}&#10;  {rank=same; 4 31 34 21 41 28 20;}&#10;  {rank=same; 27 5 22 32 29 15;}&#10;  {rank=same; 6 23;}&#10;  {rank=same; 7;}&#10;&#10;  S8 -&#62; 9;&#10;  S24 -&#62; 25;&#10;  S24 -&#62; 27;&#10;  S1 -&#62; 2;&#10;  S1 -&#62; 10;&#10;  S35 -&#62; 43;&#10;  S35 -&#62; 36;&#10;  S30 -&#62; 31;&#10;  S30 -&#62; 33;&#10;  9 -&#62; 42;&#10;  9 -&#62; T1;&#10;  25 -&#62; T1;&#10;  25 -&#62; 26;&#10;  27 -&#62; T24;&#10;  2 -&#62; {3 ; 16 ; 17 ; T1 ; 18}&#10;  10 -&#62; { 11 ; 14 ; T1 ; 13; 12;}&#10;  31 -&#62; T1;&#10;  31 -&#62; 32;&#10;  33 -&#62; T30;&#10;  33 -&#62; 34;&#10;  42 -&#62; 4;&#10;  26 -&#62; 4;&#10;  3 -&#62; 4;&#10;  16 -&#62; 15;&#10;  17 -&#62; 19;&#10;  18 -&#62; 29;&#10;  11 -&#62; 4;&#10;  14 -&#62; 15;&#10;  37 -&#62; {39 ; 41 ; 38 ; 40;}&#10;  13 -&#62; 19;&#10;  12 -&#62; 29;&#10;  43 -&#62; 38;&#10;  43 -&#62; 40;&#10;  36 -&#62; 19;&#10;  32 -&#62; 23;&#10;  34 -&#62; 29;&#10;  39 -&#62; 15;&#10;  41 -&#62; 29;&#10;  38 -&#62; 4;&#10;  40 -&#62; 19;&#10;  4 -&#62; 5;&#10;  19 -&#62; {21 ; 20 ; 28;}&#10;  5 -&#62; {6 ; T35 ; 23;}&#10;  21 -&#62; 22;&#10;  20 -&#62; 15;&#10;  28 -&#62; 29;&#10;  6 -&#62; 7;&#10;  15 -&#62; T1;&#10;  22 -&#62; T35;&#10;  22 -&#62; 23;&#10;  29 -&#62; T30;&#10;  7 -&#62; T8;&#10;  23 -&#62; T24;&#10;  23 -&#62; T1;&#10;}</span><br></pre></td></tr></table></figure>
 </div>
 
-<div class="export">
-<p>
-&lt;img src="/images/ob-dot-intro/graph-with-edges-cluster.png&rdquo; /&gt;
+
+<div class="figure">
+<p><img src="https://brantou.github.io/images/ob-dot-intro/graph-with-edges-cluster.png" alt="graph-with-edges-cluster.png">
 </p>
-
 </div>
 </div>
 </div>
 
-Last Updated 2018-04-26 Thu 11:49.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+Last Updated 2018-04-26 Thu 13:52.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
           
         
@@ -3917,177 +3904,6 @@ Last Updated 2018-04-25 Wed 22:19.<br>Render by <a href="https://github.com/Code
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/go-dlv-try/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brantou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brantou的日常">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/go-dlv-try/" itemprop="url">go-dlv试用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
-                2017-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术积累/" itemprop="url" rel="index">
-                    <span itemprop="name">技术积累</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/09/go-dlv-try/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/go-dlv-try/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a id="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3" name="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3"></a><span class="section-number-2">1</span> 源码</h2>
-<div class="outline-text-2" id="text-1">
-
-<div class="org-src-container">
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"sync"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> dostuff(wg *sync.WaitGroup, i <span class="typename">int</span>) {</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  time.Sleep(<span class="number">300</span> * time.Second)</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  wg.Done()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  workers := <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  wg.Add(workers)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; workers; i++ {</span><br><span class="line">    <span class="keyword">go</span> dostuff(&amp;wg, i)</span><br><span class="line">  }</span><br><span class="line">  wg.Wait()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</div>
-</div>
-</div>
-
-Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-      
-
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -4230,6 +4046,177 @@ Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/Code
 </div>
 
 Last Updated 2017-12-11 Mon 13:54.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+      
+
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brantou.github.io/2017/12/09/go-dlv-try/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brantou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/26197076?v=3&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brantou的日常">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/09/go-dlv-try/" itemprop="url">go-dlv试用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T00:00:00+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术积累/" itemprop="url" rel="index">
+                    <span itemprop="name">技术积累</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/09/go-dlv-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/09/go-dlv-try/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a id="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3" name="ID-1c90dda7-ff8f-43e7-9934-0d7c67e1c0c3"></a><span class="section-number-2">1</span> 源码</h2>
+<div class="outline-text-2" id="text-1">
+
+<div class="org-src-container">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"fmt"</span></span><br><span class="line">  <span class="string">"sync"</span></span><br><span class="line">  <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> dostuff(wg *sync.WaitGroup, i <span class="typename">int</span>) {</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  time.Sleep(<span class="number">300</span> * time.Second)</span><br><span class="line">  fmt.Printf(<span class="string">"goroutine id %d\n"</span>, i)</span><br><span class="line">  wg.Done()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() {</span><br><span class="line">  <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">  workers := <span class="number">10</span></span><br><span class="line"></span><br><span class="line">  wg.Add(workers)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; workers; i++ {</span><br><span class="line">    <span class="keyword">go</span> dostuff(&amp;wg, i)</span><br><span class="line">  }</span><br><span class="line">  wg.Wait()</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+Last Updated 2017-12-10 Sun 16:57.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
           
         
