@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Dot Source Code Blocks in Org Mode]]></title>
     <url>%2F2018%2F04%2F23%2Fob-dot-intro%2F</url>
-    <content type="text"><![CDATA[1 简介 Dot 是 Graphviz 开源图形可视化软件中的六个布局程序之一，由 AT＆T 创建。 Graphviz 布局程序采用简单的文本图形描述并以各种格式制作有用的图表。 Dot 代码块默认调用 dot 布局程序，但可以配置为调用任何其他五个 Graphviz 布局程序。 图形可视化在很多技术领域都有应用，它常常用于探索大型数据集。 Org 模式中的典型用法是将点源代码块链接到另一种语言的源代码块，该代码块负责将数据表转换为其中一种 Graphviz 布局语言的源代码。 2 配置 (org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((dot . t))) ; this line activates dot 3 使用示例 a Hello b World (mapcar #&#39;(lambda (x)&#10;&#9; (princ (format &#34;%s [label =\&#34;%s\&#34;, shape = \&#34;box\&#34;];\n&#34;&#10;&#9;&#9;&#9; (first x) (second x)))) table)&#10;(princ (format &#34;%s -&#62; %s;\n&#34; (first (first table)) (first (second table)))) a [label ="Hello", shape = "box"]; b [label ="World", shape = "box"]; a -&gt; b; digraph {&#10; $input&#10;} Last Updated 2018-04-25 Wed 22:20.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 8.2.10)]]></content>
+    <content type="text"><![CDATA[1 简介 Dot 是 Graphviz 开源图形可视化软件中的六个布局程序之一，由 AT＆T 创建。 Graphviz 布局程序采用简单的文本图形描述并以各种格式制作有用的图表。 Dot 代码块默认调用 dot 布局程序，但可以配置为调用任何其他五个 Graphviz 布局程序。 图形可视化在很多技术领域都有应用，它常常用于探索大型数据集。 Org 模式中的典型用法是将点源代码块链接到另一种语言的源代码块，该代码块负责将数据表转换为其中一种 Graphviz 布局语言的源代码。 2 配置 (org-babel-do-load-languages&#10; &#39;org-babel-load-languages&#10; &#39;((dot . t))) ; this line activates dot 3 使用示例 a Hello b World (mapcar #&#39;(lambda (x)&#10;&#9; (princ (format &#34;%s [label =\&#34;%s\&#34;, shape = \&#34;box\&#34;];\n&#34;&#10;&#9;&#9;&#9; (first x) (second x)))) table)&#10;(princ (format &#34;%s -&#62; %s;\n&#34; (first (first table)) (first (second table)))) a [label ="Hello", shape = "box"]; b [label ="World", shape = "box"]; a -&gt; b; digraph {&#10; $input&#10;} digraph G {&#10; main -&#62; parse -&#62; execute;&#10; main -&#62; init;&#10; main -&#62; cleanup;&#10; execute -&#62; make_string;&#10; execute -&#62; printf&#10; init -&#62; make_string;&#10; main -&#62; printf;&#10; execute -&#62; compare;&#10;} digraph G {&#10; size =&#34;4,4&#34;;&#10; main [shape=box]; /* this is a comment */&#10; main -&#62; parse [weight=8];&#10; parse -&#62; execute;&#10; main -&#62; init [style=dotted];&#10; main -&#62; cleanup;&#10; execute -&#62; { make_string; printf}&#10; init -&#62; make_string;&#10; edge [color=red]; // so is this&#10; main -&#62; printf [style=bold,label=&#34;100 times&#34;];&#10; make_string [label=&#34;make a\nstring&#34;];&#10; node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];&#10; execute -&#62; compare;&#10;} digraph G {&#10; a -&#62; b -&#62; c;&#10; b -&#62; d;&#10; a [shape=polygon,sides=5,peripheries=3,color=lightblue,style=filled];&#10; c [shape=polygon,sides=4,skew=.4,label=&#34;hello world&#34;]&#10; d [shape=invtriangle];&#10; e [shape=polygon,sides=4,distortion=.7];&#10;} digraph structs {&#10;node [shape=record];&#10; struct1 [shape=record,label=&#34;&#60;f0&#62; left|&#60;f1&#62; mid\ dle|&#60;f2&#62; right&#34;];&#10; struct2 [shape=record,label=&#34;&#60;f0&#62; one|&#60;f1&#62; two&#34;];&#10; struct3 [shape=record,label=&#34;hello\nworld |{ b |{c|&#60;here&#62; d|e}| f}| g | h&#34;];&#10; struct1 -&#62; struct2;&#10; struct1 -&#62; struct3;&#10;} digraph html {&#10; abc [shape=none, margin=0, label=&#60;&#10; &#60;TABLE BORDER=&#34;0&#34; CELLBORDER=&#34;1&#34; CELLSPACING=&#34;0&#34; CELLPADDING=&#34;4&#34;&#62;&#10; &#60;TR&#62;&#60;TD ROWSPAN=&#34;3&#34;&#62;&#60;FONT COLOR=&#34;red&#34;&#62;hello&#60;/FONT&#62;&#60;BR/&#62;world&#60;/TD&#62;&#10; &#60;TD COLSPAN=&#34;3&#34;&#62;b&#60;/TD&#62;&#10; &#60;TD ROWSPAN=&#34;3&#34; BGCOLOR=&#34;lightgrey&#34;&#62;g&#60;/TD&#62;&#10; &#60;TD ROWSPAN=&#34;3&#34;&#62;h&#60;/TD&#62;&#10; &#60;/TR&#62;&#10; &#60;TR&#62;&#60;TD&#62;c&#60;/TD&#62;&#10; &#60;TD PORT=&#34;here&#34;&#62;d&#60;/TD&#62;&#10; &#60;TD&#62;e&#60;/TD&#62;&#10; &#60;/TR&#62;&#10; &#60;TR&#62;&#60;TD COLSPAN=&#34;3&#34;&#62;f&#60;/TD&#62;&#10; &#60;/TR&#62;&#10; &#60;/TABLE&#62;&#62;];&#10;} digraph g {&#10; node [shape = record,height=.1];&#10; node0[label = &#34;&#60;f0&#62; |&#60;f1&#62; G|&#60;f2&#62; &#34;];&#10; node1[label = &#34;&#60;f0&#62; |&#60;f1&#62; E|&#60;f2&#62; &#34;];&#10; node2[label = &#34;&#60;f0&#62; |&#60;f1&#62; B|&#60;f2&#62; &#34;];&#10; node3[label = &#34;&#60;f0&#62; |&#60;f1&#62; F|&#60;f2&#62; &#34;];&#10; node4[label = &#34;&#60;f0&#62; |&#60;f1&#62; R|&#60;f2&#62; &#34;];&#10; node5[label = &#34;&#60;f0&#62; |&#60;f1&#62; H|&#60;f2&#62; &#34;];&#10; node6[label = &#34;&#60;f0&#62; |&#60;f1&#62; Y|&#60;f2&#62; &#34;];&#10; node7[label = &#34;&#60;f0&#62; |&#60;f1&#62; A|&#60;f2&#62; &#34;];&#10; node8[label = &#34;&#60;f0&#62; |&#60;f1&#62; C|&#60;f2&#62; &#34;];&#10; &#34;node0&#34;:f2 -&#62; &#34;node4&#34;:f1;&#10; &#34;node0&#34;:f0 -&#62; &#34;node1&#34;:f1;&#10; &#34;node1&#34;:f0 -&#62; &#34;node2&#34;:f1;&#10; &#34;node1&#34;:f2 -&#62; &#34;node3&#34;:f1;&#10; &#34;node2&#34;:f2 -&#62; &#34;node8&#34;:f1;&#10; &#34;node2&#34;:f0 -&#62; &#34;node7&#34;:f1;&#10; &#34;node4&#34;:f2 -&#62; &#34;node6&#34;:f1;&#10; &#34;node4&#34;:f0 -&#62; &#34;node5&#34;:f1;&#10;} digraph structs {&#10; node [shape=record];&#10; struct1 [shape=record,label=&#34;&#60;f0&#62; left|&#60;f1&#62; middle|&#60;f2&#62; right&#34;];&#10; struct2 [shape=record,label=&#34;&#60;f0&#62; one|&#60;f1&#62; two&#34;];&#10; struct3 [shape=record,label=&#34;hello\nworld |{ b |{c|&#60;here&#62; d|e}| f}| g | h&#34;];&#10; struct1:f1 -&#62; struct2:f0;&#10; struct1:f2 -&#62; struct3:here;&#10;} digraph G {&#10; nodesep=.05;&#10; rankdir=LR;&#10; node [shape=record,width=.1,height=.1];&#10;&#10; node0 [label = &#34;&#60;f0&#62; |&#60;f1&#62; |&#60;f2&#62; |&#60;f3&#62; |&#60;f4&#62; |&#60;f5&#62; |&#60;f6&#62; | &#34;,height=2.5];&#10; node [width = 1.5];&#10; node1 [label = &#34;{&#60;n&#62; n14 | 719 |&#60;p&#62; }&#34;];&#10; node2 [label = &#34;{&#60;n&#62; a1 | 805 |&#60;p&#62; }&#34;];&#10; node3 [label = &#34;{&#60;n&#62; i9 | 718 |&#60;p&#62; }&#34;];&#10; node4 [label = &#34;{&#60;n&#62; e5 | 989 |&#60;p&#62; }&#34;];&#10; node5 [label = &#34;{&#60;n&#62; t20 | 959 |&#60;p&#62; }&#34;];&#10; node6 [label = &#34;{&#60;n&#62; o15 | 794 |&#60;p&#62; }&#34;];&#10; node7 [label = &#34;{&#60;n&#62; s19 | 659 |&#60;p&#62; }&#34;];&#10;&#10; node0:f0 -&#62; node1:n;&#10; node0:f1 -&#62; node2:n;&#10; node0:f2 -&#62; node3:n;&#10; node0:f5 -&#62; node4:n;&#10; node0:f6 -&#62; node5:n;&#10; node2:p -&#62; node6:n;&#10; node4:p -&#62; node7:n;&#10;} digraph G {&#10; subgraph cluster0 {&#10; node [style=filled,color=white];&#10; style=filled;&#10; color=lightgrey;&#10; a0 -&#62; a1 -&#62; a2 -&#62;a3;&#10; label = &#34;process #1&#34;;&#10; }&#10;&#10; subgraph cluster1 {&#10; node [style=filled];&#10; b0 -&#62; b1 -&#62; b2 -&#62;b3;&#10; label = &#34;process #1&#34;;&#10; color=blue;&#10; }&#10;&#10; start -&#62; a0;&#10; start -&#62; b0;&#10; a1 -&#62; b3;&#10; b2 -&#62; a3;&#10; a3 -&#62; a0;&#10; a3 -&#62; end;&#10; b3 -&#62; end;&#10;&#10; start [shape=Mdiamond];&#10; end [shape=Msquare];&#10;} digraph G {&#10; size=&#34;8,6&#34;; ratio=fill; node[fontsize=24];&#10;&#10; ciafan-&#62;computefan; fan-&#62;increment; computefan-&#62;fan; stringdup-&#62;fatal;&#10; main-&#62;exit; main-&#62;interp_err; main-&#62;ciafan; main-&#62;fatal; main-&#62;malloc;&#10; main-&#62;strcpy; main-&#62;getopt; main-&#62;init_index; main-&#62;strlen; fan-&#62;fatal;&#10; fan-&#62;ref; fan-&#62;interp_err; ciafan-&#62;def; fan-&#62;free; computefan-&#62;stdprintf;&#10; computefan-&#62;get_sym_fields; fan-&#62;exit; fan-&#62;malloc; increment-&#62;strcmp;&#10; computefan-&#62;malloc; fan-&#62;stdsprintf; fan-&#62;strlen; computefan-&#62;strcmp;&#10; computefan-&#62;realloc; computefan-&#62;strlen; debug-&#62;sfprintf; debug-&#62;strcat;&#10; stringdup-&#62;malloc; fatal-&#62;sfprintf; stringdup-&#62;strcpy; stringdup-&#62;strlen;&#10; fatal-&#62;exit;&#10;&#10; subgraph &#34;cluster_error.h&#34; { label=&#34;error.h&#34;; interp_err; }&#10;&#10; subgraph &#34;cluster_sfio.h&#34; { label=&#34;sfio.h&#34;; sfprintf; }&#10;&#10; subgraph &#34;cluster_ciafan.c&#34; { label=&#34;ciafan.c&#34;; ciafan; computefan; increment; }&#10;&#10; subgraph &#34;cluster_util.c&#34; { label=&#34;util.c&#34;; stringdup; fatal; debug; }&#10;&#10; subgraph &#34;cluster_query.h&#34; { label=&#34;query.h&#34;; ref; def; }&#10;&#10; subgraph &#34;cluster_field.h&#34; { get_sym_fields; }&#10;&#10; subgraph &#34;cluster_stdio.h&#34; { label=&#34;stdio.h&#34;; stdprintf; stdsprintf; }&#10;&#10; subgraph &#34;cluster_&#60;libc.a&#62;&#34; { getopt; }&#10;&#10; subgraph &#34;cluster_stdlib.h&#34; { label=&#34;stdlib.h&#34;; exit; malloc; free; realloc; }&#10;&#10; subgraph &#34;cluster_main.c&#34; { main; }&#10;&#10; subgraph &#34;cluster_index.h&#34; { init_index; }&#10;&#10; subgraph &#34;cluster_string.h&#34; { label=&#34;string.h&#34;; strcpy; strlen; strcmp; strcat; }&#10;} digraph G {&#10; compound = true;&#10; subgraph cluster0 {&#10; a -&#62; b;&#10; a -&#62; c;&#10; b -&#62; d;&#10; c -&#62; d;&#10; }&#10; subgraph cluster1 {&#10; e -&#62; g;&#10; e -&#62; f;&#10; }&#10; b -&#62; f [lhead=cluster1];&#10; d -&#62; e;&#10; c -&#62; g [ltail=cluster0,&#10;&#9; lhead=cluster1];&#10; c -&#62; e [ltail=cluster0];&#10; d -&#62; h;&#10;} digraph world {&#10; size=&#34;7,7&#34;;&#10; {rank=same; S8 S24 S1 S35 S30;}&#10; {rank=same; T8 T24 T1 T35 T30;}&#10; {rank=same; 43 37 36 10 2;}&#10; {rank=same; 25 9 38 40 13 17 12 18;}&#10; {rank=same; 26 42 11 3 33 19 39 14 16;}&#10; {rank=same; 4 31 34 21 41 28 20;}&#10; {rank=same; 27 5 22 32 29 15;}&#10; {rank=same; 6 23;}&#10; {rank=same; 7;}&#10;&#10; S8 -&#62; 9;&#10; S24 -&#62; 25;&#10; S24 -&#62; 27;&#10; S1 -&#62; 2;&#10; S1 -&#62; 10;&#10; S35 -&#62; 43;&#10; S35 -&#62; 36;&#10; S30 -&#62; 31;&#10; S30 -&#62; 33;&#10; 9 -&#62; 42;&#10; 9 -&#62; T1;&#10; 25 -&#62; T1;&#10; 25 -&#62; 26;&#10; 27 -&#62; T24;&#10; 2 -&#62; {3 ; 16 ; 17 ; T1 ; 18}&#10; 10 -&#62; { 11 ; 14 ; T1 ; 13; 12;}&#10; 31 -&#62; T1;&#10; 31 -&#62; 32;&#10; 33 -&#62; T30;&#10; 33 -&#62; 34;&#10; 42 -&#62; 4;&#10; 26 -&#62; 4;&#10; 3 -&#62; 4;&#10; 16 -&#62; 15;&#10; 17 -&#62; 19;&#10; 18 -&#62; 29;&#10; 11 -&#62; 4;&#10; 14 -&#62; 15;&#10; 37 -&#62; {39 ; 41 ; 38 ; 40;}&#10; 13 -&#62; 19;&#10; 12 -&#62; 29;&#10; 43 -&#62; 38;&#10; 43 -&#62; 40;&#10; 36 -&#62; 19;&#10; 32 -&#62; 23;&#10; 34 -&#62; 29;&#10; 39 -&#62; 15;&#10; 41 -&#62; 29;&#10; 38 -&#62; 4;&#10; 40 -&#62; 19;&#10; 4 -&#62; 5;&#10; 19 -&#62; {21 ; 20 ; 28;}&#10; 5 -&#62; {6 ; T35 ; 23;}&#10; 21 -&#62; 22;&#10; 20 -&#62; 15;&#10; 28 -&#62; 29;&#10; 6 -&#62; 7;&#10; 15 -&#62; T1;&#10; 22 -&#62; T35;&#10; 22 -&#62; 23;&#10; 29 -&#62; T30;&#10; 7 -&#62; T8;&#10; 23 -&#62; T24;&#10; 23 -&#62; T1;&#10;} Last Updated 2018-04-26 Thu 11:30.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 8.2.10)]]></content>
       <categories>
         <category>org-mode</category>
       </categories>
@@ -69,8 +69,8 @@
         <category>技术积累</category>
       </categories>
       <tags>
-        <tag>tools</tag>
         <tag>elisp</tag>
+        <tag>tools</tag>
       </tags>
   </entry>
   <entry>
@@ -97,20 +97,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[GDB-UI试用]]></title>
-    <url>%2F2017%2F12%2F09%2Fgdb-ui-just-try%2F</url>
-    <content type="text"><![CDATA[1 源码 12345678910111213141516171819typedef struct { float a; float b;} substruct;struct { int i; substruct r;} c;void main() { int n = 4; int m[10] = {0,1,4,9,16,25,36,49,64,81}; n = 5; myproc(n); c.i = 1; c.r.a = 0.5; c.r.b = 0.25;} 123456void myproc(n){ int p; p = 2*n; printf("Two times %d is %d\n", n, p);} 用 -g 选项编译程序： 12cc -g -c myproc.ccc -g -o myprog myprog.c myproc.o 2 使用 参见在Emacs中使用gdb调试程序。 Last Updated 2017-12-11 Mon 13:54.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 8.2.10)]]></content>
-      <categories>
-        <category>技术积累</category>
-      </categories>
-      <tags>
-        <tag>gdb</tag>
-        <tag>emacs</tag>
-        <tag>debug</tag>
-        <tag>tools</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[go-dlv试用]]></title>
     <url>%2F2017%2F12%2F09%2Fgo-dlv-try%2F</url>
     <content type="text"><![CDATA[1 源码 12345678910111213141516171819202122232425package mainimport ( "fmt" "sync" "time")func dostuff(wg *sync.WaitGroup, i int) { fmt.Printf("goroutine id %d\n", i) time.Sleep(300 * time.Second) fmt.Printf("goroutine id %d\n", i) wg.Done()}func main() { var wg sync.WaitGroup workers := 10 wg.Add(workers) for i := 0; i &lt; workers; i++ { go dostuff(&amp;wg, i) } wg.Wait()} Last Updated 2017-12-10 Sun 16:57.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 8.2.10)]]></content>
@@ -118,11 +104,25 @@
         <category>技术积累</category>
       </categories>
       <tags>
+        <tag>golang</tag>
+        <tag>tools</tag>
         <tag>emacs</tag>
         <tag>debug</tag>
-        <tag>tools</tag>
-        <tag>golang</tag>
         <tag>dlv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GDB-UI试用]]></title>
+    <url>%2F2017%2F12%2F09%2Fgdb-ui-just-try%2F</url>
+    <content type="text"><![CDATA[1 源码 12345678910111213141516171819typedef struct { float a; float b;} substruct;struct { int i; substruct r;} c;void main() { int n = 4; int m[10] = {0,1,4,9,16,25,36,49,64,81}; n = 5; myproc(n); c.i = 1; c.r.a = 0.5; c.r.b = 0.25;} 123456void myproc(n){ int p; p = 2*n; printf("Two times %d is %d\n", n, p);} 用 -g 选项编译程序： 12cc -g -c myproc.ccc -g -o myprog myprog.c myproc.o 2 使用 参见在Emacs中使用gdb调试程序。 Last Updated 2017-12-11 Mon 13:54.Render by hexo-renderer-org with Emacs 25.3.2 (Org mode 8.2.10)]]></content>
+      <categories>
+        <category>技术积累</category>
+      </categories>
+      <tags>
+        <tag>tools</tag>
+        <tag>gdb</tag>
+        <tag>emacs</tag>
+        <tag>debug</tag>
       </tags>
   </entry>
   <entry>
@@ -133,10 +133,10 @@
         <category>emacs-plugin</category>
       </categories>
       <tags>
-        <tag>tools</tag>
         <tag>golang</tag>
         <tag>emacs-plugin</tag>
         <tag>elisp</tag>
+        <tag>tools</tag>
       </tags>
   </entry>
   <entry>

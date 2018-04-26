@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brantou.github.io/"/>
-  <updated>2018-04-25T14:20:21.056Z</updated>
+  <updated>2018-04-26T03:30:03.831Z</updated>
   <id>https://brantou.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://brantou.github.io/2018/04/23/ob-dot-intro/"/>
     <id>https://brantou.github.io/2018/04/23/ob-dot-intro/</id>
     <published>2018-04-22T16:00:00.000Z</published>
-    <updated>2018-04-25T14:20:21.056Z</updated>
+    <updated>2018-04-26T03:30:03.831Z</updated>
     
     <summary type="html">
     
@@ -186,9 +186,9 @@
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
       <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
     
   </entry>
   
@@ -251,39 +251,6 @@
   </entry>
   
   <entry>
-    <title>GDB-UI试用</title>
-    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
-    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
-    <published>2017-12-08T16:00:00.000Z</published>
-    <updated>2017-12-11T05:54:58.642Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot; name=&quot;ID-bdb82cb2-9f8
-      
-    
-    </summary>
-    
-      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
-    
-    
-      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
-    
-      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
-    
-      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
-    
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
-  </entry>
-  
-  <entry>
     <title>go-dlv试用</title>
     <link href="https://brantou.github.io/2017/12/09/go-dlv-try/"/>
     <id>https://brantou.github.io/2017/12/09/go-dlv-try/</id>
@@ -306,15 +273,48 @@
       <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
     
     
+      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
+    
       <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
     
       <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
+      <category term="dlv" scheme="https://brantou.github.io/tags/dlv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GDB-UI试用</title>
+    <link href="https://brantou.github.io/2017/12/09/gdb-ui-just-try/"/>
+    <id>https://brantou.github.io/2017/12/09/gdb-ui-just-try/</id>
+    <published>2017-12-08T16:00:00.000Z</published>
+    <updated>2017-12-11T05:54:58.642Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;a id=&quot;ID-bdb82cb2-9f8f-4fe4-be8f-ea5afb0a9db6&quot; name=&quot;ID-bdb82cb2-9f8
+      
+    
+    </summary>
+    
+      <category term="技术积累" scheme="https://brantou.github.io/categories/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/"/>
+    
+    
       <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
     
-      <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
+      <category term="gdb" scheme="https://brantou.github.io/tags/gdb/"/>
     
-      <category term="dlv" scheme="https://brantou.github.io/tags/dlv/"/>
+      <category term="emacs" scheme="https://brantou.github.io/tags/emacs/"/>
+    
+      <category term="debug" scheme="https://brantou.github.io/tags/debug/"/>
     
   </entry>
   
@@ -340,13 +340,13 @@
       <category term="emacs-plugin" scheme="https://brantou.github.io/categories/emacs-plugin/"/>
     
     
-      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
-    
       <category term="golang" scheme="https://brantou.github.io/tags/golang/"/>
     
       <category term="emacs-plugin" scheme="https://brantou.github.io/tags/emacs-plugin/"/>
     
       <category term="elisp" scheme="https://brantou.github.io/tags/elisp/"/>
+    
+      <category term="tools" scheme="https://brantou.github.io/tags/tools/"/>
     
   </entry>
   
