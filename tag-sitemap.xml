@@ -240,13 +240,6 @@
     </url>
 
     <url>
-        <loc>https://brantou.github.io/tags/leetcode/</loc>
-        <lastmod>2018-04-25T14:17:19.083Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://brantou.github.io/tags/tool/</loc>
         <lastmod>2018-04-25T14:19:01.080Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -282,43 +275,50 @@
     </url>
 
     <url>
+        <loc>https://brantou.github.io/tags/leetcode/</loc>
+        <lastmod>2018-04-26T10:42:02.962Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://brantou.github.io/tags/tutorial/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/org-mode/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/babel/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/active-code/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/literate-programming/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://brantou.github.io/tags/dot/</loc>
-        <lastmod>2018-04-26T05:52:09.994Z</lastmod>
+        <lastmod>2018-04-26T10:43:54.206Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

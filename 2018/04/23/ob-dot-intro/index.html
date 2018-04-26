@@ -136,7 +136,7 @@
 <meta property="og:image" content="https://brantou.github.io/images/ob-dot-intro/call-graph-with-labeled-cluster.png">
 <meta property="og:image" content="https://brantou.github.io/images/ob-dot-intro/graph-with-edges-cluster.png">
 <meta property="og:image" content="https://brantou.github.io/images/ob-dot-intro/graph-with-edges-cluster.png">
-<meta property="og:updated_time" content="2018-04-26T05:52:09.994Z">
+<meta property="og:updated_time" content="2018-04-26T10:43:54.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dot Source Code Blocks in Org Mode">
 <meta name="twitter:description" content="1 简介   Dot 是 Graphviz 开源图形可视化软件中的六个布局程序之一，由 AT＆T 创建。 Graphviz 布局程序采用简单的文本图形描述并以各种格式制作有用的图表。 Dot 代码块默认调用 dot 布局程序，但可以配置为调用任何其他五个 Graphviz 布局程序。    图形可视化在很多技术领域都有应用，它常常用于探索大型数据集。 Org 模式中的典型用法是将点源代码块">
@@ -680,10 +680,20 @@ a -&gt; b;
 <p><img src="https://brantou.github.io/images/ob-dot-intro/graph-with-edges-cluster.png" alt="graph-with-edges-cluster.png">
 </p>
 </div>
+
+
+<div class="org-src-container">
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">digraph G {&#10;  size=&#34;8,6&#34;; ratio=fill; node[fontsize=24];&#10;  a0 -&#62; a1; a0 -&#62; a2; a1 -&#62; a3; a2 -&#62; a3; a2 -&#62; a4; a3 -&#62; a5; a4 -&#62; a5;&#10;&#10;  subgraph &#34;cluster0&#34; {&#10;     label=&#34;scb_0&#34;;&#10;     a0; a3; a1; a2;&#10;  }&#10;&#10;  subgraph &#34;cluster1&#34; {&#10;     label=&#34;scb_1&#34;;&#10;     a4;&#10;  }&#10;&#10;  subgraph &#34;cluster2&#34; {&#10;     label=&#34;scb_2&#34;;&#10;     a5;&#10;  }&#10;&#10;}</span><br></pre></td></tr></table></figure>
+</div>
+
+<pre class="example">
+[[https://brantou.github.io/images/ob-dot-intro/graph-with-scb.png]]
+</pre>
 </div>
 </div>
 
-Last Updated 2018-04-26 Thu 13:52.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
+Last Updated 2018-04-26 Thu 18:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" rel="external nofollow noopener noreferrer" target="_blank">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" rel="external nofollow noopener noreferrer" target="_blank">Emacs</a> 25.3.2 (<a href="http://orgmode.org" rel="external nofollow noopener noreferrer" target="_blank">Org</a> mode 8.2.10)
 
       
     </div>
